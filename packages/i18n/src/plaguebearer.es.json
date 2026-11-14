@@ -187,6 +187,44 @@
       "baalshandor": "No está muerto lo que puede yacer eternamente, y con el paso de extraños eones, incluso la muerte puede morir.",
       "baalshandorEffect": "Anota en el registro de campaña que recibisteis un acertijo críptico.",
       "lesson2": "“Espero que hayáis encontrado las respuestas que buscabais. Vuestro tiempo aquí se agota rápido, a no ser que prefiráis abandonar esta locura y quedaros conmigo por la eternidad infinita”.\n\nNiegas con la cabeza. Arkham está más en peligro de lo que nunca ha estado. Y sólo tú tienes el conocimiento necesario para detener lo que está por venir.\n\nRobison musita unas pocas palabras y las estrellas se desvanecen del cielo, seguidas de toda la luz en este reino."
+    },
+    "noon": {
+      "introTitle": "Descenso al mediodía",
+      "intro1": "11:43 a. m.\n\nTe aproximas con cuidado al motel. Algunos agentes están demasiado ocupados intentando controlar la situación como para notar que te aproximas, y no te lleva mucho encontrar un sitio para colarte por la puerta de atrás.",
+      "intro2": "Buscas por las habitaciones de detrás. En la bodega, detrás de una estantería, encuentras una trampilla que te conduce a un túnel que te resulta familiar. Parece que Hibb te estaba mintiendo.",
+      "intro3": "Desciendes rápidamente por el túnel, tan rápido que de pronto te ves rodeado por agentes de los Sastres que te piden que entregues las armas. Un hombre con una sonrisa de tiburón y un cigarro en la mano sonríe. \"Bienvenido a la instalación Brook. ¿Últimas palabras?\".",
+      "intro4": "\"¡Calma, Martínez! Aquí estamos todos en el mismo bando. Estos son Sastres encubiertos. Han estado trabajando para mí, haciendo labores de vigilancia\".\n\nGreyson se coloca entre vosotros y el tipo ceñudo.\n\n\"¿Y cómo es que no he oído hablar de ellos antes?\".\n\n\"Somos una organización clandestina, Martínez. Sólo nos cuentan lo básico. No necesito que te guste. Sólo necesito que nos dejes tiempo para bajar ahí abajo y conseguir que West acabe su trabajo\".\n\nDespués de un momento de tensión, los agentes os permiten el paso. Greyson os hace avanzar y junto con West entráis en el vestíbulo de la instalación. \"No se lo agradezcáis demasiado pronto\" dice West. \"Tenemos unos 30 minutos antes de que se den cuenta de que les he mentido\".",
+      "intro5": "La voz de Herbert West se escucha por encima del alboroto. \"¡Estúpidos! ¿Es que no sois capaces de reconocer a mis socios? No voy a ser capaz de encontrar una solución a vuestro problema sin mis vitales asistentes\".\nDespués de un momento de tensión, los agentes os permiten el paso. West os hace avanzar y te sigue dentro del vestíbulo de la instalación. \"No me lo agradezcáis demasiado pronto. Tenemos unos 30 minutos antes de que se den cuenta de que les he mentido\".",
+      "intro6": "West frunce el ceño. \"¿Habéis venido hasta mí buscando una solución a todo esto? Pues bien, no la tengo. Trato día a día con la vida y la muerte, lo que está ocurriendo aquí está más allá de ambas. Pickman debería haberlo sabido, pero ahora está fuera de juego. Pero aquí tenemos un aliado común, Robison. Avezado en conocimientos arcanos. Diría que está como una cabra si no fuera por sus resultados. El comité financió su investigación sobre supuestos seres que le ofrecían conocimiento. Un día vino fanfarroneando de que por el precio adecuado podría obtener la respuesta a cualquier pregunta. Si podemos llegar a su laboratorio privado, tal vez podamos obligarle a demostrar si eso es cierto. Desgraciadamente, el hombre es un paranoico. Su ala de investigación está protegida por todo tipo de cerraduras y barreras. Afortunadamente se dónde podemos encontrar una de las llaves\".\n\nExpresas tu confusión a West. ¿Ala de investigación? No viste ningún ala de investigación ayer, y eso que exploraste la instalación de arriba abajo.\n\n\"¿Seguro?\" Dice West mientras empuja un panel de la pared. Detrás hay una habitación del pánico llena de suministros. \"Bueno, vosotros sois los expertos\".",
+      "setupTitle": "Preparación",
+      "setup": "Reúne las cartas de los conjuntos de encuentros Descenso al mediodía, Supervivientes de la Agencia (solo los enemigos, aparte), Agentes de Cthugha, Dones del Portador de la Plaga, Confusión del miasma, Vida y muerte y Alianzas frágiles (solo cada copia de Alianzas frágiles).\n\nLa colección no fue salvada: retira de la partida el conjunto Agentes de Yog-Sothoth y el Laboratorio Alfa (Conocimiento Prohibido), y deja aparte el conjunto Agentes de Cthugha.\n\nPon aparte el Agente Martínez, el Primero de muchos, todas las copias de Seguridad de los Sastres, las Aurículas y los Ventrículos, los Blasones, los Sub-laboratorios Alfa y el Laboratorio de Robison.\n\nPon en juego la Guarida, el Laboratorio Omega, el Laboratorio Alfa y el Laboratorio Delta. Cada investigador comienza en la Guarida. Herbert West (y la Agente Greyson, si Greyson cortó lazos) entra en juego desde el mazo o, si no, con Alianzas frágiles vinculada. Baraja los Sub-laboratorios Delta y ponlos en juego con el Despacho de West según la Figura 1.\n\nUn Lugar está \"directamente debajo\" de otro si está debajo de él y no hay otros Lugares entre ambos.",
+      "setupSaved": "Reúne las cartas de los conjuntos de encuentros Descenso al mediodía, Supervivientes de la Agencia (solo los enemigos, aparte), Agentes de Yog-Sothoth, Dones del Portador de la Plaga, Confusión del miasma, Vida y muerte y Alianzas frágiles (solo cada copia de Alianzas frágiles).\n\nLa colección fue salvada: retira de la partida el conjunto Agentes de Cthugha y el Laboratorio Alfa (Reducido a cenizas), y deja aparte el conjunto Agentes de Yog-Sothoth.\n\nPon aparte el Agente Martínez, el Primero de muchos, todas las copias de Seguridad de los Sastres, las Aurículas y los Ventrículos, los Blasones, los Sub-laboratorios Alfa y el Laboratorio de Robison.\n\nPon en juego la Guarida, el Laboratorio Omega, el Laboratorio Alfa y el Laboratorio Delta. Cada investigador comienza en la Guarida. Herbert West (y la Agente Greyson, si Greyson cortó lazos) entra en juego desde el mazo o, si no, con Alianzas frágiles vinculada. Baraja los Sub-laboratorios Delta y ponlos en juego con el Despacho de West según la Figura 1.\n\nUn Lugar está \"directamente debajo\" de otro si está debajo de él y no hay otros Lugares entre ambos.",
+      "agenda1bTitle": "Zona peligrosa",
+      "agenda1b": "Tu artimaña se ha venido abajo. Multitud de agentes de los Sastres se internan en la instalación como un enjambre de abejas furiosas. Más vale que te des prisa, no querrás enfrentarte a su reina.",
+      "agenda2bTitle": "El hombre al mando",
+      "agenda2b": "Un ensangrentado Agente Martínez aparece tambaleándose por el túnel. \"WEST! Será mejor que tú y tus degenerados compinches os larguéis ahora mismo de aquí, o juro que ni vuestro maldito brebaje será capaz de devolveros la vida cuando haya terminado con vosotros.\"\n\nLos Sastres acuden rápidamente a ayudarle, pero se endereza solo. \"Estoy bien. Simplemente tenemos que terminar con esto antes de que a esa... cosa... le de por bajar aquí.\"\n\n\"Y matad a esos traidores que van con West!\"",
+      "agenda2bWest": "Te giras hacia West , pero ha desaparecido. Eso te pasa por confiar en él.",
+      "agenda3bTitle": "Vuelta a la casilla de salida",
+      "agenda3b": "Una explosión hace temblar la instalación y comienzas a oír gritos que vienen del túnel.\n\nUna horrible criatura con un rostro en descomposición asoma por la puerta del vestíbulo, entonces el marco de la puerta salta por los aires incapaz de contenerla.\n\n¿Cómo puede seguir vivo? ¿Y cómo ha conseguido dar contigo?",
+      "agenda4bTitle": "Abajo y afuera",
+      "agenda4b": "La instalación entera se estremece y los techos y muros comienzan a ceder. De pronto, consciente de cuán profundo te encuentras bajo la ciudad, buscas desesperadamente una salida. No tardas mucho en caer en que tu camino se ve bloqueado por la enorme masa creciente del Primero de muchos. ¿Por qué no puede simplemente morir?\n\nUn escombro del techo te golpea y te deja noqueado en el suelo. Según el cuarto va hundiéndose, llega a tus oídos una extraña voz que entona \"¡Ia! ¡Ia! ¡Yog-...!\"",
+      "act1bBriefcaseTitle": "Cabizbajos",
+      "act1bBriefcase": "\"¡Maldita sea! No está aquí. ¿Dónde está ese maletín?\" Sostienes el pesado contenedor marrón detrás de ti y le recuerdas a West para qué habéis venido.",
+      "act1bTitle": "Cabizbajos",
+      "act1b": "West te mira con sorpresa. \"¡Oh! Bueno, eso ha sido más rápido de lo que esperaba. La llave está en el mismo cajón de siempre. Desafortunadamente, no es lo único que vamos a necesitar. El Dr. Robison es un tipo excéntrico, pero vamos a necesitar una especie de blasón que hizo. El mío se perdió, pero seguro que el de Pickman estará todavía en el Laboratorio Omega.\"",
+      "act2bTitle": "Ni de coña",
+      "act2b": "Con el blasón reunido, el hechizo que lo matenía separado se desvanece. Salís disparados hacia el Laboratorio Alfa. Al colocar el blasón en su lugar y girarlo, la boca del león revela una cerradura. Metes la llave de West y oyes un click sordo.\n\nLentamente la puerta se abre. Tras ella ves lo que parece ser un infinito pasillo lleno de puertas. Según avanzas, las paredes forman extraños ángulos y la gravedad parece cambiar. Al final del largo pasillo encuentras una puerta con una placa en la que apenas se puede leer: Robison Jefe de la Conjetura.",
+      "act3bTitle": "¿No hay salida?",
+      "act3b": "Entras en una sala que debería ser el laboratorio de investigación de Robison, pero... mientras que está llena de todo tipo de objetos rituales y demás parafernalia que esperabas encontrar, resulta que no está el doctor, y peor aún, no hay salida. Investigas todo el recinto volcando cajones y estanterías desesperado.\n\n\"¡Rápido, rápido! ¡Por aquí!\"\n\nMiras alrededor y te lleva un momento vislumbrar la mano de un hombre haciéndote gestos desde una esquina. El brazo atraviesa la pared a través de un dibujo de tiza de lo que parece ser un puente.\n\nSin otras opciones te acercas al dibujo de tiza y lo atraviesas mientras la mano tira de ti hacia el interior del muro y hacia algo más extraño todavía...",
+      "defeatedTitle": "Investigador derrotado",
+      "defeated": "Tu mente reposa en el limbo que hay entre el desvanecimiento y el letargo. Sientes la fría piedra debajo de ti. Tratas de abrir un ojo, pero sólo atisbas el frío vacío del espacio.\n\nTe incorporas y lo que ves a tu alrededor te deja estupefacto. Te encuentras en lo que parece ser uno de los infinitos y estrechos caminos entrelazados que atraviesan una aterradora nada adornada de estrellas.\n\nA tu alrededor, horribles voces cantan suavemente y te esfuerzas por escuchar. \"¡Ia! ¡Ia! ¡Yog-Sothoth!\". Te das cuenta, no sin cierta desazón, de que lo que parecían estrellas en el horizonte, no lo son. Son en realidad ojos.\n\n\"Bueno, podría haber ido mejor\". Un hombre delgado, con una camisa hecha jirones y gafas, se acerca hacia ti. \"Vamos. Tenemos... mucho de lo que hablar\".",
+      "thresholdTitle": "En el Umbral",
+      "threshold": "Sobrevives de nuevo, más allá de tu propósito. Qué alimañas tan inflexibles. Se ha interesado. No creas en sus falsas esperanzas. No puedes detener lo que está por venir. Ni siquiera controlas tu carne. Cede a tu mezquina mortalidad y MUERE.",
+      "thresholdEffect": "Cada investigador que lea esto sufre 1 trauma físico.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "El delgado hombre se presenta como Robison. \"Me estaba buscando, ¿verdad? Yo también le buscaba a usted. Mi Maestro está preocupado por los acontecimientos que están teniendo lugar en Arkham\".\n\nAntes de que puedas preguntarle nada, él responde. \"Llegué a un acuerdo... con el creador de este reino. Digamos sólo que mi supervivencia estaba en peligro y él era la clave. Usted también está en deuda con él. Usted habría perecido también al colapsar mi ala de investigación si él no le hubiera sacado de allí.\n\nPero vamos al grano. Supongo que ha llegado hasta aquí para escuchar lo que sé\".",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Tus ojos desenfocan la mirada mientras eres transportado en lo que parece ser una infinita camilla de cemento. Pasa una eternidad y la única sensación es la mano que te empuja.\n\nDe pronto, algo te impele fuera de donde estás y tropiezas. Te detienes justo al borde de un precipicio. Cuando observas, puedes ver incontables caminos estrechos entrelazados de piedra suspendidos como por arte de magia en el vacío del espacio.\n\n\"Bienvenido al reino de mi Maestro\". Un delgado hombre con una camisa harapienta y gafas está delante de ti, sobre los estrechos caminos, asiente levemente. \"Soy el Dr. Robison. Me estaba buscando, ¿verdad? Yo también le buscaba a usted. Venga, le explicaré lo que sé\"."
     }
   },
   "note": {
@@ -269,7 +307,11 @@
     "plaguebearerEliminated78274": "Henry Armitage: eliminado",
     "plaguebearerVisionOfPortals": "Tuvisteis una visión de los portales",
     "plaguebearerKillingWords": "Aprendisteis las palabras de muerte",
-    "plaguebearerCrypticRiddle": "Recibisteis un acertijo críptico"
+    "plaguebearerCrypticRiddle": "Recibisteis un acertijo críptico",
+    "plaguebearerGreysonCutTies": "Greyson cortó lazos",
+    "plaguebearerLurkersRealm": "Tú fuiste transportado al reino del que acecha",
+    "plaguebearerHiddenPaths": "Tú encontraste las sendas ocultas",
+    "plaguebearerBuried": "El monstruo fue sepultado bajo toneladas de hormigón"
   },
   "ability": {
     "remove": "Gasta {amount} pistas aquí: retira {amount} barricadas de {location}",
@@ -337,6 +379,25 @@
       "tome": "Agota el Tomo sagrado: roba 2 cartas",
       "ritual": "Agota el Ritual de Yaztaroth: cura 1 horror en su lugar",
       "approval": "Vincula el Aliado al Beneplácito de Ma"
+    },
+    "noon": {
+      "saferoom": "Guarida: gastar 1 pista para devolver 1 pista de un Lugar revelado a la reserva",
+      "alphaDamage": "Laboratorio Alfa: recibir 1 daño para revelar un Lugar Subnivel",
+      "alphaHorror": "Laboratorio Alfa: recibir 1 horror para revelar un Lugar Subnivel",
+      "autopsy": "Sala de autopsias: realizar una acción de investigar",
+      "cold": "Despensa: jugar una carta de tu mano",
+      "hall": "Galeria principal: robar 1 carta y obtener 1 recurso",
+      "serum": "Síntesis de sueros: +2 a la siguiente prueba de habilidad de esta ronda",
+      "delta": "Laboratorio Delta: agotar a {enemy}",
+      "actMove": "Gastar 1 pista: moverte a un Lugar conectado",
+      "breakers": "Gastar {amount} recursos: accionar los interruptores principales",
+      "reason": "Gastar {amount} pistas como grupo: colocar Razón en el Laboratorio Alfa",
+      "faith": "Gastar {amount} pistas como grupo: colocar Fe en el Laboratorio Alfa",
+      "summon": "Robar {enemy} de la zona de victoria: descubrir todas las pistas aquí y moverte al Laboratorio Alfa",
+      "crest": "Mover el Blasón (prueba de dificultad 3 por pista aquí)",
+      "parley": "Negociar con el Agente Martínez",
+      "taphephobia": "Descartar Tafefobia",
+      "greyson": "Agente Greyson: gastar 1 recurso para mover a un investigador de tu Lugar"
     }
   },
   "prompt": {
@@ -379,6 +440,22 @@
     "history": {
       "ask": "Haz una pregunta al que acecha en el Umbral",
       "more": "¿Haces otra pregunta? Cada investigador añadirá a su mazo una Debilidad básica Locura o Pacto aleatoria"
+    },
+    "noon": {
+      "greyson": "¿Quién añade a la Agente Greyson (Ya no sigue órdenes) a su mazo?",
+      "west": "¿Quién pone en juego a Herbert West con Alianzas frágiles?",
+      "greysonAlly": "¿Quién pone en juego a la Agente Greyson con Alianzas frágiles?",
+      "cold": "Elige la carta que juegas",
+      "omega": "Laboratorio Omega: elige una opción",
+      "leftVentricle": "Ventrículo izquierdo: elige una opción",
+      "rightVentricle": "Ventrículo derecho: elige una opción",
+      "crestAgain": "El Blasón ha entrado en un Lugar revelado sin pistas",
+      "crestSkill": "Elige la habilidad de la prueba",
+      "elderThing": "Gasta 1 pista o recibe 1 punto de horror",
+      "discardAsset": "Elige el Apoyo que descartas",
+      "livingFlame": "La Llama viviente: descarta tu Apoyo de mayor coste o coloca 1 perdición sobre él",
+      "chooseInvestigator": "Elige un investigador",
+      "threshold": "La resolución contiene un texto oculto. ¿Decides leerlo?"
     }
   },
   "choice": {
@@ -443,6 +520,25 @@
       "baalshandor": "¿Cómo podemos derrotar a Baalshandor?",
       "enough": "No hacer más preguntas",
       "none": "No hacer ninguna pregunta"
+    },
+    "noon": {
+      "damage": "Recibir 1 punto de daño",
+      "terror": "Descartar hasta una traición Terror y robarla",
+      "noPlay": "No jugar Apoyos ni Eventos esta ronda",
+      "leftCrest": "Mover el Blasón izquierdo hacia el Ventrículo izquierdo",
+      "noDamage": "No infligir daño a enemigos esta ronda",
+      "rightCrest": "Mover el Blasón derecho hacia el Ventrículo derecho",
+      "crestAgain": "Resolver la habilidad del Blasón otra vez",
+      "skill": {
+        "willpower": "Voluntad",
+        "intellect": "Intelecto",
+        "combat": "Combate",
+        "agility": "Agilidad"
+      },
+      "spendClue": "Gastar 1 pista",
+      "takeHorror": "Recibir 1 punto de horror",
+      "discard": "Descartar {card}",
+      "doomOnAsset": "Colocar 1 perdición sobre {card} para cancelar"
     }
   }
 }

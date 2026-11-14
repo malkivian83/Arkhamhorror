@@ -187,6 +187,44 @@
       "baalshandor": "That is not dead which can eternal lie. And in strange aeons, even death may die.",
       "baalshandorEffect": "Record in your campaign log that you received a cryptic riddle.",
       "lesson2": "“I hope you have the answers you seek. Your time here draws short - unless you would prefer to abandon this folly and dwell with me amongst the endless for eternity?”\n\nYou shake your head. Arkham’s in more danger than ever. Only you have the knowledge to stop what’s coming.\n\nRobison speaks a few words, and the stars fade from the sky, followed by the rest of the light in this realm."
+    },
+    "noon": {
+      "introTitle": "High Noon Descent",
+      "intro1": "11:43 AM:\n\nYou carefully approach the roadhouse. The various agents are too concerned with regaining control to notice your approach, and it doesn't take you long to find your way into the back rooms.",
+      "intro2": "You search the various back rooms. In the cellar, behind shelves of booze, you find a hatch that leads down to a familiar tunnel. It seems Hibbs was lying to you.",
+      "intro3": "You swiftly descend into the tunnel- So swiftly that you're caught off guard when Tailor agents surround you and demand you drop any weapons. A man with the grin of a hungry shark lights a cigarette and smiles. \"Welcome to the Brook facility. Any last words?\"",
+      "intro4": "\"Stand down, Crispin! We're on the same side here. These are undercover Tailors. They've been working for me, doing surveillance.\"\nGreyson positions herself between you and the scowling man.\n\"And how come I ain't heard about this before?\"\n\"We're a clandestine organization, Crispin. Need-to-know basis. I don't need you to like it. I just need you to give us time to get down there and help West here do his job.\"\n\nAfter a tense moment, the agents stand down. Greyson pulls you past, and walks you and West into the facility lobby. \"Don't thank her too soon\" West interjects. \"We've got maybe a half an hour before they realize she's lying to them.\"",
+      "intro5": "Herbert West's voice breaks above the din. \"You idiots! Don't you recognize my associates? I'm not going to be able to just whip up a solution to your problem without my essential assistants.\"\nAfter a tense moment, the agents stand down. West pulls you past, and walks you into the facility lobby. \"Don't thank me too soon. We've got maybe a half an hour before they realize I'm lying to them.\"",
+      "intro6": "West frowns. \"You came to me to for a solution to all this? Well, I don't have one. I deal with life and death - what's going on up there is beyond either. Pickman would have known, but he's out of the picture. But we had a mutual associate here. Robison. Dealt in knowledge of the arcane. I would consider the man a crackpot, but for his results. The board funded his research into beings that supposedly offered him knowledge. He once bragged to me that he could learn the answer to any question for the right price. If we could reach his private laboratory, you could force him to make good on that boast.\n\nUnfortunately, the man was... paranoid. His research wing is protected by a complex series of locks and barriers. Fortunately, I know where at least one key can be found.\"\n\nYou express your confusion to West. Research wing? You saw no research wing, and you fully explored this facility yesterday.\n\n\"Oh, did you?\" says West, pushing a wall panel in and revealing a pristine panic room stocked with supplies. \"Well, you're the experts.\"",
+      "setupTitle": "Setup",
+      "setup": "Gather all cards from the High Noon Descent, Agency Survivors (only the enemies, set aside), Agents of Cthugha, Gifts of the Plaguebearer, Haze of Miasma, Life and Death and Tenuous Allies (only each copy of Tenuous Allies) encounter sets.\n\nThe collection was not saved: remove the Agents of Yog-Sothoth set from the game along with the Lab Alpha (Forbidden Knowledge) location, and set the Agents of Cthugha set aside, out of play.\n\nSet aside Agent Crispin, First Among Many, each copy of Tailor Security, the Arteries and Ventricles, the Crests, each Alpha Sub-Lab and Robison's Laboratory.\n\nPut the Saferoom, Lab Omega, Lab Alpha, and Lab Delta into play. Each investigator begins play in the Saferoom. Herbert West (and Agent Greyson, if Greyson cut ties) enters play from a deck or, otherwise, with a copy of Tenuous Allies attached. Shuffle each Delta Sub-Lab location and put them into play along with West's Office, corresponding to Figure 1.\n\nA location is \"Directly Below\" another location if it is below it and has no locations between itself and that location.",
+      "setupSaved": "Gather all cards from the High Noon Descent, Agency Survivors (only the enemies, set aside), Agents of Yog-Sothoth, Gifts of the Plaguebearer, Haze of Miasma, Life and Death and Tenuous Allies (only each copy of Tenuous Allies) encounter sets.\n\nThe collection was saved: remove the Agents of Cthugha set from the game along with the Lab Alpha (Badly Burned) location, and set the Agents of Yog-Sothoth set aside, out of play.\n\nSet aside Agent Crispin, First Among Many, each copy of Tailor Security, the Arteries and Ventricles, the Crests, each Alpha Sub-Lab and Robison's Laboratory.\n\nPut the Saferoom, Lab Omega, Lab Alpha, and Lab Delta into play. Each investigator begins play in the Saferoom. Herbert West (and Agent Greyson, if Greyson cut ties) enters play from a deck or, otherwise, with a copy of Tenuous Allies attached. Shuffle each Delta Sub-Lab location and put them into play along with West's Office, corresponding to Figure 1.\n\nA location is \"Directly Below\" another location if it is below it and has no locations between itself and that location.",
+      "agenda1bTitle": "Danger Zone",
+      "agenda1b": "Your ruse is up. Tailor Agents begin pouring into the facility like a swarm of angry bees. Better move fast – you don't want to have to fight their queen.",
+      "agenda2bTitle": "The Man in Charge",
+      "agenda2b": "A bloodied Agent Crispin staggers down the tunnel. \"WEST! You and your degenerate cronies better get out here right now, or I swear not even your damn juice will be able to put your sorry corpse back together when I'm done with ya!\"\n\nTailors rush to offer him support, but he steadies himself. \"I'm fine. We just need to finish this before that… thing… makes it down here.\"\n\n\"And kill those fakes with West!\"",
+      "agenda2bWest": "You turn to check with West, but he has vanished entirely. So much for trusting him.",
+      "agenda3bTitle": "Back to Square First",
+      "agenda3b": "An explosion rocks the facility, and you hear screams from the tunnel.\n\nA horrible creature with a decaying face bends its neck through the lobby door, then bursts through a doorframe that can no longer contain it.\n\nHow can it still be alive? How can it have followed you?",
+      "agenda4bTitle": "Down and Out",
+      "agenda4b": "The entire facility shudders, and the walls and ceilings start to fall in. Suddenly aware of just how deep below the city you are, you make for the exit. You don't make it far before your way is blocked by the slowly rising mass of the First Among Many. Why can't this thing just DIE?\n\nA falling block of concrete knocks you to the ground. As the room collapses, you hear a strange voice chanting \"Ia! Ia! Yog-\"",
+      "act1bBriefcaseTitle": "Crestfallen",
+      "act1bBriefcase": "\"Damn! It's not here. Where is that case?\" You hold the heavy brown bag behind you and remind West what you're here for.",
+      "act1bTitle": "Crestfallen",
+      "act1b": "West looks up at you in some surprise. \"Ah! Well, that was quicker than expected. The key was in the same drawer as always. Unfortunately, that's not the only thing we'll be needing. Dr. Robison is an eccentric sort - we'll be needing a sort of crest he made. My copy is missing, but Pickman's might still be in the Omega wings.",
+      "act2bTitle": "No Way In",
+      "act2b": "With the crest assembled, the spell pushing it apart fades. You quickly rush to the Alpha laboratory. Rotating the crest into place, the lion's mouth reveals a keyhole. You insert West's key, and hear it click into place.\n\nSlowly, the door grinds open. Beyond is a seemingly endless hallway of doors. As it extends, the walls extrude in strange angles, and gravity seems to shift. At the far end of the hall, a door with a plaque reading \"Robison, Head of Conjecture\" is just barely visible.",
+      "act3bTitle": "No Way Out?",
+      "act3b": "You enter a room that must be Robison's research lab. But… while it's filled with all the ritual trappings you'd expect, there's no doctor and, more concerning, no other exit. You look all over the room, turning over shelves and desks in desperation.\n\n\"Quick, quick! Over here!\"\n\nYou look around, and it takes you a moment to notice a man's hand gesturing from the corner. The arm intersects a chalk drawing of a bridge on a solid wall.\n\n\"Please, hurry! It's nearly here!\"\n\nWith no other options, you move towards the chalk drawing and jump as the hand pulls you through the matter of the wall, and into somewhere very strange indeed…",
+      "defeatedTitle": "Investigator Defeat",
+      "defeated": "Your mind rests in the trench between idleness and slumber. You feel the cold stone beneath you. You chance the opening of an eye, and see only the cold void of space.\n\nYou bolt upright, and are astonished by what you see. You lie upon one of a seemingly infinite number of narrow interweaving pathways through a terrifying nothingness dotted with stars.\n\nAll around you, terrible voices chant softly, and you strain to hear. \"Ia! Ia! Yog-Sothoth!\" You realize, with some concern, that the little dots on the horizon are not stars. They are eyes.\n\n\"Well, that could have gone better.\" A thin man in a tattered collared shirt and glasses motions to you. \"Come on. We have... a lot to talk about.\"",
+      "thresholdTitle": "At the Threshold",
+      "threshold": "You survive again, past your purpose. Such unyielding vermin. He has taken an interest. Do not believe his false hopes. You cannot stop what is to come. You do not even control your flesh. Give in to your petty mortality and DIE.",
+      "thresholdEffect": "Each investigator that reads this takes a physical trauma.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "The thin man intoduces himself as Robison. \"You've been looking for me, yes? I've been looking for you. My master -he has concerns about the ongoing situation in Arkham.\"\n\nBefore you even ask the question, he responds. \"I have made... an arrangement with the creator of this realm. Let's just say that my survival was at risk, and he was the key. You owe him a debt as well. You would have been crushed in the collapse of my former research wing had he not pulled you through.\n\nBut that's not here nor there. I suppose you would like to hear what I know.\"",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "Your eyes unfocus as you are pulled through what seems like an endless stretch of solid concrete. An eternity passes, the only sensation being the hand pulling you forward.\n\nAll at once, you burst through the other side and stumble forward. You catch yourself on the edge of a precipice - looking out, you see countless interweaving narrow paths of stone impossibly suspended in the void of space.\n\n\"Welcome to my Master's realm.\" A thin man in a tattered collared shirt and glasses standing ahead of you on the narrow path nods slightly. \"I'm Dr. Robison. I think you've been looking for me? So, I've been looking for you. Come, and I'll explain what I know."
     }
   },
   "note": {
@@ -269,7 +307,11 @@
     "plaguebearerEliminated78274": "Henry Armitage: Eliminated",
     "plaguebearerVisionOfPortals": "You saw a vision of the portals",
     "plaguebearerKillingWords": "You learned the killing words",
-    "plaguebearerCrypticRiddle": "You received a cryptic riddle"
+    "plaguebearerCrypticRiddle": "You received a cryptic riddle",
+    "plaguebearerGreysonCutTies": "Greyson cut ties",
+    "plaguebearerLurkersRealm": "You were transported to the Lurker's realm",
+    "plaguebearerHiddenPaths": "You found the hidden paths",
+    "plaguebearerBuried": "The monster was buried under tons of concrete"
   },
   "ability": {
     "remove": "Spend {amount} clues here: remove {amount} barricades from {location}",
@@ -337,6 +379,25 @@
       "tome": "Exhaust Reliquary Tome: draw 2 cards",
       "ritual": "Exhaust Ritual of Yaztaroth: heal 1 horror instead",
       "approval": "Attach the Ally to Ma’s Approval"
+    },
+    "noon": {
+      "saferoom": "The Saferoom: spend 1 clue to return 1 clue on a revealed location to the token bank",
+      "alphaDamage": "Lab Alpha: take 1 damage to reveal a Sub-Level location",
+      "alphaHorror": "Lab Alpha: take 1 horror to reveal a Sub-Level location",
+      "autopsy": "Autopsy Chamber: take an investigate action",
+      "cold": "Cold Storage: play a card from your hand",
+      "hall": "Main Hall: draw 1 card and gain 1 resource",
+      "serum": "Serum Synthesis: +2 to your next skill test this round",
+      "delta": "Lab Delta: exhaust {enemy}",
+      "actMove": "Spend 1 clue: move to a connecting location",
+      "breakers": "Spend {amount} resources: flip the main breakers",
+      "reason": "Spend {amount} clues as a group: place reason on Lab Alpha",
+      "faith": "Spend {amount} clues as a group: place faith on Lab Alpha",
+      "summon": "Draw {enemy} from the victory display: discover all clues here and move to Lab Alpha",
+      "crest": "Move the Crest (test difficulty 3 per clue here)",
+      "parley": "Parley with Agent Crispin",
+      "taphephobia": "Discard Taphephobia",
+      "greyson": "Agent Greyson: spend 1 resource to move an investigator at your location"
     }
   },
   "prompt": {
@@ -379,6 +440,22 @@
     "history": {
       "ask": "Ask the Lurker at the Threshold a question",
       "more": "Ask another question? Each investigator will add a random basic Madness or Pact weakness to their deck"
+    },
+    "noon": {
+      "greyson": "Who adds Agent Greyson (Not Following Orders) to their deck?",
+      "west": "Who puts Herbert West into play with Tenuous Allies?",
+      "greysonAlly": "Who puts Agent Greyson into play with Tenuous Allies?",
+      "cold": "Choose the card you play",
+      "omega": "Lab Omega: choose one",
+      "leftVentricle": "The Left Ventricle: choose one",
+      "rightVentricle": "The Right Ventricle: choose one",
+      "crestAgain": "The Crest entered a revealed location with no clues",
+      "crestSkill": "Choose the skill to test",
+      "elderThing": "Spend 1 clue or take 1 horror",
+      "discardAsset": "Choose the asset you discard",
+      "livingFlame": "The Living Flame: discard your highest cost asset or place 1 doom on it",
+      "chooseInvestigator": "Choose an investigator",
+      "threshold": "The resolution contains a hidden text. Do you read it?"
     }
   },
   "choice": {
@@ -443,6 +520,25 @@
       "baalshandor": "How do we stop Baalshandor?",
       "enough": "Ask no more questions",
       "none": "Ask no question"
+    },
+    "noon": {
+      "damage": "Take 1 damage",
+      "terror": "Discard until a Terror treachery and draw it",
+      "noPlay": "Do not play assets or events this round",
+      "leftCrest": "Move the Left Crest towards the Left Ventricle",
+      "noDamage": "Do not deal damage to enemies this round",
+      "rightCrest": "Move the Right Crest towards the Right Ventricle",
+      "crestAgain": "Resolve the Crest's ability again",
+      "skill": {
+        "willpower": "Willpower",
+        "intellect": "Intellect",
+        "combat": "Combat",
+        "agility": "Agility"
+      },
+      "spendClue": "Spend 1 clue",
+      "takeHorror": "Take 1 horror",
+      "discard": "Discard {card}",
+      "doomOnAsset": "Place 1 doom on {card} to cancel"
     }
   }
 }

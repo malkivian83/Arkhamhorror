@@ -769,6 +769,347 @@
     "text": "Revelación – Realiza una prueba de [agility] (3). Si fracasas, elige el enemigo más cercano con perdición sobre él. Recibe tanto daño directo como fichas de perdición haya sobre el enemigo elegido, o mueve toda la perdición del enemigo al plan en curso.",
     "flavor": "La vida es un pequeño precio a pagar para los devotos."
   },
+  "78111": {
+    "name": "Descenso al mediodía",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X es el número de Lugar de distancia hasta la Guarida.\n[cultist]: –4. Si tienes éxito, puedes moverte a un Lugar conectado.\n[tablet]: –2. Si fracasas, coloca 1 pista en tu Lugar (de la reserva de fichas).\n[elder_thing]: –3. Si fracasas, cada investigador que haya escuchado la Llamada debe gastar 1 pista o recibir 1 punto de horror.",
+    "backText": "[skull]: –X. X es el número de Lugar de distancia hasta la Guarida más 2.\n[cultist]: –5. Si tienes éxito, puedes moverte a un Lugar conectado.\n[tablet]: –4. Si fracasas, coloca 1 pista en tu Lugar (de la reserva de fichas).\n[elder_thing]: –3. Si fracasas, por cada punto que te falte para tener éxito, cada investigador que haya escuchado la Llamada debe gastar 1 pista o recibir 1 punto de horror."
+  },
+  "78112": {
+    "name": "Dentro de Brook",
+    "typeCode": "agenda",
+    "text": "Cada Lugar Subnivel está conectado a la Guarida (sólo en una dirección).",
+    "flavor": "La Instalación Brook. Donde comenzó tu día y donde los Sastres llevan a cabo extraños experimentos. Si West dice la verdad, las respuestas que buscas deben estar tras las puertas del complejo, en el Laboratorio Alfa...",
+    "backName": "Zona peligrosa",
+    "backText": "Baraja el conjunto de encuentros Supervivientes de la Agencia puesto aparte, junto con todas las copias del enemigo Seguridad de los Sastres en el mazo de Encuentros.",
+    "backFlavor": "Tu artimaña se ha venido abajo. Multitud de agentes de los Sastres se internan en la instalación como un enjambre de abejas furiosas. Más vale que te des prisa, no querrás enfrentarte a su reina."
+  },
+  "78113": {
+    "name": "Reforzando la seguridad",
+    "typeCode": "agenda",
+    "text": "El primer enemigo Agencia robado cada ronda gana Oleada y entra en juego con 1 punto de daño.\nCada Lugar Subnivel está conectado a la Guarida (sólo en una dirección).",
+    "flavor": "En unos instantes, el lugar está lleno de Sastres sedientos de sangre. Lo único que te consuela es que ellos están tan apurados y exhaustos como tú.",
+    "backName": "El hombre al mando",
+    "backText": "Haz aparecer el Agente Martínez puesto aparte en el Laboratorio Alfa. Comprueba el registro de campaña. Por cada una de las siguientes afirmaciones que NO aparezca, coloca 1 punto de daño [per_investigator] sobre el Agente Martínez.\n– Los investigadores se ganaron el respeto de Greyson.\n– Os asegurasteis de que el Primero murió.\nSi un investigador controla a Hebert West, o si en el registro de campaña aparece que West recuperó el reactivo: Busca en cada mazo de investigador, mano, zona de juego y pila de descartes a Herbert West y retíralo durante el resto de la campaña.",
+    "backFlavor": "Un ensangrentado Agente Martínez aparece tambaleándose por el túnel. \"WEST! Será mejor que tú y tus degenerados compinches os larguéis ahora mismo de aquí, o juro que ni vuestro maldito brebaje será capaz de devolveros la vida cuando haya terminado con vosotros.\"\nLos Sastres acuden rápidamente a ayudarle, pero se endereza solo. \"Estoy bien. Simplemente tenemos que terminar con esto antes de que a esa... cosa... le de por bajar aquí.\"\n\"Y matad a esos traidores que van con West!\""
+  },
+  "78114": {
+    "name": "Liderazgo activo",
+    "typeCode": "agenda",
+    "text": "El primer enemigo Agencia robado cada ronda gana Oleada y entra en juego con 1 punto de daño.\nCada Lugar Subnivel está conectado a la Guarida (sólo en una dirección).",
+    "flavor": "El agente al mando ha desmontado vuestra treta y ha bajado con la intención de veros muertos. Pero de momento no es que lo esté haciendo demasiado bien...",
+    "backName": "Vuelta a la casilla de salida",
+    "backText": "Haz aparecer el Primero de muchos en el Laboratorio Alfa.",
+    "backFlavor": "Una explosión hace temblar la instalación y comienzas a oír gritos que vienen del túnel.\nUna horrible criatura con un rostro en descomposición asoma por la puerta del vestíbulo, entonces el marco de la puerta salta por los aires incapaz de contenerla.\n¿Cómo puede seguir vivo? ¿Y cómo ha conseguido dar contigo?"
+  },
+  "78115": {
+    "name": "Regreso aterrador",
+    "typeCode": "agenda",
+    "text": "El primer enemigo Agencia robado cada ronda gana Oleada y entra en juego con 1 punto de daño.\nCada Lugar Subnivel está conectado a la Guarida (sólo en una dirección).",
+    "flavor": "Ha vuelto. Atravesando la instalación y arrasando con cada forma de vida que encuentra. Necesitas encontrar lo que has venido a buscar cuanto antes.",
+    "backName": "Abajo y afuera",
+    "backText": "Cada investigador no derrotado es derrotado y sufre 1 trauma físico.",
+    "backFlavor": "La instalación entera se estremece y los techos y muros comienzan a ceder. De pronto, consciente de cuán profundo te encuentras bajo la ciudad, buscas desesperadamente una salida. No tardas mucho en caer en que tu camino se ve bloqueado por la enorme masa creciente del Primero de muchos. ¿Por qué no puede simplemente morir?\nUn escombro del techo te golpea y te deja noqueado en el suelo. Según el cuarto va hundiéndose, llega a tus oídos una extraña voz que entona \"¡Ia! ¡Ia! ¡Yog-...!\""
+  },
+  "78116": {
+    "name": "Desvelando el Delta",
+    "typeCode": "act",
+    "text": "Cada Lugar Subnivel está conectado con cada Lugar directamente bajo él (sólo en una dirección).\n[free] Durante tu turno, gasta 1 pista: Muévete a un Lugar conectado. Límite de una vez por ronda.\nObjetivo – Al final de la ronda, si hay un investigador en el Despacho de West y no hay pistas en el Lugar, haz avanzar el Acto.",
+    "flavor": "Una lejana ala de la instalación Brook es donde West llevaba a cabo su impío trabajo de levantar a los muertos. Su llave para el ala Alfa está dentro, pero tienes que darte prisa.",
+    "backName": "Cabizbajos",
+    "backText": "Mueve a cada investigador a la Guarida.\nRetira de la partida cada Lugar Delta, salvo el Laboratorio Delta. Cada carta vinculada y enemigo en esos Lugares son descartados.\nPon en juego la Aurícula izquierda, el Ventrículo izquierdo, la Aurícula derecha y el Ventrículo derecho tal como se muestra en la Figura 2 de la guía.\nColoca el Blasón izquierdo en el Ventrículo izquierdo y el Blasón derecho en el Ventrículo derecho.",
+    "backFlavor": "West te mira con sorpresa. \"¡Oh! Bueno, eso ha sido más rápido de lo que esperaba. La llave está en el mismo cajón de siempre. Desafortunadamente, no es lo único que vamos a necesitar. El Dr. Robison es un tipo excéntrico, pero vamos a necesitar una especie de blasón que hizo. El mío se perdió, pero seguro que el de Pickman estará todavía en el Laboratorio Omega.\""
+  },
+  "78117": {
+    "name": "Ocupando el Omega",
+    "typeCode": "act",
+    "text": "Los investigadores no se pueden mover de un Lugar Subnivel a otro Lugar Subnivel directamente encima de ellos.\n[free] Durante tu turno, gasta 1 pista: Muévete a un Lugar conectado. Límite de una vez por ronda.\nObjetivo – Si el Blasón izquierdo y el Blasón derecho están en el mismo Lugar, haz avanzar el Acto.",
+    "flavor": "Pese a tu deseo de evitar el miasma, necesitáis explorar el ala Omega de la instalación Brook buscando la llave para abrir la puerta del ala Alfa.",
+    "backName": "Ni de coña",
+    "backText": "Mueve a cada investigador al Laboratorio Alfa\nMueve cada enemigo en un Lugar Miasma al Laboratorio Omega. Retira cada Lugar Miasma de la partida salvo el Laboratorio Omega. Cada carta vinculada a esos Lugares es descartada.\nReune los Lugares Sub-laboratorio Alfa y el Laboratorio de Robison puestos aparte y ponlos en juego tal como se muestra en la Figura 3 de la guía.\nHaz aparecer un enemigo del conjunto de encuentros Agentes de Cthugha o Agentes de Yog-Sothoth (dependiendo de cuál se colocó aparte) en un Lugar Sub-laboratorio Alfa sin revelar. Baraja el resto del conjunto de encuentros en el mazo de Encuentros.",
+    "backFlavor": "Con el blasón reunido, el hechizo que lo matenía separado se desvanece. Salís disparados hacia el Laboratorio Alfa. Al colocar el blasón en su lugar y girarlo, la boca del león revela una cerradura. Metes la llave de West y oyes un click sordo.\nLentamente la puerta se abre. Tras ella ves lo que parece ser un infinito pasillo lleno de puertas. Según avanzas, las paredes forman extraños ángulos y la gravedad parece cambiar. Al final del largo pasillo encuentras una puerta con una placa en la que apenas se puede leer: Robison Jefe de la Conjetura."
+  },
+  "78118": {
+    "name": "Asaltando el Alfa",
+    "typeCode": "act",
+    "text": "[free] Durante tu turno, gasta 1 pista: Muévete a un Lugar conectado. Límite de una vez por ronda.\nObjetivo – Si todos los investigadores no derrotados están en el Laboratorio de Robison, haz avanzar el Acto.",
+    "flavor": "Has desbloqueado la puerta tras la librería. Ahora todo lo que se interpone entre tú y las respuestas a todo lo que está ocurriendo es una galería sin fin de imposible geometría.",
+    "backName": "¿No hay salida?",
+    "backText": "(→R2)",
+    "backFlavor": "Entras en una sala que debería ser el laboratorio de investigación de Robison, pero... mientras que está llena de todo tipo de objetos rituales y demás parafernalia que esperabas encontrar, resulta que no está el doctor, y peor aún, no hay salida. Investigas todo el recinto volcando cajones y estanterías desesperado.\n\"¡Rápido, rápido! ¡Por aquí!\"\nMiras alrededor y te lleva un momento vislumbrar la mano de un hombre haciéndote gestos desde una esquina. El brazo atraviesa la pared a través de un dibujo de tiza de lo que parece ser un puente.\nSin otras opciones te acercas al dibujo de tiza y lo atraviesas mientras la mano tira de ti hacia el interior del muro y hacia algo más extraño todavía..."
+  },
+  "78119": {
+    "name": "Guarida",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "Obligado – Cuando un enemigo fuera a entrar en la Guarida: Deja de estar enfrentado a todos los investigadores y muévelo a un Lugar conectado.\n[reaction] Cuando te muevas a la Guarida, gasta 1 pista: Devuelve 1 pista de un Lugar revelado a la reserva de fichas.",
+    "backText": "Seguro",
+    "backFlavor": "Perfectamente guarecido. Nada va a entrar aquí si tú no quieres."
+  },
+  "78120": {
+    "name": "Laboratorio Delta",
+    "typeCode": "location",
+    "traits": "Delta",
+    "text": "El Laboratorio Delta está conectado con los 3 Lugares Delta superiores (además de sus símbolos de conexión).\n[reaction] Después de que un enemigo Reanimado o Infectado entre en el Laboratorio Delta: Agota a ese enemigo.\nVictoria 1.",
+    "flavor": "El laboratorio de West está lleno de medidas de seguridad para lidiar con sus experimentos.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "El laboratorio no ha sido tocado desde ayer, incluso los cadáveres están más o menos en las mismas posiciones."
+  },
+  "78121": {
+    "name": "Laboratorio Omega",
+    "typeCode": "location",
+    "traits": "Miasma",
+    "text": "Obligado – Al comienzo de tu turno, si estás en el Laboratorio Omega: Recibe 1 punto de daño o descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartada una traición Terror, roba esa carta.\nVictoria 1.",
+    "flavor": "Un asfixiante vapor verde inunda la sala mientras un instinto primario te grita que salgas corriendo.",
+    "backText": "Miasma",
+    "backFlavor": "Los esclavos tararean para sí mismos, el único cambio desde ayer es el deterioro de su piel."
+  },
+  "78122": {
+    "name": "Laboratorio Alfa",
+    "subname": "Reducido a cenizas",
+    "typeCode": "location",
+    "traits": "Alfa",
+    "text": "[reaction] Después de que entres en este Lugar, recibe 1 punto de daño: Revela un Lugar Subnivel en juego.\nObligado – Al final de la ronda: Coloca pistas en este Lugar hasta que tenga 1 pista [per_investigator].",
+    "flavor": "El Laboratorio ha sido arrasado por el fuego revelando una ornamentada puerta escondida tras las estanterías.",
+    "backText": "Alfa",
+    "backFlavor": "El fuego ha reclamado el laboratorio entero."
+  },
+  "78123": {
+    "name": "Laboratorio Alfa",
+    "subname": "Conocimiento prohibido",
+    "typeCode": "location",
+    "traits": "Alfa",
+    "text": "[reaction] Después de que entres en este Lugar, recibe 1 punto de daño: Revela un Lugar Subnivel en juego.\nObligado – Al final de la ronda: Coloca pistas en este Lugar hasta que tenga 1 pista [per_investigator].",
+    "flavor": "Al tirar de un libro etiquetado como \"Splitting the Angle\" se revela tras la estanteria una ornamentada puerta de piedra.",
+    "backText": "Alfa",
+    "backFlavor": "El mismo gramófono de ayer sigue atascado repitiendo las mismas notas."
+  },
+  "78124": {
+    "name": "Sala de autopsias",
+    "typeCode": "location",
+    "traits": "Subnivel. Delta",
+    "text": "[reaction] Después de que entres en la Sala de autopsias: Realiza una acción de investigar. Si tienes éxito, descubre 1 pista en cualquier Lugar revelado.\nNo puedes moverte a otro Lugar Subnivel desde este Lugar a menos que un investigador haya \"accionado los interruptores principales.\"\nObligado – Después de que descubras la última pista de este Lugar: Recuerda que has \"encontrado una mano amputada agarrando una llave.\"",
+    "backName": "Sub-laboratorio Delta",
+    "backText": "Subnivel. Delta",
+    "backFlavor": "El eco de tus pisadas resuena a través del gélido y desasosegante pasillo."
+  },
+  "78125": {
+    "name": "Despensa",
+    "typeCode": "location",
+    "traits": "Subnivel. Delta",
+    "text": "[reaction] Después de que entres en la Despensa: Juega una carta de tu mano.\nNo puedes moverte a otro Lugar Subnivel desde este Lugar a menos que un investigador haya \"encontrado una mano amputada agarrando una llave.\"\nObligado – Después de que descubras la última pista de este Lugar: Recuerda que has \"encontrado la tarjeta de acceso de un hombre muerto.\"",
+    "backName": "Sub-laboratorio Delta",
+    "backText": "Subnivel. Delta",
+    "backFlavor": "El eco de tus pisadas resuena a través del gélido y desasosegante pasillo."
+  },
+  "78126": {
+    "name": "Celda de aislamiento",
+    "typeCode": "location",
+    "traits": "Subnivel. Delta",
+    "text": "Si hay un investigador en la Celda de aislamiento, ningún otro investigador puede entrar en la Celda de aislamiento.",
+    "flavor": "Un conveniente agujero en una pared negra, pero con espacio sólo para uno.",
+    "backName": "Sub-laboratorio Delta",
+    "backText": "Subnivel. Delta",
+    "backFlavor": "El eco de tus pisadas resuena a través del gélido y desasosegante pasillo."
+  },
+  "78127": {
+    "name": "Galeria principal",
+    "typeCode": "location",
+    "traits": "Subnivel. Delta",
+    "text": "[reaction] Después de que entres en la Galeria principal: Roba 1 carta y obtén 1 recurso.\nNo puedes moverte a otro Lugar Subnivel desde este Lugar a menos que un investigador haya \"sintetizado un peligroso ácido.\"\n[action] Gasta 1 recurso [per_investigator]: Recuerda que has \"accionado los interruptores principales.\"",
+    "backName": "Sub-laboratorio Delta",
+    "backText": "Subnivel. Delta",
+    "backFlavor": "El eco de tus pisadas resuena a través del gélido y desasosegante pasillo."
+  },
+  "78128": {
+    "name": "Síntesis de sueros",
+    "typeCode": "location",
+    "traits": "Subnivel. Delta",
+    "text": "[reaction] Después de que entres en Síntesis de sueros: Recibes +2 para la siguiente prueba de habilidad que realices esta ronda.\nNo puedes moverte a otro Lugar Subnivel desde este Lugar a menos que un investigador haya \"encontrado la tarjeta de acceso de un hombre muerto.\"\nObligado – Después de que descubras la última pista de este Lugar: Recuerda que has \"sintetizado un peligroso ácido.\"",
+    "backName": "Sub-laboratorio Delta",
+    "backText": "Subnivel. Delta",
+    "backFlavor": "El eco de tus pisadas resuena a través del gélido y desasosegante pasillo."
+  },
+  "78129": {
+    "name": "Despacho de West",
+    "typeCode": "location",
+    "traits": "Subnivel. Delta",
+    "text": "Mientras se pueda entrar en el Despacho de West desde los dos Lugares inmediatamente superiores, recibe –3 a velo.\nMientras un investigador en este Lugar controle a Herbert West, recibe –2 a velo.",
+    "flavor": "¡La llave debe de estar por aquí en algún lado!",
+    "backName": "Despacho de West",
+    "backText": "Subnivel. Delta",
+    "backFlavor": "Una luz intermitente ilumina una solitaria placa en la que pone: \"Herbert West, Doctor en Filosofía. Jefe de Investigación Post Mortem.\""
+  },
+  "78130": {
+    "name": "Aurícula izquierda",
+    "typeCode": "location",
+    "traits": "Subnivel. Miasma",
+    "text": "Obligado – Después de que comiences tu turno en la Aurícula izquierda: Recibe 1 punto de horror directo.",
+    "flavor": "Algo te observa a través de una ventana cada vez que intentas evitar su mirada.",
+    "backText": "Subnivel. Miasma",
+    "backFlavor": "Un resplandor inquietante, como luz atravesando agua, proviene de lo más profundo del ala Omega."
+  },
+  "78131": {
+    "name": "Ventrículo izquierdo",
+    "typeCode": "location",
+    "traits": "Subnivel. Miasma",
+    "text": "Obligado – Después de que comiences tu turno en el Ventrículo izquierdo debes (elige una opción):\n– No puedes jugar Apoyos ni Eventos esta ronda.\n– Mueve el Blasón izquierdo 1 Lugar hacia el Ventrículo izquierdo.",
+    "flavor": "Sólo te demanda total devoción, lo que implica devoción a su maestro también.",
+    "backText": "Subnivel. Miasma",
+    "backFlavor": "Algo se mueve en una gigantesca estancia. Algo vivo."
+  },
+  "78132": {
+    "name": "Aurícula derecha",
+    "typeCode": "location",
+    "traits": "Subnivel. Miasma",
+    "text": "Obligado – Después de que comiences tu turno en la Aurícula derecha: Recibe 1 punto de daño directo.",
+    "flavor": "El miasma no es tu único problema; hueles una fuga de gas. Es mejor no quedarse aquí demasiado tiempo.",
+    "backText": "Subnivel. Miasma",
+    "backFlavor": "Una luz parpadeante alumbra un largo pasillo que se adentra en el ala Omega."
+  },
+  "78133": {
+    "name": "Ventrículo derecho",
+    "typeCode": "location",
+    "traits": "Subnivel. Miasma",
+    "text": "Obligado – Después de que comiences tu turno en el Ventrículo izquierdo debes (elige una opción):\n– No puedes infligir daño a enemigos esta ronda.\n– Mueve el Blasón derecho 1 Lugar hacia el Ventrículo derecho.",
+    "flavor": "Un auténtico sádico trabajó aquí. La idea de una violencia de este calibre te pone enfermo.",
+    "backText": "Subnivel. Miasma",
+    "backFlavor": "A través del denso miasma, vislumbras un bosque de cadáveres colgados."
+  },
+  "78134": {
+    "name": "Taller de catalizadores",
+    "typeCode": "location",
+    "traits": "Subnivel. Alfa",
+    "text": "[action] Los investigadores en este Lugar pueden gastar como grupo 1 pista [per_investigator] por cada Lugar Subnivel sin revelar: Coloca 1 recurso, como Razón, en el Laboratorio Alfa. Límite de grupo de una vez por partida.",
+    "flavor": "Máquinas imposibles destilan productos innombrables, mejor ignorarlas.",
+    "backName": "Sub-laboratorio Alfa",
+    "backText": "Subnivel. Alfa",
+    "backFlavor": "Un paso más en esta maldita ala..."
+  },
+  "78135": {
+    "name": "Cámara de los mundos",
+    "typeCode": "location",
+    "traits": "Subnivel. Alfa",
+    "text": "La Cámara de los mundos recibe –1 a velo por cada otro Lugar Subnivel revelado.",
+    "flavor": "Mapas de planetas que reconoces, pero no identificas, y planetas que identificas, pero no reconoces.",
+    "backName": "Sub-laboratorio Alfa",
+    "backText": "Subnivel. Alfa",
+    "backFlavor": "Un paso más en esta maldita ala..."
+  },
+  "78136": {
+    "name": "Laboratorio de incubación",
+    "typeCode": "location",
+    "traits": "Subnivel. Alfa",
+    "text": "Obligado – Después de que descubras con éxito cualquier cantidad de pistas en el Laboratorio de incubación: Recibe la misma cantidad de puntos de horror.",
+    "flavor": "Puedes notar que las criaturas de las incubadoras tienen miedo... pero no de ti.",
+    "backName": "Sub-laboratorio Alfa",
+    "backText": "Subnivel. Alfa",
+    "backFlavor": "Un paso más en esta maldita ala..."
+  },
+  "78137": {
+    "name": "Cámara de estabilización",
+    "typeCode": "location",
+    "traits": "Subnivel. Alfa",
+    "text": "[free] Los investigadores en este Lugar pueden gastar como grupo 1 pista [per_investigator] por cada Lugar Subnivel con pistas: Coloca 1 recurso, como Fe, en el Laboratorio Alfa.",
+    "flavor": "No tienes tiempo de valorar estas maravillosas máquinas, ni de como puede ser que existan.",
+    "backName": "Sub-laboratorio Alfa",
+    "backText": "Subnivel. Alfa",
+    "backFlavor": "Un paso más en esta maldita ala..."
+  },
+  "78138": {
+    "name": "Círculo de invocación",
+    "typeCode": "location",
+    "traits": "Subnivel. Alfa",
+    "text": "[free] Elige un Enemigo que no sea Élite en la zona de victoria y róbalo: Descubre todas las pistas en el Círculo de invocación y muévete al Laboratorio Alfa.",
+    "flavor": "La máquina retumba y sientes un extraño impulso de gritar \"¡Ia!\"",
+    "backName": "Sub-laboratorio Alfa",
+    "backText": "Subnivel. Alfa",
+    "backFlavor": "Un paso más en esta maldita ala..."
+  },
+  "78139": {
+    "name": "Laboratorio de Robison",
+    "typeCode": "location",
+    "traits": "Subnivel. Alfa",
+    "flavor": "No hay nadie aquí.",
+    "backName": "Laboratorio de Robison",
+    "backText": "No hay entrada al Laboratorio de Robison. No puedes entrar o revelar el Laboratorio de Robison mientras no haya Razón y Fe en el Laboratorio Alfa.",
+    "backFlavor": "Todo lo que has buscado y de lo que has huído... las respuestas están tras esa puerta."
+  },
+  "78140": {
+    "name": "Agente Greyson",
+    "subname": "Ya no sigue órdenes",
+    "typeCode": "asset",
+    "traits": "Aliado. Humanoide. Agencia. Vagabundo",
+    "text": "Recibes +1 [intellect] y +1 [combat].\n[reaction] Después de que termine tu turno, gasta 1 recurso: Mueve un investigador de tu Lugar a un Lugar conectado.",
+    "flavor": "\"¡Vete! Te cubro las espaldas.\""
+  },
+  "78141": {
+    "name": "Blasón izquierdo",
+    "typeCode": "asset",
+    "traits": "Objeto",
+    "text": "El Lugar del Blasón izquierdo obtiene: \"[free]: Realiza una prueba de [willpower] o [intellect] (X), X es el número de pistas en este Lugar multiplicado por 3. Si tienes éxito mueve el Blasón izquierdo un Lugar hacia el Ventrículo derecho. Si el Blasón izquierdo entra en un Lugar sin pistas, puedes resolver esta habilidad otra vez.\""
+  },
+  "78142": {
+    "name": "Blasón derecho",
+    "typeCode": "asset",
+    "traits": "Objeto",
+    "text": "El Lugar del Blasón derecho obtiene: \"[free]: Realiza una prueba de [combat] o [agility] (X), X es el número de pistas en este Lugar multiplicado por 3. Si tienes éxito mueve el Blasón derecho un Lugar hacia el Ventrículo izquierdo. Si el Blasón derecho entra en un Lugar sin pistas, puedes resolver esta habilidad otra vez.\""
+  },
+  "78143": {
+    "name": "Agente Martínez",
+    "subname": "Con prejuicios extremos",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Agencia. Élite",
+    "text": "Presa – Menor [combat].\nAlerta. Represalia.\n[free]: Negociar. El Agente Martínez te ataca. Deja de estar enfrentado al Agente Martínez. Hasta el final de la ronda el Agente Martínez no puede enfrentarse a ti.\nVictoria 1.",
+    "flavor": "Te mira con los mismos ojos que un sabueso observa a su presa. Sientes la necesidad imperiosa de darte una ducha."
+  },
+  "78144": {
+    "name": "Primero de muchos",
+    "subname": "Monstruosidad insistente",
+    "typeCode": "enemy",
+    "traits": "Infectado. Monstruo. Élite",
+    "text": "Cazador. Descomunal. Represalia.\nEl Primero de muchos no puede hacer ataques de oportunidad.\nObligado – Cuando un Lugar sea revelado: Prepara al Primero de muchos y muévelo a ese Lugar.\nVictoria 2.",
+    "flavor": "Cuando fija su mirada en ti, lanza un terrible grito con el destino que le espera a uno de tus seres queridos. Nadie tiene un buen final."
+  },
+  "78145": {
+    "name": "Prototipo fallido",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Delta",
+    "text": "Cazador.\nObligado – Cuando el Prototipo fallido se agote: Inflige 1 punto de daño al Prototipo fallido.",
+    "flavor": "Uno no crea vida sin cometer algunos errores por el camino."
+  },
+  "78146": {
+    "name": "Corre por tu vida",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Pon Corre por tu vida en juego en tu zona de amenaza.\nObligado – Al principio de la ronda: Coloca 1 ficha de Perdición sobre el plan en curso si no estás en la Guarida. Este efecto puede hacer que el plan en curso avance. Descarta Corre por tu vida."
+  },
+  "78147": {
+    "name": "Estrategia (Precaución)",
+    "typeCode": "treachery",
+    "traits": "Defecto. Táctica",
+    "text": "Revelación – Si hay otra copia de Estrategia en juego (por nombre), descarta Estrategia (Precaución) y obtiene Oleada. Si no, pon Estrategia (Precaución) en juego junto al mazo de plan.\nComo coste adicional para moverse a un Lugar Subnivel sin revelar debes gastar 1 acción adicional.\nObligado – Al final de la ronda: Descarta Estrategia (Precaución)."
+  },
+  "78148": {
+    "name": "Estrategia (Completista)",
+    "typeCode": "treachery",
+    "traits": "Defecto. Táctica",
+    "text": "Revelación – Si hay otra copia de Estrategia en juego (por nombre), descarta Estrategia (Completista) y obtiene Oleada. Si no, pon Estrategia (Completista) en juego junto al mazo de plan.\nComo coste adicional para abandonar un Lugar Subnivel con 1 o más pistas en él debes gastar 1 acción adicional.\nObligado – Al final de la ronda: Descarta Estrategia (Completista)."
+  },
+  "78149": {
+    "name": "Seguridad de los Sastres",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Agencia",
+    "text": "Cazador.\nObligado – Después de que la Seguridad de los Sastres se te enfrente, si hay un Enemigo que no sea Agencia en tu Lugar: Inflige 1 punto de daño a cada Enemigo e investigador en tu Lugar. Evita automáticamente a la Seguridad de los Sastres y muévete inmediatamente a la Guarida.",
+    "flavor": "Lo mejor de lo mejor y lo peor de lo peor."
+  },
+  "78150": {
+    "name": "Tafefobia",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Realiza una prueba de [willpower] (3). Si fracasas, pon Tafefobia en juego en tu zona de amenaza.\nObligado – Cuando entres en un Lugar Subnivel por primera vez cada ronda: Recibe 1 punto de horror.\n[free] Si estás en la Guarida: Descarta Tafefobia.",
+    "flavor": "¿Tenemos que seguir bajando?"
+  },
   "78250": {
     "name": "Solucionador de la Agencia",
     "typeCode": "enemy",
@@ -788,6 +1129,18 @@
     "name": "Fuego de supresión",
     "typeCode": "treachery",
     "text": "Revelación: Prueba de agilidad (4). Si fracasas, muévete un Lugar alejándote del Lugar Seguro más cercano. Si fracasas por 2 o más, recibe 2 daños."
+  },
+  "78254": {
+    "name": "Vampiro de fuego",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Vampiro",
+    "text": "Presa – Menos Apoyos en juego.\nObligado – Cuando el Vampiro de fuego te ataque durante la fase de enemigos: Descarta un Apoyo que controles.\nVictoria 1."
+  },
+  "78255": {
+    "name": "La Llama viviente",
+    "typeCode": "treachery",
+    "traits": "Poder",
+    "text": "Peligro.\nRevelación – Descarta el Apoyo de mayor coste que controles. Puedes colocar 1 ficha de perdición sobre ese Apoyo para cancelar este efecto. Este efecto puede hacer que el plan en curso avance."
   },
   "78256": {
     "name": "Manos dormidas",
@@ -982,6 +1335,20 @@
     "name": "Otra persona",
     "typeCode": "treachery",
     "text": "Pon esta carta en tu zona de amenaza. Cada vez que te muevas, pierde 1 recurso. Al final del turno, prueba de voluntad (3); si tienes éxito descarta esta carta. En un Lugar Miasma puedes recibir 1 horror para tener éxito automático."
+  },
+  "78286": {
+    "name": "La llamada de la tumba",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Oleada. Peligro.\nRevelación – Elige un investigador en tu Lugar con una copia de La Fuerza de la Carne en juego, si es posible. Ese investigador recibe 1 punto de horror por cada punto de daño sobre su copia de El Fuerza de la Carne. Después cura todo el daño de su copia de La Fuerza de la Carne.",
+    "flavor": "La muerte reclamará lo suyo, con el tiempo..."
+  },
+  "78287": {
+    "name": "Daños acumulados",
+    "typeCode": "treachery",
+    "traits": "Lesión",
+    "text": "Oleada. Peligro.\nRevelación – Elige un investigador en tu Lugar con una copia de Voluntad inquebrantable en juego, si es posible. Ese investigador recibe 1 punto de daño por cada punto de horror sobre su copia de Voluntad inquebrantable. Después cura todo el horror de su copia de Voluntad inquebrantable.",
+    "flavor": "No podrás mantenerte así mucho tiempo..."
   },
   "78288": {
     "name": "Esclavo mental",

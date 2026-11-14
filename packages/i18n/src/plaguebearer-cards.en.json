@@ -769,6 +769,347 @@
     "text": "Revelation – Test [agility] (3). If you fail, choose the nearest enemy with doom on it. You must either take direct damage equal to the amount of doom that enemy, or move all doom on that enemy to the current agenda.",
     "flavor": "Life is a small price to pay for the devoted."
   },
+  "78111": {
+    "name": "High Noon Descent",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X is the number of locations you are away from The Saferoom.\n[cultist]: –4. If you succeed, you may move to a connecting location.\n[tablet]: –2. If you fail, place 1 clue on your location (from the token bank).\n[elder_thing]: –3. If you fail, each investigator who has Heeded the Call must spend 1 clue or take 1 horror.",
+    "backText": "[skull]: –X. X is 2 plus the number of locations away you are from The Saferoom.\n[cultist]: –5. If you succeed, you may move to a connecting location.\n[tablet]: –4. If you fail, place 1 clue on your location (from the token bank).\n[elder_thing]: –3. For each point you fail by, each investigator who has Heeded the Call must spend 1 clue or take 1 horror."
+  },
+  "78112": {
+    "name": "Into The Brook",
+    "typeCode": "agenda",
+    "text": "Each Sub-Level location is connected (one-way) to The Saferoom.",
+    "flavor": "The Brook Facility. Where your day began and where the Tailors perform strange science. If West is to be believed, any answers you're looking for will be behind the complex door in Lab Alpha…",
+    "backName": "Danger Zone",
+    "backText": "Shuffle the set-aside Agency Survivors encounter set, along with each set-aside copy of Tailor Security into the encounter deck.",
+    "backFlavor": "Your ruse is up. Tailor Agents begin pouring into the facility like a swarm of angry bees. Better move fast – you don't want to have to fight their queen."
+  },
+  "78113": {
+    "name": "Tightening Security",
+    "typeCode": "agenda",
+    "text": "The first Agency enemy drawn each round gains surge and enters play with 1 damage on it.\nEach Sub-Level location is connected (one-way) to The Saferoom.",
+    "flavor": "In moments, the place is crawling with Tailor agents out for blood. Small comfort that they're just as harried and exhausted as you.",
+    "backName": "The Man in Charge",
+    "backText": "Spawn the set-aside Agent Crispin at Lab Alpha. Check Campaign Log. For each of the following that is not listed, place 1 [per_investigator] damage on Agent Crispin.\n– The investigators have earned Greyson's respect.\n– The investigators made sure the First was dead.\nIf an investigator controls Herbert West, or if your Campaign Log has the entry \"West recovered the reagent supply\": Search each investigator's deck, hand, play area, and discard pile for Herbert West and remove him for the remainder of the campaign.",
+    "backFlavor": "A bloodied Agent Crispin staggers down the tunnel. \"WEST! You and your degenerate cronies better get out here right now, or I swear not even your damn juice will be able to put your sorry corpse back together when I'm done with ya!\"\nTailors rush to offer him support, but he steadies himself. \"I'm fine. We just need to finish this before that… thing… makes it down here.\"\n\"And kill those fakes with West!\""
+  },
+  "78114": {
+    "name": "Active Leadership",
+    "typeCode": "agenda",
+    "text": "The first Agency enemy drawn each round gains surge and enters play with 1 damage on it.\nEach Sub-Level location is connected (one-way) to The Saferoom.",
+    "flavor": "The Head Agent has seen through your ruse, and has come down to see you dead. But he's not doing all too well either…",
+    "backName": "Back to Square First",
+    "backText": "Spawn the set-aside First Among Many at Lab Alpha.",
+    "backFlavor": "An explosion rocks the facility, and you hear screams from the tunnel.\nA horrible creature with a decaying face bends its neck through the lobby door, then bursts through a doorframe that can no longer contain it.\nHow can it still be alive? How can it have followed you?"
+  },
+  "78115": {
+    "name": "Dread Return",
+    "typeCode": "agenda",
+    "text": "The first Agency enemy drawn each round gains surge and enters play with 1 damage on it.\nEach Sub-Level location is connected (one-way) to The Saferoom.",
+    "flavor": "It's back. Tearing through the facility and ripping apart every living thing in sight. You need to find what you're looking for immediately.",
+    "backName": "Down and Out",
+    "backText": "Each undefeated investigator is defeated and takes 1 physical trauma.",
+    "backFlavor": "The entire facility shudders, and the walls and ceilings start to fall in. Suddenly aware of just how deep below the city you are, you make for the exit. You don't make it far before your way is blocked by the slowly rising mass of the First Among Many. Why can't this thing just DIE?\nA falling block of concrete knocks you to the ground. As the room collapses, you hear a strange voice chanting \"Ia! Ia! Yog-\""
+  },
+  "78116": {
+    "name": "Delta Delving",
+    "typeCode": "act",
+    "text": "Each Sub-Level location connects (one-way) to each location directly below it.\n[free] During your turn, spend 1 clue: Move to a connecting location. (Limit once per round.)\nObjective – At the end of the round, if an investigator is at West's Office and there are no clues on it, advance.",
+    "flavor": "The far wing of the Brook facility was where West performed his ungodly work of raising the dead. His key to the Alpha wing is within, but you'll have to be quick.",
+    "backName": "Crestfallen",
+    "backText": "Move each investigator to the Saferoom.\nRemove each Delta location aside from Lab Delta from play. Each attachment and enemy at those locations is discarded.\nPut the set-aside Left Atrium, Left Ventricle, Right Atrium, and Right Ventricle locations into play according to the location placement guide in Figure 2.\nPlace the set-aside Left Crest at the Left Ventricle, and the Right Crest at the Right Ventricle.",
+    "backFlavor": "West looks up at you in some surprise. \"Ah! Well, that was quicker than expected. The key was in the same drawer as always. Unfortunately, that's not the only thing we'll be needing. Dr. Robison is an eccentric sort - we'll be needing a sort of crest he made. My copy is missing, but Pickman's might still be in the Omega wings."
+  },
+  "78117": {
+    "name": "Omega Occupation",
+    "typeCode": "act",
+    "text": "Investigators cannot move from a Sub-Level location to a Sub-Level location directly above it.\n[free] During your turn, spend 1 clue: Move to a connecting location. (Limit once per round.)\nObjective – If the Left Crest and the Right Crest are at the same location, advance.",
+    "flavor": "Despite your desire to avoid the Miasma, you'll need to explore the Omega Wing of the Brook Facility for part of the key to the sealed Alpha door.",
+    "backName": "No Way In",
+    "backText": "Move each investigator to Lab Alpha.\nMove each enemy at a Miasma location to Lab Omega. Remove each Miasma location aside from Lab Omega from play. Each attachment at those locations is discarded.\nShuffle each set-aside Alpha Sub-Lab location, and put them into play, along with Robison's Laboratory, according to the location placement guide in Figure 3.\nTake one of the set-aside enemies from either the Agents of Cthugha or Agents of Yog-Sothoth set (whichever was set aside) and spawn it at a random unrevealed Alpha Sub-Lab location. Shuffle the rest of that encounter set into the encounter deck.",
+    "backFlavor": "With the crest assembled, the spell pushing it apart fades. You quickly rush to the Alpha laboratory. Rotating the crest into place, the lion's mouth reveals a keyhole. You insert West's key, and hear it click into place.\nSlowly, the door grinds open. Beyond is a seemingly endless hallway of doors. As it extends, the walls extrude in strange angles, and gravity seems to shift. At the far end of the hall, a door with a plaque reading \"Robison, Head of Conjecture\" is just barely visible."
+  },
+  "78118": {
+    "name": "Alpha Assault",
+    "typeCode": "act",
+    "text": "[free] During your turn, spend 1 clue: Move to a connecting location. (Limit once per round.)\nObjective – If each undefeated investigator is at Robison's Laboratory, advance.",
+    "flavor": "You've unlocked the door at the back of the library. Now all that stands between you and the answers to everything is an endless hall of impossible geometry.",
+    "backName": "No Way Out?",
+    "backText": "(→R2)",
+    "backFlavor": "You enter a room that must be Robison's research lab. But… while it's filled with all the ritual trappings you'd expect, there's no doctor and, more concerning, no other exit. You look all over the room, turning over shelves and desks in desperation.\n\"Quick, quick! Over here!\"\nYou look around, and it takes you a moment to notice a man's hand gesturing from the corner. The arm intersects a chalk drawing of a bridge on a solid wall.\n\"Please, hurry! It's nearly here!\"\nWith no other options, you move towards the chalk drawing and jump as the hand pulls you through the matter of the wall, and into somewhere very strange indeed…"
+  },
+  "78119": {
+    "name": "The Saferoom",
+    "typeCode": "location",
+    "traits": "Stable",
+    "text": "Forced – When an enemy would enter The Saferoom: Disengage it from all investigators and move it to a connecting location.\n[reaction] When you enter The Saferoom, spend 1 clue: Return 1 clue on a revealed location to the token bank.",
+    "backText": "Stable",
+    "backFlavor": "Locked up tight. Nothing's getting in here without your say."
+  },
+  "78120": {
+    "name": "Lab Delta",
+    "typeCode": "location",
+    "traits": "Delta",
+    "text": "Lab Delta is connected to the top 3 Delta locations (in addition to its connection symbols.)\n[reaction] After a Re-Animated or Infected enemy enters Lab Delta: Exhaust that enemy.\nVictory 1.",
+    "flavor": "West's lab is filled with useful security measures for dealing with his experiments.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "The lab is untouched from yesterday - even the corpse sits more or less in the same position."
+  },
+  "78121": {
+    "name": "Lab Omega",
+    "typeCode": "location",
+    "traits": "Miasma",
+    "text": "Forced – At the start of your turn, if you are at Lab Omega: Either take 1 damage, or discard cards from the top of the encounter deck until you a Terror treachery is discarded. Draw that card.\nVictory 1.",
+    "flavor": "A choking green vapor fills the room, and a mammalian instinct screams at you to run.",
+    "backText": "Miasma",
+    "backFlavor": "The standing thralls hum softly to themselves, the only change from yesterday in the deterioration of their skin."
+  },
+  "78122": {
+    "name": "Lab Alpha",
+    "subname": "Badly Burned",
+    "typeCode": "location",
+    "traits": "Alpha",
+    "text": "[reaction] After you enter this location, take 1 damage: Reveal a Sub-Level location in play.\nForced – At the end of the round: Add clues to this location until it has 1 [per_investigator] clues on it.",
+    "flavor": "The laboratory has been burned to cinders, revealing an ornate door that was hidden behind bookshelves.",
+    "backText": "Alpha",
+    "backFlavor": "Fire has claimed this laboratory whole."
+  },
+  "78123": {
+    "name": "Lab Alpha",
+    "subname": "Terrible Knowledge",
+    "typeCode": "location",
+    "traits": "Alpha",
+    "text": "[reaction] After you enter this location, take 1 horror: Reveal a Sub-Level location in play.\nForced – At the end of the round: Add clues to this location until it has 1 [per_investigator] clues on it.",
+    "flavor": "A book labeled \"Splitting the Angle\", when pulled, reveals a massive ornate stone door.",
+    "backText": "Alpha",
+    "backFlavor": "That same Victrola is still skipping, almost a full day later."
+  },
+  "78124": {
+    "name": "Autopsy Chamber",
+    "typeCode": "location",
+    "traits": "Sub-Level. Delta",
+    "text": "[reaction] After you enter Autopsy Chamber: Take an investigate action. If you succeed, you may discover a clue from any revealed location.\nYou cannot move to a lower Sub-Level from this location unless an investigator has \"flipped the main breakers.\"\nForced – After you discover the last clue from this location: Remember that you have \"found a severed hand gripping a key.\"",
+    "backName": "Delta Sub-Lab",
+    "backText": "Sub-Level. Delta",
+    "backFlavor": "Your footsteps echo down a cold and foreboding hallway…"
+  },
+  "78125": {
+    "name": "Cold Storage",
+    "typeCode": "location",
+    "traits": "Sub-Level. Delta",
+    "text": "[reaction] After you enter Cold Storage: Play a card from your hand.\nYou cannot move to a lower Sub-Level from this location unless an investigator has \"found a severed hand gripping a key.\"\nForced – After you discover the last clue from this location: Remember that you have \"found a dead man's access card.\"",
+    "backName": "Delta Sub-Lab",
+    "backText": "Sub-Level. Delta",
+    "backFlavor": "Your footsteps echo down a cold and foreboding hallway…"
+  },
+  "78126": {
+    "name": "Holding Cell",
+    "typeCode": "location",
+    "traits": "Sub-Level. Delta",
+    "text": "If there is an investigator at Holding Cell, other investigators cannot enter Holding Cell.",
+    "flavor": "A convenient hole in the back wall, but only space for one.",
+    "backName": "Delta Sub-Lab",
+    "backText": "Sub-Level. Delta",
+    "backFlavor": "Your footsteps echo down a cold and foreboding hallway…"
+  },
+  "78127": {
+    "name": "Main Hall",
+    "typeCode": "location",
+    "traits": "Sub-Level. Delta",
+    "text": "[reaction] After you enter Main Hall: Draw 1 card and gain 1 resource.\nYou cannot move to a lower Sub-Level from this location unless an investigator has \"synthesized a dangerous acid.\"\n[action] Spend 1 [per_investigator] resources: Remember that you have \"flipped the main breakers.\"",
+    "backName": "Delta Sub-Lab",
+    "backText": "Sub-Level. Delta",
+    "backFlavor": "Your footsteps echo down a cold and foreboding hallway…"
+  },
+  "78128": {
+    "name": "Serum Synthesis",
+    "typeCode": "location",
+    "traits": "Sub-Level. Delta",
+    "text": "[reaction] After you enter Serum Synthesis: You get +2 to the next skill test you perform this round.\nYou cannot move to a lower Sub-Level from this location unless an investigator has \"found a dead man's access card.\"\nForced – After you discover the last clue from this location: Remember that you have \"synthesized a dangerous acid.\"",
+    "backName": "Delta Sub-Lab",
+    "backText": "Sub-Level. Delta",
+    "backFlavor": "Your footsteps echo down a cold and foreboding hallway…"
+  },
+  "78129": {
+    "name": "West's Office",
+    "typeCode": "location",
+    "traits": "Sub-Level. Delta",
+    "text": "While this location could be entered from both locations directly above it, it gets –3 shroud.\nWhile an investigator at this location controls Herbert West, it gets –2 shroud.",
+    "flavor": "The key must be somewhere in here!",
+    "backName": "West's Office",
+    "backText": "Sub-Level. Delta",
+    "backFlavor": "A flickering light shines on a lone plaque, reading \"Herbert West, Ph.D. Head of Post-Mortem Research.\""
+  },
+  "78130": {
+    "name": "The Left Artery",
+    "typeCode": "location",
+    "traits": "Miasma. Sub-Level",
+    "text": "Forced – After you start your turn at this location: Take 1 direct horror.",
+    "flavor": "Something watches you through the window whenever you avert your gaze.",
+    "backText": "Miasma. Sub-Level",
+    "backFlavor": "An unsettling glow, like light through water, comes from deeper in the Omega Wing…"
+  },
+  "78131": {
+    "name": "The Left Ventricle",
+    "typeCode": "location",
+    "traits": "Miasma. Sub-Level",
+    "text": "Forced – After you start your turn at this location, you must either (choose one):\n– You cannot play assets or events this round.\n– Move the Left Crest 1 location towards the Left Ventricle.",
+    "flavor": "She only asks for your total devotion, and devotion to her master in turn.",
+    "backText": "Miasma. Sub-Level",
+    "backFlavor": "Something stirs in a massive chamber. Something alive."
+  },
+  "78132": {
+    "name": "The Right Artery",
+    "typeCode": "location",
+    "traits": "Miasma. Sub-Level",
+    "text": "Forced – After you start your turn at this location: Take 1 direct damage.",
+    "flavor": "The miasma isn't your only problem – you smell a gas leak. Best not to stay here too long.",
+    "backText": "Miasma. Sub-Level",
+    "backFlavor": "A flickering hallway leads deeper into the Omega wing…"
+  },
+  "78133": {
+    "name": "The Right Ventricle",
+    "typeCode": "location",
+    "traits": "Miasma. Sub-Level",
+    "text": "Forced – After you start your turn at this location, you must either (choose one):\n– You cannot deal damage to enemies this round.\n– Move the Right Crest 1 location towards the Right Ventricle.",
+    "flavor": "A true sadist worked here. The idea of any violence of this nature sickens you.",
+    "backText": "Miasma. Sub-Level",
+    "backFlavor": "Through the thick miasma, you see a forest of corpses."
+  },
+  "78134": {
+    "name": "Catalyst Workshop",
+    "typeCode": "location",
+    "traits": "Sub-Level. Alpha",
+    "text": "[action] Investigators at this location spend 1 [per_investigator] clues for each unrevealed Sub-Level location, as a group: Place 1 resource, as reason, on Lab Alpha. (Group limit once per game.)",
+    "flavor": "Impossible machines create unspeakable products, better off ignored.",
+    "backName": "Alpha Sub-Lab",
+    "backText": "Sub-Level. Alpha",
+    "backFlavor": "Another piece of this bizarre wing…"
+  },
+  "78135": {
+    "name": "Chamber of Worlds",
+    "typeCode": "location",
+    "traits": "Sub-Level. Alpha",
+    "text": "Chamber of Worlds gets –1 shroud for each other revealed Sub-Level location.",
+    "flavor": "Maps of planets that you recognize but do not know, and know but do not recognize.",
+    "backName": "Alpha Sub-Lab",
+    "backText": "Sub-Level. Alpha",
+    "backFlavor": "Another piece of this bizarre wing…"
+  },
+  "78136": {
+    "name": "Exaltation Laboratory",
+    "typeCode": "location",
+    "traits": "Sub-Level. Alpha",
+    "text": "Forced – After you successfully discover any number of clues at this location: Take that many horror.",
+    "flavor": "You can sense the things in the tubes are afraid… but not of you.",
+    "backName": "Alpha Sub-Lab",
+    "backText": "Sub-Level. Alpha",
+    "backFlavor": "Another piece of this bizarre wing…"
+  },
+  "78137": {
+    "name": "Stabilization Chamber",
+    "typeCode": "location",
+    "traits": "Sub-Level. Alpha",
+    "text": "[free] Investigators at this location spend 1 [per_investigator] clues as a group for each Sub-Level location with clues on it: Place 1 resource, as faith, on Lab Alpha.",
+    "flavor": "You don't have time to consider the wondrous machines, or how they could even exist.",
+    "backName": "Alpha Sub-Lab",
+    "backText": "Sub-Level. Alpha",
+    "backFlavor": "Another piece of this bizarre wing…"
+  },
+  "78138": {
+    "name": "Summoning Circle",
+    "typeCode": "location",
+    "traits": "Sub-Level. Alpha",
+    "text": "[free] Choose a non-Elite enemy in the victory display and draw it: Discover all clues at Summoning Circle and move to Lab Alpha.",
+    "flavor": "The machine thrums, and you feel the strangest urge to say \"Ia!\"",
+    "backName": "Alpha Sub-Lab",
+    "backText": "Sub-Level. Alpha",
+    "backFlavor": "Another piece of this bizarre wing…"
+  },
+  "78139": {
+    "name": "Robison's Laboratory",
+    "typeCode": "location",
+    "traits": "Sub-Level. Alpha",
+    "flavor": "There's nobody here.",
+    "backName": "Robison's Laboratory",
+    "backText": "There is no entry to Robison's Laboratory. You cannot enter or reveal Robison's Laboratory unless there is both reason and faith on Lab Alpha.",
+    "backFlavor": "Everything you've been running for and from… the answers are behind that door."
+  },
+  "78140": {
+    "name": "Agent Greyson",
+    "subname": "Not Following Orders",
+    "typeCode": "asset",
+    "traits": "Ally. Humanoid. Agency. Drifter",
+    "text": "You get +1 [intellect] and +1 [combat].\n[reaction] After your turn ends, spend 1 resource: Move an investigator at your location to a connecting location.",
+    "flavor": "\"Go! I'll watch your back.\""
+  },
+  "78141": {
+    "name": "The Left Crest",
+    "typeCode": "asset",
+    "traits": "Item",
+    "text": "The Left Crest's location gains: \"[free]: Test [willpower] or [intellect] (X). X is 3 times the number of clues on this location. If you succeed, move The Left Crest 1 location towards The Right Ventricle. If The Left Crest enters a revealed location with no clues, you may resolve this ability again.\""
+  },
+  "78142": {
+    "name": "The Right Crest",
+    "typeCode": "asset",
+    "traits": "Item",
+    "text": "The Right Crest's location gains: \"[free]: Test [combat] or [agility] (X). X is 3 times the number of clues on this location. If you succeed, move The Right Crest 1 location towards The Left Ventricle. If The Right Crest enters a revealed location with no clues, you may resolve this ability again.\""
+  },
+  "78143": {
+    "name": "Agent Crispin",
+    "subname": "With Extreme Prejudice",
+    "typeCode": "enemy",
+    "traits": "Agency. Humanoid. Elite",
+    "text": "Prey – Lowest [combat].\nRetaliate. Alert.\n[free]: Parley. Agent Crispin attacks you. Disengage from Agent Crispin. Until the end of the round, Agent Crispin cannot engage you.\nVictory 1.",
+    "flavor": "He looks at you like a dog eyeing up a roast. You feel like you need a shower."
+  },
+  "78144": {
+    "name": "First Among Many",
+    "subname": "Unyielding Monstrosity",
+    "typeCode": "enemy",
+    "traits": "Elite. Monster. Infected",
+    "text": "Hunter. Massive. Retaliate.\nFirst Among Many cannot make attacks of opportunity.\nForced – When you reveal a location: Ready First Among Many and move it directly to that location.\nVictory 2.",
+    "flavor": "When it catches sight of you, it screams out the ultimate fate of a person you love. None die easy."
+  },
+  "78145": {
+    "name": "Faulty Prototype",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Delta",
+    "text": "Hunter.\nForced – When Faulty Prototype becomes exhausted: Deal 1 damage to Faulty Prototype.",
+    "flavor": "You don't create life without making a few missteps."
+  },
+  "78146": {
+    "name": "Run for Cover",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Put Run for Cover into play in your threat area.\nForced – At the end of the round: Place 1 doom on the current agenda if you are not at The Saferoom. This effect can cause the current agenda to advance. Discard Run for Cover."
+  },
+  "78147": {
+    "name": "Strategy (Caution)",
+    "typeCode": "treachery",
+    "traits": "Flaw. Tactic",
+    "text": "Revelation – If there is another copy of Strategy in play (by title), discard Strategy (Caution) and it gains surge. Otherwise, put Strategy (Caution) into play next to the agenda deck.\nAs an additional cost to move to an unrevealed Sub-Level location, spend 1 additional action.\nForced – At the end of the round: Discard Strategy (Caution)."
+  },
+  "78148": {
+    "name": "Strategy (Completionist)",
+    "typeCode": "treachery",
+    "traits": "Flaw. Tactic",
+    "text": "Revelation – If there is another copy of Strategy in play (by title), discard Strategy (Completionist) and it gains surge. Otherwise, put Strategy (Completionist) into play next to the agenda deck.\nAs an additional cost to leave a Sub-Level location with 1 or more clues on it, spend 1 additional action.\nForced – At the end of the round: Discard Strategy (Completionist)."
+  },
+  "78149": {
+    "name": "Tailor Security",
+    "typeCode": "enemy",
+    "traits": "Agency. Humanoid",
+    "text": "Hunter.\nForced – After Tailor Security engages you, if there is a non-Agency enemy at your location: Deal 1 damage to each enemy and investigator at your location. Automatically evade Tailor Security and move to The Saferoom.",
+    "flavor": "The best of the best, and the worst of the worst."
+  },
+  "78150": {
+    "name": "Taphephobia",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Test [willpower] (3). If you fail, put Taphephobia into play in your threat area.\nForced – When you enter a Sub-Level location for the first time this round: Take 1 horror.\n[free] If you are at The Saferoom: Discard Taphephobia.",
+    "flavor": "We have to go deeper?"
+  },
   "78250": {
     "name": "Agency Troubleshooter",
     "typeCode": "enemy",
@@ -788,6 +1129,18 @@
     "name": "Suppressing Fire",
     "typeCode": "treachery",
     "text": "Revelation: Test agility (4). On failure, move one location away from the nearest Safe location. If you fail by 2 or more, take 2 damage."
+  },
+  "78254": {
+    "name": "Fire Vampire",
+    "typeCode": "enemy",
+    "traits": "Monster. Vampire",
+    "text": "Prey – Fewest assets controlled.\nForced – When Fire Vampire attacks you during the enemy phase: Discard an asset you control.\nVictory 1."
+  },
+  "78255": {
+    "name": "The Living Flame",
+    "typeCode": "treachery",
+    "traits": "Power",
+    "text": "Peril.\nRevelation – Discard the highest cost asset you control. You may place 1 doom on that asset to cancel this effect. This effect can cause the current agenda to advance."
   },
   "78256": {
     "name": "Idle Hands",
@@ -982,6 +1335,20 @@
     "name": "Not Yourself",
     "typeCode": "treachery",
     "text": "Put this in your threat area. Each time you move, lose 1 resource. At turn end, test willpower (3); on success discard this. At a Miasma location you may take 1 horror to automatically succeed."
+  },
+  "78286": {
+    "name": "Call of the Grave",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Surge. Peril.\nRevelation – Choose an investigator with a copy of Strength of Flesh in their play area, if able. That investigator takes 1 horror for each damage on their copy of Strength of Flesh. Then, heal all damage from their copy of Strength of Flesh.",
+    "flavor": "The dead will take their own, in time…"
+  },
+  "78287": {
+    "name": "Mounting Injuries",
+    "typeCode": "treachery",
+    "traits": "Injury",
+    "text": "Surge. Peril.\nRevelation – Choose an investigator with a copy of Unbreakable Will in their play area, if able. That investigator takes 1 damage for each horror on their copy of Unbreakable Will. Then, heal all horror from their copy of Unbreakable Will.",
+    "flavor": "You can't keep this up forever…"
   },
   "78288": {
     "name": "Mindless Thrall",

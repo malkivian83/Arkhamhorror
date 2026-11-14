@@ -7,9 +7,9 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **escenarios I–IV jugables; Interludios I–III resueltos al cerrar el
-II, el III y el IV; Interludio IV preparado para el cierre del V; Interludio V y
-escenarios V–VIII pendientes. Material completo en EN y ES.** Este documento
+Estado: **escenarios I–V jugables (el V aún sin imágenes); Interludios I–IV
+resueltos al cerrar el II, el III, el IV y el V; Interludio V y escenarios VI–VIII
+pendientes. Material completo en EN y ES.** Este documento
 recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
@@ -84,9 +84,33 @@ el PDF.
   EN/ES en `plaguebearer.{es,en}.json` y en `story/{es,en}.json`; sin locución.
   Notas `plaguebearerVisionOfPortals`, `plaguebearerKillingWords` y
   `plaguebearerCrypticRiddle`. Pruebas en `history-lesson.test.ts`.
-- Bloqueo del 14/11/2026: el V necesita transcribir sus 47 cartas (78111–78150) desde
-  `E:\Plaguero`, unidad no conectada; sin ella no hay textos ni imágenes del V.
-- Siguiente: escenario V (Descenso al mediodía) cuando esté disponible `E:\Plaguero`.
+- V · Descenso al mediodía (`high-noon-descent.ts`, datos en `noon-data.ts`; guía ES
+  pp. 13–14 / EN pp. 15–17; cartas ES 142–188, EN 143–182 y 163). Fuentes en
+  `D:\plaguero` (ES `NNN{a,b}.jpg`, EN `en\*-{1,2}.png`). Introducciones 1–6 según
+  Motel/respeto, Greyson cortó lazos y Greyson (Ya no sigue órdenes, 78140) al mazo;
+  West y Greyson desde el mazo o con Alianzas frágiles. Tres alas: Delta (posiciones
+  de la Figura 1, conexiones de un sentido hacia abajo y a la Guarida, lo que pide
+  cada Sub-laboratorio para bajar), Omega (Blasones como apoyos colocados que se
+  mueven hacia el Ventrículo opuesto) y Alfa (Razón, Fe, Círculo de invocación,
+  Laboratorio de Robison). Cuatro planes (Agencia con Oleada y 1 daño, Crispin,
+  Primero de muchos, derrota con trauma), tres actos, 11 cartas de encuentro
+  propias más Agentes de Cthugha (254–255) y Vida y muerte (286–287). R1/R2 anotan
+  el reino del que acecha o las sendas ocultas, el Primero sepultado y pasan al
+  Interludio IV; En el Umbral: 1 trauma físico por lector.
+- Decisiones del V: Laboratorio Alfa (Conocimiento prohibido) usa horror como el EN
+  (el ES dice daño, como la versión Cthugha); el Ventrículo derecho se refiere a sí
+  mismo (errata ES «izquierdo»); Corre por tu vida al final de la ronda (EN; ES «al
+  principio»); Llamada de la tumba y Daños acumulados sin restricción de Lugar (EN);
+  la Aurícula izquierda usa el aro amarillo del ES (el EN muestra una «T»). Aproximaciones:
+  la Guarida expulsa al enemigo justo después de entrar; Sala de autopsias investiga
+  y la pista sale del Lugar revelado que elijas; «no infligir daño» se aplica en las
+  pruebas y el turno de quien lo eligió; las Estrategias solo cobran la acción extra
+  en el turno propio; Presa del Vampiro de fuego por menos Apoyos.
+- Verificación V: 19 pruebas del escenario, carpeta del Portador, medios y
+  narración (205 + 2), tipos de cards (salvo un error ajeno en
+  `extra-actions/rules.test.ts`) y lint correctos.
+- Pendiente del V: imágenes AVIF/miniaturas EN/ES (el equipo ya no tiene Python con
+  Pillow ni sharp), narración y revisión visual de la persona usuaria.
 
 ## Fuentes
 
