@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'movement-support',
+    date: '2026-11-14',
+    title: 'app.changelog.movementSupport.title',
+    items: ['app.changelog.movementSupport.cards', 'app.changelog.movementSupport.rules'],
+  },
+  {
     id: 'bonded-cards',
     date: '2026-11-13',
     title: 'app.changelog.bondedCards.title',
@@ -17,6 +23,37 @@ export const changelog = [
     date: '2026-11-13',
     title: 'app.changelog.rulesReviewFixes.title',
     items: ['app.changelog.rulesReviewFixes.rules'],
+  },
+  {
+    id: 'player-card-rules-review-141-142',
+    date: '2026-11-12',
+    title: 'app.changelog.playerCardRulesReview.title',
+    items: [
+      'app.changelog.playerCardRulesReview.skills',
+      'app.changelog.playerCardRulesReview.assets',
+    ],
+  },
+  {
+    id: 'action-support',
+    date: '2026-11-12',
+    title: 'app.changelog.actionSupport.title',
+    items: [
+      'app.changelog.actionSupport.cards',
+      'app.changelog.actionSupport.rules',
+      'app.changelog.actionSupport.images',
+    ],
+  },
+  {
+    id: 'advanced-tests',
+    date: '2026-11-12',
+    title: 'app.changelog.advancedTests.title',
+    items: ['app.changelog.advancedTests.cards', 'app.changelog.advancedTests.rules'],
+  },
+  {
+    id: 'mythos-guard-and-narrow-escape',
+    date: '2026-11-12',
+    title: 'app.changelog.mythosAndEscape.title',
+    items: ['app.changelog.mythosAndEscape.cards'],
   },
   {
     id: 'damage-reactions',

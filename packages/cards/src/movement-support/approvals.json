@@ -1,0 +1,134 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "dfb34cce6e562d251e4abc3b0eeb84014ec7bff9a0b7b8baf0f4b563292e0416",
+    "es": "34e6ce7bd403b9599bff9a81c74b82b18d1e05037fc104a51f77694cf2d58169"
+  },
+  "cards": [
+    {
+      "code": "03232",
+      "status": "verified",
+      "module": "card-03232",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "06029",
+      "status": "verified",
+      "module": "card-06029",
+      "test": "rules.test.ts",
+      "fast": true,
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "07109",
+      "status": "verified",
+      "module": "card-07109",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07154",
+      "status": "verified",
+      "module": "card-07154",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08029",
+      "status": "verified",
+      "module": "card-08029",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08045",
+      "status": "verified",
+      "module": "card-08045",
+      "test": "rules.test.ts",
+      "subname": "Atlas of the Unknowable"
+    },
+    {
+      "code": "08047",
+      "status": "verified",
+      "module": "card-08047",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08084",
+      "status": "verified",
+      "module": "card-08084",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08085",
+      "status": "verified",
+      "module": "card-08085",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08097",
+      "status": "verified",
+      "module": "card-08097",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08099",
+      "status": "verified",
+      "module": "card-08099",
+      "test": "rules.test.ts",
+      "subname": "Intrepid Explorer",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "06164",
+      "status": "verified",
+      "module": "card-06164",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10100",
+      "status": "verified",
+      "module": "card-10100",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11109",
+      "status": "verified",
+      "module": "card-11109",
+      "test": "rules.test.ts",
+      "subname": "Cloak of the Pharaohs"
+    },
+    {
+      "code": "08118",
+      "status": "verified",
+      "module": "card-08118",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "06234",
+      "status": "verified",
+      "module": "card-06234",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "08127",
+      "status": "verified",
+      "module": "card-08127",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-sled-dog-v1"
+    },
+    {
+      "code": "06114",
+      "status": "verified",
+      "module": "card-06114",
+      "test": "rules.test.ts"
+    }
+  ]
+}

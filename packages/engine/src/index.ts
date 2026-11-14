@@ -1,5 +1,6 @@
 export {
   attackBlocked,
+  actionKinds,
   availableAbilities,
   availableActions,
   engageActionsAvailable,
@@ -170,6 +171,9 @@ export {
   shroudOf,
   updateInvestigator,
   distancesFrom,
+  movementConnections,
+  physicalLocation,
+  physicalMovementState,
   bestByPrey,
   enemyNeighbours,
   recomputeConnections,

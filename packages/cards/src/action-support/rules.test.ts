@@ -454,6 +454,16 @@ it('Stealth applies the zero minimum after combining all enemy evade modifiers',
   expect(s.skillTest!.difficulty).toBe(1)
 })
 
+it('Nautical Charts investigates against the modified shroud, including from hand', () => {
+  let s = own('11084')
+  s = { ...s, locations: { ...s.locations, A: { ...s.locations.A!, shroudModifier: 2 } } }
+  expect(activate(s, '11084').skillTest!.difficulty).toBe(4)
+  s = patch({ hand: ['11084'] })(base())
+  s = { ...s, locations: { ...s.locations, A: { ...s.locations.A!, shroudModifier: 2 } } }
+  const option = behavior('11084').handAbilities!(s, 'a')[0]!
+  expect(dispatch(s, ...option.then).skillTest!.difficulty).toBe(4)
+})
+
 it.each(['08104', '08106'])('%s can redirect a basic clue to a connecting location', (code) => {
   let s = own(code)
   s = { ...s, locations: { ...s.locations, B: { ...s.locations.B!, revealed: true, clues: 2 } } }

@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { useTableGame } from '../game/tableController'
-import { playerCardDef, printedCode, shroudOf, type GameState, type Location } from '@lcg/engine'
+import {
+  physicalLocation,
+  playerCardDef,
+  printedCode,
+  shroudOf,
+  type GameState,
+  type Location,
+} from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
@@ -84,7 +91,9 @@ const edges = computed(() => {
 })
 
 const investigatorsAt = (id: string) =>
-  props.state.investigators.filter((i) => !i.eliminated && i.location === id)
+  props.state.investigators.filter(
+    (i) => !i.eliminated && physicalLocation(props.state, i.id) === id,
+  )
 const enemiesAt = (id: string) =>
   Object.values(props.state.enemies).filter((e) => e.location === id)
 /** Apoyos sin dueño en la localización (Invitados, Joya…). */

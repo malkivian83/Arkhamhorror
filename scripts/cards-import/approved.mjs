@@ -21,12 +21,15 @@ export function approvedDefinition(card, approval) {
         (['08101', '08103'].includes(card.code) && card.factions.join(',') === 'seeker,mystic') ||
         (['08108', '08110', '08109', '08111'].includes(card.code) &&
           card.factions.join(',') === 'rogue,mystic') ||
-        (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
+        (['08083', '08084', '08085', '08086'].includes(card.code) &&
+          card.factions.join(',') === 'guardian,seeker') ||
+        (['08097', '08099'].includes(card.code) && card.factions.join(',') === 'seeker,rogue') ||
         (['05115', '08087', '08088'].includes(card.code) &&
           card.factions.join(',') === 'guardian,rogue') ||
         (['08094', '08096', '08095'].includes(card.code) &&
           card.factions.join(',') === 'guardian,survivor') ||
-        (['08117', '08119'].includes(card.code) && card.factions.join(',') === 'mystic,survivor') ||
+        (['08117', '08118', '08119'].includes(card.code) &&
+          card.factions.join(',') === 'mystic,survivor') ||
         (card.code === '05118' && card.factions.join(',') === 'mystic,guardian') ||
         (card.code === '08112' && card.factions.join(',') === 'rogue,survivor')))
   const reviewedCustomizable =
@@ -194,6 +197,7 @@ export function approvedDefinition(card, approval) {
         card.numbers.xp.value === 0 &&
         !card.flags.exceptional))
   const myriadFactions = {
+    '06029': 'mystic',
     11039: 'seeker',
     '06241': 'mystic',
     '06242': 'mystic',
@@ -257,6 +261,15 @@ export function approvedDefinition(card, approval) {
     if (number.kind !== 'number') throw new Error(`Unsupported ${key}: ${card.code}`)
     return number.value
   }
+  const reviewedSledDog =
+    approval.adapter === 'reviewed-sled-dog-v1' &&
+    card.code === '08127' &&
+    card.deckLimit === 4 &&
+    card.factions.join(',') === 'neutral' &&
+    numeric('xp') === 0 &&
+    card.slots.slots.join(',') === 'ally'
+  if (card.code === '08127' && !reviewedSledDog)
+    throw new Error('Sled Dog requires reviewed deck limit')
   const cost = reviewedCostX ? 0 : numeric('cost'),
     health = numeric('health'),
     sanity = numeric('sanity')
@@ -280,6 +293,7 @@ export function approvedDefinition(card, approval) {
       : {}),
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
     ...(reviewedMyriad ? { myriad: true, deckLimit: card.deckLimit } : {}),
+    ...(reviewedSledDog ? { deckLimit: 4 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),

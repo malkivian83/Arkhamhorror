@@ -69,6 +69,18 @@ son jugables según la capacidad del motor que les falta, para ordenar el trabaj
   Valusia (`ENEMY_MODS`) y las que combinan otra capacidad; causas en el documento 144.
 - **Pendientes estándar con impresión:** 260; 1496 cartas con comportamiento registradas.
 
+## Estado tras el lote 145
+
+- **Movimiento, adjuntos y restricciones (resueltas en parte).** 18 diseños/niveles
+  nuevos del [lote 145](145-movimiento-y-apoyos.md): movimiento paso a paso con
+  interrupciones, conexiones exclusivas de investigadores, habilidades de un
+  evento vinculado al Lugar, investigación remota con posición física conservada,
+  estado etéreo y restricción de enfrentamiento/daño de Capucha de Sejmet. Perro de
+  trineo añade selección de varias copias y espacio de aliado compartido.
+- **Pendientes estándar con impresión:** 242; 1514 cartas con comportamiento.
+  Las tablas originales siguen siendo el inventario histórico; no implican que
+  todas las cartas que compartían estas capacidades estén ya revisadas.
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

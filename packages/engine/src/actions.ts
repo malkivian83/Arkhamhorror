@@ -14,6 +14,11 @@ import {
 } from './content'
 import {
   cardAllowed,
+  movementConnections,
+  physicalLocation,
+  physicalMovementState,
+  activeEnemyModifiers,
+  attachmentsAt,
   spendableClues,
   cardOfRole,
   currentAgendas,
@@ -300,7 +305,6 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const investigator = getInvestigator(state, id)
   if (investigator.eliminated || investigator.location === null) return []
   const here = investigator.location
-  const location = getLocation(state, here)
   const enemiesHere = enemiesAt(state, here)
 
   const trait = traitActionAvailable(state, id)
@@ -340,14 +344,17 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     { kind: 'draw' },
     { kind: 'resource' },
     ...(investigationBlocked(state, here) ? [] : [{ kind: 'investigate' } as Action]),
-    ...(leavingBlocked(state, here) ||
+    ...(leavingBlocked(state, physicalLocation(state, id) ?? here) ||
     moveBlocked(state, id) ||
-    scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, id)
+    scenarioBehavior(state.scenarioId)?.cannotLeave?.(physicalMovementState(state, id), id)
       ? []
-      : location.connections
+      : movementConnections(state, physicalLocation(state, id) ?? here)
     )
       .filter(
-        (to) => state.locations[to] && canAffordEntry(state, to, id) && canEnter(state, id, to),
+        (to) =>
+          state.locations[to] &&
+          canAffordEntry(physicalMovementState(state, id), to, id) &&
+          canEnter(physicalMovementState(state, id), id, to),
       )
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
@@ -360,7 +367,12 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .map((e): Action => ({ kind: 'evade', enemy: e.id })),
     ...enemiesHere
       .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
-      .filter((e) => scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, e, id) !== false)
+      .filter(
+        (e) =>
+          investigator.etherealRound !== state.round &&
+          !activeEnemyModifiers(state, e.id).some((m) => m.cannotEngage === id) &&
+          scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, e, id) !== false,
+      )
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),
   ]
   const allowed = scenarioBehavior(state.scenarioId)?.actionAllowed
@@ -369,8 +381,8 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       (!allowed || allowed(state, id, a.kind)) &&
       actionCost(state, id, a) <=
         investigator.actionsRemaining +
-          (a.kind === 'move' && investigator.extraMove ? 1 : 0) +
-          (a.kind === 'engage' ? engageActionsAvailable(state, id) : 0) +
+          (actionKinds(a).includes('move') && investigator.extraMove ? 1 : 0) +
+          (actionKinds(a).includes('engage') ? engageActionsAvailable(state, id) : 0) +
           (isFightAction(a) && state.activeTurn === id
             ? (investigator.fightActionsThisTurn ?? 0)
             : 0) +
@@ -380,6 +392,18 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
 
 const hasTrait = (code: CardCode, trait: string) => !!playerCardDef(code)?.traits.includes(trait)
 
+export function actionKinds(action: Action): Action['kind'][] {
+  if (action.kind !== 'play') return [action.kind]
+  const b = playerCardBehavior(action.card)
+  return [
+    'play',
+    ...(b?.fightAction ? ['fight' as const] : []),
+    ...(b?.evadeAction ? ['evade' as const] : []),
+    ...(b?.investigateAction ? ['investigate' as const] : []),
+    ...(b?.moveAction ? ['move' as const] : []),
+    ...(b?.engageAction ? ['engage' as const] : []),
+  ]
+}
 export const isFightAction = (action: Action): boolean =>
   action.kind === 'fight' ||
   (action.kind === 'play' && !!playerCardBehavior(action.card)?.fightAction)
@@ -511,7 +535,13 @@ export function actionCost(state: GameState, id: InvestigatorId, action: Action)
   ) {
     return 1 + extra + (getLocation(state, here).investigateExtraActions ?? 0)
   }
-  if (action.kind === 'move') return 1 + extra + moveCost(state, here) + moveCost(state, action.to)
+  if (action.kind === 'move')
+    return (
+      1 +
+      extra +
+      moveCost(physicalMovementState(state, id), physicalLocation(state, id) ?? here) +
+      moveCost(state, action.to)
+    )
   return 1 + extra
 }
 
@@ -686,6 +716,9 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
   const withTarget = (options: AbilityOption[], target: ChoiceTarget) =>
     options.map((o) => ({ target, ...o }))
   const options = [
+    ...attachmentsAt(state, here).flatMap(
+      (a) => playerCardBehavior(a.code)?.locationAttachmentAbilities?.(state, a, id) ?? [],
+    ),
     ...[...new Set(investigator.hand)].flatMap((code) =>
       cardAllowed(state, id, code) &&
       !(assetsBlocked(state, id) && playerCardDef(code)?.type === 'asset')
@@ -924,6 +957,7 @@ export function attackBlocked(
   source?: CardCode,
 ): boolean {
   return (
+    getInvestigator(state, id).etherealRound === state.round ||
     !!enemy.hasNoStats ||
     enemyBehavior(enemy.code)?.canBeAttacked?.(state, enemy, id, source) === false ||
     (source !== undefined && !!playerCardDef(source) && immuneToPlayerCards(enemy)) ||

@@ -55,6 +55,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  engagementSuppression?: number
+  etherealRound?: number
   nextFightTokenConversion?: { turn: number; code: CardCode }
   /** RR Keys (City of the Elder Things): chaos tokens kept as keys on this investigator. */
   keys?: ChaosToken[]
@@ -309,6 +311,7 @@ export interface Enemy extends EnemyCard {
  * investigator's turn, or the next attack performed against the enemy this phase.
  */
 export interface EnemyModifier {
+  cannotDamageBy?: InvestigatorId
   cannotEngage?: InvestigatorId
   nextDamage?: number
   source: CardCode
@@ -959,6 +962,12 @@ export type PhaseStep =
 /** `effectController`: investigator controlling the effect that produced it ("you"). */
 export type Message = MessageBody & { effectSource?: string; effectController?: InvestigatorId }
 type MessageBody =
+  | { type: 'SuppressEngagement'; investigator: InvestigatorId; active: boolean }
+  | { type: 'BecomeEthereal'; investigator: InvestigatorId }
+  | { type: 'AsIfAt'; investigator: InvestigatorId; location: LocationId; then: Message[] }
+  | { type: 'EndAsIfAt'; investigator: InvestigatorId }
+  | { type: 'ResumeAsIfAt'; investigator: InvestigatorId }
+  | { type: 'RedirectPendingAttack'; enemy: EnemyId; investigator: InvestigatorId; then: Message[] }
   | { type: 'MoveResourcesToUses'; investigator: InvestigatorId; asset: AssetId; amount: number }
   | { type: 'PrimeFightTokenConversion'; investigator: InvestigatorId; code: CardCode }
   | { type: 'EndEventResolution'; code: CardCode }
@@ -1153,6 +1162,8 @@ type MessageBody =
   /** `checked`: el escenario ya resolvió lo que ocurre al intentar moverse (Vestíbulo). */
   | {
       type: 'MoveTo'
+      physicalChecked?: boolean
+      afterMove?: Message[]
       /** Swap with this enemy atomically after checking movement restrictions and costs. */
       swapEnemy?: EnemyId
       /** Forced relocation that cannot be cancelled (Another Dimension). */
@@ -1181,6 +1192,7 @@ type MessageBody =
     }
   | {
       type: 'BeginSkillTest'
+      ignoredEnemyKeywords?: EnemyKeyword[]
       sourceSnapshot?: Asset
       trackReveals?: boolean
       autoSuccess?: boolean
@@ -2800,6 +2812,8 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  /** Virtual locations never move the investigator's physical mini-card. */
+  asIfLocations?: { investigator: InvestigatorId; at: LocationId; physical: LocationId }[]
   /** Nested player events whose effects are still resolving. */
   eventResolutions?: CardCode[]
   enemyDefeats?: { round: number; location: LocationId }[]

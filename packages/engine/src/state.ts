@@ -225,6 +225,41 @@ export function attachmentsAt(state: GameState, location: LocationId): LocationA
   return Object.values(state.locationAttachments ?? {}).filter((a) => a.location === location)
 }
 
+/** Open Gate changes movement permissions without changing the enemy/location graph. */
+export function movementConnections(state: GameState, location: LocationId): LocationId[] {
+  return [
+    ...new Set([
+      ...(state.locations[location]?.connections ?? []),
+      ...attachmentsAt(state, location).flatMap(
+        (a) => playerCardBehavior(a.code)?.movementConnections?.(state, a) ?? [],
+      ),
+    ]),
+  ].filter((id) => id !== location && !!state.locations[id])
+}
+
+export function physicalLocation(
+  state: GameState,
+  investigator: InvestigatorId,
+): LocationId | null {
+  const i = getInvestigator(state, investigator)
+  return i.eliminated
+    ? null
+    : (state.asIfLocations?.find((f) => f.investigator === investigator)?.physical ?? i.location)
+}
+
+/** Read-only preview used to choose or price a physical movement during an as-if effect. */
+export function physicalMovementState(state: GameState, investigator: InvestigatorId): GameState {
+  const location = physicalLocation(state, investigator)
+  if (!location || getInvestigator(state, investigator).location === location) return state
+  const enemies = Object.fromEntries(
+    Object.entries(state.enemies).map(([id, e]) => [
+      id,
+      e.engagedWith === investigator ? { ...e, location } : e,
+    ]),
+  )
+  return { ...updateInvestigator(state, investigator, (i) => ({ ...i, location })), enemies }
+}
+
 /** Modificadores de las traiciones vinculadas a un enemigo (Llevado a la locura). */
 function attachedModifiers(state: GameState, enemy: EnemyId) {
   const elite = (state.enemies[enemy]?.traits ?? []).includes('Elite')
@@ -456,12 +491,15 @@ export function fightEnemies(state: GameState, investigator: InvestigatorId): En
 
 export function engagedEnemies(state: GameState, investigator: InvestigatorId): Enemy[] {
   const owner = getInvestigator(state, investigator)
-  if (owner.eliminated || owner.location === null) return []
+  if (owner.eliminated || owner.location === null || owner.etherealRound === state.round) return []
   // RR Massive: a ready enemy is engaged with every investigator at its location;
   // it stays at that location instead of entering any investigator's threat area.
   return Object.values(state.enemies).filter((e) =>
     e.keywords.includes('massive')
-      ? !e.exhausted && e.location === owner.location
+      ? !e.exhausted &&
+        e.location === owner.location &&
+        !owner.engagementSuppression &&
+        !activeEnemyModifiers(state, e.id).some((m) => m.cannotEngage === investigator)
       : e.engagedWith === investigator,
   )
 }

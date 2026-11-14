@@ -30,9 +30,20 @@ import actionSupportEs from '../../../../packages/cards/src/action-support/sourc
 import advanced from '../../../../packages/cards/src/data/advanced-tests.json'
 import advancedEn from '../../../../packages/cards/src/advanced-tests/source-en.json'
 import advancedEs from '../../../../packages/cards/src/advanced-tests/source-es.json'
+import movement from '../../../../packages/cards/src/data/movement-support.json'
+import movementEn from '../../../../packages/cards/src/movement-support/source-en.json'
+import movementEs from '../../../../packages/cards/src/movement-support/source-es.json'
 import { messages } from '@lcg/i18n'
 
-it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced, ...actionSupport])(
+it.each([
+  ...encounter,
+  ...damage,
+  ...mythos,
+  ...escape,
+  ...advanced,
+  ...actionSupport,
+  ...movement,
+])(
   '$code is unique, has legal deckbuilding/purchase behavior and official EN/ES presentation',
   (card) => {
     expect(allPlayerCardDefs().filter((c) => c.code === card.code)).toHaveLength(1)
@@ -82,6 +93,7 @@ it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced, ...actionSu
               ...escapeEn,
               ...advancedEn,
               ...actionSupportEn,
+              ...movementEn,
             ]
           : [
               ...encounterEs,
@@ -90,6 +102,7 @@ it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced, ...actionSu
               ...escapeEs,
               ...advancedEs,
               ...actionSupportEs,
+              ...movementEs,
             ]
       ).find((c) => c.code === card.code)!
       const shown = fallbackCards(lang).filter((c) => c.code === card.code)

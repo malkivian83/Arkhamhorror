@@ -203,7 +203,6 @@
 
 ## Cierre anterior al lote 122
 
-
 - Lote 121: `spell-field-tools`, 30 códigos/cartas/niveles/variantes nuevos, sin reediciones. Base `64a12851`; subida autorizada en main. Detalles en [121](121-hechizos-y-herramientas.md).
 - Acumulado: 1141 jugables; 1063 históricos, 920 históricos pendientes, incluidos 529 estándar (con impresiones).
 - Reglas: hechizos, armas, apoyos y seis restricciones por rasgos del investigador. Costes adicionales de juego; mover daño sin curar/infligir; ventana obligada del apoyo derrotado; revelación de fichas sin reemplazo.
@@ -216,7 +215,6 @@
 
 ## Cierre del lote 122 · 58fed5fa
 
-
 - Lote 122: `play-economy`, 9 códigos/diseños/niveles nuevos, sin reediciones. Base `9e92c085`; subida autorizada a main. Detalles en [122](122-costes-y-juego-rapido.md).
 - Acumulado: 1150 jugables; 1072 históricos, 911 históricos pendientes, incluidos 520 estándar con impresiones.
 - Reglas: descuentos combinables, Rápido, bonificación durante eventos, espacios para Criaturas y las dos versiones de Por tu cuenta. Las otras 21 candidatas siguen sin activar.
@@ -225,7 +223,6 @@
 - Siguiente: eventos y reacciones de la selección inicial; ampliar familias viables sin rellenar con reediciones. Mantener bloqueos 98/99/101/102/104/105/107 y elección de debilidad de Rook.
 
 ## Cierre del lote 123 · bcdf1262
-
 
 - Lote 123: `event-economy`, 16 códigos/diseños/niveles nuevos, 0 reediciones; base publicada `58fed5fa`. Subida a main autorizada. Detalles en [123](123-eventos-costes-y-margenes.md).
 - Acumulado: 1166 jugables; 1088 históricos, 895 históricos pendientes, incluidos 504 estándar con impresiones.
@@ -279,3 +276,8 @@
 ## Cierre del lote 144 · sin commit
 
 - Cartas vinculadas: 11 cartas/niveles nuevos y 6 vinculadas, 0 reediciones. 1496 cartas con comportamiento; 260 estándar con impresión pendientes. Ver [144](144-cartas-vinculadas.md).
+
+## Continuación archivada al cerrar el lote 145
+
+- Lote 144 publicado en `42ff1eee`, con ajuste de intercambio de vinculadas en `1e5edd00`; sustituye el estado «sin commit» anterior.
+- Próximas vinculadas: La hoja ávida y Sabueso invocado requieren traición/Enemigo del mazo del jugador; Señorita Doyle, Baratija pesadillesca y Deseo milagroso conservan sus diferencias pendientes. Ver las causas del documento 144.
