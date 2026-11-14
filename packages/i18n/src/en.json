@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "extraActions": {
+        "title": "Additional actions and activations",
+        "cards": "Eight new cards and levels: both Eon Charts, Haste, Close the Circle, Ace of Rods, Sign Magick, Task Force and Flurry of Blows.",
+        "rules": "Includes action types, basic actions, remaining activation costs and an Ace action that can be saved until later in the turn."
+      },
       "carnamagos": {
         "title": "Rod of Carnamagos and its Rots",
         "cards": "Both levels of Rod of Carnamagos and its five bonded Rot events are now playable.",
@@ -522,6 +527,11 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "extraActionActivate": "Choose an asset ability for {name}",
+    "extraActionMove": "Move {name}",
+    "extraActionClue": "{name} discovers a clue",
+    "extraActionRepeat": "Take another melee fight action",
+    "extraAction": { "move": "Move", "evade": "Evade", "investigate": "Investigate" },
     "chaosInsightDiscard": "Spend 2 secrets: play {card} from discard fast at -1 cost",
     "chaosCatsExhaust": "Exhaust {card}: test at {target} with base skill 5",
     "chaosCatsDiscard": "Discard {card}: automatically succeed at {target}",
@@ -1248,6 +1258,19 @@
       "elderSign": "Give the Elder Sign key to {name}",
       "autoFail": "Give the Tentacle key to {name}",
       "frost": "Give the Frost key to {name}"
+    },
+    "extraActionGift": "Use the additional action from {card} (+2 skills)",
+    "extraActionHaste": {
+      "activate": "Exhaust {card}: take another activate action",
+      "engage": "Exhaust {card}: take another engage action",
+      "evade": "Exhaust {card}: take another evade action",
+      "fight": "Exhaust {card}: take another fight action",
+      "investigate": "Exhaust {card}: take another investigate action",
+      "move": "Exhaust {card}: take another move action",
+      "play": "Exhaust {card}: take another play action",
+      "resource": "Exhaust {card}: take another resource action",
+      "draw": "Exhaust {card}: take another draw action",
+      "parley": "Exhaust {card}: take another parley action"
     },
     "carnamagos": "Exhaust {card}: reveal 5 tokens for {enemy}",
     "advancedTest": "{card}: use ability",
@@ -3593,6 +3616,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05040": "The Fateful Step",
       "10098": "Scepter of the Mad Seer",
       "10085": "Scepter of the Mad Seer",
       "07262": "Huntress of Bast",
@@ -3753,6 +3777,14 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "10037": "Tactic. Double. Fated.",
+      "10027": "Tactic. Double.",
+      "54008": "Ritual. Talent.",
+      "08100": "Item. Relic.",
+      "08098": "Item. Relic.",
+      "08062": "Ritual. Synergy.",
+      "06239": "Ritual.",
+      "05040": "Tarot.",
       "10090": "Spell. Rot. Cursed.",
       "10089": "Spell. Rot. Cursed.",
       "10088": "Spell. Rot. Cursed.",
@@ -4674,6 +4706,14 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "10037": "Play only if you control a [[Melee]] asset. As an additional cost to play Flurry of Blows, spend an action.\n<b>Fight.</b> Choose a [[Melee]] asset you control and take an immediate fight action with that asset <i>(without paying its [action] cost)</i>. You may repeat this effect up to three times. After the final attack resolves, if it is your turn, end your turn.",
+      "10027": "As an additional cost to play Task Force, spend an action. One at a time, in any order, choose an investigator at your location to...\n- ...resolve an [action] ability on an asset they control without paying its [action] cost.\n- ...move to a connecting location.\n- ...discover 1 clue at their location.",
+      "54008": "Fast.\nYou have 1 additional arcane slot, which can only be used to hold a [[Spell]] or [[Ritual]] asset.\n[reaction] After you activate an [action] ability on a [[Spell]] or [[Ritual]] asset, exhaust Sign Magick: Activate an [action] ability on a different [[Spell]] or [[Ritual]] asset you control <i>(without paying its [action] cost)</i>.",
+      "08100": "Uses (3 secrets).\n[fast] During your turn, exhaust Eon Chart and spend 1 secret: Choose and take two different actions of the following, in any order (move, evade, or investigate).",
+      "08098": "Uses (3 secrets).\n[fast] During your turn, exhaust Eon Chart and spend 1 secret: Choose and take one of the following actions (move, evade, or investigate).",
+      "08062": "Uses (1 charge for each class among cards you control, including this one).\n[fast] Spend 1 charge and exhaust Close the Circle: Take a basic action. For each skill test performed during that action, you may use your [willpower] instead of the skill indicated for that action.",
+      "06239": "Limit 1 per investigator.\n[reaction] After you perform the same type of action twice in a row, exhaust Haste: Take another action of that type again <i>(types include activate, engage, evade, fight, investigate, move, play, resource, and draw)</i>.",
+      "05040": "[fast] During your turn, remove Ace of Rods from the game: You may take an additional action this turn, during which you get +2 to each of your skills.\n[reaction] When the game begins, if Ace of Rods is in your opening hand: Put it into play.",
       "10090": "Bonded (Rod of Carnamagos).\nAttached enemy cannot move.\n<b>Forced</b> - When attached enemy leaves play: Set Virescent Rot aside, out of play.",
       "10089": "Bonded (Rod of Carnamagos).\n<b>Forced</b> - At the end of the round: Attached enemy takes 1 damage.\n<b>Forced</b> - When attached enemy leaves play: Set Scarlet Rot aside, out of play.",
       "10088": "Bonded (Rod of Carnamagos).\nAttached enemy gets -1 fight and -1 evade.\n<b>Forced</b> - When attached enemy leaves play: Set Putrescent Rot aside, out of play.",
@@ -6027,6 +6067,14 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "10037": "Flurry of Blows",
+      "10027": "Task Force",
+      "54008": "Sign Magick",
+      "08100": "Eon Chart",
+      "08098": "Eon Chart",
+      "08062": "Close the Circle",
+      "06239": "Haste",
+      "05040": "Ace of Rods",
       "10090": "Virescent Rot",
       "10089": "Scarlet Rot",
       "10088": "Putrescent Rot",

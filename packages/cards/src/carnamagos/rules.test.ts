@@ -121,7 +121,7 @@ it('Aember pays printed health capped at five only on defeat', () => {
 it('Scarlet deals one damage at round end and cannot be assigned to another enemy', () => {
   let s = attach(base(), '10089')
   s = run(s, [{ type: 'Forced', trigger: { type: 'roundEnds' } }])
-  expect(s.enemies[id(s)]?.damage).toBe(1)
+  expect(s.enemies[id(s)]?.damageTaken).toBe(1)
 })
 it('Abyssal prevents enemy attacks including attacks of opportunity and forced attacks', () => {
   const s = attach(base(), '10086')

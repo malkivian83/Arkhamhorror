@@ -23,7 +23,8 @@ export function approvedDefinition(card, approval) {
           card.factions.join(',') === 'rogue,mystic') ||
         (['08083', '08084', '08085', '08086'].includes(card.code) &&
           card.factions.join(',') === 'guardian,seeker') ||
-        (['08097', '08099'].includes(card.code) && card.factions.join(',') === 'seeker,rogue') ||
+        (['08097', '08099', '08098', '08100'].includes(card.code) &&
+          card.factions.join(',') === 'seeker,rogue') ||
         (['05115', '08087', '08088'].includes(card.code) &&
           card.factions.join(',') === 'guardian,rogue') ||
         (['08094', '08096', '08095'].includes(card.code) &&
@@ -46,7 +47,7 @@ export function approvedDefinition(card, approval) {
     talentFactions[card.code] === card.factions.join(',')
   const reviewedTarot =
     approval.adapter === 'reviewed-tarot-v1' &&
-    (['05023', '05027', '05031', '05035', '05039', '54003', '54005'].includes(card.code) ||
+    (['05023', '05027', '05031', '05035', '05039', '54003', '54005', '05040'].includes(card.code) ||
       { 54001: 'guardian:3', 54009: 'survivor:3', 54011: 'neutral:3' }[card.code] ===
         card.factions.join(',') + ':' + card.numbers.xp?.value) &&
     card.slots.unknown.join(',') === 'Tarot' &&

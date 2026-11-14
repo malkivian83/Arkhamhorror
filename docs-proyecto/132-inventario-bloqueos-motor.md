@@ -101,6 +101,16 @@ otra habilidad durante una prueba cuentan para sus disparadores, sin aplicar
 sus efectos ni regresar dos veces a la bolsa. Olive mantiene pendiente la
 selección de dos fichas. [Diferencias y controles](147-vara-de-carnamagos.md).
 
+## Estado tras el lote 148
+
+El lote `extra-actions` incorpora ocho cartas/niveles estándar, sin reediciones:
+1549 comportamientos y 218 estándar pendientes. Acciones concedidas por tipo,
+acciones básicas, sustitución opcional por Voluntad, tipos simultáneos y costes
+restantes permiten As de bastos, Celeridad, Cerrar el círculo, Carta de los evos
+1/4, Signo mágico 3, Fuerza especial y Lluvia de golpes. Pelear sucio requiere
+identificar el Enemigo de pruebas de parlamentar; Salvavidas y Geas mantienen
+sus ventanas y observaciones pendientes. [Detalle](148-acciones-y-activaciones-adicionales.md).
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

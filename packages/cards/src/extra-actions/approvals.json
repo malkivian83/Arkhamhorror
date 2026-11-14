@@ -1,0 +1,68 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "57c58230e7739b0e2499e150a6cbface9478cc1e6f2109f1346804e2da4145d6",
+    "es": "1a63ec39ca3007db833070ef0de14a294da8335e4981e18175ff1a87e99dc21b"
+  },
+  "cards": [
+    {
+      "code": "05040",
+      "status": "verified",
+      "module": "card-05040",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-tarot-v1",
+      "subname": "The Fateful Step"
+    },
+    {
+      "code": "06239",
+      "status": "verified",
+      "module": "card-06239",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08062",
+      "status": "verified",
+      "module": "card-08062",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "charge" }
+    },
+    {
+      "code": "08098",
+      "status": "verified",
+      "module": "card-08098",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1",
+      "uses": { "count": 3, "type": "secret" }
+    },
+    {
+      "code": "08100",
+      "status": "verified",
+      "module": "card-08100",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1",
+      "uses": { "count": 3, "type": "secret" }
+    },
+    {
+      "code": "54008",
+      "status": "verified",
+      "module": "card-54008",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "10027",
+      "status": "verified",
+      "module": "card-10027",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10037",
+      "status": "verified",
+      "module": "card-10037",
+      "test": "rules.test.ts"
+    }
+  ]
+}

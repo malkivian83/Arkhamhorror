@@ -1048,6 +1048,8 @@ export interface PlayerCardBehavior {
   helpsOtherTests?: boolean
   /** Subscribe to action-ability completion without changing other games' queued messages. */
   observesActionAbilities?: boolean
+  /** Observe the types of consecutive completed actions (Haste). */
+  observesCompletedActions?: boolean
   /** Efecto de campaña si está en la mano de su dueño cuando termina la partida o es eliminado. */
   whenGameEndsInHand?: (state: GameState, owner: InvestigatorId) => Message[]
   /** Mientras está en juego, la primera acción de cada turno de su dueño no provoca ataques de oportunidad. */

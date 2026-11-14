@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "extraActions": {
+        "title": "Acciones y activaciones adicionales",
+        "cards": "Ocho cartas y niveles nuevos: ambas Cartas de los evos, Celeridad, Cerrar el círculo, As de bastos, Signo mágico, Fuerza especial y Lluvia de golpes.",
+        "rules": "Incluye tipos de acción, acciones básicas, costes de activación restantes y la acción del As guardada para más tarde en el turno."
+      },
       "carnamagos": {
         "title": "Vara de Carnamagos y sus Putrefacciones",
         "cards": "Ya se pueden jugar los dos niveles de Vara de Carnamagos y sus cinco eventos vinculados de Putrefacción.",
@@ -522,6 +527,11 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "extraActionActivate": "Elige una habilidad de apoyo para {name}",
+    "extraActionMove": "Mueve a {name}",
+    "extraActionClue": "{name} descubre una pista",
+    "extraActionRepeat": "Realiza otra acción de combatir con un Apoyo Cuerpo a Cuerpo",
+    "extraAction": { "move": "Moverse", "evade": "Evitar", "investigate": "Investigar" },
     "chaosInsightDiscard": "Gasta 2 secretos: juega {card} desde el descarte como Rápido y con -1 al coste",
     "chaosCatsExhaust": "Agota a {card}: realiza la prueba en {target} con valor básico de 5",
     "chaosCatsDiscard": "Descarta a {card}: supera automáticamente la prueba en {target}",
@@ -1248,6 +1258,19 @@
       "elderSign": "Dar la llave de Signo arcano a {name}",
       "autoFail": "Dar la llave de Tentáculo a {name}",
       "frost": "Dar la llave de Helada a {name}"
+    },
+    "extraActionGift": "Usa la acci\u00f3n adicional de {card} (+2 a las habilidades)",
+    "extraActionHaste": {
+      "activate": "Agota {card}: otra acción de activar",
+      "engage": "Agota {card}: otra acción de enfrentarse",
+      "evade": "Agota {card}: otra acción de evitar",
+      "fight": "Agota {card}: otra acción de combatir",
+      "investigate": "Agota {card}: otra acción de investigar",
+      "move": "Agota {card}: otra acción de moverse",
+      "play": "Agota {card}: otra acción de jugar",
+      "resource": "Agota {card}: otra acción de obtener recursos",
+      "draw": "Agota {card}: otra acción de robar",
+      "parley": "Agota {card}: otra acción de parlamentar"
     },
     "carnamagos": "Agota {card}: revela 5 fichas para {enemy}",
     "advancedTest": "{card}: usar capacidad",
@@ -3593,6 +3616,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05040": "El paso trascendental",
       "10098": "Cetro del vidente loco",
       "10085": "Cetro del vidente loco",
       "07262": "Cazadora de Bast",
@@ -3753,6 +3777,14 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "10037": "Táctica. Doble. Predestinado.",
+      "10027": "Táctica. Doble.",
+      "54008": "Ritual. Talento.",
+      "08100": "Objeto. Reliquia.",
+      "08098": "Objeto. Reliquia.",
+      "08062": "Ritual. Sinergia.",
+      "06239": "Ritual.",
+      "05040": "Tarot.",
       "10090": "Hechizo. Putrefacción. Maldito.",
       "10089": "Hechizo. Putrefacción. Maldito.",
       "10088": "Hechizo. Putrefacción. Maldito.",
@@ -4674,6 +4706,14 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "10037": "Juega esta carta sólo si controlas un Apoyo [[Cuerpo a Cuerpo]]. Como coste adicional para jugar Lluvia de golpes, gasta una acción.\n<b>Combatir.</b> Elige un Apoyo [[Cuerpo a Cuerpo]] que controles y realiza una acción de combatir inmediatamente con ese Apoyo <i>(sin pagar su coste [action])</i>. Puedes repetir este efecto hasta 3 veces. Después de que se resuelva el último ataque, si es tu turno, termina tu turno.",
+      "10027": "Como coste adicional para jugar Fuerza especial, gasta una acción. De uno en uno, en cualquier orden, elige un investigador en tu Lugar para que...\n- ...resuelva una capacidad [action] de un Apoyo que controle sin pagar su coste [action].\n- ...se mueva a un Lugar conectado.\n- ...descubra 1 pista en su Lugar.",
+      "54008": "Rápido.\nTienes 1 espacio arcano adicional, que sólo puede usarse para un Apoyo [[Hechizo]] o [[Ritual]].\n[reaction] Después de que actives una capacidad [action] de un Apoyo [[Hechizo]] o [[Ritual]], agota el Signo mágico: Activa una capacidad [action] de un Apoyo [[Hechizo]] o [[Ritual]] distinto que controles <i>(sin pagar su coste [action])</i>.",
+      "08100": "Usos (3 secretos).\n[fast] Durante tu turno, agota la Carta de los evos y gasta 1 secreto: Elige y realiza dos acciones distintas de entre las siguientes, en cualquier orden (movimiento, evitar o investigar).",
+      "08098": "Usos (3 secretos).\n[fast] Durante tu turno, agota la Carta de los evos y gasta 1 secreto: Elige y realiza una de las siguientes acciones (movimiento, evitar o investigar).",
+      "08062": "Usos (1 carga por cada clase que haya entre las cartas que controlas, incluida ésta).\n[fast] Gasta 1 carga y agota Cerrar el círculo: Realiza una acción básica. Para cada prueba de habilidad realizada durante esta acción, puedes usar tu [willpower] en lugar de la habilidad indicada para esa acción.",
+      "06239": "Límite de 1 por investigador.\n[reaction] Después de que realices el mismo tipo de acción dos veces seguidas, agota Celeridad: Realiza otra acción de ese tipo de nuevo <i>(los tipos incluyen activar, enfrentarse, evitar, combatir, investigar, moverse, jugar, recursos y robar)</i>.",
+      "05040": "[free] Durante tu turno, retira el As de bastos de la partida: Puedes realizar una acción adicional en este turno, durante la cual recibes +2 a cada una de tus habilidades.\n[reaction] Cuando comience la partida, si el As de bastos está en tu mano inicial: Ponlo en juego.",
       "10090": "Enlazada (Vara de Carnamagos)\nEl Enemigo vinculado no se puede mover.\n<b>Obligado</b> - Cuando el enemigo vinculado abandone el juego: Pon aparte la Putrefacción verdosa, fuera del juego.",
       "10089": "Enlazada (Vara de Carnamagos)\n<b>Obligado</b> - Al final de la ronda: El Enemigo vinculado recibe 1 punto de daño.\n<b>Obligado</b> - Cuando el enemigo vinculado abandone el juego: Pon aparte la Putrefacción escarlata, fuera del juego.",
       "10088": "Enlazada (Vara de Carnamagos)\nEl enemigo vinculado recibe -1 a combate y -1 a evitar.\n<b>Obligado</b> - Cuando el enemigo vinculado abandone el juego: Pon aparte la Putrefacción pútrida, fuera del juego.",
@@ -6027,6 +6067,14 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "10037": "Lluvia de golpes",
+      "10027": "Fuerza especial",
+      "54008": "Signo mágico",
+      "08100": "Carta de los evos",
+      "08098": "Carta de los evos",
+      "08062": "Cerrar el círculo",
+      "06239": "Celeridad",
+      "05040": "As de bastos",
       "10090": "putrefacción verdosa",
       "10089": "Putrefacción escarlata",
       "10088": "Putrefacción pútrida",

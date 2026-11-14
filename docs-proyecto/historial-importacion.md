@@ -289,3 +289,7 @@
 ## Continuación archivada al cerrar el lote 147
 
 - Lote 146 `chaos-allies`, commit `433d7b26`: 14 cartas/niveles estándar nuevos y 6 vinculadas, 0 reediciones. 1534 comportamientos, 591 históricos y 228 estándar pendientes; 6327 escaneos y miniaturas. Revisión posterior de reglas en `fc3cd756`.
+
+## Continuación archivada al cerrar el lote 148
+
+- Lote 147 `carnamagos`, commit `9ac096a9`: dos niveles estándar nuevos y cinco Putrefacciones vinculadas, cero reediciones. 1541 comportamientos, 584 históricos y 226 estándar pendientes; 6341 escaneos y miniaturas. Validación del lote y consumidores correcta; recuento desde la base 146 más siete altas verificadas, sin declarar superada la inspección SSR.
