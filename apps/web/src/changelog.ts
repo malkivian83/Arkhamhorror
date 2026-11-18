@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'encounter-search',
+    date: '2026-11-18',
+    title: 'app.changelog.encounterSearch.title',
+    items: ['app.changelog.encounterSearch.cards', 'app.changelog.encounterSearch.rules'],
+  },
+  {
     id: 'discard-rituals',
     date: '2026-11-18',
     title: 'app.changelog.discardRituals.title',

@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "encounterSearch": {
+        "title": "Búsquedas en el mazo de Encuentros",
+        "cards": "Seis cartas y niveles nuevos jugables: De caza, Agitar el avispero, \"¿Dónde es la fiesta?\", Himno Antediluviano, La naturaleza de la bestia.",
+        "rules": "Busca y engendra Enemigos sin robarlos, sustituye un robo del mito, ordena cartas de Encuentro reveladas y resuelve el Dilema con el investigador elegido."
+      },
       "discardRituals": {
         "title": "Cartas de descarte y rituales",
         "cards": "Siete cartas y niveles nuevos jugables, con presentación oficial en inglés y español.",
@@ -532,6 +537,13 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "searchEncounterDeckEnemy": "Elige a {enemy} del mazo de Encuentros (carta {n})",
+    "searchEncounterDiscardEnemy": "Elige a {enemy} del descarte de Encuentros (carta {n})",
+    "encounterPlaceBottom": "Añade una Maldición y coloca {card} debajo (carta {n})",
+    "encounterFinishBottom": "Ordena las cartas restantes encima",
+    "encounterTopOrder": "Coloca {card} a continuación encima (carta {n})",
+    "encounterBeastDraw": "{name} roba {card} (carta {n})",
+    "encounterBeastClue": "{name} descubre una pista en {location}",
     "geas": {
       "draw": "Promete no robar cartas durante tus turnos",
       "play": "Promete no jugar cartas durante tus turnos",
@@ -3799,6 +3811,12 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "09111": "Dilema. Inspiración.",
+      "10093": "Presagio. Doble.",
+      "11053": "Truco. Improvisado.",
+      "09068": "Gambito. Táctica.",
+      "08028": "Táctica.",
+      "03263": "Táctica.",
       "09088": "Hechizo.",
       "09052": "Inspiración. Paradoja.",
       "08076": "Inspiración.",
@@ -4735,6 +4753,12 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "09111": "Máximo 2 [[Dilema]] por ronda.\n<b>Revelación</b> - Revela las 3 primeras cartas del mazo de encuentros. Elige un investigador para que robe 1 de las cartas reveladas y descarta el resto. A continuación, elige un investigador para que descubra 1 pista en cualquier Lugar revelado.",
+      "10093": "Como coste adicional para jugar Himno antediluviano, gasta una acción.\nRevela las 5 primeras cartas del mazo de Encuentros. Por cada carta revelada, puedes añadir 1 ficha [curse] a la bolsa de caos para colocar esta carta en la parte inferior del mazo de Encuentros. Devuelve el resto a la parte superior del mazo de Encuentros en cualquier orden.",
+      "11053": "<b>Negociar.</b> Busca en el mazo y la pila de descartes de Encuentros un Enemigo que no sea [[Élite]] y haz que aparezca agotado y enfrentado a ti. Roba una cantidad de cartas igual a los valores combinados de daño y horror de ese Enemigo.",
+      "09068": "Busca en las 9 primeras cartas del mazo de encuentros un Enemigo que no sea [[Élite]] y hazlo aparecer enfrentado a ti, en vez de su Lugar de aparición normal. A continuación, descubre 1 pista en tu lugar y obtén X recursos, donde X es el valor de salud de ese Enemigo. Baraja el mazo de encuentros.",
+      "08028": "Rápido. Juega esta carta cuando fueses a robar una carta de Encuentros durante la fase de Mitos.\nEn lugar de eso, busca un Enemigo en el mazo de Encuentros, hazlo aparecer enfrentado a ti <i>(en vez de su Lugar de aparición normal)</i>, vincúlale De caza y baraja el mazo de Encuentros.\n[reaction] Cuando derrotes al Enemigo vinculado: Obtén 3 recursos.",
+      "03263": "Rápido. Juega esta carta cuando fueses a robar una carta de Encuentro durante la fase de Mitos.\nEn lugar de eso, busca un Enemigo entre las 9 primeras cartas del mazo de Encuentros, hazlo aparecer enfrentado a ti (en vez de en su Lugar de aparición normal) y baraja el mazo de Encuentros. Si no puedes, roba la primera carta del mazo de Encuentros.",
       "09088": "<b>Negociar.</b> Elige un Enemigo que no sea [[Élite]] que esté en tu Lugar y (elige una opción):\n- Evita automáticamente a ese Enemigo y coloca 1 ficha de Perdición sobre él. No puede recibir daño durante el resto de la ronda. Descubre 1 pista en tu Lugar.\n- Si ese Enemigo tiene 1 o más fichas de Perdición, derrótalo. Obtén 1 recurso por cada ficha de Perdición que tuviera.",
       "09052": "<b>Negociar.</b> Elige a un Enemigo que no sea [[Élite]] que esté en tu Lugar y realiza una prueba de [willpower] o [intellect] (8). Esta prueba recibe -1 a su dificultad por cada una de las demás cartas de tu mano. Si tienes éxito, evitas automáticamente al Enemigo elegido y le vinculas el Acertijo existencial.\nEl enemigo vinculado obtiene Indiferente.",
       "08076": "Exilia una carta de nivel 0-5 de tu mano.\nDescubre 2 pistas en tu Lugar. Si la carta exiliada era de nivel 2 o mayor, retira 1 ficha de Perdición del plan en curso. Exilia Quemar después de leer.\n<b>Carta diseñada por El consejo en el exilio en la Gen Con 2020</b>",
@@ -6103,6 +6127,12 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "09111": "La naturaleza de la bestia",
+      "10093": "Himno Antediluviano",
+      "11053": "\"¿Dónde es la fiesta?\"",
+      "09068": "Agitar el avispero",
+      "08028": "De caza",
+      "03263": "De caza",
       "09088": "Sucesión de maldiciones",
       "09052": "Acertijo existencial",
       "08076": "Quemar después de leer",

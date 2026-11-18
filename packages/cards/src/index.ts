@@ -320,6 +320,7 @@ import { CHAOS_ALLIES_RENDERED_CODES } from './chaos-allies'
 import { CARNAMAGOS_RENDERED_CODES } from './carnamagos'
 import { EXTRA_ACTIONS_RENDERED_CODES } from './extra-actions'
 import { DISCARD_RITUALS_RENDERED_CODES } from './discard-rituals'
+import { ENCOUNTER_SEARCH_RENDERED_CODES } from './encounter-search'
 import { BONDED_RENDERED_CODES } from './bonded-cards'
 import { REUSED_CAPABILITIES_RENDERED_CODES } from './reused-capabilities'
 import { REX_RENDERED_CODES } from './rex-murphy'
@@ -366,6 +367,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...CARNAMAGOS_RENDERED_CODES,
   ...EXTRA_ACTIONS_RENDERED_CODES,
   ...DISCARD_RITUALS_RENDERED_CODES,
+  ...ENCOUNTER_SEARCH_RENDERED_CODES,
   ...BONDED_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,

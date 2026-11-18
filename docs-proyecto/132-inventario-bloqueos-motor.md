@@ -101,6 +101,15 @@ otra habilidad durante una prueba cuentan para sus disparadores, sin aplicar
 sus efectos ni regresar dos veces a la bolsa. Olive mantiene pendiente la
 selección de dos fichas. [Diferencias y controles](147-vara-de-carnamagos.md).
 
+## Estado tras el lote 150
+
+`encounter-search` añade seis cartas/niveles estándar, sin reediciones:
+1562 comportamientos, 563 códigos históricos pendientes y 205 estándar con impresión.
+Ambos niveles de De caza, Agitar el avispero, «¿Dónde es la fiesta?», Himno
+Antediluviano y La naturaleza de la bestia resuelven búsquedas, aparición frente
+a robo, sustitución del robo del mito y orden de cartas reveladas. Códice de otro
+mundo conserva pendiente la salida de Lugares con ocupantes. [Detalle](150-busquedas-y-revelaciones-de-encuentros.md).
+
 ## Estado tras el lote 149
 
 `discard-rituals` añade siete cartas/niveles estándar nuevos, sin reediciones:

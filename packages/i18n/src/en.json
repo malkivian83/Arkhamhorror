@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "encounterSearch": {
+        "title": "Encounter deck searches",
+        "cards": "Six new playable cards and levels: On the Hunt, Kicking the Hornet's Nest, \"Where's the party?\", Antediluvian Hymn, Nature of the Beast.",
+        "rules": "Search for enemies, spawn them without drawing, replace a mythos draw, order revealed encounter cards and resolve the Dilemma with its chosen investigator."
+      },
       "discardRituals": {
         "title": "Discard and ritual cards",
         "cards": "Seven new playable cards and levels, with official English and Spanish presentation.",
@@ -532,6 +537,13 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "searchEncounterDeckEnemy": "Choose {enemy} from the encounter deck (card {n})",
+    "searchEncounterDiscardEnemy": "Choose {enemy} from the encounter discard (card {n})",
+    "encounterPlaceBottom": "Add a curse and put {card} on the bottom (card {n})",
+    "encounterFinishBottom": "Order the remaining cards on top",
+    "encounterTopOrder": "Put {card} next on top (card {n})",
+    "encounterBeastDraw": "{name} draws {card} (card {n})",
+    "encounterBeastClue": "{name} discovers a clue at {location}",
     "geas": {
       "draw": "Promise not to draw cards during your turns",
       "play": "Promise not to play cards during your turns",
@@ -3799,6 +3811,12 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "09111": "Dilemma. Insight.",
+      "10093": "Augury. Double.",
+      "11053": "Trick. Improvised.",
+      "09068": "Gambit. Tactic.",
+      "08028": "Tactic.",
+      "03263": "Tactic.",
       "09088": "Spell.",
       "09052": "Insight. Paradox.",
       "08076": "Insight.",
@@ -4735,6 +4753,12 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "09111": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - Reveal the top 3 cards of the encounter deck. Choose an investigator to draw 1 of the revealed cards and discard the rest. Then, choose an investigator to discover 1 clue at any revealed location.",
+      "10093": "As an additional cost to play Antediluvian Hymn, spend an action.\nReveal the top 5 cards of the encounter deck. For each card revealed, you may add 1 [curse] token to the chaos bag to place that card on the bottom of the encounter deck. Return the rest to the top of the encounter deck in any order.",
+      "11053": "<b>Parley.</b> Search the encounter deck and discard pile for a non-[[Elite]] enemy and spawn it exhausted and engaged with you. Draw cards equal to that enemy's combined damage and horror values.",
+      "09068": "Search the top 9 cards of the encounter deck for a non-[[Elite]] enemy and spawn it engaged with you <i>(instead of its normal spawn location)</i>. Then, discover 1 clue at your location and gain X resources, where X is that enemy's health value. Shuffle the encounter deck.",
+      "08028": "Fast. Play when you would draw an encounter card during the mythos phase.\nInstead, search the encounter deck for an enemy, spawn it engaged with you <i>(instead of its normal spawn location)</i>, attach On the Hunt to it, and shuffle the encounter deck.\n[reaction] When you defeat attached enemy: Gain 3 resources.",
+      "03263": "Fast. Play when you would draw an encounter card during the mythos phase.\nInstead, search the top 9 cards of the encounter deck for an enemy, spawn it engaged with you <i>(instead of its normal spawn location)</i>, and shuffle the encounter deck. If you cannot, draw the top card of the encounter deck.",
       "09088": "<b>Parley.</b> Choose a non-[[Elite]] enemy at your location and either (choose one):\n- Automatically evade that enemy and place 1 doom on it. It cannot take damage for the remainder of the round. Discover 1 clue at your location.\n- If that enemy has 1 or more doom on it, defeat it. Gain 1 resource for each doom that was on it.",
       "09052": "<b>Parley.</b> Choose a non-[[Elite]] enemy at your location and test [willpower] or [intellect] (8). This test gets -1 difficulty for each other card in your hand. If you succeed, automatically evade the chosen enemy and attach Existential Riddle to it.\nAttached enemy gains aloof.",
       "08076": "Exile a level 0-5 card in your hand. Discover 2 clues at your location. If the exiled card was level 2 or higher, remove 1 doom from the current agenda. Exile Burn After Reading.\n<b>Card designed by the Council-in-Exile at Gen Con 2020</b>",
@@ -6103,6 +6127,12 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "09111": "Nature of the Beast",
+      "10093": "Antediluvian Hymn",
+      "11053": "\"Where's the party?\"",
+      "09068": "Kicking the Hornet's Nest",
+      "08028": "On the Hunt",
+      "03263": "On the Hunt",
       "09088": "String of Curses",
       "09052": "Existential Riddle",
       "08076": "Burn After Reading",

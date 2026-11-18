@@ -985,6 +985,18 @@ type MessageBody =
   | { type: 'RandomChoice'; choices: Message[][] }
   | { type: 'CycleBondedCat'; investigator: InvestigatorId; shuffled: CardCode; played: CardCode }
   | { type: 'ReplaceEncounterDrawWithPlayerCard'; investigator: InvestigatorId }
+  | { type: 'ReplaceTopEncounterDraw'; investigator: InvestigatorId; then: Message[] }
+  | {
+      type: 'SearchEncounterForSpawn'
+      investigator: InvestigatorId
+      top: number
+      includeDiscard?: boolean
+      nonElite?: boolean
+      exhausted?: boolean
+      then?: Extract<Message, { type: 'PlayerCardEffect' }>
+      ifNone?: Message[]
+      choice?: { zone: 'deck' | 'discard'; index: number }
+    }
   | { type: 'SuppressEngagement'; investigator: InvestigatorId; active: boolean }
   | { type: 'BecomeEthereal'; investigator: InvestigatorId }
   | { type: 'AsIfAt'; investigator: InvestigatorId; location: LocationId; then: Message[] }
@@ -1945,6 +1957,8 @@ type MessageBody =
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
   | {
       type: 'SpawnEnemy'
+      engageExhausted?: boolean
+      onSpawn?: Extract<Message, { type: 'PlayerCardEffect' }>
       /** Enters exhausted, before engagement and spawn reaction windows. */
       entersExhausted?: boolean
       initialDamage?: number
@@ -2545,7 +2559,7 @@ export type Trigger =
   | { type: 'mythosPhaseEnds' }
   /** At the end of the upkeep phase, after checking hand size (Priest of Two Faiths). */
   | { type: 'upkeepPhaseEnds' }
-  | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
+  | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId; attachments?: Treachery[] }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced'; agenda?: AgendaDeck }
   | { type: 'afterDoomOnEmptyCard' }
