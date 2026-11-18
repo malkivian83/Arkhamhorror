@@ -1,0 +1,69 @@
+[
+  {
+    "code": "03263",
+    "name": "On the Hunt",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 1, "combat": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "08028",
+    "name": "On the Hunt",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 0,
+    "xp": 3,
+    "icons": { "willpower": 1, "intellect": 1, "combat": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "09068",
+    "name": "Kicking the Hornet's Nest",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Gambit", "Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "intellect": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "11053",
+    "name": "\"Where's the party?\"",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick", "Improvised"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "10093",
+    "name": "Antediluvian Hymn",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Augury", "Double"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "09111",
+    "name": "Nature of the Beast",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Dilemma", "Insight"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  }
+]

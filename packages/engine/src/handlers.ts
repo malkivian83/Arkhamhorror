@@ -226,7 +226,10 @@ export function handle(state: GameState, message: Message): GameState {
       },
     )
   }
-  if (message.type === 'ReplaceEncounterDrawWithPlayerCard') {
+  if (
+    message.type === 'ReplaceEncounterDrawWithPlayerCard' ||
+    message.type === 'ReplaceTopEncounterDraw'
+  ) {
     const at = state.queue.findIndex(
       (m) =>
         m.type === 'DrawEncounterCard' &&
@@ -236,8 +239,12 @@ export function handle(state: GameState, message: Message): GameState {
     if (at < 0) return state
     return {
       ...state,
-      queue: state.queue.map((m, n) =>
-        n === at ? { type: 'DrawCards', investigator: message.investigator, amount: 1 } : m,
+      queue: state.queue.flatMap((m, n): Message[] =>
+        n !== at
+          ? [m]
+          : message.type === 'ReplaceTopEncounterDraw'
+            ? message.then
+            : [{ type: 'DrawCards', investigator: message.investigator, amount: 1 }],
       ),
     }
   }
@@ -629,7 +636,10 @@ export function handle(state: GameState, message: Message): GameState {
       if (instead) return push(state, ...onScenarioCard(instead))
       if (
         !message.windowResolved &&
-        Object.values(state.assets).some((a) => playerCardBehavior(a.code)?.observesEncounterDraw)
+        (Object.values(state.assets).some(
+          (a) => playerCardBehavior(a.code)?.observesEncounterDraw,
+        ) ||
+          investigator.hand.some((c) => playerCardBehavior(c)?.observesEncounterDraw))
       )
         return push(
           state,
@@ -878,7 +888,7 @@ export function handle(state: GameState, message: Message): GameState {
       const entersExhausted =
         !!message.entersExhausted || !!enemyBehavior(card.code)?.entersExhausted
       const engagedWith =
-        entersExhausted ||
+        (entersExhausted && !message.engageExhausted) ||
         card.keywords.includes('massive') ||
         (message.engageWith &&
           getInvestigator(state, message.engageWith).location !== message.location)
@@ -901,10 +911,14 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
       }
+      const onSpawn: Message[] = message.onSpawn
+        ? [{ ...message.onSpawn, data: { ...message.onSpawn.data, enemy: id } }]
+        : []
       if (card.global)
         return push(
           next,
           { type: 'Forced', trigger: { type: 'enemySpawned', enemy: id, location: '' } },
+          ...onSpawn,
           ...(message.after ?? []),
         )
       return push(
@@ -934,6 +948,7 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'Forced',
           trigger: { type: 'enemySpawned', enemy: id, location: message.location },
         },
+        ...onSpawn,
         ...(message.after ?? []),
         ...(message.exhaustAfterSpawn ? [{ type: 'ExhaustEnemy', enemy: id } as Message] : []),
       )
@@ -9139,6 +9154,7 @@ export function handle(state: GameState, message: Message): GameState {
       const trigger: Trigger = {
         type: 'enemyDefeated',
         enemy,
+        attachments: attachedTo(state, enemy.id),
         ...(message.by ? { by: message.by } : {}),
       }
       return push(next, ...attachedDefeat, { type: 'Forced', trigger }, ...doomed, {
@@ -10617,6 +10633,16 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------- Cartas de jugador
     case 'Reactions': {
+      // A replaced draw no longer offers other replacements of that same draw.
+      if (message.trigger.type === 'wouldDrawTopEncounter') {
+        const by = message.trigger.investigator
+        if (
+          !state.queue.some(
+            (m) => m.type === 'DrawEncounterCard' && m.windowResolved && m.investigator === by,
+          )
+        )
+          return state
+      }
       // Cada investigador con reacciones posibles elige una o pasa; después se
       // vuelve a abrir la ventana sin las ya usadas, hasta que nadie quiera más.
       const used = message.used ?? []
@@ -11337,6 +11363,70 @@ export function handle(state: GameState, message: Message): GameState {
       return updateInvestigator({ ...state, rng }, investigator.id, (i) => ({ ...i, deck }))
     }
 
+    case 'SearchEncounterForSpawn': {
+      const investigator = getInvestigator(state, message.investigator)
+      if (investigator.eliminated || !investigator.location) return state
+      const candidates = (['deck', 'discard'] as const).flatMap((zone) => {
+        if (zone === 'discard' && !message.includeDiscard) return []
+        const cards =
+          zone === 'deck' ? state.encounterDeck.slice(0, message.top) : state.encounterDiscard
+        return cards.flatMap((card, index) =>
+          card.kind === 'enemy' && (!message.nonElite || !card.traits?.includes('Elite'))
+            ? [{ zone, index, card }]
+            : [],
+        )
+      })
+      const chosen =
+        message.choice &&
+        candidates.find((c) => c.zone === message.choice!.zone && c.index === message.choice!.index)
+      if (!chosen) {
+        if (message.choice) return state
+        if (!candidates.length)
+          return push(
+            state,
+            { type: 'ReorderDeck', count: 0, order: [], to: 'shuffle' },
+            ...(message.ifNone ?? []),
+          )
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseEnemy',
+            alwaysAsk: true,
+            choices: candidates.map((c) => ({
+              label:
+                c.zone === 'deck'
+                  ? 'choice.searchEncounterDeckEnemy'
+                  : 'choice.searchEncounterDiscardEnemy',
+              params: { enemy: c.card.name, n: c.index + 1 },
+              then: [{ ...message, choice: { zone: c.zone, index: c.index } }],
+            })),
+          },
+        })
+      }
+      const next = {
+        ...state,
+        encounterDeck:
+          chosen.zone === 'deck'
+            ? state.encounterDeck.filter((_, n) => n !== chosen.index)
+            : state.encounterDeck,
+        encounterDiscard:
+          chosen.zone === 'discard'
+            ? state.encounterDiscard.filter((_, n) => n !== chosen.index)
+            : state.encounterDiscard,
+      }
+      return push(next, {
+        type: 'SpawnEnemy',
+        card: chosen.card,
+        location: investigator.location,
+        engageWith: investigator.id,
+        ...(message.exhausted ? { entersExhausted: true, engageExhausted: true } : {}),
+        ...(message.then ? { onSpawn: message.then } : {}),
+        // The source's post-spawn effect finishes before the searched deck is shuffled.
+        after: [{ type: 'ReorderDeck', count: 0, order: [], to: 'shuffle' }],
+      })
+    }
     case 'SearchEncounterForEnemy': {
       // Paint the Town Red: el primer enemigo no Élite de las primeras cartas.
       const top = state.encounterDeck.slice(0, message.top)
@@ -12470,7 +12560,13 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     .filter((p) => !p.faceDown)
     .flatMap((p) => playerCardBehavior(p.code)?.placedReactions?.(state, trigger, p) ?? [])
   const fromScenario = scenarioBehavior(state.scenarioId)?.reactions?.(state, trigger) ?? []
-  const fromTreacheries = Object.values(state.treacheries)
+  const reactiveTreacheries = [
+    ...Object.values(state.treacheries),
+    ...(trigger.type === 'enemyDefeated'
+      ? (trigger.attachments ?? []).filter((t) => !state.treacheries[t.id])
+      : []),
+  ]
+  const fromTreacheries = reactiveTreacheries
     .filter((t) => t.placement.type !== 'limbo')
     .flatMap((t) => activeTreacheryBehavior(state, t)?.reactions?.(state, trigger, t) ?? [])
   const fromAttachments = Object.values(state.locationAttachments ?? {}).flatMap(
