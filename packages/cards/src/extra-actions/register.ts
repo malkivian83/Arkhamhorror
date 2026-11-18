@@ -10,8 +10,10 @@ import {
   movementConnections,
   physicalMovementState,
   playerCardDef,
+  playerCardBehavior,
   turnActionTiming,
   type Asset,
+  type AbilityOption,
   type Choice,
   type GameState,
   type ImmediateActionRule,
@@ -99,41 +101,65 @@ const actionsFast = (code: string, s: GameState, a: Asset) => {
   ]
 }
 /** Resolving an ability waives the first arrow, never ammo, exhaust, resources or later arrows. */
-const freeAbilities = (s: GameState, by: string, filter: (a: Asset) => boolean): Choice[] => {
+export const freeAbilities = (
+  s: GameState,
+  by: string,
+  filter: (a: Asset) => boolean,
+  allowFast = false,
+): Choice[] => {
   const budget = turnActionTiming(s, by) !== null ? getInvestigator(s, by).actionsRemaining : 0
   const preview = {
     ...s,
     investigators: s.investigators.map((i) => (i.id === by ? { ...i, actionsRemaining: 100 } : i)),
   }
-  return availableAbilities(preview, by).flatMap((o) => {
-    const a = owned(s, by).find((a) => o.key.startsWith(a.id + ':'))
-    const extra = Math.max(0, o.actions - 1)
-    if (!a || !filter(a) || o.actions <= 0 || extra > budget || !mayParticipate(s, by)) return []
-    let then: Message[] = [...(o.costs ?? []), ...o.then]
-    for (let n = 0; n < extra; n++)
-      then = [{ type: 'SpendAdditionalAction', investigator: by, then }]
-    return [
-      {
-        label: o.label,
-        ...(o.params ? { params: o.params } : {}),
-        ...(o.target ? { target: o.target } : {}),
-        then: [
-          {
-            type: 'UseAbility',
-            investigator: by,
-            key: o.key,
-            actions: 0,
-            printedActions: o.actions,
-            provokes: false,
-            ...(o.actionKind ? { actionKind: o.actionKind } : {}),
-            ...(o.parley ? { parley: true } : {}),
-            ...(o.limit ? { limit: o.limit } : {}),
-            then,
-          },
-        ],
-      },
-    ]
-  })
+  const options: AbilityOption[] = [
+    ...availableAbilities(preview, by),
+    ...(allowFast
+      ? owned(s, by)
+          .filter(filter)
+          .flatMap((a) => playerCardBehavior(a.code)?.fastOptions?.(preview, a) ?? [])
+          .map((o) => ({ ...o, actions: 0, provokes: false }))
+      : []),
+  ]
+  return options
+    .filter((o, n, all) => all.findIndex((x) => x.key === o.key) === n)
+    .flatMap((o) => {
+      const a = owned(s, by).find((a) => o.key.startsWith(a.id + ':'))
+      const extra = Math.max(0, o.actions - 1)
+      if (
+        !a ||
+        !filter(a) ||
+        o.actions < 0 ||
+        (!allowFast && o.actions === 0) ||
+        extra > budget ||
+        !mayParticipate(s, by)
+      )
+        return []
+      let then: Message[] = [...(o.costs ?? []), ...o.then]
+      for (let n = 0; n < extra; n++)
+        then = [{ type: 'SpendAdditionalAction', investigator: by, then }]
+      return [
+        {
+          label: o.label,
+          ...(o.params ? { params: o.params } : {}),
+          ...(o.target ? { target: o.target } : {}),
+          then: [
+            {
+              type: 'UseAbility',
+              investigator: by,
+              key: o.key,
+              actions: 0,
+              printedActions: o.actions,
+              provokes: false,
+              ...(o.actionKind ? { actionKind: o.actionKind } : {}),
+              ...(o.parley ? { parley: true } : {}),
+              ...(o.limit ? { limit: o.limit } : {}),
+              then,
+            },
+          ],
+        },
+      ]
+    })
 }
 const spells = (a: Asset) =>
   playerCardDef(a.code)?.traits.some((t) => ['Spell', 'Ritual'].includes(t)) ?? false

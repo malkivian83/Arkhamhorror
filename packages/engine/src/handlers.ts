@@ -2103,6 +2103,18 @@ export function handle(state: GameState, message: Message): GameState {
       }
     }
 
+    case 'SetAssetAbilityState': {
+      const a = state.assets[message.asset]
+      return a
+        ? {
+            ...state,
+            assets: {
+              ...state.assets,
+              [a.id]: { ...a, abilityState: { ...a.abilityState, ...message.values } },
+            },
+          }
+        : state
+    }
     case 'LoseNextTurnActions':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
@@ -8031,11 +8043,12 @@ export function handle(state: GameState, message: Message): GameState {
             deck: i.deck.filter((_, n) => n !== at),
           }))
         } else {
-          const at = owner.discard.lastIndexOf(message.code)
+          const zone = message.from ?? 'discard'
+          const at = owner[zone].lastIndexOf(message.code)
           if (at < 0) return state
           next = updateInvestigator(state, owner.id, (i) => ({
             ...i,
-            discard: i.discard.filter((_, n) => n !== at),
+            [zone]: i[zone].filter((_, n) => n !== at),
           }))
         }
       }
@@ -8966,6 +8979,8 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const enemy = findEnemy(state, message.enemy)
       if (!enemy || enemy.hasNoStats) return state
+      if (enemy && activeEnemyModifiers(state, enemy.id).some((m) => m.cannotTakeDamage))
+        return state
       const preventedBy = message.by ?? message.effectController
       if (
         preventedBy &&
@@ -12154,7 +12169,7 @@ function canCommit(
     return false
   return (
     withinCommitTitleLimit(test, code) &&
-    (playerCardBehavior(code)?.canCommit?.(state, test, by) ?? true)
+    (playerCardBehavior(code)?.canCommit?.(state, test, by, zone) ?? true)
   )
 }
 
@@ -12440,6 +12455,11 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
       )
     }),
   )
+  const fromDiscards = active.flatMap((i) =>
+    [...new Set(i.discard)].flatMap(
+      (code) => playerCardBehavior(code)?.discardReactions?.(state, trigger, i.id) ?? [],
+    ),
+  )
   const reactiveEnemies = Object.values(state.enemies)
   if (trigger.type === 'enemyDefeated' && !state.enemies[trigger.enemy.id])
     reactiveEnemies.push(trigger.enemy)
@@ -12491,6 +12511,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     ...fromInvestigators,
     ...fromAssets,
     ...fromHands,
+    ...fromDiscards,
     ...fromEnemies,
     ...fromPlaced,
     ...fromAttachments,

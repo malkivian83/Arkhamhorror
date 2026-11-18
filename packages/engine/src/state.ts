@@ -302,7 +302,8 @@ export function enemyHasKeyword(state: GameState, enemy: Enemy, keyword: EnemyKe
     (enemy.keywords.includes(keyword) ||
       !!added ||
       gained ||
-      gainedKeywords(state, enemy).includes(keyword)) &&
+      gainedKeywords(state, enemy).includes(keyword) ||
+      attachedModifiers(state, enemy.id).some((m) => 'gains' in m && m.gains?.includes(keyword))) &&
     !attachedModifiers(state, enemy.id).some((m) => m.loses?.includes(keyword))
   )
 }

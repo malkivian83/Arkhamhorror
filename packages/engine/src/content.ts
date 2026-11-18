@@ -340,7 +340,13 @@ export interface TreacheryBehavior {
   /** En la zona de amenaza: acciones adicionales que cuesta una acción básica (Frozen in Fear). */
   actionCost?: (state: GameState, self: Treachery, action: Action) => number
   /** Vinculada a un enemigo: cambia sus valores y le quita palabras clave (Llevado a la locura). */
-  attachedEnemy?: { fight?: number; evade?: number; health?: number; loses?: EnemyKeyword[] }
+  attachedEnemy?: {
+    fight?: number
+    evade?: number
+    health?: number
+    loses?: EnemyKeyword[]
+    gains?: EnemyKeyword[]
+  }
   /** Attached to an enemy: that enemy cannot attack (Abyssal Rot). */
   attachedEnemyCannotAttack?: boolean
   /** Attached to an enemy: that enemy cannot move (Virescent Rot). */
@@ -817,7 +823,12 @@ export interface PlayerCardBehavior {
     zone?: 'hand' | 'discard' | 'committed',
   ) => PlayerCardDef['icons']
   /** Additional printed restriction, evaluated for the investigator committing this card. */
-  canCommit?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
+  canCommit?: (
+    state: GameState,
+    test: SkillTest,
+    by: InvestigatorId,
+    zone?: 'hand' | 'discard',
+  ) => boolean
   /** While committed, double the icons of each other committed card. */
   doublesOtherCommittedIcons?: boolean
 
@@ -919,7 +930,11 @@ export interface PlayerCardBehavior {
   additionalPlayCosts?: (state: GameState, investigator: InvestigatorId) => Message[]
   /** In play: additional resources its controller gains during the upkeep phase. */
   upkeepResources?: number
-  /** Restricción adicional para jugarlo ("solo durante tu turno", "como primera acción"…). */
+  /** Printed prohibition against playing this card from hand (Moonstone). */
+  cannotPlayFromHand?: boolean
+  /** Reactions of owned cards already in the discard pile (Moonstone). */
+  discardReactions?: (state: GameState, trigger: Trigger, by: InvestigatorId) => ReactionOption[]
+  /** Additional restriction on playing this card. */
   canPlay?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Habilidades del apoyo en juego, para su controlador. */
   abilities?: AbilitiesFn<Asset>

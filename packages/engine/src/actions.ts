@@ -83,6 +83,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)) return false
     if (!cardAllowed(state, id, code)) return false
     const behavior = playerCardBehavior(code)
+    if (behavior?.cannotPlayFromHand && investigator.hand.includes(code)) return false
     if (behavior?.onlyFromDiscard && !investigator.discard.includes(code)) return false
     if (def.type === 'event' && !behavior?.play) return false
     if (behavior?.parley && !parleyCosts(state, id)) return false
@@ -152,6 +153,7 @@ export function canPlayByEffect(
   const i = getInvestigator(state, id)
   const def = playerCardDef(code)
   if (!def || i.eliminated || i.location === null || !i[from].includes(code)) return false
+  if (playerCardBehavior(code)?.cannotPlayFromHand && from === 'hand') return false
   if (playerCardBehavior(code)?.onlyFromDiscard && from !== 'discard') return false
   const extra = playerCardBehavior(code)?.additionalPlayActions ?? 0
   if (

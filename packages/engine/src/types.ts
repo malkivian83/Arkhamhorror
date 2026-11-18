@@ -311,6 +311,7 @@ export interface Enemy extends EnemyCard {
  * investigator's turn, or the next attack performed against the enemy this phase.
  */
 export interface EnemyModifier {
+  cannotTakeDamage?: boolean
   cannotDamageBy?: InvestigatorId
   cannotEngage?: InvestigatorId
   nextDamage?: number
@@ -643,6 +644,8 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  /** Serializable choices that belong to this physical player card instance. */
+  abilityState?: Record<string, string | number | boolean>
   /** Identity in the expedition log, independent of the card's printed version. */
   expeditionPartner?: ExpeditionPartner
   enteredAtTurn?: number
@@ -1157,6 +1160,11 @@ type MessageBody =
   | { type: 'UseBonusAction'; investigator: InvestigatorId; id: string }
   | { type: 'ImmediateActionWindow'; investigator: InvestigatorId }
   | { type: 'RestoreImmediateAction' }
+  | {
+      type: 'SetAssetAbilityState'
+      asset: AssetId
+      values: Record<string, string | number | boolean>
+    }
   | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
@@ -1734,9 +1742,10 @@ type MessageBody =
       skillBonus?: number
       round?: number
     }
-  /** Exile a player card: from play (`asset`) or, otherwise, from its owner's discard pile. */
+  /** Exile from play (`asset`), hand (`from`), or the owner's discard pile by default. */
   | {
       type: 'ExileCard'
+      from?: 'hand' | 'discard'
       investigator: InvestigatorId
       code: CardCode
       asset?: AssetId

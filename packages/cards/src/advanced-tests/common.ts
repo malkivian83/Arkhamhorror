@@ -25,7 +25,8 @@ export function registerAdvancedCard(b: PlayerCardBehavior): void {
   const { reactions, handReactions, testOptions, abilities, canCommit, ...rest } = b
   registerPlayerCard({
     ...rest,
-    canCommit: (s, t, by) => mayParticipate(s, by, t) && (canCommit?.(s, t, by) ?? true),
+    canCommit: (s, t, by, zone) =>
+      mayParticipate(s, by, t) && (canCommit?.(s, t, by, zone) ?? true),
     ...(reactions
       ? { reactions: (s, t, a) => (mayParticipate(s, a.owner) ? reactions(s, t, a) : []) }
       : {}),
