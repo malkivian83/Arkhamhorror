@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "discardRituals": {
+        "title": "Cartas de descarte y rituales",
+        "cards": "Siete cartas y niveles nuevos jugables, con presentación oficial en inglés y español.",
+        "rules": "Piedra lunar, Geis, Hablar con los muertos, Llamar al más allá, Quemar después de leer, Acertijo existencial y Sucesión de maldiciones resuelven sus reglas revisadas."
+      },
       "extraActions": {
         "title": "Acciones y activaciones adicionales",
         "cards": "Ocho cartas y niveles nuevos: ambas Cartas de los evos, Celeridad, Cerrar el círculo, As de bastos, Signo mágico, Fuerza especial y Lluvia de golpes.",
@@ -527,6 +532,18 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "geas": {
+      "draw": "Promete no robar cartas durante tus turnos",
+      "play": "Promete no jugar cartas durante tus turnos",
+      "commit": "Promete no asignar cartas durante tus turnos"
+    },
+    "ritualOfferings": "Gasta {n} ofrendas",
+    "ritualRiddle": {
+      "willpower": "Negocia con {enemy}: prueba de Voluntad",
+      "intellect": "Negocia con {enemy}: prueba de Intelecto"
+    },
+    "ritualCurseEvade": "Evita a {enemy}, coloca perdición y descubre una pista",
+    "ritualCurseDefeat": "Derrota a {enemy} y gana recursos por su perdición",
     "extraActionActivate": "Elige una habilidad de apoyo para {name}",
     "extraActionMove": "Mueve a {name}",
     "extraActionClue": "{name} descubre una pista",
@@ -1793,6 +1810,11 @@
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
     "round": "Ronda {round}",
     "phase": "{phase}",
+    "geas": {
+      "draw": "Geis: prometes no robar cartas durante tus turnos.",
+      "play": "Geis: prometes no jugar cartas durante tus turnos.",
+      "commit": "Geis: prometes no asignar cartas durante tus turnos."
+    },
     "action": {
       "draw": "{name} roba 1 carta",
       "resource": "{name} obtiene 1 recurso",
@@ -3777,6 +3799,13 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "09088": "Hechizo.",
+      "09052": "Inspiración. Paradoja.",
+      "08076": "Inspiración.",
+      "10099": "Ritual. Maldito.",
+      "10091": "Talento. Ritual.",
+      "06203": "Objeto. Reliquia. Tierras del Sueño.",
+      "07265": "Pacto.",
       "10037": "Táctica. Doble. Predestinado.",
       "10027": "Táctica. Doble.",
       "54008": "Ritual. Talento.",
@@ -4706,6 +4735,13 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "09088": "<b>Negociar.</b> Elige un Enemigo que no sea [[Élite]] que esté en tu Lugar y (elige una opción):\n- Evita automáticamente a ese Enemigo y coloca 1 ficha de Perdición sobre él. No puede recibir daño durante el resto de la ronda. Descubre 1 pista en tu Lugar.\n- Si ese Enemigo tiene 1 o más fichas de Perdición, derrótalo. Obtén 1 recurso por cada ficha de Perdición que tuviera.",
+      "09052": "<b>Negociar.</b> Elige a un Enemigo que no sea [[Élite]] que esté en tu Lugar y realiza una prueba de [willpower] o [intellect] (8). Esta prueba recibe -1 a su dificultad por cada una de las demás cartas de tu mano. Si tienes éxito, evitas automáticamente al Enemigo elegido y le vinculas el Acertijo existencial.\nEl enemigo vinculado obtiene Indiferente.",
+      "08076": "Exilia una carta de nivel 0-5 de tu mano.\nDescubre 2 pistas en tu Lugar. Si la carta exiliada era de nivel 2 o mayor, retira 1 ficha de Perdición del plan en curso. Exilia Quemar después de leer.\n<b>Carta diseñada por El consejo en el exilio en la Gen Con 2020</b>",
+      "10099": "Como coste adicional para jugar al Llamar al más allá, añade 3 fichas [curse] a la bolsa de caos.\nElige un Apoyo que controles con \"usos (cargas)\" o \"usos (secretos)\". Repón todas las cargas o secretos de ese Apoyo. A continuación puedes resolver una capacidad [action] o [fast] de ese Apoyo sin pagar su coste [action] si lo hay.",
+      "10091": "Usos (6 ofrendas).\n[action] Gasta cualquier cantidad de ofrendas: <b>Negociar.</b> Elige un Evento [[Hechizo]] o [[Ritual]] de tu pila de descartes y revela una cantidad de fichas de la bolsa de caos igual a la cantidad de ofrendas gastadas. Si fue revelada al menos 1 ficha [skull] o [curse], devuelve el Evento elegido a tu mano.",
+      "06203": "Recibes +1 [willpower] y +1 [agility].\nNo puedes jugar o asignar la Piedra lunar desde tu mano.\n[reaction] Después de que descartes la Piedra lunar desde tu mano: Juégala <i>(pagando su coste)</i>.",
+      "07265": "Excepcional.\nRecibes +1 [willpower], +1 [intellect], +1 [combat] y +1 [agility].\n<b>Obligado</b> - Después de que el Geis entre en juego: Haz una promesa empleando la siguiente fórmula: «No (robaré/jugaré/asignaré) cartas durante ninguno de mis turnos». Si rompes esta promesa mientras el Geis esté en juego, descártalo y añade 10 fichas [curse] a la bolsa de caos.",
       "10037": "Juega esta carta sólo si controlas un Apoyo [[Cuerpo a Cuerpo]]. Como coste adicional para jugar Lluvia de golpes, gasta una acción.\n<b>Combatir.</b> Elige un Apoyo [[Cuerpo a Cuerpo]] que controles y realiza una acción de combatir inmediatamente con ese Apoyo <i>(sin pagar su coste [action])</i>. Puedes repetir este efecto hasta 3 veces. Después de que se resuelva el último ataque, si es tu turno, termina tu turno.",
       "10027": "Como coste adicional para jugar Fuerza especial, gasta una acción. De uno en uno, en cualquier orden, elige un investigador en tu Lugar para que...\n- ...resuelva una capacidad [action] de un Apoyo que controle sin pagar su coste [action].\n- ...se mueva a un Lugar conectado.\n- ...descubra 1 pista en su Lugar.",
       "54008": "Rápido.\nTienes 1 espacio arcano adicional, que sólo puede usarse para un Apoyo [[Hechizo]] o [[Ritual]].\n[reaction] Después de que actives una capacidad [action] de un Apoyo [[Hechizo]] o [[Ritual]], agota el Signo mágico: Activa una capacidad [action] de un Apoyo [[Hechizo]] o [[Ritual]] distinto que controles <i>(sin pagar su coste [action])</i>.",
@@ -6067,6 +6103,13 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "09088": "Sucesión de maldiciones",
+      "09052": "Acertijo existencial",
+      "08076": "Quemar después de leer",
+      "10099": "Llamar al más allá",
+      "10091": "Hablar con los muertos",
+      "06203": "Piedra lunar",
+      "07265": "Geis",
       "10037": "Lluvia de golpes",
       "10027": "Fuerza especial",
       "54008": "Signo mágico",

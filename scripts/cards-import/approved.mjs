@@ -162,6 +162,12 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'reviewed-protection-exile-v1' &&
     ['02114', '03156', '03157', '08080'].includes(card.code)
   // Stroke of Luck: exiled as the cost of its reaction (lot 135).
+  const reviewedBurnExile =
+    approval.adapter === 'reviewed-burn-exile-v1' &&
+    card.code === '08076' &&
+    card.flags.exile &&
+    card.numbers.xp?.value === 1 &&
+    card.factions.join(',') === 'survivor'
   const reviewedTokenExile = approval.adapter === 'reviewed-token-exile-v1' && card.code === '02271'
   // Covenants: Permanent, deck limit 1, at most 1 Covenant per deck (lot 135).
   const reviewedCovenant =
@@ -175,11 +181,11 @@ export function approvedDefinition(card, approval) {
   // Reviewed Exceptional assets (The Black Fan, The Red Clock): deck limit 1.
   const reviewedExceptional =
     approval.adapter === 'reviewed-exceptional-v1' &&
-    ['08057', '08058', '08053', '07224', '02230', '07307', '07225'].includes(card.code) &&
+    ['08057', '08058', '08053', '07224', '02230', '07307', '07225', '07265'].includes(card.code) &&
     card.flags.exceptional &&
     card.deckLimit === 1 &&
-    (!['02230', '07307', '07225'].includes(card.code) ||
-      card.numbers.xp?.value === { '02230': 2, '07307': 3, '07225': 2 }[card.code]) &&
+    (!['02230', '07307', '07225', '07265'].includes(card.code) ||
+      card.numbers.xp?.value === { '02230': 2, '07307': 3, '07225': 2, '07265': 2 }[card.code]) &&
     card.factions.join(',') === 'rogue'
   const reviewedDarkHorse =
     approval.adapter === 'reviewed-dark-horse-v1' &&
@@ -268,7 +274,10 @@ export function approvedDefinition(card, approval) {
         card.flags[key] &&
         !(
           key === 'exile' &&
-          (reviewedDefeatExile || reviewedProtectionExile || reviewedTokenExile)
+          (reviewedDefeatExile ||
+            reviewedProtectionExile ||
+            reviewedTokenExile ||
+            reviewedBurnExile)
         ) &&
         !(
           key === 'exceptional' &&

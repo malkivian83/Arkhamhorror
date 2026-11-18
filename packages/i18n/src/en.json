@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "discardRituals": {
+        "title": "Discard and ritual cards",
+        "cards": "Seven new playable cards and levels, with official English and Spanish presentation.",
+        "rules": "Moonstone, Geas, Speak to the Dead, Call the Beyond, Burn After Reading, Existential Riddle and String of Curses now resolve their reviewed rules."
+      },
       "extraActions": {
         "title": "Additional actions and activations",
         "cards": "Eight new cards and levels: both Eon Charts, Haste, Close the Circle, Ace of Rods, Sign Magick, Task Force and Flurry of Blows.",
@@ -527,6 +532,18 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "geas": {
+      "draw": "Promise not to draw cards during your turns",
+      "play": "Promise not to play cards during your turns",
+      "commit": "Promise not to commit cards during your turns"
+    },
+    "ritualOfferings": "Spend {n} offerings",
+    "ritualRiddle": {
+      "willpower": "Parley with {enemy}: test willpower",
+      "intellect": "Parley with {enemy}: test intellect"
+    },
+    "ritualCurseEvade": "Evade {enemy}, place doom and discover a clue",
+    "ritualCurseDefeat": "Defeat {enemy} and gain resources for its doom",
     "extraActionActivate": "Choose an asset ability for {name}",
     "extraActionMove": "Move {name}",
     "extraActionClue": "{name} discovers a clue",
@@ -1793,6 +1810,11 @@
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
     "round": "Round {round}",
     "phase": "{phase}",
+    "geas": {
+      "draw": "Geas: you promise not to draw cards during your turns.",
+      "play": "Geas: you promise not to play cards during your turns.",
+      "commit": "Geas: you promise not to commit cards during your turns."
+    },
     "action": {
       "draw": "{name} draws 1 card",
       "resource": "{name} gains 1 resource",
@@ -3777,6 +3799,13 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "09088": "Spell.",
+      "09052": "Insight. Paradox.",
+      "08076": "Insight.",
+      "10099": "Ritual. Cursed.",
+      "10091": "Talent. Ritual.",
+      "06203": "Item. Relic. Dreamlands.",
+      "07265": "Pact.",
       "10037": "Tactic. Double. Fated.",
       "10027": "Tactic. Double.",
       "54008": "Ritual. Talent.",
@@ -4706,6 +4735,13 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "09088": "<b>Parley.</b> Choose a non-[[Elite]] enemy at your location and either (choose one):\n- Automatically evade that enemy and place 1 doom on it. It cannot take damage for the remainder of the round. Discover 1 clue at your location.\n- If that enemy has 1 or more doom on it, defeat it. Gain 1 resource for each doom that was on it.",
+      "09052": "<b>Parley.</b> Choose a non-[[Elite]] enemy at your location and test [willpower] or [intellect] (8). This test gets -1 difficulty for each other card in your hand. If you succeed, automatically evade the chosen enemy and attach Existential Riddle to it.\nAttached enemy gains aloof.",
+      "08076": "Exile a level 0-5 card in your hand. Discover 2 clues at your location. If the exiled card was level 2 or higher, remove 1 doom from the current agenda. Exile Burn After Reading.\n<b>Card designed by the Council-in-Exile at Gen Con 2020</b>",
+      "10099": "As an additional cost to play Call the Beyond, add 3 [curse] tokens to the chaos bag.\nChoose an asset you control with \"uses (charges)\" or \"uses (secrets)\". Replenish all of that asset's charges or secrets. Then, you may resolve an [action] or [fast] ability on that asset without paying its [action] cost, if any.",
+      "10091": "Uses (6 offerings).\n[action] Spend any number of offerings: <b>Parley.</b> Choose a [[Spell]] or [[Ritual]] event in your discard pile and reveal tokens from the chaos bag equal to the number of offerings spent. If at least 1 [skull] or [curse] token was revealed, return the chosen event to your hand.",
+      "06203": "You get +1 [willpower] and +1 [agility].\nYou cannot play or commit Moonstone from your hand.\n[reaction] After you discard Moonstone from your hand: Play it <i>(paying its cost)</i>.",
+      "07265": "Exceptional.\nYou get +1 [willpower], +1 [intellect], +1 [combat], and +1 [agility].\n<b>Forced</b> - After Geas enters play: Make a promise using the following formula - \"I shall not (draw/play/commit) any cards during each of my turns.\" If you break this promise while Geas is in play, discard it and add 10 [curse] tokens to the chaos bag.",
       "10037": "Play only if you control a [[Melee]] asset. As an additional cost to play Flurry of Blows, spend an action.\n<b>Fight.</b> Choose a [[Melee]] asset you control and take an immediate fight action with that asset <i>(without paying its [action] cost)</i>. You may repeat this effect up to three times. After the final attack resolves, if it is your turn, end your turn.",
       "10027": "As an additional cost to play Task Force, spend an action. One at a time, in any order, choose an investigator at your location to...\n- ...resolve an [action] ability on an asset they control without paying its [action] cost.\n- ...move to a connecting location.\n- ...discover 1 clue at their location.",
       "54008": "Fast.\nYou have 1 additional arcane slot, which can only be used to hold a [[Spell]] or [[Ritual]] asset.\n[reaction] After you activate an [action] ability on a [[Spell]] or [[Ritual]] asset, exhaust Sign Magick: Activate an [action] ability on a different [[Spell]] or [[Ritual]] asset you control <i>(without paying its [action] cost)</i>.",
@@ -6067,6 +6103,13 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "09088": "String of Curses",
+      "09052": "Existential Riddle",
+      "08076": "Burn After Reading",
+      "10099": "Call the Beyond",
+      "10091": "Speak to the Dead",
+      "06203": "Moonstone",
+      "07265": "Geas",
       "10037": "Flurry of Blows",
       "10027": "Task Force",
       "54008": "Sign Magick",

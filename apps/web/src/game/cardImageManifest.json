@@ -55,10 +55,12 @@
     "10088": "/local-assets/cards/en/10088.avif",
     "10089": "/local-assets/cards/en/10089.avif",
     "10090": "/local-assets/cards/en/10090.avif",
+    "10091": "/local-assets/cards/en/10091.avif",
     "10092": "/local-assets/cards/en/10092.avif",
     "10094": "/local-assets/cards/en/10094.avif",
     "10095": "/local-assets/cards/en/10095.avif",
     "10098": "/local-assets/cards/en/10098.avif",
+    "10099": "/local-assets/cards/en/10099.avif",
     "10100": "/local-assets/cards/en/10100.avif",
     "10102": "/local-assets/cards/en/10102.avif",
     "10103": "/local-assets/cards/en/10103.avif",
@@ -3436,7 +3438,12 @@
     "78136b": "/local-assets/cards/en/78136b.avif",
     "78137b": "/local-assets/cards/en/78137b.avif",
     "78138b": "/local-assets/cards/en/78138b.avif",
-    "78139b": "/local-assets/cards/en/78139b.avif"
+    "78139b": "/local-assets/cards/en/78139b.avif",
+    "07265": "/local-assets/cards/en/07265.avif",
+    "06203": "/local-assets/cards/en/06203.avif",
+    "08076": "/local-assets/cards/en/08076.avif",
+    "09052": "/local-assets/cards/en/09052.avif",
+    "09088": "/local-assets/cards/en/09088.avif"
   },
   "es": {
     "10019": "/local-assets/cards/es/10019.avif",
@@ -3494,10 +3501,12 @@
     "10088": "/local-assets/cards/es/10088.avif",
     "10089": "/local-assets/cards/es/10089.avif",
     "10090": "/local-assets/cards/es/10090.avif",
+    "10091": "/local-assets/cards/es/10091.avif",
     "10092": "/local-assets/cards/es/10092.avif",
     "10094": "/local-assets/cards/es/10094.avif",
     "10095": "/local-assets/cards/es/10095.avif",
     "10098": "/local-assets/cards/es/10098.avif",
+    "10099": "/local-assets/cards/es/10099.avif",
     "10100": "/local-assets/cards/es/10100.avif",
     "10102": "/local-assets/cards/es/10102.avif",
     "10103": "/local-assets/cards/es/10103.avif",
@@ -6504,6 +6513,11 @@
     "78136b": "/local-assets/cards/es/78136b.avif",
     "78137b": "/local-assets/cards/es/78137b.avif",
     "78138b": "/local-assets/cards/es/78138b.avif",
-    "78139b": "/local-assets/cards/es/78139b.avif"
+    "78139b": "/local-assets/cards/es/78139b.avif",
+    "07265": "/local-assets/cards/es/07265.avif",
+    "06203": "/local-assets/cards/es/06203.avif",
+    "08076": "/local-assets/cards/es/08076.avif",
+    "09052": "/local-assets/cards/es/09052.avif",
+    "09088": "/local-assets/cards/es/09088.avif"
   }
 }

@@ -1,5 +1,7 @@
 # Historial de la importación
 
+- Lote 148 (14/11): `extra-actions`, publicado como `bfc43e48`; ocho cartas/niveles estándar nuevos, cero reediciones. Acumulado 1549 comportamientos, 576 pendientes históricos y 218 estándar. Motor/cartas/importación y controles dirigidos finales correctos; build web correcto. High Noon y sus imágenes se integraron después en `f8cbefab` y `52d9e47f`; referencia de escenario corregida en `107e9dfb`. [Detalle](148-acciones-y-activaciones-adicionales.md).
+
 - Lote 130 (09/11): `bless-curse`, 27 códigos (27 nuevos, 0 reediciones); publicado. Ver [130](130-bendiciones-y-maldiciones.md).
 - Lote 131 (10/11): `sealed-tokens`, 19 códigos (19 nuevos, 0 reediciones); publicado como `5cc146c9`. Ver [131](131-fichas-selladas.md).
 

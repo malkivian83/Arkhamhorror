@@ -101,6 +101,16 @@ otra habilidad durante una prueba cuentan para sus disparadores, sin aplicar
 sus efectos ni regresar dos veces a la bolsa. Olive mantiene pendiente la
 selección de dos fichas. [Diferencias y controles](147-vara-de-carnamagos.md).
 
+## Estado tras el lote 149
+
+`discard-rituals` añade siete cartas/niveles estándar nuevos, sin reediciones:
+1556 comportamientos, 569 códigos históricos pendientes y 211 estándar con impresión.
+Geis queda habilitada con observación de robos, juegos y compromisos durante el
+turno propio. Se añaden reacción desde descarte, exilio desde mano y palabras
+clave concedidas por adjuntos. Pelear sucio conserva pendiente identificar el
+Enemigo de sus pruebas de parlamentar; Salvavidas, su ventana anterior al fin
+del turno. [Detalle](149-descarte-promesas-y-rituales.md).
+
 ## Estado tras el lote 148
 
 El lote `extra-actions` incorpora ocho cartas/niveles estándar, sin reediciones:

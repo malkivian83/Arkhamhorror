@@ -1,0 +1,82 @@
+[
+  {
+    "code": "07265",
+    "name": "Geas",
+    "type": "asset",
+    "class": "rogue",
+    "exceptional": true,
+    "deckLimit": 1,
+    "traits": ["Pact"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "06203",
+    "name": "Moonstone",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Relic", "Dreamlands"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {},
+    "slots": ["accessory"]
+  },
+  {
+    "code": "10091",
+    "name": "Speak to the Dead",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent", "Ritual"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["arcane"],
+    "uses": { "count": 6, "type": "offering" }
+  },
+  {
+    "code": "10099",
+    "name": "Call the Beyond",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Ritual", "Cursed"],
+    "cost": 0,
+    "xp": 2,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "08076",
+    "name": "Burn After Reading",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 1,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "09052",
+    "name": "Existential Riddle",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Paradox"],
+    "cost": 1,
+    "xp": 1,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "09088",
+    "name": "String of Curses",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": []
+  }
+]
