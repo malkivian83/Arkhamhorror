@@ -1,0 +1,96 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "ac1c7c1e57a04551593a47372255a72321c62f2c983d9eef7057fc6914f484b1",
+    "es": "6a3262935d2cb46c26cdbc40d3ba6d30b2a4e1b4ccc75c8b8f472381f3d21b5a"
+  },
+  "cards": [
+    {
+      "code": "04037",
+      "status": "verified",
+      "module": "card-04037",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "53011",
+      "status": "verified",
+      "module": "card-53011",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08067",
+      "status": "verified",
+      "module": "card-08067",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10121",
+      "status": "verified",
+      "module": "card-10121",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11059",
+      "status": "verified",
+      "adapter": "reviewed-exceptional-v1",
+      "module": "card-11059",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04021",
+      "status": "verified",
+      "module": "card-04021",
+      "test": "rules.test.ts",
+      "subname": "Assistant Curator"
+    },
+    {
+      "code": "06324",
+      "status": "verified",
+      "module": "card-06324",
+      "test": "rules.test.ts",
+      "subname": "Library Intern"
+    },
+    {
+      "code": "09076",
+      "status": "verified",
+      "module": "card-09076",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08089",
+      "status": "verified",
+      "adapter": "reviewed-dual-faction-v1",
+      "module": "card-08089",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09120",
+      "status": "verified",
+      "module": "card-09120",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09092",
+      "status": "verified",
+      "module": "card-09092",
+      "test": "rules.test.ts",
+      "subname": "Purifying Purpose"
+    },
+    {
+      "code": "08074",
+      "status": "verified",
+      "module": "card-08074",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "durability" }
+    },
+    {
+      "code": "07261",
+      "status": "verified",
+      "module": "card-07261",
+      "test": "rules.test.ts"
+    }
+  ]
+}

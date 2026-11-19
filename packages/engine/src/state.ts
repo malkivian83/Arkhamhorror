@@ -423,7 +423,12 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
   const discarded = [
     ...new Set(investigator.discard.filter((c) => playerCardBehavior(c)?.playableFromDiscard)),
   ].filter((c) => !(fromDiscard && c === top))
-  return [...investigator.hand, ...(fromDiscard ? [top] : []), ...discarded]
+  const stored = Object.values(state.assets).flatMap((a) =>
+    a.owner === id && assetBehavior(state, a)?.playsStoredCards
+      ? (a.storedCards ?? []).map((c) => c.code)
+      : [],
+  )
+  return [...investigator.hand, ...stored, ...(fromDiscard ? [top] : []), ...discarded]
 }
 
 /** Uses on assets that may pay for `code` as resources (Schoffner's Catalogue), by asset. */

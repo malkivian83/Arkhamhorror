@@ -5,6 +5,46 @@ import { throughSetup } from '@lcg/engine/testing'
 import { tableView, tableStats } from './table'
 import { gameView } from './game'
 
+it('keeps stored identities private while exposing face-up attachments and upgrade counters', () => {
+  const g = throughSetup(
+    startScenario(newCampaign('night-of-the-zealot', ['tommy', 'harvey'], 'standard'), 8),
+  )
+  const a = g.investigators[0]!.id,
+    b = g.investigators[1]!.id
+  g.assets = {
+    ...g.assets,
+    atlas: {
+      id: 'atlas',
+      code: '08067',
+      owner: a,
+      uses: 0,
+      damage: 0,
+      horror: 0,
+      exhausted: false,
+      storedCards: [{ code: '01090', owner: a }],
+    },
+    child: {
+      id: 'child',
+      code: '01031',
+      owner: a,
+      uses: 0,
+      damage: 0,
+      horror: 0,
+      exhausted: false,
+      attachedTo: 'atlas',
+      upgrades: [{ code: '08074', owner: b, uses: 2 }],
+    },
+  }
+  expect(tableView(g, a).assets.atlas!.storedCards).toEqual([{ code: '01090', owner: a }])
+  expect(tableView(g, b).assets.atlas!.storedCards).toEqual([{ code: '', owner: a }])
+  expect(tableView(g, undefined).assets.atlas!.storedCards).toEqual([{ code: '', owner: a }])
+  expect(tableView(g, b).assets.child).toMatchObject({
+    attachedTo: 'atlas',
+    upgrades: [{ code: '08074', owner: b, uses: 2 }],
+  })
+  expect(g.assets.atlas!.storedCards![0]!.code).toBe('01090')
+})
+
 it('hides Carnevale identities and private looks while exposing the global boss', () => {
   let g = throughSetup(
     startScenario(newCampaign('carnevale-of-horrors', ['joe', 'daniela'], 'standard'), 42),

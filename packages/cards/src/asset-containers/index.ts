@@ -1,0 +1,17 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/asset-containers.json'
+import './card-04037'
+import './card-53011'
+import './card-08067'
+import './card-10121'
+import './card-11059'
+import './card-04021'
+import './card-06324'
+import './card-09076'
+import './card-08089'
+import './card-09120'
+import './card-09092'
+import './card-08074'
+import './card-07261'
+registerPlayerCards(data as PlayerCardDef[])
+export const ASSET_CONTAINERS_RENDERED_CODES = data.map((c) => c.code)

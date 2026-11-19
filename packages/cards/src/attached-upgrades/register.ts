@@ -1,5 +1,6 @@
 import {
   playerCardDef,
+  assetTraits,
   registerPlayerCard,
   type GameState,
   type Message,
@@ -19,12 +20,17 @@ interface UpgradeOptions {
     | 'afterHostDiscarded'
     | 'afterHostExhausted'
     | 'effect'
+    | 'attachedExtraSlots'
+    | 'attachedTraits'
+    | 'attachedTestOptions'
+    | 'attachedReactions'
   >
   /** Host controlled by any investigator at your location instead of by you. */
   atLocation?: boolean
   limitPerAsset?: boolean
   /** Ammo placed on the host after attaching. */
   ammo?: number
+  anyTiming?: boolean
 }
 
 export function registerUpgrade(
@@ -33,8 +39,8 @@ export function registerUpgrade(
   options: UpgradeOptions = {},
 ) {
   const allowed = [traits].flat()
-  const hostTrait = (assetCode: string) =>
-    allowed.find((t) => playerCardDef(assetCode)?.traits.includes(t))
+  const hostTrait = (asset: Parameters<typeof assetTraits>[0]) =>
+    allowed.find((t) => assetTraits(asset).includes(t))
   const { atLocation = false, limitPerAsset = false, ammo = 0 } = options
   const targets = (s: GameState, by: string) => {
     const here = s.investigators.find((i) => i.id === by)?.location ?? null
@@ -46,7 +52,7 @@ export function registerUpgrade(
           ? !controller.eliminated && here !== null && controller.location === here
           : a.owner === by) &&
         !(limitPerAsset && a.upgrades?.some((u) => u.code === code)) &&
-        hostTrait(a.code) !== undefined
+        hostTrait(a) !== undefined
       )
     })
   }
@@ -54,7 +60,7 @@ export function registerUpgrade(
     code,
     ...(options.behavior ?? {}),
     // RR: Fast, Play Restrictions, Attach To. By default the host must be controlled by you.
-    canPlay: (s, by) => s.activeTurn === by && targets(s, by).length > 0,
+    canPlay: (s, by) => (options.anyTiming || s.activeTurn === by) && targets(s, by).length > 0,
     play: (s, by) =>
       ask(
         by,
@@ -68,7 +74,7 @@ export function registerUpgrade(
               asset: a.id,
               investigator: by,
               code,
-              trait: hostTrait(a.code)!,
+              trait: hostTrait(a)!,
               ...(atLocation ? { atLocation } : {}),
               ...(limitPerAsset ? { limitPerAsset } : {}),
             },

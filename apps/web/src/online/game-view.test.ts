@@ -120,6 +120,35 @@ it('shows card backs and a count, with no hand inspection control, for another p
   expect(html.match(/class="private-card"/g)).toHaveLength(5)
   expect(html).not.toContain('class="view-hand"')
 })
+
+it('shows a stored-card count but disables inspection in another player’s area', async () => {
+  const state = fixture(),
+    owner = state.investigators[1]!.id
+  state.assets = {
+    ...state.assets,
+    atlas: {
+      id: 'atlas',
+      code: '08067',
+      owner,
+      damage: 0,
+      horror: 0,
+      uses: 0,
+      exhausted: false,
+      storedCards: [{ code: '01090', owner }],
+    },
+  }
+  const app = createSSRApp(PlayerArea, {
+    state,
+    investigator: state.investigators[1],
+    deciding: false,
+    privateHand: true,
+  })
+    .provide(tableControllerKey, onlineTable(gameClient('room')))
+    .use(createI18n({ legacy: false, locale: 'es', messages }))
+  const html = await renderToString(app)
+  expect(html).toContain('stored-cards')
+  expect(html).toMatch(/<button[^>]*disabled[^>]*>[^<]*Cartas guardadas/)
+})
 it('shows shared intermission instead of local campaign navigation and removes it for the next scenario', async () => {
   const table = fixture()
   table.pending = null

@@ -61,6 +61,23 @@ function showUpgrades(asset: Asset) {
     cards: (asset.upgrades ?? []).map((u) => ({ code: u.code, name: cardName(u.code) })),
   })
 }
+function showStored(asset: Asset) {
+  if (props.privateHand) return
+  showPile({
+    title: 'table.assetStored',
+    params: { card: cardName(asset.code) },
+    cards: (asset.storedCards ?? []).map((c) => ({ code: c.code, name: cardName(c.code) })),
+  })
+}
+function showAttached(asset: Asset) {
+  showPile({
+    title: 'table.assetAttachments',
+    params: { card: cardName(asset.code) },
+    cards: Object.values(props.state.assets)
+      .filter((a) => a.attachedTo === asset.id)
+      .map((a) => ({ code: a.code, name: cardName(a.code) })),
+  })
+}
 function showDiscard() {
   showPile({
     title: 'table.playerDiscard',
@@ -142,7 +159,7 @@ const slots = computed(() => {
   )
   const free: Asset[] = []
   for (const a of assets.value) {
-    const needs = assetSlots(a)
+    const needs = assetSlots(a, props.state)
     if (!needs.length) free.push(a)
     needs.forEach((type, n) => {
       const box = boxes.find((b) => b.type === type && !b.asset)
@@ -398,6 +415,28 @@ const slots = computed(() => {
       <div class="zone play mat-slot">
         <h4 class="mat-label">{{ t('table.inPlay') }}</h4>
         <div
+          v-for="asset in assets.filter((a) => a.storedCards?.length)"
+          :key="'stored:' + asset.id"
+          class="asset-upgrades stored-cards"
+        >
+          <button type="button" :disabled="privateHand" @click="showStored(asset)">
+            {{ t('table.assetStored', { card: cardName(asset.code) }) }} ({{
+              asset.storedCards!.length
+            }})
+          </button>
+        </div>
+        <div
+          v-for="asset in assets.filter((a) =>
+            Object.values(state.assets).some((child) => child.attachedTo === a.id),
+          )"
+          :key="'attached:' + asset.id"
+          class="asset-upgrades attached-assets"
+        >
+          <button type="button" @click="showAttached(asset)">
+            {{ t('table.assetAttachments', { card: cardName(asset.code) }) }}
+          </button>
+        </div>
+        <div
           v-for="asset in assets.filter((a) => a.upgrades?.length)"
           :key="asset.id"
           class="asset-upgrades"
@@ -422,6 +461,11 @@ const slots = computed(() => {
               count: asset.upgrades!.filter((u) => u.exhausted).length,
             })
           }}</span>
+          <template v-for="(upgrade, index) in asset.upgrades" :key="index">
+            <span v-if="upgrade.uses !== undefined">{{
+              t('table.attachedUses', { card: cardName(upgrade.code), n: upgrade.uses })
+            }}</span>
+          </template>
           <span v-if="asset.nextFightBonus">{{
             t('table.nextFightBonus', { amount: asset.nextFightBonus })
           }}</span>

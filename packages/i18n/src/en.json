@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "assetContainers": {
+        "title": "Stored cards and attached assets",
+        "cards": "Thirteen cards and levels, including Backpack (0/2), Astronomical Atlas, Hunting Jacket, Elle Rubash and Enchant Weapon.",
+        "rules": "Store, play, commit and recover cards from your assets. Switch attached assets while preserving their tokens, costs, slots and doom."
+      },
       "researchCommitments": {
         "title": "Research and committed cards",
         "cards": "Nine distinct cards: Mr. “Rook”, Astounding Revelation, Surprising Find, Practice Makes Perfect, Guided by the Unseen, Captivating Discovery, Gift of Nodens, Copycat and Bestow Resolve.",
@@ -285,6 +290,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "storedSource": "Choose which copy to play.",
     "research": "You may resolve one Research ability among the searched cards.",
     "chooseRevealToReplace": "Choose which reveal this ability replaces",
     "priestOfTwoFaiths": "Priest of Two Faiths: add 1 Curse token or discard it",
@@ -543,6 +549,11 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "containerDetach": "Detach {card}",
+    "containerDrawAll": "Draw every attached card",
+    "containerSwap": "Switch {card} with {old}",
+    "containerCommit": "Commit {card}",
+    "playStoredCard": "Play from {card}",
     "researchBestow": "Commit {card}, treating its icons as wild",
     "researchCopy": "Commit {card} from {name}’s discard pile",
     "researchClues": "Place {n} clues to choose up to twice as many cards",
@@ -1280,6 +1291,7 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "container": "Use {card}",
     "movementDogsMove": "Move with Sled Dogs",
     "movementDogsFight": "Fight with Sled Dogs",
     "takeKey": {
@@ -1984,6 +1996,9 @@
     "tokensRevealedChoice": "Tokens revealed to choose from: {tokens}."
   },
   "table": {
+    "attachedUses": "{card}: {n} uses",
+    "assetStored": "Cards stored on {card}",
+    "assetAttachments": "Assets attached to {card}",
     "keys": "Keys",
     "scenarioSkipped": "Scenario skipped",
     "investigators": "Investigators",
@@ -3664,6 +3679,9 @@
   },
   "offlineCard": {
     "subnames": {
+      "09092": "Purifying Purpose",
+      "06324": "Library Intern",
+      "04021": "Assistant Curator",
       "05153": "Dealer in Secrets",
       "05040": "The Fateful Step",
       "10098": "Scepter of the Mad Seer",
@@ -3826,6 +3844,19 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "07261": "Spell. Upgrade.",
+      "08074": "Upgrade.",
+      "09092": "Ally. Witch.",
+      "09120": "Item. Clothing.",
+      "08089": "Item. Tool. Illicit.",
+      "09076": "Ally. Criminal.",
+      "06324": "Ally. Miskatonic.",
+      "04021": "Ally. Assistant.",
+      "11059": "Connection. Illicit.",
+      "10121": "Item. Clothing.",
+      "08067": "Item. Tome.",
+      "53011": "Item.",
+      "04037": "Item.",
       "09032": "Ritual.",
       "60330": "Gambit.",
       "11094": "Ritual.",
@@ -4777,6 +4808,19 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "07261": "Attach to a [[Weapon]] asset controlled by an investigator at your location. Limit 1 per asset.\nAttached asset gains the [[Relic]] trait and takes up an arcane slot in addition to its other slots.\n[reaction] When you perform a <b>Fight</b> action using attached asset, exhaust this card: Add the owner of this card's [willpower] to your [combat] for this attack. This attack deals +1 damage.",
+      "08074": "Uses (3 durability).\nAttach to an [[Item]] asset controlled by an investigator at your location.\n[fast] During a skill test on attached asset, spend 1 durability: You get +2 skill value for this test.",
+      "09092": "You get +1 skill value while resolving a skill test on an attached asset.\n1 doom on each attached asset does not count towards the agenda's doom threshold.\n[fast] Exhaust Elle Rubash: Choose an asset in your play area with 1 or more doom on it. Attach it to Elle Rubash, or switch it with an attached asset. (Limit 2 attached assets).",
+      "09120": "Each attached asset takes up no slots and its text box is treated as if it were blank (except for [[Traits]]).\n[fast] Exhaust Tool Belt: Choose one - attach a [[Tool]] asset in your play area to Tool Belt, switch a [[Tool]] asset in your play area with an attached asset, or detach an attached asset.",
+      "08089": "[fast]: Choose a [[Firearm]] asset taking up only 1 hand slot in your play area. Attach it to Quickdraw Holster, or switch it with the attached asset. The attached asset takes up no hand slots. (Limit 1 attached asset.)\n[fast] Exhaust Quickdraw Holster: Perform a fight action on the attached asset without paying its [action] cost.",
+      "09076": "[reaction] After Trigger Man enters play: Attach an [[Illicit]] asset from your hand to Trigger Man <i>(it is considered to be in play and under your control)</i>.\n[fast] Exhaust Trigger Man and spend 1 resource: Resolve an [action] ability on attached asset, without paying its [action] cost. Resolve that ability with a base skill value of 4.",
+      "06324": "[fast]: Attach a [[Tome]] asset in your play area to Abigail Foreman, or switch a [[Tome]] asset in your play area with an attached asset. The asset attached to her takes up no hand slots. (Limit 1 attached asset.)\n[reaction] After you resolve an [action] ability on the attached [[Tome]] asset, exhaust Abigail Foreman: Resolve its effects again.",
+      "04021": "[reaction] After Dr. Elli Horowitz enters play: Search the top 9 cards of your deck for a [[Relic]] asset and attach it to her. Shuffle your deck.\nEach [[Relic]] asset attached to Dr. Elli Horowitz does not take up any slots <i>(it is still considered to be in play and under your control)</i>.",
+      "11059": "Exceptional.\n[action] Spend 2 resources: Draw the card attached to Mob Connections.\n[reaction] When an [[Illicit]] asset you control is discarded from play, exhaust Mob Connections: Attach that asset to this card, facedown. Limit 1 attached asset.",
+      "10121": "[fast] Exhaust Hunting Jacket: Choose 1 non-weakness card in your hand and attach it facedown to Hunting Jacket (max 3 cards attached). Then, gain 1 resource for each attached card.\n[reaction] When Hunting Jacket is defeated: Draw each attached card.",
+      "08067": "[fast] Exhaust Astronomical Atlas: Look at the top card of your deck. If it is not a weakness, attach it facedown to Astronomical Atlas (max 5 cards attached).\n[fast]: Commit a card attached to Astronomical Atlas to an eligible skill test. If that test succeeds, add that card to your hand instead of discarding it. (Limit once per test.)",
+      "53011": "[reaction] After Backpack enters play: Search the top 12 cards of your deck for up to 3 non-weakness [[Item]] or [[Supply]] cards, and attach them facedown to Backpack. Shuffle your deck.\nCards attached to Backpack may be played as if they were in your hand. If there are no cards attached to Backpack, discard it.",
+      "04037": "[reaction] After Backpack enters play: Search the top 6 cards of your deck for up to 3 non-weakness [[Item]] or [[Supply]] cards, and attach them facedown to Backpack. Shuffle your deck.\nCards attached to Backpack may be played as if they were in your hand. If there are no cards attached to Backpack, discard it.",
       "09032": "Uses (4 charges).\n[fast] During a skill test performed by an investigator at your location or a connecting location, spend 1 charge: Commit a non-weakness card from your hand to that skill test, treating all of its skill icons as [wild].",
       "60330": "After you commit Copycat to a skill test, search the discard pile of another investigator for a skill you can commit to this test, and commit it. After this test ends, place that card on the bottom of its owner's deck.",
       "11094": "[reaction] When you commit cards to a skill test you are performing, choose a [survivor] skill card in your discard pile and discard 1 card from your hand: Commit the chosen skill to this test. After this skill test resolves, place that skill card on the bottom of your deck. (Limit once per round.)",
@@ -6160,6 +6204,19 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "07261": "Enchant Weapon",
+      "08074": "Jury-Rig",
+      "09092": "Elle Rubash",
+      "09120": "Tool Belt",
+      "08089": "Quickdraw Holster",
+      "09076": "Trigger Man",
+      "06324": "Abigail Foreman",
+      "04021": "Dr. Elli Horowitz",
+      "11059": "Mob Connections",
+      "10121": "Hunting Jacket",
+      "08067": "Astronomical Atlas",
+      "53011": "Backpack",
+      "04037": "Backpack",
       "09032": "Bestow Resolve",
       "60330": "Copycat",
       "11094": "Gift of Nodens",

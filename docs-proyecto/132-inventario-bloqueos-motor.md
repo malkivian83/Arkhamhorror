@@ -121,6 +121,16 @@ Guía invisible, Descubrimiento cautivador, Imitador, Regalo de Nodens y Concede
 determinación. Bengala mantiene sus bloqueos de modo, propiedad y exilio condicional.
 [Diferencias y controles](151-investigacion-y-compromisos.md).
 
+## Estado tras el lote 152
+
+`asset-containers` añade trece cartas/niveles estándar distintos, sin reediciones:
+1584 comportamientos, 541 códigos históricos pendientes y 183 estándar con impresión.
+Cartas guardadas fuera de juego, apoyos adjuntos en juego, intercambio entre
+contenedores y sus ranuras, texto y perdición habilitan Mochila 0/2, Atlas, Chaqueta
+de caza, Contactos mafiosos, Elli, Abigail, Asesino a sueldo, Pistolera, Cinturón,
+Elle, Apaño improvisado y Arma encantada. Dayana y Katja conservan sus ventanas y
+resoluciones pendientes. [Detalle](152-cartas-guardadas-y-apoyos-adjuntos.md).
+
 ## Estado tras el lote 149
 
 `discard-rituals` añade siete cartas/niveles estándar nuevos, sin reediciones:

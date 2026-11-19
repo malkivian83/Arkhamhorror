@@ -299,3 +299,5 @@
 - Lote 147 `carnamagos`, commit `9ac096a9`: dos niveles estándar nuevos y cinco Putrefacciones vinculadas, cero reediciones. 1541 comportamientos, 584 históricos y 226 estándar pendientes; 6341 escaneos y miniaturas. Validación del lote y consumidores correcta; recuento desde la base 146 más siete altas verificadas, sin declarar superada la inspección SSR.
 
 - Lote 150, `e27d766c`: seis cartas/niveles de Encuentros; 1562 comportamientos y 205 estándar con impresión pendientes. Motor/cartas/importación: 659 archivos y 7624 pruebas; web, guardados, tipos, lint, formato, imágenes y build web correctos.
+
+- Lote 151, `67be2d74`: nueve cartas/niveles estándar nuevos de investigación y compromiso; 1571 comportamientos, 554 históricos y 196 estándar pendientes. Motor/cartas/importación: 7676 casos; reglas dirigidas: 35; web: 19; guardados: 39. Tipos, lint, fuentes, imágenes y build web correctos. [Detalle](151-investigacion-y-compromisos.md).

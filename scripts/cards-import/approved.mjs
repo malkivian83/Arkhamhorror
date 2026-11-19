@@ -25,7 +25,7 @@ export function approvedDefinition(card, approval) {
           card.factions.join(',') === 'guardian,seeker') ||
         (['08097', '08099', '08098', '08100'].includes(card.code) &&
           card.factions.join(',') === 'seeker,rogue') ||
-        (['05115', '08087', '08088'].includes(card.code) &&
+        (['05115', '08087', '08088', '08089'].includes(card.code) &&
           card.factions.join(',') === 'guardian,rogue') ||
         (['08094', '08096', '08095'].includes(card.code) &&
           card.factions.join(',') === 'guardian,survivor') ||
@@ -181,11 +181,14 @@ export function approvedDefinition(card, approval) {
   // Reviewed Exceptional assets (The Black Fan, The Red Clock): deck limit 1.
   const reviewedExceptional =
     approval.adapter === 'reviewed-exceptional-v1' &&
-    ['08057', '08058', '08053', '07224', '02230', '07307', '07225', '07265'].includes(card.code) &&
+    ['08057', '08058', '08053', '07224', '02230', '07307', '07225', '07265', '11059'].includes(
+      card.code,
+    ) &&
     card.flags.exceptional &&
     card.deckLimit === 1 &&
-    (!['02230', '07307', '07225', '07265'].includes(card.code) ||
-      card.numbers.xp?.value === { '02230': 2, '07307': 3, '07225': 2, '07265': 2 }[card.code]) &&
+    (!['02230', '07307', '07225', '07265', '11059'].includes(card.code) ||
+      card.numbers.xp?.value ===
+        { '02230': 2, '07307': 3, '07225': 2, '07265': 2, 11059: 2 }[card.code]) &&
     card.factions.join(',') === 'rogue'
   const reviewedDarkHorse =
     approval.adapter === 'reviewed-dark-horse-v1' &&

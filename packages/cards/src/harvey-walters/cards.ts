@@ -1,3 +1,4 @@
+import { assetTraits } from '@lcg/engine'
 // RR: Triggered Abilities, Maximum Hand Size, Search, Uses, Fast, Costs, Research.
 import {
   canPlayByEffect,
@@ -253,8 +254,7 @@ for (const code of ['60213', '60223'])
     skillModifier: (s, a, t) =>
       Object.values(s.assets).some(
         (x) =>
-          x.owner === a.owner &&
-          playerCardDef(x.code)?.traits.some((trait) => ['Tome', 'Relic'].includes(trait)),
+          x.owner === a.owner && assetTraits(x).some((trait) => ['Tome', 'Relic'].includes(trait)),
       ) &&
       (t.skill === 'intellect' || (code === '60223' && t.skill === 'willpower'))
         ? 1

@@ -10,6 +10,15 @@ import type {
   SlotType,
 } from './types'
 
+export function assetTraits(asset: Asset): string[] {
+  return [
+    ...new Set([
+      ...(playerCardDef(asset.code)?.traits ?? []),
+      ...(asset.upgrades ?? []).flatMap((u) => playerCardBehavior(u.code)?.attachedTraits ?? []),
+    ]),
+  ]
+}
+
 // RR: Attach To, Modifiers. A dash cannot gain a health/sanity value.
 export function assetVitals(asset: Asset, state?: GameState): { health?: number; sanity?: number } {
   const def = playerCardDef(asset.code)
@@ -72,8 +81,14 @@ export function attachedAttackDamageBonus(state: GameState, test: SkillTest): nu
 }
 
 /** Tinker: hand slots are reduced first, then accessory slots. */
-export function assetSlots(asset: Asset): SlotType[] {
-  const slots = [...(playerCardDef(asset.code)?.slots ?? [])]
+export function assetSlots(asset: Asset, state?: GameState): SlotType[] {
+  const parent = state && asset.attachedTo ? state.assets[asset.attachedTo] : undefined
+  const free = state && parent ? assetBehavior(state, parent)?.attachmentSlots : undefined
+  if (free === 'all') return []
+  const slots = [
+    ...(playerCardDef(asset.code)?.slots ?? []),
+    ...(asset.upgrades ?? []).flatMap((u) => playerCardBehavior(u.code)?.attachedExtraSlots ?? []),
+  ].filter((slot) => free !== 'hand' || slot !== 'hand')
   let reduce = upgradeSum(asset, (c) => playerCardBehavior(c)?.attachedSlotReduction)
   for (const type of ['hand', 'accessory'] as const) {
     while (reduce > 0 && slots.includes(type)) {

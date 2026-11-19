@@ -3,6 +3,7 @@ import { messageController, messageSource, withEffectSource } from './effect-sou
 import { discardOrphanedUpgrades } from './asset-upgrades'
 import { settleSetAside } from './bonded'
 import { observeDoom } from './doom-observation'
+import { settleStoredCards } from './stored-cards'
 import { EngineError } from './errors'
 import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
@@ -82,7 +83,10 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       settleSetAside(
         before,
         releaseOrphanedSeals(
-          discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message)),
+          discardOrphanedUpgrades(
+            before,
+            settleStoredCards(before, handle({ ...state, queue: rest }, message)),
+          ),
         ),
       ),
       message,

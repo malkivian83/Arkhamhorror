@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "assetContainers": {
+        "title": "Cartas guardadas y apoyos adjuntos",
+        "cards": "Trece cartas y niveles, incluidos Mochila (0/2), Atlas astronómico, Chaqueta de caza, Elle Rubash y Arma encantada.",
+        "rules": "Guarda, juega, compromete y recupera cartas desde tus apoyos. Intercambia apoyos adjuntos conservando sus fichas y resuelve sus costes, ranuras y perdición."
+      },
       "researchCommitments": {
         "title": "Investigación y cartas comprometidas",
         "cards": "Nueve cartas distintas: Sr. «Torre», Revelación asombrosa, Hallazgo sorprendente, La práctica hace al maestro, Guía invisible, Descubrimiento cautivador, Regalo de Nodens, Imitador y Conceder determinación.",
@@ -285,6 +290,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "storedSource": "Elige la copia que vas a jugar.",
     "research": "Puedes resolver una capacidad de Investigación de las cartas buscadas.",
     "chooseRevealToReplace": "Elige qué revelación sustituye esta capacidad",
     "priestOfTwoFaiths": "Sacerdote de dos cultos: añade 1 ficha de Maldición o descártalo",
@@ -543,6 +549,11 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "containerDetach": "Desvincular {card}",
+    "containerDrawAll": "Robar todas las cartas adjuntas",
+    "containerSwap": "Intercambiar {card} con {old}",
+    "containerCommit": "Comprometer {card}",
+    "playStoredCard": "Jugar desde {card}",
     "researchBestow": "Comprometer {card} con sus iconos como comodines",
     "researchCopy": "Comprometer {card} del descarte de {name}",
     "researchClues": "Colocar {n} pistas para elegir hasta el doble de cartas",
@@ -1280,6 +1291,7 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "container": "Usar {card}",
     "movementDogsMove": "Muévete con los Perros de trineo",
     "movementDogsFight": "Combate con los Perros de trineo",
     "takeKey": {
@@ -1984,6 +1996,9 @@
     "tokensRevealedChoice": "Fichas reveladas para elegir: {tokens}."
   },
   "table": {
+    "attachedUses": "{card}: {n} usos",
+    "assetStored": "Cartas guardadas en {card}",
+    "assetAttachments": "Apoyos adjuntos a {card}",
     "keys": "Llaves",
     "scenarioSkipped": "Escenario omitido",
     "investigators": "Investigadores",
@@ -3664,6 +3679,9 @@
   },
   "offlineCard": {
     "subnames": {
+      "09092": "Propósito purificador",
+      "06324": "Becaria de la biblioteca",
+      "04021": "Ayudante del conservador",
       "05153": "Tratante de secretos",
       "05040": "El paso trascendental",
       "10098": "Cetro del vidente loco",
@@ -3826,6 +3844,19 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "07261": "Hechizo. Mejora.",
+      "08074": "Mejora.",
+      "09092": "Aliado. Bruja.",
+      "09120": "Objeto. Ropa.",
+      "08089": "Objeto. Herramienta. Ilegal.",
+      "09076": "Aliado. Criminal.",
+      "06324": "Aliado. Miskatonic.",
+      "04021": "Aliado. Ayudante.",
+      "11059": "Contacto. Ilegal.",
+      "10121": "Objeto. Ropa.",
+      "08067": "Objeto. Tomo.",
+      "53011": "Objeto.",
+      "04037": "Objeto.",
       "09032": "Ritual.",
       "60330": "Gambito.",
       "11094": "Ritual.",
@@ -4777,6 +4808,19 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "07261": "Vincula esta carta a un Apoyo [[Arma]] controlado por un investigador que esté en tu Lugar. Límite de 1 por Apoyo.\nEl Apoyo vinculado obtiene el rasgo [[Reliquia]] y ocupa un espacio arcano además de sus otros espacios.\n[reaction] Cuando realices una acción de <b>Combatir</b> usando el Apoyo vinculado, agota esta carta: Añade la [willpower] del propietario de esta carta a tu [combat] para este ataque. Este ataque inflige +1 de daño.",
+      "08074": "Usos (3 de durabilidad).\nVincula esta carta a un Apoyo [[Objeto]] controlado por un investigador que esté en tu Lugar.\n[fast] Durante una prueba de habilidad del Apoyo vinculado, gasta 1 de durabilidad: Recibes +2 a tu valor de habilidad para esta prueba.",
+      "09092": "Recibes +1 a tu valor de habilidad al resolver una prueba de habilidad de un Apoyo vinculado.\n1 ficha de Perdición de cada Apoyo vinculado no cuenta para el umbral de perdición del plan.\n[free] Agota a Elle Rubash: Elige un Apoyo que esté en tu zona de juego y que tenga 1 o más fichas de Perdición. Vincúlaselo a elle Rubash o bien intercámbialo por un Apoyo vinculado. Límite de 2 Apoyos vinculados.",
+      "09120": "Cada Apoyo vinculado no ocupa espacios y su cuadro de texto de reglas se considera como si estuviera en blanco (excepto los [[Rasgos]]).\n[free] Agota el Cinturón de herramientas: Elige una opción -\nVincula un Apoyo [[Herramienta]] que esté en tu zona de juego al Cinturón de herramientas, intercambia un Apoyo [[Herramienta]] que esté en tu zona de juego con un Apoyo vinculado o bien desvincula un Apoyo vinculado.",
+      "08089": "[fast]: Elige un Apoyo [[Arma de fuego]] que sólo ocupe 1 espacio de mano en tu zona de juego. Vincúlaselo a la Pistolera de desenfundado rápido o intercámbialo con el Apoyo vinculado. El Apoyo vinculado no ocupa espacios de mano. Límite de 1 Apoyo vinculado.\n[fast] Agota la Pistolera de desenfundado rápido: Realiza una acción de combatir del Apoyo vinculado sin pagar su coste [action].",
+      "09076": "[reaction] Después de que el Asesino a sueldo entre en juego: Vincula un Apoyo [[Ilegal]] al Asesino a sueldo desde tu mano <i>(se considera en juego y bajo tu control).</i>\n[free] Agota el Asesino a sueldo y gasta 1 recurso: Resuelve una capacidad [action] del Apoyo vinculado sin pagar su coste [action]. Resuelve esa capacidad con un valor de habilidad básico de 4.",
+      "06324": "[fast]: Vincula un Apoyo [[Tomo]] de tu zona de juego a Abigail Foreman, o bien intercambia un Apoyo [[Tomo]] de tu zona de juego con un Apoyo vinculado. El Apoyo vinculado a ella no ocupa espacios de mano. Límite de 1 Apoyo vinculado.\n[reaction] Después de que resuelvas una capacidad [action] del Apoyo [[Tomo]] vinculado, agota a Abigail Foreman: Resuelve sus efectos otra vez.",
+      "04021": "[reaction] Después de que la Dra. Elli Horowitz entre en juego: Busca un Apoyo [[Reliquia]] entre las 9 primeras cartas de tu mazo y vincúlaselo. Baraja tu mazo.\nLos Apoyos [[Reliquia]] vinculados a la Dra. Elli Horowitz no ocupan ningún espacio <em>(se sigue considerando que están en juego y bajo tu control)</em>.",
+      "11059": "Excepcional.\n[action] Gasta 2 recursos: Roba la carta vinculada a los Contactos mafiosos.\n[reaction] Cuando un Apoyo [[Ilegal]] que controles sea descartado del juego, agota los Contactos mafiosos: Vincula ese Apoyo a esta carta, boca abajo. Límite de 1 Apoyo vinculado.",
+      "10121": "[fast] Agota la Chaqueta de caza: Elige 1 carta que no sea Debilidad de tu mano y vincúlasela boca abajo a la Chaqueta de caza (máx. 3 cartas vinculadas). A continuación, obtén 1 recurso por cada carta vinculada.\n[reaction] Cuando la Chaqueta de caza sea derrotada: Roba todas las cartas vinculadas.",
+      "08067": "[fast] Agota el Atlas astronómico: Mira la primera carta de tu mazo. Si no es una Debilidad, vincúlasela boca abajo al Atlas astronómico (máximo 5 cartas vinculadas).\n[fast]: Asigna una carta vinculada al Atlas astronómico a una prueba de habilidad válida. Si esa prueba tiene éxito, añade esa carta a tu mano en lugar de descartarla. Límite de una vez por prueba.",
+      "53011": "[reaction] Después de que la Mochila entre en juego: Busca hasta 3 cartas [[Objeto]] o [[Suministro]] que no sean Debilidad entre las 12 primeras cartas de tu mazo y vincúlalas boca abajo a la Mochila. Baraja tu mazo.\nLas cartas vinculadas a la Mochila se pueden jugar como si estuvieran en tu mano. Si no hay cartas vinculadas a la Mochila, descártala.",
+      "04037": "[reaction] Después de que la Mochila entre en juego: Busca hasta 3 cartas [[Objeto]] o [[Suministro]] que no sean Debilidad entre las 6 primeras cartas de tu mazo y vincúlaselas boca abajo a la Mochila. Baraja tu mazo.\nLas cartas vinculadas a la Mochila se pueden jugar como si estuvieran en tu mano. Si no hay cartas vinculadas a la Mochila, descártala.",
       "09032": "Usos (4 cargas).\n[free] Durante una prueba de habilidad realizada por un investigador que esté en tu Lugar o en un Lugar conectado, gasta 1 carga: Asigna una carta que no sea Debilidad de tu mano a esa prueba de habilidad, considerando todos sus iconos de habilidad como [wild].",
       "60330": "Después de que asignes Imitador a una prueba de habilidad, busca en la pila de descartes de otro investigador una Habilidad que puedas asignar a esta prueba y asígnala. Después de que termine esta prueba, coloca esa carta en la parte inferior del mazo de su propietario.",
       "11094": "[reaction] Cuando asignes cartas a una prueba de habilidad que estés realizando, elige una carta de Habilidad [survivor] de tu pila de descartes y descarta 1 carta de tu mano. Asigna la Habilidad elegida a esta prueba. Después de que esta prueba de habilidad se resuelva, coloca esa carta de Habilidad en la parte inferior de tu mazo. Límite de una vez por ronda.",
@@ -6160,6 +6204,19 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "07261": "Arma encantada",
+      "08074": "Apaño improvisado",
+      "09092": "Elle Rubash",
+      "09120": "Cinturón de herramientas",
+      "08089": "Pistolera de desenfundado rápido",
+      "09076": "Asesino a sueldo",
+      "06324": "Abigail Foreman",
+      "04021": "Dra. Elli Horowitz",
+      "11059": "Contactos mafiosos",
+      "10121": "Chaqueta de caza",
+      "08067": "Atlas astronómico",
+      "53011": "Mochila",
+      "04037": "Mochila",
       "09032": "Conceder determinación",
       "60330": "Imitador",
       "11094": "Regalo de Nodens",
