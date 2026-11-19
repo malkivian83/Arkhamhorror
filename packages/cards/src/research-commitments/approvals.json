@@ -1,0 +1,73 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "2139fee0af41fe27eed13ff04bf2a95a9c036adc7b9b1bbd18f5bb6208708173",
+    "es": "32b86c6c363a1de67bb13c4a623e44d65ace798f9e706e058a210b7c85c53d5f"
+  },
+  "cards": [
+    {
+      "code": "05153",
+      "status": "verified",
+      "module": "card-05153",
+      "test": "rules.test.ts",
+      "subname": "Dealer in Secrets",
+      "uses": { "count": 3, "type": "secret" }
+    },
+    {
+      "code": "06023",
+      "status": "verified",
+      "adapter": "reviewed-myriad-v1",
+      "module": "card-06023",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06197",
+      "status": "verified",
+      "module": "card-06197",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "06278",
+      "status": "verified",
+      "adapter": "reviewed-myriad-v1",
+      "module": "card-06278",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07223",
+      "status": "verified",
+      "module": "card-07223",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" }
+    },
+    {
+      "code": "09047",
+      "status": "verified",
+      "module": "card-09047",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11094",
+      "status": "verified",
+      "module": "card-11094",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60330",
+      "status": "verified",
+      "module": "card-60330",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09032",
+      "status": "verified",
+      "module": "card-09032",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "charge" }
+    }
+  ]
+}

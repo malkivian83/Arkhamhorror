@@ -5001,14 +5001,25 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
       const zone = message.from ?? 'hand'
+      const owner = message.fromInvestigator
+        ? getInvestigator(state, message.fromInvestigator)
+        : investigator
       const iconZone = zone === 'deck' ? 'hand' : zone
-      const index =
-        zone === 'discard'
-          ? investigator.discard.lastIndexOf(message.code)
-          : investigator[zone].indexOf(message.code)
-      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id, iconZone))
+      const sourceAsset = message.fromAsset ? state.assets[message.fromAsset] : undefined
+      const index = message.fromAsset
+        ? sourceAsset?.code === message.code && sourceAsset.owner === investigator.id
+          ? 0
+          : -1
+        : zone === 'discard'
+          ? owner.discard.lastIndexOf(message.code)
+          : owner[zone].indexOf(message.code)
+      if (
+        !test ||
+        index < 0 ||
+        !canCommit(state, test, message.code, investigator.id, iconZone, message.wildIcons)
+      )
         return state
-      if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect))
+      if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect, message))
         return state
       const trackCopy =
         playerCardBehavior(message.code)?.observesCommitCopies ||
@@ -5018,10 +5029,17 @@ export function handle(state: GameState, message: Message): GameState {
       const commitId = trackCopy ? (test.nextCommitId ?? 0) : undefined
       return push(
         {
-          ...updateInvestigator(state, investigator.id, (i) => ({
-            ...i,
-            [zone]: i[zone].filter((_, n) => n !== index),
-          })),
+          ...(message.fromAsset
+            ? {
+                ...state,
+                assets: Object.fromEntries(
+                  Object.entries(state.assets).filter(([id]) => id !== message.fromAsset),
+                ),
+              }
+            : updateInvestigator(state, owner.id, (i) => ({
+                ...i,
+                [zone]: i[zone].filter((_, n) => n !== index),
+              }))),
           skillTest: withCommittedDifficulty({
             ...test,
             ...(commitId !== undefined ? { nextCommitId: commitId + 1 } : {}),
@@ -5030,6 +5048,10 @@ export function handle(state: GameState, message: Message): GameState {
               {
                 code: message.code,
                 by: investigator.id,
+                ...(message.returnAfterSuccess ? { returnAfterSuccess: true } : {}),
+                ...(message.research ? { research: true } : {}),
+                ...(owner.id !== investigator.id ? { owner: owner.id } : {}),
+                ...(message.wildIcons ? { wildIcons: true } : {}),
                 ...(commitId !== undefined ? { id: commitId } : {}),
                 ...(message.shuffleAfter ||
                 (zone === 'discard' && playerCardBehavior(message.code)?.commitFromDiscard)
@@ -7471,15 +7493,15 @@ export function handle(state: GameState, message: Message): GameState {
       for (const c of test?.committed ?? []) {
         // Persistence's shuffle is established by committing from discard, even if returned.
         if (c.returnToHand && c.fromDiscard && playerCardBehavior(c.code)?.commitFromDiscard) {
-          const owner = getInvestigator(next, c.by)
+          const owner = getInvestigator(next, c.owner ?? c.by)
           const at = owner.hand.lastIndexOf(c.code)
           if (at >= 0 && !owner.eliminated) {
-            next = updateInvestigator(next, c.by, (i) => ({
+            next = updateInvestigator(next, c.owner ?? c.by, (i) => ({
               ...i,
               hand: i.hand.filter((_, n) => n !== at),
               deck: [...i.deck, c.code],
             }))
-            reshuffle.push({ type: 'ShuffleDeck', investigator: c.by })
+            reshuffle.push({ type: 'ShuffleDeck', investigator: c.owner ?? c.by })
           }
           continue
         }
@@ -7488,22 +7510,28 @@ export function handle(state: GameState, message: Message): GameState {
           continue
         }
         if (c.returnToHand || c.putIntoPlay) continue
+        if (c.returnAfterSuccess && test?.succeeded) {
+          next = updateInvestigator(next, c.owner ?? c.by, (i) =>
+            i.eliminated ? i : { ...i, hand: [...i.hand, c.code] },
+          )
+          continue
+        }
         // Habitación 245: va al fondo del mazo de su dueño.
         if (c.toDeckBottom) {
-          next = updateInvestigator(next, c.by, (i) =>
+          next = updateInvestigator(next, c.owner ?? c.by, (i) =>
             i.eliminated ? i : { ...i, deck: [...i.deck, c.code] },
           )
           continue
         }
         // Isabelle: la carta comprometida desde el descarte se baraja en el mazo.
         if (c.fromDiscard) {
-          next = updateInvestigator(next, c.by, (i) =>
+          next = updateInvestigator(next, c.owner ?? c.by, (i) =>
             i.eliminated ? i : { ...i, deck: [...i.deck, c.code] },
           )
-          reshuffle.push({ type: 'ShuffleDeck', investigator: c.by })
+          reshuffle.push({ type: 'ShuffleDeck', investigator: c.owner ?? c.by })
           continue
         }
-        next = updateInvestigator(next, c.by, (i) =>
+        next = updateInvestigator(next, c.owner ?? c.by, (i) =>
           i.eliminated ? i : { ...i, discard: [...i.discard, c.code] },
         )
       }
@@ -8094,7 +8122,10 @@ export function handle(state: GameState, message: Message): GameState {
         }),
       }
       for (const c of back) {
-        next = updateInvestigator(next, c.by, (i) => ({ ...i, hand: [...i.hand, c.code] }))
+        next = updateInvestigator(next, c.owner ?? c.by, (i) => ({
+          ...i,
+          hand: [...i.hand, c.code],
+        }))
       }
       return next
     }
@@ -8711,7 +8742,10 @@ export function handle(state: GameState, message: Message): GameState {
       const card = test?.committed[message.index]
       if (!test || !card || card.returnToHand) return state
       return {
-        ...updateInvestigator(state, card.by, (i) => ({ ...i, hand: [...i.hand, card.code] })),
+        ...updateInvestigator(state, card.owner ?? card.by, (i) => ({
+          ...i,
+          hand: [...i.hand, card.code],
+        })),
         skillTest: {
           ...test,
           committed: test.committed.map((c, index) =>
@@ -10997,10 +11031,122 @@ export function handle(state: GameState, message: Message): GameState {
         }
       })
 
+    case 'DiscardFromDeck': {
+      const owner = getInvestigator(state, message.investigator)
+      const at = owner.deck.indexOf(message.code)
+      return at < 0
+        ? state
+        : updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            deck: i.deck.filter((_, n) => n !== at),
+            discard: [...i.discard, message.code],
+          }))
+    }
+    case 'DrawSearchedCards': {
+      const owner = getInvestigator(state, message.investigator)
+      if (
+        owner.eliminated ||
+        scenarioBehavior(state.scenarioId)?.cannotDrawCards?.(state, owner.id)
+      )
+        return push(state, { type: 'ShuffleDeck', investigator: owner.id })
+      const deck = [...owner.deck],
+        cards: string[] = []
+      for (const code of message.cards) {
+        const at = deck.indexOf(code)
+        if (at >= 0) {
+          deck.splice(at, 1)
+          cards.push(code)
+        }
+      }
+      const next = updateInvestigator(state, owner.id, (i) => ({
+        ...i,
+        deck,
+        hand: [...i.hand, ...cards],
+      }))
+      return push(
+        next,
+        { type: 'ShuffleDeck', investigator: owner.id },
+        ...(cards.length
+          ? ([
+              {
+                type: 'Forced',
+                trigger: { type: 'whenCardsDrawn', investigator: owner.id, amount: cards.length },
+              },
+              { type: 'ResolveDrawnRevelations', investigator: owner.id, cards },
+              ...cards.map((card): Message => ({
+                type: 'Forced',
+                trigger: { type: 'afterDrawCard', investigator: owner.id, card },
+              })),
+              {
+                type: 'Forced',
+                trigger: { type: 'afterCardsDrawn', investigator: owner.id, amount: cards.length },
+              },
+            ] as Message[])
+          : []),
+      )
+    }
+    case 'BeginDeckSearch': {
+      const owner = getInvestigator(state, message.investigator)
+      if (owner.eliminated) return state
+      const cards = message.cards ?? owner.deck.slice(0, message.top)
+      const resume = (remaining: string[]): Message =>
+        message.then.type === 'SearchDeck'
+          ? { ...message.then, searched: remaining }
+          : { ...message.then, data: { ...message.then.data, cards: JSON.stringify(remaining) } }
+      const deadEnd = cards.find((c) => playerCardBehavior(c)?.cancelsSearch)
+      if (deadEnd)
+        return push(
+          state,
+          {
+            type: 'TakeFromDeck',
+            investigator: owner.id,
+            code: deadEnd,
+            to: 'hand',
+            drawFound: true,
+          },
+          { type: 'ShuffleDeck', investigator: owner.id },
+        )
+      const research =
+        state.phase === 'setup'
+          ? []
+          : [...new Set(cards)].flatMap((code) => {
+              const then = playerCardBehavior(code)?.researchEffect?.(state, owner.id) ?? []
+              const at = cards.indexOf(code)
+              return then.length
+                ? [
+                    {
+                      label: 'choice.useResearch',
+                      params: { card: playerCardDef(code)?.name ?? code },
+                      target: { type: 'hand' as const, code },
+                      then: [...then, resume(cards.filter((_, n) => n !== at))],
+                    },
+                  ]
+                : []
+            })
+      if (!research.length) return push(state, resume(cards))
+      return push(state, {
+        type: 'Ask',
+        investigator: owner.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.research',
+          alwaysAsk: true,
+          choices: [...research, { label: 'choice.skip', then: [resume(cards)] }],
+        },
+      })
+    }
     case 'SearchDeck': {
       const investigator = getInvestigator(state, message.investigator)
       const searched =
-        message.top === undefined ? investigator.deck : investigator.deck.slice(0, message.top)
+        message.searched ??
+        (message.top === undefined ? investigator.deck : investigator.deck.slice(0, message.top))
+      if (!message.searched && searched.some((c) => playerCardBehavior(c)?.researchEffect))
+        return push(state, {
+          type: 'BeginDeckSearch',
+          investigator: investigator.id,
+          cards: searched,
+          then: message,
+        })
       const shuffleDeck: Message = { type: 'ShuffleDeck', investigator: investigator.id }
       // Dead Ends: si está entre las cartas buscadas, se roba y se cancela la búsqueda.
       const deadEnd = searched.find((code) => playerCardBehavior(code)?.cancelsSearch)
@@ -12246,6 +12392,7 @@ function canCommit(
   code: string,
   by: string,
   zone: 'hand' | 'discard' = 'hand',
+  wildIcons = false,
 ): boolean {
   if (test.committed.some((c) => playerCardBehavior(c.code)?.exclusiveCommit)) return false
   if (!cardAllowed(state, by, code)) return false
@@ -12253,7 +12400,7 @@ function canCommit(
   const def = playerCardDef(code)
   if (
     !def ||
-    (commitIcons(state, test, code, by, zone) === 0 &&
+    (commitIcons(state, test, code, by, zone, undefined, wildIcons) === 0 &&
       !playerCardBehavior(code)?.commitWithoutIcons)
   )
     return false
@@ -12270,10 +12417,16 @@ export function canCommitFrom(
   code: string,
   zone: 'hand' | 'discard' = 'hand',
   byEffect = false,
+  permission: { wildIcons?: boolean; allowConnecting?: boolean } = {},
 ): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
-  if (!test || investigator.eliminated || !canCommit(state, test, code, id, zone)) return false
+  if (
+    !test ||
+    investigator.eliminated ||
+    !canCommit(state, test, code, id, zone, permission.wildIcons)
+  )
+    return false
   if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id, code)) return false
   if (commitBlocked(state, id, playerCardDef(code)?.type ?? '')) return false
   return (
@@ -12281,6 +12434,10 @@ export function canCommitFrom(
     (!(test.tags ?? []).includes('peril') &&
       investigator.location !== null &&
       (investigator.location === getInvestigator(state, test.investigator).location ||
+        (!!permission.allowConnecting &&
+          getLocation(state, investigator.location).connections.includes(
+            getInvestigator(state, test.investigator).location ?? '',
+          )) ||
         playerCardBehavior(code)?.commitFromLocation?.(state, test, id) === true) &&
       (byEffect || !test.committed.some((c) => c.by === id)))
   )
@@ -12395,7 +12552,12 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
         cardAllowed(state, a.owner, a.code) &&
         (a.owner === investigator.id ||
           (assetBehavior(state, a)?.helpsOtherTests &&
-            getInvestigator(state, a.owner).location === investigator.location &&
+            (getInvestigator(state, a.owner).location === investigator.location ||
+              (!!assetBehavior(state, a)?.helpsConnectingTests &&
+                getInvestigator(state, a.owner).location !== null &&
+                getLocation(state, getInvestigator(state, a.owner).location!).connections.includes(
+                  investigator.location ?? '',
+                ))) &&
             !getInvestigator(state, a.owner).eliminated)),
     )
     .flatMap((a) => assetBehavior(state, a)?.testOptions?.(state, test, a) ?? [])
@@ -13990,6 +14152,7 @@ function commitIcons(
   by: string,
   zone: 'hand' | 'discard' | 'committed' = 'hand',
   bonus?: Partial<Record<string, number>>,
+  wildIcons = false,
 ): number {
   const doublers =
     zone === 'committed'
@@ -14000,12 +14163,21 @@ function commitIcons(
   return (
     Math.max(
       0,
-      matchingIcons(playerCardDef(code)?.icons, test.skill) +
-        matchingIcons(bonus, test.skill) +
-        matchingIcons(
-          playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
-          test.skill,
-        ),
+      wildIcons
+        ? [
+            playerCardDef(code)?.icons,
+            bonus,
+            playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
+          ].reduce(
+            (sum, icons) => sum + Object.values(icons ?? {}).reduce((n, v) => n + (v ?? 0), 0),
+            0,
+          )
+        : matchingIcons(playerCardDef(code)?.icons, test.skill) +
+            matchingIcons(bonus, test.skill) +
+            matchingIcons(
+              playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
+              test.skill,
+            ),
     ) *
     2 ** doublers
   )
@@ -14138,7 +14310,8 @@ export function skillTestValue(state: GameState): {
   const doubling = scenarioBehavior(state.scenarioId)?.skillDoubling?.(state, test) ?? {}
   const icons =
     activeCommitted(test).reduce(
-      (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus),
+      (sum, c) =>
+        sum + commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus, c.wildIcons),
       0,
     ) * (doubling.icons ? 2 : 1)
   const passive = Object.values(state.assets)

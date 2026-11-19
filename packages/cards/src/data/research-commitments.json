@@ -1,0 +1,111 @@
+[
+  {
+    "code": "05153",
+    "name": "Mr. \"Rook\"",
+    "subname": "Dealer in Secrets",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2,
+    "uses": { "count": 3, "type": "secret" }
+  },
+  {
+    "code": "06023",
+    "name": "Astounding Revelation",
+    "type": "event",
+    "class": "seeker",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Research"],
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "06197",
+    "name": "Practice Makes Perfect",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Gambit", "Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "06278",
+    "name": "Surprising Find",
+    "type": "skill",
+    "class": "seeker",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Fortune", "Research"],
+    "xp": 1,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "07223",
+    "name": "Guided by the Unseen",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ritual"],
+    "cost": 2,
+    "xp": 3,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": ["arcane"],
+    "uses": { "count": 4, "type": "secret" }
+  },
+  {
+    "code": "09047",
+    "name": "Captivating Discovery",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "11094",
+    "name": "Gift of Nodens",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ritual"],
+    "unique": true,
+    "cost": 2,
+    "xp": 5,
+    "icons": { "willpower": 1 },
+    "slots": ["arcane"]
+  },
+  {
+    "code": "60330",
+    "name": "Copycat",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "xp": 3,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "09032",
+    "name": "Bestow Resolve",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ritual"],
+    "cost": 2,
+    "xp": 2,
+    "icons": { "willpower": 1 },
+    "slots": ["arcane"],
+    "uses": { "count": 4, "type": "charge" }
+  }
+]

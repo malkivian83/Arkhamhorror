@@ -853,6 +853,13 @@ export interface SkillTest {
     toDeckBottom?: boolean
     returnToHand?: boolean
     putIntoPlay?: boolean
+    /** Practice Makes Perfect: this exact commitment returns after a successful test. */
+    returnAfterSuccess?: boolean
+    /** Surprising Find: its Research ability supplied this exact copy. */
+    research?: boolean
+    /** Copycat: owner of a card committed by another investigator. */
+    owner?: InvestigatorId
+    wildIcons?: boolean
   }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
@@ -1275,6 +1282,12 @@ type MessageBody =
       /** Explicit card-effect permission may exceed the ordinary helper allowance. */
       byEffect?: boolean
       toDeckBottom?: boolean
+      returnAfterSuccess?: boolean
+      fromAsset?: AssetId
+      research?: boolean
+      fromInvestigator?: InvestigatorId
+      wildIcons?: boolean
+      allowConnecting?: boolean
     }
   | { type: 'DiscardTopAndCommit'; investigator: InvestigatorId }
   | {
@@ -2260,6 +2273,8 @@ type MessageBody =
    */
   | {
       type: 'SearchDeck'
+      /** Fixed cards seen by this search, after its Research window. */
+      searched?: CardCode[]
       investigator: InvestigatorId
       title?: string
       /** Restrict a trait search to a printed card type (Establish Motive). */
@@ -2292,6 +2307,17 @@ type MessageBody =
       drawFound?: boolean
       discount?: number
     }
+  /** Open one shared Research window, preserving the original searched group. */
+  | {
+      type: 'BeginDeckSearch'
+      investigator: InvestigatorId
+      top?: number
+      cards?: CardCode[]
+      then: Extract<Message, { type: 'SearchDeck' | 'PlayerCardEffect' }>
+    }
+  | { type: 'DiscardFromDeck'; investigator: InvestigatorId; code: CardCode }
+  /** Draw a chosen group atomically; resolve revelations after returning the searched deck. */
+  | { type: 'DrawSearchedCards'; investigator: InvestigatorId; cards: CardCode[] }
   | { type: 'ShuffleDeck'; investigator: InvestigatorId }
   /** Shuffle the resolving event only if its provisional copy is still present. */
   | {

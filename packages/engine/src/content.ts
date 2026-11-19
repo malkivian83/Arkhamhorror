@@ -661,6 +661,8 @@ export interface PlayerCardBehavior {
   movementConnections?: (state: GameState, self: LocationAttachment) => LocationId[]
   /** Printed activated abilities usable while this card is in hand. */
   handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
+  /** Research card seen in a search of its controller's own deck (once per search). */
+  researchEffect?: (state: GameState, investigator: InvestigatorId) => Message[]
   /** Printed permission to commit this card from its owner's discard pile. */
   commitFromDiscard?: boolean
   /** Its printed restriction applies only to readying in upkeep. */
@@ -1061,6 +1063,8 @@ export interface PlayerCardBehavior {
   ignoresOpportunityAttacks?: (state: GameState, self: Asset, enemy: Enemy) => boolean
   /** Test options also usable during another investigator's test at this location. */
   helpsOtherTests?: boolean
+  /** Its printed range also includes connecting locations (Bestow Resolve). */
+  helpsConnectingTests?: boolean
   /** Subscribe to action-ability completion without changing other games' queued messages. */
   observesActionAbilities?: boolean
   /** Observe the types of consecutive completed actions (Haste). */

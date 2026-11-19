@@ -227,6 +227,8 @@ export function approvedDefinition(card, approval) {
         card.numbers.xp.value === 0 &&
         !card.flags.exceptional))
   const myriadFactions = {
+    '06023': 'seeker',
+    '06278': 'seeker',
     '06328': 'mystic',
     '06029': 'mystic',
     11039: 'seeker',

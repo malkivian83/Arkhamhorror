@@ -110,6 +110,17 @@ Antediluviano y La naturaleza de la bestia resuelven búsquedas, aparición fren
 a robo, sustitución del robo del mito y orden de cartas reveladas. Códice de otro
 mundo conserva pendiente la salida de Lugares con ocupantes. [Detalle](150-busquedas-y-revelaciones-de-encuentros.md).
 
+## Estado tras el lote 151
+
+`research-commitments` incorpora nueve diseños estándar nuevos, sin reediciones:
+1571 comportamientos, 554 códigos históricos pendientes y 196 estándar con impresión.
+Investigación compartida por búsqueda, compromisos desde el mazo y el descarte
+ajeno, propiedad y destino de cada compromiso y conversión de iconos habilitan
+Sr. "Torre", Revelación asombrosa, Hallazgo sorprendente, La práctica hace al maestro,
+Guía invisible, Descubrimiento cautivador, Imitador, Regalo de Nodens y Conceder
+determinación. Bengala mantiene sus bloqueos de modo, propiedad y exilio condicional.
+[Diferencias y controles](151-investigacion-y-compromisos.md).
+
 ## Estado tras el lote 149
 
 `discard-rituals` añade siete cartas/niveles estándar nuevos, sin reediciones:

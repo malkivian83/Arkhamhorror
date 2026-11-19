@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "researchCommitments": {
+        "title": "Research and committed cards",
+        "cards": "Nine distinct cards: Mr. “Rook”, Astounding Revelation, Surprising Find, Practice Makes Perfect, Guided by the Unseen, Captivating Discovery, Gift of Nodens, Copycat and Bestow Resolve.",
+        "rules": "Deck searches with one Research ability, commitments from decks or another discard pile, and correct ownership when the test ends."
+      },
       "encounterSearch": {
         "title": "Encounter deck searches",
         "cards": "Six new playable cards and levels: On the Hunt, Kicking the Hornet's Nest, \"Where's the party?\", Antediluvian Hymn, Nature of the Beast.",
@@ -280,6 +285,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "research": "You may resolve one Research ability among the searched cards.",
     "chooseRevealToReplace": "Choose which reveal this ability replaces",
     "priestOfTwoFaiths": "Priest of Two Faiths: add 1 Curse token or discard it",
     "spendUsesFrom": "Choose the card the use is spent from",
@@ -537,6 +543,14 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "researchBestow": "Commit {card}, treating its icons as wild",
+    "researchCopy": "Commit {card} from {name}’s discard pile",
+    "researchClues": "Place {n} clues to choose up to twice as many cards",
+    "researchPay": "Spend 1 secret and commit the card",
+    "researchSearch": "Search the top 3 cards",
+    "researchResources": "Gain 2 resources",
+    "researchDepth": "Search the top {n} cards",
+    "useResearch": "Resolve Research on {card}",
     "searchEncounterDeckEnemy": "Choose {enemy} from the encounter deck (card {n})",
     "searchEncounterDiscardEnemy": "Choose {enemy} from the encounter discard (card {n})",
     "encounterPlaceBottom": "Add a curse and put {card} on the bottom (card {n})",
@@ -3650,6 +3664,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05153": "Dealer in Secrets",
       "05040": "The Fateful Step",
       "10098": "Scepter of the Mad Seer",
       "10085": "Scepter of the Mad Seer",
@@ -3811,6 +3826,15 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "09032": "Ritual.",
+      "60330": "Gambit.",
+      "11094": "Ritual.",
+      "09047": "Insight.",
+      "07223": "Ritual.",
+      "06278": "Fortune. Research.",
+      "06197": "Gambit. Tactic.",
+      "06023": "Research.",
+      "05153": "Ally.",
       "09111": "Dilemma. Insight.",
       "10093": "Augury. Double.",
       "11053": "Trick. Improvised.",
@@ -4753,6 +4777,15 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "09032": "Uses (4 charges).\n[fast] During a skill test performed by an investigator at your location or a connecting location, spend 1 charge: Commit a non-weakness card from your hand to that skill test, treating all of its skill icons as [wild].",
+      "60330": "After you commit Copycat to a skill test, search the discard pile of another investigator for a skill you can commit to this test, and commit it. After this test ends, place that card on the bottom of its owner's deck.",
+      "11094": "[reaction] When you commit cards to a skill test you are performing, choose a [survivor] skill card in your discard pile and discard 1 card from your hand: Commit the chosen skill to this test. After this skill test resolves, place that skill card on the bottom of your deck. (Limit once per round.)",
+      "09047": "Search the top 6 cards of your deck. You may place up to 3 of your clues on your location. For each clue placed in this way, choose and add 2 of the searched cards to your hand. Shuffle your deck.",
+      "07223": "Uses (4 secrets).\n[fast] During a skill test at your location: The performing investigator may search the top 3 cards of their deck for a card that can be committed to this test. You may spend 1 secret to commit that card. Shuffle the performing investigator's deck. (Limit once per test.)",
+      "06278": "Myriad.\n[reaction] When you search your deck and Surprising Find is among the searched cards: Put it into play in your play area. You must commit it to the next eligible skill test you perform. If that test is successful, draw 1 card. (Max one [[Research]] ability per search.)",
+      "06197": "Fast. Play during a skill test at your location.\nSearch the top 9 cards of your deck for a [[Practiced]] skill and commit it to this skill test, if able. Shuffle the remaining cards back into your deck. After this test ends, if it was successful, add that skill to your hand instead of discarding it.",
+      "06023": "Myriad.\nAstounding Revelation cannot be played.\n[reaction] When you search your deck and Astounding Revelation is among the searched cards, discard it: Either gain 2 resources or place 1 secret on an asset you control. (Max one [[Research]] ability per search.)",
+      "05153": "Uses (3 secrets).\n[fast] Exhaust Mr. \"Rook\" and spend 1 secret: Search the top 3, 6, or 9 cards of your deck for any card and draw it. If at least 1 weakness is among the searched cards, draw 1 of them, as well. Shuffle your deck.",
       "09111": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - Reveal the top 3 cards of the encounter deck. Choose an investigator to draw 1 of the revealed cards and discard the rest. Then, choose an investigator to discover 1 clue at any revealed location.",
       "10093": "As an additional cost to play Antediluvian Hymn, spend an action.\nReveal the top 5 cards of the encounter deck. For each card revealed, you may add 1 [curse] token to the chaos bag to place that card on the bottom of the encounter deck. Return the rest to the top of the encounter deck in any order.",
       "11053": "<b>Parley.</b> Search the encounter deck and discard pile for a non-[[Elite]] enemy and spawn it exhausted and engaged with you. Draw cards equal to that enemy's combined damage and horror values.",
@@ -6127,6 +6160,15 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "09032": "Bestow Resolve",
+      "60330": "Copycat",
+      "11094": "Gift of Nodens",
+      "09047": "Captivating Discovery",
+      "07223": "Guided by the Unseen",
+      "06278": "Surprising Find",
+      "06197": "Practice Makes Perfect",
+      "06023": "Astounding Revelation",
+      "05153": "Mr. \"Rook\"",
       "09111": "Nature of the Beast",
       "10093": "Antediluvian Hymn",
       "11053": "\"Where's the party?\"",
