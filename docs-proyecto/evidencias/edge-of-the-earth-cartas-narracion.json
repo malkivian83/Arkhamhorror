@@ -392,127 +392,160 @@
       "inputHash": "5b20adce7c22fed88d931f4f92c04daf32fbbcfe4f2d879049231e44a60957f3",
       "bytes": 285091,
       "sha256": "ca1f534c204a4875c76587bc958091f0e3c0c5a5c3ed95335624dfd04a351079"
-    }
-  ],
-  "pending": [
+    },
     {
       "code": "08659",
       "side": "front",
       "text": "De la puerta salen cinco oscuros caminos que atraviesan cavernas heladas y corredores abovedados de piedra negra pulida. Un silencioso temor llena la antigua estructura inactiva.",
       "file": "08659-front.mp3",
-      "inputHash": "3323f8537ca1f0da58101b23a1dbf87dc93d8d9cfdcbf79d0948bc95d153659a"
+      "inputHash": "3323f8537ca1f0da58101b23a1dbf87dc93d8d9cfdcbf79d0948bc95d153659a",
+      "bytes": 211948,
+      "sha256": "5e50f3192fb1e4fcd83b5dbe99bf066bedcd6419122b7418803c491d1dfffd13"
     },
     {
       "code": "08659",
       "side": "back",
       "text": "Una oscura energía primordial brota de los muros, el mismo miasma que te ha perseguido a cada paso en este viaje condenado. Te detienes al instante y empiezas a recular. Ya has visto el tipo de espantosas formas que puede adoptar. El tipo de recuerdos que evoca, tanto terribles como agradables. Pero no todo el mundo ve el espejismo como lo que es de verdad…",
       "file": "08659-back.mp3",
-      "inputHash": "03861f46589ce35d3bcd49d551ba014dc439c63fe0c399ca715cb4eeae189b27"
+      "inputHash": "03861f46589ce35d3bcd49d551ba014dc439c63fe0c399ca715cb4eeae189b27",
+      "bytes": 396268,
+      "sha256": "adec73f48e580d05b88ac023d299baab17b3cfb521cd0cbdc7633072763eeb15"
     },
     {
       "code": "08660",
       "side": "front",
       "text": "Susurros arcanos y el goteo del oscuro miasma rompen el silencio que reinaba en las ruinas. Algo trata de alcanzarte desde el interior de sus muros. Algo te llama.",
       "file": "08660-front.mp3",
-      "inputHash": "a37659d94bd976c66fa35a394f05808cd5003b7e150c6c810de921209f6641f4"
+      "inputHash": "a37659d94bd976c66fa35a394f05808cd5003b7e150c6c810de921209f6641f4",
+      "bytes": 193558,
+      "sha256": "fe6685ca0d1732d463382ecc324ff89c5e5b685a7d1eeed2b26afd468ef3afe3"
     },
     {
       "code": "08660",
       "side": "back",
       "text": "Los sellos palpitan con una peligrosa energía electroestática y llenan las gélidas salas de una brillante luz azul. Te cuesta contener el poder de cada sello mientras te apresuras por colocarlos en su lugar correcto.",
       "file": "08660-back.mp3",
-      "inputHash": "1d7694c1b02fcecf47dc7879dbe8e40bf869d40f6041ef91a59a72b0e9437064"
+      "inputHash": "1d7694c1b02fcecf47dc7879dbe8e40bf869d40f6041ef91a59a72b0e9437064",
+      "bytes": 232010,
+      "sha256": "15fa06ed1b87ac8dbc3ec83e4779e1a801e4b845219ca8b8a467dfd55f8fe83b"
     },
     {
       "code": "08661",
       "side": "front",
       "text": "El portal se agita. Sea lo que sea lo que te llama desde estos muros, oye cada palabra y cada pisada. Conoce tu presencia, tus esperanzas y tus miedos. Y ansía ser libre.",
       "file": "08661-front.mp3",
-      "inputHash": "d19601963ba905254a4494c385e537cb0cca43724ea0cf4fd24b4c0bf47ef3cd"
+      "inputHash": "d19601963ba905254a4494c385e537cb0cca43724ea0cf4fd24b4c0bf47ef3cd",
+      "bytes": 206096,
+      "sha256": "d353beeaec5c528d25925cdc64676be08c437c87ad06c25985b23af2926c684b"
     },
     {
       "code": "08661",
       "side": "back",
       "text": "Antes de que puedas encontrar y colocar los cinco sellos, un ruido tremendo llena las salas cavernosas de la instalación, y un oscuro miasma prismático empieza a filtrarse por cada centímetro de las paredes y el techo. Olas de insidioso icor de bruma negra bloquean todas las rutas excepto aquella por la que viniste. Huyes de vuelta al portal para escapar o encontrar otro camino, pero para cuando llegas a la enorme puerta, es demasiado tarde.",
       "file": "08661-back.mp3",
-      "inputHash": "5234d2580227298a26af622195920c8e5892015f07dd1e1717c1a5302f91f6dd"
+      "inputHash": "5234d2580227298a26af622195920c8e5892015f07dd1e1717c1a5302f91f6dd",
+      "bytes": 471501,
+      "sha256": "a2b0feed65b84dd01807883d9e3389bfa3409b8efcd9643fc516351623470a1d"
     },
     {
       "code": "08662",
       "side": "front",
       "text": "Has decidido explorar el resto de este complejo antediluviano para encontrar los dispositivos que encajan en esta extraña puerta.",
       "file": "08662-front.mp3",
-      "inputHash": "88eecdc9cfc4cdeead455085f7a0bc8ebb24c4bd12c68ccdf6c788e824d0ea1f"
+      "inputHash": "88eecdc9cfc4cdeead455085f7a0bc8ebb24c4bd12c68ccdf6c788e824d0ea1f",
+      "bytes": 122923,
+      "sha256": "dc981d22783b9add6cdf608c58a72113c01612c501181484344cb79d74abd4dd"
     },
     {
       "code": "08662",
       "side": "back",
       "text": "En cuanto pones el sello en su sitio, oyes un clic y queda encajado. La energía almacenada en el sello brota de él y recorre los canales y muescas de la puerta, iluminando toda la cámara con un resplandor espectral. Tal vez puedas detener esta locura si logras activar y colocar los cuatro sellos restantes.",
       "file": "08662-back.mp3",
-      "inputHash": "ae7c182d77f821064a1a3e9d0c60724dfdbe099437c7438fb8c084eac432a129"
+      "inputHash": "ae7c182d77f821064a1a3e9d0c60724dfdbe099437c7438fb8c084eac432a129",
+      "bytes": 332320,
+      "sha256": "ec58f97def9b523a2cc6ebb54045be76f6cc9f41555d3b0330bee1af06b05334"
     },
     {
       "code": "08663",
       "side": "front",
       "text": "La colocación del primero de los cinco sellos ha despertado un extraño poder dentro de la instalación. Crees que si puedes encontrar y activar los sellos restantes, ayudarán a contener la cosa que habita al otro lado de esta puerta…",
       "file": "08663-front.mp3",
-      "inputHash": "bf33b467e1993c583a76ffa5641c83252957e4ce2f908e7a1a463b4ee44c38b9"
+      "inputHash": "bf33b467e1993c583a76ffa5641c83252957e4ce2f908e7a1a463b4ee44c38b9",
+      "bytes": 231592,
+      "sha256": "1c3f40d9491d2aca76365a1aaad6bd1e276e1ec5bb70b02b3dcbc5b06b01a4fb"
     },
     {
       "code": "08663",
       "side": "back",
       "text": "El último sello encaja en su sitio y la energía fluye por la instalación con un zumbido. Unos pequeños orbes que hay incrustados en el techo empiezan a iluminarse uno a uno. Te das cuenta de que este santuario es mucho más avanzado de los que podrías haber imaginado jamás.",
       "file": "08663-back.mp3",
-      "inputHash": "5c8e7a10a19e78b10383936d619e1e557b2686ba6c7ac62d116ab77034a03e2d"
+      "inputHash": "5c8e7a10a19e78b10383936d619e1e557b2686ba6c7ac62d116ab77034a03e2d",
+      "bytes": 305571,
+      "sha256": "3e287714f7ce678e78652f5029fb2793b0860dfc8f339b150b2f0e6b4708301b"
     },
     {
       "code": "08671",
       "side": "front",
       "text": "El miasma ha consumido por completo esta zona de la instalación. Del suelo y las paredes gotea un cieno policromático, una bruma polar recorre las salas y el aire resplandece con la apariencia insustancial de un espejismo. ¿Qué tipo de poder es éste? ¿Y cómo puedes tener alguna esperanza de destruirlo?",
       "file": "08671-front.mp3",
-      "inputHash": "f1bcd62bb0bb2f5ab379feebe65f1390d10aa9bdc34fc7b2cb2699563f294630"
+      "inputHash": "f1bcd62bb0bb2f5ab379feebe65f1390d10aa9bdc34fc7b2cb2699563f294630",
+      "bytes": 342769,
+      "sha256": "f1c490eefe7f1b266c8bc849f0f21bfd062b174d8e2ac90f62b0a8c17db9c2e1"
     },
     {
       "code": "08671",
       "side": "back",
       "text": "Desde las profundidades sin nombre el mismísimo núcleo terrestre emerge la verdadera forma del miasma. Es una cosa informe, una criatura de bruma arremolinada e icor putrefaco que grita, susurra, repta y vuela. Se filtra por las paredes y sube por el hielo; está en todas partes; lo es todo.",
       "file": "08671-back.mp3",
-      "inputHash": "1185320629481d3cf45e258e48b7f21978ad564773523a19911113be9385308b"
+      "inputHash": "1185320629481d3cf45e258e48b7f21978ad564773523a19911113be9385308b",
+      "bytes": 354054,
+      "sha256": "945b4dfb8fc5ee9ca5de2476a1fe6cbfd1cd2a8fa5b526de9dbb0f2261ecb30c"
     },
     {
       "code": "08672",
       "side": "front",
       "text": "Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li!",
       "file": "08672-front.mp3",
-      "inputHash": "42cc450396fa3392ac41b25dbe6fd711fc35ef58dd920eb88864bebdb722336b"
+      "inputHash": "42cc450396fa3392ac41b25dbe6fd711fc35ef58dd920eb88864bebdb722336b",
+      "bytes": 154687,
+      "sha256": "1d1c7aede435b0dc67539b2f97f0819c4c7176de912b32584351015e7da3f796"
     },
     {
       "code": "08672",
       "side": "back",
       "text": "Es demasiado tarde. No podéis contener a la criatura que mora bajo la montaña. Sólo os queda esperar que podáis escapar con vida.",
       "file": "08672-back.mp3",
-      "inputHash": "34ee6d5b76d512ac64d8b865f09017d1bd522701362aca39aca58ee4f70185fd"
+      "inputHash": "34ee6d5b76d512ac64d8b865f09017d1bd522701362aca39aca58ee4f70185fd",
+      "bytes": 127520,
+      "sha256": "d851f1fcc44f17b7203e9110ead11859ae858eb1c53f39a71ba5d86374f0c337"
     },
     {
       "code": "08673",
       "side": "front",
       "text": "Hay cinco pilones que sostienen esta instalación. Tu única esperanza es destruirlos, y destruir así todo lo demás.",
       "file": "08673-front.mp3",
-      "inputHash": "49fd9288a0d3e63039e9cf19ff3815fe3843016295c5b9870426a964dd816bb9"
+      "inputHash": "49fd9288a0d3e63039e9cf19ff3815fe3843016295c5b9870426a964dd816bb9",
+      "bytes": 115399,
+      "sha256": "3f5ed86688836ced7982ef30770316a6473dab37cbd32ac5d577871b0516a7e5"
     },
     {
       "code": "08673",
       "side": "back",
       "text": "La instalación tiembla de arriba abajo. Sin los pilones de bruma para alimentar la estructura, la entidad sin nombre que reside en su interior está libre, pero tiene los días contados, igual que tú. La montaña gruñe y se estremece, amenazando con derrumbarse a tu alrededor.",
       "file": "08673-back.mp3",
-      "inputHash": "5698d37c5fa30810fc219ab73552a9ef8e5c0d5bdd6ba6d50183869e1073b0f0"
+      "inputHash": "5698d37c5fa30810fc219ab73552a9ef8e5c0d5bdd6ba6d50183869e1073b0f0",
+      "bytes": 300555,
+      "sha256": "1729a0ceaf798c3a1d2fcc1c0075febd037b55e16fe4800e672953cfd209bd54"
     },
     {
       "code": "08681",
       "side": "back",
       "text": "Sales del túnel y la luz del día te ciega, pues el sol asoma desde detrás de las escarpadas cumbres que hay a lo lejos. A tu espalda, la entidad se apresura a ganar la salida. Te preparas para el final, pues el muro de bruma, miasma y locura parece un tren desbocado.",
       "file": "08681-back.mp3",
-      "inputHash": "7c0c6e7ea1e0eb722f3b0b474e3fc5867ec82e5928e6c7c06ad5ce4456cc8c0b"
+      "inputHash": "7c0c6e7ea1e0eb722f3b0b474e3fc5867ec82e5928e6c7c06ad5ce4456cc8c0b",
+      "bytes": 313094,
+      "sha256": "cc065684f7bf2e7e610f8f4e1d5cb019b20e87e3933947d1b54c1480a23da41d"
     }
-  ]
+  ],
+  "pending": []
 }

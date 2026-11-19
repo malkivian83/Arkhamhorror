@@ -14,6 +14,23 @@ recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
 
+Narración actualizada el 19/11/2026. Generados 39 MP3 nuevos con Martin Osborne,
+priorizando los 31 relatos pendientes de la guía y después las ocho caras de los
+planes del V. Conservadas las 52 narraciones y las 39 caras anteriores, sin
+textos ni audios nuevos duplicados. Los 83 relatos de I–V e Interludios I–IV
+tienen audio. Quedan las seis caras de los actos `78116`, `78117` y `78118`,
+con 2.119 caracteres, registradas como pendientes. El saldo de ElevenLabs pasó
+de 5.594 a cero créditos. Commit y push de las locuciones autorizados el
+19/11/2026. Escucha pendiente. El pull inicial quedó impedido por los cambios locales
+conservados.
+
+Verificación de las locuciones del 19/11/2026 mediante 14 pruebas dirigidas de
+narración y reproductores, incluidos cuota parcial y reutilización en ambos
+generadores, huellas MP3 y conservación de las grabaciones anteriores. Formato,
+ESLint y tipos de i18n correctos. Tipos de la web correctos en la comprobación
+final previa a la subida. Los resultados de narración se invalidan
+si cambian textos, audios, manifiestos, reproductores o generadores afectados.
+
 ### Continuación de implementación · 2026-11-06
 
 - Último lote: Interludio I + III · Muerte al amanecer (este commit), sobre
@@ -118,7 +135,8 @@ el PDF.
   `D:\plaguero\en`, archivos distintos de los de `E:\Plaguero` (750×1050, tamaño
   nativo). Registradas en `media.json` (594), manifiesto e inventarios;
   `verify-card-images.mjs` correcto (6503).
-- Pendiente del V: narración y revisión visual de la persona usuaria.
+- Pendiente del V, tras las locuciones del 19/11/2026, el audio de los tres actos
+  y la revisión visual de la persona usuaria.
 
 ## Fuentes
 
@@ -137,6 +155,14 @@ contenido.
 Narración: la voz de ElevenLabs elegida para esta campaña es
 **Martin Osborne - Polished and Intense**, `z3kTTwYbQrmL7ckdGcJi` (selección
 de la persona usuaria del 2026-11-05; sustituye a la elección anterior).
+
+`node scripts/generate-plaguebearer-audio.mjs --refresh` verifica el inventario
+local y actualiza el manifiesto del reproductor. `--generate` reanuda los relatos
+con cuota disponible. Para las caras restantes se usa
+`node scripts/generate-campaign-card-audio.mjs --campaign=plaguebearer --generate --available`.
+Ambos generadores reutilizan las grabaciones verificadas y registran el coste
+comunicado por la API. Las transcripciones EN/ES de los siete planes y actos del V
+ya están en el catálogo narrativo.
 
 ## Inventario de cartas
 

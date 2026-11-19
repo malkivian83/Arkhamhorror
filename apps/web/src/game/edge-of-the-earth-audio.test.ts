@@ -59,6 +59,15 @@ it('accounts for every full passage with matching audio or an explicit pending r
   expect(storyNarration('story.edgeOfTheEarth.restfulNight.body', 'es')).toBeTruthy()
 })
 
+it('reuses one recording for identical passages in different campaign branches', () => {
+  const filesByText = new Map<string, string>()
+  for (const { textSha256, file } of recordings.entries) {
+    const previous = filesByText.get(textSha256)
+    if (previous) expect(file).toBe(previous)
+    filesByText.set(textSha256, file)
+  }
+})
+
 it('offers the recording in the story modal for the displayed Spanish passage', async () => {
   const key = 'story.edgeOfTheEarth.resolution1.body'
   await setAppLocale('es', false)

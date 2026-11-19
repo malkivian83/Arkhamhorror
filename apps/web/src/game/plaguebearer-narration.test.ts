@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto'
-import { readFileSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { join } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { afterEach, expect, it, vi } from 'vitest'
 import source from '../../../../packages/i18n/src/plaguebearer.es.json'
 import evidence from '../../../../docs-proyecto/evidencias/plaguebearer-narracion.json'
@@ -10,8 +12,132 @@ import { setAppLocale } from '../i18n'
 afterEach(() => vi.unstubAllGlobals())
 
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex')
+const pending: { key: string; file: string; text: string }[] = evidence.pending
 
-it('el cuerpo real del modal reconoce los cincuenta y dos relatos oficiales y ofrece sus reproductores', async () => {
+it('ambos generadores reutilizan textos y respetan el saldo y el coste comunicado por la API', () => {
+  const root = fileURLToPath(new URL('../../../../', import.meta.url))
+  mkdirSync(join(root, 'tmp'), { recursive: true })
+  const fixture = mkdtempSync(join(root, 'tmp/plaguebearer-audio-test-'))
+  const generator = join(root, 'scripts/generate-plaguebearer-audio.mjs')
+  const listed = JSON.parse(
+    execFileSync(process.execPath, [generator, '--list'], { cwd: root, encoding: 'utf8' }),
+  ) as { entries: { key: string }[] }
+  const fixtureSource = structuredClone(source) as { story: Record<string, unknown> }
+  const texts: Record<string, string> = {
+    'night.npc.78031.saved': 'a'.repeat(61),
+    'night.npc.78031.lost': 'a'.repeat(61),
+    'night.npc.78032.saved': 'b'.repeat(61),
+    'night.npc.78032.lost': 'c'.repeat(100),
+  }
+  const published: Record<string, string> = {}
+  for (const { key } of listed.entries) {
+    const parts = key.replace('story.plaguebearer.', '').split('.')
+    let parent = fixtureSource.story
+    for (const part of parts.slice(0, -1)) parent = parent[part] as Record<string, unknown>
+    const text = texts[parts.join('.')] ?? 'x'.repeat(1000)
+    parent[parts.at(-1)!] = text
+    published[key] = text
+  }
+  for (const directory of [
+    'packages/i18n/src',
+    'apps/web/public/local-assets/story',
+    'apps/web/src/game',
+    'docs-proyecto/evidencias',
+  ])
+    mkdirSync(join(fixture, directory), { recursive: true })
+  writeFileSync(
+    join(fixture, 'packages/i18n/src/plaguebearer.es.json'),
+    JSON.stringify(fixtureSource),
+  )
+  writeFileSync(
+    join(fixture, 'apps/web/public/local-assets/story/es.json'),
+    JSON.stringify(published),
+  )
+  const mock = join(fixture, 'mock.mjs')
+  writeFileSync(
+    mock,
+    `
+    import { writeFileSync } from 'node:fs'
+    let remaining = 61
+    const requests = []
+    globalThis.fetch = async (url, options) => {
+      if (url.endsWith('/subscription'))
+        return Response.json({ character_limit: 61, character_count: 0 })
+      if (!url.includes('/text-to-speech/')) throw Error('Unexpected request')
+      if (remaining < 24) throw Error('Credit limit exceeded')
+      remaining -= 24
+      requests.push(JSON.parse(options.body).text)
+      writeFileSync('requests.json', JSON.stringify(requests))
+      const audio = Buffer.alloc(1200)
+      audio.write('ID3')
+      return new Response(audio, {
+        headers: { 'content-type': 'audio/mpeg', 'character-cost': '24' },
+      })
+    }
+  `,
+  )
+  const mockUrl = pathToFileURL(mock).href
+  execFileSync(process.execPath, ['--import', mockUrl, generator, '--generate'], {
+    cwd: fixture,
+    encoding: 'utf8',
+    env: { ...process.env, ELEVENLABS_API_KEY: 'fixture-key' },
+  })
+  const requests = JSON.parse(readFileSync(join(fixture, 'requests.json'), 'utf8')) as string[]
+  expect(requests).toEqual(['a'.repeat(61), 'b'.repeat(61)])
+  const result = JSON.parse(
+    readFileSync(join(fixture, 'docs-proyecto/evidencias/plaguebearer-narracion.json'), 'utf8'),
+  ) as { files: { credits: number; sha256: string }[]; pending: { key: string }[] }
+  expect(result.files).toHaveLength(3)
+  expect(result.files.reduce((sum, entry) => sum + entry.credits, 0)).toBe(48)
+  expect(result.files[0]!.sha256).toBe(result.files[1]!.sha256)
+  expect(result.pending).toHaveLength(80)
+
+  writeFileSync(
+    join(fixture, 'packages/i18n/src/card-narratives.es.json'),
+    JSON.stringify({
+      '99001': {
+        group: 'plaguebearer',
+        typeCode: 'act',
+        flavor: 'a'.repeat(61),
+        backFlavor: 'a'.repeat(61),
+      },
+      '99002': {
+        group: 'plaguebearer',
+        typeCode: 'agenda',
+        flavor: 'b'.repeat(61),
+        backFlavor: 'c'.repeat(100),
+      },
+    }),
+  )
+  writeFileSync(join(fixture, 'packages/i18n/src/edge-of-the-earth-cards.es.json'), '{}')
+  writeFileSync(join(fixture, 'apps/web/src/game/edgeOfTheEarthNarration.json'), '{}')
+  writeFileSync(join(fixture, 'apps/web/src/game/cardNarrationManifest.json'), '{}')
+  execFileSync(
+    process.execPath,
+    [
+      '--import',
+      mockUrl,
+      join(root, 'scripts/generate-campaign-card-audio.mjs'),
+      '--generate',
+      '--campaign=plaguebearer',
+      '--available',
+    ],
+    { cwd: fixture, encoding: 'utf8', env: { ...process.env, ELEVENLABS_API_KEY: 'fixture-key' } },
+  )
+  expect(JSON.parse(readFileSync(join(fixture, 'requests.json'), 'utf8'))).toEqual(requests)
+  const cardResult = JSON.parse(
+    readFileSync(
+      join(fixture, 'docs-proyecto/evidencias/plaguebearer-cartas-narracion.json'),
+      'utf8',
+    ),
+  ) as { files: { credits: number; sha256: string }[]; pending: { code: string; side: string }[] }
+  expect(cardResult.files).toHaveLength(3)
+  expect(cardResult.files.reduce((sum, entry) => sum + entry.credits, 0)).toBe(48)
+  expect(cardResult.files[0]!.sha256).toBe(cardResult.files[1]!.sha256)
+  expect(cardResult.pending).toMatchObject([{ code: '99002', side: 'back' }])
+}, 30000)
+
+it('el cuerpo real del modal reconoce los relatos grabados y ofrece sus reproductores', async () => {
   vi.stubGlobal(
     'fetch',
     vi.fn(async (url: string) => {
@@ -73,10 +199,10 @@ function duration(bytes: Buffer): number {
   return (frames * 1152) / 44100
 }
 
-it('conecta los cincuenta y dos relatos ES completos con la voz elegida, excluyendo reglas y créditos', () => {
+it('registra cada relato ES como grabado o pendiente, con la voz elegida y sin reglas', () => {
   expect(evidence.voiceId).toBe('z3kTTwYbQrmL7ckdGcJi')
   expect(evidence.voiceName).toBe('Martin Osborne - Polished and Intense')
-  expect(evidence.files.map((f) => f.key).sort()).toEqual(
+  expect([...evidence.files, ...pending].map((f) => f.key).sort()).toEqual(
     [
       'prologue',
       'intro',
@@ -88,6 +214,9 @@ it('conecta los cincuenta y dos relatos ES completos con la voz elegida, excluye
       'night.intro',
       'night.resolution1',
       'night.resolution2',
+      ...Object.keys(source.story.night.npc).flatMap((code) =>
+        ['saved', 'lost'].map((outcome) => `night.npc.${code}.${outcome}`),
+      ),
       ...['section1', 'section2', 'section3', 'section4', 'hidden', 'hiddenGift'].map(
         (k) => `friends.${k}`,
       ),
@@ -130,10 +259,27 @@ it('conecta los cincuenta y dos relatos ES completos con la voz elegida, excluye
         'docks',
         'hidden',
       ].map((k) => `allied.${k}`),
+      ...['lesson1', 'portals', 'first', 'baalshandor', 'lesson2'].map((k) => `history.${k}`),
+      ...[
+        'intro1',
+        'intro2',
+        'intro3',
+        'intro4',
+        'intro5',
+        'intro6',
+        'defeated',
+        'threshold',
+        'resolution1',
+        'resolution2',
+      ].map((k) => `noon.${k}`),
     ]
       .map((s) => `story.plaguebearer.${s}`)
       .sort(),
   )
+  for (const entry of pending) {
+    expect(storyNarration(entry.key, 'es')).toBeNull()
+    expect(storyNarration(entry.key, 'en')).toBeNull()
+  }
   for (const recording of evidence.files) {
     const suffix = recording.key.replace('story.plaguebearer.', '')
     const body = suffix
@@ -171,4 +317,4 @@ it('conecta los cincuenta y dos relatos ES completos con la voz elegida, excluye
   expect(evidence.files.find((f) => f.key === 'story.plaguebearer.intro')!.text).not.toContain(
     'Campaña de Walker Graves',
   )
-})
+}, 30000)

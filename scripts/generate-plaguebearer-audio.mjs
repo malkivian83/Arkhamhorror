@@ -7,6 +7,7 @@ import { join } from 'node:path'
 const voiceId = 'z3kTTwYbQrmL7ckdGcJi'
 const root = 'apps/web/public/local-assets/story/audio/es'
 const evidencePath = 'docs-proyecto/evidencias/plaguebearer-narracion.json'
+const manifestPath = 'apps/web/src/game/plaguebearerNarrationManifest.json'
 const sourcePath = 'packages/i18n/src/plaguebearer.es.json'
 const source = JSON.parse(readFileSync(sourcePath, 'utf8')).story
 const published = JSON.parse(readFileSync('apps/web/public/local-assets/story/es.json', 'utf8'))
@@ -33,6 +34,9 @@ const entries = [
   'night.intro',
   'night.resolution1',
   'night.resolution2',
+  ...Object.keys(source.night.npc).flatMap((code) =>
+    ['saved', 'lost'].map((outcome) => `night.npc.${code}.${outcome}`),
+  ),
   ...['section1', 'section2', 'section3', 'section4', 'hidden', 'hiddenGift'].map(
     (k) => `friends.${k}`,
   ),
@@ -75,6 +79,19 @@ const entries = [
     'docks',
     'hidden',
   ].map((k) => `allied.${k}`),
+  ...['lesson1', 'portals', 'first', 'baalshandor', 'lesson2'].map((k) => `history.${k}`),
+  ...[
+    'intro1',
+    'intro2',
+    'intro3',
+    'intro4',
+    'intro5',
+    'intro6',
+    'defeated',
+    'threshold',
+    'resolution1',
+    'resolution2',
+  ].map((k) => `noon.${k}`),
 ].map((suffix) => {
   const body = suffix.split('.').reduce((value, key) => value?.[key], source)
   if (typeof body !== 'string' || !body) throw new Error(`Falta ${suffix}`)
@@ -93,7 +110,8 @@ const entries = [
   }
 })
 
-if (!process.argv.includes('--generate')) {
+const generate = process.argv.includes('--generate')
+if (!generate && !process.argv.includes('--refresh')) {
   console.log(
     JSON.stringify(
       { voiceId, characters: entries.reduce((n, e) => n + e.text.length, 0), entries },
@@ -102,22 +120,55 @@ if (!process.argv.includes('--generate')) {
     ),
   )
 } else {
-  if (existsSync('.env')) process.loadEnvFile()
+  if (generate && !process.env.ELEVENLABS_API_KEY && existsSync('.env')) process.loadEnvFile()
   const apiKey = process.env.ELEVENLABS_API_KEY
-  if (!apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
+  if (generate && !apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
   const headers = { 'xi-api-key': apiKey }
-  const voiceResponse = await fetch(`https://api.elevenlabs.io/v1/voices/${voiceId}`, {
-    headers,
-    signal: AbortSignal.timeout(30000),
-  })
-  if (!voiceResponse.ok) throw new Error(`Consulta de voz: HTTP ${voiceResponse.status}`)
-  const voice = await voiceResponse.json()
-  if (voice.voice_id !== voiceId) throw new Error('La API devolvió otra voz')
   const evidence = existsSync(evidencePath)
     ? JSON.parse(readFileSync(evidencePath, 'utf8'))
-    : { voiceId, voiceName: voice.name, language: 'es', sourcePath, format, settings, files: [] }
-  if (evidence.voiceId !== voiceId || evidence.format !== format)
-    throw new Error('Cambió la voz o el formato registrado')
+    : {
+        voiceId,
+        voiceName: 'Martin Osborne - Polished and Intense',
+        language: 'es',
+        sourcePath,
+        format,
+        settings,
+        files: [],
+      }
+  if (
+    evidence.voiceId !== voiceId ||
+    evidence.format !== format ||
+    JSON.stringify(evidence.settings) !== JSON.stringify(settings)
+  )
+    throw new Error('Cambió la voz, el formato o los ajustes registrados')
+  const save = () => {
+    evidence.pending = entries.filter((entry) => !evidence.files.some((f) => f.key === entry.key))
+    writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n')
+    writeFileSync(
+      manifestPath,
+      JSON.stringify(
+        Object.fromEntries(evidence.files.map(({ key, file }) => [key, file])),
+        null,
+        2,
+      ) + '\n',
+    )
+  }
+  let remaining = 0
+  const previousCost = evidence.files.findLast((entry) => entry.credits > 0)
+  let creditRate = previousCost
+    ? Math.ceil((previousCost.credits / previousCost.text.length) * 10) / 10
+    : 1
+  if (generate) {
+    const response = await fetch('https://api.elevenlabs.io/v1/user/subscription', {
+      headers,
+      signal: AbortSignal.timeout(30000),
+    })
+    if (!response.ok) throw new Error(`Consulta de cuota: HTTP ${response.status}`)
+    const quota = await response.json()
+    remaining = quota.character_limit - quota.character_count
+    if (!Number.isFinite(remaining)) throw new Error('Cuota desconocida')
+    console.log(`${remaining} créditos disponibles`)
+  }
   mkdirSync(root, { recursive: true })
   for (const entry of entries) {
     const path = join(root, entry.file)
@@ -129,6 +180,16 @@ if (!process.argv.includes('--generate')) {
       console.log(`Conservado ${entry.file}`)
       continue
     }
+    const equivalent = evidence.files.find((e) => e.inputHash === inputHash)
+    if (equivalent) {
+      const bytes = readFileSync(join(root, equivalent.file))
+      if (hash(bytes) !== equivalent.sha256) throw new Error(`Huella distinta: ${equivalent.file}`)
+      writeFileSync(path, bytes)
+      evidence.files.push({ ...equivalent, ...entry, credits: 0 })
+      save()
+      continue
+    }
+    if (!generate || Math.floor(entry.text.length * creditRate) > remaining) continue
     const response = await fetch(
       `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=${format}`,
       {
@@ -140,6 +201,10 @@ if (!process.argv.includes('--generate')) {
     )
     if (!response.ok) {
       const error = await response.json().catch(() => ({}))
+      if (error.detail?.status === 'quota_exceeded') {
+        console.log(`Sin cuota para ${entry.file}`)
+        continue
+      }
       throw new Error(`${entry.key}: HTTP ${response.status} (${error.detail?.status ?? 'error'})`)
     }
     if (!response.headers.get('content-type')?.includes('audio'))
@@ -148,6 +213,11 @@ if (!process.argv.includes('--generate')) {
     const mp3Header =
       bytes.subarray(0, 3).toString() === 'ID3' || (bytes[0] === 0xff && (bytes[1] & 0xe0) === 0xe0)
     if (bytes.length < 1000 || !mp3Header) throw new Error(`MP3 inválido: ${entry.key}`)
+    const costHeader = response.headers.get('character-cost')
+    const credits = costHeader === null ? entry.text.length : Number(costHeader)
+    if (!Number.isFinite(credits) || credits < 0) throw new Error('Coste desconocido')
+    remaining -= credits
+    if (credits > 0) creditRate = Math.ceil((credits / entry.text.length) * 10) / 10
     writeFileSync(path, bytes)
     evidence.files = evidence.files.filter((e) => e.key !== entry.key)
     evidence.files.push({
@@ -156,8 +226,11 @@ if (!process.argv.includes('--generate')) {
       inputHash,
       sha256: hash(bytes),
       bytes: bytes.length,
+      credits,
     })
-    writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n')
+    save()
     console.log(`Generado ${entry.file} (${bytes.length} bytes)`)
   }
+  save()
+  console.log(`${evidence.files.length} relatos grabados; ${evidence.pending.length} pendientes`)
 }

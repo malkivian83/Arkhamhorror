@@ -116,6 +116,48 @@
     "flavor": "You must help your contact and their associates, no matter the cost.",
     "backFlavor": "You take a deep breath as you stagger out into the cold night air. Snow falls thickly on the once-pristine lawn, now stained red with blood. The manor is dead silent behind you. The Jewel of Sarnath pulses with an unearthly light in your palm, and for a moment you feel a balmy breeze, the scent of another place both familiar and dreamlike. Was the gem worth all this devastation?"
   },
+  "78112": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The Brook Facility. Where your day began and where the Tailors perform strange science. If West is to be believed, any answers you're looking for will be behind the complex door in Lab Alpha…",
+    "backFlavor": "Your ruse is up. Tailor Agents begin pouring into the facility like a swarm of angry bees. Better move fast – you don't want to have to fight their queen."
+  },
+  "78113": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "In moments, the place is crawling with Tailor agents out for blood. Small comfort that they're just as harried and exhausted as you.",
+    "backFlavor": "A bloodied Agent Crispin staggers down the tunnel. \"WEST! You and your degenerate cronies better get out here right now, or I swear not even your damn juice will be able to put your sorry corpse back together when I'm done with ya!\"\nTailors rush to offer him support, but he steadies himself. \"I'm fine. We just need to finish this before that… thing… makes it down here.\"\n\"And kill those fakes with West!\""
+  },
+  "78114": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The Head Agent has seen through your ruse, and has come down to see you dead. But he's not doing all too well either…",
+    "backFlavor": "An explosion rocks the facility, and you hear screams from the tunnel.\nA horrible creature with a decaying face bends its neck through the lobby door, then bursts through a doorframe that can no longer contain it.\nHow can it still be alive? How can it have followed you?"
+  },
+  "78115": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "It's back. Tearing through the facility and ripping apart every living thing in sight. You need to find what you're looking for immediately.",
+    "backFlavor": "The entire facility shudders, and the walls and ceilings start to fall in. Suddenly aware of just how deep below the city you are, you make for the exit. You don't make it far before your way is blocked by the slowly rising mass of the First Among Many. Why can't this thing just DIE?\nA falling block of concrete knocks you to the ground. As the room collapses, you hear a strange voice chanting \"Ia! Ia! Yog-\""
+  },
+  "78116": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "The far wing of the Brook facility was where West performed his ungodly work of raising the dead. His key to the Alpha wing is within, but you'll have to be quick.",
+    "backFlavor": "West looks up at you in some surprise. \"Ah! Well, that was quicker than expected. The key was in the same drawer as always. Unfortunately, that's not the only thing we'll be needing. Dr. Robison is an eccentric sort - we'll be needing a sort of crest he made. My copy is missing, but Pickman's might still be in the Omega wings."
+  },
+  "78117": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Despite your desire to avoid the Miasma, you'll need to explore the Omega Wing of the Brook Facility for part of the key to the sealed Alpha door.",
+    "backFlavor": "With the crest assembled, the spell pushing it apart fades. You quickly rush to the Alpha laboratory. Rotating the crest into place, the lion's mouth reveals a keyhole. You insert West's key, and hear it click into place.\nSlowly, the door grinds open. Beyond is a seemingly endless hallway of doors. As it extends, the walls extrude in strange angles, and gravity seems to shift. At the far end of the hall, a door with a plaque reading \"Robison, Head of Conjecture\" is just barely visible."
+  },
+  "78118": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "You've unlocked the door at the back of the library. Now all that stands between you and the answers to everything is an endless hall of impossible geometry.",
+    "backFlavor": "You enter a room that must be Robison's research lab. But… while it's filled with all the ritual trappings you'd expect, there's no doctor and, more concerning, no other exit. You look all over the room, turning over shelves and desks in desperation.\n\"Quick, quick! Over here!\"\nYou look around, and it takes you a moment to notice a man's hand gesturing from the corner. The arm intersects a chalk drawing of a bridge on a solid wall.\n\"Please, hurry! It's nearly here!\"\nWith no other options, you move towards the chalk drawing and jump as the hand pulls you through the matter of the wall, and into somewhere very strange indeed…"
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

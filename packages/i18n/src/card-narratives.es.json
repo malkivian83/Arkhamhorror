@@ -235,6 +235,48 @@
     "flavor": "Por fin das con la solución. ¡Si puedes construir grandes barricadas en el camino del Sacerdote, se hará polvo tratando de atravesarlas!",
     "backFlavor": "Con un grito terrorífico, la cabeza del sacerdote es arrancada de su retorcido cuerpo. Un cuerpo que comienza a expulsar humo para acabar explotando en un sangriento desastre. Las visceras comienzan a ascender hacia el cielo...\nLos fieles entonan una última estrofa para después caer al suelo entre convulsiones."
   },
+  "78112": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "La Instalación Brook. Donde comenzó tu día y donde los Sastres llevan a cabo extraños experimentos. Si West dice la verdad, las respuestas que buscas deben estar tras las puertas del complejo, en el Laboratorio Alfa...",
+    "backFlavor": "Tu artimaña se ha venido abajo. Multitud de agentes de los Sastres se internan en la instalación como un enjambre de abejas furiosas. Más vale que te des prisa, no querrás enfrentarte a su reina."
+  },
+  "78113": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "En unos instantes, el lugar está lleno de Sastres sedientos de sangre. Lo único que te consuela es que ellos están tan apurados y exhaustos como tú.",
+    "backFlavor": "Un ensangrentado Agente Martínez aparece tambaleándose por el túnel. \"WEST! Será mejor que tú y tus degenerados compinches os larguéis ahora mismo de aquí, o juro que ni vuestro maldito brebaje será capaz de devolveros la vida cuando haya terminado con vosotros.\"\nLos Sastres acuden rápidamente a ayudarle, pero se endereza solo. \"Estoy bien. Simplemente tenemos que terminar con esto antes de que a esa... cosa... le de por bajar aquí.\"\n\"Y matad a esos traidores que van con West!\""
+  },
+  "78114": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "El agente al mando ha desmontado vuestra treta y ha bajado con la intención de veros muertos. Pero de momento no es que lo esté haciendo demasiado bien...",
+    "backFlavor": "Una explosión hace temblar la instalación y comienzas a oír gritos que vienen del túnel.\nUna horrible criatura con un rostro en descomposición asoma por la puerta del vestíbulo, entonces el marco de la puerta salta por los aires incapaz de contenerla.\n¿Cómo puede seguir vivo? ¿Y cómo ha conseguido dar contigo?"
+  },
+  "78115": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Ha vuelto. Atravesando la instalación y arrasando con cada forma de vida que encuentra. Necesitas encontrar lo que has venido a buscar cuanto antes.",
+    "backFlavor": "La instalación entera se estremece y los techos y muros comienzan a ceder. De pronto, consciente de cuán profundo te encuentras bajo la ciudad, buscas desesperadamente una salida. No tardas mucho en caer en que tu camino se ve bloqueado por la enorme masa creciente del Primero de muchos. ¿Por qué no puede simplemente morir?\nUn escombro del techo te golpea y te deja noqueado en el suelo. Según el cuarto va hundiéndose, llega a tus oídos una extraña voz que entona \"¡Ia! ¡Ia! ¡Yog-...!\""
+  },
+  "78116": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Una lejana ala de la instalación Brook es donde West llevaba a cabo su impío trabajo de levantar a los muertos. Su llave para el ala Alfa está dentro, pero tienes que darte prisa.",
+    "backFlavor": "West te mira con sorpresa. \"¡Oh! Bueno, eso ha sido más rápido de lo que esperaba. La llave está en el mismo cajón de siempre. Desafortunadamente, no es lo único que vamos a necesitar. El Dr. Robison es un tipo excéntrico, pero vamos a necesitar una especie de blasón que hizo. El mío se perdió, pero seguro que el de Pickman estará todavía en el Laboratorio Omega.\""
+  },
+  "78117": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Pese a tu deseo de evitar el miasma, necesitáis explorar el ala Omega de la instalación Brook buscando la llave para abrir la puerta del ala Alfa.",
+    "backFlavor": "Con el blasón reunido, el hechizo que lo matenía separado se desvanece. Salís disparados hacia el Laboratorio Alfa. Al colocar el blasón en su lugar y girarlo, la boca del león revela una cerradura. Metes la llave de West y oyes un click sordo.\nLentamente la puerta se abre. Tras ella ves lo que parece ser un infinito pasillo lleno de puertas. Según avanzas, las paredes forman extraños ángulos y la gravedad parece cambiar. Al final del largo pasillo encuentras una puerta con una placa en la que apenas se puede leer: Robison Jefe de la Conjetura."
+  },
+  "78118": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Has desbloqueado la puerta tras la librería. Ahora todo lo que se interpone entre tú y las respuestas a todo lo que está ocurriendo es una galería sin fin de imposible geometría.",
+    "backFlavor": "Entras en una sala que debería ser el laboratorio de investigación de Robison, pero... mientras que está llena de todo tipo de objetos rituales y demás parafernalia que esperabas encontrar, resulta que no está el doctor, y peor aún, no hay salida. Investigas todo el recinto volcando cajones y estanterías desesperado.\n\"¡Rápido, rápido! ¡Por aquí!\"\nMiras alrededor y te lleva un momento vislumbrar la mano de un hombre haciéndote gestos desde una esquina. El brazo atraviesa la pared a través de un dibujo de tiza de lo que parece ser un puente.\nSin otras opciones te acercas al dibujo de tiza y lo atraviesas mientras la mano tira de ti hacia el interior del muro y hacia algo más extraño todavía..."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

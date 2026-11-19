@@ -57,7 +57,7 @@ it('connects campaign recordings to their exact narrative face and established v
     ceniza: 28,
     carnevale: 10,
     dunwich: 97,
-    plaguebearer: 39,
+    plaguebearer: 53,
   }
   const recordedFaces = new Set<string>()
   for (const [group, voiceId] of Object.entries(voices)) {
@@ -65,9 +65,17 @@ it('connects campaign recordings to their exact narrative face and established v
       `../../../../docs-proyecto/evidencias/${group}-cartas-narracion.json`,
       import.meta.url,
     )
-    const data = JSON.parse(readFileSync(source, 'utf8')) as typeof evidence
+    const data = JSON.parse(readFileSync(source, 'utf8')) as typeof evidence & {
+      pending?: { code: string; side: string; text: string }[]
+    }
     expect(data.voiceId).toBe(voiceId)
-    expect(data.files).toHaveLength(counts[group]!)
+    expect([...data.files, ...(data.pending ?? [])]).toHaveLength(counts[group]!)
+    for (const entry of data.pending ?? []) {
+      expect(cardNarration(entry.code, entry.side === 'back', 'es')).toBeNull()
+      expect(entry.text).toBe(
+        cardNarratives.es[entry.code]![entry.side === 'back' ? 'backFlavor' : 'flavor'],
+      )
+    }
     for (const entry of data.files) {
       const face = `${entry.code}:${entry.side}`
       expect(recordedFaces.has(face)).toBe(false)

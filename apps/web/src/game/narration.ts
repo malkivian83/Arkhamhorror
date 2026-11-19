@@ -1,3 +1,4 @@
+import plaguebearer from './plaguebearerNarrationManifest.json'
 import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
 import { cardNarration } from './cardNarration'
 
@@ -10,76 +11,7 @@ const storyCardBacks: Record<string, string> = edgeOfTheEarth.cardBacks
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   ...Object.fromEntries(edgeOfTheEarth.entries.map(({ key, file }) => [key, { es: file }])),
-  'story.plaguebearer.prologue': { es: 'plaguebearer-prologue-martin-osborne.mp3' },
-  'story.plaguebearer.intro': { es: 'plaguebearer-intro-martin-osborne.mp3' },
-  'story.plaguebearer.hidden': { es: 'plaguebearer-hidden-martin-osborne.mp3' },
-  'story.plaguebearer.reagent': { es: 'plaguebearer-reagent-martin-osborne.mp3' },
-  'story.plaguebearer.resolution1': { es: 'plaguebearer-resolution1-martin-osborne.mp3' },
-  'story.plaguebearer.resolution2': { es: 'plaguebearer-resolution2-martin-osborne.mp3' },
-  'story.plaguebearer.resolution3': { es: 'plaguebearer-resolution3-martin-osborne.mp3' },
-  'story.plaguebearer.night.intro': { es: 'plaguebearer-night-intro-martin-osborne.mp3' },
-  'story.plaguebearer.night.resolution1': {
-    es: 'plaguebearer-night-resolution1-martin-osborne.mp3',
-  },
-  'story.plaguebearer.night.resolution2': {
-    es: 'plaguebearer-night-resolution2-martin-osborne.mp3',
-  },
-  'story.plaguebearer.friends.section1': { es: 'plaguebearer-friends-section1-martin-osborne.mp3' },
-  'story.plaguebearer.friends.section2': { es: 'plaguebearer-friends-section2-martin-osborne.mp3' },
-  'story.plaguebearer.friends.section3': { es: 'plaguebearer-friends-section3-martin-osborne.mp3' },
-  'story.plaguebearer.friends.section4': { es: 'plaguebearer-friends-section4-martin-osborne.mp3' },
-  'story.plaguebearer.friends.hidden': { es: 'plaguebearer-friends-hidden-martin-osborne.mp3' },
-  'story.plaguebearer.friends.hiddenGift': {
-    es: 'plaguebearer-friends-hidden-gift-martin-osborne.mp3',
-  },
-  'story.plaguebearer.dawn.intro1': { es: 'plaguebearer-dawn-intro1-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.intro2': { es: 'plaguebearer-dawn-intro2-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.intro3': { es: 'plaguebearer-dawn-intro3-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.intro4': { es: 'plaguebearer-dawn-intro4-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.resolution1': { es: 'plaguebearer-dawn-resolution1-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.resolution2': { es: 'plaguebearer-dawn-resolution2-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.resolution3': { es: 'plaguebearer-dawn-resolution3-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.resolution4': { es: 'plaguebearer-dawn-resolution4-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.resolution5': { es: 'plaguebearer-dawn-resolution5-martin-osborne.mp3' },
-  'story.plaguebearer.dawn.resolution5Hidden': {
-    es: 'plaguebearer-dawn-resolution5-hidden-martin-osborne.mp3',
-  },
-  'story.plaguebearer.alive.section1': { es: 'plaguebearer-alive-section1-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section2': { es: 'plaguebearer-alive-section2-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section3': { es: 'plaguebearer-alive-section3-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section4': { es: 'plaguebearer-alive-section4-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section5': { es: 'plaguebearer-alive-section5-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section6': { es: 'plaguebearer-alive-section6-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section7': { es: 'plaguebearer-alive-section7-martin-osborne.mp3' },
-  'story.plaguebearer.alive.section8': { es: 'plaguebearer-alive-section8-martin-osborne.mp3' },
-  'story.plaguebearer.alive.perks': { es: 'plaguebearer-alive-perks-martin-osborne.mp3' },
-  'story.plaguebearer.alive.good': { es: 'plaguebearer-alive-good-martin-osborne.mp3' },
-  'story.plaguebearer.chorus.intro': { es: 'plaguebearer-chorus-intro-martin-osborne.mp3' },
-  'story.plaguebearer.chorus.introHidden': {
-    es: 'plaguebearer-chorus-intro-hidden-martin-osborne.mp3',
-  },
-  'story.plaguebearer.chorus.defeated': { es: 'plaguebearer-chorus-defeated-martin-osborne.mp3' },
-  'story.plaguebearer.chorus.defeatedHidden': {
-    es: 'plaguebearer-chorus-defeated-hidden-martin-osborne.mp3',
-  },
-  'story.plaguebearer.chorus.resolution1': {
-    es: 'plaguebearer-chorus-resolution1-martin-osborne.mp3',
-  },
-  'story.plaguebearer.chorus.resolution2': {
-    es: 'plaguebearer-chorus-resolution2-martin-osborne.mp3',
-  },
-  'story.plaguebearer.allied.intro': { es: 'plaguebearer-allied-intro-martin-osborne.mp3' },
-  'story.plaguebearer.allied.hibbs': { es: 'plaguebearer-allied-hibbs-martin-osborne.mp3' },
-  'story.plaguebearer.allied.store': { es: 'plaguebearer-allied-store-martin-osborne.mp3' },
-  'story.plaguebearer.allied.bank': { es: 'plaguebearer-allied-bank-martin-osborne.mp3' },
-  'story.plaguebearer.allied.library': { es: 'plaguebearer-allied-library-martin-osborne.mp3' },
-  'story.plaguebearer.allied.boarding': { es: 'plaguebearer-allied-boarding-martin-osborne.mp3' },
-  'story.plaguebearer.allied.shop': { es: 'plaguebearer-allied-shop-martin-osborne.mp3' },
-  'story.plaguebearer.allied.advertiser': {
-    es: 'plaguebearer-allied-advertiser-martin-osborne.mp3',
-  },
-  'story.plaguebearer.allied.docks': { es: 'plaguebearer-allied-docks-martin-osborne.mp3' },
-  'story.plaguebearer.allied.hidden': { es: 'plaguebearer-allied-hidden-martin-osborne.mp3' },
+  ...Object.fromEntries(Object.entries(plaguebearer).map(([key, file]) => [key, { es: file }])),
   'story.carnevale.intro': { es: 'carnevale-intro-salva.mp3' },
   'story.carnevale.noResolution': { es: 'carnevale-no-resolution-salva.mp3' },
   'story.carnevale.resolution1': { es: 'carnevale-resolution1-salva.mp3' },

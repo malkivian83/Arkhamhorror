@@ -8,7 +8,7 @@ Revisión de toda la campaña por consola: cuatro recorridos hasta el epílogo c
 
 Validación vigente: 73 casos de Corazón, recorridos de integración, regresiones de campaña, guardados, salas, presentación y narración; tipos de cartas/web/servidor, formato/lint y build web. Verificadas 670 caras EN/ES de la campaña con huella y miniatura. Invalidan estos resultados los cambios en las reglas, contratos, recursos o configuración afectados. Sin navegador; revisión visual manual pendiente.
 
-CI #404 falló en referencias de Picos/Ciudad/Corazón y escaneos ausentes. Corregidas ambas causas y superadas sus pruebas locales. Audios aplazados por petición expresa: 127 pasajes y 17 caras con textos completos preparados, sin llamadas a la API. Siguiente paso: revisión visual manual; locuciones cuando se facilite una API con créditos. El detalle anterior está en historial/106-confines-de-la-tierra.md.
+Locuciones completadas el 19/11/2026 con la API y el plan actualizado facilitados por la persona usuaria. Cubiertos los 127 pasajes y las 17 caras pendientes mediante 123 MP3 nuevos (106 de historia y 17 de cartas), 19 pasajes que reutilizan relatos idénticos y dos que usan el audio de sus reversos. El saldo al terminar Confines indicaba 34.406 créditos consumidos y 5.594 disponibles, usados posteriormente en el Portador de la Plaga. Commit y push de las locuciones autorizados el 19/11/2026. Pendientes la escucha y la revisión visual manual. El detalle anterior está en historial/106-confines-de-la-tierra.md.
 
 ## Hoja de ruta vigente
 
@@ -19,7 +19,7 @@ CI #404 falló en referencias de Picos/Ciudad/Corazón y escaneos ausentes. Corr
 - [x] Textos completos EN/ES, referencias de caos, escaneos y miniaturas.
 - [x] Selector, guardados y recorridos de integración hasta el final.
 - [ ] Revisión visual manual.
-- [ ] Locuciones pendientes, aplazadas hasta disponer de créditos.
+- [x] Locuciones de los pasajes y caras con texto completo.
 
 Las cartas de jugador de la expansión de investigadores siguen el flujo de
 importación (guía 59) y no bloquean la campaña.
@@ -32,14 +32,26 @@ de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
-Conservados y verificados 124 pasajes y 43 caras ya grabados con Salva
-(`hyKxCTlAqtnW188CgltM`). Quedan 127 pasajes y 17 caras por generar; los
-manifiestos incluyen el texto íntegro, destino y huella. No se han consumido
-créditos durante esta revisión.
+Conservadas las grabaciones anteriores con Salva (`hyKxCTlAqtnW188CgltM`).
+Los manifiestos cubren 259 pasajes (249 entradas de historia y diez que usan
+reversos de cartas) y 60 caras. No quedan textos pendientes de grabar.
+El generador reutiliza textos idénticos también dentro de la misma ejecución.
+Dos relatos de pilares se generaron además como reversos de cartas antes de
+detectar la coincidencia (403 caracteres adicionales enviados a la API). Sus
+copias de historia se retiraron de la entrega y ambos relatos usan ahora los
+reversos `08672` y `08673`.
+
+Verificadas seis pruebas de narración, integridad y ausencia de textos duplicados
+entre los 123 MP3 nuevos, conservación de las 167 entradas anteriores, formato y
+ESLint de los archivos de código editados. Una simulación del generador confirma
+una sola llamada a la API y un único MP3 para dos relatos idénticos. Tipos de la
+web correctos en la comprobación final del 19/11/2026. Los controles de narración
+se invalidan si cambian textos, audios, manifiestos o
+generador. La escucha queda pendiente de la persona usuaria.
 
 `node scripts/generate-edge-of-the-earth-audio.mjs --refresh` actualiza solo el
-inventario local. `--generate` se reserva para cuando la persona usuaria facilite
-una API con créditos; `--only=clave1,clave2` limita los pasajes seleccionados.
+inventario local. `--generate` reanuda usando la API y la cuota disponibles.
+`--only=clave1,clave2` limita los pasajes seleccionados.
 Para las cartas: `node scripts/generate-campaign-card-audio.mjs --campaign=edge-of-the-earth --refresh`.
 
 ## Fuentes revisadas

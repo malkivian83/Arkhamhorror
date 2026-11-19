@@ -22,7 +22,9 @@ it('serves each recorded face with its own text and the campaign voice', () => {
   expect(
     [...evidence.files, ...evidence.pending].map(({ code, side }) => `${code}:${side}`).sort(),
   ).toEqual(narrativeFaces.sort())
-  for (const entry of evidence.pending) {
+  const pending: Pick<(typeof evidence.files)[number], 'code' | 'side' | 'text' | 'inputHash'>[] =
+    evidence.pending
+  for (const entry of pending) {
     const card = edgeOfTheEarthCards[entry.code]!
     expect(entry.text).toBe(card[entry.side === 'back' ? 'backFlavor' : 'flavor'])
     expect(cardNarration(entry.code, entry.side === 'back', 'es')).toBeNull()

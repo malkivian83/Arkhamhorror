@@ -362,6 +362,130 @@
       "inputHash": "e812ff5ee848037219b3b171f028877225c9d43366ad8fca85121b0c8e73a66e",
       "bytes": 405881,
       "sha256": "9e247b9875b5969420994a97e0cdedb2f98f538463eff0604004fa2d8cac32fd"
+    },
+    {
+      "code": "78112",
+      "side": "front",
+      "text": "La Instalación Brook. Donde comenzó tu día y donde los Sastres llevan a cabo extraños experimentos. Si West dice la verdad, las respuestas que buscas deben estar tras las puertas del complejo, en el Laboratorio Alfa...",
+      "file": "78112-front.mp3",
+      "inputHash": "d34c0bc9542ad93bc1cdb24dab5220e2d246bf2fd6ce546be799864394e172c0",
+      "bytes": 264193,
+      "sha256": "69babc4f8fcf443728c0cca757d1e46a077998a7a0283e75f39c67d28206a17e",
+      "credits": 87
+    },
+    {
+      "code": "78112",
+      "side": "back",
+      "text": "Tu artimaña se ha venido abajo. Multitud de agentes de los Sastres se internan en la instalación como un enjambre de abejas furiosas. Más vale que te des prisa, no querrás enfrentarte a su reina.",
+      "file": "78112-back.mp3",
+      "inputHash": "a40dc429f73b776b46cf97ac2801b6d8e1a940a89030d336b58601899d4ae093",
+      "bytes": 272970,
+      "sha256": "99ca6d88761bb5d9f916695615a4154dd6a1b3ad01a48f65eec4f7c03d41429a",
+      "credits": 78
+    },
+    {
+      "code": "78113",
+      "side": "front",
+      "text": "En unos instantes, el lugar está lleno de Sastres sedientos de sangre. Lo único que te consuela es que ellos están tan apurados y exhaustos como tú.",
+      "file": "78113-front.mp3",
+      "inputHash": "c2d1a3d9e9ebd351b2fd797874ce01fa46aeec9024064ab0afbe1854f33ce57a",
+      "bytes": 198573,
+      "sha256": "36d7a3b5cacf7df8db89b57b1b7274d63525aeb7dcfea24a3025115843b60e8f",
+      "credits": 59
+    },
+    {
+      "code": "78113",
+      "side": "back",
+      "text": "Un ensangrentado Agente Martínez aparece tambaleándose por el túnel. \"WEST! Será mejor que tú y tus degenerados compinches os larguéis ahora mismo de aquí, o juro que ni vuestro maldito brebaje será capaz de devolveros la vida cuando haya terminado con vosotros.\"\nLos Sastres acuden rápidamente a ayudarle, pero se endereza solo. \"Estoy bien. Simplemente tenemos que terminar con esto antes de que a esa... cosa... le de por bajar aquí.\"\n\"Y matad a esos traidores que van con West!\"",
+      "file": "78113-back.mp3",
+      "inputHash": "dbb48f850bd67f4eafe8c0f72bd91241d9e8dba2086e5dd4c222ca2d93b498c3",
+      "bytes": 650387,
+      "sha256": "74bd7f6fe0e94f1edf86346cc309da178c49fcc05ba9261575b3d968192a350f",
+      "credits": 193
+    },
+    {
+      "code": "78114",
+      "side": "front",
+      "text": "El agente al mando ha desmontado vuestra treta y ha bajado con la intención de veros muertos. Pero de momento no es que lo esté haciendo demasiado bien...",
+      "file": "78114-front.mp3",
+      "inputHash": "f1f4ec2950cb9b96b754eec62db05393b5ee3515f6f8c955c52ac6c0f00ce20e",
+      "bytes": 186870,
+      "sha256": "ff49b8568470cb842ef9f4063b40a0fb6909497a95cad777b79d501d74ba9e49",
+      "credits": 62
+    },
+    {
+      "code": "78114",
+      "side": "back",
+      "text": "Una explosión hace temblar la instalación y comienzas a oír gritos que vienen del túnel.\nUna horrible criatura con un rostro en descomposición asoma por la puerta del vestíbulo, entonces el marco de la puerta salta por los aires incapaz de contenerla.\n¿Cómo puede seguir vivo? ¿Y cómo ha conseguido dar contigo?",
+      "file": "78114-back.mp3",
+      "inputHash": "33d537717c5d27f9c8d53e7b2645bb2503881cda3c19a14830ff5b7bc864d436",
+      "bytes": 411314,
+      "sha256": "975f899a61790ffb58792075df263ce6b39c37cb206b63d56c915248dff34c3c",
+      "credits": 124
+    },
+    {
+      "code": "78115",
+      "side": "front",
+      "text": "Ha vuelto. Atravesando la instalación y arrasando con cada forma de vida que encuentra. Necesitas encontrar lo que has venido a buscar cuanto antes.",
+      "file": "78115-front.mp3",
+      "inputHash": "029d813fae7ccb95f7404d21a35819ef0aa97cb3b272ad74aa481b9eb70c2fd1",
+      "bytes": 182273,
+      "sha256": "c713a82096c057cb1e67977169422d33f18559f111150480a3a8162a49849a5e",
+      "credits": 59
+    },
+    {
+      "code": "78115",
+      "side": "back",
+      "text": "La instalación entera se estremece y los techos y muros comienzan a ceder. De pronto, consciente de cuán profundo te encuentras bajo la ciudad, buscas desesperadamente una salida. No tardas mucho en caer en que tu camino se ve bloqueado por la enorme masa creciente del Primero de muchos. ¿Por qué no puede simplemente morir?\nUn escombro del techo te golpea y te deja noqueado en el suelo. Según el cuarto va hundiéndose, llega a tus oídos una extraña voz que entona \"¡Ia! ¡Ia! ¡Yog-...!\"",
+      "file": "78115-back.mp3",
+      "inputHash": "ab2f657023cc471f64086b5961bca29fb4a2b3a775df15ce64e934107edb1eb5",
+      "bytes": 653313,
+      "sha256": "30e202252d52e4f4c9fcda482240320bc7a5ef394ef6f4b6c2eb80fa527782a3",
+      "credits": 195
+    }
+  ],
+  "pending": [
+    {
+      "code": "78116",
+      "side": "front",
+      "text": "Una lejana ala de la instalación Brook es donde West llevaba a cabo su impío trabajo de levantar a los muertos. Su llave para el ala Alfa está dentro, pero tienes que darte prisa.",
+      "file": "78116-front.mp3",
+      "inputHash": "575a2bcd30d57b3eb0f09864fbad758be94c3b6e8f77901f7d423673e40cfda7"
+    },
+    {
+      "code": "78116",
+      "side": "back",
+      "text": "West te mira con sorpresa. \"¡Oh! Bueno, eso ha sido más rápido de lo que esperaba. La llave está en el mismo cajón de siempre. Desafortunadamente, no es lo único que vamos a necesitar. El Dr. Robison es un tipo excéntrico, pero vamos a necesitar una especie de blasón que hizo. El mío se perdió, pero seguro que el de Pickman estará todavía en el Laboratorio Omega.\"",
+      "file": "78116-back.mp3",
+      "inputHash": "02f162ed433ce674357140d44cb67a553f6e3a6ee3573cb8c23101f4b64d4716"
+    },
+    {
+      "code": "78117",
+      "side": "front",
+      "text": "Pese a tu deseo de evitar el miasma, necesitáis explorar el ala Omega de la instalación Brook buscando la llave para abrir la puerta del ala Alfa.",
+      "file": "78117-front.mp3",
+      "inputHash": "4bd95c0d41697ed3cdd860c978deb01e5b032e4857b6c4a5f110d52fc2af1fe7"
+    },
+    {
+      "code": "78117",
+      "side": "back",
+      "text": "Con el blasón reunido, el hechizo que lo matenía separado se desvanece. Salís disparados hacia el Laboratorio Alfa. Al colocar el blasón en su lugar y girarlo, la boca del león revela una cerradura. Metes la llave de West y oyes un click sordo.\nLentamente la puerta se abre. Tras ella ves lo que parece ser un infinito pasillo lleno de puertas. Según avanzas, las paredes forman extraños ángulos y la gravedad parece cambiar. Al final del largo pasillo encuentras una puerta con una placa en la que apenas se puede leer: Robison Jefe de la Conjetura.",
+      "file": "78117-back.mp3",
+      "inputHash": "0c4358360bee85e71dc78424b89d32fa931b3026c1c3f476f62028ee962222d6"
+    },
+    {
+      "code": "78118",
+      "side": "front",
+      "text": "Has desbloqueado la puerta tras la librería. Ahora todo lo que se interpone entre tú y las respuestas a todo lo que está ocurriendo es una galería sin fin de imposible geometría.",
+      "file": "78118-front.mp3",
+      "inputHash": "f72af1836c2e0c46006be352de30e8194fe870c6dad0396817c94671d10680a1"
+    },
+    {
+      "code": "78118",
+      "side": "back",
+      "text": "Entras en una sala que debería ser el laboratorio de investigación de Robison, pero... mientras que está llena de todo tipo de objetos rituales y demás parafernalia que esperabas encontrar, resulta que no está el doctor, y peor aún, no hay salida. Investigas todo el recinto volcando cajones y estanterías desesperado.\n\"¡Rápido, rápido! ¡Por aquí!\"\nMiras alrededor y te lleva un momento vislumbrar la mano de un hombre haciéndote gestos desde una esquina. El brazo atraviesa la pared a través de un dibujo de tiza de lo que parece ser un puente.\nSin otras opciones te acercas al dibujo de tiza y lo atraviesas mientras la mano tira de ti hacia el interior del muro y hacia algo más extraño todavía...",
+      "file": "78118-back.mp3",
+      "inputHash": "074138a981f0ab23ea9683bb688c2707b116b1feccb16d9b6ab33ccce62fcdc3"
     }
   ]
 }

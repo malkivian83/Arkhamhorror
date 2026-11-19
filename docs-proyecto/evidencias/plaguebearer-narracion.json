@@ -482,6 +482,317 @@
       "inputHash": "91c04a8740c625a1711917e5069befdbc73b70ca4246fdaf6c7fc091283eea8f",
       "sha256": "7d3f0051ef9f33f2d674bfcf4a50a7c872885b0dae5eae00bc75ba2c88b724b9",
       "bytes": 167644
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78037.lost",
+      "file": "plaguebearer-night-npc-78037-lost-martin-osborne.mp3",
+      "text": "Una mujer ríe. Un hombre grita. El colmado estalla en llamas.",
+      "characters": 61,
+      "inputHash": "c189b9c312754136f2b8f3794e1b1dad99588ba1c0d96e3cbde66559c641420c",
+      "sha256": "6ad0d05718ec7327e2258870edeb115d594811429929c2535267252d0f9120e9",
+      "bytes": 141313,
+      "credits": 24
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78031.saved",
+      "file": "plaguebearer-night-npc-78031-saved-martin-osborne.mp3",
+      "text": "A una orden de Abner, los trabajadores de los muelles comienzan a apilar cajones formando una barricada improvisada cerca del mayor de los almacenes. Los líderes del sindicato te miran mientras asienten justo antes de juntarse y empezar a establecer un sistema de turnos y guardias.",
+      "characters": 282,
+      "inputHash": "a4bdf683ae528e231b5bfab78059bbc021f304185260952135ba575c5dbbb9b2",
+      "sha256": "ba154cad823036e50627b5044d6c241a35516d2e9ee9d5592a5c9a49987f9e59",
+      "bytes": 379967,
+      "credits": 113
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78031.lost",
+      "file": "plaguebearer-night-npc-78031-lost-martin-osborne.mp3",
+      "text": "Abner hipa y tropieza con una nube de miasma bajo la luz de una farola. Antes de que puedas decir nada, un tentáculo con piel humana surge del río levantando a Abner por los pies y haciéndolo desaparecer en las aguas.",
+      "characters": 217,
+      "inputHash": "8083e5d6dfe4ed9f59062bc2fed8024274425a770394e8bc9535820f8371c209",
+      "sha256": "17d6d3f4b65ae46adc7463e00a2f073b72dcb3d2b6423e0e115f261ff56adeb6",
+      "bytes": 284255,
+      "credits": 87
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78032.saved",
+      "file": "plaguebearer-night-npc-78032-saved-martin-osborne.mp3",
+      "text": "Tan pronto como un hosco conserje quema lo que queda del horrible gas en la habitación, Doyle estampa un mueble con premios contra las puertas principales. Aliviado, el editor jefe se gira hacia ti: “Nunca podremos agradecerte lo suficiente tu ayuda. Mantendremos a la ciudad informada, pase lo que pase.”",
+      "characters": 305,
+      "inputHash": "9527468cdcc81f832ebd36acc6156de2f5a90db355ca839cab00c570c7dd523f",
+      "sha256": "49bd7d88b3c748f8d3597c06f48fb26d86a08429f3a3aceb73c2295510e37259",
+      "bytes": 379967,
+      "credits": 122
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78032.lost",
+      "file": "plaguebearer-night-npc-78032-lost-martin-osborne.mp3",
+      "text": "Jeffries, con su camiseta empapada en sangre y sus ojos con un brillo verde, atraviesa las puertas principales y comienza a gritar horribles blasfemias mientras desaparece en la noche.",
+      "characters": 184,
+      "inputHash": "b9687eca7fc82fab13c3b3e41d007e5bd14f6637c4e8bc0e0ff1b7f66c6937ba",
+      "sha256": "646a5fb57b569c32ef3ee4288703388437cff40b86bf7e59468308ed71c473ba",
+      "bytes": 245385,
+      "credits": 74
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78033.saved",
+      "file": "plaguebearer-night-npc-78033-saved-martin-osborne.mp3",
+      "text": "La Biblioteca Orne está extrañamente preparada para una eventualidad como ésta, con una enorme variedad de mortíferas defensas listas para ser desplegadas. Armitage, el bibliotecario jefe, que felizmente podrá justificar su existencia por algún tiempo más. Por el momento, te agradece el esfuerzo efusivamente.",
+      "characters": 310,
+      "inputHash": "7817c6c999da86c8996d0d61078c087b65be60b37aa2869a48a78e2815084dfd",
+      "sha256": "5c92b7733a0657c01e0e38571f28bff44dc6322686eb26e6deb81c0731e7e714",
+      "bytes": 409643,
+      "credits": 124
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78033.lost",
+      "file": "plaguebearer-night-npc-78033-lost-martin-osborne.mp3",
+      "text": "Aunque la Biblioteca Orne debería ser una fortaleza, sólo Henry Armitage no se basta para preparar las defensas. Los muros de la biblioteca se quiebran, después la sección prohibida y finalmente la cavidad torácica de Armitage.",
+      "characters": 227,
+      "inputHash": "a1f20d0385acdeab5bbb8605a6c7c64eae2d128ac4cd57ebcd1bf873c3d3f699",
+      "sha256": "9b34115a33f03307dfc9f56edd562dce60a3f29fa5b1bae1fc864989b7b8965c",
+      "bytes": 311840,
+      "credits": 91
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78034.saved",
+      "file": "plaguebearer-night-npc-78034-saved-martin-osborne.mp3",
+      "text": "Los nerviosos parroquianos del “Motel” terminan de armarse con palos y todo lo que tienen a su alcance tal como has hecho tú, mientras Hibb se esmera en apilar las últimas mesas contra las ventanas. “Amigo, te debo una. Trataré de unirme a ti durante la noche, una vez que esta chusma se haya calmado.”",
+      "characters": 302,
+      "inputHash": "7ae3d5f83fed9ca5c0f43a56e92713f934af75efbd7730df7eb57e68d277c02d",
+      "sha256": "7cadbed8dd383e36932e83f1d2ebd692baebeb4bb27581a7d793a5f37ea98a63",
+      "bytes": 392506,
+      "credits": 121
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78034.lost",
+      "file": "plaguebearer-night-npc-78034-lost-martin-osborne.mp3",
+      "text": "Un enorme grupo de ciudadanos de Arkham infectados consiguen arrinconar a Hibb, quien levanta su recortada y les apunta.\n\nPero tú sabes que no está cargada.",
+      "characters": 156,
+      "inputHash": "078c0b9ee39829e99296d8ccf887ec1eb5728e26eb335f3ac33078c44bf68d15",
+      "sha256": "bf6a42ba6e095997456a761ad3a42dade7372049162e706c4e24a32869c22834",
+      "bytes": 244967,
+      "credits": 62
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78035.saved",
+      "file": "plaguebearer-night-npc-78035-saved-martin-osborne.mp3",
+      "text": "“Atranque las ventanas de la planta superior si es tan amable, Señor Dean.” La vetusta Ma Matheson se dirige a ti con una sonrisa. “Me alegra mucho que llegaras para ayudar justo en el momento que lo hiciste. ¡Esos adoradores del demonio no pondrán un pie en mi hogar esta noche!”",
+      "characters": 280,
+      "inputHash": "91ea1aede11b3484e594c254669511de598f1ddba79666383aafc4809ae5938f",
+      "sha256": "b32777476720ce2eb759525cb6d83854ac7eda48747217a6a6380ba52ed1dad7",
+      "bytes": 379967,
+      "credits": 112
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78035.lost",
+      "file": "plaguebearer-night-npc-78035-lost-martin-osborne.mp3",
+      "text": "Ma Matheson clava en ti una mirada gélida a través de la ventana de la puerta principal de la pensión mientras varios cerrojos se cierran. Observas en un silencio pavoroso cómo una figura que empuña un cuchillo aparece tras ella.",
+      "characters": 229,
+      "inputHash": "ac3abeb1f88cfc36d5c2b06101f69a2aa7460818827d2f273ed35ccd0ab7823d",
+      "sha256": "9a17acf3ba36f082c49fe5821dc41d5238803271d23e5290ff66e874ca78421c",
+      "bytes": 351128,
+      "credits": 92
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78036.saved",
+      "file": "plaguebearer-night-npc-78036-saved-martin-osborne.mp3",
+      "text": "Miriam Beecher termina su encantamiento y las runas que ha grabado en el suelo cobran vida. El miasma es inmediatamente expulsado de la tienda, dejando un ambiente fresco y limpio. La mujer se recoge el pelo y asiente en tu dirección. “Bueno. No podría haberlo conseguido sin usted.”",
+      "characters": 283,
+      "inputHash": "d58b2045a74b8933bd29d99a96ecc607785de0758c76c4c5484770661ecf36d5",
+      "sha256": "c5cb9f7cdf8542e205704147f1a25695610f2835eb007b61bfa1d195e67f47ae",
+      "bytes": 379967,
+      "credits": 113
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78036.lost",
+      "file": "plaguebearer-night-npc-78036-lost-martin-osborne.mp3",
+      "text": "Miriam Beecher trabaja frenéticamente tratando de finalizar un encantamiento dibujando un círculo ritual. Un pútrido brazo vendado surge en la penumbra tras ella y le tapa la boca. La tienda se sume en las tinieblas.",
+      "characters": 216,
+      "inputHash": "89af60f1cbd25fb736e664b2723f3056eb5c1bce2ab9eb8a5b209f90085e0214",
+      "sha256": "fcfe96a6c3233f57ea9a8866520a98d7a3abf10bf55bf422cf47a04dccabf635",
+      "bytes": 325215,
+      "credits": 86
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78037.saved",
+      "file": "plaguebearer-night-npc-78037-saved-martin-osborne.mp3",
+      "text": "Las estanterías de la tienda, colocadas contra puertas y ventanas, llenas hasta arriba de mercancía deberían ser más que suficientes para detener a cualquier extraña criatura. Aun así, Sara y Davy se afanan en seguir llenando las estanterías con más cosas. “¡Esto les detendrá! ¿Verdad?”",
+      "characters": 287,
+      "inputHash": "56f8a15ef91261528eaeeeed352f4e2c224921676edc2a74e3b7fa6ea7c3f037",
+      "sha256": "60339d6ca18d1b2fd276f501706bd70762835a7f2b1367c0cca485f7dc05770b",
+      "bytes": 379967,
+      "credits": 115
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78038.saved",
+      "file": "plaguebearer-night-npc-78038-saved-martin-osborne.mp3",
+      "text": "Viendo como diriges las defensas, el Vicepresidente te invita a entrar en su opulento despacho. “Aquí en el First National apreciamos enormemente el trabajo que está realizando por Arkham. Estoy en deuda con usted y yo siempre pago mis deudas.”",
+      "characters": 244,
+      "inputHash": "b2e74e979a9afa958985e25067f17a1a0fa0bb3e214ef8902cd5c9f134f08e5a",
+      "sha256": "45c222f4a5b5d0a909a53c2c6ea9812356419e7b80ba4688e4af116e043e7fab",
+      "bytes": 277567,
+      "credits": 98
+    },
+    {
+      "key": "story.plaguebearer.night.npc.78038.lost",
+      "file": "plaguebearer-night-npc-78038-lost-martin-osborne.mp3",
+      "text": "Mientras pierdes el tiempo con minucias, oyes los torturados gritos de aquellos ciudadanos que se sentían a salvo tras los muros de cemento del First National. Sus gritos te remueven hasta la médula.",
+      "characters": 199,
+      "inputHash": "0e024ae78351cf5ea82206584ca7296d3365305d42790a42c8faa38ccad2bc8a",
+      "sha256": "6dd53126a0a307eb06ac5b68f389273060d88c70bdccaeb337be6f76a0179956",
+      "bytes": 261267,
+      "credits": 80
+    },
+    {
+      "key": "story.plaguebearer.history.lesson1",
+      "file": "plaguebearer-history-lesson1-martin-osborne.mp3",
+      "text": "Robison anda junto a ti por una sinuosa senda y comienza a hablarte. “Déjeme comenzar con una lección de historia. La realidad es bastante más complicada de lo que usted o yo pudiéramos haber creído alguna vez. Hay entidades y especies de tal magnitud y poder que la humanidad palidece en comparación. Pero todos los seres comparten la misma propensión al conflicto. Eones atrás hubo una entidad, un Primigenio, conocido como Baalshandor. Imagínelo como un retorcido dios de la vida. Mientras muchos de los Primigenios crearon seres a su imagen y semejanza, Baalshandor encontró su nicho en el caos de la evolución. Gérmenes, virus, bacterias, todos eran sus pequeños.\n\nLas enfermedades eran tanto sus herramientas como sus hijos. Cualquier ser inferior que se infectara se encontraría sirviendo los designios del Portador de la Plaga. Muchos Primigenios aborrecían estas creaciones. Un ser llamado Cthugha, obsesionado con la pureza, estaba particularmente ofendido, hasta tal punto de comenzar una guerra contra Baalshandor.\n\nEra un empate técnico. Baalshandor podía corromper casi cualquier cosa y el fuego de Cthugha podía incinerar cualquier impureza. Así que el perspicaz Cthugha pidió ayuda. Un antiguo pacto fue sellado con una entidad de la cual no diré su nombre. Llamémosle El Rey. Cthugha vería a su peor enemigo derrotado y el Rey obtendría el control de la peste de Baalshandor. Juntos, Cthugha y el Rey destruyeron a los ejércitos de Baalshandor. Pero Baalshandor no podía ser destruido. Así que fabricaron una prisión más allá de todas las dimensiones. Ataría a Baalshandor más allá de la realidad, de manera que, incluso con todo su poder, sólo migajas de su virulencia pudieran llegar a atravesarla. Para liberar a Baalshandor se necesitaría un gigantesco sacrificio de sus seguidores. Y como sus creaciones serían purgadas antes de que esto llegara a ocurrir, los Primigenios creyeron que la prisión era irrompible.\n\nPero me temo que, por ayudar a mi colega en busca de conocimiento, realicé peligrosos rituales para aprovechar el poder de Baalshandor. Créeme cuando te digo que lo lamento profundamente. No sólo le corrompió, si no que de alguna manera consiguió hacerlo volver de su destierro a manos de Cthugha y compañía. Se convirtió en un avatar de Baalshandor en la Tierra y extendió la bacteria por la ciudad. Que la ciudad vaya a ser quemada hasta los cimientos no me consuela.\n\nA través de la eras, cada vez que la sangre de Baalshandor ha fluido por nuestra realidad, el Rey y la Llama han estado allí para desbaratar todo lo que ha intentado. Incluso ahora, están preparando un ataque para destruir Arkham y prevenir su liberación. La ciudad caería, pero le pararían los pies.\n\nSin embargo ahora, Baalshandor emergerá de las cenizas de Arkham. Sus hijos serán incontables. En cuestión de horas, la Tierra será suya. Y sólo tú puedes detenerle”.\n\nTe pierdes en tus pensamientos por un instante, luego te tambaleas conmocionado, aterrorizado por lo que ves. Te encuentras en un anillo de piedra rodeando una terrorífica masa de esferas y ojos.\n\n“Es una de las muchas formas de mi Maestro. Como un gesto de disculpa por mi parte, puedes realizarle una pregunta. Puede elegir responderte más, pero no olvides que no todos sus ofrecimientos son gratis”.",
+      "characters": 3279,
+      "inputHash": "dfe4c61e445e19cd244ade4e6638b0dd455a610ed1e4abe235c81c3d8242608a",
+      "sha256": "98bc10b3a524980189dd45f72153ffc25d35aef013f6f8b378bd440ffe0a2677",
+      "bytes": 4098968,
+      "credits": 1312
+    },
+    {
+      "key": "story.plaguebearer.history.portals",
+      "file": "plaguebearer-history-portals-martin-osborne.mp3",
+      "text": "Yog-Sothoth es la llave de la puerta. Él sabe por dónde se abrieron paso los Primigenios en la antigüedad y por dónde lo volverán a hacer ahora.",
+      "characters": 144,
+      "inputHash": "30cf8f27307a4ed4ac70d6eb24db45d72a15c7c59aa65d5a3dc3dbf6f62bcb0b",
+      "sha256": "e0f44168a72359f02e3c2216f6189d87526e0978ce09d91371e4991cb52a3800",
+      "bytes": 189796,
+      "credits": 58
+    },
+    {
+      "key": "story.plaguebearer.history.first",
+      "file": "plaguebearer-history-first-martin-osborne.mp3",
+      "text": "Hay una fórmula para convocar a esa sombra y otra para derrotarla; y ha sido tan perfeccionada que puede ser enseñada con éxito.",
+      "characters": 128,
+      "inputHash": "8d9233a77a5e573967d7a9417eaa4068faf9c5fee92dcbda05ab31856c9f1453",
+      "sha256": "410c8b3aaf853133ef47733d781c0a97a11fe7cf7decf389dcd1375bcda90fee",
+      "bytes": 160121,
+      "credits": 51
+    },
+    {
+      "key": "story.plaguebearer.history.baalshandor",
+      "file": "plaguebearer-history-baalshandor-martin-osborne.mp3",
+      "text": "No está muerto lo que puede yacer eternamente, y con el paso de extraños eones, incluso la muerte puede morir.",
+      "characters": 110,
+      "inputHash": "98fc4bf6bdfb2f13288c32e0f845fd9ef42d8aaf0d354c5243a982b924a17e22",
+      "sha256": "e60ffdfc44577721d992898ce06daf2fe41dea26a73dac7150e6a7b6a1685183",
+      "bytes": 148000,
+      "credits": 44
+    },
+    {
+      "key": "story.plaguebearer.history.lesson2",
+      "file": "plaguebearer-history-lesson2-martin-osborne.mp3",
+      "text": "“Espero que hayáis encontrado las respuestas que buscabais. Vuestro tiempo aquí se agota rápido, a no ser que prefiráis abandonar esta locura y quedaros conmigo por la eternidad infinita”.\n\nNiegas con la cabeza. Arkham está más en peligro de lo que nunca ha estado. Y sólo tú tienes el conocimiento necesario para detener lo que está por venir.\n\nRobison musita unas pocas palabras y las estrellas se desvanecen del cielo, seguidas de toda la luz en este reino.",
+      "characters": 460,
+      "inputHash": "d6797b2d565e07d91ff37c987da59032193f573531d8ec0b47b156e102861224",
+      "sha256": "d7890edb90209d9d8e7fb9cbfb0cf432b29a9bfe96c63d6a3177a945162cc371",
+      "bytes": 550077,
+      "credits": 184
+    },
+    {
+      "key": "story.plaguebearer.noon.intro1",
+      "file": "plaguebearer-noon-intro1-martin-osborne.mp3",
+      "text": "11:43 a. m.\n\nTe aproximas con cuidado al motel. Algunos agentes están demasiado ocupados intentando controlar la situación como para notar que te aproximas, y no te lleva mucho encontrar un sitio para colarte por la puerta de atrás.",
+      "characters": 232,
+      "inputHash": "b6fd48894c9c64f45db5022f3d0537474e085cb4e12eb6d72fa4af4e364c77e7",
+      "sha256": "94c8ddc1d0a524ca4527ac82757e800a3238759d2cf7b3e1265ec3f51bc86980",
+      "bytes": 312258,
+      "credits": 93
+    },
+    {
+      "key": "story.plaguebearer.noon.intro2",
+      "file": "plaguebearer-noon-intro2-martin-osborne.mp3",
+      "text": "Buscas por las habitaciones de detrás. En la bodega, detrás de una estantería, encuentras una trampilla que te conduce a un túnel que te resulta familiar. Parece que Hibb te estaba mintiendo.",
+      "characters": 191,
+      "inputHash": "a2a787d2d5241e7145fcae1fadc6dbfa64c2caece8351436577c0245d06e9e9d",
+      "sha256": "98d2a930c9422a89aaf164378135c2dbe7585e0fa2571bbc89bf5543c6daa7ad",
+      "bytes": 267118,
+      "credits": 76
+    },
+    {
+      "key": "story.plaguebearer.noon.intro3",
+      "file": "plaguebearer-noon-intro3-martin-osborne.mp3",
+      "text": "Desciendes rápidamente por el túnel, tan rápido que de pronto te ves rodeado por agentes de los Sastres que te piden que entregues las armas. Un hombre con una sonrisa de tiburón y un cigarro en la mano sonríe. \"Bienvenido a la instalación Brook. ¿Últimas palabras?\".",
+      "characters": 267,
+      "inputHash": "7b9d15e155719e6847389057b3a0ddffa326132d04796c14234a2025839d3152",
+      "sha256": "dfb7f87dcc06edb43e337e704f89bf74a6eb170abf43c592f20fea2cf2e69e2a",
+      "bytes": 379967,
+      "credits": 107
+    },
+    {
+      "key": "story.plaguebearer.noon.intro4",
+      "file": "plaguebearer-noon-intro4-martin-osborne.mp3",
+      "text": "\"¡Calma, Martínez! Aquí estamos todos en el mismo bando. Estos son Sastres encubiertos. Han estado trabajando para mí, haciendo labores de vigilancia\".\n\nGreyson se coloca entre vosotros y el tipo ceñudo.\n\n\"¿Y cómo es que no he oído hablar de ellos antes?\".\n\n\"Somos una organización clandestina, Martínez. Sólo nos cuentan lo básico. No necesito que te guste. Sólo necesito que nos dejes tiempo para bajar ahí abajo y conseguir que West acabe su trabajo\".\n\nDespués de un momento de tensión, los agentes os permiten el paso. Greyson os hace avanzar y junto con West entráis en el vestíbulo de la instalación. \"No se lo agradezcáis demasiado pronto\" dice West. \"Tenemos unos 30 minutos antes de que se den cuenta de que les he mentido\".",
+      "characters": 733,
+      "inputHash": "7944f63619a764cb11b7bef7a01d6eed55cf818ee721419abf8fbac265e22631",
+      "sha256": "ce178a43ce337c6d8b9c734f62ab50a37bcf24eba0311fcde4ec22a202aa5f4c",
+      "bytes": 964692,
+      "credits": 293
+    },
+    {
+      "key": "story.plaguebearer.noon.intro5",
+      "file": "plaguebearer-noon-intro5-martin-osborne.mp3",
+      "text": "La voz de Herbert West se escucha por encima del alboroto. \"¡Estúpidos! ¿Es que no sois capaces de reconocer a mis socios? No voy a ser capaz de encontrar una solución a vuestro problema sin mis vitales asistentes\".\nDespués de un momento de tensión, los agentes os permiten el paso. West os hace avanzar y te sigue dentro del vestíbulo de la instalación. \"No me lo agradezcáis demasiado pronto. Tenemos unos 30 minutos antes de que se den cuenta de que les he mentido\".",
+      "characters": 469,
+      "inputHash": "7f0a35990925d9276c9c8cbcc8301093afec3adb498c962c1b262f2c64ffc4e1",
+      "sha256": "ed71a37d100ad176c43688798ad9950a634701e3605f0b48e366f7c565f9516c",
+      "bytes": 556764,
+      "credits": 188
+    },
+    {
+      "key": "story.plaguebearer.noon.intro6",
+      "file": "plaguebearer-noon-intro6-martin-osborne.mp3",
+      "text": "West frunce el ceño. \"¿Habéis venido hasta mí buscando una solución a todo esto? Pues bien, no la tengo. Trato día a día con la vida y la muerte, lo que está ocurriendo aquí está más allá de ambas. Pickman debería haberlo sabido, pero ahora está fuera de juego. Pero aquí tenemos un aliado común, Robison. Avezado en conocimientos arcanos. Diría que está como una cabra si no fuera por sus resultados. El comité financió su investigación sobre supuestos seres que le ofrecían conocimiento. Un día vino fanfarroneando de que por el precio adecuado podría obtener la respuesta a cualquier pregunta. Si podemos llegar a su laboratorio privado, tal vez podamos obligarle a demostrar si eso es cierto. Desgraciadamente, el hombre es un paranoico. Su ala de investigación está protegida por todo tipo de cerraduras y barreras. Afortunadamente se dónde podemos encontrar una de las llaves\".\n\nExpresas tu confusión a West. ¿Ala de investigación? No viste ningún ala de investigación ayer, y eso que exploraste la instalación de arriba abajo.\n\n\"¿Seguro?\" Dice West mientras empuja un panel de la pared. Detrás hay una habitación del pánico llena de suministros. \"Bueno, vosotros sois los expertos\".",
+      "characters": 1189,
+      "inputHash": "a474ac25aabd6cf115a945053f2279a8a5c222844eec5e39d57da46b0f5f38c4",
+      "sha256": "944f3b78ed5a69ddc73bd81170246d3bf13febf9faa30cff187dad549a4352f8",
+      "bytes": 1490903,
+      "credits": 476
+    },
+    {
+      "key": "story.plaguebearer.noon.defeated",
+      "file": "plaguebearer-noon-defeated-martin-osborne.mp3",
+      "text": "Tu mente reposa en el limbo que hay entre el desvanecimiento y el letargo. Sientes la fría piedra debajo de ti. Tratas de abrir un ojo, pero sólo atisbas el frío vacío del espacio.\n\nTe incorporas y lo que ves a tu alrededor te deja estupefacto. Te encuentras en lo que parece ser uno de los infinitos y estrechos caminos entrelazados que atraviesan una aterradora nada adornada de estrellas.\n\nA tu alrededor, horribles voces cantan suavemente y te esfuerzas por escuchar. \"¡Ia! ¡Ia! ¡Yog-Sothoth!\". Te das cuenta, no sin cierta desazón, de que lo que parecían estrellas en el horizonte, no lo son. Son en realidad ojos.\n\n\"Bueno, podría haber ido mejor\". Un hombre delgado, con una camisa hecha jirones y gafas, se acerca hacia ti. \"Vamos. Tenemos... mucho de lo que hablar\".",
+      "characters": 774,
+      "inputHash": "a02c78253ed4f05f638425af1878ff1beb7126c03334a06b2fe8dc171ea51ad2",
+      "sha256": "e587933cfa80102822665eec69e56ae923a46a421e7179be8352271259b31c76",
+      "bytes": 992278,
+      "credits": 310
+    },
+    {
+      "key": "story.plaguebearer.noon.threshold",
+      "file": "plaguebearer-noon-threshold-martin-osborne.mp3",
+      "text": "Sobrevives de nuevo, más allá de tu propósito. Qué alimañas tan inflexibles. Se ha interesado. No creas en sus falsas esperanzas. No puedes detener lo que está por venir. Ni siquiera controlas tu carne. Cede a tu mezquina mortalidad y MUERE.",
+      "characters": 241,
+      "inputHash": "1f390a08ec0dee40f44ac2a5f392a06eabb6502f17e2a8b9496d2c9211ef6371",
+      "sha256": "a105a4d631e5f3bcdaaa3a5525bdd160e3572ad21fbfc5ae68b90d426a384d99",
+      "bytes": 348621,
+      "credits": 96
+    },
+    {
+      "key": "story.plaguebearer.noon.resolution1",
+      "file": "plaguebearer-noon-resolution1-martin-osborne.mp3",
+      "text": "El delgado hombre se presenta como Robison. \"Me estaba buscando, ¿verdad? Yo también le buscaba a usted. Mi Maestro está preocupado por los acontecimientos que están teniendo lugar en Arkham\".\n\nAntes de que puedas preguntarle nada, él responde. \"Llegué a un acuerdo... con el creador de este reino. Digamos sólo que mi supervivencia estaba en peligro y él era la clave. Usted también está en deuda con él. Usted habría perecido también al colapsar mi ala de investigación si él no le hubiera sacado de allí.\n\nPero vamos al grano. Supongo que ha llegado hasta aquí para escuchar lo que sé\".",
+      "characters": 589,
+      "inputHash": "641613dea1588334ae6f722b0c450e00c21d4e77626c90e4e3d2626b4290b8c3",
+      "sha256": "36f3d68b4b6373ad261e642f3cea7d90e5998a668d2d3c98f88f76832d3a7b8d",
+      "bytes": 692183,
+      "credits": 236
+    },
+    {
+      "key": "story.plaguebearer.noon.resolution2",
+      "file": "plaguebearer-noon-resolution2-martin-osborne.mp3",
+      "text": "Tus ojos desenfocan la mirada mientras eres transportado en lo que parece ser una infinita camilla de cemento. Pasa una eternidad y la única sensación es la mano que te empuja.\n\nDe pronto, algo te impele fuera de donde estás y tropiezas. Te detienes justo al borde de un precipicio. Cuando observas, puedes ver incontables caminos estrechos entrelazados de piedra suspendidos como por arte de magia en el vacío del espacio.\n\n\"Bienvenido al reino de mi Maestro\". Un delgado hombre con una camisa harapienta y gafas está delante de ti, sobre los estrechos caminos, asiente levemente. \"Soy el Dr. Robison. Me estaba buscando, ¿verdad? Yo también le buscaba a usted. Venga, le explicaré lo que sé\".",
+      "characters": 694,
+      "inputHash": "e5a75636224d6a0a7447e6c38a879bb704394b953350b5a1fd51cc89c8f39b9b",
+      "sha256": "972a4c85dc95383851a64c40f43b885797d8b8afd02af013c961d90cecffe0ab",
+      "bytes": 865218,
+      "credits": 278
     }
-  ]
+  ],
+  "pending": []
 }

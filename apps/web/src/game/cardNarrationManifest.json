@@ -155,6 +155,22 @@
     "front": "78087-front.mp3",
     "back": "78087-back.mp3"
   },
+  "78112": {
+    "front": "78112-front.mp3",
+    "back": "78112-back.mp3"
+  },
+  "78113": {
+    "front": "78113-front.mp3",
+    "back": "78113-back.mp3"
+  },
+  "78114": {
+    "front": "78114-front.mp3",
+    "back": "78114-back.mp3"
+  },
+  "78115": {
+    "front": "78115-front.mp3",
+    "back": "78115-back.mp3"
+  },
   "82002": {
     "front": "82002-front.mp3"
   },
@@ -774,5 +790,40 @@
   "08629": {
     "front": "08629-front.mp3",
     "back": "08629-back.mp3"
+  },
+  "08659": {
+    "front": "08659-front.mp3",
+    "back": "08659-back.mp3"
+  },
+  "08660": {
+    "front": "08660-front.mp3",
+    "back": "08660-back.mp3"
+  },
+  "08661": {
+    "front": "08661-front.mp3",
+    "back": "08661-back.mp3"
+  },
+  "08662": {
+    "front": "08662-front.mp3",
+    "back": "08662-back.mp3"
+  },
+  "08663": {
+    "front": "08663-front.mp3",
+    "back": "08663-back.mp3"
+  },
+  "08671": {
+    "front": "08671-front.mp3",
+    "back": "08671-back.mp3"
+  },
+  "08672": {
+    "front": "08672-front.mp3",
+    "back": "08672-back.mp3"
+  },
+  "08673": {
+    "front": "08673-front.mp3",
+    "back": "08673-back.mp3"
+  },
+  "08681": {
+    "back": "08681-back.mp3"
   }
 }

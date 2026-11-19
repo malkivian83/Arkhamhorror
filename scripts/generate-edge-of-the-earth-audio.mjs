@@ -57,7 +57,9 @@ if (!generate && !process.argv.includes('--refresh')) {
     const textSha256 = hash(text)
     const existing =
       previous?.voiceId === voiceId && previous.model === model
-        ? previous.entries.find((entry) => entry.textSha256 === textSha256)
+        ? [...evidence.entries, ...previous.entries].find(
+            (entry) => entry.textSha256 === textSha256,
+          )
         : null
     if (
       existing?.textSha256 === textSha256 &&

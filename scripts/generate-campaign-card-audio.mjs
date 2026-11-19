@@ -39,6 +39,7 @@ if (selected && !(selected in groups)) throw new Error('Campaña desconocida')
 const manifestPath = 'apps/web/src/game/cardNarrationManifest.json'
 const root = 'apps/web/public/local-assets/cards/audio/es'
 const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+const useAvailableQuota = process.argv.includes('--available')
 if (process.argv.includes('--generate')) {
   if (process.argv.includes('--key-stdin')) {
     let key = ''
@@ -136,6 +137,7 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
   if (typeof quota.character_limit !== 'number' || typeof quota.character_count !== 'number')
     throw new Error('Cuota desconocida')
   let remaining = Math.max(0, quota.character_limit - quota.character_count)
+  let creditRate = 1
   console.log(`${group}: ${remaining} caracteres disponibles`)
   const evidencePath = `docs-proyecto/evidencias/${group}-cartas-narracion.json`
   const evidence = existsSync(evidencePath)
@@ -146,6 +148,9 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
     JSON.stringify(evidence.settings) !== JSON.stringify(settings)
   )
     throw new Error(`Configuración modificada: ${group}`)
+  const previousCost = evidence.files.findLast((entry) => entry.credits > 0)
+  if (useAvailableQuota && previousCost)
+    creditRate = Math.ceil((previousCost.credits / previousCost.text.length) * 10) / 10
   mkdirSync(root, { recursive: true })
   for (const entry of entries) {
     const inputHash = hash(JSON.stringify({ text: entry.text, voiceId, ...settings }))
@@ -157,15 +162,21 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
     } else {
       const equivalent = evidence.files.find((f) => f.inputHash === inputHash)
       let bytes
+      let credits = 0
       if (equivalent) {
         bytes = readFileSync(join(root, equivalent.file))
         if (hash(bytes) !== equivalent.sha256)
           throw new Error(`Huella distinta: ${equivalent.file}`)
       } else {
-        if (entry.text.length > remaining)
+        const estimatedCredits = useAvailableQuota
+          ? Math.floor(entry.text.length * creditRate)
+          : entry.text.length
+        if (estimatedCredits > remaining) {
+          if (useAvailableQuota) continue
           throw new Error(
             `Cuota insuficiente para ${entry.file}: ${remaining} disponibles, ${entry.text.length} necesarios`,
           )
+        }
         const response = await fetch(
           `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`,
           {
@@ -175,15 +186,29 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
             signal: AbortSignal.timeout(120000),
           },
         )
-        if (!response.ok) throw new Error(`${entry.file}: ElevenLabs HTTP ${response.status}`)
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}))
+          if (useAvailableQuota && error.detail?.status === 'quota_exceeded') continue
+          throw new Error(`${entry.file}: ElevenLabs HTTP ${response.status}`)
+        }
         if (!response.headers.get('content-type')?.includes('audio'))
           throw new Error('Respuesta sin audio')
         bytes = Buffer.from(await response.arrayBuffer())
         if (bytes.length < 1000) throw new Error('Audio incompleto')
-        remaining -= entry.text.length
+        const costHeader = useAvailableQuota ? response.headers.get('character-cost') : null
+        credits = costHeader === null ? entry.text.length : Number(costHeader)
+        if (!Number.isFinite(credits) || credits < 0) throw new Error('Coste desconocido')
+        remaining -= credits
+        if (credits > 0) creditRate = Math.ceil((credits / entry.text.length) * 10) / 10
       }
       writeFileSync(path, bytes)
-      evidence.files.push({ ...entry, inputHash, bytes: bytes.length, sha256: hash(bytes) })
+      evidence.files.push({
+        ...entry,
+        inputHash,
+        bytes: bytes.length,
+        sha256: hash(bytes),
+        ...(useAvailableQuota ? { credits } : {}),
+      })
     }
     manifest[entry.code] ??= {}
     manifest[entry.code][entry.side] = entry.file
