@@ -1,6 +1,6 @@
 # Continuación de la importación
 
-- Lote 151: `research-commitments`, sobre `e27d766c`; cierre «Añade nueve cartas de investigación y compromiso». Nueve códigos y diseños estándar nuevos, cero vinculadas y reediciones; [detalle](151-investigacion-y-compromisos.md). Reglas, presentación e imágenes EN/ES y «Novedades» actualizados.
+- Lote 151: `67be2d74`, `research-commitments`, sobre `e27d766c`; cierre «Añade nueve cartas de investigación y compromiso». Nueve códigos y diseños estándar nuevos, cero vinculadas y reediciones; [detalle](151-investigacion-y-compromisos.md). Reglas, presentación e imágenes EN/ES y «Novedades» actualizados.
 - Acumulado: 1571 cartas con comportamiento; 554 códigos históricos pendientes, 196 estándar con impresión. 6547 escaneos y miniaturas; las 18 altas verificadas por huella. Fuentes e inventarios históricos conservados; no repetir el SSR sin resolver su transporte.
 - Verificación: motor/cartas/importación, 661 archivos y 7676 casos correctos; cierre de las 35 reglas del lote correcto. Web: 19 casos de presentación, compra y guardado; guardados/deshacer existentes: 39. Tipos cards/engine, lint, huellas y duplicados correctos. Tipos y build web correctos. Cambios en búsquedas, compromisos, iconos, propiedad, destinos de cartas, registro, recursos o dependencias invalidan los controles afectados.
 - Git: `main`, sin divergencia al último fetch. `pull --rebase` impedido por cambios locales; conservar íntegro el trabajo ajeno de audios, incluido su índice preparado. El commit del lote incluye solo sus rutas.
