@@ -4,6 +4,7 @@ import {
   enemyBehavior,
   getInvestigator,
   allPlayerCardDefs,
+  playerCardBehavior,
   playableCards,
   scenarioBehavior,
   type Difficulty,
@@ -623,7 +624,13 @@ describe('Dim Carcosa: chaos tokens, locations and encounter cards', () => {
 
   it('Realm of Madness: discard cards worth your horror, or take 2 horror', () => {
     const cards = allPlayerCardDefs()
-      .filter((d) => d.type === 'event' && !d.weakness && (d.cost ?? 0) >= 1)
+      .filter(
+        (d) =>
+          d.type === 'event' &&
+          !d.weakness &&
+          (d.cost ?? 0) >= 1 &&
+          !playerCardBehavior(d.code)?.handReactions,
+      )
       .slice(0, 2)
       .map((d) => d.code)
     let state = prep(

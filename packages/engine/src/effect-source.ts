@@ -59,6 +59,7 @@ export function messageSource(s: GameState, m: Message): string | undefined {
   if (m.type === 'UseAbility') {
     const card = [
       ...Object.values(s.assets),
+      ...s.investigators.map((i) => ({ ...i, code: i.id })),
       ...Object.values(s.treacheries),
       ...Object.values(s.enemies),
       ...Object.values(s.placedAssets ?? {}),

@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "fieldSupport": {
+        "title": "Sustituciones de robo y apoyo en la expedición",
+        "cards": "Doce diseños y niveles nuevos, entre ellos Katja Eastbank, Ikiaq, Contraespionaje, el Códice de otro mundo y Absolución.",
+        "rules": "Elección de encuentros, cancelación de revelaciones, cartas reservadas, curación y recursos para el siguiente escenario revisados."
+      },
       "plaguebearerDeathAtSundown": {
         "title": "La llamada del Portador de la Plaga: Muerte a la puesta de sol",
         "cards": "Escenario VII con la torre del Ayuntamiento de seis pisos, el Mazo de Ritual, la Memoria de Pickman y textos de historia literales EN/ES; su primera resolución ya lleva al Interludio V, La confrontación.",
@@ -570,6 +575,11 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "fieldRetrieve": "Devolver {card} a tu mano",
+    "fieldDeposit": "Mover {n} recursos a este apoyo",
+    "fieldCounterPlayer": "Cancelar la revelación y robar de tu mazo (+{n} recursos)",
+    "fieldCounterEncounter": "Cancelar la revelación y robar un encuentro (+{n} recursos)",
+
     "archiveAttach": "Vincular {card}",
     "archivePay": "Pagar 1 recurso",
     "archiveReturn": "Colocar el apoyo vinculado en la parte inferior de tu mazo",
@@ -3710,6 +3720,10 @@
   },
   "offlineCard": {
     "subnames": {
+      "09114": "Guardiana del saber estotérico",
+      "07267": "La elegida del consejo",
+      "09054": "Trabajando en algo mayor",
+      "09037": "Resto de lo desconocido",
       "10060": "Cepa carnívora",
       "10059": "Cepa sensible",
       "54007": "Te espera tu verdadero maestro",
@@ -3880,6 +3894,18 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "09063": "Objeto. Ilegal.",
+      "08113": "Pacto.",
+      "11100": "Innato. Presagio.",
+      "09114": "Aliado. Erudito.",
+      "07267": "Aliado. Hechicero.",
+      "10024": "Hechizo. Bendecido.",
+      "06158": "Objeto. Tomo.",
+      "10123": "Talento. Ciencia.",
+      "09071": "Objeto. Ropa.",
+      "08049": "Favor. Servicio.",
+      "09054": "Aliado. Miskatonic.",
+      "09037": "Objeto. Amuleto. Protección",
       "10060": "Monstruo. Ciencia.",
       "10059": "Criatura. Ciencia.",
       "11118": "Objeto. Miskatonic.",
@@ -4864,6 +4890,18 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "09063": "[free] Agota el tesoro desfalcado: Mueve hasta 2 recursos de tu reserva de recursos al Tesoro desfalcado (hasta un máximo de 10 recursos sobre éste).\n<b>Obligado</b> - Cuando desistas o acabe la partida: Por cada 2 recursos que haya sobre el Tesoro desfalcado, un investigador de tu elección comienza el siguiente escenario de la campaña con 1 recurso adicional en su reserva de recursos.",
+      "08113": "Límite de 1 por investigador. No puede abandonar el juego.\n[reaction] Después de que juegues el Préstamo sin escrúpulos: Obtén 10 recursos.\n<b>Obligado</b> — Cuando acabe la partida o seas eliminado, si tienes menos de 10 recursos en tu reserva de recursos: Exilia el Préstamo sin escrúpulos.",
+      "11100": "Sólo para un mazo [[Artista]], [[Clarividente]], [[Soñador]], [[Intérprete]].\nSólo puedes asignar esta carta a una prueba de habilidad de una Traición. Si esta prueba de habilidad tiene éxito, pon los Sueños de la arcilla en juego en tu zona de juego en vez de descartarlos.\n[reaction] Cuando robes una Traición que no tenga Peligro del mazo de Encuentros, retira los Sueños de la arcilla de la partida: Cancela su efecto de revelación y descártala.",
+      "09114": "[reaction] Cuando robes una carta que no sea Debilidad de la parte superior de tu mazo, antes de resolver cualquiera de sus efectos, agota a Katja Eastbank: Coloca esa carta boca abajo ella (límite de 5 carta bajo ella). Roba una nueva carta en su lugar.\n[action]: Roba cualquier carta que esté bajo Katja Eastbank.",
+      "07267": "Recibes +1 [willpower] y +1 [intellect]. Recibes -1 [willpower] y -1 [intellect] por cada Debilidad que haya bajo Ikiaq.\n[reaction] Cuando un investigador que esté en tu Lugar robe una Debilidad básica, agota a Ikiaq: Cancela los efectos de esa Debilidad y colócola boca abajo bajo Ikiaq. Su propietario debe robarla si Ikiaq abandona el juego.",
+      "10024": "Revela 3 fichas aleatorias de la bolsa del caos, junto con X fichas adicionales.\nPor cada ficha sin símbolo revelada, añade 1 ficha [bless] a la bolsa del caos. Por cada ficha [bless] revelada, cura 1 punto de horror de un investigador o Apoyo [[Aliado]] en tu Lugar.",
+      "06158": "Usos (3 secretos).\n[action] Agota el Códice de otro mundo y gasta 1 secreto: Busca entre las 9 primeras cartas del mazo de Encuentros y elige una carta que no sea [[Élite]] entre ellas. Descarta del juego una copia de la carta elegida. Devuelve todas las cartas entre las que has buscado al mazo de Encuentros y barájalo.",
+      "10123": "[fast] Elige una carta que poseas que esté vinculada a tu Lugar y agota la Técnica de supervivencia: Añade esa carta a tu mano.\n[fast] Durante una prueba de habilidad de un Lugar o de una Traición vinculada a tu Lugar, agota la Técnica de supervivencia: Recibes +2 a tu valor de habilidad para esa prueba.",
+      "09071": "[reaction] Cuando obtengas 1 o más recursos durante tu turno mediante el efecto de otra carta de Jugador, agota el Abrigo elegante: Obtén 1 recurso adicional.",
+      "08049": "Rápido. Juega esta carta cuando robes una Traición que no sea Debilidad.\nCancela el efecto de revelación de esa carta y roba la primera carta del mazo de Encuentros.\n[reaction] Cuando juegues Contraespionaje, aumenta su coste en 2: Cambia \"el mazo de Encuentros\" por \"tu mazo\".\n[reaction] Cuando juegues Contraespionaje, aumenta su coste en 2: Cambia \"robes\" por \"cualquier investigador robe\".",
+      "09054": "[reaction] Cuando cualquier investigador robe una carta de Encuentro del mazo de Encuentros, agota al Dr. William T. Maleson y coloca 1 de tus pistas en tu Lugar: Ese investigador roba otra carta de la parte superior del mazo de encuentros, elige una de las 2 cartas para resolverla y cancela y descarta la otra.",
+      "09037": "Recibes +1 a tu valor de habilidad al resolver capacidades \"Revelación\" de cartas de Encuentro.\n[reaction] Después de que otro investigador que esté en tu Lugar robe una carta de Encuentro que no tenga Peligro, antes de resolver los efectos de esa carta, agota el Avambrazo del mártir: En lugar de eso, se considera que has robado tú esa carta de Encuentro.",
       "10060": "Investigado. Límite de 1 por mazo.\n[fast]: Busca entre tus cartas enlazadas el Crecimiento prodigioso y añádelo a tu mano. Límite de una vez por ronda.\n[fast] Elige un Enemigo que no sea [[Élite]] en tu Lugar y con una cantidad de salud restante igual o menor que la cantidad de crecimiento del Micónido voraz: Derrota a ese Enemigo. Retira todo el crecimiento de Micónido voraz.",
       "10059": "Investigado. Límite de 1 por mazo.\n[fast]: Busca entre tus cartas enlazadas el Crecimiento prodigioso y añádelo a tu mano. Límite de una vez por ronda.\n[reaction] Cuando un investigador robe una carta de Traición que no sea Debilidad, si el valor de velo de su Lugar es igual o menor que el crecimiento del Micónido voraz: Cancela los efectos de esa Traición y descártala. Retira todo el crecimiento del Micónido voraz.",
       "11118": "Sólo para un mazo [[Miskatonic]], [[Erudito]]. Permanente. Límite de 1 por mazo.\n[free] Durante tu turno, si no hay ningún Apoyo vinculado al Pase de biblioteca, agota el Pase de biblioteca: Víncula un Apoyo [[Tomo]] de tu mano al Pase de biblioteca. El Apoyo vinculado no ocupa espacios.\n<b>Obligado -</b> Cuando acabe tu turno: Debes pagar 1 recurso o bien colocar el Apoyo vinculado en la parte inferior de tu mazo.",
@@ -6280,6 +6318,18 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "09063": "Tesoro desfalcado",
+      "08113": "Préstamo sin escrúpulos",
+      "11100": "Sueños de la arcilla",
+      "09114": "Katja Eastbank",
+      "07267": "Ikiaq",
+      "10024": "Absolución",
+      "06158": "Códice de otro mundo",
+      "10123": "Técnica de supervivencia",
+      "09071": "Abrigo elegante",
+      "08049": "Contraespionaje",
+      "09054": "Dr. William T. Maleson",
+      "09037": "Avambrazo del mártir",
       "10060": "Micónido voraz",
       "10059": "Micónido voraz",
       "11118": "Pase de biblioteca",

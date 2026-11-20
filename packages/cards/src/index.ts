@@ -1,3 +1,4 @@
+import { FIELD_SUPPORT_RENDERED_CODES } from './field-support'
 import { OPENING_ARCHIVES_RENDERED_CODES } from './opening-archives'
 export { planningCustomizationCost } from './campaign-planning/economy'
 import { CAMPAIGN_PLANNING_RENDERED_CODES } from './campaign-planning'
@@ -377,6 +378,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...ASSET_CONTAINERS_RENDERED_CODES,
   ...CAMPAIGN_PLANNING_RENDERED_CODES,
   ...OPENING_ARCHIVES_RENDERED_CODES,
+  ...FIELD_SUPPORT_RENDERED_CODES,
   ...BONDED_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,

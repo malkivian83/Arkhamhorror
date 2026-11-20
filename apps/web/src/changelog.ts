@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'field-support',
+    date: '2026-11-20',
+    title: 'app.changelog.fieldSupport.title',
+    items: ['app.changelog.fieldSupport.cards', 'app.changelog.fieldSupport.rules'],
+  },
+  {
     id: 'plaguebearer-death-at-sundown',
     date: '2026-11-20',
     title: 'app.changelog.plaguebearerDeathAtSundown.title',

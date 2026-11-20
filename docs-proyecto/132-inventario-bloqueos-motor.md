@@ -260,3 +260,9 @@ la elección de trauma al adquirirla. [Reglas y diferencias](153-planificacion-d
 - **Biblioteca y vinculadas:** Pase de biblioteca 1/5 y Micónido voraz 4, Cepas sensible y carnívora; Crecimiento compartido y ranuras de Tomos vinculados revisadas. [Reglas y diferencias](154-reservas-iniciales.md).
 - Ocho códigos y diseños/niveles estándar nuevos; cero vinculadas nuevas o reediciones. Acumulado: **1604 comportamientos**, **521 códigos históricos pendientes**, **163 estándar con impresión pendientes**. Se conservan los inventarios históricos.
 - Cepa nutricia requiere traslado real de daño/horror; Curación espiritual, Dayana y Katja mantienen los bloqueos documentados.
+
+## Estado tras el lote 155
+
+- Doce diseños/niveles estándar nuevos, cero vinculadas nuevas o reediciones. Katja deja de estar bloqueada: se conserva su sustitución de robo antes de los efectos. [Reglas y diferencias](155-robo-encuentros-y-apoyo.md).
+- **1616 comportamientos**, **509 códigos históricos pendientes**, **151 estándar con impresión pendientes**. Veinticuatro escaneos y miniaturas nuevos; inventarios históricos preservados.
+- Continúan Curación espiritual, Dayana y Cepa nutricia. Lucha sucia requiere seguimiento del enemigo en las pruebas de negociar y selección restringida de combate inmediato.

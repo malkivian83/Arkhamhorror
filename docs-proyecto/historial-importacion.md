@@ -1,5 +1,7 @@
 # Historial de la importación
 
+- Lote 154 (20/11): `opening-archives`, `390bb93a` (cierre `3f8cd2f7`); ocho diseños/niveles estándar nuevos, cero vinculadas nuevas y reediciones. 1604 comportamientos, 521 históricos pendientes y 163 estándar con impresión. Reglas, guardados, mesa online, fuentes, imágenes, tipos, lint/formato y build web verificados. [Detalle](154-reservas-iniciales.md).
+
 - Lote 153 (20/11): `campaign-planning`, `0cdb9b6e` (cierre `265ca357`); doce códigos y diseños/niveles estándar nuevos, cero vinculadas o reediciones. 1596 comportamientos, 529 históricos pendientes y 171 estándar con impresión. Motor/cartas/importación: 7765 casos; integración: 123. Tipos, lint/formato, fuentes, imágenes y build web correctos. [Detalle](153-planificacion-de-campana.md).
 
 - Lote 149 (18/11): `discard-rituals`, publicado como `be258d59`; siete cartas/niveles estándar nuevos, cero vinculadas o reediciones. 1556 comportamientos, 569 códigos históricos pendientes y 211 estándar; 6517 escaneos y miniaturas. Motor/cartas/importación: 7592 casos; cierre dirigido: 40 reglas; web: 14; guardados: 39. Tipos, lint/formato, imágenes y build web correctos. [Detalle](149-descarte-promesas-y-rituales.md).

@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "fieldSupport": {
+        "title": "Draw replacements and field support",
+        "cards": "Twelve new designs and levels, including Katja Eastbank, Ikiaq, Counterespionage, Martyr’s Vambrace, Otherworld Codex and Absolution.",
+        "rules": "Reviewed encounter choices, revelation cancellation, stored draws, healing and next-scenario resources."
+      },
       "plaguebearerDeathAtSundown": {
         "title": "Call of the Plaguebearer: Death at Sundown",
         "cards": "Scenario VII with the six-floor Town Hall tower, the Ritual deck, Pickman’s Memory and literal EN/ES story texts; its first resolution now leads to Interlude V, A Confrontation.",
@@ -570,6 +575,11 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "fieldRetrieve": "Return {card} to your hand",
+    "fieldDeposit": "Move {n} resources to this asset",
+    "fieldCounterPlayer": "Cancel the revelation and draw from your deck (+{n} resources)",
+    "fieldCounterEncounter": "Cancel the revelation and draw an encounter (+{n} resources)",
+
     "archiveAttach": "Attach {card}",
     "archivePay": "Pay 1 resource",
     "archiveReturn": "Place the attached asset on the bottom of your deck",
@@ -3710,6 +3720,10 @@
   },
   "offlineCard": {
     "subnames": {
+      "09114": "Keeper of Esoteric Lore",
+      "07267": "The Council's Chosen",
+      "09054": "Working on Something Bigger",
+      "09037": "Remnant of the Unknown",
       "10060": "Carnivorous Strain",
       "10059": "Sentient Strain",
       "54007": "Your True Master Awaits",
@@ -3880,6 +3894,18 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "09063": "Item. Illicit.",
+      "08113": "Pact.",
+      "11100": "Innate. Augury.",
+      "09114": "Ally. Scholar.",
+      "07267": "Ally. Sorcerer.",
+      "10024": "Spell. Blessed.",
+      "06158": "Item. Tome.",
+      "10123": "Talent. Science.",
+      "09071": "Item. Clothing.",
+      "08049": "Favor. Service.",
+      "09054": "Ally. Miskatonic.",
+      "09037": "Item. Charm. Armor.",
       "10060": "Monster. Science.",
       "10059": "Creature. Science.",
       "11118": "Item. Miskatonic.",
@@ -4864,6 +4890,18 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "09063": "[fast] Exhaust Embezzled Treasure: Move up to 2 resources from your resource pool to Embezzled Treasure (to a maximum of 10 resources on it).\n<b>Forced</b> - When you resign or the game ends: For every 2 resources on Embezzled Treasure, an investigator of your choice begins the next scenario of the campaign with 1 additional resource in their resource pool.",
+      "08113": "Limit 1 per investigator. Cannot leave play.\n[reaction] After you play Unscrupulous Loan: Gain 10 resources.\n<b>Forced</b> - When the game ends or you are eliminated, if you have fewer than 10 resources in your resource pool: Exile Unscrupulous Loan.",
+      "11100": "[[Artist]], [[Clairvoyant]], [[Dreamer]], [[Performer]] deck only.\nCommit only to a skill test on a treachery. If this skill test is successful, put Dreams of the Clay into play in your play area instead of discarding it.\n[reaction] When you draw a non-peril treachery from the encounter deck, remove Dreams of the Clay from the game: Cancel its revelation effect and discard it.",
+      "09114": "[reaction] When you draw a non-weakness card from the top of your deck, before resolving any of its effects, exhaust Katja Eastbank: Place that card facedown beneath her (limit 5 cards beneath her). Draw a new card to replace it.\n[action]: Draw any card beneath Katja Eastbank.",
+      "07267": "You get +1 [willpower] and +1 [intellect]. You get -1 [willpower] and -1 [intellect] for each weakness beneath Ikiaq.\n[reaction] When an investigator at your location draws a basic weakness, exhaust Ikiaq: Cancel that weakness's effects and place it facedown beneath Ikiaq. Its owner must draw it if Ikiaq leaves play.",
+      "10024": "Reveal 3 random tokens from the chaos bag, along with X additional tokens.\nFor each non-symbol token revealed, add 1 [bless] token to the chaos bag. For each [bless] token revealed, heal 1 horror from an investigator or [[Ally]] asset at your location.",
+      "06158": "Uses (3 secrets).\n[action] Exhaust Otherworld Codex and spend 1 secret: Search the top 9 cards of the encounter deck and choose a non-[[Elite]] card among them. Discard a copy of the chosen card from play. Shuffle all of the searched cards back into the encounter deck.",
+      "10123": "[fast] Choose a card you own that is attached to your location and exhaust Survival Technique: Add that card to your hand.\n[fast] During a skill test on a location or on a treachery attached to your location, exhaust Survival Technique: You get +2 skill value for this test.",
+      "09071": "[reaction] When you gain 1 or more resources during your turn via another player card effect, exhaust Stylish Coat: Gain 1 additional resource.",
+      "08049": "Fast. Play when you draw a non-weakness treachery.\nCancel that card's revelation effect and draw the top card of the encounter deck.\n[reaction] When you play Counterespionage, increase its cost by 2: Change \"the encounter deck\" to \"your deck\".\n[reaction] When you play Counterespionage, increase its cost by 2: Change \"you\" to \"any investigator\".",
+      "09054": "[reaction] When any investigator draws an encounter card from the encounter deck, exhaust Dr. William T. Maleson and place 1 of your clues on your location: That investigator draws another card from the top of the encounter deck, chooses one of those 2 cards to resolve, and cancels and discards the other.",
+      "09037": "You get +1 skill value while resolving revelation abilities on encounter cards.\n[reaction] After another investigator at your location draws a non-peril encounter card, before resolving that card's effects, exhaust Martyr's Vambrace: You are considered to have drawn that encounter card, instead.",
       "10060": "Researched. Limit 1 per deck.\n[fast]: Search your bonded cards for Uncanny Growth and add it to your hand. (Limit once per round.)\n[fast] Choose a non-[[Elite]] enemy at your location with equal or fewer remaining health than the amount of growth on Ravenous Myconid: Defeat that enemy. Remove all growth from Ravenous Myconid.",
       "10059": "Researched. Limit 1 per deck.\n[fast]: Search your bonded cards for Uncanny Growth and add it to your hand. (Limit once per round.)\n[reaction] When an investigator draws a non-weakness treachery card, if their locations shroud is equal to or less than Ravenous Myconid's growth: Cancel that treachery's effects and discard it. Remove all growth from Ravenous Myconid.",
       "11118": "[[Miskatonic]], [[Scholar]] deck only. Permanent. Limit 1 per deck.\n[fast] During your turn, if there is no asset attached to Library Pass, exhaust Library Pass: Attach a [[Tome]] asset from your hand to Library Pass. Attached asset takes up no slots.\n<b>Forced</b> - When your turn ends: You must either pay 1 resource or place attached asset on the bottom of your deck.",
@@ -6280,6 +6318,18 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "09063": "Embezzled Treasure",
+      "08113": "Unscrupulous Loan",
+      "11100": "Dreams of the Clay",
+      "09114": "Katja Eastbank",
+      "07267": "Ikiaq",
+      "10024": "Absolution",
+      "06158": "Otherworld Codex",
+      "10123": "Survival Technique",
+      "09071": "Stylish Coat",
+      "08049": "Counterespionage",
+      "09054": "Dr. William T. Maleson",
+      "09037": "Martyr's Vambrace",
       "10060": "Ravenous Myconid",
       "10059": "Ravenous Myconid",
       "11118": "Library Pass",

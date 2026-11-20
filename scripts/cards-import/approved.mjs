@@ -32,7 +32,7 @@ export function approvedDefinition(card, approval) {
         (['08117', '08118', '08119'].includes(card.code) &&
           card.factions.join(',') === 'mystic,survivor') ||
         (card.code === '05118' && card.factions.join(',') === 'mystic,guardian') ||
-        (card.code === '08112' && card.factions.join(',') === 'rogue,survivor')))
+        (['08112', '08113'].includes(card.code) && card.factions.join(',') === 'rogue,survivor')))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
   const talentFactions = {
@@ -77,7 +77,14 @@ export function approvedDefinition(card, approval) {
     card.factions.join(',') === 'survivor' &&
     card.numbers.cost?.kind === 'symbol' &&
     card.numbers.cost.value === 'X'
-  const reviewedCostX = reviewedDiscovery || reviewedChance
+  const reviewedAbsolution =
+    approval.adapter === 'reviewed-absolution-x-v1' &&
+    card.code === '10024' &&
+    card.factions.join(',') === 'guardian' &&
+    card.numbers.xp?.value === 0 &&
+    card.numbers.cost?.kind === 'symbol' &&
+    card.numbers.cost.value === 'X'
+  const reviewedCostX = reviewedDiscovery || reviewedChance || reviewedAbsolution
   // Lot 144: bonded summoners and their bonded cards (RR Bonded), reviewed by code.
   const bondedSummoners = {
     10085: '10086:1,10087:1,10088:1,10089:1,10090:1',
@@ -322,7 +329,8 @@ export function approvedDefinition(card, approval) {
         card.flags[key] &&
         !(
           key === 'exile' &&
-          (reviewedDefeatExile ||
+          ((reviewedDualFaction && card.code === '08113' && card.numbers.xp?.value === 3) ||
+            reviewedDefeatExile ||
             reviewedProtectionExile ||
             reviewedTokenExile ||
             reviewedBurnExile)
