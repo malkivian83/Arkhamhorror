@@ -3,6 +3,7 @@ import {
   actBehavior,
   agendaBehavior,
   playerCardDef,
+  revealedEncounterTop,
   cluesToAdvanceAct,
   secondAgendaDoom,
   totalDoom,
@@ -32,6 +33,7 @@ const bagDialog = ref<HTMLDialogElement>()
 const bagButton = ref<HTMLButtonElement>()
 const bagId = useId()
 const stories = computed(() => Object.values(props.state.stories ?? {}))
+const encounterTop = computed(() => revealedEncounterTop(props.state))
 const agenda = computed(() => props.state.agendas[props.state.agendaIndex])
 const secondAgenda = computed(() => {
   const second = props.state.secondAgenda
@@ -230,6 +232,13 @@ const sortedBag = computed(() =>
       <GameCard :code="tr.code" :name="tr.name" :width="40" thumbnail color="#b5462f" />
     </TableTarget>
     <div class="scenario-stat encounter-deck" role="group" :aria-label="t('table.encounterDeck')">
+      <GameCard
+        v-if="encounterTop"
+        :code="encounterTop.code"
+        :name="encounterTop.name"
+        :width="54"
+        thumbnail
+      />
       <img src="/local-assets/home/icon-decks.webp" alt="" width="28" height="28" />
       <span class="stat-copy"
         ><span class="stat-label">{{ t('table.deck') }}</span

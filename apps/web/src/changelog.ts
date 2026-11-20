@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'chaos-selection',
+    date: '2026-11-20',
+    title: 'app.changelog.chaosSelection.title',
+    items: ['app.changelog.chaosSelection.cards', 'app.changelog.chaosSelection.rules'],
+  },
+  {
     id: 'leyline-support',
     date: '2026-11-20',
     title: 'app.changelog.leylineSupport.title',

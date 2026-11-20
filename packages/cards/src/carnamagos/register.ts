@@ -1,3 +1,4 @@
+import { resolvedFaces } from '../chaos-allies/common'
 import { mayParticipate } from '../advanced-tests/common'
 // RR: Bonded, Chaos Tokens, Attach To, Cannot, Enemy Defeat, End of Round.
 import {
@@ -110,16 +111,17 @@ export function registerCarnamagos(code: string): void {
       if (step === 'token') {
         const seen = [
           ...(JSON.parse(String(d.faces)) as (ChaosToken | null)[]),
-          d.canceled ? null : (d.token as ChaosToken),
+          ...resolvedFaces(d),
         ]
         const next = {
+          draws: Number(d.draws ?? 0) + 1,
           enemy: d.enemy!,
           countsDuringTest: true,
           group: d.group!,
           faces: JSON.stringify(seen),
         }
         return [
-          ...(seen.length < 5 && s.chaosBag.length > 0
+          ...(Number(d.draws ?? 0) + 1 < 5 && s.chaosBag.length > 0
             ? [nextToken(code, by, next)]
             : [
                 { type: 'ReturnHeldChaosTokens' as const, group: String(d.group) },

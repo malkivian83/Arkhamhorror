@@ -755,6 +755,8 @@ export type SkillTestKind =
  * tokens until a symbol is revealed" (Katarina Sojka).
  */
 export interface TokenRevealReplacement {
+  /** Logical reveals to keep; a nested child may itself resolve several tokens. */
+  resolve?: number
   investigator: InvestigatorId
   reveal: number
   prefer?: ChaosToken[]
@@ -771,6 +773,8 @@ export type TokenRevealTree =
       children: TokenRevealTree[]
       prefer?: ChaosToken[]
       selected?: number
+      selectedMany?: number[]
+      resolve?: number
       ignored: ChaosToken[]
     }
 
@@ -838,6 +842,7 @@ export interface SkillTest {
   afterEnd?: Message[]
   /** Replacement base value before modifiers and committed icons. */
   baseSkill?: number
+  baseFromShroud?: boolean
   /** True only for the standard fight, evade or investigate action. */
   basicAction?: boolean
   /** Preserve the unmodified difficulty so factors precede committed additive modifiers. */
@@ -896,12 +901,21 @@ export interface SkillTest {
   /** Al revelar, se sacan 2 fichas y este investigador elige cuál resolver (Mask of Silenus). */
   chooseToken?: InvestigatorId
   /** The last "reveal several, resolve one" choice of this test (Eyes of the Dreamer). */
-  tokenChoice?: { chosen: ChaosToken; ignored: ChaosToken[]; source?: string }
+  tokenChoice?: {
+    chosen: ChaosToken
+    chosenTokens?: ChaosToken[]
+    ignored: ChaosToken[]
+    source?: string
+  }
   /** Revealed by another ability during this test; returned by that ability, outside ST.8. */
   supplementalTokens?: ChaosToken[]
   supplementalFaces?: ChaosToken[]
+  supplementalResolvedTokens?: { token: ChaosToken; face: ChaosToken }[]
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
+  /** Physical tokens held for another selected reveal, and ones transferred to a seal. */
+  pendingTokens?: ChaosToken[]
+  sealedTokens?: ChaosToken[]
   /** Physical identity and applied modifier of each resolved token, in reveal order. */
   resolvedTokens?: {
     virtual?: boolean
@@ -1001,8 +1015,26 @@ export type Message = MessageBody & {
   effectSource?: string
   effectController?: InvestigatorId
   effectAsset?: AssetId
+  /** Internal continuation collecting a held reveal replaced by several tokens. */
+  outsideBatch?: {
+    outside: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    remaining: ChaosToken[]
+    faces: (ChaosToken | null)[]
+    physical: ChaosToken[]
+    ignored: ChaosToken[]
+  }
 }
 type MessageBody =
+  | {
+      type: 'ResolveChosenTokens'
+      drawn?: boolean
+      investigator: InvestigatorId
+      tokens: ChaosToken[]
+      ignored: ChaosToken[]
+      source?: string
+      outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    }
+  | { type: 'SealTestToken'; asset: AssetId; token: ChaosToken }
   | {
       type: 'PutAgendaEvent'
       investigator: InvestigatorId
@@ -1105,6 +1137,7 @@ type MessageBody =
       doNotExhaust?: boolean
       onDefeat?: Message[]
       baseSkill?: number
+      baseFromShroud?: boolean
       preserveModifier?: boolean
       noTokens?: boolean
       virtualToken?: ChaosToken
@@ -1281,6 +1314,7 @@ type MessageBody =
       /** The investigator already chose whether to replace the tested skill. */
       skillSelected?: boolean
       baseSkill?: number
+      baseFromShroud?: boolean
       basicAction?: boolean
       investigationCostsPaid?: boolean
       investigator: InvestigatorId
@@ -2051,6 +2085,7 @@ type MessageBody =
   | {
       type: 'UseAbility'
       baseSkill?: number
+      baseFromShroud?: boolean
       /** Original action symbols when a card resolves the ability without taking an action. */
       printedActions?: number
       actionKind?: ActionName
@@ -3048,6 +3083,7 @@ export interface GameState {
   secondAgenda?: SecondAgendaDeck | null
   acts: Act[]
   actIndex: number
+  pendingOutsideTokens?: ChaosToken[]
   chaosBag: ChaosToken[]
   tokenValues: ScenarioTokenValues
   encounterDeck: EncounterCard[]

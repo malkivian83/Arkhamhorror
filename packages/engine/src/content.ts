@@ -722,6 +722,8 @@ export interface PlayerCardBehavior {
     investigator: InvestigatorId,
   ) => ReactionOption[]
 
+  /** Keep the top encounter card revealed while this asset is active. */
+  revealsEncounterTop?: boolean
   /** Optional modifiers of the card being played; one choice per source asset. */
   playModifiers?: (
     state: GameState,
@@ -964,7 +966,7 @@ export interface PlayerCardBehavior {
   /** Replaces discarding it when it is defeated (Cherished Keepsake: it is exiled instead). */
   whenDefeated?: (state: GameState, self: Asset) => Message[] | null
   /** Printed cost X: the values X may take (Pay Your Dues: remaining health of a target). */
-  xOptions?: (state: GameState, investigator: InvestigatorId) => number[]
+  xOptions?: (state: GameState, investigator: InvestigatorId, discount?: number) => number[]
   /** Event with the Parley designator: parley costs apply and `afterParley` follows. */
   parley?: boolean
   /** Additional action costs of playing the card, including a play granted by an effect. */
@@ -1334,4 +1336,11 @@ export function snapshotRegistries(): () => void {
     maps.forEach((map, i) => {
       for (const [key, value] of saved[i]!) if (map.get(key) !== value) map.set(key, value)
     })
+}
+
+/** Continuous encounter-deck information from active player cards (Eye of Ghatanothoa). */
+export function revealedEncounterTop(state: GameState) {
+  return Object.values(state.assets).some((a) => assetBehavior(state, a)?.revealsEncounterTop)
+    ? state.encounterDeck[0]
+    : undefined
 }

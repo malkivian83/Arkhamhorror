@@ -1,3 +1,4 @@
+import './chaos-selection'
 import './leyline-support'
 import './field-support'
 import './opening-archives'

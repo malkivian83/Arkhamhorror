@@ -270,3 +270,7 @@ la elección de trauma al adquirirla. [Reglas y diferencias](153-planificacion-d
 ## Estado tras el lote 156
 
 Ocho diseños/niveles estándar nuevos: los cinco Archivos de conductos, Sangre de Thoth, «¡Me lo quedo!» y Buen tiempo. Cero reediciones. **143 estándar con impresión** y **501 códigos históricos** pendientes. Recuento global actual: **1641 definiciones con comportamiento**, incluidas altas de campañas no recogidas en el anterior acumulado por incrementos. Dieciséis escaneos y miniaturas nuevos. [Reglas y controles](156-lineas-ley-y-apoyo.md).
+
+## Estado tras el lote 157
+
+Nueve diseños/niveles estándar nuevos de selección y sellado; cero reediciones. **134 estándar con impresión** y **492 códigos históricos** pendientes. Dieciocho escaneos y miniaturas nuevos. [Reglas, diferencias y bloqueos](157-seleccion-y-sellado-de-fichas.md). Rite of Sanctification requiere consentimiento del propietario antes del pago ajeno.

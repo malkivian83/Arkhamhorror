@@ -43,6 +43,30 @@ export function approvedDefinition(card, approval) {
     card.numbers.xp?.value === (card.code === '08033' ? 0 : 4)
   if (['08033', '08041', '08042', '08043', '08044'].includes(card.code) && !reviewedConduits)
     throw new Error(`Conduits require their reviewed deck limit and level: ${card.code}`)
+  const reviewedDials =
+    approval.adapter === 'reviewed-dials-v1' &&
+    ['11046', '11047', '11048'].includes(card.code) &&
+    card.deckLimit === 1 &&
+    card.factions.join(',') === 'seeker' &&
+    card.numbers.xp?.value === 4
+  if (['11046', '11047', '11048'].includes(card.code) && !reviewedDials)
+    throw new Error('Dial requires its reviewed model')
+  const reviewedFlute =
+    approval.adapter === 'reviewed-flute-v1' &&
+    card.code === '07268' &&
+    card.factions.join(',') === 'mystic' &&
+    card.flags.exceptional &&
+    card.deckLimit === 1 &&
+    card.numbers.xp?.value === 4 &&
+    card.numbers.cost?.kind === 'symbol' &&
+    card.numbers.cost.value === 'X'
+  const reviewedEye =
+    approval.adapter === 'reviewed-encounter-eye-v1' &&
+    card.code === '11073' &&
+    card.factions.join(',') === 'mystic' &&
+    card.flags.exceptional &&
+    card.deckLimit === 1 &&
+    card.numbers.xp?.value === 2
   const talentFactions = {
     '08120': 'guardian,mystic,survivor',
     '08121': 'guardian,seeker,mystic',
@@ -92,7 +116,7 @@ export function approvedDefinition(card, approval) {
     card.numbers.xp?.value === 0 &&
     card.numbers.cost?.kind === 'symbol' &&
     card.numbers.cost.value === 'X'
-  const reviewedCostX = reviewedDiscovery || reviewedChance || reviewedAbsolution
+  const reviewedCostX = reviewedDiscovery || reviewedChance || reviewedAbsolution || reviewedFlute
   // Lot 144: bonded summoners and their bonded cards (RR Bonded), reviewed by code.
   const bondedSummoners = {
     10085: '10086:1,10087:1,10088:1,10089:1,10090:1',
@@ -351,6 +375,8 @@ export function approvedDefinition(card, approval) {
             fieldKeywords ||
             economyKeywords ||
             reviewedExceptional ||
+            reviewedFlute ||
+            reviewedEye ||
             reviewedSinEater)
         ) &&
         !(key === 'myriad' && reviewedMyriad),
@@ -378,7 +404,7 @@ export function approvedDefinition(card, approval) {
   return {
     code: card.code,
     name: card.name,
-    ...(reviewedConduits ? { deckLimit: 1 } : {}),
+    ...(reviewedConduits || reviewedDials ? { deckLimit: 1 } : {}),
     // Reviewed subtitle distinguishing same-level versions absent from the frozen inventory.
     ...(approval.subname ? { subname: approval.subname } : {}),
     type: card.type,
@@ -393,7 +419,11 @@ export function approvedDefinition(card, approval) {
     ...(planningPermanent
       ? { deckLimit: card.deckLimit, ...(card.flags.exceptional ? { exceptional: true } : {}) }
       : {}),
-    ...(reviewedBorrowedTime || reviewedExceptional || reviewedSinEater
+    ...(reviewedBorrowedTime ||
+    reviewedExceptional ||
+    reviewedSinEater ||
+    reviewedFlute ||
+    reviewedEye
       ? { exceptional: true, deckLimit: 1 }
       : {}),
     ...(reviewedDarkHorse || reviewedCovenant ? { deckLimit: 1 } : {}),

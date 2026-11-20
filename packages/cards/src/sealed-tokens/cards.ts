@@ -58,7 +58,7 @@ interface SealSpec {
   /** Seal one of these tokens (the player chooses among those in the bag). */
   one?: ChaosToken[] | 'anyButAutoFail'
   /** Seal up to N tokens of this kind (may be 0). */
-  upTo?: { token: PoolToken; max: number }
+  upTo?: { token: PoolToken; max: number | ((a: Asset) => number) }
   /** "If there are no tokens sealed on it, discard it." */
   discardWhenEmpty?: boolean
 }
@@ -79,7 +79,7 @@ function sealOnEnter(code: string, spec: SealSpec, s: GameState, a: Asset): Mess
     return ask(a.owner, choices, true)
   }
   const { token, max } = spec.upTo!
-  const top = Math.min(max, inBag(s, token))
+  const top = Math.min(typeof max === 'function' ? max(a) : max, inBag(s, token))
   return ask(
     a.owner,
     Array.from({ length: top + 1 }, (_, n) => top - n).map((n): Choice => ({
@@ -95,7 +95,7 @@ function sealOnEnter(code: string, spec: SealSpec, s: GameState, a: Asset): Mess
 const empty = (code: string, a: Asset): Message =>
   continuation(code, a.owner, 'empty', { asset: a.id })
 
-function sealBehavior(code: string, spec: SealSpec) {
+export function sealBehavior(code: string, spec: SealSpec) {
   return {
     ...(spec.one
       ? {

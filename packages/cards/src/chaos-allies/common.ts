@@ -47,3 +47,17 @@ export const nextToken = (code: string, by: string, data: Data): Message => ({
   hold: true,
   then: continuation(code, by, 'token', data) as Extract<Message, { type: 'PlayerCardEffect' }>,
 })
+
+/** A logical reveal may resolve multiple physical tokens (Olive McBride). */
+export const resolvedFaces = (d: Data): (import('@lcg/engine').ChaosToken | null)[] =>
+  d.canceled
+    ? [null]
+    : d.tokens
+      ? JSON.parse(String(d.tokens))
+      : [d.token as import('@lcg/engine').ChaosToken]
+export const resolvedPhysical = (d: Data): import('@lcg/engine').ChaosToken[] =>
+  d.canceled
+    ? []
+    : d.physicalTokens
+      ? JSON.parse(String(d.physicalTokens))
+      : [d.physical as import('@lcg/engine').ChaosToken]

@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "chaosSelection": {
+        "title": "Selección y sellado de fichas",
+        "cards": "Nueve cartas y niveles nuevos: Olive McBride, Fragmentos del vacío, Dial de los Antiguos, Oscurecer, Flauta de los Dioses Exteriores y Ojo de Ghatanothoa.",
+        "rules": "Selección de varias fichas, sellado, revelación del mazo de Encuentros y costes X revisados."
+      },
       "leylineSupport": {
         "title": "Líneas ley y apoyo compartido",
         "cards": "Ocho diseños y niveles nuevos: Archivo de conductos y sus cuatro portales investigados, Sangre de Thot, Buen tiempo y «¡Me lo quedo!».",
@@ -580,6 +585,11 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "chaosFluteDamage": "Infligir {n} de daño a {enemy}",
+    "chaosFluteMove": "Mover a {enemy} a {location}",
+    "chaosRelease": "Liberar {token}",
+    "chaosKeepSealed": "Gastar 1 carga para mantener {token} sellada",
+    "resolveTokens": "Resolver {tokens}",
     "conduitHealHorror": "Curar horror",
     "conduitHealDamage": "Curar daño",
     "conduitRemove": "Retirar 1 línea ley",
@@ -590,7 +600,6 @@
     "fieldDeposit": "Mover {n} recursos a este apoyo",
     "fieldCounterPlayer": "Cancelar la revelación y robar de tu mazo (+{n} recursos)",
     "fieldCounterEncounter": "Cancelar la revelación y robar un encuentro (+{n} recursos)",
-
     "archiveAttach": "Vincular {card}",
     "archivePay": "Pagar 1 recurso",
     "archiveReturn": "Colocar el apoyo vinculado en la parte inferior de tu mazo",
@@ -630,7 +639,11 @@
     "extraActionMove": "Mueve a {name}",
     "extraActionClue": "{name} descubre una pista",
     "extraActionRepeat": "Realiza otra acción de combatir con un Apoyo Cuerpo a Cuerpo",
-    "extraAction": { "move": "Moverse", "evade": "Evitar", "investigate": "Investigar" },
+    "extraAction": {
+      "move": "Moverse",
+      "evade": "Evitar",
+      "investigate": "Investigar"
+    },
     "chaosInsightDiscard": "Gasta 2 secretos: juega {card} desde el descarte como Rápido y con -1 al coste",
     "chaosCatsExhaust": "Agota a {card}: realiza la prueba en {target} con valor básico de 5",
     "chaosCatsDiscard": "Descarta a {card}: supera automáticamente la prueba en {target}",
@@ -695,7 +708,7 @@
     "curseClue": "{card}: descubre 1 pista en {location}",
     "curseMove": "{card}: muévete a {location}",
     "curseCharge": "Coloca 1 carga en {card}",
-    "moveEnemyTo": "Mueve a {enemy} a {location}",
+    "moveEnemyTo": "{enemy} se mueve a {location}",
     "sacredReturn": "Devuelve {n} ficha(s) de Bendición a la bolsa del caos, ignorando sus modificadores",
     "aeonsRemove": "Retira ambas fichas de Maldición de la bolsa del caos tras la prueba",
     "aeonsKeep": "Devuelve la segunda ficha de Maldición a la bolsa del caos",
@@ -1001,7 +1014,6 @@
     "keepHand": "Quedarme con esta mano",
     "mulliganDone": "Robar 1 carta nueva y terminar | Robar {n} cartas nuevas y terminar",
     "mulliganCard": "Cambiar {card}",
-    "moveEnemyTo": "{enemy} se mueve a {location}",
     "attackFirst": "{enemy} ataca primero",
     "investigatorPaysClue": "{name} gasta 1 pista (tiene {clues})",
     "fireFromDiscard": "Solo en la pila de descartes de encuentros",
@@ -1336,6 +1348,8 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "chaosShardRelease": "Atacar a {enemy} con {card}: liberar una ficha sellada",
+    "chaosShardCharge": "Atacar a {enemy} con {card}: gastar 1 carga",
     "container": "Usar {card}",
     "movementDogsMove": "Muévete con los Perros de trineo",
     "movementDogsFight": "Combate con los Perros de trineo",
@@ -1359,7 +1373,7 @@
       "autoFail": "Dar la llave de Tentáculo a {name}",
       "frost": "Dar la llave de Helada a {name}"
     },
-    "extraActionGift": "Usa la acci\u00f3n adicional de {card} (+2 a las habilidades)",
+    "extraActionGift": "Usa la acción adicional de {card} (+2 a las habilidades)",
     "extraActionHaste": {
       "activate": "Agota {card}: otra acción de activar",
       "engage": "Agota {card}: otra acción de enfrentarse",
@@ -3733,6 +3747,12 @@
   },
   "offlineCard": {
     "subnames": {
+      "11073": "Artefacto del dios oscuro",
+      "11048": "Señales de revelación",
+      "11047": "Señales de aberración",
+      "11046": "Señales del cataclismo",
+      "10097": "Ha probado todo alguna vez",
+      "04197": "Probará cualquier cosa al menos una vez",
       "11065": "Ley encarnada",
       "08044": "Portal al paraíso",
       "08043": "Portal a Aldebarán",
@@ -3913,6 +3933,15 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "11073": "Objeto. Reliquia. Maldito.",
+      "07268": "Objeto. Instrumento. Reliquia. Maldito.",
+      "11060": "Ritual.",
+      "11048": "Objeto. Reliquia. Maldito.",
+      "11047": "Objeto. Reliquia. Maldito.",
+      "11046": "Objeto. Reliquia. Maldito.",
+      "04310": "Hechizo.",
+      "10097": "Aliado. Bruja.",
+      "04197": "Aliado. Bruja.",
       "11091": "Bendecido. Fortuna.",
       "09067": "Truco. Mejora. Ilegal.",
       "11065": "Objeto. Reliquia.",
@@ -4917,6 +4946,15 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "11073": "Excepcional.\nRecibes +1 [willpower].\nJuega con la primera carta del mazo de Encuentros revelada.",
+      "07268": "Excepcional. Sello (hasta X [curse]).\n[action] Agota la Flauta de los Dioses Exteriores y libera 1 ficha [curse] sellada sobre ella: Elige un Enemigo que no sea [[Élite]] y que esté en tu Lugar. Mueve el Enemigo elegido a un Lugar conectado, o bien inflige su daño a cualquier Enemigo que esté en su Lugar. Esta acción no provoca ataques de oportunidad.",
+      "11060": "Límite de 1 por investigador.\nSello (0). Puedes resolver esta palabra clave de nuevo después de que reveles un Lugar o pongas en juego un nuevo Lugar.\n[reaction] Cuando te enfrentes a un Enemigo, agota Nublar y libera una ficha sellada aquí: <b>Combatir</b> o <b>Evitar</b> inmediatamente ese Enemigo. Durante esta prueba de habilidad, el valor básico de tu habilidad es igual al valor de velo de tu Lugar.",
+      "11048": "Investigado. Límite de 1 por mazo. Usos (4 cargas).\n[free] Durante tu turno, agota el Dial de los antiguos y gasta 1 carga: <b>Investigar.</b> Al revelar fichas de Caos para esta prueba, revela X fichas adicionales, donde X es la cantidad de Enemigos que hay en tu Lugar. Elige 1 de las fichas reveladas para resolverla e ignora el resto.",
+      "11047": "Investigado. Límite de 1 por mazo. Usos (4 cargas).\n[action]: <b>Combatir</b>/<b>Evitar</b>. Cuando reveles una ficha de Caos durante este ataque o intento de evitar, puedes gastar 1 carga para cancelar esa ficha, devolverla a la bolsa y revelar una nueva. Puedes hacer esto cualquier número de veces. Si esta prueba tiene éxito, inflige 1 punto de daño al Enemigo objetivo.",
+      "11046": "Investigado. Límite de 1 por mazo. Usos (4 cargas).\n[reaction] Cuando un investigador fracase en una prueba de habilidad en tu Lugar, agota el Dial de los antiguos: Sella 1 ficha de Caos revelada durante esa prueba en el Dial de los antiguos.\n<b>Obligado -</b> Cuando acabe la ronda: Por cada ficha de Caos sellada aquí, debes gastar 1 carga o liberar esa ficha.",
+      "04310": "Sello (0). Usos (3 cargas).\n[action] Gasta 1 carga o libera una ficha de Caos sellada aquí: <b>Combatir.</b> Este ataque usa [willpower] en lugar de [combat] e inflige +1 de daño. Recibe +2 [willpower] para este ataque por cada ficha \"0\" sellada sobre los Fragmentos del vacío. Por cada ficha \"0\" revelada durante este ataque, sella esa ficha sobre los Fragmentos del vacío y este ataque inflige 1 punto de daño adicional.",
+      "10097": "[reaction] Cuando fueses a revelar una ficha de Caos, agota a Olive McBride: Revela 4 fichas de Caos en lugar de 1. Elige 2 de esas fichas para resolverlas e ignora el resto.",
+      "04197": "[reaction] Cuando fueses a revelar una ficha de Caos, agota a Olive McBride: Revela 3 fichas de Caos en lugar de 1. Elige 2 de esas fichas para resolverlas e ignora la otra.",
       "11091": "Miríada. Rápido. Juega esta carta después de que comience la fase de Investigación. Límite de grupo de 1 en juego.\nPon el Buen tiempo en juego junto al mazo de Plan y elige una habilidad. Mientras esta carta esté en juego, cada investigador recibe +2 a la habilidad elegida.\n<b>Obligado -</b> Cuando comience la fase de Investigación: Descarta el Buen tiempo.",
       "09067": "Rápido. Juega esta carta sólo cuando evites con éxito un Enemigo [[Humanoide]] o investigues con éxito.\nJuega un Apoyo [[Objeto]] desde tu mano, reduciendo su coste en X, donde X es la cantidad de puntos que tengas por encima del valor mínimo de éxito. Vincula \"¡Me lo quedo!\" a ese Apoyo. El Apoyo vinculado obtiene [[Ilegal]].",
       "11065": "[reaction] Cuando se coloque 1 ficha de Perdición o más en una carta que controles, agota la Sangre de Thoth: Coloca 1 recurso en esta carta <i>(de la reserva de fichas)</i>, como ofrenda.\n[free] Si la Sangre de Thoth tiene 3 o más ofrendas, retira todas las ofrendas de la Sangre de Thoth y agótala: Elige un investigador que esté en tu Lugar para que realice una acción inmediatamente como si fuera su turno.",
@@ -6353,6 +6391,15 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "11073": "Ojo de Ghatanothoa",
+      "07268": "Flauta de los Dioses Exteriores",
+      "11060": "Nublar",
+      "11048": "Dial de los antiguos",
+      "11047": "Dial de los antiguos",
+      "11046": "Dial de los antiguos",
+      "04310": "Fragmentos del vacío",
+      "10097": "Olive McBride",
+      "04197": "Olive McBride",
       "11091": "Buen tiempo",
       "09067": "\"¡Me lo quedo!\"",
       "11065": "Sangre de Thoth",

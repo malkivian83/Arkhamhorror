@@ -1012,6 +1012,7 @@ export function cardCost(
   from?: 'hand' | 'discard',
   optionalModifiers = true,
   asFast = false,
+  unclamped = false,
 ): number {
   const printed = playerCardDef(code)?.cost ?? 0
   const change =
@@ -1051,9 +1052,22 @@ export function cardCost(
         0,
       )
     : 0
+  const adjusted =
+    printed + change + passive + fromHand + increase - discount - improvised - optional
+  return unclamped ? adjusted : Math.max(0, adjusted)
+}
+
+/** Largest printed X payable with resources, permitted uses and cost modifiers. */
+export function maximumCostX(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+  discount = 0,
+): number {
   return Math.max(
     0,
-    printed + change + passive + fromHand + increase - discount - improvised - optional,
+    spendableFor(state, id, code) -
+      cardCost(state, id, code, discount, 0, undefined, true, false, true),
   )
 }
 

@@ -1,3 +1,4 @@
+import { resolvedFaces, resolvedPhysical } from './common'
 // RR: Chaos Bag (outside skill tests), Cancel, Revelation, Seal, Bonded, Fight.
 import {
   attackBlocked,
@@ -192,25 +193,32 @@ export function registerChaosEvents(code: string): boolean {
             ? [nextToken(code, by, d)]
             : afterTokens(code, s, by, d, previous)
         if (step !== 'token') return []
-        const face = d.token as ChaosToken,
-          seen = [...previous, face]
+        const seen = [...previous, ...resolvedFaces(d).filter((x): x is ChaosToken => x !== null)]
         const stored: Message = {
           type: 'StoreHeldChaosTokens',
           group: String(d.group),
           tokens: [
-            d.physical as ChaosToken,
+            ...resolvedPhysical(d),
             ...(JSON.parse(String(d.ignored ?? '[]')) as ChaosToken[]),
           ],
         }
         const done =
           code === '07162'
-            ? ['curse', 'autoFail', 'bless', 'elderSign'].includes(String(face))
-            : seen.length >= (code === '07031' ? 5 : 7)
+            ? resolvedFaces(d).some((x) =>
+                ['curse', 'autoFail', 'bless', 'elderSign'].includes(String(x)),
+              )
+            : Number(d.draws ?? 0) + 1 >= (code === '07031' ? 5 : 7)
         return [
           stored,
           ...(done || !s.chaosBag.length
             ? afterTokens(code, s, by, d, seen)
-            : [nextToken(code, by, { ...d, faces: JSON.stringify(seen) })]),
+            : [
+                nextToken(code, by, {
+                  ...d,
+                  draws: Number(d.draws ?? 0) + 1,
+                  faces: JSON.stringify(seen),
+                }),
+              ]),
         ]
       },
     })

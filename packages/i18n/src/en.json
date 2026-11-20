@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "chaosSelection": {
+        "title": "Token selection and sealing",
+        "cards": "Nine new cards and levels: Olive McBride, Shards of the Void, Dial of Ancients, Obscure, Flute of the Outer Gods and Eye of Ghatanothoa.",
+        "rules": "Reviewed multiple-token selection, sealing, encounter deck visibility and X costs."
+      },
       "leylineSupport": {
         "title": "Leylines and shared support",
         "cards": "Eight new designs and levels: Archive of Conduits and its four researched gateways, Blood of Thoth, Good Weather and “I’ll take that!”.",
@@ -580,6 +585,11 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "chaosFluteDamage": "Deal {n} damage to {enemy}",
+    "chaosFluteMove": "Move {enemy} to {location}",
+    "chaosRelease": "Release {token}",
+    "chaosKeepSealed": "Spend 1 charge to keep {token} sealed",
+    "resolveTokens": "Resolve {tokens}",
     "conduitHealHorror": "Heal horror",
     "conduitHealDamage": "Heal damage",
     "conduitRemove": "Remove 1 leyline",
@@ -590,7 +600,6 @@
     "fieldDeposit": "Move {n} resources to this asset",
     "fieldCounterPlayer": "Cancel the revelation and draw from your deck (+{n} resources)",
     "fieldCounterEncounter": "Cancel the revelation and draw an encounter (+{n} resources)",
-
     "archiveAttach": "Attach {card}",
     "archivePay": "Pay 1 resource",
     "archiveReturn": "Place the attached asset on the bottom of your deck",
@@ -630,7 +639,11 @@
     "extraActionMove": "Move {name}",
     "extraActionClue": "{name} discovers a clue",
     "extraActionRepeat": "Take another melee fight action",
-    "extraAction": { "move": "Move", "evade": "Evade", "investigate": "Investigate" },
+    "extraAction": {
+      "move": "Move",
+      "evade": "Evade",
+      "investigate": "Investigate"
+    },
     "chaosInsightDiscard": "Spend 2 secrets: play {card} from discard fast at -1 cost",
     "chaosCatsExhaust": "Exhaust {card}: test at {target} with base skill 5",
     "chaosCatsDiscard": "Discard {card}: automatically succeed at {target}",
@@ -695,7 +708,7 @@
     "curseClue": "{card}: discover 1 clue at {location}",
     "curseMove": "{card}: move to {location}",
     "curseCharge": "Place 1 charge on {card}",
-    "moveEnemyTo": "Move {enemy} to {location}",
+    "moveEnemyTo": "{enemy} moves to {location}",
     "sacredReturn": "Return {n} bless token(s) to the chaos bag, ignoring their modifiers",
     "aeonsRemove": "Remove both curse tokens from the chaos bag after the test",
     "aeonsKeep": "Return the second curse token to the chaos bag",
@@ -1001,7 +1014,6 @@
     "keepHand": "Keep this hand",
     "mulliganDone": "Draw 1 new card and finish | Draw {n} new cards and finish",
     "mulliganCard": "Replace {card}",
-    "moveEnemyTo": "{enemy} moves to {location}",
     "attackFirst": "{enemy} attacks first",
     "investigatorPaysClue": "{name} spends 1 clue (has {clues})",
     "fireFromDiscard": "Only the encounter discard pile",
@@ -1336,6 +1348,8 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "chaosShardRelease": "Attack {enemy} with {card}: release a sealed token",
+    "chaosShardCharge": "Attack {enemy} with {card}: spend 1 charge",
     "container": "Use {card}",
     "movementDogsMove": "Move with Sled Dogs",
     "movementDogsFight": "Fight with Sled Dogs",
@@ -3733,6 +3747,12 @@
   },
   "offlineCard": {
     "subnames": {
+      "11073": "Artifact of the Dark God",
+      "11048": "Signs of Revelation",
+      "11047": "Signs of Aberration",
+      "11046": "Signs of Cataclysm",
+      "10097": "Tried Everything Once",
+      "04197": "Will Try Anything Once",
       "11065": "Law Incarnate",
       "08044": "Gateway to Paradise",
       "08043": "Gateway to Aldebaran",
@@ -3913,6 +3933,15 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "11073": "Item. Relic. Cursed.",
+      "07268": "Item. Instrument. Relic. Cursed.",
+      "11060": "Ritual.",
+      "11048": "Item. Relic. Cursed.",
+      "11047": "Item. Relic. Cursed.",
+      "11046": "Item. Relic. Cursed.",
+      "04310": "Spell.",
+      "10097": "Ally. Witch.",
+      "04197": "Ally. Witch.",
       "11091": "Blessed. Fortune.",
       "09067": "Trick. Upgrade. Illicit.",
       "11065": "Item. Relic.",
@@ -4917,6 +4946,15 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "11073": "Exceptional.\nYou get +1 [willpower].\nPlay with the top card of the encounter deck revealed.",
+      "07268": "Exceptional. Seal (up to X [curse]).\n[action] Exhaust Flute of the Outer Gods and release 1 [curse] token sealed on it: Choose a non-[[Elite]] enemy at your location. Either move the chosen enemy to a connecting location, or deal its damage to any enemy at its location. This action does not provoke attacks of opportunity.",
+      "11060": "Limit 1 per investigator.\nSeal (0). You may resolve this keyword again after you reveal a location or put a new location into play.\n[reaction] When you engage an enemy, exhaust Obscure and release a token sealed here: Immediately <b>Fight</b> or <b>Evade</b> that enemy. During this skill test, your base skill value is equal to the shroud value of your location.",
+      "11048": "Researched. Limit 1 per deck. Uses (4 charges).\n[fast] During your turn, exhaust Dial of Ancients and spend 1 charge: <b>Investigate.</b> When revealing chaos tokens for this test, reveal X additional tokens, where X is the number of enemies at your location. Choose 1 of the revealed tokens to resolve and ignore the rest.",
+      "11047": "Researched. Limit 1 per deck. Uses (4 charges).\n[action]: <b>Fight/Evade.</b> When you reveal a chaos token during this attack or evasion attempt, you may spend 1 charge to cancel that token, return it to the bag, and reveal a new one. You may do this any number of times. If this test succeeds, deal 1 damage to the targeted enemy.",
+      "11046": "Researched. Limit 1 per deck. Uses (4 charges).\n[reaction] When an investigator fails a skill test at your location, exhaust Dial of Ancients: Seal 1 chaos token revealed during that test on Dial of Ancients.\n<b>Forced</b> - When the round ends: For each chaos token sealed here, you must spend 1 charge or release that token.",
+      "04310": "Seal (0). Uses (3 charges).\n[action] Spend 1 charge or release a chaos token sealed here: <b>Fight.</b> This attack uses [willpower] instead of [combat] and deals +1 damage. You get +2 [willpower] for this attack for each \"0\" token sealed on Shards of the Void. For each \"0\" token revealed during this attack, seal that token on Shards of the Void and this attack deals 1 additional damage.",
+      "10097": "[reaction] When you would reveal a chaos token, exhaust Olive McBride: Reveal 4 chaos tokens instead of 1. Choose 2 of those tokens to resolve, and ignore the rest.",
+      "04197": "[reaction] When you would reveal a chaos token, exhaust Olive McBride: Reveal 3 chaos tokens instead of 1. Choose 2 of those tokens to resolve, and ignore the other.",
       "11091": "Myriad. Fast. Play after the investigation phase begins. Group limit 1 in play.\nPut Good Weather into play next to the agenda deck and choose a skill. While this card is in play, each investigator gets +2 to the chosen skill.\n<b>Forced</b> - When the investigation phase begins: Discard Good Weather.",
       "09067": "Fast. Play when you successfully evade a [[Humanoid]] enemy or successfully investigate.\nPlay an [[Item]] asset from your hand, reducing its cost by X, where X is the amount you succeeded by. Attach \"I'll take that!\" to that asset. Attached asset gains [[Illicit]].",
       "11065": "[reaction] When 1 or more doom is placed on a card you control, exhaust Blood of Thoth: Place 1 resource on this card <i>(from the token pool)</i>, as an offering.\n[fast] If Blood of Thoth has 3 or more offerings on it, remove all offerings from Blood of Thoth and exhaust it: Choose an investigator at your location to immediately take an action as if it were their turn.",
@@ -6353,6 +6391,15 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "11073": "Eye of Ghatanothoa",
+      "07268": "Flute of the Outer Gods",
+      "11060": "Obscure",
+      "11048": "Dial of Ancients",
+      "11047": "Dial of Ancients",
+      "11046": "Dial of Ancients",
+      "04310": "Shards of the Void",
+      "10097": "Olive McBride",
+      "04197": "Olive McBride",
       "11091": "Good Weather",
       "09067": "\"I'll take that!\"",
       "11065": "Blood of Thoth",
