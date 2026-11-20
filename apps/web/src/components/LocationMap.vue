@@ -228,6 +228,14 @@ const treacheriesAt = (id: string) =>
             :value="state.scenarioMeta[`heart:damage:${l.id}`]!"
             :size="28"
           />
+          <!-- Daño sobre el Lugar (Guerra al atardecer). -->
+          <TokenBadge
+            v-if="state.scenarioMeta?.[`locationDamage:${l.id}`]"
+            kind="damage"
+            :value="state.scenarioMeta[`locationDamage:${l.id}`]!"
+            :size="28"
+            :title="t('table.damage')"
+          />
           <!-- Velo cambiado hasta el final de la ronda (p. ej. Hand-Crank Flashlight). -->
           <span
             v-if="l.shroudModifier"

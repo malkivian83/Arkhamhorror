@@ -277,6 +277,48 @@
     "flavor": "Has desbloqueado la puerta tras la librería. Ahora todo lo que se interpone entre tú y las respuestas a todo lo que está ocurriendo es una galería sin fin de imposible geometría.",
     "backFlavor": "Entras en una sala que debería ser el laboratorio de investigación de Robison, pero... mientras que está llena de todo tipo de objetos rituales y demás parafernalia que esperabas encontrar, resulta que no está el doctor, y peor aún, no hay salida. Investigas todo el recinto volcando cajones y estanterías desesperado.\n\"¡Rápido, rápido! ¡Por aquí!\"\nMiras alrededor y te lleva un momento vislumbrar la mano de un hombre haciéndote gestos desde una esquina. El brazo atraviesa la pared a través de un dibujo de tiza de lo que parece ser un puente.\nSin otras opciones te acercas al dibujo de tiza y lo atraviesas mientras la mano tira de ti hacia el interior del muro y hacia algo más extraño todavía..."
   },
+  "78152": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Las llamas crepitan a lo largo de todo Arkham. Las fuerzas combinadas de la Llama Viviente y del Rey han venido para borrar todo rastro de Baalshandor de la ciudad. La guerra por Arkham acaba de comenzar.",
+    "backFlavor": "Los gritos resuenan a lo largo de la ciudad, y atisbas a ver enromes siluetas entre las llamas. La segunda oleada ya está aquí."
+  },
+  "78153": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Extrañas monstruosidades atraviesan enormes portales abiertos. Tu preocupación aumenta al ver que colaboran mano a mano con los cultistas. Ha llegado la caballería.",
+    "backFlavor": "Un chillido ensordecedor golpea tus oídos, seguido de una inmensa ola de calor. En ambos lados de la ciudad, las criaturas más temibles que hayas visto han llegado para encontrarte. Haber atraído la atención de las fuerzas invasoras no te alivia lo más mínimo."
+  },
+  "78154": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Estás ante una situación límite. Debes cerrar ambos portales o Arkham sucumbirá a las llamas o a la locura.",
+    "backFlavor": "Observas paralizado por el miedo como una inmensa mano alienígena, mayor que los edificios y que las avenidas de la ciudad, emerge de un enorme agujero en el cielo hacia el sigilo...\n\nObservas paralizado por el miedo como una inmensa extremidad en llamas, mayor que los edificios y que las avenidas de la ciudad, irrumpe desde el suelo bajo el sigilo y asciende hacia el cielo..."
+  },
+  "78155": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "El asalto a Arkham aumenta rápidamente. Si esta ciudad tiene alguna oportunidad, necesitas encontrar y cerrar uno de esos horribles portales que no paran de escupir maldad sobre las calles.",
+    "backFlavor": "A pesar de las virulentas tormentas de fuego el campus de Miskatonic está relativamente entero. El ojo de la tormenta...\n\nSigues los indicios de la locura através de las calles de la ciudad. En algún lugar de la zona norte debe estar la respuesta..."
+  },
+  "78156": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Has encontrado el lugar por el que las maléficas huestes inundan la ciudad. Si puedes cerrar la puerta, podrás librarte de la mitad de las fuerzas invasoras.",
+    "backFlavor": "Usando una serie de brebajes químicos que encuentras por el edificio, consigues aplacar las llamas. Además bosquejas unas runas protectoras en la pizarra. El portal a Fomalhaut desaparece de la existencia.\n\nConsigues convencer a los transeuntes enloquecidos de que lo que están viendo es una performance de vanguardia. Mientras, usas pintura del almacén para tapar los símbolos y acabar para siempre con el portal."
+  },
+  "78157": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Con uno de los bandos alejado de Arkham, encontrar el segundo portal debería ser más sencillo. Pero no te puedes relajar, ya que las fuerzas invasoras al ver lo que has hecho se vuelven más feroces.",
+    "backFlavor": "A pesar de las virulentas tormentas de fuego el campus de Miskatonic está relativamente entero. ¡El ojo de la tormenta! Pero mientras buscas por el campus un coloso llameante atraviesa los muros del Edificio de Ciencias.\n\nSigues los indicios de la locura através de las calles de la ciudad. En algún lugar de la zona norte debe estar la respuesta, ¿pero dónde? Tu pregunta recibe respuesta cuando una gigantesca figura hace volar por los aires el tejado del Teatro Ward."
+  },
+  "78158": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "¡Has encontrado el último portal! Ahora todo lo que tienes que hacer es superar a un monstruo ciclópeo y cerrar la brecha.",
+    "backFlavor": "Usando una serie de brebajes químicos que encuentras por el edificio, consigues aplacar las llamas. Además bosquejas unas runas protectoras en la pizarra. El portal a Fomalhaut desaparece de la existencia.\n\nConsigues convencer a los transeuntes enloquecidos de que lo que están viendo es una performance de vanguardia. Mientras, usas pintura del almacén para tapar los símbolos y acabar para siempre con el portal."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

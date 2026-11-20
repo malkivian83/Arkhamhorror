@@ -5344,5 +5344,779 @@
     "sha256": "1dc1d67100b722e769d70d53cc19e82280ab6e6435e89cc1c2b27aa3c5771b7b",
     "width": 750,
     "height": 1050
+  },
+  {
+    "code": "78151",
+    "language": "es",
+    "source": "E:\\Plaguero\\189a.jpg",
+    "sourceSha256": "c29fe2c1ce339ed21252951ffb4280e09d34a74e633854500b5ee5199da9bea5",
+    "sha256": "d35b6c8df97f575b11eef180d5642612264f84b5f6de354e157632ebfc915332",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78151b",
+    "language": "es",
+    "source": "E:\\Plaguero\\189b.jpg",
+    "sourceSha256": "4cb7d5b652ff05aa3c0ab79bdfab64096aaf31ef3dfec862f6142346e427afba",
+    "sha256": "123fc1e86c7b788c81e29d9fee6111933b171b3a47e1182f357ff8203b466e54",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78151",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\183 - The Afternoon War-1.png",
+    "sourceSha256": "09ab5a936473d90b90aafb005b7dfa7aa8d9a4630aea48a694318b7c26bca779",
+    "sha256": "a5c6966e17b9ef7ae21957568f658b2b389f1789c254c80e8f755af8e9b07b00",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78151b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\183 - The Afternoon War-2.png",
+    "sourceSha256": "85821d375ff098503b2dd52adc144b72598c50914c42224205a941e3c03aefc9",
+    "sha256": "a7c0572d25d8af0f4541c8542a69d74de4d4df5e222b1e234a9f4396f57036d9",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78152",
+    "language": "es",
+    "source": "E:\\Plaguero\\190a.jpg",
+    "sourceSha256": "12e6c66fb84be3c408be3470237ecddad101c0ed6710427d0a32afbfc41b8b6b",
+    "sha256": "0771bb66dc6cffefc574e61080d4fc47492c048f1e509f1b56a8195de001f03e",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78152b",
+    "language": "es",
+    "source": "E:\\Plaguero\\190b.jpg",
+    "sourceSha256": "3a8a52911126bf1b38b306dc4296c5bf69e53c84e422278e9fc24a1c199a6530",
+    "sha256": "77db6115a149c8852570cab9cb0e1049fe6ba8ea73e9fabca25a800a1729ccba",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78152",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\184 - Fire in the City-1.png",
+    "sourceSha256": "4562085373c39c89bb15386b3b412a6fd86d8f9640d85a9285eac13d8ddcd78e",
+    "sha256": "8a88ea91680d58193bb9bfbd370ff4645680ef95e356b20c10b852b170ebda02",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78152b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\184 - Fire in the City-2.png",
+    "sourceSha256": "70496e1cd65adef14edbd4bc9820a752bfbaeef1d4ed5d2ee043c4032902a5c7",
+    "sha256": "1f1447e8467e46b9da874d87e1e02928c8ce6bdc0f4c259f06750d70e393f30e",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78153",
+    "language": "es",
+    "source": "E:\\Plaguero\\191a.jpg",
+    "sourceSha256": "cf5008758634535df312c69801ca6a616504486cdf08e22db5b025d420f1c488",
+    "sha256": "469daff8eb77aee3510a3a983366430da259865e14b0f4be6b6149c4e061b5c1",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78153b",
+    "language": "es",
+    "source": "E:\\Plaguero\\191b.jpg",
+    "sourceSha256": "c4ad9cbda84e08ffb65d2215ea8d45dd7e3b2fe68d582d1fae2795790ed6ac71",
+    "sha256": "670688ec388bd2dbecee65d34988376e14c3d9d080e5a7e4b78c7c5dca25ccd7",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78153",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\185 - Omens in the Fire-1.png",
+    "sourceSha256": "219aa7bdb18c0a0bea70b93fc0f9fa95a438ff04b4697bdb87adeffebbdb57be",
+    "sha256": "2b7ea28db990e5c6db88492fb14e6a658d3bcb8ec9dfb7761db820d1aaa59915",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78153b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\185 - Omens in the Fire-2.png",
+    "sourceSha256": "fc116fd71cd2e7c07743b2140413eaa8e9fae0060fe23c6f9d7e0afc6c955d98",
+    "sha256": "ae4b32079eadb21414435fe93d396ed0f73490c0383048d47a0fdb7f53d8d411",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78154",
+    "language": "es",
+    "source": "E:\\Plaguero\\192a.jpg",
+    "sourceSha256": "a615040300e9f9c04a19ea5e972e4ae3559b3e0f12bab1409e7c0d5ee99d100e",
+    "sha256": "681ada324f5509022c2bf7a72024b2ea5344de51a87a9ec9eccd68ad8f065538",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78154b",
+    "language": "es",
+    "source": "E:\\Plaguero\\192b.jpg",
+    "sourceSha256": "ea951ef357f4ee1cefb367986746a7fcca2dca14d1b72c5acd3032d3b0b65e0e",
+    "sha256": "a48f6d4ad914cdd3433112128698575be3e4010c91e8a34766d89adf4132a8cd",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78154",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\186 - Maddening Flames-1.png",
+    "sourceSha256": "617da4d895b2e48b720284a08abc77ae4f21bff7b806a6fc81ca9316ab4ddf2c",
+    "sha256": "3b6d4dbe2667789a0fa9f427247c9631557eb0fe3fa495b8115de2daa79132d7",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78154b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\186 - Maddening Flames-2.png",
+    "sourceSha256": "abb684988925ec1d9be1a69d6dd2257e8151cb749b4be8d6a49ec7f60572e916",
+    "sha256": "02b4c408398dd7f8d084716fd0557ff3b8fd29b1504df9ebce94b449b5a6b1cc",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78155",
+    "language": "es",
+    "source": "E:\\Plaguero\\193a.jpg",
+    "sourceSha256": "8736e85bcb0ef10553d7adf8f90237dcc8bb5eb02e92a23959b2fc4f4dd97c2c",
+    "sha256": "f4cc3f169cee56861a86b94f870746e02fedbfd0a5c938130beabc113a06d25c",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78155b",
+    "language": "es",
+    "source": "E:\\Plaguero\\193b.jpg",
+    "sourceSha256": "75ad1410be8e49edf6b18129e333d584a3529200c4f53656c71738504d886c80",
+    "sha256": "2d753117170ddc4e15ef90192edef9d191d8fc9307dcaffd388ea37e167c58bd",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78155",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\187 - The First Portal-1.png",
+    "sourceSha256": "038ca362bce8cdd3983ff02c33b9fde7504bd3a203c976136d31af3047c8cee8",
+    "sha256": "b992dd0928e4d3935ced6b51954744d5decd3a325f012e55c34006754e57bf10",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78155b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\187 - The First Portal-2.png",
+    "sourceSha256": "ea5c5a640ccb2bbe6460308f2497a05e366e765180b25d545b1a5c0008f77c84",
+    "sha256": "9554a0b67fde81b3fd0e6212b696ebd07eeab9caafe9b773df64d8ed97f19dbd",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78156",
+    "language": "es",
+    "source": "E:\\Plaguero\\194a.jpg",
+    "sourceSha256": "3c0d3993f3bb48603cfe0ec650581f8e35928e2210124dc7b4da3bb2fe397ffb",
+    "sha256": "738320e3cb15e0647bbb2ac5b4cc638f4873a26dd6340e3889a09e9dd30b8fc3",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78156b",
+    "language": "es",
+    "source": "E:\\Plaguero\\194b.jpg",
+    "sourceSha256": "d038764e13bfa8ca39eccb6a67ea0735f47b8914f784387db164ab7352f7ecbb",
+    "sha256": "f025d6f1f3ee432803dfedb7921dac9e6e8db021007771d629f46a02885fe62b",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78156",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\188 - Closing The Gate-1.png",
+    "sourceSha256": "9ec2ec80a4c09f921e9e8e7b01ebeb8772248fbb5985109b717538bcee3e090d",
+    "sha256": "d115cbb38f1cd7a073177b524dc0aec06e1adfa5e4805ae95278e9ac2611863b",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78156b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\188 - Closing The Gate-2.png",
+    "sourceSha256": "0cb1449cd0dd756fce0f22f53a49d55167870a8c4f8520ba303925f4e33e644f",
+    "sha256": "bab04015a3613ab76d8b6afa33315ba273aff0b0ac62dfcece513ae3fdbb2da7",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78157",
+    "language": "es",
+    "source": "E:\\Plaguero\\195a.jpg",
+    "sourceSha256": "b6b847d76acec9303685d67d71ef6f11b07e76a29a04551f6eb09496a3e6c6bd",
+    "sha256": "24fcff8aedb685edc083cbc4ecc2e978577681648ea5fa881d162ef91140b903",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78157b",
+    "language": "es",
+    "source": "E:\\Plaguero\\195b.jpg",
+    "sourceSha256": "52ddf94269d8dfd9538eeb45e12a128a8ec461c6ce1f2350c66a2536d4bb8f70",
+    "sha256": "c5a292e5ffdeb5088ddfb979ac1a4df53839c199e61879afef0330d6bfad59d8",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78157",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\189 - The Second Portal-1.png",
+    "sourceSha256": "1c4a371219004f56755643810c8c346cbd9f1682238f8382658ceebbf709ef03",
+    "sha256": "21dc827868e519775b8d518c960294fe6ec145a6a1924daceb4ba677b2ce48ef",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78157b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\189 - The Second Portal-2.png",
+    "sourceSha256": "d04755c760646d7996fda07d350cdc13eada5bf8ff289148dcf03ad676ceaaac",
+    "sha256": "2bd5f5ceb8b877d05d6b7917ef571a9721431ae3f4f5d1e24b0c6b75fedcd9fc",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78158",
+    "language": "es",
+    "source": "E:\\Plaguero\\196a.jpg",
+    "sourceSha256": "3235c890d6ccfcb6226fe9b3e87b3de4681a300b80d537750d0c7138efbe312a",
+    "sha256": "4acc168051d06a4c7bed1725dbc259267941f9cef2c968a847fddbb73a023169",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78158b",
+    "language": "es",
+    "source": "E:\\Plaguero\\196b.jpg",
+    "sourceSha256": "2336712c9e834057cc89719266b815d179b0bbc9a7e13d6891497c52190f30c4",
+    "sha256": "2304814c966202b364ffd8488945f4d617f59789f3bc2e89bbf6c2f9ba09a598",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78158",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\190 - The Final Gate-1.png",
+    "sourceSha256": "3c792d4e31ec33f3dc4f474959822c32f0107be0db8c3f2028bfea4c3172af6c",
+    "sha256": "f31901ff316f1b825217499a4ca0628cb7f723a997c4ebc48ca8712d2f570c1d",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78158b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\190 - The Final Gate-2.png",
+    "sourceSha256": "8a918262746094d7a3a6b3d6ebc8ee9a00710fcbd5978232eec8fe6a432937a2",
+    "sha256": "25358a04d89a623c198a588ab8e6682786794de541d456c2f8f1e53c5a39b80a",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78159",
+    "language": "es",
+    "source": "E:\\Plaguero\\197b.jpg",
+    "sourceSha256": "246981aa711d84a2e2e72f66990336022dbf23f428e314c1213ad0280ed51525",
+    "sha256": "b7326b7eaae9a833d28057979f369eec4e6c2d5dedd5cc75b7fa560e3b277830",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78159b",
+    "language": "es",
+    "source": "E:\\Plaguero\\197a.jpg",
+    "sourceSha256": "a95497e940f63ef1f8d7957cdf8b132252c68dee638ccb62e4981a2d6b25cb44",
+    "sha256": "d849803c99dc8aa11d133041b7f93858ab4170f8a4f77c9c44c36df37ccbf90b",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78159",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\191 - Crater of Unbinding-1.png",
+    "sourceSha256": "9f2f57081f852c951ffee480b09fc0dc2803e0015ab546f68881efff059422b7",
+    "sha256": "34f70987b051ebfb412c06b4a68649b46a1f32438f369508d16d52bfea6173b7",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78159b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\191 - Crater of Unbinding-2.png",
+    "sourceSha256": "dc1c916af45f134860215cdb23b7bbde39afd2158748e048785cfa9f3bcb60d8",
+    "sha256": "cc488f38067b58ae0cffdca5e7f40d33aedd0be11cfcecbe1687ba2ca77b97b2",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78160",
+    "language": "es",
+    "source": "E:\\Plaguero\\198b.jpg",
+    "sourceSha256": "902e7879551833ede339d72b9a0d0582cb888dd53e8ecc6ff4f11ce1aa10fc1c",
+    "sha256": "f914d55e7668bceee1186b9cff071930a52434487670b5d8410d17e8f1d07884",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78160b",
+    "language": "es",
+    "source": "E:\\Plaguero\\198a.jpg",
+    "sourceSha256": "d4d716ccdf9221647d43f39a5bb6dd5f9f9b933f8c5d5a07960d83dc42e7b4b0",
+    "sha256": "37ad45e4cee5c85127e421ca14c176bfd230211262c248052905bbe2b8dc75db",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78160",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\192 - Portal of the Flame-1.png",
+    "sourceSha256": "c54d2969d26663510e2215edc48d431e24cede7f421ab0f4d071dfa732d03f50",
+    "sha256": "f42860eb3f3e7e77da2efc802918eaf21c67509a38f61aca378f688b3b1c1182",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78160b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\192 - Portal of the Flame-2.png",
+    "sourceSha256": "6513bba1604d360aa41f602bdc829e4bee9a3d104a6db9fb2c7ae29a68d3eb30",
+    "sha256": "aa44489726b634f54e813a0947df5924212d54150c2ab45c167d7f0993e57d2f",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78161",
+    "language": "es",
+    "source": "E:\\Plaguero\\199b.jpg",
+    "sourceSha256": "8625f28fedbdd7439019e241630af072777d75c7089d19815fd34b48575288e0",
+    "sha256": "277be6df7ffed3a7b00778e887450977cb9950ea9e3682353dc5def8b5ead3f7",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78161b",
+    "language": "es",
+    "source": "E:\\Plaguero\\199a.jpg",
+    "sourceSha256": "0f6857938af20d3f7562ef060b243a92bc4677c15799ef08897418073d31651f",
+    "sha256": "0977dc9e96621c4736f28ea3d01245ce1c15eb2545b1517ec8c096a6949da41e",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78161",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\193 - Portal of the King-1.png",
+    "sourceSha256": "14ccb943b13915e43e4c6687e0c010e658f779418e4b4129ebb67cf7048e467f",
+    "sha256": "6efffc56ce03affc85ef286a0aa30ea41bcc01967148a50fb3f3e061b992dbdd",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78161b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\193 - Portal of the King-2.png",
+    "sourceSha256": "171694245b752ac7a5929891abb9ba5477e3b0cad2f68a6dacb5821e171b4007",
+    "sha256": "dd5a5d48d4495204e106a09d9948bbfea9821763ddaa964017838f96c0d2855c",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78162",
+    "language": "es",
+    "source": "E:\\Plaguero\\200a.jpg",
+    "sourceSha256": "dfe4d6238659e365e801597e060193b15d3630fe0a80bb63a4d6365d9bd21721",
+    "sha256": "15792fd138c5560e3833b91c9b19a208a9542b7071db851fead296e9a7501b95",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78162",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\194 - Abner-1.png",
+    "sourceSha256": "160851b49ad4f3c09a21b7ad5fd5490bacdce5f78389fa70f715df702222211a",
+    "sha256": "c1d3960d6bce70c057b0063f38225e647bc98c4fe592a9b58c9044f893f113bd",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78163",
+    "language": "es",
+    "source": "E:\\Plaguero\\201a.jpg",
+    "sourceSha256": "a35fcb92c4195e68e35e1cd58afd2f29522c02f02623bf06ed3ef137f98e536d",
+    "sha256": "3a544211d9eb5ba69f41c88b6a956d4c4ca69a4cf99407e541f8bb228789d307",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78163",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\195 - Armitage-1.png",
+    "sourceSha256": "bd829ff8d6bea686e301518d92f56d6cfecd9293daae5e16cea61e8f78604d51",
+    "sha256": "777942fca5df5c9a5e8ebfd938c3807475d27fc5608547534fb831edc2516d03",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78164",
+    "language": "es",
+    "source": "E:\\Plaguero\\202a.jpg",
+    "sourceSha256": "0d137e63f0ce18276222e59545505299cf4bc6d71d7dc0a9febaa73c7b1e7bf0",
+    "sha256": "c5b4543c13069920fbb4e72184a51f6031d751d1af6d169b9ce0e167a9ae9c62",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78164",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\196 - Doyle-1.png",
+    "sourceSha256": "bc60fa746598c0f3e5cc3aafca0115afa326883edb75bc198b0f4fa6eca19808",
+    "sha256": "8163951a243ca41b2dfb4fea8ea5b9b5ac441b326a681f16ba01407a2909e2ad",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78165",
+    "language": "es",
+    "source": "E:\\Plaguero\\203a.jpg",
+    "sourceSha256": "aec442850eda25c9f0fad9a8f8120e1578421d36a32441c9f32fe206465df7af",
+    "sha256": "96624f31c1a9a2f91a12dccaac52c0e0483c7f4f699608bc6e045e3c9fe4239a",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78165",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\197 - Hibbs-1.png",
+    "sourceSha256": "255b200ce02f81ee0fbeb6b85c028c554c3321863cbcb30bf870591827d2bb06",
+    "sha256": "621bccf56a2a71ac557b55dd1e59a705b2b2c06b6da5e692ecb7ac013075d043",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78166",
+    "language": "es",
+    "source": "E:\\Plaguero\\204a.jpg",
+    "sourceSha256": "9966709b6fd2f72ab93074d7837ca42734168ee40c5132eed2fdccfac0e6914e",
+    "sha256": "9a522e3af9aa1f73b5a7193afc2528210f2a283a85edadd2fc21cff2618658ef",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78166",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\198 - Loving-1.png",
+    "sourceSha256": "1fa69dc179196f89041ad85e2c4086fcee580ac55847e251ac9d7893ff4f7f39",
+    "sha256": "91fd29548809f8033b3f8f7278ede1a4daa4c5c4dc63224368b5130cfce374aa",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78167",
+    "language": "es",
+    "source": "E:\\Plaguero\\205a.jpg",
+    "sourceSha256": "2b2c4c3ccf51353fb1e9af609f6ed84d9170af633d6d85f25cfd69de047942af",
+    "sha256": "d8cfbfb66ce1e7dd2a405c27f4f11b149d4ea29a9e5b2cf178326ba2ef1695e1",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78167",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\199 - Ma Matheson-1.png",
+    "sourceSha256": "5218420b1bf865af7841235ccd0f1e10521241e44f6b620904def49f2a320b3e",
+    "sha256": "91535160ca073de8d5c6f5422c5e6c5a5178823d07a419c2d1b0a624956ccade",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78168",
+    "language": "es",
+    "source": "E:\\Plaguero\\206a.jpg",
+    "sourceSha256": "af5bb305a95b16dea9e4a2d7b26826e8fd0b91048404ec951db3db3541414335",
+    "sha256": "7af59247a98605d1bc7f3766257f70ef24c4593dea7c3900d6cf52e68bf6a264",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78168",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\200 - Miriam Beecher -1.png",
+    "sourceSha256": "eb509550cfe5a8205258375c767ecd88bfacabecba774667e72501b56567f1ce",
+    "sha256": "e6bc4083b2b82e0e74c46d542ed0225e85dbb8386ce75559587c1481a3664c9a",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78169",
+    "language": "es",
+    "source": "E:\\Plaguero\\207a.jpg",
+    "sourceSha256": "fca07c6eeacfdaef2d1218435e997a6feaea09470c3924a9c5c772cd14ab66b0",
+    "sha256": "b71cfef548c8cbaa13afd6b0037b32d0fc4a1c110b27e1dec682bdab240a08ce",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78169",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\201 - Vice-1.png",
+    "sourceSha256": "298352eeaa6c88b1eec3b22853b66540af464525d8c11a1f608a1205dadd6f72",
+    "sha256": "84e5dcd1ea6c1ca2f274bee32ec237fe648676e26932a5908f92b9b5a296bdaf",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78170",
+    "language": "es",
+    "source": "E:\\Plaguero\\208a.jpg",
+    "sourceSha256": "d1aebd93ce49ad778582c207ae6b5468347174a9b12b1cbcc17d1f069bb999e4",
+    "sha256": "00905030e12b39fde3455673ed12200c5506e9e587cd73e0b5387463780ece85",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78170",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\202 - Messenger of Flame-1.png",
+    "sourceSha256": "5780fc008183c4290b4938ae26499b7f94b1602c6f2ad3965f0fb979944cb2cf",
+    "sha256": "2f4aa32c18178c6c285e4e5d83fd702587513cdad91eb1e68ed91a62a95e48d5",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78171",
+    "language": "es",
+    "source": "E:\\Plaguero\\209a.jpg",
+    "sourceSha256": "472fad06eec7e9c810e2344f3e71e63df9689232d115e3d81f1f3c899b18c509",
+    "sha256": "d285e19edb69d3f3f20823fbaca6a67ec941c780472fb24504f65b0c644ed2b3",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78171",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\203 - Messenger of Heroes-1.png",
+    "sourceSha256": "eef9978dd8be25b1f9980146f9f8749a98f33937180fe0a8fb15ba7fd581d9a3",
+    "sha256": "3716125bf629aef4ed667ce520a14ea4dc4d2059452ee2f415393046163702f5",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78172",
+    "language": "es",
+    "source": "E:\\Plaguero\\210a.jpg",
+    "sourceSha256": "f24db84d97b923b1ef010b2b2f31bea48ada7dc8ac2c05f2daa521b008c6853d",
+    "sha256": "f5bac12d5c85dcd415cd784f8d94f9473b3ffe8f5fc761c1cb7a450a6a63308a",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78172",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\204 - Site of Unbinding-1.png",
+    "sourceSha256": "50133372165aaada7535b49b70aaac7d4de0b332b3334d44b3f875b4db793393",
+    "sha256": "0ba0ad1b7bc2adb14294f94a9d61ada887723ebfff1e3a8f0a7b15157cb9dc2c",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78173",
+    "language": "es",
+    "source": "E:\\Plaguero\\211a.jpg",
+    "sourceSha256": "b2397e5a12f80606d23c1383dc2fde50501206a73c39575faaba52a3978ff381",
+    "sha256": "42bb064f8fc9c87ae719f2f8c7a9aa90f78b591d0d8033577786739a8435b1e9",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78173",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\205 - Burst of Flame-1.png",
+    "sourceSha256": "d3e0bb2142a97a6806f4e04dd09e043ad370428aabf461b97f2a26f5b4b7ea72",
+    "sha256": "6cfa36681b9933ea2e7fbdb89396876388f1fde9ef73248bc6702bbcc2ccd179",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78174",
+    "language": "es",
+    "source": "E:\\Plaguero\\213a.jpg",
+    "sourceSha256": "69f9bae2e360bb7dfa1e57d893e09e55c788b0213fda3966537b192661fdad3a",
+    "sha256": "d471f0c621b626842b6186aba696909fed337c49017b70977ed775478ddeeb62",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78174",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\207 - Delusional Protagonist-1.png",
+    "sourceSha256": "0927324aa3defb99472f0bdae5ee86424cf6fb257b9974e14740a26867e8b70c",
+    "sha256": "4b4ec02ac0ac0837f4761023aefa3a45ec753d634fe20dd64c14a131cd66fb84",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78175",
+    "language": "es",
+    "source": "E:\\Plaguero\\215a.jpg",
+    "sourceSha256": "f8d6931a08c4e0dcd8132f8051783aa2ebc19fe8f347d28128af9147323c28e9",
+    "sha256": "bfa9830065a810bf39e99c608c9ecf098199a750350819025bb33c46d6404b38",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78175",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\209 - Dramatic Advance-1.png",
+    "sourceSha256": "ebb5f5cb0678b98244afc48da944d711946dbe9c3c663562342dc749f92ef5dc",
+    "sha256": "cc7e5c7dd8621dd751ea11bb3d74aa315fcb75f95f40e17f5608b112b7c61ef5",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78176",
+    "language": "es",
+    "source": "E:\\Plaguero\\217a.jpg",
+    "sourceSha256": "15ea8e3f614b2330057f62032f114fe4f38fd90741695125b68db7d228528bbc",
+    "sha256": "6a9ce8407db54969a1965bc7b90fe492e659583e1dc346cfe4505a9d291d5422",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78176",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\211 - Dread Epiphany-1.png",
+    "sourceSha256": "24b5d5886edae2c084e7abf28c6861559b4f8ece74a193923409e30f1f5daacf",
+    "sha256": "aeff89de1e7b663db79e7d1861426a456d219376845c0a5e9c3609e140fd586a",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78177",
+    "language": "es",
+    "source": "E:\\Plaguero\\219a.jpg",
+    "sourceSha256": "1c862256300bd1ad306bca7ffe361d0b3dc3cf169fba8f9c7d9fe4d8785539b0",
+    "sha256": "d417794f4c4d65484f077d394b2bb9ff776274275e347fdc8d23c4123f5e0e90",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78177",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\213 - Flaming Advance-1.png",
+    "sourceSha256": "89cb01a141175ed4a25219a2002806106f6823f54457fe9da602a6689a88869c",
+    "sha256": "0aa0e87dec29141c9346af27661ad348b29e539d058ac1d1cb1082cedd0e3c50",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78178",
+    "language": "es",
+    "source": "E:\\Plaguero\\221a.jpg",
+    "sourceSha256": "bd9b7a6d4cb7e029a4f870fa6b25508907a153a742092b9497f83da0114b8cf3",
+    "sha256": "c45314311be09315fe4912c0d98858f83aa7d117589c09058e994fc712879d33",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78178",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\215 - Flaming Worshipper-1.png",
+    "sourceSha256": "09b60a820ffd9f8dffc488f7e03d82fa19c1caca1d51f99f71d60efbbd7d1ff4",
+    "sha256": "32e4af9eaa834b23e6c711e1d37fc1dd6468f9cbcf9c297e52a47b6f8f845849",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78179",
+    "language": "es",
+    "source": "E:\\Plaguero\\223a.jpg",
+    "sourceSha256": "0a50df3bdb0ee9aa315c4b236e9baa01e41d32ed6273bd5ff916a0f1bf6b1add",
+    "sha256": "6726d6c5f535e3c1d3912d3048c9e66d05aad632d629e8d6ce6e8471edff4c4c",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78179",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\217 - Lumbering Candlejack-1.png",
+    "sourceSha256": "75aa70493fdbdce8898e65c1d41247cc14286f96c8776cf6b6e7ac3fe5da8b17",
+    "sha256": "11e93d3f23e68ede6ae98d8c7335b63e2900b728dfbc3973dc1ba1759de09061",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78180",
+    "language": "es",
+    "source": "E:\\Plaguero\\225a.jpg",
+    "sourceSha256": "1df56c8844f0265de17bcca7b0dcbf0276dd870ff37aca3605b795eded080c92",
+    "sha256": "0b682ec4389eae4f7d44467163823b5730c86700da39bc3fbc74b3c720f7e739",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78180",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\219 - Molten Murder-1.png",
+    "sourceSha256": "71f7e5d3dff3496399d482d16b702b47406236d169c4b3acea1ab544e5c8e703",
+    "sha256": "3c68fac8e213fdc2ff56b0d2ff6b295e245c9d682db38d019bb8b78d9e2e782d",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78290",
+    "language": "es",
+    "source": "E:\\Plaguero\\377a.jpg",
+    "sourceSha256": "7a88269ad3e0561e98a2cc2914e2871555af555156d5385e08c2f48c1685ef6c",
+    "sha256": "510fb0a4ad50940edd33e24c5d33c371886ab15dc9843a0cc073d2d37972a93f",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78290",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\347 - Heed the Call-1.png",
+    "sourceSha256": "68bbba372324bebe0c84e836703f95620526b806a50539d2252f317e295aa777",
+    "sha256": "2b4e43994314eed49243d6cb309f60c4cca9d38fa90a26b876c5230aadd6fbcf",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78291",
+    "language": "es",
+    "source": "E:\\Plaguero\\379a.jpg",
+    "sourceSha256": "e73ba247166879bfe9c2e655f1959f67239b188812a22e66a26427c20c0946fb",
+    "sha256": "04105a2cb7cef6d4971ee2cb469db04455cb06d62ebc5c9a903e13fe04b9ab05",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78291",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\349 - Ire of the Unbound-1.png",
+    "sourceSha256": "a711354a5328da9265585817bca7b8ea371e8664e5238d527f348b046f7b960a",
+    "sha256": "8e6925c77e5ce3cc9aa39ba518afb283204ad3526de85e97cda8bb4e2a99522c",
+    "width": 791,
+    "height": 1048
   }
 ]

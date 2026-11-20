@@ -1110,6 +1110,238 @@
     "text": "Revelation – Test [willpower] (3). If you fail, put Taphephobia into play in your threat area.\nForced – When you enter a Sub-Level location for the first time this round: Take 1 horror.\n[free] If you are at The Saferoom: Discard Taphephobia.",
     "flavor": "We have to go deeper?"
   },
+  "78151": {
+    "name": "The Afternoon War",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X is the most damage or horror on a location. (X is max 4.)\n[cultist]: –4. If you succeed, you may return 1 token from your location to the token bank.\n[tablet]: –2. If you fail, you cannot trigger the [action] ability on the act for the remainder of the round.\n[elder_thing]: –3. If you fail, each investigator who has heeded the call must place 1 horror or 1 damage on their location.",
+    "backText": "[skull]: –X. X is the most damage or horror on a location. (X is max 6.)\n[cultist]: –5. If you succeed, you may return 1 token from your location to the token bank.\n[tablet]: –3. If you fail, you cannot trigger the [action] ability on the act for the remainder of the round.\n[elder_thing]: –3. If you fail, each investigator who has heeded the call must place 1 horror or 1 damage on their location for each point you failed by."
+  },
+  "78152": {
+    "name": "Arkham in Flames",
+    "typeCode": "agenda",
+    "text": "Forced – At the end of the round: For each enemy in play, place 1 damage on its location (if its attack damage is greater than its horror) or 1 horror on its location (if its attack horror is greater than its damage). Otherwise, do nothing.",
+    "flavor": "Flames crawl through the city of Arkham. The twin forces of the Living Flame and the King have come to scorch all trace of Baalshandor from the city. The war for Arkham has begun.",
+    "backName": "Heating Up",
+    "backText": "Shuffle each set-aside copy of Lumbering Candlejack and Molten Murder into the encounter deck, along with the encounter discard pile.",
+    "backFlavor": "Screams ring out from across the town, and you see giant silhouettes moving through the flames. The second wave has arrived."
+  },
+  "78153": {
+    "name": "Fiery Portents",
+    "typeCode": "agenda",
+    "text": "Forced – At the end of your turn, if your location has at least 4 damage or horror on it: Move 1 token from that location to an Unbinding location.\nForced – At the end of the round: For each enemy in play, place 1 damage on its location (if its attack damage is greater than its horror) or 1 horror on its location (if its attack horror is greater than its damage). Otherwise, do nothing.",
+    "flavor": "Strange monstrosities pour forth from open portals. Your concern grows as they work hand in hand with the cultists. It appears the cavalry has arrived.",
+    "backName": "Fearsome Foes",
+    "backText": "If there is more horror than damage on locations in play, spawn one copy of the set-aside Screeching Byhakee at the Bank of Arkham (or Crater of Unbinding if the Bank of Arkham is not in play). Otherwise, spawn one copy of the set-aside Fire Vampire at the Orne Library (or Crater of Unbinding if the Orne Library is not in play).",
+    "backFlavor": "A deafening screech hits your ears, followed by a wave of heat. On both sides of the city, the most fearsome creatures have descended, and are headed right for you. That you have the drawn the attention of the invading armies is little comfort."
+  },
+  "78154": {
+    "name": "Maddening Fires",
+    "typeCode": "agenda",
+    "text": "Forced – At the end of your turn, if your location has at least 4 damage or horror on it: Move 1 token from that location to an Unbinding location.\nForced – At the end of the round: For each enemy in play, place 1 damage on its location (if its attack damage is greater than its horror) or 1 horror on its location (if its attack horror is greater than its damage). Otherwise, do nothing.",
+    "flavor": "The situation is grim. If the portals are not both closed, Arkham will die in flames or madness.",
+    "backName": "The Hand of God",
+    "backText": "If there is more horror than damage on locations in play:\nYou watch in stunned horror as an immense alien hand, larger than buildings, larger than streets, reaches out from a hole in the sky into the city and towards the sigil…\n(→R1)\nOtherwise:\nYou watch in stunned horror as an immense flaming limb, larger than buildings, larger than streets, bursts from the ground below the sigil and rises towards the sky…\n(→R2)"
+  },
+  "78155": {
+    "name": "The First Portal",
+    "typeCode": "act",
+    "text": "[action]: Test [willpower] or [agility] (X), where X is the number of your choice, to a maximum of 4. If you succeed, return X tokens of one type from your location to the token bank, then place 1 clue from the token bank on your location.",
+    "flavor": "The assault on Arkham is growing quickly. If this city has any chance, you’ll need to find and close one of the two portals bleeding evil onto the streets.",
+    "backName": "Split Pursuit",
+    "backText": "The lead investigator must decide (choose one):\n– The fire will burn the whole city to cinders. We need to close the portal of Flame.\nRemember that you chose Flame.\n– If everyone loses their minds, the city is as good as doomed. We need to close the portal of the King.\nRemember that you chose King.\nIf you chose Flame:\nDespite the raging firestorms, the Miskatonic campus is relatively untouched. The eye of the storm…\nReveal the Portal of the Flame and place 1 damage on it.\nIf you chose King:\nYou trace the movements of the madness throughout the city. Somewhere near northside, there must be an answer…\nReveal the Portal of the King and place 1 horror on it."
+  },
+  "78156": {
+    "name": "Closing the Gate",
+    "typeCode": "act",
+    "text": "[action]: Test [willpower] or [agility] (X), where X is the number of your choice, to a maximum of 4. If you succeed, return X tokens of one type from your location to the token bank, then place 1 clue from the token bank on your location.\nObjective – At the end of the round, if there are no tokens on the Portal location, you must advance.",
+    "flavor": "You have found the site where evil forces are bleeding into the city. If you can close the gate, you can cut off half the assaulting forces.",
+    "backName": "When One Door Closes",
+    "backText": "If The Science Building has no tokens on it:\nUsing chemical concoctions from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.\nSearch the encounter deck, the encounter discard pile, and all play areas for each copy of Burst of Flame, Flaming Advance, Infernal Acolyte, and Molten Murder and remove them from the game.\nMove each investigator at Science Building to the Orne Library (or Crater of Unbinding, if not in play). Place Science Building in the victory display.\nSpawn the set aside Messenger of the King at Portal of the King.\nIf Ward Theatre has no tokens on it:\nYou convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal.\nSearch the encounter deck, the encounter discard pile, and all play areas for each copy of Delusional Protagonist, Dread Epiphany, Lumbering Candlejack, and Unreal Advance and remove them from the game.\nMove each investigator at Ward Theatre to the Bank of Arkham (or Crater of Unbinding, if not in play). Place Ward Theatre in the victory display.\nSpawn the set aside Messenger of the Flame at Portal of the Flame."
+  },
+  "78157": {
+    "name": "The Second Portal",
+    "typeCode": "act",
+    "text": "[action]: Test [willpower] or [agility] (X), where X is the number of your choice, to a maximum of 4. If you succeed, return X tokens of one type from your location to the token bank, then place 1 clue from the token bank on your location.",
+    "flavor": "With one side cut off from Arkham, finding the second portal should be easier. And not a moment too soon, since the forces corralled are growing in ferocity.",
+    "backName": "Hole In The World",
+    "backText": "If the Portal of the Flame is unrevealed:\nDespite the worsening firestorms, the Miskatonic campus is still relatively untouched. The eye of the storm! But as you search the campus, a horrible flaming giant bursts forth from the wall of the Science Building.\nReveal the Portal of the Flame and place 2 damage on it.\nIf the Portal of the King is unrevealed:\nYou trace the movements of the increasing madness throughout the city. All signs point to Northside, but where? Your question is answered by a massive and shrouded figure that breaks through the ceiling of the Ward Theatre.\nReveal the Portal of the King and place 2 horror on it."
+  },
+  "78158": {
+    "name": "The Final Gate",
+    "typeCode": "act",
+    "text": "[action]: Test [willpower] or [agility] (X), where X is the number of your choice, to a maximum of 4. If you succeed, return X tokens of one type from your location to the token bank, then place 1 clue from the token bank on your location.\nObjective – At the end of the round, if there are no tokens on the Portal location, you must advance.",
+    "flavor": "You have found the final portal! Now all you have to do is make it past a gargantuan monster and destroy the breach.",
+    "backName": "Armistice",
+    "backText": "If The Science Building has no tokens on it:\nUsing chemical implements from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.\n(→R3)\nIf Ward Theatre has no tokens on it:\nYou convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal.\n(→R3)"
+  },
+  "78159": {
+    "name": "Crater of Unbinding",
+    "typeCode": "location",
+    "traits": "Miasma. Unbinding",
+    "text": "Crater of Unbinding is connected to each Miasma location, and vice versa.\nForced – At the end of the round: Place 1 doom on the current agenda for every 4 tokens on Crater of Unbinding.",
+    "backText": "Miasma. Unbinding.\nCrater of Unbinding is connected to each Miasma location, and vice versa.\nForced – At the end of the round: Place 1 doom on the current agenda for every 4 tokens on Crater of Unbinding."
+  },
+  "78160": {
+    "name": "The Science Building",
+    "subname": "Gateway to Fomalhaut",
+    "typeCode": "location",
+    "traits": "Portal. Miasma",
+    "text": "The Science Building gets +2 shroud for each damage on it.\nForced – After you start your turn at The Science Building: Either take 1 damage or place 1 damage on The Science Building.\nVictory 1.",
+    "flavor": "The back of a theoretical physics classroom has given way to a land of flame and ash that is all too real.",
+    "backName": "Portal of the Flame",
+    "backText": "The Portal of the Flame is unknown to you. You cannot enter the Portal of the Flame.",
+    "backFlavor": "A firestorm rages above Arkham. It has to be coming from somewhere…"
+  },
+  "78161": {
+    "name": "Ward Theatre",
+    "subname": "Gateway to Hali",
+    "typeCode": "location",
+    "traits": "Portal. Miasma",
+    "text": "Ward Theatre gets +2 shroud for each horror on it.\nForced – After you start your turn at the Ward Theatre: Either take 1 horror or place 1 horror on Ward Theatre.\nVictory 1.",
+    "flavor": "A massive hole in the ceiling leads to an alien sky marked with twin suns. The theatre has never held stars of such magnitude.",
+    "backName": "Portal of the King",
+    "backText": "The Portal of the King is unknown to you. You cannot enter the portal of the King.",
+    "backFlavor": "Visions of strange spires and multifold suns dot the skies. But where do they originate?"
+  },
+  "78162": {
+    "name": "Abner Weems",
+    "subname": "Drunken Rage",
+    "typeCode": "asset",
+    "traits": "Arkham. Human",
+    "text": "[action]: Defend. Number of skills in your discard pile (2). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“Just cause these things ain’t - *Hic* - real, don’t mean I can’t hurt ‘em!”"
+  },
+  "78163": {
+    "name": "Henry Armitage",
+    "subname": "Smarter than He Lets On",
+    "typeCode": "asset",
+    "traits": "Arkham. Miskatonic. Human",
+    "text": "[action]: Defend. Number of cards in hand (3). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“You think I intend to let them burn down my library!?”"
+  },
+  "78164": {
+    "name": "Doyle Jeffries",
+    "subname": "First on the Scene",
+    "typeCode": "asset",
+    "traits": "Arkham. Human",
+    "text": "[action]: Defend. Number of events in your discard pile (2). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“Monsters from beyond the stars - what a scoop!”"
+  },
+  "78165": {
+    "name": "Hibbs",
+    "subname": "He’s Had Enough",
+    "typeCode": "asset",
+    "traits": "Arkham. Human. Agency",
+    "text": "[action]: Defend. Any skill (6).You may commit cards and use abilities on player cards that boost your skill value for this test. For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“Try to burn down my bar, will ya!”"
+  },
+  "78166": {
+    "name": "The Loving Couple",
+    "subname": "Unbreakable Bond",
+    "typeCode": "asset",
+    "traits": "Arkham. Human",
+    "text": "[action]: Defend. Number of assets you control (3). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“After everything you’ve done, it’s time we lent a hand. Isn’t that right, Davy?”"
+  },
+  "78167": {
+    "name": "Ma Matheson",
+    "subname": "Friends in High Places",
+    "typeCode": "asset",
+    "traits": "Arkham. Human",
+    "text": "[action]: Defend. Cost of the highest costed Ally asset you control (0). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“I have no doubt the Lord is on our side in this battle.”"
+  },
+  "78168": {
+    "name": "Miriam Beecher",
+    "subname": "Magic Made Manifest",
+    "typeCode": "asset",
+    "traits": "Arkham. Human. Sorcerer",
+    "text": "[action]: Defend. Cost of the highest cost non-Ally asset you control (0). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“The beings we fight are beyond comprehension. That means I can really let loose.”"
+  },
+  "78169": {
+    "name": "The Vice President",
+    "subname": "The Best Money Can Buy",
+    "typeCode": "asset",
+    "traits": "Arkham. Human",
+    "text": "[action]: Defend. Resources in your resource pool (8). For each point you succeed by, you may remove 1 token from any location in play, to a maximum of 6 tokens. (Group limit once per game.)",
+    "flavor": "“I’d be an imbecile to be unprepared for something of this magnitude in Arkham. Fortunately, I am no fool.”"
+  },
+  "78170": {
+    "name": "Messenger of the Flame",
+    "subname": "Firebrand of Fomalhaut",
+    "typeCode": "enemy",
+    "traits": "Monster. Sorcerer. Elite",
+    "text": "Hunter. Massive.\nEach other enemy in play gets +1 damage.\nForced – When damage would be placed by this enemy from the Forced ability on the agenda: Place it on an Unbinding location instead.\nVictory 2."
+  },
+  "78171": {
+    "name": "Messenger of The King",
+    "subname": "Enigma of Hali",
+    "typeCode": "enemy",
+    "traits": "Monster. Sorcerer. Elite",
+    "text": "Hunter. Massive.\nEach other enemy in play gets +1 horror.\nForced – When horror would be placed by this enemy from the Forced ability on the agenda: Place it on an Unbinding location instead.\nVictory 2."
+  },
+  "78172": {
+    "name": "Site of Unbinding",
+    "typeCode": "treachery",
+    "traits": "Omen",
+    "text": "Cannot leave play.\nAttached location gains the Unbinding trait.\nForced – At the end of the round: Place 1 doom on the current agenda for every 4 non-clue tokens on this location.",
+    "flavor": "A tear in the sky foretells the end of days."
+  },
+  "78173": {
+    "name": "Burst of Flame",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Revelation – Test [agility] (5). For each point you fail by, you must place 1 damage on your location or take 1 damage.",
+    "flavor": "If you can’t stand the heat, then Arkham will burn."
+  },
+  "78174": {
+    "name": "Delusional Protagonist",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Cultist",
+    "text": "Spawn – Location with the most horror.\nAloof. Hunter.\nForced – At the end of the enemy phase, if Delusional Protagonist is ready and at a location with any horror on it: It attacks each investigator at its location.",
+    "flavor": "“I can still save them. I can still stop you.”"
+  },
+  "78175": {
+    "name": "Unreal Advance",
+    "typeCode": "treachery",
+    "traits": "Omen",
+    "text": "Revelation – If your location has 4 or more horror on it, place 1 doom on the current agenda. This effect can cause the current agenda to advance. Otherwise, place 2 horror on your location."
+  },
+  "78176": {
+    "name": "Dread Epiphany",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Test [willpower] (5). For each point you fail by, you must either place 1 horror on your location or take 1 horror.",
+    "flavor": "Ignorance is bliss."
+  },
+  "78177": {
+    "name": "Flaming Advance",
+    "typeCode": "treachery",
+    "traits": "Omen",
+    "text": "Revelation – If your location has 4 or more damage on it, place 1 doom on the current agenda. This effect can cause the current agenda to advance. Otherwise, place 2 damage on your location."
+  },
+  "78178": {
+    "name": "Infernal Acolyte",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Cultist",
+    "text": "Spawn – Location with the most damage.\nAloof. Hunter.\nForced – After Infernal Acolyte is defeated: Deal X damage divided as you choose to investigators at its location, where X is the total damage on its location.",
+    "flavor": "It burned body, mind, and self, for love of the Living Flame."
+  },
+  "78179": {
+    "name": "Lumbering Candlejack",
+    "typeCode": "enemy",
+    "traits": "Monster",
+    "text": "Spawn – Location with the most horror.\nHunter. Alert.\nForced – After you successfully fight or evade Lumbering Candlejack, if there is at least 1 damage on its location: Take 1 horror.",
+    "flavor": "“Brightest Night or Darkest Day,\nSeek the Jack to lose your way.”\n– Old Hali sailor’s rhyme."
+  },
+  "78180": {
+    "name": "Molten Murder",
+    "typeCode": "enemy",
+    "traits": "Monster",
+    "text": "Spawn – Location with the most damage.\nHunter. Retaliate.\nForced – After Molten Murder attacks you: You must either lose resources or discard cards equal to the total horror on its location.",
+    "flavor": "“From hatred pure,\nFrom cleansing fire,\nBlessed be the perfect ash.”\n– Hymn of Pure Flame"
+  },
   "78250": {
     "name": "Agency Troubleshooter",
     "typeCode": "enemy",
@@ -1359,6 +1591,18 @@
     "name": "Worshipful Thrall",
     "typeCode": "enemy",
     "text": "Aloof. Patrol (nearest Miasma location). After the hunter movement step, if at a Miasma location, search the encounter deck and discard for a Mindless Thrall and spawn it here. Victory 1."
+  },
+  "78290": {
+    "name": "Heed the Call",
+    "typeCode": "treachery",
+    "traits": "Power",
+    "text": "Revelation – Test [willpower] (3). If you have heeded the call, you must reveal an additional token for this check. For each point you fail by, you must either move one location towards an Unbinding location, or resolve a forced effect on a revealed Miasma location in play as if you had started your turn at that location."
+  },
+  "78291": {
+    "name": "Ire of the Unbound",
+    "typeCode": "treachery",
+    "traits": "Terror. Tactic",
+    "text": "Revelation – Put Ire of the Unbound into your threat area.\nForced – After you enter or start your turn at a location with damage or horror on it: Move one damage or horror from that location onto a card you control.\nForced –At the end of your turn, if you did not deal damage or gain clues, discard Ire of the Unbound."
   },
   "78292": {
     "name": "Tenuous Allies",

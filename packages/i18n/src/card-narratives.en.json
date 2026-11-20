@@ -158,6 +158,48 @@
     "flavor": "You've unlocked the door at the back of the library. Now all that stands between you and the answers to everything is an endless hall of impossible geometry.",
     "backFlavor": "You enter a room that must be Robison's research lab. But… while it's filled with all the ritual trappings you'd expect, there's no doctor and, more concerning, no other exit. You look all over the room, turning over shelves and desks in desperation.\n\"Quick, quick! Over here!\"\nYou look around, and it takes you a moment to notice a man's hand gesturing from the corner. The arm intersects a chalk drawing of a bridge on a solid wall.\n\"Please, hurry! It's nearly here!\"\nWith no other options, you move towards the chalk drawing and jump as the hand pulls you through the matter of the wall, and into somewhere very strange indeed…"
   },
+  "78152": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Flames crawl through the city of Arkham. The twin forces of the Living Flame and the King have come to scorch all trace of Baalshandor from the city. The war for Arkham has begun.",
+    "backFlavor": "Screams ring out from across the town, and you see giant silhouettes moving through the flames. The second wave has arrived."
+  },
+  "78153": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Strange monstrosities pour forth from open portals. Your concern grows as they work hand in hand with the cultists. It appears the cavalry has arrived.",
+    "backFlavor": "A deafening screech hits your ears, followed by a wave of heat. On both sides of the city, the most fearsome creatures have descended, and are headed right for you. That you have the drawn the attention of the invading armies is little comfort."
+  },
+  "78154": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The situation is grim. If the portals are not both closed, Arkham will die in flames or madness.",
+    "backFlavor": "You watch in stunned horror as an immense alien hand, larger than buildings, larger than streets, reaches out from a hole in the sky into the city and towards the sigil…\n\nYou watch in stunned horror as an immense flaming limb, larger than buildings, larger than streets, bursts from the ground below the sigil and rises towards the sky…"
+  },
+  "78155": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "The assault on Arkham is growing quickly. If this city has any chance, you’ll need to find and close one of the two portals bleeding evil onto the streets.",
+    "backFlavor": "Despite the raging firestorms, the Miskatonic campus is relatively untouched. The eye of the storm…\n\nYou trace the movements of the madness throughout the city. Somewhere near northside, there must be an answer…"
+  },
+  "78156": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "You have found the site where evil forces are bleeding into the city. If you can close the gate, you can cut off half the assaulting forces.",
+    "backFlavor": "Using chemical concoctions from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.\n\nYou convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal."
+  },
+  "78157": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "With one side cut off from Arkham, finding the second portal should be easier. And not a moment too soon, since the forces corralled are growing in ferocity.",
+    "backFlavor": "Despite the worsening firestorms, the Miskatonic campus is still relatively untouched. The eye of the storm! But as you search the campus, a horrible flaming giant bursts forth from the wall of the Science Building.\n\nYou trace the movements of the increasing madness throughout the city. All signs point to Northside, but where? Your question is answered by a massive and shrouded figure that breaks through the ceiling of the Ward Theatre."
+  },
+  "78158": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "You have found the final portal! Now all you have to do is make it past a gargantuan monster and destroy the breach.",
+    "backFlavor": "Using chemical implements from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.\n\nYou convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

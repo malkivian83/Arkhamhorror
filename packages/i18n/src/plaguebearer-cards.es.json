@@ -1110,6 +1110,238 @@
     "text": "Revelación – Realiza una prueba de [willpower] (3). Si fracasas, pon Tafefobia en juego en tu zona de amenaza.\nObligado – Cuando entres en un Lugar Subnivel por primera vez cada ronda: Recibe 1 punto de horror.\n[free] Si estás en la Guarida: Descarta Tafefobia.",
     "flavor": "¿Tenemos que seguir bajando?"
   },
+  "78151": {
+    "name": "Guerra al atardecer",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X es el mayor número de daño u horror en un Lugar (máx. 4).\n[cultist]: –4. Si tienes éxito, puedes devolver una ficha de tu Lugar a la reserva de fichas.\n[tablet]: –2. Si fracasas, durante el resto de la ronda no puedes activar la capacidad [action] del acto en curso.\n[elder_thing]: –3. Si fracasas, cada investigador que haya escuchado la Llamada debe colocar 1 punto de daño o 1 punto de horror en su Lugar.",
+    "backText": "[skull]: –X. X es el mayor número de daño u horror en un Lugar (máx. 6).\n[cultist]: –5. Si tienes éxito, puedes devolver una ficha de tu Lugar a la reserva de fichas.\n[tablet]: –3. Si fracasas, durante el resto de la ronda no puedes activar la capacidad [action] del acto en curso.\n[elder_thing]: –3. Si fracasas, por cada punto que te falte para tener éxito, cada investigador que haya escuchado la Llamada debe colocar 1 punto de daño o 1 punto de horror en su Lugar."
+  },
+  "78152": {
+    "name": "Arkham en llamas",
+    "typeCode": "agenda",
+    "text": "Obligado – Al final de la ronda: Por cada Enemigo en juego, coloca 1 punto de daño en su Lugar (si su valor de daño es mayor que el de horror) o 1 punto de horror (Si su valor de horror es mayor que el de daño): Si no, no hagas nada.",
+    "flavor": "Las llamas crepitan a lo largo de todo Arkham. Las fuerzas combinadas de la Llama Viviente y del Rey han venido para borrar todo rastro de Baalshandor de la ciudad. La guerra por Arkham acaba de comenzar.",
+    "backName": "Calentando",
+    "backText": "Añade todas las copias puestas aparte del Portacirios pesado y del Asesino fundente junto con la pila de descartes de encuentros al mazo de encuentros y barájalo.",
+    "backFlavor": "Los gritos resuenan a lo largo de la ciudad, y atisbas a ver enromes siluetas entre las llamas. La segunda oleada ya está aquí."
+  },
+  "78153": {
+    "name": "Presagios ardientes",
+    "typeCode": "agenda",
+    "text": "Obligado – Al final de la ronda, si tu Lugar tiene al menos 4 puntos de daño u horror sobre él: Mueve 1 ficha de tu Lugar a un Lugar Liberación.\nObligado – Al final de la ronda: Por cada Enemigo en juego, coloca 1 punto de daño en su Lugar (si su valor de daño es mayor que el de horror) o 1 punto de horror (Si su valor de horror es mayor que el de daño): Si no, no hagas nada.",
+    "flavor": "Extrañas monstruosidades atraviesan enormes portales abiertos. Tu preocupación aumenta al ver que colaboran mano a mano con los cultistas. Ha llegado la caballería.",
+    "backName": "Enemigos temibles",
+    "backText": "Si hay más daño que horror entre los Lugares en juego, haz aparecer una copia del Enemigo Byhakee chillador puesto aparte en el Banco de Arkham (o en el Crater de la Liberación si el Banco de Arkham no está en juego). Si no, haz aparecer una copia del enemigo Vampiro de fuego puesto aparte en la Biblioteca Orne (o en el Crater de la Liberación si la Biblioteca Orne no está en juego).",
+    "backFlavor": "Un chillido ensordecedor golpea tus oídos, seguido de una inmensa ola de calor. En ambos lados de la ciudad, las criaturas más temibles que hayas visto han llegado para encontrarte. Haber atraído la atención de las fuerzas invasoras no te alivia lo más mínimo."
+  },
+  "78154": {
+    "name": "Locura flamígera",
+    "typeCode": "agenda",
+    "text": "Obligado – Al final de la ronda, si tu Lugar tiene al menos 4 puntos de daño u horror sobre él: Mueve 1 ficha de tu Lugar a un Lugar Liberación.\nObligado – Al final de la ronda: Por cada Enemigo en juego, coloca 1 punto de daño en su Lugar (si su valor de daño es mayor que el de horror) o 1 punto de horror (Si su valor de horror es mayor que el de daño): Si no, no hagas nada.",
+    "flavor": "Estás ante una situación límite. Debes cerrar ambos portales o Arkham sucumbirá a las llamas o a la locura.",
+    "backName": "La mano de Dios",
+    "backText": "Si hay más horror que daño entre los Lugares en juego:\nObservas paralizado por el miedo como una inmensa mano alienígena, mayor que los edificios y que las avenidas de la ciudad, emerge de un enorme agujero en el cielo hacia el sigilo...\n(→R1)\nSi no:\nObservas paralizado por el miedo como una inmensa extremidad en llamas, mayor que los edificios y que las avenidas de la ciudad, irrumpe desde el suelo bajo el sigilo y asciende hacia el cielo...\n(→R2)"
+  },
+  "78155": {
+    "name": "El primer portal",
+    "typeCode": "act",
+    "text": "[action]: Realiza una prueba de [willpower] o [agility] (X), donde X es un número a tu elección hasta un máximo de 4. Si tienes éxito, devuelve X fichas de un tipo de tu Lugar a la reserva de fichas, después coloca 1 pista de la reserva de pistas en tu Lugar.",
+    "flavor": "El asalto a Arkham aumenta rápidamente. Si esta ciudad tiene alguna oportunidad, necesitas encontrar y cerrar uno de esos horribles portales que no paran de escupir maldad sobre las calles.",
+    "backName": "Vayamos por partes",
+    "backText": "El investigador jefe debe decidir (elige una opción):\n– El fuego va a convertir la ciudad en cenizas. Tenemos que cerrar el portal de la Llama.\nRecuerda que has elegido Llama.\n– Si todo el mundo pierde la cabeza la ciudad estará condenada. Tenemos que cerrar el portal del Rey.\nRecuerda que has elegido Rey.\nSi elegiste Llama:\nA pesar de las virulentas tormentas de fuego el campus de Miskatonic está relativamente entero. El ojo de la tormenta...\nRevela el Portal de la Llama y coloca 1 punto de daño sobre él.\nSi elegiste Rey:\nSigues los indicios de la locura através de las calles de la ciudad. En algún lugar de la zona norte debe estar la respuesta...\nRevela el Portal del Rey y coloca 1 punto de horror sobre él."
+  },
+  "78156": {
+    "name": "Cerrar la puerta",
+    "typeCode": "act",
+    "text": "[action]: Realiza una prueba de [willpower] o [agility] (X), donde X es un número a tu elección hasta un máximo de 4. Si tienes éxito, devuelve X fichas de un tipo de tu Lugar a la reserva de fichas, después coloca 1 pista de la reserva de pistas en tu Lugar.\nObligado – Al final de la ronda, si no hay fichas en el Lugar Portal, debes avanzar.",
+    "flavor": "Has encontrado el lugar por el que las maléficas huestes inundan la ciudad. Si puedes cerrar la puerta, podrás librarte de la mitad de las fuerzas invasoras.",
+    "backName": "Cuando una puerta se cierra...",
+    "backText": "Si no hay fichas en el Edificio de Ciencias:\nUsando una serie de brebajes químicos que encuentras por el edificio, consigues aplacar las llamas. Además bosquejas unas runas protectoras en la pizarra. El portal a Fomalhaut desaparece de la existencia.\nBusca en el mazo de encuentros, la pila de descartes de encuentros y todas las zonas de juego cada copia de Llamarada, Avance de las llamas, Acólito infernal y Asesino fundente y retíralos de la partida.\nMueve a cada investigador en el Edificio de Ciencias a la Librería Orne (o al Cráter de la Liberación si no está en juego). Coloca el Edificio de Ciencias en la zona de victoria.\nHaz aparecer el Enemigo Mensajero del Rey puesto aparte en el Portal del Rey.\nSi no hay fichas en el Teatro Ward:\nConsigues convencer a los transeuntes enloquecidos de que lo que están viendo es una performance de vanguardia. Mientras, usas pintura del almacén para tapar los símbolos y acabar para siempre con el portal.\nBusca en el mazo de encuentros, la pila de descartes de encuentros y todas las zonas de juego cada copia de Protagonista delirante, Epifanía melancólica, Portacirios pesado y Progreso irreal y retíralos de la partida.\nMueve a cada investigador en el Teatro Ward al Banco de Arkham (o al Cráter de la Liberación si no está en juego). Coloca el Teatro Ward en la zona de victoria.\nHaz aparecer el Enemigo Mensajero de la Llama puesto aparte en el Portal de la Llama."
+  },
+  "78157": {
+    "name": "El segundo portal",
+    "typeCode": "act",
+    "text": "[action]: Realiza una prueba de [willpower] o [agility] (X), donde X es un número a tu elección hasta un máximo de 4. Si tienes éxito, devuelve X fichas de un tipo de tu Lugar a la reserva de fichas, después coloca 1 pista de la reserva de pistas en tu Lugar.",
+    "flavor": "Con uno de los bandos alejado de Arkham, encontrar el segundo portal debería ser más sencillo. Pero no te puedes relajar, ya que las fuerzas invasoras al ver lo que has hecho se vuelven más feroces.",
+    "backName": "Una brecha en el mundo",
+    "backText": "Si el Portal de la Llama no está revelado:\nA pesar de las virulentas tormentas de fuego el campus de Miskatonic está relativamente entero. ¡El ojo de la tormenta! Pero mientras buscas por el campus un coloso llameante atraviesa los muros del Edificio de Ciencias.\nRevela el Portal de la Llama y coloca 2 puntos de daño sobre él.\nSi el Portal del Rey no está revelado:\nSigues los indicios de la locura através de las calles de la ciudad. En algún lugar de la zona norte debe estar la respuesta, ¿pero dónde? Tu pregunta recibe respuesta cuando una gigantesca figura hace volar por los aires el tejado del Teatro Ward.\nRevela el Portal del Rey y coloca 2 puntos de horror sobre él."
+  },
+  "78158": {
+    "name": "La puerta final",
+    "typeCode": "act",
+    "text": "[action]: Realiza una prueba de [willpower] o [agility] (X), donde X es un número a tu elección hasta un máximo de 4. Si tienes éxito, devuelve X fichas de un tipo de tu Lugar a la reserva de fichas, después coloca 1 pista de la reserva de pistas en tu Lugar.\nObligado – Al final de la ronda, si no hay fichas en el Lugar Portal, debes avanzar.",
+    "flavor": "¡Has encontrado el último portal! Ahora todo lo que tienes que hacer es superar a un monstruo ciclópeo y cerrar la brecha.",
+    "backName": "Armisticio",
+    "backText": "Si no hay fichas en el Edificio de Ciencias:\nUsando una serie de brebajes químicos que encuentras por el edificio, consigues aplacar las llamas. Además bosquejas unas runas protectoras en la pizarra. El portal a Fomalhaut desaparece de la existencia.\n(→R3)\nSi no hay fichas en el Teatro Ward:\nConsigues convencer a los transeuntes enloquecidos de que lo que están viendo es una performance de vanguardia. Mientras, usas pintura del almacén para tapar los símbolos y acabar para siempre con el portal.\n(→R3)"
+  },
+  "78159": {
+    "name": "Cráter de la Liberación",
+    "typeCode": "location",
+    "traits": "Liberación. Miasma",
+    "text": "El Cráter de la Liberación está conectado a cada Lugar Miasma y viceversa.\nObligado – Al final de la ronda: Coloca 1 ficha de Perdición sobre el plan en curso por cada 4 fichas que haya sobre el Cráter de la Liberación.",
+    "backText": "Liberación. Miasma.\nEl Cráter de la Liberación está conectado a cada Lugar Miasma y viceversa.\nObligado – Al final de la ronda: Coloca 1 ficha de Perdición sobre el plan en curso por cada 4 fichas que haya sobre el Cráter de la Liberación."
+  },
+  "78160": {
+    "name": "Edificio de Ciencias",
+    "subname": "Portal a Fomalhaut",
+    "typeCode": "location",
+    "traits": "Portal. Miasma",
+    "text": "El Edificio de Ciencias recibe +2 de velo por cada punto de daño sobre él.\nObligado – Después de que comiences tu turno en el Edificio de Ciencias: Recibe 1 punto de daño o coloca 1 punto de daño sobre el Edificio de Ciencias.\nVictoria 1.",
+    "flavor": "La parte trasera de un aula de física teórica da paso a la tierra de la llama y la ceniza y parece muy real.",
+    "backName": "Portal de la Llama",
+    "backText": "No sabes donde se encuentra el Portal de la Llama. No puedes entrar en el Portal de la Llama.",
+    "backFlavor": "Una ira flamígera azota Arkham. Tiene que provenir de algún Lugar."
+  },
+  "78161": {
+    "name": "Teatro Ward",
+    "subname": "Portal a Hali",
+    "typeCode": "location",
+    "traits": "Portal. Miasma",
+    "text": "El Teatro Ward recibe +2 de velo por cada punto de horror sobre él.\nObligado – Después de que comiences tu turno en el Teatro Ward: Recibe 1 punto de horror o coloca 1 punto de horror sobre el Teatro Ward.\nVictoria 1.",
+    "flavor": "Un inmeso agujero en el techo muestra un cielo alienígena con dos soles gemelos. Nunca ha habido estrellas tan grandes aquí.",
+    "backName": "Portal del Rey",
+    "backText": "No sabes donde se encuentra el Portal del Rey. No puedes entrar en el Portal del Rey.",
+    "backFlavor": "Visiones de estrañas torres y múltiples soles pueblan el cielo. Pero, ¿dónde se originan?"
+  },
+  "78162": {
+    "name": "Abner Weems",
+    "subname": "Ira alcohólica",
+    "typeCode": "asset",
+    "traits": "Arkham. Humano",
+    "text": "[action]: Defender. Número de cartas de habilidad en tu pila de descartes (2). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“¡Sólo porque estas cosas no sean reales - Hip - no significa que no pueda pegarles.”"
+  },
+  "78163": {
+    "name": "Henry Armitage",
+    "subname": "Más listo de lo que parece",
+    "typeCode": "asset",
+    "traits": "Arkham. Miskatonic. Humano",
+    "text": "[action]: Defender. Número de cartas en tu mano (3). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“¿Tú crees que voy a dejar que quemen mi biblioteca?”"
+  },
+  "78164": {
+    "name": "Doyle Jeffries",
+    "subname": "El primero en la escena del crimen",
+    "typeCode": "asset",
+    "traits": "Arkham. Humano",
+    "text": "[action]: Defender. Número de eventos en tu pila de descartes (2). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“¿Monstruos de más allá de las estrella? ¡Qué notición!”"
+  },
+  "78165": {
+    "name": "Hibb",
+    "subname": "Ya ha tenido suficiente",
+    "typeCode": "asset",
+    "traits": "Arkham. Agencia. Humano",
+    "text": "[action]: Defender. Cualquier habilidad (6). Puedes asignar cartas y usar habilidades en cartas que aumenten tu valor de habilidad en esta prueba. Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“¡Que intenten tirar abajo mi bar y verán!”"
+  },
+  "78166": {
+    "name": "La Pareja de Enamorados",
+    "subname": "Lazos irrompibles",
+    "typeCode": "asset",
+    "traits": "Arkham. Humano",
+    "text": "[action]: Defender. Número de Apoyos que controles (3). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“Después de todo lo que has hecho es hora de que arrimemos el hombro. Verdad, ¿Davy?”"
+  },
+  "78167": {
+    "name": "Ma Matheson",
+    "subname": "Amigos en las altas esferas",
+    "typeCode": "asset",
+    "traits": "Arkham. Humano",
+    "text": "[action]: Defender. El coste más alto de un Apoyo Aliado que controles (0). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“No tengo dudas de que el Señor está de nuestra parte.”"
+  },
+  "78168": {
+    "name": "Miriam Beecher",
+    "subname": "La magia entra en escena",
+    "typeCode": "asset",
+    "traits": "Arkham. Humano. Hechicero",
+    "text": "[action]: Defender. El coste más alto de un Apoyo que no sea Aliado que controles (0). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“Los entes contra los que luchamos están más allá de nuestra comprensión. Eso significa que puedo soltarme.”"
+  },
+  "78169": {
+    "name": "El Vicepresidente",
+    "subname": "Lo mejor que puedas comprar",
+    "typeCode": "asset",
+    "traits": "Arkham. Humano",
+    "text": "[action]: Defender. Número de recursos en tu reserva (8). Retira X fichas de cualquier Lugar en juego, X es la cantidad de puntos por encima del valor mínimo de éxito. Límite de 6 fichas. Límite de grupo de una vez por partida.",
+    "flavor": "“Sería un imbécil si no estuviera preparado para sucesos de esta magnitud en Arkham. Por suerte no lo soy.”"
+  },
+  "78170": {
+    "name": "Mensajero de la Llama",
+    "subname": "Ardor de Fomalhaut",
+    "typeCode": "enemy",
+    "traits": "Hechicero. Monstruo. Élite",
+    "text": "Cazador. Descomunal.\nLos demás enemigos en juego reciben +1 a daño.\nObligado – Cuando fuera a colocarse cualquier cantidad de daño en el Lugar del Mensajero de la Llama por la capacidad Obligado del plan en curso: En vez de eso colócalo sobre un Lugar Liberación.\nVictoria 2."
+  },
+  "78171": {
+    "name": "Mensajero del Rey",
+    "subname": "Enigma de Hali",
+    "typeCode": "enemy",
+    "traits": "Hechicero. Monstruo. Élite",
+    "text": "Cazador. Descomunal.\nLos demás enemigos en juego reciben +1 a horror.\nObligado – Cuando fuera a colocarse cualquier cantidad de horror en el Lugar del Mensajero del Rey por la capacidad Obligado del plan en curso: En vez de eso colócalo sobre un Lugar Liberación.\nVictoria 2."
+  },
+  "78172": {
+    "name": "Lugar de la Liberación",
+    "typeCode": "treachery",
+    "traits": "Augurio",
+    "text": "No puede abandonar el juego.\nEl Lugar vinculado gana el rasgo Liberación.\nRevelación – Al final de la ronda: Coloca 1 ficha de perdición sobre el plan en curso por cada 4 fichas que no sean pistas sobre este Lugar.",
+    "flavor": "Una lágrima en el cielo vaticina el fin de los días."
+  },
+  "78173": {
+    "name": "Llamarada",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Revelación – Realiza una prueba de [agility] (5). Por cada punto que te falte para tener éxito, recibe 1 punto de daño o coloca 1 punto de daño en tu Lugar.",
+    "flavor": "Si no puedes aguantar el calor, Arkham arderá."
+  },
+  "78174": {
+    "name": "Protagonista delirante",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Sectario",
+    "text": "Aparición – Lugar con más horror.\nIndiferente. Cazador.\nObligado – Al final de la fase de enemigos, si la Protagonista delirante está preparada y en un Lugar con horror sobre él: Ataca a cada investigador en su Lugar.",
+    "flavor": "“Todavía puedo salvarles. Todavía puedo detenerte.”"
+  },
+  "78175": {
+    "name": "Progreso irreal",
+    "typeCode": "treachery",
+    "traits": "Augurio",
+    "text": "Revelación – Si tu Lugar tiene 4 o más puntos de horror sobre él, coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance. Si no, coloca 2 puntos de horror en tu Lugar."
+  },
+  "78176": {
+    "name": "Epifanía melancólica",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Realiza una prueba de [willpower] (5). Por cada punto que te falte para tener éxito, recibe 1 punto de horror o coloca 1 punto de horror en tu Lugar.",
+    "flavor": "La ignorancia es felicidad."
+  },
+  "78177": {
+    "name": "Avance de las llamas",
+    "typeCode": "treachery",
+    "traits": "Augurio",
+    "text": "Revelación – Si tu Lugar tiene 4 o más puntos de daño sobre él, coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance. Si no, coloca 2 puntos de daño en tu Lugar."
+  },
+  "78178": {
+    "name": "Acólito infernal",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Sectario",
+    "text": "Aparición – Lugar con más daño.\nIndiferente. Cazador.\nObligado – Después de que el Acólito infernal sea derrotado: Inflige X puntos de daño repartidos como quieras entre los investigadores en su Lugar, donde X es la cantidad de daño en el Lugar.",
+    "flavor": "“Quemó su cuerpo, su mente y su ser por amor a la Llama viviente.”"
+  },
+  "78179": {
+    "name": "Portacirios pesado",
+    "typeCode": "enemy",
+    "traits": "Monstruo",
+    "text": "Aparición – Lugar con más horror.\nCazador. Alerta.\nObligado – Después de que combatas o evites con éxito al Portacirios pesado, si hay al menos 1 punto de daño en su Lugar: Recibe 1 punto de horror.",
+    "flavor": "“La noche más brillante o el día más oscuro,\nbusca el jurel para perder tu senda”\n– Rima de un viejo marinero de Hali."
+  },
+  "78180": {
+    "name": "Asesino fundente",
+    "typeCode": "enemy",
+    "traits": "Monstruo",
+    "text": "Aparición – Lugar con más daño.\nCazador. Represalia.\nObligado – Después de que el Asesino fundente te ataque: Debes perder X recursos o descartar X cartas de la mano, donde X es la cantidad total de horror en su Lugar.",
+    "flavor": "“Del odio puro,\nDel fuego purificador,\nBendita sea la ceniza perfecta.”\n– Himno de la Llama Pura."
+  },
   "78250": {
     "name": "Solucionador de la Agencia",
     "typeCode": "enemy",
@@ -1359,6 +1591,18 @@
     "name": "Esclavo devoto",
     "typeCode": "enemy",
     "text": "Indiferente. Errante (Lugar Miasma más cercano). Después del paso de movimiento Cazador, si está en un Lugar Miasma, busca un Esclavo mental en el mazo y descarte de encuentros y hazlo aparecer aquí. Victoria 1."
+  },
+  "78290": {
+    "name": "Escucha la llamada",
+    "typeCode": "treachery",
+    "traits": "Poder",
+    "text": "Revelación – Realiza una prueba de [willpower] (3). Si has oído la llamada, revela una ficha del caos adicional para esta prueba. Por cada punto que te falte para tener éxito debes moverte un Lugar hacia el Lugar Desatado más cercano, o resolver la capacidad Obligado de un Lugar Miasma revelado en juego como si hubieras comenzado tu turno en ese Lugar."
+  },
+  "78291": {
+    "name": "La ira del Desatado",
+    "typeCode": "treachery",
+    "traits": "Terror. Táctica",
+    "text": "Revelación – Pon La ira del Desatado en juego en tu zona de amenaza.\nObligado – Después de que entres o empieces tu turno en un Lugar con daño u horror sobre él: Mueve 1 punto de daño o de horror de ese Lugar a una carta que controles.\nObligado – Al final de tu turno, si no infligiste daño o descubriste pistas, descarta La ira del Desatado."
   },
   "78292": {
     "name": "Alianzas frágiles",

@@ -18,9 +18,16 @@ export function defendValue(s: GameState, test: SkillTest): number | undefined {
   const source = test.kind.source
   const npc = NPCS.find((n) => n.code === source)
   if (!npc) return undefined
-  const i = getInvestigator(s, test.investigator)
+  return defendMetric(s, test.investigator, npc.metric)
+}
+export type DefendMetric = (typeof NPCS)[number]['metric']
+/** Valor de Defender según lo que pide la carta (también lo usan los apoyos del VI). */
+export function defendMetric(s: GameState, investigator: string, metric: DefendMetric): number {
+  const i = getInvestigator(s, investigator)
   const assets = Object.values(s.assets).filter((a) => a.owner === i.id)
-  switch (npc.metric) {
+  switch (metric) {
+    case 'skill':
+      return 0
     case 'hand':
       return i.hand.length
     case 'resources':
@@ -36,7 +43,7 @@ export function defendValue(s: GameState, test: SkillTest): number | undefined {
       return Math.max(
         0,
         ...assets
-          .filter((a) => playerCardDef(a.code)?.traits.includes('Ally') === (npc.metric === 'ally'))
+          .filter((a) => playerCardDef(a.code)?.traits.includes('Ally') === (metric === 'ally'))
           .map((a) => Math.max(0, playerCardDef(a.code)?.cost ?? 0)),
       )
   }

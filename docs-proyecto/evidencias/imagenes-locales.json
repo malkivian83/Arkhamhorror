@@ -51963,6 +51963,694 @@
       "sha256": "e9349c19615f50591be2925dd088ff328ad7f6611d722b34234be8abf286e169"
     },
     {
+      "art": "78151",
+      "language": "es",
+      "path": "/local-assets/cards/es/78151.avif",
+      "source": "E:\\Plaguero\\189a.jpg",
+      "bytes": 93835,
+      "sha256": "d35b6c8df97f575b11eef180d5642612264f84b5f6de354e157632ebfc915332"
+    },
+    {
+      "art": "78151b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78151b.avif",
+      "source": "E:\\Plaguero\\189b.jpg",
+      "bytes": 96578,
+      "sha256": "123fc1e86c7b788c81e29d9fee6111933b171b3a47e1182f357ff8203b466e54"
+    },
+    {
+      "art": "78151",
+      "language": "en",
+      "path": "/local-assets/cards/en/78151.avif",
+      "source": "E:\\Plaguero\\en\\183 - The Afternoon War-1.png",
+      "bytes": 73122,
+      "sha256": "a5c6966e17b9ef7ae21957568f658b2b389f1789c254c80e8f755af8e9b07b00"
+    },
+    {
+      "art": "78151b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78151b.avif",
+      "source": "E:\\Plaguero\\en\\183 - The Afternoon War-2.png",
+      "bytes": 75598,
+      "sha256": "a7c0572d25d8af0f4541c8542a69d74de4d4df5e222b1e234a9f4396f57036d9"
+    },
+    {
+      "art": "78152",
+      "language": "es",
+      "path": "/local-assets/cards/es/78152.avif",
+      "source": "E:\\Plaguero\\190a.jpg",
+      "bytes": 115195,
+      "sha256": "0771bb66dc6cffefc574e61080d4fc47492c048f1e509f1b56a8195de001f03e"
+    },
+    {
+      "art": "78152b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78152b.avif",
+      "source": "E:\\Plaguero\\190b.jpg",
+      "bytes": 85861,
+      "sha256": "77db6115a149c8852570cab9cb0e1049fe6ba8ea73e9fabca25a800a1729ccba"
+    },
+    {
+      "art": "78152",
+      "language": "en",
+      "path": "/local-assets/cards/en/78152.avif",
+      "source": "E:\\Plaguero\\en\\184 - Fire in the City-1.png",
+      "bytes": 102927,
+      "sha256": "8a88ea91680d58193bb9bfbd370ff4645680ef95e356b20c10b852b170ebda02"
+    },
+    {
+      "art": "78152b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78152b.avif",
+      "source": "E:\\Plaguero\\en\\184 - Fire in the City-2.png",
+      "bytes": 70354,
+      "sha256": "1f1447e8467e46b9da874d87e1e02928c8ce6bdc0f4c259f06750d70e393f30e"
+    },
+    {
+      "art": "78153",
+      "language": "es",
+      "path": "/local-assets/cards/es/78153.avif",
+      "source": "E:\\Plaguero\\191a.jpg",
+      "bytes": 119917,
+      "sha256": "469daff8eb77aee3510a3a983366430da259865e14b0f4be6b6149c4e061b5c1"
+    },
+    {
+      "art": "78153b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78153b.avif",
+      "source": "E:\\Plaguero\\191b.jpg",
+      "bytes": 134162,
+      "sha256": "670688ec388bd2dbecee65d34988376e14c3d9d080e5a7e4b78c7c5dca25ccd7"
+    },
+    {
+      "art": "78153",
+      "language": "en",
+      "path": "/local-assets/cards/en/78153.avif",
+      "source": "E:\\Plaguero\\en\\185 - Omens in the Fire-1.png",
+      "bytes": 108477,
+      "sha256": "2b7ea28db990e5c6db88492fb14e6a658d3bcb8ec9dfb7761db820d1aaa59915"
+    },
+    {
+      "art": "78153b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78153b.avif",
+      "source": "E:\\Plaguero\\en\\185 - Omens in the Fire-2.png",
+      "bytes": 103458,
+      "sha256": "ae4b32079eadb21414435fe93d396ed0f73490c0383048d47a0fdb7f53d8d411"
+    },
+    {
+      "art": "78154",
+      "language": "es",
+      "path": "/local-assets/cards/es/78154.avif",
+      "source": "E:\\Plaguero\\192a.jpg",
+      "bytes": 113130,
+      "sha256": "681ada324f5509022c2bf7a72024b2ea5344de51a87a9ec9eccd68ad8f065538"
+    },
+    {
+      "art": "78154b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78154b.avif",
+      "source": "E:\\Plaguero\\192b.jpg",
+      "bytes": 108196,
+      "sha256": "a48f6d4ad914cdd3433112128698575be3e4010c91e8a34766d89adf4132a8cd"
+    },
+    {
+      "art": "78154",
+      "language": "en",
+      "path": "/local-assets/cards/en/78154.avif",
+      "source": "E:\\Plaguero\\en\\186 - Maddening Flames-1.png",
+      "bytes": 105312,
+      "sha256": "3b6d4dbe2667789a0fa9f427247c9631557eb0fe3fa495b8115de2daa79132d7"
+    },
+    {
+      "art": "78154b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78154b.avif",
+      "source": "E:\\Plaguero\\en\\186 - Maddening Flames-2.png",
+      "bytes": 88945,
+      "sha256": "02b4c408398dd7f8d084716fd0557ff3b8fd29b1504df9ebce94b449b5a6b1cc"
+    },
+    {
+      "art": "78155",
+      "language": "es",
+      "path": "/local-assets/cards/es/78155.avif",
+      "source": "E:\\Plaguero\\193a.jpg",
+      "bytes": 123941,
+      "sha256": "f4cc3f169cee56861a86b94f870746e02fedbfd0a5c938130beabc113a06d25c"
+    },
+    {
+      "art": "78155b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78155b.avif",
+      "source": "E:\\Plaguero\\193b.jpg",
+      "bytes": 139705,
+      "sha256": "2d753117170ddc4e15ef90192edef9d191d8fc9307dcaffd388ea37e167c58bd"
+    },
+    {
+      "art": "78155",
+      "language": "en",
+      "path": "/local-assets/cards/en/78155.avif",
+      "source": "E:\\Plaguero\\en\\187 - The First Portal-1.png",
+      "bytes": 106806,
+      "sha256": "b992dd0928e4d3935ced6b51954744d5decd3a325f012e55c34006754e57bf10"
+    },
+    {
+      "art": "78155b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78155b.avif",
+      "source": "E:\\Plaguero\\en\\187 - The First Portal-2.png",
+      "bytes": 110694,
+      "sha256": "9554a0b67fde81b3fd0e6212b696ebd07eeab9caafe9b773df64d8ed97f19dbd"
+    },
+    {
+      "art": "78156",
+      "language": "es",
+      "path": "/local-assets/cards/es/78156.avif",
+      "source": "E:\\Plaguero\\194a.jpg",
+      "bytes": 129289,
+      "sha256": "738320e3cb15e0647bbb2ac5b4cc638f4873a26dd6340e3889a09e9dd30b8fc3"
+    },
+    {
+      "art": "78156b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78156b.avif",
+      "source": "E:\\Plaguero\\194b.jpg",
+      "bytes": 170809,
+      "sha256": "f025d6f1f3ee432803dfedb7921dac9e6e8db021007771d629f46a02885fe62b"
+    },
+    {
+      "art": "78156",
+      "language": "en",
+      "path": "/local-assets/cards/en/78156.avif",
+      "source": "E:\\Plaguero\\en\\188 - Closing The Gate-1.png",
+      "bytes": 114744,
+      "sha256": "d115cbb38f1cd7a073177b524dc0aec06e1adfa5e4805ae95278e9ac2611863b"
+    },
+    {
+      "art": "78156b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78156b.avif",
+      "source": "E:\\Plaguero\\en\\188 - Closing The Gate-2.png",
+      "bytes": 149058,
+      "sha256": "bab04015a3613ab76d8b6afa33315ba273aff0b0ac62dfcece513ae3fdbb2da7"
+    },
+    {
+      "art": "78157",
+      "language": "es",
+      "path": "/local-assets/cards/es/78157.avif",
+      "source": "E:\\Plaguero\\195a.jpg",
+      "bytes": 124867,
+      "sha256": "24fcff8aedb685edc083cbc4ecc2e978577681648ea5fa881d162ef91140b903"
+    },
+    {
+      "art": "78157b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78157b.avif",
+      "source": "E:\\Plaguero\\195b.jpg",
+      "bytes": 131955,
+      "sha256": "c5a292e5ffdeb5088ddfb979ac1a4df53839c199e61879afef0330d6bfad59d8"
+    },
+    {
+      "art": "78157",
+      "language": "en",
+      "path": "/local-assets/cards/en/78157.avif",
+      "source": "E:\\Plaguero\\en\\189 - The Second Portal-1.png",
+      "bytes": 108030,
+      "sha256": "21dc827868e519775b8d518c960294fe6ec145a6a1924daceb4ba677b2ce48ef"
+    },
+    {
+      "art": "78157b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78157b.avif",
+      "source": "E:\\Plaguero\\en\\189 - The Second Portal-2.png",
+      "bytes": 116736,
+      "sha256": "2bd5f5ceb8b877d05d6b7917ef571a9721431ae3f4f5d1e24b0c6b75fedcd9fc"
+    },
+    {
+      "art": "78158",
+      "language": "es",
+      "path": "/local-assets/cards/es/78158.avif",
+      "source": "E:\\Plaguero\\196a.jpg",
+      "bytes": 124535,
+      "sha256": "4acc168051d06a4c7bed1725dbc259267941f9cef2c968a847fddbb73a023169"
+    },
+    {
+      "art": "78158b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78158b.avif",
+      "source": "E:\\Plaguero\\196b.jpg",
+      "bytes": 111071,
+      "sha256": "2304814c966202b364ffd8488945f4d617f59789f3bc2e89bbf6c2f9ba09a598"
+    },
+    {
+      "art": "78158",
+      "language": "en",
+      "path": "/local-assets/cards/en/78158.avif",
+      "source": "E:\\Plaguero\\en\\190 - The Final Gate-1.png",
+      "bytes": 112560,
+      "sha256": "f31901ff316f1b825217499a4ca0628cb7f723a997c4ebc48ca8712d2f570c1d"
+    },
+    {
+      "art": "78158b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78158b.avif",
+      "source": "E:\\Plaguero\\en\\190 - The Final Gate-2.png",
+      "bytes": 93231,
+      "sha256": "25358a04d89a623c198a588ab8e6682786794de541d456c2f8f1e53c5a39b80a"
+    },
+    {
+      "art": "78159",
+      "language": "es",
+      "path": "/local-assets/cards/es/78159.avif",
+      "source": "E:\\Plaguero\\197b.jpg",
+      "bytes": 93808,
+      "sha256": "b7326b7eaae9a833d28057979f369eec4e6c2d5dedd5cc75b7fa560e3b277830"
+    },
+    {
+      "art": "78159b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78159b.avif",
+      "source": "E:\\Plaguero\\197a.jpg",
+      "bytes": 100806,
+      "sha256": "d849803c99dc8aa11d133041b7f93858ab4170f8a4f77c9c44c36df37ccbf90b"
+    },
+    {
+      "art": "78159",
+      "language": "en",
+      "path": "/local-assets/cards/en/78159.avif",
+      "source": "E:\\Plaguero\\en\\191 - Crater of Unbinding-1.png",
+      "bytes": 107473,
+      "sha256": "34f70987b051ebfb412c06b4a68649b46a1f32438f369508d16d52bfea6173b7"
+    },
+    {
+      "art": "78159b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78159b.avif",
+      "source": "E:\\Plaguero\\en\\191 - Crater of Unbinding-2.png",
+      "bytes": 106219,
+      "sha256": "cc488f38067b58ae0cffdca5e7f40d33aedd0be11cfcecbe1687ba2ca77b97b2"
+    },
+    {
+      "art": "78160",
+      "language": "es",
+      "path": "/local-assets/cards/es/78160.avif",
+      "source": "E:\\Plaguero\\198b.jpg",
+      "bytes": 121195,
+      "sha256": "f914d55e7668bceee1186b9cff071930a52434487670b5d8410d17e8f1d07884"
+    },
+    {
+      "art": "78160b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78160b.avif",
+      "source": "E:\\Plaguero\\198a.jpg",
+      "bytes": 98407,
+      "sha256": "37ad45e4cee5c85127e421ca14c176bfd230211262c248052905bbe2b8dc75db"
+    },
+    {
+      "art": "78160",
+      "language": "en",
+      "path": "/local-assets/cards/en/78160.avif",
+      "source": "E:\\Plaguero\\en\\192 - Portal of the Flame-1.png",
+      "bytes": 157449,
+      "sha256": "f42860eb3f3e7e77da2efc802918eaf21c67509a38f61aca378f688b3b1c1182"
+    },
+    {
+      "art": "78160b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78160b.avif",
+      "source": "E:\\Plaguero\\en\\192 - Portal of the Flame-2.png",
+      "bytes": 102118,
+      "sha256": "aa44489726b634f54e813a0947df5924212d54150c2ab45c167d7f0993e57d2f"
+    },
+    {
+      "art": "78161",
+      "language": "es",
+      "path": "/local-assets/cards/es/78161.avif",
+      "source": "E:\\Plaguero\\199b.jpg",
+      "bytes": 116393,
+      "sha256": "277be6df7ffed3a7b00778e887450977cb9950ea9e3682353dc5def8b5ead3f7"
+    },
+    {
+      "art": "78161b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78161b.avif",
+      "source": "E:\\Plaguero\\199a.jpg",
+      "bytes": 98688,
+      "sha256": "0977dc9e96621c4736f28ea3d01245ce1c15eb2545b1517ec8c096a6949da41e"
+    },
+    {
+      "art": "78161",
+      "language": "en",
+      "path": "/local-assets/cards/en/78161.avif",
+      "source": "E:\\Plaguero\\en\\193 - Portal of the King-1.png",
+      "bytes": 132784,
+      "sha256": "6efffc56ce03affc85ef286a0aa30ea41bcc01967148a50fb3f3e061b992dbdd"
+    },
+    {
+      "art": "78161b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78161b.avif",
+      "source": "E:\\Plaguero\\en\\193 - Portal of the King-2.png",
+      "bytes": 91219,
+      "sha256": "dd5a5d48d4495204e106a09d9948bbfea9821763ddaa964017838f96c0d2855c"
+    },
+    {
+      "art": "78162",
+      "language": "es",
+      "path": "/local-assets/cards/es/78162.avif",
+      "source": "E:\\Plaguero\\200a.jpg",
+      "bytes": 105883,
+      "sha256": "15792fd138c5560e3833b91c9b19a208a9542b7071db851fead296e9a7501b95"
+    },
+    {
+      "art": "78162",
+      "language": "en",
+      "path": "/local-assets/cards/en/78162.avif",
+      "source": "E:\\Plaguero\\en\\194 - Abner-1.png",
+      "bytes": 106809,
+      "sha256": "c1d3960d6bce70c057b0063f38225e647bc98c4fe592a9b58c9044f893f113bd"
+    },
+    {
+      "art": "78163",
+      "language": "es",
+      "path": "/local-assets/cards/es/78163.avif",
+      "source": "E:\\Plaguero\\201a.jpg",
+      "bytes": 105115,
+      "sha256": "3a544211d9eb5ba69f41c88b6a956d4c4ca69a4cf99407e541f8bb228789d307"
+    },
+    {
+      "art": "78163",
+      "language": "en",
+      "path": "/local-assets/cards/en/78163.avif",
+      "source": "E:\\Plaguero\\en\\195 - Armitage-1.png",
+      "bytes": 112449,
+      "sha256": "777942fca5df5c9a5e8ebfd938c3807475d27fc5608547534fb831edc2516d03"
+    },
+    {
+      "art": "78164",
+      "language": "es",
+      "path": "/local-assets/cards/es/78164.avif",
+      "source": "E:\\Plaguero\\202a.jpg",
+      "bytes": 100323,
+      "sha256": "c5b4543c13069920fbb4e72184a51f6031d751d1af6d169b9ce0e167a9ae9c62"
+    },
+    {
+      "art": "78164",
+      "language": "en",
+      "path": "/local-assets/cards/en/78164.avif",
+      "source": "E:\\Plaguero\\en\\196 - Doyle-1.png",
+      "bytes": 103617,
+      "sha256": "8163951a243ca41b2dfb4fea8ea5b9b5ac441b326a681f16ba01407a2909e2ad"
+    },
+    {
+      "art": "78165",
+      "language": "es",
+      "path": "/local-assets/cards/es/78165.avif",
+      "source": "E:\\Plaguero\\203a.jpg",
+      "bytes": 103885,
+      "sha256": "96624f31c1a9a2f91a12dccaac52c0e0483c7f4f699608bc6e045e3c9fe4239a"
+    },
+    {
+      "art": "78165",
+      "language": "en",
+      "path": "/local-assets/cards/en/78165.avif",
+      "source": "E:\\Plaguero\\en\\197 - Hibbs-1.png",
+      "bytes": 109612,
+      "sha256": "621bccf56a2a71ac557b55dd1e59a705b2b2c06b6da5e692ecb7ac013075d043"
+    },
+    {
+      "art": "78166",
+      "language": "es",
+      "path": "/local-assets/cards/es/78166.avif",
+      "source": "E:\\Plaguero\\204a.jpg",
+      "bytes": 105816,
+      "sha256": "9a522e3af9aa1f73b5a7193afc2528210f2a283a85edadd2fc21cff2618658ef"
+    },
+    {
+      "art": "78166",
+      "language": "en",
+      "path": "/local-assets/cards/en/78166.avif",
+      "source": "E:\\Plaguero\\en\\198 - Loving-1.png",
+      "bytes": 126973,
+      "sha256": "91fd29548809f8033b3f8f7278ede1a4daa4c5c4dc63224368b5130cfce374aa"
+    },
+    {
+      "art": "78167",
+      "language": "es",
+      "path": "/local-assets/cards/es/78167.avif",
+      "source": "E:\\Plaguero\\205a.jpg",
+      "bytes": 106011,
+      "sha256": "d8cfbfb66ce1e7dd2a405c27f4f11b149d4ea29a9e5b2cf178326ba2ef1695e1"
+    },
+    {
+      "art": "78167",
+      "language": "en",
+      "path": "/local-assets/cards/en/78167.avif",
+      "source": "E:\\Plaguero\\en\\199 - Ma Matheson-1.png",
+      "bytes": 108584,
+      "sha256": "91535160ca073de8d5c6f5422c5e6c5a5178823d07a419c2d1b0a624956ccade"
+    },
+    {
+      "art": "78168",
+      "language": "es",
+      "path": "/local-assets/cards/es/78168.avif",
+      "source": "E:\\Plaguero\\206a.jpg",
+      "bytes": 109422,
+      "sha256": "7af59247a98605d1bc7f3766257f70ef24c4593dea7c3900d6cf52e68bf6a264"
+    },
+    {
+      "art": "78168",
+      "language": "en",
+      "path": "/local-assets/cards/en/78168.avif",
+      "source": "E:\\Plaguero\\en\\200 - Miriam Beecher -1.png",
+      "bytes": 121472,
+      "sha256": "e6bc4083b2b82e0e74c46d542ed0225e85dbb8386ce75559587c1481a3664c9a"
+    },
+    {
+      "art": "78169",
+      "language": "es",
+      "path": "/local-assets/cards/es/78169.avif",
+      "source": "E:\\Plaguero\\207a.jpg",
+      "bytes": 104817,
+      "sha256": "b71cfef548c8cbaa13afd6b0037b32d0fc4a1c110b27e1dec682bdab240a08ce"
+    },
+    {
+      "art": "78169",
+      "language": "en",
+      "path": "/local-assets/cards/en/78169.avif",
+      "source": "E:\\Plaguero\\en\\201 - Vice-1.png",
+      "bytes": 119286,
+      "sha256": "84e5dcd1ea6c1ca2f274bee32ec237fe648676e26932a5908f92b9b5a296bdaf"
+    },
+    {
+      "art": "78170",
+      "language": "es",
+      "path": "/local-assets/cards/es/78170.avif",
+      "source": "E:\\Plaguero\\208a.jpg",
+      "bytes": 111084,
+      "sha256": "00905030e12b39fde3455673ed12200c5506e9e587cd73e0b5387463780ece85"
+    },
+    {
+      "art": "78170",
+      "language": "en",
+      "path": "/local-assets/cards/en/78170.avif",
+      "source": "E:\\Plaguero\\en\\202 - Messenger of Flame-1.png",
+      "bytes": 121966,
+      "sha256": "2f4aa32c18178c6c285e4e5d83fd702587513cdad91eb1e68ed91a62a95e48d5"
+    },
+    {
+      "art": "78171",
+      "language": "es",
+      "path": "/local-assets/cards/es/78171.avif",
+      "source": "E:\\Plaguero\\209a.jpg",
+      "bytes": 103709,
+      "sha256": "d285e19edb69d3f3f20823fbaca6a67ec941c780472fb24504f65b0c644ed2b3"
+    },
+    {
+      "art": "78171",
+      "language": "en",
+      "path": "/local-assets/cards/en/78171.avif",
+      "source": "E:\\Plaguero\\en\\203 - Messenger of Heroes-1.png",
+      "bytes": 108652,
+      "sha256": "3716125bf629aef4ed667ce520a14ea4dc4d2059452ee2f415393046163702f5"
+    },
+    {
+      "art": "78172",
+      "language": "es",
+      "path": "/local-assets/cards/es/78172.avif",
+      "source": "E:\\Plaguero\\210a.jpg",
+      "bytes": 110931,
+      "sha256": "f5bac12d5c85dcd415cd784f8d94f9473b3ffe8f5fc761c1cb7a450a6a63308a"
+    },
+    {
+      "art": "78172",
+      "language": "en",
+      "path": "/local-assets/cards/en/78172.avif",
+      "source": "E:\\Plaguero\\en\\204 - Site of Unbinding-1.png",
+      "bytes": 106371,
+      "sha256": "0ba0ad1b7bc2adb14294f94a9d61ada887723ebfff1e3a8f0a7b15157cb9dc2c"
+    },
+    {
+      "art": "78173",
+      "language": "es",
+      "path": "/local-assets/cards/es/78173.avif",
+      "source": "E:\\Plaguero\\211a.jpg",
+      "bytes": 99563,
+      "sha256": "42bb064f8fc9c87ae719f2f8c7a9aa90f78b591d0d8033577786739a8435b1e9"
+    },
+    {
+      "art": "78173",
+      "language": "en",
+      "path": "/local-assets/cards/en/78173.avif",
+      "source": "E:\\Plaguero\\en\\205 - Burst of Flame-1.png",
+      "bytes": 94670,
+      "sha256": "6cfa36681b9933ea2e7fbdb89396876388f1fde9ef73248bc6702bbcc2ccd179"
+    },
+    {
+      "art": "78174",
+      "language": "es",
+      "path": "/local-assets/cards/es/78174.avif",
+      "source": "E:\\Plaguero\\213a.jpg",
+      "bytes": 95066,
+      "sha256": "d471f0c621b626842b6186aba696909fed337c49017b70977ed775478ddeeb62"
+    },
+    {
+      "art": "78174",
+      "language": "en",
+      "path": "/local-assets/cards/en/78174.avif",
+      "source": "E:\\Plaguero\\en\\207 - Delusional Protagonist-1.png",
+      "bytes": 93935,
+      "sha256": "4b4ec02ac0ac0837f4761023aefa3a45ec753d634fe20dd64c14a131cd66fb84"
+    },
+    {
+      "art": "78175",
+      "language": "es",
+      "path": "/local-assets/cards/es/78175.avif",
+      "source": "E:\\Plaguero\\215a.jpg",
+      "bytes": 97818,
+      "sha256": "bfa9830065a810bf39e99c608c9ecf098199a750350819025bb33c46d6404b38"
+    },
+    {
+      "art": "78175",
+      "language": "en",
+      "path": "/local-assets/cards/en/78175.avif",
+      "source": "E:\\Plaguero\\en\\209 - Dramatic Advance-1.png",
+      "bytes": 91663,
+      "sha256": "cc7e5c7dd8621dd751ea11bb3d74aa315fcb75f95f40e17f5608b112b7c61ef5"
+    },
+    {
+      "art": "78176",
+      "language": "es",
+      "path": "/local-assets/cards/es/78176.avif",
+      "source": "E:\\Plaguero\\217a.jpg",
+      "bytes": 102349,
+      "sha256": "6a9ce8407db54969a1965bc7b90fe492e659583e1dc346cfe4505a9d291d5422"
+    },
+    {
+      "art": "78176",
+      "language": "en",
+      "path": "/local-assets/cards/en/78176.avif",
+      "source": "E:\\Plaguero\\en\\211 - Dread Epiphany-1.png",
+      "bytes": 95310,
+      "sha256": "aeff89de1e7b663db79e7d1861426a456d219376845c0a5e9c3609e140fd586a"
+    },
+    {
+      "art": "78177",
+      "language": "es",
+      "path": "/local-assets/cards/es/78177.avif",
+      "source": "E:\\Plaguero\\219a.jpg",
+      "bytes": 106136,
+      "sha256": "d417794f4c4d65484f077d394b2bb9ff776274275e347fdc8d23c4123f5e0e90"
+    },
+    {
+      "art": "78177",
+      "language": "en",
+      "path": "/local-assets/cards/en/78177.avif",
+      "source": "E:\\Plaguero\\en\\213 - Flaming Advance-1.png",
+      "bytes": 99321,
+      "sha256": "0aa0e87dec29141c9346af27661ad348b29e539d058ac1d1cb1082cedd0e3c50"
+    },
+    {
+      "art": "78178",
+      "language": "es",
+      "path": "/local-assets/cards/es/78178.avif",
+      "source": "E:\\Plaguero\\221a.jpg",
+      "bytes": 103419,
+      "sha256": "c45314311be09315fe4912c0d98858f83aa7d117589c09058e994fc712879d33"
+    },
+    {
+      "art": "78178",
+      "language": "en",
+      "path": "/local-assets/cards/en/78178.avif",
+      "source": "E:\\Plaguero\\en\\215 - Flaming Worshipper-1.png",
+      "bytes": 105123,
+      "sha256": "32e4af9eaa834b23e6c711e1d37fc1dd6468f9cbcf9c297e52a47b6f8f845849"
+    },
+    {
+      "art": "78179",
+      "language": "es",
+      "path": "/local-assets/cards/es/78179.avif",
+      "source": "E:\\Plaguero\\223a.jpg",
+      "bytes": 100938,
+      "sha256": "6726d6c5f535e3c1d3912d3048c9e66d05aad632d629e8d6ce6e8471edff4c4c"
+    },
+    {
+      "art": "78179",
+      "language": "en",
+      "path": "/local-assets/cards/en/78179.avif",
+      "source": "E:\\Plaguero\\en\\217 - Lumbering Candlejack-1.png",
+      "bytes": 109330,
+      "sha256": "11e93d3f23e68ede6ae98d8c7335b63e2900b728dfbc3973dc1ba1759de09061"
+    },
+    {
+      "art": "78180",
+      "language": "es",
+      "path": "/local-assets/cards/es/78180.avif",
+      "source": "E:\\Plaguero\\225a.jpg",
+      "bytes": 126721,
+      "sha256": "0b682ec4389eae4f7d44467163823b5730c86700da39bc3fbc74b3c720f7e739"
+    },
+    {
+      "art": "78180",
+      "language": "en",
+      "path": "/local-assets/cards/en/78180.avif",
+      "source": "E:\\Plaguero\\en\\219 - Molten Murder-1.png",
+      "bytes": 131208,
+      "sha256": "3c68fac8e213fdc2ff56b0d2ff6b295e245c9d682db38d019bb8b78d9e2e782d"
+    },
+    {
+      "art": "78290",
+      "language": "es",
+      "path": "/local-assets/cards/es/78290.avif",
+      "source": "E:\\Plaguero\\377a.jpg",
+      "bytes": 115002,
+      "sha256": "510fb0a4ad50940edd33e24c5d33c371886ab15dc9843a0cc073d2d37972a93f"
+    },
+    {
+      "art": "78290",
+      "language": "en",
+      "path": "/local-assets/cards/en/78290.avif",
+      "source": "E:\\Plaguero\\en\\347 - Heed the Call-1.png",
+      "bytes": 110993,
+      "sha256": "2b4e43994314eed49243d6cb309f60c4cca9d38fa90a26b876c5230aadd6fbcf"
+    },
+    {
+      "art": "78291",
+      "language": "es",
+      "path": "/local-assets/cards/es/78291.avif",
+      "source": "E:\\Plaguero\\379a.jpg",
+      "bytes": 106946,
+      "sha256": "04105a2cb7cef6d4971ee2cb469db04455cb06d62ebc5c9a903e13fe04b9ab05"
+    },
+    {
+      "art": "78291",
+      "language": "en",
+      "path": "/local-assets/cards/en/78291.avif",
+      "source": "E:\\Plaguero\\en\\349 - Ire of the Unbound-1.png",
+      "bytes": 105707,
+      "sha256": "8e6925c77e5ce3cc9aa39ba518afb283204ad3526de85e97cda8bb4e2a99522c"
+    },
+    {
       "art": "78254",
       "language": "es",
       "path": "/local-assets/cards/es/78254.avif",

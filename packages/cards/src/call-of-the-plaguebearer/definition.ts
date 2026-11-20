@@ -5,7 +5,9 @@ import { NIGHT_ON_THE_TOWN, nightOnTheTown } from './night-on-the-town'
 import { DEAD_BY_DAWN, deadByDawn } from './dead-by-dawn'
 import { MOURNING_CHORUS, mourningChorus } from './mourning-chorus'
 import { HIGH_NOON_DESCENT, highNoonDescent } from './high-noon-descent'
+import { AFTERNOON_WAR, afternoonWar } from './afternoon-war'
 import './history-lesson'
+import './confrontation'
 registerCampaign({
   id: CALL_OF_THE_PLAGUEBEARER.id,
   name: 'campaign.names.call-of-the-plaguebearer',
@@ -44,6 +46,22 @@ registerCampaign({
                   build: ({ difficulty, log, seed }) => highNoonDescent({ difficulty, log, seed }),
                   keywords: ['hunter', 'alert', 'retaliate', 'massive', 'peril', 'surge', 'prey'],
                 }
-              : { id },
+              : id === AFTERNOON_WAR
+                ? {
+                    id,
+                    build: ({ difficulty, log, seed, investigators }) =>
+                      afternoonWar({ difficulty, log, seed, investigators: investigators.length }),
+                    keywords: [
+                      'hunter',
+                      'alert',
+                      'retaliate',
+                      'aloof',
+                      'massive',
+                      'peril',
+                      'surge',
+                      'defend',
+                    ],
+                  }
+                : { id },
   ),
 })

@@ -225,6 +225,55 @@
       "resolution1": "The thin man intoduces himself as Robison. \"You've been looking for me, yes? I've been looking for you. My master -he has concerns about the ongoing situation in Arkham.\"\n\nBefore you even ask the question, he responds. \"I have made... an arrangement with the creator of this realm. Let's just say that my survival was at risk, and he was the key. You owe him a debt as well. You would have been crushed in the collapse of my former research wing had he not pulled you through.\n\nBut that's not here nor there. I suppose you would like to hear what I know.\"",
       "resolution2Title": "Resolution 2",
       "resolution2": "Your eyes unfocus as you are pulled through what seems like an endless stretch of solid concrete. An eternity passes, the only sensation being the hand pulling you forward.\n\nAll at once, you burst through the other side and stumble forward. You catch yourself on the edge of a precipice - looking out, you see countless interweaving narrow paths of stone impossibly suspended in the void of space.\n\n\"Welcome to my Master's realm.\" A thin man in a tattered collared shirt and glasses standing ahead of you on the narrow path nods slightly. \"I'm Dr. Robison. I think you've been looking for me? So, I've been looking for you. Come, and I'll explain what I know."
+    },
+    "war": {
+      "introTitle": "The Afternoon War",
+      "intro1": "3:02 PM:\n\nYou stir under a sheet. You bolt upright, half expecting the telltale bodies of the morgue. Instead, you are lying on a sofa, watched by a square-jawed adolescent. “West? They’re up!”\n\nFrom an adjacent room, Herbert West enters scribbling on a notepad. “Thank you, Dan. Good to see you up and about. We found you just outside the facility. Very lucky of you to make it out. Apologies for my absence. I became sidetracked - I believe I have found a way to destroy that creature that seems to be pursuing you.”\n\nYou give West the bad news. His emotions are hard to read, but you could swear he’s almost amused. “Well. The monster will have to wait. We’ve got a city to save.”",
+      "intro1Effect": "Any investigator may add the Herbert West card to their deck. This card does not count against deck size.",
+      "intro2": "3:02 PM:\n\nYou feel the rain hitting softly against your legs, as the wet mud starts to seep into your clothes. Pulling yourself up from the mire, you look about the alleyway. You’re back in Arkham. Somewhere in Easttown.",
+      "intro3": "It’s a dreary afternoon. The sky is a blanket of grey and every footstep you take sticks in the squelching ground below you. The exhaustion weighing on your mind and body tempts you to give in to the pull - but you don’t have that luxury.\n\nYou mull over what you’ve learned. The Plaguebearer- Baalshandor - infected or created the First, that horrid monster that has chased you throughout the city. All the terrors that have plagued Arkham over the past twenty-four hours are the spawn of this herald. Each twisted killer stalking the streets is a sliver of the Plaguebearer’s consciousness, controlled through the microscopic organisms found in the miasma.\n\nAnd now the twin forces of the Flame and the King, prepare to descend upon Arkham and destroy every trace of life in hopes of preventing what has already occurred. It strikes you that it would almost be worth it. Arkham would be a small price to pay if all of Earth is threatened. But if the doctor spoke true, then their drastic gesture would barely delay the disease-god’s plan.\n\nWhich means it’s up to you. If you want to stop Baalshandor, you’ll have to live till midnight. And if you want that, you’ll have to stop the assault. To thwart whatever destruction the Old Ones plan for Arkham.\n\nYou climb the crest of a hill, and turn to look out over Arkham. It’s a dark, dangerous place. A city full of desperate last stands and terrible sacrifices. But there is warmth here, and camaraderie, and even love. So many people live here, and you have come to care for Arkham, despite its faults. And now, for this city - for these people - you are the only hope.\n\nYou steel yourself.\n\nThe sky opens up.",
+      "setupTitle": "Setup",
+      "setup": "Gather The Afternoon War, Agents of Cthugha, Fallen Arkham (only the Grinning Victims; the rest set aside), Mourning Chorus (only the locations), Unbound Power and Agents of Hastur. Set aside every Fire Vampire, Lumbering Candlejack, Messenger of the Flame, Messenger of The King, Molten Murder and Screeching Byakhee.\n\nEach Defended location removes its Fallen Arkham treachery and Elite enemy; each Infected location is replaced by its Fallen Arkham version. The Site of Unbinding is attached to its location, or the Crater of Unbinding replaces the location marked as the Crater. Put the Portal of the Flame and the Portal of the King into play. Each investigator begins at Hibbs Roadhouse (Crater of Unbinding if it is not in play).\n\nEliminated enemies are removed; with a vision of the portals each investigator gains 2 clues; each Rallied location receives its story asset (Hibbs Roadhouse: Hibbs, Here to Help, from a deck or Hibbs, He’s Had Enough). Place 1 horror and 1 damage among the Miasma locations and among the Stable locations, as evenly as possible. Spawn an Infernal Acolyte (and a Delusional Protagonist with 3–4 players) following its Spawn instruction. Shuffle two remaining Elite Infected enemies into the encounter deck (a Fire Vampire or Screeching Byakhee for each missing).\n\nDefend: test the value the card names instead of a skill; you cannot commit cards or use player cards to increase it.",
+      "agenda1bTitle": "Heating Up",
+      "agenda1b": "Screams ring out from across the town, and you see giant silhouettes moving through the flames. The second wave has arrived.",
+      "agenda2bTitle": "Fearsome Foes",
+      "agenda2b": "A deafening screech hits your ears, followed by a wave of heat. On both sides of the city, the most fearsome creatures have descended, and are headed right for you. That you have the drawn the attention of the invading armies is little comfort.",
+      "agenda3bTitle": "The Hand of God",
+      "agenda3bHorror": "You watch in stunned horror as an immense alien hand, larger than buildings, larger than streets, reaches out from a hole in the sky into the city and towards the sigil…",
+      "agenda3bFlame": "You watch in stunned horror as an immense flaming limb, larger than buildings, larger than streets, bursts from the ground below the sigil and rises towards the sky…",
+      "act1bTitle": "Split Pursuit",
+      "act1bFlame": "Despite the raging firestorms, the Miskatonic campus is relatively untouched. The eye of the storm…",
+      "act1bKing": "You trace the movements of the madness throughout the city. Somewhere near northside, there must be an answer…",
+      "act2bTitle": "When One Door Closes",
+      "act2bFlame": "Using chemical concoctions from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.",
+      "act2bKing": "You convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal.",
+      "act3bTitle": "Hole In The World",
+      "act3bFlame": "Despite the worsening firestorms, the Miskatonic campus is still relatively untouched. The eye of the storm! But as you search the campus, a horrible flaming giant bursts forth from the wall of the Science Building.",
+      "act3bKing": "You trace the movements of the increasing madness throughout the city. All signs point to Northside, but where? Your question is answered by a massive and shrouded figure that breaks through the ceiling of the Ward Theatre.",
+      "act4bTitle": "Armistice",
+      "act4bFlame": "Using chemical implements from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.",
+      "act4bKing": "You convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "For a moment - just a moment - something exists in Arkham. Something ancient and immense. It rips open the sky. It dominates the landscape. Within moments, it is all you can see. All you can think of. It is impossible. Beautiful. Perfect. The end of everything. And certainly the end of you.",
+      "resolution1Effect": "Each investigator is driven Insane.\nThe investigators lose the campaign.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "The flames and screams build to a fever pitch. A sudden blaze burns into the sky, twirling higher and higher. Within moments it has reached the sigil that floats above the town. The sigil begins to burn. But not only the sigil. The sky begins to brown and tear, like the edges of a photograph held to flame. Soon, all above is ash. And then the city. And then you.",
+      "resolution2Effect": "Each investigator is Killed.\nThe investigators lose the campaign.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "As you close the second portal, a furious scream shakes the sky. You brace for impact, but none comes. The alien monsters that wander the city, no longer linked to their realms, begin to burn away, and the cultists that remain flee in panic.\n\nYou’ve done it. The hordes have been fought back and the city is saved… for now.",
+      "resolution3Effect": "Each investigator earns experience equal to the victory X value of each card in the victory display.\nIf Messenger of Flame is not in the victory display, Find the non-Unbinding location with the most damage on it (Lead investigator decides ties). Record “Flame-Touched” under its entry in the campaign guide.\nIf Messenger of The King is not in the victory display, find the non-Unbinding location with the most horror on it (Lead investigator decides ties). Record “Madness-Touched” under its entry in the campaign guide.\nIn your campaign log, record the name of each unique Infected enemy in the victory display as “Eliminated”.",
+      "whispersTitle": "Insidious Whispers",
+      "whispers": "Amusing. You work so hard to stray from the path that has been laid. Do you feel powerful? Destroying the champions of my enemies. My champion will prove indestructible.\n\nThe Midnight Hour approaches. I grant you this one final chance to die before then.\n\nYou’re starting to get tired of this thing.",
+      "whispersEffect": "The first investigator who reads an Insidious Whispers may swap one of the [skull] or [tablet] symbols (whichever is more common) in the chaos bag for a [cultist]. If they do so, each investigator heals 1 trauma of their choice."
+    },
+    "confrontation": {
+      "title": "Interlude V: A Confrontation",
+      "section1": "You have words for Herbert West. He’s been lying to you - if not directly, than by omission, about his part in all this. As West motions around the clock room, babbling about the ritual, you grab him by the arm and demand answers.\n\nWest quickly quiets. After a moment of staring each other down, he asks, “And just what are you accusing me of?”\n\nMurder. Conspiracy. Hell, he could be a thrall of Baalshandor. He created the First Among Many. He was experimenting near where the Pustule appeared. He has a nasty habit of vanishing just before things get bad. He may have even tried to kill you at St Mary’s.\n\nWest frowns at you. “You’re being ridiculous. If you insist on wasting time here, I refuse to be part of it.” He begins to pull away, but is held against your grip.",
+      "section2": "You can’t risk leaving this to chance. Even if Herbert West isn’t actively your enemy, he’s a monster. West looks shocked as he pulls against your grip.\n\n“Are we resorting to physical violence, like cavemen? I’m disappointed in you. And to think-“\n\nWithout warning, West lunges towards you, his emerald eyes gleaming and a syringe in his hand. You fall backwards, and as West swings, he trips over you and stumbles headfirst into the gear mechanism of the clock. As the clock begins to strike midnight, a sickening crunch fills the room.\n\nYou begin to pull yourself to your feet when you hear an impossibly deep laugh.\n\nAlready tearing each other apart!\n\nYou turn to see a massive green eye staring through the clock face. Before you can react, a red arm the size of a bus tears through the tower, sending you hurtling to the ground below.\n\nBaalshandor has arrived on Earth.",
+      "section2Effect": "If Herbert West is in any player’s deck, remove him from that deck.\nRecord in your Campaign Log that Death conquered Herbert West.",
+      "section3": "West has made terrible mistakes. But he’s not your enemy. You let him slip from your grasp, and he straightens his sleeve.\n\nThe bells of the clock tower begin to ring out midnight, and West lets out a frightened gasp. You turn to face what he’s seeing. A massive green eye stares through the front face of the clock. As the massive red arm begins to tear through the tower, you tackle West out of the way. The two of you hurtle to the earth below, miraculously landing in a large bush.\n\nWest takes you by the arm and helps to pull you up. “You’ve saved my life. I am in your debt.”\n\nHis words are small comfort as you gaze upon the behemoth that stands nearby, gaze bearing down upon you.\n\nOnce again you survive. No longer. Time to die.\n\nBaalshandor has arrived on Earth.",
+      "section3Effect": "If Herbert West is not in a player’s deck, they may include the Herbert West asset in their deck This card does not count against deck size.\nRecord in your campaign log that Baalshandor struck the first blow.",
+      "section4": "You have words for Herbert West. But now is neither the time nor the place. If the vision was true, you are all still in imminent danger. You grab West by the arm and pull him with you down the stairs.\n\nAs you exit Town Hall, the bells begin to ring out the midnight hour. You look back, and are stunned to see a behemoth of a being smash its arm through the top of Town Hall. Its multitude of eyes swivel and stare down at you.\n\nAh. My clever instruments of unbinding. Time to die.\n\nBaalshandor has arrived on Earth."
     }
   },
   "note": {
@@ -311,7 +360,26 @@
     "plaguebearerGreysonCutTies": "Greyson cut ties",
     "plaguebearerLurkersRealm": "You were transported to the Lurker's realm",
     "plaguebearerHiddenPaths": "You found the hidden paths",
-    "plaguebearerBuried": "The monster was buried under tons of concrete"
+    "plaguebearerBuried": "The monster was buried under tons of concrete",
+    "plaguebearerTown78023FlameTouched": "Arkham Advertiser: Flame-Touched",
+    "plaguebearerTown78023MadnessTouched": "Arkham Advertiser: Madness-Touched",
+    "plaguebearerTown78024FlameTouched": "Bank of Arkham: Flame-Touched",
+    "plaguebearerTown78024MadnessTouched": "Bank of Arkham: Madness-Touched",
+    "plaguebearerTown78025FlameTouched": "General Store: Flame-Touched",
+    "plaguebearerTown78025MadnessTouched": "General Store: Madness-Touched",
+    "plaguebearerTown78026FlameTouched": "Hibbs Roadhouse: Flame-Touched",
+    "plaguebearerTown78026MadnessTouched": "Hibbs Roadhouse: Madness-Touched",
+    "plaguebearerTown78027FlameTouched": "Ma’s Boarding House: Flame-Touched",
+    "plaguebearerTown78027MadnessTouched": "Ma’s Boarding House: Madness-Touched",
+    "plaguebearerTown78028FlameTouched": "Orne Library: Flame-Touched",
+    "plaguebearerTown78028MadnessTouched": "Orne Library: Madness-Touched",
+    "plaguebearerTown78029FlameTouched": "River Docks: Flame-Touched",
+    "plaguebearerTown78029MadnessTouched": "River Docks: Madness-Touched",
+    "plaguebearerTown78030FlameTouched": "Ye Olde Magick Shoppe: Flame-Touched",
+    "plaguebearerTown78030MadnessTouched": "Ye Olde Magick Shoppe: Madness-Touched",
+    "plaguebearerWarned": "You have been warned",
+    "plaguebearerDeathConqueredWest": "Death conquered Herbert West",
+    "plaguebearerBaalshandorFirst": "Baalshandor struck the first blow"
   },
   "ability": {
     "remove": "Spend {amount} clues here: remove {amount} barricades from {location}",
@@ -398,6 +466,16 @@
       "parley": "Parley with Agent Crispin",
       "taphephobia": "Discard Taphephobia",
       "greyson": "Agent Greyson: spend 1 resource to move an investigator at your location"
+    },
+    "war": {
+      "act": "Act: test [willpower] or [agility] (X) to return tokens from your location",
+      "defend": "Defend with {name} ({difficulty})",
+      "defendSkill": {
+        "willpower": "Defend with {name}: [willpower] ({difficulty})",
+        "intellect": "Defend with {name}: [intellect] ({difficulty})",
+        "combat": "Defend with {name}: [combat] ({difficulty})",
+        "agility": "Defend with {name}: [agility] ({difficulty})"
+      }
     }
   },
   "prompt": {
@@ -456,6 +534,43 @@
       "livingFlame": "The Living Flame: discard your highest cost asset or place 1 doom on it",
       "chooseInvestigator": "Choose an investigator",
       "threshold": "The resolution contains a hidden text. Do you read it?"
+    },
+    "war": {
+      "west": "Who adds Herbert West to their deck?",
+      "hibbs": "Put Hibbs (Here to Help) into play from your deck?",
+      "spread": {
+        "horror": "Place 1 horror on a location with the fewest tokens",
+        "damage": "Place 1 damage on a location with the fewest tokens"
+      },
+      "spawn": "Choose where the enemy spawns",
+      "replaceElite": "An Elite Infected enemy is missing: shuffle one of these into the encounter deck",
+      "portal": "Take it or place it on the location",
+      "overflow": "Move 1 token from your location to an Unbinding location",
+      "split": "The lead investigator must decide (choose one)",
+      "actX": "Choose X (up to 4) and the skill to test",
+      "return": "Choose the type of token to return to the token bank",
+      "remove": "Remove 1 token from any location in play",
+      "molten": "Molten Murder: choose one",
+      "acolyte": "Infernal Acolyte: choose who takes 1 damage",
+      "share": {
+        "damage": "Choose how much damage to place on your location and how much to take",
+        "horror": "Choose how much horror to place on your location and how much to take"
+      },
+      "heed": "Heed the Call: choose what you do for this point",
+      "ire": "Ire of the Unbound: choose the token to move onto a card you control",
+      "elderThing": "Place 1 horror or 1 damage on your location",
+      "cultist": "You may return 1 token from your location to the token bank",
+      "touched": {
+        "damage": "Choose the location to record as “Flame-Touched”",
+        "horror": "Choose the location to record as “Madness-Touched”"
+      },
+      "whispers": "The resolution has hidden text (Insidious Whispers). Do you read it?",
+      "swap": "Swap a symbol in the chaos bag for a [cultist]?",
+      "trauma": "Heal 1 trauma of your choice"
+    },
+    "confrontation": {
+      "decide": "The investigators must decide",
+      "west": "Who includes Herbert West in their deck?"
     }
   },
   "choice": {
@@ -539,6 +654,63 @@
       "takeHorror": "Take 1 horror",
       "discard": "Discard {card}",
       "doomOnAsset": "Place 1 doom on {card} to cancel"
+    },
+    "war": {
+      "hibbs": "Put Hibbs into play",
+      "replace": {
+        "vampire": "Fire Vampire",
+        "byakhee": "Screeching Byakhee"
+      },
+      "take": {
+        "damage": "Take 1 damage",
+        "horror": "Take 1 horror"
+      },
+      "place": {
+        "damage": "Place 1 damage on {location}",
+        "horror": "Place 1 horror on {location}"
+      },
+      "kind": {
+        "damage": "Damage",
+        "horror": "Horror",
+        "clue": "Clue"
+      },
+      "splitFlame": "The fire will burn the whole city to cinders. We need to close the portal of Flame.",
+      "splitKing": "If everyone loses their minds, the city is as good as doomed. We need to close the portal of the King.",
+      "actTest": {
+        "willpower": "Test [willpower] ({amount})",
+        "agility": "Test [agility] ({amount})"
+      },
+      "return": {
+        "damage": "Return {amount} damage",
+        "horror": "Return {amount} horror",
+        "clue": "Return {amount} clues"
+      },
+      "remove": {
+        "damage": "Remove 1 damage from {location}",
+        "horror": "Remove 1 horror from {location}",
+        "clue": "Remove 1 clue from {location}"
+      },
+      "stop": "Stop removing tokens",
+      "loseResources": "Lose {amount} resources",
+      "discardCards": "Discard {amount} cards",
+      "share": {
+        "damage": "Place {placed} on your location and take {taken} damage",
+        "horror": "Place {placed} on your location and take {taken} horror"
+      },
+      "heedMove": "Move to {location}",
+      "heedForced": "Resolve the Forced effect of {location}",
+      "swap": {
+        "skull": "Swap a [skull] for a [cultist]",
+        "tablet": "Swap a [tablet] for a [cultist]"
+      },
+      "trauma": {
+        "physical": "Heal 1 physical trauma",
+        "mental": "Heal 1 mental trauma"
+      }
+    },
+    "confrontation": {
+      "distrust": "West can’t be trusted. You can’t let him slip away again.",
+      "release": "West might be at fault, but this is all circumstantial. Let him go."
     }
   }
 }

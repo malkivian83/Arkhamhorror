@@ -794,5 +794,61 @@
       "credits": 278
     }
   ],
-  "pending": []
+  "pending": [
+    {
+      "key": "story.plaguebearer.war.intro1",
+      "file": "plaguebearer-war-intro1-martin-osborne.mp3",
+      "text": "3:02 p. m.\n\nTe revuelves debajo de una sábana. Te levantas de golpe, como esperando ver a los cadáveres de la morgue otra vez. En vez de eso, estás tendido en un sofá observado por un adolescente de mandíbula cuadrada. “¿West?¡Se han despertado!”. Desde el cuarto de al lado, Herbert West entra garabateando en un cuaderno. “Gracias, Dan. Qué bien que estéis ya despiertos y espabilados. Os encontramos justo fuera de la instalación. Tuvisteis mucha suerte. Lamento mi ausencia. Me perdí, pero creo que he encontrado la forma de destruir a esa criatura que parece estar persiguiéndoos”.\n\nLe dais a West las malas noticias. Sus emociones son difíciles de interpretar, pero podríais jurar que le parece divertido. “Bueno, pues el monstruo tendrá que esperar. Tenemos una ciudad que salvar”."
+    },
+    {
+      "key": "story.plaguebearer.war.intro2",
+      "file": "plaguebearer-war-intro2-martin-osborne.mp3",
+      "text": "3:02 p. m.\n\nSientes la lluvia golpear suavemente tus piernas y cómo su abrazo húmedo se cuela poco a poco por tu ropa. Levantándote del lodo, echas un vistazo al callejón. Estás de nuevo en Arkham. En algún lugar del Barrio Este."
+    },
+    {
+      "key": "story.plaguebearer.war.intro3",
+      "file": "plaguebearer-war-intro3-martin-osborne.mp3",
+      "text": "Es una tarde triste. El cielo es una pesada manta gris y a cada paso que das tus pies se pegan al viscoso suelo que pisas. La extenuación que sufren tu mente y tu cuerpo hace que quieras abandonarlo todo y tirar la toalla, pero no puedes permitirte ese lujo.\n\nMeditas sobre lo que has aprendido. El Portador de la Plaga, Baalshandor, infectó o creó al Primero, esa horrenda criatura que te ha intentado dar caza por toda la ciudad. Todos los terrores que han aparecido en Arkham en las últimas veinticuatro horas han sido convocados por su heraldo. Cada asesino retorcido que acechaba por las calles es una brizna de la consciencia del Portador de la Plaga, controlado por los microscópicos organismos encontrados en el miasma.\n\nY ahora las fuerzas gemelas de la Llama y el Rey se preparan para descender sobre Arkham y destruir cada rastro de vida para prevenir algo que ya ha ocurrido. Piensas que seguramente valdría la pena. Arkham sería un pequeño precio si toda la Tierra está amenazada. Pero si el doctor dijo la verdad, sus drásticas medidas harán poco más que retrasar el plan del dios de la enfermedad.\n\nLo que significa que todo depende de ti. Si quieres parar los pies a Baalshandor, tendrás que sobrevivir hasta la medianoche. Y para conseguir eso, primero tendrás que detener el asalto. Para frustrar cualquier plan de destrucción que los Primigenios tengan para Arkham.\n\nSubes a la cima de una colina y te vuelves para echar un vistazo a Arkham. Es un lugar oscuro y peligroso. Una ciudad llena de últimas oportunidades y terribles sacrificios. Pero también hay calidez, camaradería e incluso amor. Mucha gente vive aquí y has venido a defender Arkham a pesar de sus pecados. Y ahora, para esta ciudad, para esta gente, tú eres la única esperanza.\n\nEstás preparado.\n\nY el cielo se abre."
+    },
+    {
+      "key": "story.plaguebearer.war.resolution1",
+      "file": "plaguebearer-war-resolution1-martin-osborne.mp3",
+      "text": "Por un momento, sólo por un momento, algo existe en Arkham. Algo antiguo e inmenso. Desgarra el cielo. Domina todo el paisaje. En unos momentos, es todo lo que pueden ver tus ojos. Todo en lo que puedes pensar. Es imposible. Bello. Perfecto. El fin de todo. Y ciertamente, tu fin."
+    },
+    {
+      "key": "story.plaguebearer.war.resolution2",
+      "file": "plaguebearer-war-resolution2-martin-osborne.mp3",
+      "text": "Las llamas y los gritos alcanzan un ritmo febril. Un súbito resplandor arde en el cielo, girando más y más según asciende. En unos instantes ha alcanzado el sigilo que flota sobre la ciudad. Entonces el sigilo comienza a arder. Pero no sólo el sigilo. El cielo comienza a ennegrecerse y resquebrajarse, como los bordes de una fotografía que acercas al fuego. Pronto, todo a tu alrededor son cenizas. Y después la ciudad. Y después tú."
+    },
+    {
+      "key": "story.plaguebearer.war.resolution3",
+      "file": "plaguebearer-war-resolution3-martin-osborne.mp3",
+      "text": "Tan pronto como cierras el segundo portal, un furioso grito sacude el cielo. Te preparas para el impacto, pero nunca llega. Los monstruos alienígenas que asolaban la ciudad, desvinculados de su reino, comienzan a deshacerse entre llamas y los sectarios restantes huyen presas del pánico.\n\nLo has logrado. Las hordas han sido rechazadas y la ciudad está a salvo. Por ahora."
+    },
+    {
+      "key": "story.plaguebearer.war.whispers",
+      "file": "plaguebearer-war-whispers-martin-osborne.mp3",
+      "text": "Divertido. Has trabajado tan duro para intentar salirte del camino que te ha sido dado. ¿Te sientes poderoso? Destruyendo a los campeones de mis enemigos. Mi campeón demostrará que es indestructible.\n\nLa hora bruja se acerca. Te doy esta última oportunidad para morir antes de que llegue.\n\nTe estás empezando a cansar de esto."
+    },
+    {
+      "key": "story.plaguebearer.confrontation.section1",
+      "file": "plaguebearer-confrontation-section1-martin-osborne.mp3",
+      "text": "Tienes varias cosas que echarle en cara a Herbert West. Ha estado mintiéndote, si no directamente, si por omisión, sobre su implicación en todo este asunto. Mientras West da vueltas alrededor de la cámara del reloj, balbuceando sobre el ritual, le agarras del brazo y demandas respuestas.\n\nWest se queda inmóvil. Tras un instante de miraros fijamente a los ojos, te pregunta. “¿De qué me estás acusando exactamente?”.\n\nAsesinato. Conspiración. ¡Maldición! Podría ser perfectamente un esclavo de Baalshandor. Él creó al Primero de muchos. Estaba experimentando cerca de donde apareció la Pústula abominable. Además tiene la molesta manía de desaparecer justo cuando las cosas van a ponerse feas. Y puede que hasta intentara matarte en el Hospital de Santa María.\n\nWest te mira con el ceño fruncido. “Está siendo ridículo. Si insiste en perder el tiempo con esto, renuncio a participar en ello”. Hace ademán de irse, pero le tienes bien agarrado."
+    },
+    {
+      "key": "story.plaguebearer.confrontation.section2",
+      "file": "plaguebearer-confrontation-section2-martin-osborne.mp3",
+      "text": "No puedes dejar esto al azar. Incluso si Herbert West no es tu enemigo, es un monstruo. West te mira sorprendido mientras intenta zafarse de tu agarre.\n\n“¿Estamos recurriendo a la violencia física como los cavernícolas? Me decepciona. Y pensar que...”.\n\nDe repente, West se lanza contra ti. Sus ojos brillan con un tono esmeralda y lleva una jeringa en su mano. Caes de espaldas, y mientras West se abalanza sobre ti, se tropieza. El traspié le lleva de cabeza contra uno de los engranajes del reloj. Justo cuando el reloj anuncia la medianoche, un horrible crujido resuena en toda la estancia.\n\nComienzas a incorporarte, cuando de pronto se oye una risa imposiblemente profunda.\n\n¡Ya os estáis matando!\n\nTe giras para ver un enorme ojo verde a través de una de las esferas del reloj. Antes de que puedas reaccionar, un brazo del tamaño de un autobús atraviesa la torre, mandándote un par de pisos más abajo.\n\nBaalshandor ha llegado a la ciudad."
+    },
+    {
+      "key": "story.plaguebearer.confrontation.section3",
+      "file": "plaguebearer-confrontation-section3-martin-osborne.mp3",
+      "text": "West ha cometido terribles errores, pero no es tu enemigo. Le dejas liberarse de tu presa y se alisa las mangas de la camisa.\n\nLa campana del reloj comienza a dar la medianoche y West suelta un grito de pánico. Te giras para mirar qué ha visto. Un enorme ojo verde te observa a través de una de las esferas del reloj. Un gigantesco brazo comienza a destrozar la torre, apartas a West de su camino. Ambos os precipitáis al vacío dando con vuestros cuerpos contra un montón de arbustos.\n\nWest te agarra del brazo y te levanta. “Ha salvado mi vida, estoy en deuda con usted”.\n\nSus palabras reconfortan poco dado el mayúsculo ser que tienes a tu lado y que tiene la mirada fija en ti.\n\nHas vuelto a sobrevivir. Nunca más. Hora de morir.\n\nBaalshandor ha llegado a la ciudad."
+    },
+    {
+      "key": "story.plaguebearer.confrontation.section4",
+      "file": "plaguebearer-confrontation-section4-martin-osborne.mp3",
+      "text": "Tienes muchas cosas que decirle a Herbert West. Pero ni es el momento, ni el lugar. Si la visión era cierta, aún estás en peligro. Agarras a West del brazo y le llevas escaleras abajo .\n\nSegún sales del Ayuntamiento, las campanas anuncian la medianoche. Miras atrás y te quedas de piedra al ver a un titánico ser destruyendo con su brazo la torre del reloj. Sus incontables ojos te buscan y te miran fijamente.\n\nMi brillante instrumento de liberación. Hora de morir.\n\nBaalshandor ha llegado a la ciudad."
+    }
+  ]
 }

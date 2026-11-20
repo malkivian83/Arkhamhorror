@@ -129,3 +129,169 @@ Estado vigente y fuentes en [94 · Portador de la Plaga](94-portador-de-la-plaga
 - Mapa: la línea Vestíbulo–Túnel se desvía al pasar por la columna de Alfa,
   evitando aparentar una conexión Alfa–Túnel. Solo cambia el trazado. 18 pruebas
   de conexiones y recorrido del hilo correctas; revisión visual pendiente.
+
+### Continuación de implementación · 2026-11-06 a 2026-11-19 (I–V; trasladado del doc 94)
+
+- Último lote: Interludio I + III · Muerte al amanecer (este commit), sobre
+  `1a03ad05`. Historial en [el archivo](historial-portador-de-la-plaga.md).
+- Interludio I (guía p. 6 ES/EN) al cerrar el II: rutas 1–4, Hibb (Listo para
+  ayudar) opcional al mazo, sectario/calavera/tablilla y texto oculto 5; sus
+  lectores empiezan el III con 1 horror y 1 carta más.
+- III (`dead-by-dawn.ts`, datos en `dawn-data.ts`): dos aperturas según el
+  respeto de Greyson (Ichabod + Apoyo de la Agencia 05274 con Alianzas frágiles,
+  o Virgil), Hibb desde el mazo o con Alianzas frágiles, Mazo reanimado con dos
+  cartas apartadas (ES; el plan 1b las cita), Reanimados que no pueden ser
+  derrotados, exceso de daño = daño > salud (agota, desenfrenta y no se prepara),
+  curación al final de ronda, 10 lugares con sus acciones, Laboratorio con 3
+  Lugares con recursos, Negociar con West, Vuelve a por más (sustituye plan y
+  acto; Primero de muchos con enemigos debajo), cuatro traiciones, West aliado
+  y R1–R5 (R1 → «pagar cualquier precio» = R5 o perder la campaña).
+- Decisiones: el Sótano conecta con la Galería (ES; el reloj de arena EN no
+  existe); la R5 anota `plaguebearerBloodInVeins` (sectario = fallo automático
+  adicional en escenarios futuros, pendiente de aplicar al implementar el IV) y
+  `plaguebearerSkipDeadOrAlive`. Interludio II pendiente.
+- Revisión de reglas: Hibb 78039 daba +1 combate; la carta dice +1 voluntad y
+  +1 agilidad (iconos voluntad/intelecto/agilidad). Resoluciones del II correctas.
+- Recursos: 37 cartas distintas transcritas literalmente EN/ES, 114 caras AVIF y
+  miniaturas, textos oficiales en `story/{es,en}.json`, 16 relatos y 13 caras de
+  planes/actos narrados con Martin Osborne (voz añadida a la cuenta nueva).
+- Verificación: 185 pruebas dirigidas (campaña, III, web, narración,
+  traducciones), 183 de inventarios de imagen/audio, tipos cards/i18n/web y
+  lint correctos. Revisión visual de la app pendiente de la persona usuaria.
+- Entorno: Python 3.12 + Pillow 11.3 (`%LOCALAPPDATA%/Programs/Python/Python312`,
+  usar `-I`); JPG ES CMYK → sRGB con su ICC antes de AVIF. Guías extraídas con
+  `tmp/plaguebearer/extract-jpegs.mjs`.
+- Interludio II (guía ES p. 9 / EN pp. 10–11) tras las R2–R4 del III: secciones
+  según respeto y West llevado a la fuerza, maletín entregado (West al mazo) o
+  escondido, y elección individual Reanimado/Humanidad (obligatoria con reactivo
+  puro) con La Fuerza de la Carne o Voluntad inquebrantable permanentes. Diez
+  relatos narrados. 167 pruebas dirigidas, tipos cards/web y lint correctos.
+- IV · Cantos fúnebres (`mourning-chorus.ts`, `chorus-data.ts`): estado de Arkham
+  (sin marca → el valor menos repetido, empate al azar; con 6–7 Infectados el jefe
+  cura 1–2), Lugares Seguros que reutilizan las capacidades del II (Colmado como
+  acción, Muelles +1 por el [wild], Motel solo para quien reacciona) o Ruinas de
+  Arkham caído, Procesión (crecer, moverse, Mazo y descarte propios, sin Cazador),
+  recursos del plan en vez de perdición, Barricadas (acto 1b) como único daño al
+  Sacerdote, Protegidos del acto 2a, 8 Élite y 13 traiciones, R1/R2 con Cráter o
+  Lugar de la Liberación, Protegidos, Eliminados y «ha escuchado la llamada».
+- Aproximaciones del IV: las traiciones «vinculadas a un Apoyo» se guardan en la
+  zona de amenaza del dueño con el Apoyo anotado (motor sin esa vinculación;
+  Confianza rota deja en blanco ese Apoyo con un gancho nuevo); la perdición de
+  Miasma coral se guarda en su Lugar; «Orador profano» aplica el daño/horror del
+  enemigo revelado. Motor: ganchos `enemyHealthModifier` y `blanksAsset`.
+- La R5 del III (`plaguebearerBloodInVeins`) ya convierte el sectario en fallo
+  automático en el IV (`bloodInVeins` para los siguientes escenarios).
+- Verificación IV: 336 pruebas dirigidas (campaña, web, narración, traducciones),
+  suite de engine+cards 6092 correctas, tipos engine/cards/web y lint correctos.
+  Changelog actualizado. Revisión visual pendiente de la persona usuaria.
+- Interludio III (guía ES p. 12 / EN p. 14) al cerrar el IV: una sección y una
+  recompensa por Lugar Protegido (8 cartas de jugador 78096–78103, textos
+  literales) y texto oculto (2 PX y 1 trauma mental por lector). La frase final EN
+  («You note agents swarming…») no está en ES y no se usa. Aproximaciones: Copas
+  de más da una acción sin restringir el tipo; Beneplácito de Ma da un espacio de
+  aliado más (sin el +1/+1); Día duro de trabajo solo aporta sus iconos; Cobertura
+  total necesita `alliedCostModifier`/`alliedForced` en los escenarios V–VIII.
+- Interludio IV · Lección de historia (guía ES p. 15 / EN p. 18 del PDF), en
+  `history-lesson.ts`: `historyLesson(end)` devuelve sus mensajes para encadenarlos
+  tras las R1 y R2 del V (ambas pasan al interludio). El jefe elige una pregunta
+  (obligatoria) y puede seguir; cada caja anota su frase y cada caja tras la primera
+  añade a cada investigador una debilidad básica Locura o Pacto aleatoria
+  permanente (`AddStoryAsset`, sin repetir dentro del interludio). Relatos literales
+  EN/ES en `plaguebearer.{es,en}.json` y en `story/{es,en}.json`; sin locución.
+  Notas `plaguebearerVisionOfPortals`, `plaguebearerKillingWords` y
+  `plaguebearerCrypticRiddle`. Pruebas en `history-lesson.test.ts`.
+- V · Descenso al mediodía (`high-noon-descent.ts`, datos en `noon-data.ts`; guía ES
+  pp. 13–14 / EN pp. 15–17; cartas ES 142–188, EN 143–182 y 163). Fuentes en
+  `D:\plaguero` (ES `NNN{a,b}.jpg`, EN `en\*-{1,2}.png`). Introducciones 1–6 según
+  Motel/respeto, Greyson cortó lazos y Greyson (Ya no sigue órdenes, 78140) al mazo;
+  West y Greyson desde el mazo o con Alianzas frágiles. Tres alas: Delta (posiciones
+  de la Figura 1, conexiones de un sentido hacia abajo y a la Guarida, lo que pide
+  cada Sub-laboratorio para bajar), Omega (Blasones como apoyos colocados que se
+  mueven hacia el Ventrículo opuesto) y Alfa (Razón, Fe, Círculo de invocación,
+  Laboratorio de Robison). Cuatro planes (Agencia con Oleada y 1 daño, Crispin,
+  Primero de muchos, derrota con trauma), tres actos, 11 cartas de encuentro
+  propias más Agentes de Cthugha (254–255) y Vida y muerte (286–287). R1/R2 anotan
+  el reino del que acecha o las sendas ocultas, el Primero sepultado y pasan al
+  Interludio IV; En el Umbral: 1 trauma físico por lector.
+- Decisiones del V: Laboratorio Alfa (Conocimiento prohibido) usa horror como el EN
+  (el ES dice daño, como la versión Cthugha); el Ventrículo derecho se refiere a sí
+  mismo (errata ES «izquierdo»); Corre por tu vida al final de la ronda (EN; ES «al
+  principio»); Llamada de la tumba y Daños acumulados sin restricción de Lugar (EN);
+  la Aurícula izquierda usa el aro amarillo del ES (el EN muestra una «T»). Aproximaciones:
+  la Guarida expulsa al enemigo justo después de entrar; Sala de autopsias investiga
+  y la pista sale del Lugar revelado que elijas; «no infligir daño» se aplica en las
+  pruebas y el turno de quien lo eligió; las Estrategias solo cobran la acción extra
+  en el turno propio; Presa del Vampiro de fuego por menos Apoyos.
+- Verificación V: 19 pruebas del escenario, carpeta del Portador, medios y
+  narración (205 + 2), tipos de cards (salvo un error ajeno en
+  `extra-actions/rules.test.ts`) y lint correctos.
+- Criterio (persona usuaria, 14/11/2026): mandan las cartas EN; las diferencias del
+  ES se tratan como erratas. Única excepción en el V: el símbolo de la Aurícula
+  izquierda, porque la «T» del EN no conecta con el resto de cartas EN.
+- Imágenes del V: 146 caras AVIF (calidad 70) y miniaturas WebP de 192 px, hechas con
+  sharp 0.34.3 instalado aparte en `tmp/imgtool` (sin Python). ES desde
+  `D:\plaguero\NNN{a,b}.jpg` (CMYK → sRGB; planes y actos girados 90°/270°); EN desde
+  `D:\plaguero\en`, archivos distintos de los de `E:\Plaguero` (750×1050, tamaño
+  nativo). Registradas en `media.json` (594), manifiesto e inventarios;
+  `verify-card-images.mjs` correcto (6503).
+- Pendiente del V, tras las locuciones del 19/11/2026, el audio de los tres actos
+  y la revisión visual de la persona usuaria.
+
+### Continuación de implementación · 2026-11-20
+
+- Lote: VI · Guerra al atardecer e Interludio V, sin commit, sobre `d53ec860` (sin pull:
+  cambios ajenos en `main`; HEAD = origin/main tras `git fetch`). Fuentes en `E:\Plaguero`
+  (`D:\plaguero` ya no existe): ES `NNN{a,b}.jpg`, EN `en\*-{1,2}.png` (826×1126).
+- Preparación (EN p. 19–20): estado de Arkham del IV (`arkhamStatus`), Lugares Seguros o
+  Ruinas, Cráter de la Liberación en la posición del Lugar marcado o Lugar de la Liberación
+  vinculado (sin registro: Motel Hibb, como el IV), Portales sin revelar a ambos lados del
+  anillo, inicio en el Motel (o el Cráter), Eliminados fuera, 2 pistas con la visión de los
+  portales, apoyos de los Lugares Protegidos, Hibb (Listo para ayudar) desde el mazo o Hibb
+  (Ya ha tenido suficiente) en el Motel, 1 horror + 1 daño entre Miasma y entre Seguros,
+  Acólito (y Protagonista con 3–4) según su Aparición y dos Élite Infectados (Vampiro de
+  fuego o Byakhee chillador por cada uno que falte, elige el jefe).
+- Reglas: daño de Lugar en `scenarioMeta` (`locationDamage:<id>`, con insignia en el mapa) y
+  horror en el Lugar; «fichas» = daño + horror + pistas + perdición. Tres planes (forzado de
+  fin de ronda por enemigo, Mensajeros a la Liberación; fin de turno con 4+ → 1 ficha a la
+  Liberación), cuatro actos con la capacidad (X ≤ 4) y objetivo de Portal sin fichas, cierre
+  del Portal (retira sus cartas, mueve a la Biblioteca/Banco, zona de victoria y el otro
+  Mensajero), Cráter/Lugar de la Liberación (1 perdición por 4 fichas / 4 que no sean
+  pistas), Portales (+2 velo por ficha, forzado de inicio de turno), Defender de los ocho
+  apoyos (valor fijo salvo Hibb, límite de grupo por partida, 1 ficha por punto, máx. 6),
+  seis enemigos/tres traiciones del VI, Poder desatado y Agentes de Hastur. Los Élite de
+  Arkham caído reutilizan sus efectos del IV (`fallenEliteForced` y modificadores exportados).
+- Resoluciones: sin resolución → R2; R1 locos y R2 muertos (campaña perdida); R3 con PX,
+  «Tocado por la Llama/Locura» en el Lugar de Arkham (no Liberación) con más daño/horror
+  (empate: jefe), Eliminados y Susurros insidiosos (texto oculto en la R3: cada investigador
+  decide si lo lee; el primero puede cambiar la calavera o tablilla más común por un
+  sectario y cada investigador se cura 1 trauma).
+- Decisiones del VI: La Cosa del agua (Élite, se retira con los Muelles Defendidos) y Abner
+  Weems (apoyo de historia con los Muelles Protegidos) son cartas distintas, sin conflicto;
+  el Acólito infernal y la Protagonista delirante aparecen según su propia instrucción de
+  Aparición (más daño / más horror, empate: jefe) tras colocar las fichas; la Intro 2 pasa a
+  la Intro 3, que resume la situación para ambas ramas. EN manda: plan 2/3 al final de tu
+  turno (ES «de la ronda»), plan 2b Byakhee con más horror (ES invertido), Lugar de la
+  Liberación «Obligado» (ES «Revelación»), Escucha la llamada hacia un Lugar Liberación
+  (ES «Desatado»). Seis recuadros EN de Susurros (5 ES): iguales, se ofrece uno por persona.
+- Aproximaciones: los Susurros se ofrecen al final (R3), no durante la partida; «retíralos de
+  la partida» del acto 2b incluye también las copias apartadas (si no, el plan 1b las
+  devolvería); el daño del Acólito lo reparte quien lo derrota; La ira del Desatado comprueba
+  daño infligido a enemigos y pistas descubiertas durante tu turno; Escucha la llamada ofrece
+  el Obligado de las Ruinas y Portales revelados; el reparto de 1 horror + 1 daño se hace
+  «Lugar con menos daño/horror» del grupo.
+- Interludio V: «Si habéis sido advertidos» → La confrontación 4; si no, 1 y decisión del
+  jefe: 2 (retira a Herbert West de los mazos y del registro; la Muerte conquistó a Herbert
+  West) o 3 (si nadie tiene a West, alguien puede añadirlo; Baalshandor golpeó primero).
+- Errores corregidos de I–V: la ayuda de fichas del caos del V (`chaosHelp`) no leía la carta
+  de referencia `78111` y mostraba el texto genérico; regresión en `plaguebearer-media.test.ts`.
+- Recursos: 30 + 2 cartas distintas transcritas literalmente EN/ES (`plaguebearer-cards`),
+  86 caras AVIF (calidad 76, Pillow 11.3, ES CMYK → sRGB, planes/actos girados) y sus
+  miniaturas WebP de 192 px; `media.json` 680 caras; manifiesto e inventarios con las
+  entradas junto a las del V. Relatos en `plaguebearer.{es,en}.json` y `story/{es,en}.json`;
+  11 relatos y 14 caras de planes/actos registrados como pendientes de locución.
+- Verificación: 23 pruebas del VI y del Interludio V; 460 dirigidas (carpeta del Portador,
+  i18n, medios, narración, referencias e imágenes ES); 171 de presentación EN/ES y
+  narración; cobertura del Portador (96 partidas aleatorias, 16 del VI); campaña (55);
+  `verify-card-images` (6683); tipos de cards, i18n y web; Prettier y ESLint de lo tocado.
+  La prueba de huellas de 680 caras pasa a 20 s (632 ms sola; superó 5 s bajo carga).
+  Motor sin cambios: sin suite engine+cards. Sin navegador.

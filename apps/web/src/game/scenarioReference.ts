@@ -7,6 +7,7 @@ const references: Record<string, { code: string; name: string }> = {
   'dead-by-dawn': { code: '78047', name: 'Dead by Dawn' },
   'mourning-chorus': { code: '78083', name: 'Mourning Chorus' },
   'high-noon-descent': { code: '78111', name: 'High Noon Descent' },
+  'the-afternoon-war': { code: '78151', name: 'The Afternoon War' },
   'carnevale-of-horrors': { code: '82001', name: 'Carnevale of Horrors' },
   'lost-in-time-and-space': { code: '02311', name: 'Lost in Time and Space' },
   'where-doom-awaits': { code: '02274', name: 'Where Doom Awaits' },

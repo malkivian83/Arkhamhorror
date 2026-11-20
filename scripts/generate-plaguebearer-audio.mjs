@@ -92,6 +92,10 @@ const entries = [
     'resolution1',
     'resolution2',
   ].map((k) => `noon.${k}`),
+  ...['intro1', 'intro2', 'intro3', 'resolution1', 'resolution2', 'resolution3', 'whispers'].map(
+    (k) => `war.${k}`,
+  ),
+  ...['section1', 'section2', 'section3', 'section4'].map((k) => `confrontation.${k}`),
 ].map((suffix) => {
   const body = suffix.split('.').reduce((value, key) => value?.[key], source)
   if (typeof body !== 'string' || !body) throw new Error(`Falta ${suffix}`)
