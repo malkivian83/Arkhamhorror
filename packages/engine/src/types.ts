@@ -156,7 +156,7 @@ export interface Investigator {
   /** No chaos tokens for their next skill test during the turn started at this log index. */
   noTokensNextTest?: number
   noTokensNextRoundTest?: number
-  attackProtection?: { phase: Phase; round: number; nonElite: boolean }
+  attackProtection?: { phase: Phase; round: number; nonElite: boolean; untilRoundEnd?: boolean }
   /** Serialized effects lasting through the investigator's current actual turn. */
   turnSkillEffect?: {
     turn: number
@@ -455,6 +455,8 @@ export interface LocationCard {
 
 export interface AbilityLimit {
   per: 'turn' | 'round' | 'game' | 'phase'
+  /** Maximum uses in the period; defaults to one. */
+  max?: number
   /** Límite de grupo (compartido por todos los investigadores). */
   group?: boolean
 }
@@ -1868,7 +1870,12 @@ type MessageBody =
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
-  | { type: 'ProtectFromAttacks'; investigator: InvestigatorId; nonElite: boolean }
+  | {
+      type: 'ProtectFromAttacks'
+      investigator: InvestigatorId
+      nonElite: boolean
+      untilRoundEnd?: boolean
+    }
   | { type: 'AttackFromEncounterDiscard'; index: number; investigator: InvestigatorId }
   | { type: 'AttackWithoutLocation'; card: EnemyCard; investigator: InvestigatorId }
   | { type: 'EndAttackWithoutLocation'; enemy: EnemyId }
@@ -2673,6 +2680,7 @@ export type Trigger =
       sourceAsset?: AssetId
     }
   | { type: 'whenPlayerCardDrawn'; investigator: InvestigatorId; card: CardCode; fromDeck: boolean }
+  | { type: 'afterHorrorPlaced'; investigator: InvestigatorId; amount: number }
   | { type: 'afterDamageHealed'; investigator: InvestigatorId; amount: number }
   /** After `healer` heals horror from an investigator or an asset (from every healing source). */
   | {

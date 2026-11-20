@@ -287,6 +287,11 @@
         "title": "Scenario rules improvements",
         "carcosa": "Fixed outstanding rules in The Path to Carcosa campaign.",
         "choices": "Improved choices between tied destinations in Fortune and Folly, Brethren of Ash and Murder at the Excelsior Hotel."
+      },
+      "originalCoreInvestigators": {
+        "title": "Original core investigators",
+        "cards": "Roland, Daisy, Skids and Agnes with signatures, weaknesses and four official FFG starter decks.",
+        "rules": "Reviewed additional actions, moved horror, ability limits and round-long attack protection."
       }
     }
   },
@@ -1902,7 +1907,13 @@
     "marie2025Draw": "Marie Lambeau: draw 2 cards and discard 1 of them",
     "grandMeresCharm": "Grand-Mère's Charm: take 1 direct damage to replenish 1 charge",
     "calledToGuinee": "Discard 3 cards from your hand to discard {card}",
-    "sacrificialDoll": "Sacrificial Doll: take 1 damage, cancel the {token} token and reveal until a symbol token"
+    "sacrificialDoll": "Sacrificial Doll: take 1 damage, cancel the {token} token and reveal until a symbol token",
+    "originalRoland": "Discover 1 clue after defeating an enemy",
+    "originalSkids": "Spend 2 resources to take an additional action",
+    "originalAgnes": "Deal 1 damage after horror is placed on Agnes",
+    "originalCoverUp": "Discard {n} clues from Cover Up instead of discovering clues",
+    "originalNecronomicon": "Move 1 horror from The Necronomicon to Daisy",
+    "originalHospitalDebts": "Move 1 resource to Hospital Debts"
   },
   "log": {
     "archiveReveal": "Market deck reveals: {card}",
@@ -3921,7 +3932,13 @@
       "02002": "The Reporter",
       "02262": "Restorative Concoction",
       "02263": "Acidic Ichor",
-      "02264": "Freezing Variant"
+      "02264": "Freezing Variant",
+      "01001": "The Fed",
+      "01002": "The Librarian",
+      "01003": "The Ex-Con",
+      "01004": "The Waitress",
+      "01009": "John Dee Translation",
+      "01012": "Artifact from Another Life"
     },
     "help": "Local data. Abilities and costs are available in the table choices; also consult the keyword reference.",
     "types": {
@@ -4948,7 +4965,19 @@
       "03150": "Insight.",
       "03265": "Insight.",
       "09028": "Spirit.",
-      "02151": "Trick. Spirit."
+      "02151": "Trick. Spirit.",
+      "01001": "Agency. Detective.",
+      "01002": "Miskatonic.",
+      "01003": "Criminal.",
+      "01004": "Sorcerer.",
+      "01006": "Item. Weapon. Firearm.",
+      "01007": "Task.",
+      "01008": "Item.",
+      "01009": "Item. Tome.",
+      "01010": "Tactic.",
+      "01011": "Task.",
+      "01012": "Item. Relic.",
+      "01013": "Spell."
     },
     "summary": {
       "11073": "Exceptional.\nYou get +1 [willpower].\nPlay with the top card of the encounter deck revealed.",
@@ -6368,7 +6397,19 @@
       "03150": "Fast. Play when you draw a non-weakness treachery card.\nPlace 1 of your clues on your location. Then, cancel that card's revelation effect.",
       "03265": "Choose another investigator at your location who has yet to take his or her turn this round. That investigator may take an additional action during his or her turn this round.",
       "09028": "<b>Parley.</b> Choose an investigator at your location. That investigator may play an [[Ally]] asset from their hand, reducing its cost by 3.",
-      "02151": "Play only if there is a scenario card with a 'resign' ability in play.\n<b>Resign.</b> You get the hell out of here."
+      "02151": "Play only if there is a scenario card with a 'resign' ability in play.\n<b>Resign.</b> You get the hell out of here.",
+      "01001": "[reaction] After you defeat an enemy: Discover 1 clue at your location. (Limit once per round.)\n[elder_sign] effect: +1 for each clue on your location.",
+      "01002": "You may take an additional action during your turn, which can only be used on [[Tome]] [action] abilities.\n[elder_sign] effect: +0. If you succeed, draw 1 card for each [[Tome]] you control.",
+      "01003": "[fast] During your turn, spend 2 resources: You may take an additional action this turn. (Limit once per turn.)\n[elder_sign] effect: +2. If you succeed, gain 2 resources.",
+      "01004": "[reaction] After 1 or more horror is placed on Agnes Baker: Deal 1 damage to an enemy at your location. (Limit once per phase.)\n[elder_sign] effect: +1 for each horror on Agnes Baker.",
+      "01006": "Roland Banks deck only.\nUses (4 ammo).\n[action] Spend 1 ammo: <b>Fight.</b> You get +1 [combat] for this attack (if there are 1 or more clues on your location, you get +3 [combat], instead). This attack deals +1 damage.",
+      "01007": "<b>Revelation</b> - Put Cover Up into play in your threat area, with 3 clues on it.\n[reaction] When you would discover 1 or more clues at your location: Discard that many clues from Cover Up instead.\n<b>Forced</b> - When the game ends, if there are any clues on Cover Up: You suffer 1 mental trauma.",
+      "01008": "Daisy Walker deck only.\nYou have 2 additional hand slots, which can only be used to hold [[Tome]] assets.",
+      "01009": "<b>Revelation</b> - Put The Necronomicon into play in your threat area, with 3 horror on it. It cannot leave play while it has 1 or more horror on it.\nTreat each [elder_sign] you reveal on a chaos token as a [auto_fail].\n[action]: Move 1 horror from The Necronomicon to Daisy Walker. Then, if The Necronomicon has no horror on it, discard it.",
+      "01010": "\"Skids\" O'Toole deck only.\nFast. Play after your turn begins.\nUntil the end of the round, non-[[Elite]] enemies cannot attack you.",
+      "01011": "<b>Revelation</b> - Put Hospital Debts into play in your threat area.\n[fast]: Move 1 resource from your resource pool to Hospital Debts. (Limit twice per round.)\n<b>Forced</b> - When the game ends, if Hospital Debts has fewer than 6 resources on it: You earn 2 fewer experience for this scenario.",
+      "01012": "Agnes Baker deck only.\n[reaction] After you play a [[Spell]] card: Draw 1 card.",
+      "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -6392,7 +6433,11 @@
       "03006": "Deck size 35: Survivor, Guardian, Seeker, Rogue and Mystic cards level 0–3 and Neutral cards level 0–5, with at least 7 cards from each of 3 different classes. Requires 2 Improvisation, 2 Crisis of Identity and 1 random basic weakness.",
       "01005": "30-card deck: Survivor and Neutral cards level 0–5 and Rogue cards level 0–2. Requires Wendy's Amulet, Abandoned and Alone and 1 random basic weakness.",
       "04004": "30-card deck: Mystic and Neutral cards level 0–5 and Blessed cards level 0–3. Requires The Codex of Ages, Serpents of Yig and 1 random basic weakness. Begins the campaign with 5 additional experience.",
-      "05006": "30-card deck: Spell cards level 0–5, Mystic cards level 0–3, Neutral cards level 0–5, Occult cards level 0 and up to five other level 0 Seeker and/or Survivor cards. Requires Mystifying Song, Baron Samedi and 1 random basic weakness."
+      "05006": "30-card deck: Spell cards level 0–5, Mystic cards level 0–3, Neutral cards level 0–5, Occult cards level 0 and up to five other level 0 Seeker and/or Survivor cards. Requires Mystifying Song, Baron Samedi and 1 random basic weakness.",
+      "01001": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0-5, Seeker cards ([seeker]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Roland's .38 Special, Cover Up, 1 random basic weakness.",
+      "01002": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Mystic cards ([mystic]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Daisy’s Tote Bag, The Necronomicon (John Dee Translation), 1 random basic weakness.",
+      "01003": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Guardian cards ([guardian]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): On the Lam, Hospital Debts, 1 random basic weakness.",
+      "01004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Survivor cards ([survivor]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Heirloom of Hyperborea, Dark Memory, 1 random basic weakness."
     },
     "victory": "Victory {n}",
     "names": {
@@ -7786,7 +7831,19 @@
       "03150": "Forewarned",
       "03265": "Guidance",
       "09028": "Motivational Speech",
-      "02151": "\"I'm outta here!\""
+      "02151": "\"I'm outta here!\"",
+      "01001": "Roland Banks",
+      "01002": "Daisy Walker",
+      "01003": "\"Skids\" O'Toole",
+      "01004": "Agnes Baker",
+      "01006": "Roland's .38 Special",
+      "01007": "Cover Up",
+      "01008": "Daisy's Tote Bag",
+      "01009": "The Necronomicon",
+      "01010": "On the Lam",
+      "01011": "Hospital Debts",
+      "01012": "Heirloom of Hyperborea",
+      "01013": "Dark Memory"
     }
   },
   "account": {

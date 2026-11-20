@@ -287,6 +287,11 @@
         "title": "Mejoras en las reglas de los escenarios",
         "carcosa": "Corregidas reglas pendientes de la campaña El camino a Carcosa.",
         "choices": "Mejoradas las elecciones entre destinos empatados en Fortuna e insensatez, Brethren of Ash y Asesinato en el hotel Excelsior."
+      },
+      "originalCoreInvestigators": {
+        "title": "Investigadores de la caja básica original",
+        "cards": "Roland, Daisy, Skids y Agnes, con exclusivas, debilidades y cuatro mazos oficiales de FFG.",
+        "rules": "Acciones adicionales, horror movido, límites de capacidades y protección durante toda la ronda revisados."
       }
     }
   },
@@ -1902,7 +1907,13 @@
     "marie2025Draw": "Marie Lambeau: robar 2 cartas y descartar 1 de ellas",
     "grandMeresCharm": "Amuleto de grand-mère: recibir 1 punto de daño directo para reponer 1 carga",
     "calledToGuinee": "Descartar 3 cartas de tu mano para descartar {card}",
-    "sacrificialDoll": "Muñeca sacrificial: recibir 1 punto de daño, cancelar la ficha {token} y revelar hasta una ficha de símbolo"
+    "sacrificialDoll": "Muñeca sacrificial: recibir 1 punto de daño, cancelar la ficha {token} y revelar hasta una ficha de símbolo",
+    "originalRoland": "Descubrir 1 pista tras derrotar a un Enemigo",
+    "originalSkids": "Gastar 2 recursos para obtener una acción adicional",
+    "originalAgnes": "Infligir 1 daño tras colocar horror en Agnes",
+    "originalCoverUp": "Descartar {n} pistas de Encubrimiento en vez de descubrirlas",
+    "originalNecronomicon": "Mover 1 horror del Necronomicón a Daisy",
+    "originalHospitalDebts": "Mover 1 recurso a Deudas de hospital"
   },
   "log": {
     "archiveReveal": "El mazo de mercado revela: {card}",
@@ -3921,7 +3932,13 @@
       "02002": "El reportero",
       "02262": "Brebaje reconstituyente",
       "02263": "Icor ácido",
-      "02264": "Variante congeladora"
+      "02264": "Variante congeladora",
+      "01001": "El federal",
+      "01002": "La bibliotecaria",
+      "01003": "El exconvicto",
+      "01004": "La camarera",
+      "01009": "Traducción de John Dee",
+      "01012": "Artefacto de otra vida"
     },
     "help": "Datos locales. Las habilidades y sus costes aparecen en las opciones de la mesa; consulta también las palabras clave.",
     "types": {
@@ -4948,7 +4965,19 @@
       "03150": "Inspiración.",
       "03265": "Inspiración.",
       "09028": "Espíritu.",
-      "02151": "Truco. Espíritu."
+      "02151": "Truco. Espíritu.",
+      "01001": "Agencia. Detective.",
+      "01002": "Miskatonic.",
+      "01003": "Criminal.",
+      "01004": "Hechicero.",
+      "01006": "Objeto. Arma. Arma de fuego.",
+      "01007": "Tarea.",
+      "01008": "Objeto.",
+      "01009": "Objeto. Tomo.",
+      "01010": "Táctica.",
+      "01011": "Tarea.",
+      "01012": "Objeto. Reliquia.",
+      "01013": "Hechizo."
     },
     "summary": {
       "11073": "Excepcional.\nRecibes +1 [willpower].\nJuega con la primera carta del mazo de Encuentros revelada.",
@@ -6368,7 +6397,19 @@
       "03150": "Rápido. Juega esta carta cuando robes una carta de Traición que no sea de Debilidad.\nColoca 1 de tus pistas en tu Lugar. A continuación, cancela el efecto \"Revelación\" de esa carta.",
       "03265": "Elige a otro investigador que esté en tu Lugar y que aún no haya jugado su turno en esta ronda. Ese investigador puede realizar una acción adicional durante su turno en esta ronda.",
       "09028": "<b>Negociar.</b> Elige un investigador que esté en tu Lugar. Ese investigador puede jugar un Apoyo [[Aliado]] desde su mano, reduciendo su coste en 3.",
-      "02151": "Juega esta carta sólo si hay una carta de Escenario en juego con una capacidad \"Desistir\".\n<b>Desistir</b>. Te largas echando leches de aquí."
+      "02151": "Juega esta carta sólo si hay una carta de Escenario en juego con una capacidad \"Desistir\".\n<b>Desistir</b>. Te largas echando leches de aquí.",
+      "01001": "[reaction] Después de que derrotes a un Enemigo: Descubre 1 pista en tu Lugar. Límite de una vez por ronda.\nEfecto [elder_sign]: +1 por cada pista que haya en tu Lugar.",
+      "01002": "Puedes realizar una acción adicional durante tu turno, pero sólo para capacidades [action] de cartas [[Tomo]].\nEfecto [elder_sign]: +0. Si tienes éxito, roba 1 carta por cada carta [[Tomo]] que controles.",
+      "01003": "[free] Durante tu turno, gasta 2 recursos: Puedes realizar una acción adicional en este turno. Límite de una vez por turno.\nEfecto [elder_sign]: +2. Si tienes éxito, obtén 2 recursos.",
+      "01004": "[reaction] Después de que se coloquen 1 o más puntos de horror sobre Agnes Baker: Inflige 1 punto de daño a un Enemigo que esté en tu Lugar. Límite de una vez por fase.\nEfecto [elder_sign]: +1 por cada punto de horror que haya sobre Agnes Baker.",
+      "01006": "Sólo para el mazo de Roland Banks.\nUsos (4 municiones).\n[action] Gasta 1 munición: <b>Combatir.</b> Recibe +1 [combat] para este ataque, o bien recibe +3 [combat] si hay 1 o más pistas en tu Lugar. Este ataque inflige +1 de daño.",
+      "01007": "<b>Revelación</b> - Pon Encubrimiento en juego en tu zona de amenaza, con 3 pistas encima.\n[reaction] Cuando fueses a descubrir 1 o más pistas en tu Lugar: En vez de eso, descarta esa misma cantidad de pistas de Encubrimiento.\n<b>Obligado</b> - Si quedan pistas sobre Encubrimiento cuando termine la partida: Sufres 1 trauma mental.",
+      "01008": "Sólo para el mazo de Daisy Walker.\nTienes 2 espacios de mano adicionales que sólo pueden usarse para Apoyos [[Tomo]].",
+      "01009": "<b>Revelación</b> - Pon El Necronomicón en juego en tu zona de amenaza, con 3 puntos de horror encima. No puede abandonar el juego mientras tenga 1 o más puntos de horror encima.\nConsidera cada [elder_sign] que reveles en una ficha de Caos como un [auto_fail].\n[action]: Mueve 1 punto de horror de El Necronomicón a Daisy Walker. A continuación, si El Necronomicón no tiene horror encima, descártalo.",
+      "01010": "Sólo para el mazo de \"Malasombra\" O'Toole.\nRápido. Juega esta carta después de que comience tu turno.\nHasta el final de la ronda, los Enemigos que no sean [[Élite]] no pueden atacarte.",
+      "01011": "<b>Revelación</b> - Pon las Deudas de hospital en juego en tu zona de amenaza.\n[free]: Mueve 1 recurso de tu reserva de recursos a las Deudas de hospital. Límite de dos veces por ronda.\n<b>Obligado</b> - Si las Deudas de hospital tienen menos de 6 recursos encima cuando acabe la partida: Obtienes 2 puntos menos de experiencia en este escenario.",
+      "01012": "Sólo para el mazo de Agnes Baker.\n[reaction] Después de que juegues una carta [[Hechizo]]: Roba 1 carta.",
+      "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -6392,7 +6433,11 @@
       "03006": "Mazo de 35 cartas: Superviviente, Guardián, Buscador, Rebelde y Místico de nivel 0–3 y neutrales de nivel 0–5, con al menos 7 cartas de cada una de 3 clases distintas. Requiere 2 Improvisaciones, 2 Crisis de identidad y 1 debilidad básica aleatoria.",
       "01005": "Mazo de 30 cartas: Superviviente y neutrales de nivel 0–5 y Rebelde de nivel 0–2. Requiere Amuleto de Wendy, Sola y abandonada y 1 debilidad básica aleatoria.",
       "04004": "Mazo de 30 cartas: Místico y neutrales de nivel 0–5 y cartas Bendecido de nivel 0–3. Requiere El códice de las eras, Serpientes de Yig y 1 debilidad básica aleatoria. Empieza la campaña con 5 puntos de experiencia adicionales.",
-      "05006": "Mazo de 30 cartas: Hechizos de nivel 0–5, Místico de nivel 0–3, neutrales de nivel 0–5, cartas Ocultismo de nivel 0 y hasta otras cinco cartas de nivel 0 de Buscador y/o Superviviente. Requiere Canción desconcertante, Barón Samedi y 1 debilidad básica aleatoria."
+      "05006": "Mazo de 30 cartas: Hechizos de nivel 0–5, Místico de nivel 0–3, neutrales de nivel 0–5, cartas Ocultismo de nivel 0 y hasta otras cinco cartas de nivel 0 de Buscador y/o Superviviente. Requiere Canción desconcertante, Barón Samedi y 1 debilidad básica aleatoria.",
+      "01001": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Guardián ([guardian]) de nivel 0-5, cartas Buscador ([seeker]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): .38 especial de Roland, Encubrimiento, 1 Debilidad básica aleatoria.",
+      "01002": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Buscador ([seeker]) de nivel 0-5, cartas Místico ([mystic]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Bolso de mano de Daisy, El Necronomicón (Traducción de John Dee), 1 Debilidad básica aleatoria.",
+      "01003": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Rebelde ([rogue]) de nivel 0-5, cartas Guardián ([guardian]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): A la fuga, Deudas de hospital, 1 Debilidad básica aleatoria.",
+      "01004": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas Superviviente ([survivor]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Herencia de Hiperbórea, Recuerdo oscuro, 1 Debilidad básica aleatoria."
     },
     "victory": "Victoria {n}",
     "names": {
@@ -7786,7 +7831,19 @@
       "03150": "Prevenido",
       "03265": "Consejo",
       "09028": "Discurso motivador",
-      "02151": "\"¡Me largo de aquí!\""
+      "02151": "\"¡Me largo de aquí!\"",
+      "01001": "Roland Banks",
+      "01002": "Daisy Walker",
+      "01003": "\"Malasombra\" O'Toole",
+      "01004": "Agnes Baker",
+      "01006": ".38 especial de Roland",
+      "01007": "Encubrimiento",
+      "01008": "Bolso de mano de Daisy",
+      "01009": "El Necronomicón",
+      "01010": "A la fuga",
+      "01011": "Deudas de hospital",
+      "01012": "Herencia de Hiperbórea",
+      "01013": "Recuerdo oscuro"
     }
   },
   "account": {

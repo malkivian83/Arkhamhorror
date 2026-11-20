@@ -3681,7 +3681,23 @@
     "09067": "/local-assets/cards/en/09067.avif",
     "04197": "/local-assets/cards/en/04197.avif",
     "04310": "/local-assets/cards/en/04310.avif",
-    "07268": "/local-assets/cards/en/07268.avif"
+    "07268": "/local-assets/cards/en/07268.avif",
+    "01001": "/local-assets/cards/en/01001.avif",
+    "01001b": "/local-assets/cards/en/01001b.avif",
+    "01002": "/local-assets/cards/en/01002.avif",
+    "01002b": "/local-assets/cards/en/01002b.avif",
+    "01003": "/local-assets/cards/en/01003.avif",
+    "01003b": "/local-assets/cards/en/01003b.avif",
+    "01004": "/local-assets/cards/en/01004.avif",
+    "01004b": "/local-assets/cards/en/01004b.avif",
+    "01006": "/local-assets/cards/en/01006.avif",
+    "01007": "/local-assets/cards/en/01007.avif",
+    "01008": "/local-assets/cards/en/01008.avif",
+    "01009": "/local-assets/cards/en/01009.avif",
+    "01010": "/local-assets/cards/en/01010.avif",
+    "01011": "/local-assets/cards/en/01011.avif",
+    "01012": "/local-assets/cards/en/01012.avif",
+    "01013": "/local-assets/cards/en/01013.avif"
   },
   "es": {
     "10019": "/local-assets/cards/es/10019.avif",
@@ -6994,6 +7010,22 @@
     "09067": "/local-assets/cards/es/09067.avif",
     "04197": "/local-assets/cards/es/04197.avif",
     "04310": "/local-assets/cards/es/04310.avif",
-    "07268": "/local-assets/cards/es/07268.avif"
+    "07268": "/local-assets/cards/es/07268.avif",
+    "01001": "/local-assets/cards/es/01001.avif",
+    "01001b": "/local-assets/cards/es/01001b.avif",
+    "01002": "/local-assets/cards/es/01002.avif",
+    "01002b": "/local-assets/cards/es/01002b.avif",
+    "01003": "/local-assets/cards/es/01003.avif",
+    "01003b": "/local-assets/cards/es/01003b.avif",
+    "01004": "/local-assets/cards/es/01004.avif",
+    "01004b": "/local-assets/cards/es/01004b.avif",
+    "01006": "/local-assets/cards/es/01006.avif",
+    "01007": "/local-assets/cards/es/01007.avif",
+    "01008": "/local-assets/cards/es/01008.avif",
+    "01009": "/local-assets/cards/es/01009.avif",
+    "01010": "/local-assets/cards/es/01010.avif",
+    "01011": "/local-assets/cards/es/01011.avif",
+    "01012": "/local-assets/cards/es/01012.avif",
+    "01013": "/local-assets/cards/es/01013.avif"
   }
 }

@@ -1,3 +1,4 @@
+import './original-core-investigators'
 import './chaos-selection'
 import './leyline-support'
 import './field-support'

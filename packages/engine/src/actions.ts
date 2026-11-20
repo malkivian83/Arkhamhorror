@@ -467,6 +467,7 @@ export function traitActionCard(state: GameState, id: InvestigatorId, code: Card
   const def = playerCardDef(code)
   return (
     !!extra &&
+    !extra.abilitiesOnly &&
     !!def &&
     traitActionAvailable(state, id) &&
     (!extra.trait || def.traits.includes(extra.trait)) &&
@@ -682,14 +683,16 @@ export function withinLimit(
   limit: AbilityLimit | undefined,
 ): boolean {
   if (!limit) return true
-  return !state.abilityUses.some(
-    (u) =>
-      u.key === key &&
-      (limit.group || u.investigator === investigator) &&
-      (limit.per === 'game' ||
-        (u.round === state.round &&
-          (limit.per !== 'phase' || u.phase === state.phase) &&
-          (limit.per !== 'turn' || u.turn === turnStartedAt(state)))),
+  return (
+    state.abilityUses.filter(
+      (u) =>
+        u.key === key &&
+        (limit.group || u.investigator === investigator) &&
+        (limit.per === 'game' ||
+          (u.round === state.round &&
+            (limit.per !== 'phase' || u.phase === state.phase) &&
+            (limit.per !== 'turn' || u.turn === turnStartedAt(state)))),
+    ).length < (limit.max ?? 1)
   )
 }
 

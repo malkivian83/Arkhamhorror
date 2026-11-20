@@ -1019,6 +1019,8 @@ export interface PlayerCardBehavior {
     investigator: InvestigatorId,
     openingHand: CardCode[],
   ) => ReactionOption[]
+  /** Forced effects printed on a card while it is in its owner's hand. */
+  handForced?: (state: GameState, trigger: Trigger, owner: InvestigatorId) => Message[]
   /** Habilidades forzadas del apoyo en juego. */
   forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]
   /**
@@ -1142,6 +1144,8 @@ export interface InvestigatorBehavior {
   traitAction?: {
     /** Cards with this trait (and [action] abilities on controlled assets with it). */
     trait?: string
+    /** Restricted to action abilities; cannot pay to play a card (Daisy Walker). */
+    abilitiesOnly?: boolean
     /** Only to play cards of this type (Miguel de la Cruz: events). */
     cardType?: PlayerCardDef['type']
     active: (state: GameState, self: Investigator) => boolean

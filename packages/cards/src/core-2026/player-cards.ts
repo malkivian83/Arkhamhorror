@@ -1,3 +1,8 @@
+import agnesOfficial from '../original-core-investigators/decklist-38699.json'
+import skidsOfficial from '../original-core-investigators/decklist-38700.json'
+import rolandOfficial from '../original-core-investigators/decklist-38701.json'
+import daisyOfficial from '../original-core-investigators/decklist-38702.json'
+import originalCore from '../data/original-core-investigators.json'
 /**
  * Cartas de jugador de la caja básica de 2026: datos (generados con
  * scripts/import-core-2026.mjs, sin texto), investigadores, mazos iniciales y
@@ -69,6 +74,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(originalCore as PlayerCardDef[]),
   ...playerCards,
   ...(pete as PlayerCardDef[]),
   ...(jenny as PlayerCardDef[]),
@@ -109,6 +115,55 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  agnes: {
+    investigator: 1,
+    investigatorCode: agnesOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(agnesOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  skids: {
+    investigator: 1,
+    investigatorCode: skidsOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(skidsOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  roland: {
+    investigator: 1,
+    investigatorCode: rolandOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(rolandOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  daisy: {
+    investigator: 1,
+    investigatorCode: daisyOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(daisyOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+
   // Official investigator starter decks: signatures, their basic weakness and
   // two copies of each of the fifteen level 0 cards in the pack.
   nathaniel: {

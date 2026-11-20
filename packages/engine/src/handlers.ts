@@ -1256,6 +1256,16 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'Forced': {
       const t = message.trigger
+      if (t.type === 'afterDamageAssigned') {
+        const amount = t.dealt
+          .filter((d) => d.investigator === t.investigator)
+          .reduce((n, d) => n + d.horror, 0)
+        if (amount > 0)
+          state = push(state, {
+            type: 'Forced',
+            trigger: { type: 'afterHorrorPlaced', investigator: t.investigator, amount },
+          })
+      }
       if (t.type === 'afterDrawCard' && playerCardDef(t.card)?.type === 'enemy')
         state = updateInvestigator(state, t.investigator, (i) => ({
           ...i,
@@ -8154,7 +8164,8 @@ export function handle(state: GameState, message: Message): GameState {
         // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
         // Daga de la fortuna: comprueba iconos al atacar.
         ...(enemyBehavior(enemy.code)?.onAttack?.(next, enemy, investigator.id) ?? []),
-        ...(investigator.attackProtection?.phase === state.phase &&
+        ...((investigator.attackProtection?.untilRoundEnd ||
+          investigator.attackProtection?.phase === state.phase) &&
         investigator.attackProtection.round === state.round &&
         (!investigator.attackProtection.nonElite || !enemy.traits?.includes('Elite'))
           ? [{ type: 'CancelEnemyAttack' as const, enemy: enemy.id }]
@@ -9468,7 +9479,12 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ProtectFromAttacks':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
-        attackProtection: { phase: state.phase, round: state.round, nonElite: message.nonElite },
+        attackProtection: {
+          phase: state.phase,
+          round: state.round,
+          nonElite: message.nonElite,
+          ...(message.untilRoundEnd ? { untilRoundEnd: true } : {}),
+        },
       }))
     case 'CancelEnemyAttack': {
       const enemy =
@@ -12665,6 +12681,14 @@ export function handle(state: GameState, message: Message): GameState {
         return push(
           updateInvestigator(moved, to.id, (i) => ({ ...i, [message.kind]: i[message.kind] + 1 })),
           { type: 'CheckDefeat', investigator: to.id },
+          ...(message.kind === 'horror'
+            ? [
+                {
+                  type: 'Forced' as const,
+                  trigger: { type: 'afterHorrorPlaced' as const, investigator: to.id, amount: 1 },
+                },
+              ]
+            : []),
         )
       const target = { ...moved.assets[to.id]!, [message.kind]: to[message.kind] + 1 }
       moved = { ...moved, assets: { ...moved.assets, [to.id]: target } }
@@ -14188,8 +14212,19 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
       playerCardDef(a.code)?.name ?? a.code,
     ),
   )
+  const fromHands = state.investigators
+    .filter((i) => !i.eliminated)
+    .flatMap((i) =>
+      i.hand.flatMap((code) =>
+        sourced(
+          playerCardBehavior(code)?.handForced?.(state, trigger, i.id),
+          playerCardDef(code)?.name ?? code,
+        ),
+      ),
+    )
   return [
     ...fromScenario,
+    ...fromHands,
     ...fromStories,
     ...fromPlaced,
     ...fromAttachments,

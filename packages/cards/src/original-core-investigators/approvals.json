@@ -1,0 +1,95 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sources": {
+    "en": "f7ddd79199c58f6d0f0462cb1f2e31fbbc912aa97c5b00130a12677fb686a884",
+    "es": "8e1fcee0c0c99b4a38edc34b299122b65c298c67082a31c5b0f3be183928f856"
+  },
+  "cards": [
+    {
+      "code": "01001",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01001",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01002",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01002",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01003",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01003",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01004",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01004",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01006",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01006",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01007",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01007",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01008",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01008",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01009",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01009",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01010",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01010",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01011",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01011",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01012",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01012",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01013",
+      "status": "verified",
+      "adapter": "original-core-investigators-v1",
+      "module": "card-01013",
+      "test": "rules.test.ts"
+    }
+  ]
+}

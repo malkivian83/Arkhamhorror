@@ -274,3 +274,7 @@ Ocho diseños/niveles estándar nuevos: los cinco Archivos de conductos, Sangre 
 ## Estado tras el lote 157
 
 Nueve diseños/niveles estándar nuevos de selección y sellado; cero reediciones. **134 estándar con impresión** y **492 códigos históricos** pendientes. Dieciocho escaneos y miniaturas nuevos. [Reglas, diferencias y bloqueos](157-seleccion-y-sellado-de-fichas.md). Rite of Sanctification requiere consentimiento del propietario antes del pago ajeno.
+
+## Investigadores tras el lote 158
+
+Roland, Daisy, Skids y Agnes originales, con sus ocho exclusivas/debilidades y cuatro mazos oficiales FFG. **23 personajes jugables y 45 pendientes**, sin contar reediciones, alternativas ni Homúnculo perdido. No cambia el pendiente de cartas estándar (134). [Reglas y listas](158-investigadores-caja-original.md). Continúa el encargo de incorporar todos los pendientes con mazo oficial o, si no existe, el más popular de ArkhamDB.
