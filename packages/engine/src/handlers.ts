@@ -1761,6 +1761,15 @@ export function handle(state: GameState, message: Message): GameState {
                 ),
               }),
           actionsTaken: (i.actionsTaken ?? 0) + 1,
+          actionTypesThisTurn: {
+            turn: turnStartedAt(state),
+            types: [
+              ...(i.actionTypesThisTurn?.turn === turnStartedAt(state)
+                ? i.actionTypesThisTurn.types
+                : []),
+              ...actionKinds(message.action),
+            ],
+          },
           ...(message.action.kind === 'investigate' ||
           (message.action.kind === 'play' &&
             playerCardBehavior(message.action.card)?.investigateAction)
@@ -1788,6 +1797,7 @@ export function handle(state: GameState, message: Message): GameState {
               message.action.kind === 'investigate' ||
                 (message.action.kind === 'play' &&
                   !!playerCardBehavior(message.action.card)?.investigateAction),
+              actionKinds(message.action),
             )
           : []
       // RR, initiating abilities step 2 / attacks of opportunity: resource costs
@@ -2356,6 +2366,18 @@ export function handle(state: GameState, message: Message): GameState {
       const a = state.assets[message.asset]
       return a && playerCardDef(message.code)?.type === 'asset'
         ? { ...state, assets: { ...state.assets, [a.id]: { ...a, code: message.code } } }
+        : state
+    }
+    case 'SetTreacheryAbilityState': {
+      const t = state.treacheries[message.treachery]
+      return t
+        ? {
+            ...state,
+            treacheries: {
+              ...state.treacheries,
+              [t.id]: { ...t, abilityState: { ...t.abilityState, ...message.values } },
+            },
+          }
         : state
     }
     case 'SetAssetAbilityState': {
@@ -2965,9 +2987,10 @@ export function handle(state: GameState, message: Message): GameState {
           discard: [...i.discard, message.card],
         }
       })
-      return message.deferHandReaction
+      const notified = message.deferHandReaction
         ? next
         : afterHandDiscard(next, message.investigator, [message.card])
+      return message.onDiscard ? push(notified, ...message.onDiscard) : notified
     }
 
     case 'CheckHandSize': {
@@ -4740,12 +4763,14 @@ export function handle(state: GameState, message: Message): GameState {
       )
       const behavior = assetBehavior(state, asset)
       // Losing slots can leave other assets without room (Bandolier).
-      return behavior?.restrictedSlots ||
+      const next =
+        behavior?.restrictedSlots ||
         behavior?.extraSlots ||
         behavior?.flexibleSlots ||
         behavior?.interchangeableSlots
-        ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
-        : discarded
+          ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
+          : discarded
+      return message.onDiscard ? push(next, ...message.onDiscard) : next
     }
 
     case 'CheckSlots': {
@@ -9070,11 +9095,15 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const ofType = investigator.hand.filter((code) => {
         const def = playerCardDef(code)
-        return def?.type === message.cardType && (!def.weakness || !!message.includeWeaknesses)
+        return (
+          def?.type === message.cardType &&
+          (!message.trait || def.traits.includes(message.trait)) &&
+          (!def.weakness || !!message.includeWeaknesses)
+        )
       })
       if (ofType.length === 0) return state
       if (message.all) {
-        return afterHandDiscard(
+        const discarded = afterHandDiscard(
           updateInvestigator(state, investigator.id, (i) => ({
             ...i,
             hand: i.hand.filter((c) => !ofType.includes(c)),
@@ -9083,6 +9112,7 @@ export function handle(state: GameState, message: Message): GameState {
           investigator.id,
           ofType,
         )
+        return message.onDiscard ? push(discarded, ...message.onDiscard) : discarded
       }
       return push(state, {
         type: 'Ask',
@@ -9094,7 +9124,14 @@ export function handle(state: GameState, message: Message): GameState {
             label: 'choice.discard',
             params: { card: playerCardDef(code)?.name ?? code },
             target: { type: 'hand', code },
-            then: [{ type: 'DiscardFromHand', investigator: investigator.id, card: code }],
+            then: [
+              {
+                type: 'DiscardFromHand',
+                investigator: investigator.id,
+                card: code,
+                ...(message.onDiscard ? { onDiscard: message.onDiscard } : {}),
+              },
+            ],
           })),
         },
       })
@@ -10760,6 +10797,19 @@ export function handle(state: GameState, message: Message): GameState {
               }
             : {}),
           actionsTaken: (i.actionsTaken ?? 0) + (message.actions > 0 ? 1 : 0),
+          ...(message.actions > 0
+            ? {
+                actionTypesThisTurn: {
+                  turn: turnStartedAt(state),
+                  types: [
+                    ...(i.actionTypesThisTurn?.turn === turnStartedAt(state)
+                      ? i.actionTypesThisTurn.types
+                      : []),
+                    ...abilityActionKinds(message),
+                  ],
+                },
+              }
+            : {}),
           ...(message.actions > 0 &&
           (message.actionKind === 'investigate' ||
             message.then.some((m) => m.type === 'BeginSkillTest' && m.kind.type === 'investigate'))
@@ -10778,6 +10828,7 @@ export function handle(state: GameState, message: Message): GameState {
                 message.then.some(
                   (m) => m.type === 'BeginSkillTest' && m.kind.type === 'investigate',
                 ),
+              abilityActionKinds(message),
             )
           : []
       if (message.playFromDiscard)
@@ -14781,7 +14832,21 @@ function opportunityAttacks(
   state: GameState,
   investigator: Investigator,
   investigate = false,
+  types: string[] = [],
 ): Message[] {
+  const prior =
+    investigator.actionTypesThisTurn?.turn === turnStartedAt(state)
+      ? investigator.actionTypesThisTurn.types
+      : []
+  if (
+    Object.values(state.assets).some(
+      (a) =>
+        a.owner === investigator.id &&
+        assetBehavior(state, a)?.firstActionTypesSafe?.some((t) => types.includes(t)) &&
+        !assetBehavior(state, a)?.firstActionTypesSafe?.some((t) => prior.includes(t)),
+    )
+  )
+    return []
   if (
     investigate &&
     investigator.lastInvestigateTurn !== turnStartedAt(state) &&
@@ -14942,13 +15007,17 @@ export function restrictedSlotCapacity(
   state: GameState,
   investigator: InvestigatorId,
   slot: SlotType,
-): { trait: string | string[]; count: number; flexible?: boolean }[] {
+): { trait?: string | string[]; count: number; flexible?: boolean; nonUnique?: boolean }[] {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .flatMap((a) => [
       ...(assetBehavior(state, a)?.restrictedSlots ?? [])
         .filter((r) => r.slot === slot)
-        .map(({ trait, count }) => ({ trait, count })),
+        .map(({ trait, count, nonUnique }) => ({
+          ...(trait ? { trait } : {}),
+          count,
+          ...(nonUnique ? { nonUnique: true } : {}),
+        })),
       ...(a.flexibleSlot === slot
         ? (assetBehavior(state, a)?.flexibleSlots ?? []).map((f) => ({
             trait: f.traits ?? [],
@@ -15017,14 +15086,19 @@ function slotsFit(
           groups.set(key, n + 1)
           if (n % group.size !== 0) return []
         }
-        return [{ slot, traits: c.traits }]
+        return [{ slot, traits: c.traits, unique: !!playerCardDef(c.code)?.unique }]
       }),
   )
-  const tokens: { slots: SlotType[]; traits?: string[] }[] = []
+  const tokens: { slots: SlotType[]; traits?: string[]; nonUnique?: boolean }[] = []
   for (const slot of Object.keys(SLOT_CAPACITY) as SlotType[]) {
     for (let n = 0; n < slotCapacity(state, investigator, slot); n++) tokens.push({ slots: [slot] })
     for (const r of restrictedSlotCapacity(state, investigator, slot).filter((r) => !r.flexible))
-      for (let n = 0; n < r.count; n++) tokens.push({ slots: [slot], traits: [r.trait].flat() })
+      for (let n = 0; n < r.count; n++)
+        tokens.push({
+          slots: [slot],
+          ...(r.trait ? { traits: [r.trait].flat() } : {}),
+          ...(r.nonUnique ? { nonUnique: true } : {}),
+        })
   }
   for (const a of owned)
     for (const f of assetBehavior(state, a)?.flexibleSlots ?? [])
@@ -15038,6 +15112,7 @@ function slotsFit(
       if (
         seen.has(k) ||
         (token.traits && !token.traits.some((t) => u.traits.includes(t))) ||
+        (token.nonUnique && u.unique) ||
         !token.slots.some(
           (slot) => slot === u.slot || (exchange.includes(slot) && exchange.includes(u.slot)),
         )

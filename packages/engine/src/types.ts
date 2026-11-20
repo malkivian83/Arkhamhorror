@@ -173,6 +173,7 @@ export interface Investigator {
   lastMoveTurn?: number
   /** Acciones realizadas en este turno. */
   actionsTaken?: number
+  actionTypesThisTurn?: { turn: number; types: string[] }
   /**
    * Cartas apartadas durante la mano inicial: debilidades robadas y las que se
    * cambian en el mulligan. Vuelven al mazo al terminar el mulligan.
@@ -369,6 +370,7 @@ export type TreacheryPlacement =
   | { type: 'act'; code: CardCode }
 
 export interface Treachery extends TreacheryCard {
+  abilityState?: Record<string, string | number | boolean>
   id: TreacheryId
   placement: TreacheryPlacement
   /** Debilidad de un jugador: al descartarse va a su pila de descartes. */
@@ -1254,6 +1256,11 @@ type MessageBody =
       values: Record<string, string | number | boolean>
     }
   | { type: 'FlipPlayerAsset'; asset: AssetId; code: CardCode }
+  | {
+      type: 'SetTreacheryAbilityState'
+      treachery: TreacheryId
+      values: Record<string, string | number | boolean>
+    }
   | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
@@ -1275,6 +1282,7 @@ type MessageBody =
   | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number; startingDone?: boolean }
   | {
       type: 'DiscardFromHand'
+      onDiscard?: Message[]
       investigator: InvestigatorId
       card: CardCode
       deferHandReaction?: boolean
@@ -1518,7 +1526,7 @@ type MessageBody =
   | { type: 'SetScenarioMeta'; key: string; value: string | number }
   | { type: 'ConnectLocations'; a: LocationId; b: LocationId }
   /** `defeated`: it leaves play because it was defeated (Cherished Keepsake is exiled). */
-  | { type: 'DiscardAsset'; asset: AssetId; defeated?: boolean }
+  | { type: 'DiscardAsset'; asset: AssetId; defeated?: boolean; onDiscard?: Message[] }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | {
@@ -1780,6 +1788,8 @@ type MessageBody =
   /** Descarta de la mano las cartas (no debilidades) de un tipo: todas o una a elegir. */
   | {
       type: 'DiscardCardsOfType'
+      trait?: string
+      onDiscard?: Message[]
       investigator: InvestigatorId
       cardType: string
       all: boolean

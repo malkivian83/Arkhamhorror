@@ -895,7 +895,14 @@ export interface PlayerCardBehavior {
   handSizeInHand?: number
   tarotIcons?: number
   /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */
-  restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
+  restrictedSlots?: {
+    slot: SlotType
+    count: number
+    trait?: string | string[]
+    nonUnique?: boolean
+  }[]
+  /** The first action with any of these designators each turn does not provoke. */
+  firstActionTypesSafe?: string[]
   /** While true for its controller, it does not take up its slots (Sacrificial Doll). */
   slotFree?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Damage or horror printed as already on the asset when it enters play (Jessica Hyde). */

@@ -1,0 +1,57 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": {
+    "04001": "https://arkhamdb.com/decklist/view/38675",
+    "04002": "https://arkhamdb.com/decklist/view/38676"
+  },
+  "presentation": "rendered",
+  "sources": {
+    "en": "ae12620ef07f37ff43b0983512a2a954a917079f38886572c2c55a3c054c8289",
+    "es": "9fa98994aca229156f8683e9de1e7c5da8e310c9123ddc1347957538a7d5189b"
+  },
+  "cards": [
+    {
+      "code": "04001",
+      "status": "verified",
+      "adapter": "forgotten-age-investigators-v1",
+      "module": "card-04001",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04002",
+      "status": "verified",
+      "adapter": "forgotten-age-investigators-v1",
+      "module": "card-04002",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04006",
+      "status": "verified",
+      "adapter": "forgotten-age-investigators-v1",
+      "module": "card-04006",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04007",
+      "status": "verified",
+      "adapter": "forgotten-age-investigators-v1",
+      "module": "card-04007",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04008",
+      "status": "verified",
+      "adapter": "forgotten-age-investigators-v1",
+      "module": "card-04008",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04009",
+      "status": "verified",
+      "adapter": "forgotten-age-investigators-v1",
+      "module": "card-04009",
+      "test": "rules.test.ts"
+    }
+  ]
+}

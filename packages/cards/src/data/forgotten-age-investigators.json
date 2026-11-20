@@ -1,0 +1,90 @@
+[
+  {
+    "code": "04001",
+    "name": "Leo Anderson",
+    "subname": "The Expedition Leader",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Veteran", "Wayfarer"],
+    "unique": true,
+    "health": 8,
+    "sanity": 6,
+    "skills": { "willpower": 4, "intellect": 3, "combat": 4, "agility": 1 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["guardian", "neutral"], "maxLevel": 5 },
+      { "classes": ["rogue"], "maxLevel": 2 }
+    ],
+    "signatures": ["04006", "04007"]
+  },
+  {
+    "code": "04002",
+    "name": "Ursula Downs",
+    "subname": "The Explorer",
+    "type": "investigator",
+    "class": "seeker",
+    "traits": ["Wayfarer"],
+    "unique": true,
+    "health": 7,
+    "sanity": 7,
+    "skills": { "willpower": 3, "intellect": 4, "combat": 1, "agility": 4 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["seeker", "neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Relic"], "maxLevel": 4 }
+    ],
+    "signatures": ["04008", "04009"]
+  },
+  {
+    "code": "04006",
+    "name": "Mitch Brown",
+    "subname": "Sole Survivor",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Ally", "Wayfarer"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": { "wild": 2 },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "04007",
+    "name": "Bought in Blood",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "04008",
+    "name": "Jake Williams",
+    "subname": "Loyal Companion",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Ally", "Wayfarer"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": { "intellect": 1, "wild": 1 },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "04009",
+    "name": "Call of the Unknown",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Task"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  }
+]

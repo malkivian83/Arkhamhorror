@@ -302,6 +302,11 @@
         "title": "Zoey Samaras and Jim Culver",
         "cards": "Two investigators, four signatures/weaknesses and selectable official FFG starter decks.",
         "rules": "Reviewed engagement windows, skull tokens, healing and enemy spawning."
+      },
+      "forgottenAgeInvestigators": {
+        "title": "Leo and Ursula explore the Forgotten Age",
+        "cards": "Two investigators with their official FFG starter decks, signature cards, weaknesses and complete English and Spanish presentation.",
+        "rules": "Leo and Mitch’s allies, Ursula’s investigate actions, Jake’s protection and Call of the Unknown tracking."
       }
     }
   },
@@ -1361,7 +1366,9 @@
     "shelterResource": "Gain 1 resource",
     "shelterDamage": "Heal 1 damage",
     "shelterHorror": "Heal 1 horror",
-    "replenishCharge": "Replenish 1 charge on {card}"
+    "replenishCharge": "Replenish 1 charge on {card}",
+    "ursulaMove": "Move to a connecting location",
+    "bloodHand": "Discard all Ally assets from hand ({n})"
   },
   "phase": {
     "setup": "Setup",
@@ -1930,7 +1937,9 @@
     "originalNecronomicon": "Move 1 horror from The Necronomicon to Daisy",
     "originalHospitalDebts": "Move 1 resource to Hospital Debts",
     "zoeyEngage": "Gain 1 resource after becoming engaged with an enemy",
-    "jimSkull": "Treat this elder sign as a skull"
+    "jimSkull": "Treat this elder sign as a skull",
+    "leoPlay": "Play {card} with Leo (−1 cost)",
+    "ursulaInvestigate": "Ursula: take an investigate action"
   },
   "log": {
     "archiveReveal": "Market deck reveals: {card}",
@@ -3780,6 +3789,10 @@
   },
   "offlineCard": {
     "subnames": {
+      "04008": "Loyal Companion",
+      "04006": "Sole Survivor",
+      "04002": "The Explorer",
+      "04001": "The Expedition Leader",
       "03014": "Envoy of the Alusi",
       "03009b": "It Was All My Fault",
       "03009": "In Loving Memory",
@@ -3981,6 +3994,12 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "04009": "Task.",
+      "04008": "Ally. Wayfarer.",
+      "04007": "Flaw.",
+      "04006": "Ally. Wayfarer.",
+      "04002": "Wayfarer.",
+      "04001": "Veteran. Wayfarer.",
       "03015": "Task.",
       "03014": "Ritual.",
       "03009b": "Item. Madness.",
@@ -5020,6 +5039,12 @@
       "01013": "Spell."
     },
     "summary": {
+      "04009": "<b>Revelation</b> - Put Call of the Unknown into play in your threat area.\n<b>Forced</b> - At the beginning of your turn: Choose a location other than your location. When your turn ends, if you did not successfully investigate the chosen location this turn, take 2 horror and shuffle Call of the Unknown back into your deck.",
+      "04008": "Ursula Downs deck only.\nThe first move or investigate action you perform each turn does not provoke attacks of opportunity.\n[reaction] After you reveal a location or put a new location into play, exhaust Jake Williams: Draw 1 card.",
+      "04007": "<b>Revelation</b> - You must either discard an [[Ally]] asset you control from play, or discard each [[Ally]] asset from your hand. If no assets are discarded by this effect, shuffle Bought in Blood back into your deck.",
+      "04006": "Leo Anderson deck only.\nYou have 2 additional ally slots, which can only be used to hold non-unique allies.",
+      "04002": "[reaction] After you move to a location: Take an investigate action. (Limit once per round.)\n[elder_sign] effect: +1. After this test ends, you may move to a connecting location.",
+      "04001": "[reaction] After your turn begins: Play an [[Ally]] asset, reducing its cost by 1.\n[elder_sign] effect: +2. Search the top 3 cards of your deck for an [[Ally]] asset and draw it. Shuffle your deck.",
       "03015": "<b>Revelation</b> - Put Angered Spirits into play in your threat area.\n[fast] Exhaust a [[Spell]] asset: Move 1 charge from that asset to Angered Spirits.\n<b>Forced</b> - When the game ends, if Angered Spirits has fewer than 4 charges on it: You suffer 1 physical trauma.",
       "03014": "Akachi Onyele deck only.\n[fast] Exhaust Spirit-Speaker: Choose an asset you control with \"uses (charges).\" Either return that asset to your hand, or move all charges from that asset to your resource pool <i>(as resources)</i> and discard that asset.",
       "03009b": "Sophie cannot leave play.\nYou get -1 to each of your skills.\n<b>Forced</b> - If Mark Harrigan has 4 or less damage on him: Flip Sophie.",
@@ -6466,6 +6491,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "04002": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> Seeker cards ([seeker]) level 0-5, [[Relic]] cards level 0-4, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Jake Williams, Call of the Unknown, 1 random basic weakness.",
+      "04001": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> Guardian cards ([guardian]) level 0-5, Rogue cards ([rogue]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Mitch Brown, Bought in Blood, 1 random basic weakness.",
       "03004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Neutral cards level 0-5, cards with \"uses (charges)\" level 0-4, [[Occult]] cards level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Spirit-Speaker, Angered Spirits, 1 random basic weakness.",
       "03001": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0-5, Neutral cards level 0-5, [[Tactic]] cards level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): The Home Front, Shell Shock, Sophie, 1 random basic weakness.",
       "02004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Jim's Trumpet, Final Rhapsody, 1 random basic weakness.",
@@ -6499,6 +6526,12 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "04009": "Call of the Unknown",
+      "04008": "Jake Williams",
+      "04007": "Bought in Blood",
+      "04006": "Mitch Brown",
+      "04002": "Ursula Downs",
+      "04001": "Leo Anderson",
       "03015": "Angered Spirits",
       "03014": "Spirit-Speaker",
       "03009b": "Sophie",

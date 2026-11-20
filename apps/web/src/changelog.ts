@@ -1,6 +1,15 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'forgotten-age-investigators',
+    date: '2026-11-20',
+    title: 'app.changelog.forgottenAgeInvestigators.title',
+    items: [
+      'app.changelog.forgottenAgeInvestigators.cards',
+      'app.changelog.forgottenAgeInvestigators.rules',
+    ],
+  },
+  {
     id: 'carcosa-investigators',
     date: '2026-11-20',
     title: 'app.changelog.carcosaInvestigators.title',

@@ -302,6 +302,11 @@
         "title": "Zoey Samaras y Jim Culver",
         "cards": "Dos investigadores, sus cuatro exclusivas/debilidades y sus mazos oficiales FFG, seleccionables.",
         "rules": "Ventanas de enfrentamiento, fichas calavera, curación y aparición de Enemigos revisadas."
+      },
+      "forgottenAgeInvestigators": {
+        "title": "Leo y Ursula exploran la Era Olvidada",
+        "cards": "Dos investigadores con sus mazos oficiales FFG, cartas exclusivas, debilidades y presentación completa en español e inglés.",
+        "rules": "Aliados de Leo y Mitch, acciones de investigar de Ursula, protección de Jake y seguimiento de La llamada de lo desconocido."
       }
     }
   },
@@ -1361,7 +1366,9 @@
     "shelterResource": "Obtener 1 recurso",
     "shelterDamage": "Curarse 1 punto de daño",
     "shelterHorror": "Curarse 1 punto de horror",
-    "replenishCharge": "Reponer 1 carga de {card}"
+    "replenishCharge": "Reponer 1 carga de {card}",
+    "ursulaMove": "Moverte a un Lugar conectado",
+    "bloodHand": "Descartar todos los apoyos Aliado de la mano ({n})"
   },
   "phase": {
     "setup": "Preparación",
@@ -1930,7 +1937,9 @@
     "originalNecronomicon": "Mover 1 horror del Necronomicón a Daisy",
     "originalHospitalDebts": "Mover 1 recurso a Deudas de hospital",
     "zoeyEngage": "Ganar 1 recurso tras enfrentarte a un Enemigo",
-    "jimSkull": "Tratar este signo arcano como una calavera"
+    "jimSkull": "Tratar este signo arcano como una calavera",
+    "leoPlay": "Jugar {card} con Leo (−1 al coste)",
+    "ursulaInvestigate": "Ursula: realizar una acción de investigar"
   },
   "log": {
     "archiveReveal": "El mazo de mercado revela: {card}",
@@ -3780,6 +3789,10 @@
   },
   "offlineCard": {
     "subnames": {
+      "04008": "Compañero leal",
+      "04006": "Único superviviente",
+      "04002": "La exploradora",
+      "04001": "El lider de la expedición",
       "03014": "Enviada de los alusi",
       "03009b": "Todo fue culpa mía",
       "03009": "Te llevo en mi memoria",
@@ -3981,6 +3994,12 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "04009": "Tarea.",
+      "04008": "Aliado. Viajero.",
+      "04007": "Defecto.",
+      "04006": "Aliado. Viajero.",
+      "04002": "Viajero.",
+      "04001": "Veterano. Viajero.",
       "03015": "Tarea.",
       "03014": "Ritual.",
       "03009b": "Objeto. Locura.",
@@ -5020,6 +5039,12 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "04009": "<b>Revelación</b> - Pon la Llamada de lo desconocido en juego en tu zona de amenaza.\n<b>Obligado</b> - Al comienzo de tu turno: Elige un Lugar que no sea tu Lugar. Cuando termine tu turno, si no investigaste con éxito el Lugar elegido en este turno, recibe 2 puntos de horror, devuelve la Llamada de lo desconocido a tu mazo y baraja éste.",
+      "04008": "Sólo para el mazo de Ursula Downs.\nEl primer movimiento o acción de investigar que realices en cada turno no provoca ataques de oportunidad.\n[reaction] Después de que reveles un Lugar o pongas un nuevo Lugar en juego, agota a Jake Williams: Roba 1 carta.",
+      "04007": "<b>Revelación</b> - Debes descartar del juego un Apoyo [[Aliado]] que controles, o bien descartar todos los Apoyos [[Aliado]] de tu mano. Si no se descartó ningún Apoyo por este efecto, devuelve Comprado con sangre a tu mazo y baraja éste.",
+      "04006": "Sólo para el mazo de Leo Anderson.\nTienes 2 espacios de aliado adicionales que sólo pueden usarse para aliados que no sean únicos.",
+      "04002": "[reaction] Después de que te muevas a un Lugar: Realiza una acción de investigar. Límite de una vez por ronda.\nEfecto [elder_sign]: +1. Después de que termine esta prueba, puedes moverte a un Lugar conectado.",
+      "04001": "[reaction] Después de que comience tu turno: Juega un Apoyo [[Aliado]], reduciendo su coste en 1.\nEfecto [elder_sign]: +2. Busca entre las 3 primeras cartas de tu mazo 1 Apoyo [[Aliado]] y róbalo. Baraja tu mazo.",
       "03015": "<b>Revelación</b> - Pon los Espíritus airados en juego en tu zona de amenaza.\n[free] Agota un Apoyo [[Hechizo]]: Mueve 1 carga de ese Apoyo a los Espíritus airados.\n<b>Obligado</b> - Si los Espíritus airados tienen menos de 4 cargas cuando termine la partida: Sufres 1 trauma físico.",
       "03014": "Sólo para el mazo de Akachi Onyele.\n[free] Agota Portavoz de los espíritus: Elige un Apoyo que controles con \"Usos (cargas)\". Devuelve ese apoyo a tu mano o bien mueve todas las cargas de ese Apoyo a tu reserva de recursos <em>(como recursos)</em> y descarta ese Apoyo.",
       "03009b": "Sophie no puede abandonar el juego.\nRecibes -1 a cada una de tus habilidades.\n<b>Obligado</b> - Si Mark Harrigan tiene 4 o menos puntos de daño: Dale la vuelta a Sophie.",
@@ -6466,6 +6491,8 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "04002": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Buscador ([seeker]) de nivel 0-5, cartas [[Reliquia]] de nivel 0-4, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño de mazo): Jake Williams, Llamada de lo desconocido, 1 Debilidad básica aleatoria.",
+      "04001": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Guardián ([guardian]) de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño del mazo): Mitch Brown, Comprado con sangre, 1 Debilidad básica aleatoria.",
       "03004": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas con \"Usos (cargas)\" de nivel 0-4, cartas [[Ocultismo]] de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Portavoz de los espíritus, Espíritus airados, 1 Debilidad básica aleatoria.",
       "03001": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas [[Táctica]] de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): El frente doméstico, Neurosis de guerra, Sophie, 1 Debilidad básica aleatoria.",
       "02004": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Trompeta de Jim, Rapsodia final, 1 Debilidad básica aleatoria.",
@@ -6499,6 +6526,12 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "04009": "Llamada de lo desconocido",
+      "04008": "Jake Williams",
+      "04007": "Comprado con sangre",
+      "04006": "Mitch Brown",
+      "04002": "Ursula Downs",
+      "04001": "Leo Anderson",
       "03015": "Espíritus airados",
       "03014": "Portavoz de los espíritus",
       "03009b": "Sophie",

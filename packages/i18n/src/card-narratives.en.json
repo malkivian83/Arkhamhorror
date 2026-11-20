@@ -1,22 +1,4 @@
 {
-  "03001": {
-    "group": "investigators",
-    "typeCode": "investigator",
-    "flavor": "He'd burn the entire town down if necessary, but he wouldn't let those monsters take anyone else.",
-    "backFlavor": "There were plenty who returned from the war broken in body or spirit. But Mark Harrigan had witnessed horrors he could not explain. His beloved Sophie believed him when he wrote her about the things he saw - not the men killing other men, but the other things. The creatures. When he came home and went to visit her, he found the reasons she believed him: she had one of the creatures inside her, eating her from the inside out. As he watched in helpless horror, she faded away into the air, screaming as thing finished its meal. Now everyone thinks Mark Harrigan is crazy. Maybe he's finally lost it, after all. But he knows the monsters are real, and he will not rest until every last one is dead."
-  },
-  "03004": {
-    "group": "investigators",
-    "typeCode": "investigator",
-    "flavor": "\"I will journey to the lands beyond. I do not fear them.\"",
-    "backFlavor": "As a young girl in Nigeria, Akachi became used to being set apart. Her habits of chattering away at thin air and secluding herself from other children led her village to believe she was mad. Her village Dibia was the first to see her true potential. He believed Akachi was marked by the spirits for greatness, and he taught her how to commune with them to her advantage. Under his tutelage, Akachi grew into a wise young leader, respected not just in her village, but in every community she aided. Now she meets her destiny head on, seeking out unnatural troubles that only her knowledge can stop."
-  },
-  "03007": {
-    "group": "investigators",
-    "typeCode": "skill",
-    "flavor": "The real war has only just begun."
-  },
-  "03008": { "group": "investigators", "typeCode": "treachery", "flavor": "War never changes." },
   "12106": {
     "group": "ceniza",
     "typeCode": "agenda",
@@ -375,6 +357,28 @@
     "typeCode": "act",
     "flavor": "Getting in was one thing, but now you must make it out with your prize. It feels as if the whole casino stands between you and the world outside.",
     "backFlavor": "There were times when you weren't sure whether you would make it out of the casino with your skin and soul intact, but here you stand. It almost feels like a dream, but you can still hear a commotion inside. It's time to leave this place behind and make yourself scarce."
+  },
+  "03001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "He'd burn the entire town down if necessary, but he wouldn't let those monsters take anyone else.",
+    "backFlavor": "There were plenty who returned from the war broken in body or spirit. But Mark Harrigan had witnessed horrors he could not explain. His beloved Sophie believed him when he wrote her about the things he saw - not the men killing other men, but the other things. The creatures. When he came home and went to visit her, he found the reasons she believed him: she had one of the creatures inside her, eating her from the inside out. As he watched in helpless horror, she faded away into the air, screaming as thing finished its meal. Now everyone thinks Mark Harrigan is crazy. Maybe he's finally lost it, after all. But he knows the monsters are real, and he will not rest until every last one is dead."
+  },
+  "03004": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"I will journey to the lands beyond. I do not fear them.\"",
+    "backFlavor": "As a young girl in Nigeria, Akachi became used to being set apart. Her habits of chattering away at thin air and secluding herself from other children led her village to believe she was mad. Her village Dibia was the first to see her true potential. He believed Akachi was marked by the spirits for greatness, and he taught her how to commune with them to her advantage. Under his tutelage, Akachi grew into a wise young leader, respected not just in her village, but in every community she aided. Now she meets her destiny head on, seeking out unnatural troubles that only her knowledge can stop."
+  },
+  "03007": {
+    "group": "investigators",
+    "typeCode": "skill",
+    "flavor": "The real war has only just begun."
+  },
+  "03008": {
+    "group": "investigators",
+    "typeCode": "treachery",
+    "flavor": "War never changes."
   },
   "01105": {
     "group": "zealot",
@@ -1077,5 +1081,27 @@
     "typeCode": "act",
     "flavor": "With no clear way out of this dimension, you seek another path.",
     "backFlavor": "You discover a path that looks somewhat familiar and follow it. Even though your task is complete, you now understand that in closing the tear, you may never make it home. The fear of being lost here forever spurs you onward, through an archway leading into an overgrown corridor. A damp wooden door leads you out into a pocket of thin rain and dark sky. Cement turns to gravel, then marble, then steel, then grass. You cross impossibly long meadows and make your way through dense woods before fatigue finally sets in. Drained of all energy, you cannot go on any further. Your body gives out."
+  },
+  "04001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Keep moving. You can die on your own time.\"",
+    "backFlavor": "Leo Anderson has spent his whole life getting into the deadliest and most obscure corners of the globe. Along the way, he's lost good people. He often questions whether such academic pursuits have been worth the lives lost. His most recent expedition, an ill-fated voyage to Nan Madol to recover <u>Olosopha's Almanac</u>, ended in complete disaster. Mitch was the only one of his people to survive, or at the very least, to remain human. Leo is sick of burying people who trusted him. But now he knows these expeditions aren't purely academic in nature - and he won't quit until the job is done."
+  },
+  "04002": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Discovery is easy. Understanding is the hard part.\"",
+    "backFlavor": "Not many people can say that they've climbed a mountain on every continent. Fewer still can say they've stolen a golden idol from a tribe of cannibals. Among women in a male-dominated society, Ursula is unique in being able to make these sorts of claims. Ever since she was a small girl, Ursula has broken the rules set down for her, climbing trees, playing in the mud, exploring the woods, and doing plenty of other things that a \"proper young lady shouldn't be doing.\" Since getting a degree in archaeology in Boston, she has been traveling the world searching for forgotten civilizations."
+  },
+  "04006": {
+    "group": "investigators",
+    "typeCode": "asset",
+    "flavor": "\"You ain't going nowhere without me, Leo.\nSo you might as well tell me what's going on.\""
+  },
+  "04007": {
+    "group": "investigators",
+    "typeCode": "treachery",
+    "flavor": "We paid a terrible price for the knowledge we sought. Was it worth it?"
   }
 }

@@ -1,3 +1,6 @@
+import forgottenInvestigators from '../data/forgotten-age-investigators.json'
+import leoOfficial from '../forgotten-age-investigators/decklist-38675.json'
+import ursulaOfficial from '../forgotten-age-investigators/decklist-38676.json'
 import carcosaInvestigators from '../data/carcosa-investigators.json'
 import markOfficial from '../carcosa-investigators/decklist-6642.json'
 import akachiOfficial from '../carcosa-investigators/decklist-4814.json'
@@ -82,6 +85,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
 registerPlayerCards([
   ...(dunwichInvestigators as PlayerCardDef[]),
   ...(carcosaInvestigators as PlayerCardDef[]),
+  ...(forgottenInvestigators as PlayerCardDef[]),
   ...(originalCore as PlayerCardDef[]),
   ...playerCards,
   ...(pete as PlayerCardDef[]),
@@ -123,6 +127,30 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  leo: {
+    investigator: 1,
+    investigatorCode: leoOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(leoOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  ursula: {
+    investigator: 1,
+    investigatorCode: ursulaOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(ursulaOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   mark: {
     investigator: 1,
     investigatorCode: markOfficial.investigator_code,
