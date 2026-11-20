@@ -1589,6 +1589,332 @@
     "traits": "Terror",
     "text": "Oleada.\nRevelación – Si los Zarcillos del Primero están enfrentados al menos a 1 investigador, ataca a cada jugador enfrentado. Si no, muévelo 1 Lugar hacia el investigador más cercano."
   },
+  "78213": {
+    "name": "La hora bruja",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X es el número de Lugares con horror sobre ellos (max. 4).\n[cultist]: –4. Si tienes éxito, inflige 1 punto de daño a un enemigo en juego o descubre 1 pista en un Lugar en juego.\n[tablet]: –4. Si fracasas, muévete una vez hacia el Lugar Miasma más cercano.\n[elder_thing]: –3. Si fracasas, cada investigador que haya escuchado la Llamada debe resolver la capacidad Obligado de un Lugar Miasma como si hubiera empezado su turno allí.",
+    "backText": "[skull]: –X. X es el número de Lugares con horror sobre ellos.\n[cultist]: –6. Si tienes éxito, inflige 1 punto de daño a un enemigo en juego o descubre 1 pista en un Lugar en juego.\n[tablet]: –4. Después de que termine la prueba, muévete una vez hacia el Lugar Miasma más cercano.\n[elder_thing]: –3. Si fracasas, cada investigador que haya escuchado la Llamada debe resolver la capacidad Obligado de cada Lugar Miasma como si hubiera empezado su turno allí."
+  },
+  "78214": {
+    "name": "El Plaguero desatado",
+    "typeCode": "agenda",
+    "text": "Baalshandor obtiene Cazador y Descomunal.\nNo retires perdición de este plan cuando avance.\nObligado – Si Baalshandor abandona el juego: Haz avanzar el plan.",
+    "flavor": "Lo peor aún está por llegar. Baalshandor recorre las calles de Arkham para matarte.",
+    "backName": "La Muerte es sólo el principio",
+    "backText": "Coloca a Baalshandor aparte, fuera del juego. Mueve toda la perdición del Plan 1a al Plan 2a. Baraja todas las copias puestas aparte de Destrucción creciente, Uno de muchos y Teme la vida retorcida en el mazo de encuentros.\nComprueba el registro de campaña. Da la vuelta a cada Lugar que aparezca como Infectado. Si un Lugar aparece como Tocado por la Llama, haz aparecer el Apoyo Mensajero de la Llama en ese Lugar. Si un Lugar aparece como Tocado por la Locura, haz aparecer el Apoyo Mensajero del Rey en ese Lugar.\nHaz avanzar al Acto 1b.",
+    "backFlavor": "¿Muerte?\n¿Crees que puede amenazarme con la muerte?\nDa testimonio de mi muerte.\n\nEl ser que es Baalshandor explota con una lluvia de carne y vísceras.\n\nLa Muerte son mis dominios. En la muerte crezco.\nTus armas, tu magia, no significan nada para mi.\nAhora me toca a mi dar testimonio.\n\nA través de la ciudad, oyes una cacofonía de destrucción cuando edificios enteros repentinamente invadidos por la carne, se liberan..."
+  },
+  "78215": {
+    "name": "Arkham infectado",
+    "typeCode": "agenda",
+    "text": "Los Lugares con horror no pueden darse la vuelta o realizar ataques de oportunidad.\nObligado – Al final de la ronda, por cada investigador en un Lugar que no sea Miasma sin horror sobre él: Da la vuelta al Lugar Seguro más cercano o coloca 1 ficha de perdición sobre el enemigo Miasma más cercano sin horror sobre él.",
+    "flavor": "En la muerte, el Portador de la Plaga sólo crece. La ciudad entera se está convirtiendo en parte de Baalshandor. ¿Qué oportunidad tienes de resistir contra un monstruo del tamaño de Arkham?",
+    "backName": "Observad la carne",
+    "backText": "Baraja el conjunto de encuentros Poder desatado puesto aparte junto con la pila de descartes de encuentros en el mazo de encuentros.\nComprueba el registro de campaña. Si un Lugar aparece como el Lugar de la Liberación, el investigador jefe roba la carta de encuentro Carne liberada puesta aparte.",
+    "backFlavor": "Vivo, muero. Y sólo crezco.\nResistir es inútil. Tú y los otros.\nLiberado, mi poder no tiene igual."
+  },
+  "78216": {
+    "name": "Ciudad monstruosa",
+    "typeCode": "agenda",
+    "text": "Los Lugares con horror no pueden darse la vuelta o realizar ataques de oportunidad.\nObligado – Al final de la ronda, por cada investigador en un Lugar que no sea Miasma sin horror sobre él: Da la vuelta al Lugar Seguro más cercano o coloca 1 ficha de perdición sobre el enemigo Miasma más cercano sin horror sobre él.",
+    "flavor": "A cada momento que pasa, aumenta mi poder.\nEscuchad la Llamada.\nMi carne será vuestro final.",
+    "backName": "Observad la sangre",
+    "backText": "Si no está en juego el Acto 4:\nTrasciendo.\nEvoluciono.\nTraigo mis dones a todas las criaturas de este decrépito mundo.\nEscuchad la Llamada.\n(→R1)\nSi está en juego el Acto 4:\n¿Atado?\n¿Otra vez?\nEntonces te reclamaré.\n(→R2)"
+  },
+  "78217": {
+    "name": "La muerte del Plaguero",
+    "typeCode": "act",
+    "text": "El Lugar de Baalshandor obtiene el rasgo Miasma y: “[fast]: Negociar. Investigar. Si tienes éxito inflige 1 punto de daño a Baalshandor.”\nObjetivo – Derrota a Baalshandor.",
+    "flavor": "Todo nos ha traído hasta aquí. Terminemos con Baalshandor y destruyamos su reino de pestilencia.",
+    "backName": "Un rayo de esperanza",
+    "backText": "Comprueba el registro de campaña. Si un investigador controla el Maletín sospechoso y los investigadores han “recibido un acertijo críptico”:\nNo puedes matar a Baalshandor. Vida y muerte son lo mismo para el Portador de la Plaga.\nPero con el paso de extraños eones, incluso la muerte puede morir.\nPasa al Acto 2a: El Reactivo.\nSi no, si un investigador controla a Herbert West:\n“Tengo una teoría. Si la muerte es un estado necesario del ciclo de vida de esta criatura...¿Qué pasaría si lo atrapamos en un estado en que no pueda morir?”\nPasa al Acto 2a: El Doctor.\nSi no:\nNo tenéis nada, el Portador de la Plaga está por todas partes y no para de crecer. Pero si no le das cuartel, si no le dejas donde expandirse...\nPasa al Acto 3a: Detener el crecimiento."
+  },
+  "78218": {
+    "name": "El Reactivo",
+    "typeCode": "act",
+    "text": "[reaction] Cuando un Lugar Miasma fuese a darse la vuelta, si un investigador en ese Lugar controla el Maletín sospechoso, gasta 2 pistas [per_investigator] como grupo: Coloca 1 ficha de horror en ese Lugar.\nObjetivo – Al final de la ronda, si cada Lugar tiene horror sobre él, haz avanzar el acto.\nObjetivo – Esto no está funcionando. Al final de la ronda, los investigadores pueden hacer avanzar el acto.",
+    "flavor": "Baalshandor puede que tenga control sobre la muerte. Pero si pudieras cortar esa conexión usando el reactivo reanimador...",
+    "backName": "Frutos de la ciencia",
+    "backText": "Si cada Lugar tiene horror sobre él:\nLas criaturas en las que se ha convertido Arkham empiezan a moverse como locas y se quedan inmóbiles de repente. Te acercas cuidadoso y agarras un zarcillo. Puedes sentir el pulso del monstruo, pero ya no se mueve.\nSe te sale el corazón por la garganta. ¿Ha funcionado?\nDas un respingo y te das cuenta de que estás cara a cara con la figura de Baalshandor.\n¿QUÉ HABÉIS HECHO?\nRecuerda que “has conquistado a la muerte”. Avanza al Acto 3b.\nSi no:\nUn gigantesco miembro de carne se cierne sobre ti. Te lanzas tratando de esquivarlo, pero el maletín acaba bajo la trayectoria del temible brazo. Es devastador escuchar el sonido del cristal rompiéndose.\nSi el Maletín sospechoso está en alguna zona de juego, retíralo de la partida. Avanza al Acto 3a."
+  },
+  "78219": {
+    "name": "El Doctor",
+    "typeCode": "act",
+    "text": "[reaction] Cuando un Lugar Miasma fuese a darse la vuelta, si un investigador en ese Lugar controla a Herbert West, gasta 2 pistas [per_investigator] como grupo: Coloca 1 ficha de horror en ese Lugar.\nObjetivo – Al final de la ronda, si cada Lugar tiene horror sobre él, haz avanzar el acto.\nObjetivo – El plan de West es inútil. Al final de la ronda, los investigadores pueden hacer avanzar el acto.",
+    "flavor": "“Podemos detener esto, tienes que creerme”. Dice Herbert. ¿Qué otra opción te queda?",
+    "backName": "Objetivo de una vida",
+    "backText": "Si cada Lugar tiene horror sobre él:\nLas criaturas en las que se ha convertido Arkham empiezan a moverse como locas y se quedan inmóbiles de repente. “¡La muerte está agonizando! ¡Ha funcionado!” West se ríe satisfecho.\nSe te sale el corazón por la garganta. ¿Ha funcionado?\nDas un respingo y te das cuenta de que estás cara a cara con la figura de Baalshandor. Sostiene a West sobre sus mandíbulas.\n¿QUÉ HABÉIS HECHO?\n“Soy Herbert West. Y he conquistado la muerte.”\nWest es engullido por las fauces del dios mientras sigue sonriendo.\nRecuerda que “West ha conquistado a la muerte”. Avanza al Acto 3b.\nSi no:\nOyes un grito y ves a West luchando contra músculos y tendones que crecen desde el suelo tratando de atrapar sus miembros. Antes de que puedas reaccionar ya ha conquistado al doctor también.\nSi Herbert West está en alguna zona de juego, retíralo de la partida. Avanza al Acto 3a."
+  },
+  "78220": {
+    "name": "Detener el crecimiento",
+    "typeCode": "act",
+    "text": "[reaction] Después de derrotar y dar la vuelta a un enemigo Miasma, si los investigadores “conocen la atadura”, los investigadores gastan 2 pistas [per_investigator] como grupo: Coloca 1 ficha de horror en el lado Seguro de ese enemigo.\nObjetivo – Al final de la ronda, si cada Lugar tiene horror sobre él, haz avanzar el acto.",
+    "flavor": "Combatir contra el Portador de la Plaga no está funcionando. Sigue creciendo. Pero si pudieras purificar lugares clave de Arkham y encontrar una manera de atarlo, tal vez al menos pudieras vincularlo a ese lugar.",
+    "backName": "La furia del Portador de la Plaga",
+    "backText": "Retira de la partida todos los lugares y los Apoyos de historia en esos lugares. Descarta cada enemigo retirado de este modo.\nPon en juego el Cuerpo de Baalshandor (Destruyendo), la Mente de Baalshandor (Maquinando) y al Alma de Baalshandor (Odiando) puesto aparte. Mueve a cada investigador al Alma de Baalshandor.\nPon en juego el enemigo Baalshandor puesto aparte, junto al mazo de acto. Durante el resto del escenario, Baalshandor se considera en juego, pero no está en ningún Lugar.",
+    "backFlavor": "La ciudad está en completo silencio. El mundo parece haberse detenido. Todo lo que queda eres tú y Baalshandor. Aparece ante ti, con la misma forma de antes, pero habiendo triplicado su ya de por sí imposible tamaño.\nSUFICIENTE. MORID.\nEn unos instantes, eres devorado por completo."
+  },
+  "78221": {
+    "name": "La vida del Portador de la Plaga",
+    "typeCode": "act",
+    "text": "Obligado – Cuando derrotes a un Lugar enemigo Miasma: Inflige 1 punto de daño [per_investigator] a Baalshandor.\nObligado – Cuando un Lugar enemigo entre en juego: Cura 1 punto de daño [per_investigator] a Baalshandor.\nObjetivo – Si Baalshandor es derrotado, haz avanzar el acto.",
+    "flavor": "El Portador de la Plaga ha sido derrotado, sus planes frustrados. Es la hora de terminar con esta pesadilla de una vez por todas.",
+    "backName": "La vida se deshace",
+    "backText": "Si “has conquistado a la muerte”, (→R7).\nSi “West ha conquistado a la muerte”, (→R8).\nSi no, (→R3).",
+    "backFlavor": "IMPOSIBLE.\n¡NO PODÉIS GANAR!\n¡NO SOIS NADA!\nESTOY... ROTO..."
+  },
+  "78222": {
+    "name": "Arkham Advertiser",
+    "subname": "Boca a boca",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede devolver un evento de su pila de descartes a su mano.",
+    "backName": "Arkham Advertiser",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Exilia el evento de tu mano con mayor coste de experiencia."
+  },
+  "78223": {
+    "name": "Banco de Arkham",
+    "subname": "Botín de guerra",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede obtener 2 recursos.",
+    "backName": "Banco de Arkham",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Pierde todos tus recursos."
+  },
+  "78224": {
+    "name": "Colmado",
+    "subname": "Echando una mano",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede jugar un Apoyo de su mano reduciendo su coste de recursos en 1.",
+    "backName": "Colmado",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Elige un Apoyo que no sea permanente bajo tu control. Descarta cada Apoyo en tu zona de juego y en tu mano con el mismo coste de recursos que el Apoyo elegido."
+  },
+  "78225": {
+    "name": "Motel Hibb",
+    "subname": "Rugen las tripas",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede recibe +1 a todas sus habilidades hasta el final de la ronda.",
+    "backName": "Motel Hibb",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Fracasa automáticamente la próxima prueba de habilidad que realices en esta fase."
+  },
+  "78226": {
+    "name": "Pensión de Ma",
+    "subname": "El corazón de Arkham",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede devolver un Apoyo Aliado de su pila de descartes a su mano.",
+    "backName": "Pensión de Ma",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Mueve daño de este Lugar a un único Apoyo Aliado que controles igual a la salud restante de ese Apoyo."
+  },
+  "78227": {
+    "name": "Biblioteca Orne",
+    "subname": "Un paraiso para el cerebro",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede robar 2 cartas de su mazo.",
+    "backName": "Biblioteca Orne",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Elige 2 cartas de tu mano y descarta el resto."
+  },
+  "78228": {
+    "name": "Muelles",
+    "subname": "Manos a la obra",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede devolver una carta de habilidad de su pila descartes a su mano.",
+    "backName": "Muelles",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Descarta todas las cartas de habilidad de tu mano."
+  },
+  "78229": {
+    "name": "Vieja tienda de Magia",
+    "subname": "El ojo que todo lo ve",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que des la vuelta a este Lugar a este lado: Cada investigador en este Lugar puede devolver el Apoyo de mayor coste de recursos de su pila de descartes a su mano.",
+    "backName": "Vieja tienda de Magia",
+    "backText": "Miasma. Élite\nObligado – Después de que comiences tu turno en este Lugar: Roba la carta superior del mazo de encuentros."
+  },
+  "78230": {
+    "name": "Arkham Advertiser",
+    "subname": "Última edición",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[reaction] Después de que juegues un evento en este Lugar: Roba 1 carta y obtén 1 recurso. Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Buenas noticias",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador busca en su mazo y pila de descartes un evento y lo juega sin pagar su coste de recursos.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "Hemos estado reuniendo detalles y pesquisas de todo lo ocurrido, investigando lo que hemos podido desde que nos salvaste. Doyle señala un escritorio cubierto de garabatos y fragmentos de artículos antiguos.\n“Puede parecer una locura, pero todo lo que sucedió en el último día, encaja en un patrón. Tú también encajas en un patrón. Un patrón que no siempre termina bien, pero que tampoco tiene porque terminar mal. Y, si nos escuchas, creo que podríamos darte algunas ideas sobre cómo acabar el día con un final feliz”."
+  },
+  "78231": {
+    "name": "Banco de Arkham",
+    "subname": "Cierre de mercados",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[reaction] Después de que investigues con éxito en este Lugar: Obtén 2 recursos. Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Golpe de suerte",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador puede obtener 10 recursos.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "“Deja que te sea totalmente sincero. Estos lingotes de oro que te estoy confiando no están encantados. Los hemos guardado en el banco desde su fundación, básicamente porque su propietario nunca vino a reclamarlos. Que el banco y la ciudad hayan prosperado a pesar de las múltiples vicisitudes y calamidades que han azotado la región y que no han traído más que inestabilidad, mientras esos lingotes descansaban en nuestra cámara, es pura coincidencia.\nPor favor devuélvelos cuando todo acabe.”"
+  },
+  "78232": {
+    "name": "Colmado",
+    "subname": "Sacando mercancía",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[fast] Gasta cualquier cantidad de recursos: Busca entre las X primeras cartas de tu mazo un Apoyo y ponlo en juego. X es dos veces el número de recursos que gastaste. Baraja tu mazo. Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Cosas útiles",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador puede devolver cualquier número de Apoyos de su zona de juego a la mano. Cada investigador puede jugar cualquier número de Apoyos de su mano sin pagar su coste de recursos.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "“Mientras estabas fuera, el hombre más raro del mundo vino a la tienda. Delgado, con una perilla extraña. Dijo que tenía algo para ti, este amuleto. Dijo que lo necesitarías cuando se acercara el momento.” Davy mira por la ventana hacia la carnicería que se cierne sobre la ciudad.\n“Creo que el momento ha llegado”."
+  },
+  "78233": {
+    "name": "Motel Hibb",
+    "subname": "Última llamada",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[reaction] Después de que tengas éxito por 2 o más durante una prueba de habilidad en este Lugar: Cura 1 punto de daño o 1 punto de horror de una carta que controles. Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Bebidas energéticas",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador puede curarse 3 puntos de daño y 3 de horror. Si un investigador controla a Hibb, ese investigador puede curarse todo el daño y horror.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "Alguien saca una caja fuerte de detrás de la barra, polvorienta y con décadas a sus espaldas. Dentro envuelta en un paño andrajoso hay una botella con un líquido que brilla ligeramente. “Hibb siempre bromeaba con que tenía agua de la fuente de la eterna juventud. Pensabamos que nos tomaba el pelo, pero hemos votado y creemos que te la mereces.”"
+  },
+  "78234": {
+    "name": "Pensión de Ma",
+    "subname": "Amigos para siempre",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[fast]: Busca en tu mazo un Apoyo Aliado y añádelo a tu mano. Baraja tu mazo. Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Intervención divina",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador puede buscar en la colección un Apoyo Aliado de nivel 0-3 y lo pone en juego bajo su control.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "“Se que piensas que tal vez sea una vieja chocha loca. Pero hay poder en la oración. Los milagros ocurren.” Ma Matheson abre una puerta y ves una cara que no creías que fueras a volver a ver. “Los designios del Señor son inescrutables, cariño.”"
+  },
+  "78235": {
+    "name": "Biblioteca Orne",
+    "subname": "Incunable",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[reaction] Después del paso de robar cartas de la fase de mantenimiento, si tienes 5 o más cartas en la mano: Roba 1 carta.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Gambito de bibliotecario",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador roba hasta su tamaño máximo de mano. Baraja cada debilidad robada de esta manera de vuelta en tu mazo.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "Armitage tiembla mientras te entrega una hoja de pergamino. “Haciendo caso omiso a mi sentido común, he estado leyendo el Necronomicon Ex Mortis. He encontrado una poderosa invocación... que te proporcionará grandes conocimientos o que te matará en el acto, no lo tengo claro. Mi árabe está bastante oxidado, pero confío en que el hechizo te dará lo que necesitas. Se que destruirás esta traducción una vez que ya no sea necesaria, utilizarla dos veces podría tener efectos catastróficos.”"
+  },
+  "78236": {
+    "name": "Muelles",
+    "subname": "Hora de salir",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[reaction] Cuando asignes una carta de habilidad elegible a una prueba de habilidad en este Lugar: Gana [wild] y el texto: “Después de que termine esta prueba de habilidad, puedes robar 1 carta.” Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "La recompensa de la locura",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador puede buscar en su mazo y en su pila de descartes hasta 3 cartas de habilidad y añadirlas a su mano.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "“Hace tiempo algunos de los chicos encontraron uno de los almacenes algo vacío. Había cadáveres y trampas. Y... cosas aún más extrañas. Lo hemos mantenido oculto bajo llave, pero seguro que tú sabes que hacer con él.” Abner te acerca una caja alargada llena de utensilios inenarrables. Justo lo que necesitas para decantar la balanza, o para destruir algo del todo."
+  },
+  "78237": {
+    "name": "Vieja tienda de Magia",
+    "subname": "El fin de los días",
+    "typeCode": "location",
+    "traits": "Defendido",
+    "text": "[fast]: Roba la carta superior del mazo de encuentros. Después, busca en tu mazo un Apoyo Hechizo o Reliquia y ponlo en juego. Baraja tu mazo. Límite de una vez por ronda.\nSi no es el Acto 1, este Lugar obtiene: “[free] Gasta 2 pistas [per_investigator]: Dale la vuelta a este Lugar y resuelve su texto de historia.”",
+    "backName": "Deseos del corazón",
+    "backText": "El investigador que dio la vuelta a esta carta elige una:\n– Cada investigador puede buscar en la colección un Apoyo que no sea Aliado de nivel 0-3 y lo pone en juego bajo su control.\n– Da la vuelta a cualquier número de Lugares que no sean Defendido.\n– Coloca una ficha de horror en un Lugar.\nDa la vuelta a esta carta y coloca una ficha de horror sobre ella.",
+    "backFlavor": "La figura de Miriam se eleva en el aire, la energía crepita entre sus manos y el suelo. “Que cosa más curiosa, nuestros cuerpos frágiles. Sin embargo, el poder que tenemos está ahí, a nuestro alcance... ¿Es esto lo que deseas, mortal? Sólo necesitas imaginar lo que deseas, y yo lo traeré desde este mundo o desde el siguiente."
+  },
+  "78238": {
+    "name": "Cuerpo de Baalshandor",
+    "subname": "Destruyendo",
+    "typeCode": "location",
+    "traits": "Miasma. Élite",
+    "text": "[fast]: Negociar. Gasta 1 recurso. Muévete al Alma de Baalshandor.",
+    "backName": "Cuerpo de Baalshandor",
+    "backText": "Miasma\nObligado – Después de que comiences tu turno en ese Lugar: Si no controlas una copia de La Fuerza de la Carne, da la vuelta al Cuerpo de Baalshandor.",
+    "backFlavor": "Ningún ser vivo puede traicionar mi poder.\nEscucha la llamada, marioneta."
+  },
+  "78239": {
+    "name": "Mente de Baalshandor",
+    "subname": "Maquinando",
+    "typeCode": "location",
+    "traits": "Miasma. Élite",
+    "text": "[fast]: Negociar. Elige y descarta una carta de tu mano. Muévete al Cuerpo de Baalshandor.",
+    "backName": "Mente de Baalshandor",
+    "backText": "Miasma\nObligado – Después de que comiences tu turno en ese Lugar: Si no controlas una copia de Voluntad inquebrantable, da la vuelta a la Mente de Baalshandor.",
+    "backFlavor": "Mi mente es infinita.\n¿Qué mortal puede enfrentarse a mi?"
+  },
+  "78240": {
+    "name": "Alma de Baalshandor",
+    "subname": "Odiando",
+    "typeCode": "location",
+    "traits": "Miasma. Liberación. Élite",
+    "text": "Represalia. Alerta.\n[fast][fast]: Negociar. Muévete a la Mente de Baalshandor.",
+    "backName": "Alma de Baalshandor",
+    "backText": "Miasma. Liberación\nObligado – Después de que comiences tu turno en ese Lugar: Si hay otro investigador en este Lugar, da la vuelta al Alma de Baalshandor.",
+    "backFlavor": "Soy la oscuridad en cada corazón,\nla mancha en cada alma.\nNadie osa enfrentarse al Portador de la Plaga."
+  },
+  "78241": {
+    "name": "Cráter de la Liberación",
+    "typeCode": "location",
+    "traits": "Seguro. Liberación",
+    "text": "El Cráter de la Liberación está conectado a cada Lugar Seguro y viceversa.\nLos investigadores que estén en el Lugar vinculado se consideran enfrentados a cada enemigo Miasma durante la fase de Enemigos.",
+    "backName": "Cuna de Baalshandor",
+    "backText": "Miasma. Liberación\nLa Cuna de Baalshandor está conectada a cada Lugar con horror sobre él y viceversa.\nObligado – Después de que comiences tu turno en este Lugar: Coloca 1 ficha de perdición en este Lugar."
+  },
+  "78242": {
+    "name": "Leales de Greyson",
+    "typeCode": "asset",
+    "traits": "Agencia. Humano",
+    "text": "[fast] Si controlas a la Agente Greyson: Mueve los Leales de Greyson a un Lugar adyacente.\n[reaction] Al final de la ronda, si no es el Acto 1, exilia a la Agente Greyson: Da la vuelta a esta carta y resuelve su texto de historia.\nObligado – Al final de la ronda: Los Leales de Greyson infligen 2 puntos de daño a cada enemigo en su Lugar.",
+    "backName": "Su mejor momento",
+    "backText": "Recuerda que “conoces la atadura”.\nPuedes derrotar a cualquier enemigo Miasma. Puedes colocar 1 ficha de horror sobre cualquier Lugar en juego. Retira esta carta de la partida.",
+    "backFlavor": "Greyson te llama a un lado y te entrega una carpeta llena de papeles en la mano. “Un plan de contingencia enviado desde arriba. Yo no puedo comprenderlo, pero tú puedes. Con esto tienes una oportunidad, ¿me entiendes?”\nAntes de que puedas responder, Greyson se dirige a sus agentes con cara sombría, pero con determinación. “Esto es el fin del mundo. Vais a morir esta noche. Igual que todo el mundo. Pero hay dos diferencias entre vosotros y el resto del mundo. Uno, ellos no se apuntaron a esto.\nDos, vosotros tenéis una oportunidad de detenerlo. Para salvar a todos los que os han importado un carajo hasta ahora.\nAsí que ¿que decís señoritas? ¿Quién quiere escupir en la cara a la muerte esta noche?”"
+  },
+  "78243": {
+    "name": "Mensajero de la Llama",
+    "typeCode": "asset",
+    "traits": "Monstruo. Servidor",
+    "text": "Obligado – Al comienzo de la fase de enemigos, si el Mensajero de la Llama está en un Lugar Miasma sin horror: Derrota ese Lugar. Si no, mueve el Mensajero de la Llama una vez hacia el Lugar Miasma sin horror más cercano.\n[fast] Si no es el Acto 1, los investigadores puede gastar 3 pistas [per_investigator] como grupo: Negociar. Desesperado, buscas un pacto con Cthugha. Da la vuelta a esta carta y resuelve su texto de historia.",
+    "backName": "Alimentad la Llama",
+    "backText": "Recuerda que “conoces la atadura”.\nRecuerda que “tu cuerpo pertenece a Cthugha”. Exilia todas las copias de La Fueza de la carne.\nElige hasta 2 Lugares. Da la vuelta a cualquier Lugar Miasma elegido. Coloca 1 ficha de horror en los Lugares elegidos.\nDa la vuelta a esta carta y coloca 1 ficha de horror sobre ella.",
+    "backFlavor": "El aterrador mensajero te tiende una mano gigantesca. Nerviosamente pones tu mano sobre la suya.\nInmediatamente empiezas a retorcerte de dolor mientras el fuego abrasador sube por tu extremidad hasta tu cuello. Te quema dejando un tatuaje carbonizado que serpentea por tu brazo. Tu miembro desprende humo que vuelve hacia el mensajero. El conocimiento quema en tu mente, sigilos y encantamientos para renovar las ataduras.\nEl trato está cerrado. Ahora esperas pacientemente para ser utilizado."
+  },
+  "78244": {
+    "name": "Mensajero del Rey",
+    "typeCode": "asset",
+    "traits": "Monstruo. Servidor",
+    "text": "Obligado – Al comienzo de la fase de enemigos, si el Mensajero del Rey está en un Lugar Miasma sin horror: Derrota ese Lugar. Si no, mueve el Mensajero del Rey una vez hacia el Lugar Miasma sin horror más cercano.\n[fast] Si no es el Acto 1, los investigadores puede gastar 3 pistas [per_investigator] como grupo: Negociar. Desesperado, buscas un pacto con el Rey. Da la vuelta a esta carta y resuelve su texto de historia.",
+    "backName": "Implorad al Rey",
+    "backText": "Recuerda que “conoces la atadura”.\nRecuerda que “le debes a Hastur tu vida”. Exilia todas las copias de Voluntad inquebrantable.\nElige hasta 2 Lugares. Da la vuelta a cualquier Lugar Miasma elegido. Coloca 1 ficha de horror en los Lugares elegidos.\nDa la vuelta a esta carta y coloca 1 ficha de horror sobre ella.",
+    "backFlavor": "Te arrodillas ante el misterioso mensajero amarillo. Se retira lentamente la máscara para encontrarse con tu mirada, después desenrolla un largo pergamino. Con una arrugada garra gris, garabatea una andrajosa linea en la parte inferior del pergamino, después te lo ofrece para que lo firmes. Pese a que está escrito en una lengua que nunca has visto, comprendes que tu misma existencia es el precio a pagar. Firmas sin dudar. El conocimiento inunda tu mente, sigilos y encantamientos para renovar las ataduras. Completa tu tarea y espera la clemencia del Rey."
+  },
+  "78245": {
+    "name": "Baalshandor",
+    "subname": "El Portador de la Plaga",
+    "typeCode": "enemy",
+    "traits": "Primigenio. Élite",
+    "text": "Victoria 5.",
+    "flavor": "Soy el progenitor.\nToda vida se inclina ante mi.\nTus esfuerzos son insignificantes."
+  },
+  "78246": {
+    "name": "Carne desatada",
+    "typeCode": "treachery",
+    "traits": "Poder",
+    "text": "No puede ser cancelada o descartada.\nRevelación – Vincula Carne desatada al Lugar que aparezca en el registro de campaña como Lugar de la Liberación.\nLos investigadores en el Lugar vinculado se considera que están enfrentados a cada enemigo Miasma durante la fase de enemigos."
+  },
+  "78247": {
+    "name": "Teme la vida retorcida",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Realiza una prueba de [agility] (3). Si fracasas, pon Teme la vida retorcida en juego en tu zona de amenaza.\nObligado – Después de que se de la vuelta a tu Lugar: Recibe 2 puntos de daño.\n[reaction] Después de que derrotes a un enemigo Miasma: Descarta Teme la vida retorcida.",
+    "flavor": "Témeme."
+  },
+  "78248": {
+    "name": "Destrucción creciente",
+    "typeCode": "treachery",
+    "traits": "Poder",
+    "text": "Revelación – Da la vuelta al Lugar que no sea Defendido más cercano a su lado enemigo. Después elige una:\n– Realiza una prueba de [willpower] (X). X es el valor de velo.\n– Realiza una prueba de [agility] (X). X es el valor de combate.\nSi fracasas, el enemigo te ataca independientemente de tu Lugar.",
+    "flavor": "No puedes contenerme."
+  },
+  "78249": {
+    "name": "Uno de muchos",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Servidor. Infectado",
+    "text": "Indiferente. Cazador.\nObligado – Cuando el Lugar de Uno de muchos fuera a darse la vuelta: Cancélalo, retira todas las fichas de ese Lugar e inflige 1 punto de daño y 1 punto de horror en ese Lugar.\n[reaction] Después de que Uno de muchos sea derrotado: Da la vuelta a su Lugar y resuelve su texto de historia.",
+    "flavor": "Mis servidores son infinitos."
+  },
   "78250": {
     "name": "Solucionador de la Agencia",
     "typeCode": "enemy",
@@ -1890,5 +2216,59 @@
     "traits": "Piso 0",
     "text": "Revelación – Coloca la Memoria de Pickman en la zona de victoria y vincula cada Apoyo que haya en la zona de victoria a este Lugar. Haz aparecer el enemigo Dr. Elias Pickman en la Memoria de Pickman.\nCada enemigo e investigador en la zona de victoria se considera que está en la Memoria de Pickman.\nVictoria 1.",
     "flavor": "Un último momento, atrapado en el tiempo."
+  },
+  "78222b": {
+    "name": "Boca de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Exilia el evento de tu mano con mayor coste de experiencia."
+  },
+  "78223b": {
+    "name": "Cuerpo de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Pierde todos tus recursos."
+  },
+  "78224b": {
+    "name": "Garras de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Elige un Apoyo que no sea permanente bajo tu control. Descarta cada Apoyo en tu zona de juego y en tu mano con el mismo coste de recursos que el Apoyo elegido."
+  },
+  "78225b": {
+    "name": "Tripa de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Fracasa automáticamente la próxima prueba de habilidad que realices en esta fase."
+  },
+  "78226b": {
+    "name": "Corazón de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Mueve daño de este Lugar a un único Apoyo Aliado que controles igual a la salud restante de ese Apoyo."
+  },
+  "78227b": {
+    "name": "Cerebro de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Elige 2 cartas de tu mano y descarta el resto."
+  },
+  "78228b": {
+    "name": "Brazos de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Descarta todas las cartas de habilidad de tu mano."
+  },
+  "78229b": {
+    "name": "Ojo de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Élite",
+    "text": "Obligado – Después de que comiences tu turno en este Lugar: Roba la carta superior del mazo de encuentros."
+  },
+  "78241b": {
+    "name": "Cuna de Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Liberación",
+    "text": "La Cuna de Baalshandor está conectada a cada Lugar con horror sobre él y viceversa.\nObligado – Después de que comiences tu turno en este Lugar: Coloca 1 ficha de perdición en este Lugar."
   }
 }

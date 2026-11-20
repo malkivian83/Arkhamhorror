@@ -50,6 +50,7 @@ export function chaosHelp(
     'high-noon-descent': localeData(locale).plaguebearerCards['78111'],
     'the-afternoon-war': localeData(locale).plaguebearerCards['78151'],
     'death-at-sundown': localeData(locale).plaguebearerCards['78181'],
+    'the-midnight-hour': localeData(locale).plaguebearerCards['78213'],
     'curtain-call': localeData(locale).carcosaCards['03043'],
     'the-last-king': localeData(locale).carcosaCards['03061'],
     'echoes-of-the-past': localeData(locale).carcosaCards['03120'],

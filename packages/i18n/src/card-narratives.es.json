@@ -354,6 +354,54 @@
     "flavor": "El ritual está listo. Si consigues entrar en un lugar más allá de la existencia y destruir el alma de la criatura allí, podrás acabar con ella, de una vez por todas.",
     "backFlavor": "Recitas las palabras. Te rasgan el alma, golpeándote como si fueran un animal salvaje. Pero aguantas estoicamente y surten efecto.\nPickman cae de rodillas. Boquea en busca de aire. Una herida, como el disparo de un rifle se abre en su pecho. Empieza a palparse la herida, como tratando de entender que acaba de ocurrir. Todo termina con un último intento de respirar que produce un ruido que te deja helado, ha muerto.\nLa memoria comienza a dar vueltas."
   },
+  "78214": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Lo peor aún está por llegar. Baalshandor recorre las calles de Arkham para matarte.",
+    "backFlavor": "¿Muerte?\n¿Crees que puede amenazarme con la muerte?\nDa testimonio de mi muerte.\n\nEl ser que es Baalshandor explota con una lluvia de carne y vísceras.\n\nLa Muerte son mis dominios. En la muerte crezco.\nTus armas, tu magia, no significan nada para mi.\nAhora me toca a mi dar testimonio.\n\nA través de la ciudad, oyes una cacofonía de destrucción cuando edificios enteros repentinamente invadidos por la carne, se liberan..."
+  },
+  "78215": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "En la muerte, el Portador de la Plaga sólo crece. La ciudad entera se está convirtiendo en parte de Baalshandor. ¿Qué oportunidad tienes de resistir contra un monstruo del tamaño de Arkham?",
+    "backFlavor": "Vivo, muero. Y sólo crezco.\nResistir es inútil. Tú y los otros.\nLiberado, mi poder no tiene igual."
+  },
+  "78216": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "A cada momento que pasa, aumenta mi poder.\nEscuchad la Llamada.\nMi carne será vuestro final.",
+    "backFlavor": "Trasciendo.\nEvoluciono.\nTraigo mis dones a todas las criaturas de este decrépito mundo.\nEscuchad la Llamada.\n\n¿Atado?\n¿Otra vez?\nEntonces te reclamaré."
+  },
+  "78217": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Todo nos ha traído hasta aquí. Terminemos con Baalshandor y destruyamos su reino de pestilencia.",
+    "backFlavor": "No puedes matar a Baalshandor. Vida y muerte son lo mismo para el Portador de la Plaga.\nPero con el paso de extraños eones, incluso la muerte puede morir.\n\n“Tengo una teoría. Si la muerte es un estado necesario del ciclo de vida de esta criatura...¿Qué pasaría si lo atrapamos en un estado en que no pueda morir?”\n\nNo tenéis nada, el Portador de la Plaga está por todas partes y no para de crecer. Pero si no le das cuartel, si no le dejas donde expandirse..."
+  },
+  "78218": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Baalshandor puede que tenga control sobre la muerte. Pero si pudieras cortar esa conexión usando el reactivo reanimador...",
+    "backFlavor": "Las criaturas en las que se ha convertido Arkham empiezan a moverse como locas y se quedan inmóbiles de repente. Te acercas cuidadoso y agarras un zarcillo. Puedes sentir el pulso del monstruo, pero ya no se mueve.\nSe te sale el corazón por la garganta. ¿Ha funcionado?\nDas un respingo y te das cuenta de que estás cara a cara con la figura de Baalshandor.\n¿QUÉ HABÉIS HECHO?\n\nUn gigantesco miembro de carne se cierne sobre ti. Te lanzas tratando de esquivarlo, pero el maletín acaba bajo la trayectoria del temible brazo. Es devastador escuchar el sonido del cristal rompiéndose."
+  },
+  "78219": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "“Podemos detener esto, tienes que creerme”. Dice Herbert. ¿Qué otra opción te queda?",
+    "backFlavor": "Las criaturas en las que se ha convertido Arkham empiezan a moverse como locas y se quedan inmóbiles de repente. “¡La muerte está agonizando! ¡Ha funcionado!” West se ríe satisfecho.\nSe te sale el corazón por la garganta. ¿Ha funcionado?\nDas un respingo y te das cuenta de que estás cara a cara con la figura de Baalshandor. Sostiene a West sobre sus mandíbulas.\n¿QUÉ HABÉIS HECHO?\n“Soy Herbert West. Y he conquistado la muerte.”\nWest es engullido por las fauces del dios mientras sigue sonriendo.\n\nOyes un grito y ves a West luchando contra músculos y tendones que crecen desde el suelo tratando de atrapar sus miembros. Antes de que puedas reaccionar ya ha conquistado al doctor también."
+  },
+  "78220": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Combatir contra el Portador de la Plaga no está funcionando. Sigue creciendo. Pero si pudieras purificar lugares clave de Arkham y encontrar una manera de atarlo, tal vez al menos pudieras vincularlo a ese lugar.",
+    "backFlavor": "La ciudad está en completo silencio. El mundo parece haberse detenido. Todo lo que queda eres tú y Baalshandor. Aparece ante ti, con la misma forma de antes, pero habiendo triplicado su ya de por sí imposible tamaño.\nSUFICIENTE. MORID.\nEn unos instantes, eres devorado por completo."
+  },
+  "78221": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "El Portador de la Plaga ha sido derrotado, sus planes frustrados. Es la hora de terminar con esta pesadilla de una vez por todas.",
+    "backFlavor": "IMPOSIBLE.\n¡NO PODÉIS GANAR!\n¡NO SOIS NADA!\nESTOY... ROTO..."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

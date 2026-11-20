@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "plaguebearerMidnightHour": {
+        "title": "La llamada del Portador de la Plaga: La hora bruja y el epílogo",
+        "cards": "Escenario VIII con Lugares enemigo que se dan la vuelta entre Arkham y Baalshandor, el Cuerpo, la Mente y el Alma de Baalshandor, los Leales de Greyson y los Mensajeros, resoluciones 0–8 y epílogo con texto literal EN/ES. La campaña ya se puede jugar hasta el final.",
+        "rules": "Una campaña ganada con todos los investigadores muertos o locos ya no se muestra como perdida; los relatos nuevos quedan pendientes de locución."
+      },
       "chaosSelection": {
         "title": "Selección y sellado de fichas",
         "cards": "Nueve cartas y niveles nuevos: Olive McBride, Fragmentos del vacío, Dial de los Antiguos, Oscurecer, Flauta de los Dioses Exteriores y Ojo de Ghatanothoa.",

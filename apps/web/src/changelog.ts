@@ -1,6 +1,15 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'plaguebearer-midnight-hour',
+    date: '2026-11-20',
+    title: 'app.changelog.plaguebearerMidnightHour.title',
+    items: [
+      'app.changelog.plaguebearerMidnightHour.cards',
+      'app.changelog.plaguebearerMidnightHour.rules',
+    ],
+  },
+  {
     id: 'chaos-selection',
     date: '2026-11-20',
     title: 'app.changelog.chaosSelection.title',

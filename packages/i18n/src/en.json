@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "plaguebearerMidnightHour": {
+        "title": "Call of the Plaguebearer: The Midnight Hour and the epilogue",
+        "cards": "Scenario VIII with location enemies that flip between Arkham and Baalshandor, the Body, Mind and Soul of Baalshandor, Greyson’s Loyalists and the Messengers, resolutions 0–8 and the epilogue in literal EN/ES text. The campaign can now be played to the end.",
+        "rules": "A campaign won with every investigator killed or insane is no longer shown as lost; the new stories are pending narration."
+      },
       "chaosSelection": {
         "title": "Token selection and sealing",
         "cards": "Nine new cards and levels: Olive McBride, Shards of the Void, Dial of Ancients, Obscure, Flute of the Outer Gods and Eye of Ghatanothoa.",

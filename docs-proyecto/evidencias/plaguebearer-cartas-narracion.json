@@ -661,6 +661,118 @@
       "text": "Recitas las palabras. Te rasgan el alma, golpeándote como si fueran un animal salvaje. Pero aguantas estoicamente y surten efecto.\nPickman cae de rodillas. Boquea en busca de aire. Una herida, como el disparo de un rifle se abre en su pecho. Empieza a palparse la herida, como tratando de entender que acaba de ocurrir. Todo termina con un último intento de respirar que produce un ruido que te deja helado, ha muerto.\nLa memoria comienza a dar vueltas.",
       "file": "78187-back.mp3",
       "inputHash": "9f06062b4d2136893e873867ab089479ea8cc35258238e363b7d5917e149c175"
+    },
+    {
+      "code": "78214",
+      "side": "front",
+      "text": "Lo peor aún está por llegar. Baalshandor recorre las calles de Arkham para matarte.",
+      "file": "78214-front.mp3",
+      "inputHash": "6be004324a5c7c7e9aa68eea05b045cdc468ac4063679d6d88675040c4e88916"
+    },
+    {
+      "code": "78214",
+      "side": "back",
+      "text": "¿Muerte?\n¿Crees que puede amenazarme con la muerte?\nDa testimonio de mi muerte.\n\nEl ser que es Baalshandor explota con una lluvia de carne y vísceras.\n\nLa Muerte son mis dominios. En la muerte crezco.\nTus armas, tu magia, no significan nada para mi.\nAhora me toca a mi dar testimonio.\n\nA través de la ciudad, oyes una cacofonía de destrucción cuando edificios enteros repentinamente invadidos por la carne, se liberan...",
+      "file": "78214-back.mp3",
+      "inputHash": "0fbd2b05229e60514c7e400d402e391cdfce993e9b280c230203808927605bd9"
+    },
+    {
+      "code": "78215",
+      "side": "front",
+      "text": "En la muerte, el Portador de la Plaga sólo crece. La ciudad entera se está convirtiendo en parte de Baalshandor. ¿Qué oportunidad tienes de resistir contra un monstruo del tamaño de Arkham?",
+      "file": "78215-front.mp3",
+      "inputHash": "9a22aac02452607f713d1df2188c3b2c3121bf9904119eb7c3941886b25613a5"
+    },
+    {
+      "code": "78215",
+      "side": "back",
+      "text": "Vivo, muero. Y sólo crezco.\nResistir es inútil. Tú y los otros.\nLiberado, mi poder no tiene igual.",
+      "file": "78215-back.mp3",
+      "inputHash": "07d6af61b853529a7414e86200145763f98fb1ba8bb01dff822cee6fefc96545"
+    },
+    {
+      "code": "78216",
+      "side": "front",
+      "text": "A cada momento que pasa, aumenta mi poder.\nEscuchad la Llamada.\nMi carne será vuestro final.",
+      "file": "78216-front.mp3",
+      "inputHash": "0738739cf69f0374ebd85d94cb6fa09719c24f92d450bab6a7fb409c4291e6b7"
+    },
+    {
+      "code": "78216",
+      "side": "back",
+      "text": "Trasciendo.\nEvoluciono.\nTraigo mis dones a todas las criaturas de este decrépito mundo.\nEscuchad la Llamada.\n\n¿Atado?\n¿Otra vez?\nEntonces te reclamaré.",
+      "file": "78216-back.mp3",
+      "inputHash": "89086231642c27881492cbb8ac3691f184dae95a271a26198f9df9f4dfa5f78b"
+    },
+    {
+      "code": "78217",
+      "side": "front",
+      "text": "Todo nos ha traído hasta aquí. Terminemos con Baalshandor y destruyamos su reino de pestilencia.",
+      "file": "78217-front.mp3",
+      "inputHash": "f882235edebcfb90a174ef0e6677df61c07d92b8e6dc759b48bc7d6755a0b385"
+    },
+    {
+      "code": "78217",
+      "side": "back",
+      "text": "No puedes matar a Baalshandor. Vida y muerte son lo mismo para el Portador de la Plaga.\nPero con el paso de extraños eones, incluso la muerte puede morir.\n\n“Tengo una teoría. Si la muerte es un estado necesario del ciclo de vida de esta criatura...¿Qué pasaría si lo atrapamos en un estado en que no pueda morir?”\n\nNo tenéis nada, el Portador de la Plaga está por todas partes y no para de crecer. Pero si no le das cuartel, si no le dejas donde expandirse...",
+      "file": "78217-back.mp3",
+      "inputHash": "f6ccae22b1ba264b7593d05c4c3d3f3f5e7b022ebd629813ac8935134cc64636"
+    },
+    {
+      "code": "78218",
+      "side": "front",
+      "text": "Baalshandor puede que tenga control sobre la muerte. Pero si pudieras cortar esa conexión usando el reactivo reanimador...",
+      "file": "78218-front.mp3",
+      "inputHash": "fa1dcfc44330e15a68c7f788593992ee32f1e153c6afd758de352dea146ec15e"
+    },
+    {
+      "code": "78218",
+      "side": "back",
+      "text": "Las criaturas en las que se ha convertido Arkham empiezan a moverse como locas y se quedan inmóbiles de repente. Te acercas cuidadoso y agarras un zarcillo. Puedes sentir el pulso del monstruo, pero ya no se mueve.\nSe te sale el corazón por la garganta. ¿Ha funcionado?\nDas un respingo y te das cuenta de que estás cara a cara con la figura de Baalshandor.\n¿QUÉ HABÉIS HECHO?\n\nUn gigantesco miembro de carne se cierne sobre ti. Te lanzas tratando de esquivarlo, pero el maletín acaba bajo la trayectoria del temible brazo. Es devastador escuchar el sonido del cristal rompiéndose.",
+      "file": "78218-back.mp3",
+      "inputHash": "7476e48bd760e5e67faef2a473dad61aa7e00f0017c70901d127920b759fa002"
+    },
+    {
+      "code": "78219",
+      "side": "front",
+      "text": "“Podemos detener esto, tienes que creerme”. Dice Herbert. ¿Qué otra opción te queda?",
+      "file": "78219-front.mp3",
+      "inputHash": "3e808c691a808e69d3b4ff2500430c96d8036c473b547d86ae190e0ac59399d5"
+    },
+    {
+      "code": "78219",
+      "side": "back",
+      "text": "Las criaturas en las que se ha convertido Arkham empiezan a moverse como locas y se quedan inmóbiles de repente. “¡La muerte está agonizando! ¡Ha funcionado!” West se ríe satisfecho.\nSe te sale el corazón por la garganta. ¿Ha funcionado?\nDas un respingo y te das cuenta de que estás cara a cara con la figura de Baalshandor. Sostiene a West sobre sus mandíbulas.\n¿QUÉ HABÉIS HECHO?\n“Soy Herbert West. Y he conquistado la muerte.”\nWest es engullido por las fauces del dios mientras sigue sonriendo.\n\nOyes un grito y ves a West luchando contra músculos y tendones que crecen desde el suelo tratando de atrapar sus miembros. Antes de que puedas reaccionar ya ha conquistado al doctor también.",
+      "file": "78219-back.mp3",
+      "inputHash": "168af02fdf127dbd1afc45ad2531157ca4a16f079e23740bb85164ff9981a0b2"
+    },
+    {
+      "code": "78220",
+      "side": "front",
+      "text": "Combatir contra el Portador de la Plaga no está funcionando. Sigue creciendo. Pero si pudieras purificar lugares clave de Arkham y encontrar una manera de atarlo, tal vez al menos pudieras vincularlo a ese lugar.",
+      "file": "78220-front.mp3",
+      "inputHash": "dfe4c552cea09faa06cb0f13c7677adaf8d8e43384dda426c4fa1ef495d34b50"
+    },
+    {
+      "code": "78220",
+      "side": "back",
+      "text": "La ciudad está en completo silencio. El mundo parece haberse detenido. Todo lo que queda eres tú y Baalshandor. Aparece ante ti, con la misma forma de antes, pero habiendo triplicado su ya de por sí imposible tamaño.\nSUFICIENTE. MORID.\nEn unos instantes, eres devorado por completo.",
+      "file": "78220-back.mp3",
+      "inputHash": "7178f985d9d3f2876dc772f5b61467c40a7dc713259f1cfe3d245fa240892180"
+    },
+    {
+      "code": "78221",
+      "side": "front",
+      "text": "El Portador de la Plaga ha sido derrotado, sus planes frustrados. Es la hora de terminar con esta pesadilla de una vez por todas.",
+      "file": "78221-front.mp3",
+      "inputHash": "521e6b59dc9e988bcced968a7fc4cf9029ec35c3338dc904b3f8bbed686e2d91"
+    },
+    {
+      "code": "78221",
+      "side": "back",
+      "text": "IMPOSIBLE.\n¡NO PODÉIS GANAR!\n¡NO SOIS NADA!\nESTOY... ROTO...",
+      "file": "78221-back.mp3",
+      "inputHash": "c04a3a109c47a21dc678290d8a667a64fcb741977c3e42a9a94b370d30fabcb3"
     }
   ]
 }

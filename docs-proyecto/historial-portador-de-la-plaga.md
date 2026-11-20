@@ -344,3 +344,49 @@ Estado vigente y fuentes en [94 · Portador de la Plaga](94-portador-de-la-plaga
   narración, referencias, presentación e imágenes ES); cobertura del Portador (112 partidas,
   16 del VII); campaña (55); `verify-card-images` (6797); tipos, Prettier y ESLint de lo
   tocado. Motor sin cambios. Sin navegador.
+
+### Continuación de implementación · 2026-11-20 (VIII y epílogo)
+
+- Lote: VIII · La hora bruja y epílogo, sin commit, sobre `812c1c51` (sin pull: cambios
+  ajenos en `main`). El VII y la corrección del catálogo de relatos (`9578eb72`) ya estaban
+  subidos. Fuentes en `E:\Plaguero`; EN: Lugares Protegidos, Leales y Mensajeros tienen la
+  historia en `-1` y el apoyo/Lugar en `-2` (al revés que ES).
+- Preparación: Arkham Normal o Protegido por Lugar, Cráter (sustituye a su Lugar) o Lugar de
+  la Liberación con Baalshandor (sin registro: Motel Hibb), Leales de Greyson en el Motel si
+  Greyson cortó lazos, Herbert West desde el mazo o con Alianzas frágiles salvo si la Muerte
+  le conquistó, heridas 2/2 o debilidad aleatoria (Lesión/Defecto/Maldición/Fin de los
+  tiempos) si Baalshandor golpeó primero o la Muerte conquistó a West, Intro 2 y «conoces la
+  atadura» con el acertijo, inicio a elección del jefe. Bolsa con `plaguebearerChaosBag`.
+- Reglas: Lugares enemigo como enemigos Descomunales inmóviles en su Lugar (cara guardada en
+  `scenarioMeta`), pistas al darse la vuelta, derrota → vuelta (sin descartarse) y
+  conversión daño ↔ pistas; cara Segura con su beneficio; Protegidos con [free] e historia
+  (tres opciones y 1 horror); plan 1 (Cazador/Descomunal, perdición que pasa al plan 2),
+  1b (Infectados, Mensajeros, mazo y acto 1b), planes 2–3 (sin vuelta con horror; forzado de
+  fin de ronda; Poder desatado y Carne desatada), actos El Reactivo / El Doctor / Detener el
+  crecimiento, 3b (Cuerpo, Mente y Alma) y 4 (daño y curación de Baalshandor), Mensajeros,
+  Leales, cuatro cartas de encuentro y las cuatro fichas.
+- Decisiones: la R2 (EN y ES) lista «han muerto» varias veces, una «locos» y «ganan la
+  campaña»: se aplica «cada investigador ha muerto» y «ganan la campaña» (el texto dice «te
+  he frustrado… estamos unidos»). La R0 (tachada, como los textos ocultos) se ofrece tras
+  cualquier resolución: el primero que la lee anota «recibiste un regalo envenenado» (la
+  misma nota del Interludio I), que solo cuenta en el epílogo con «encadenado de nuevo». La
+  conversión daño ↔ pistas no se encadena (las pistas descubiertas por el daño no vuelven a
+  dañar). Leales de Greyson sin controlador en el Motel Hibb (ES). El Mensajero del Rey se
+  retira tras su historia (EN); el de la Llama vuelve a su cara con horror. EN manda: Teme la
+  vida retorcida y Destrucción creciente usan [willpower]/[combat] (ES [agility]); Uno de
+  muchos inflige solo horror; Protegidos (EN «Rallied») frente a «Defendido» (ES).
+  «Habéis sido advertidos» no se consulta en el VIII (solo en el Interludio V).
+- Corregido: `campaignLost` daba por perdida una campaña ganada en la que todos murieron o
+  enloquecieron (R2, R4, R5); ahora respeta `campaignWon`, con regresión en
+  `midnight-hour.test.ts`.
+- Aproximaciones: los Lugares enemigo no hacen ataques de oportunidad (el motor no distingue
+  las acciones de investigar); el reactivo/West «cuando fuese a darse la vuelta» coloca el
+  horror tras la vuelta (si no, la vuelta quedaría bloqueada); los beneficios «de la
+  colección» buscan en el mazo y «jugar sin coste» se reduce a buscar/añadir; Echando una
+  mano da 1 recurso; Carne desatada hace que cada enemigo Miasma ataque a quien esté en su
+  Lugar al empezar la fase de enemigos; Baalshandor en los actos 3b–4 se representa en el
+  Alma sin poder atacarse ni enfrentarse; la «Negociación» del acto 1 es una prueba de
+  [intellect] contra el velo.
+- Recursos: 46 entradas EN/ES de cartas, 138 caras AVIF y miniaturas WebP (`media.json` 916),
+  relatos literales en `plaguebearer.{es,en}.json` y `story/{es,en}.json`; 15 relatos y 16
+  caras de planes/actos pendientes de locución.

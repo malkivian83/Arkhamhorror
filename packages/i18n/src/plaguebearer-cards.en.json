@@ -1589,6 +1589,332 @@
     "traits": "Terror",
     "text": "Surge.\nRevelation – If Tendrils of the First is engaged with at least 1 investigator, it attacks each engaged investigator. Otherwise, move it 1 location towards the nearest investigator."
   },
+  "78213": {
+    "name": "The Midnight Hour",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X is the number of locations with a horror on them. (Max 4.)\n[cultist]: –4. If you succeed, deal 1 damage to any enemy in play or discover 1 clue from any location in play.\n[tablet]: –4. If you fail, move once towards the nearest Miasma location.\n[elder_thing]: –3. If you fail, each investigator who has Heeded the Call must resolve a Forced ability on a Miasma location as if they had started their turn there.",
+    "backText": "[skull]: –X. X is the number of locations with a horror on them.\n[cultist]: –6. If you succeed, deal 1 damage to any enemy in play or discover 1 clue from any location in play.\n[tablet]: –4. After this test ends, move once towards the nearest Miasma location.\n[elder_thing]: –3. If you fail, each investigator who has Heeded the Call must resolve the Forced ability on each Miasma location as if they had started their turn there."
+  },
+  "78214": {
+    "name": "The Plaguebearer Unbound",
+    "typeCode": "agenda",
+    "text": "Baalshandor gains Hunter and Massive.\nDo not remove doom from this agenda when it advances.\nForced – After Baalshandor leaves play: Advance this agenda.",
+    "flavor": "The worst has come to pass. Baalshandor walks the streets of Arkham, seeking your death.",
+    "backName": "Death is Only The Beginning",
+    "backText": "Set Baalshandor aside, out of play. Move all doom from Agenda 1a to Agenda 2a. Shuffle the set-aside copies of Growing Destruction, One of Many, and Fear the Writhing Life into the encounter deck.\nCheck Campaign Log. For each location marked as Infected, flip it over. If a location is recorded as Flame-Touched, place the set-aside Messenger of Flame asset at that location. If a location is recorded as Madness-Touched, place the set-aside Messenger of the King asset at that location.\nAdvance to Act 1b.",
+    "backFlavor": "Death?\nYou think you threaten me with death?\nBear witness to my demise.\n\nThe being that is Baalshandor explodes outwards in a tide of flesh.\n\nDeath is my dominion. In death, I only grow.\nYour weapons, your magics - they mean nothing to me.\nNow it is my turn to bear witness.\n\nThroughout the city, you hear a cacophony of destruction as entire buildings, suddenly overtaken with flesh, tear themselves free…"
+  },
+  "78215": {
+    "name": "Arkham Infected",
+    "typeCode": "agenda",
+    "text": "Locations with horror on them cannot be flipped or make attacks of opportunity.\nForced – At the end of the round, for each investigator at a non-Miasma location with no horror on it: You must either flip the nearest Stable location, or place 1 doom on the nearest Miasma enemy with no horror on it.",
+    "flavor": "In death, the Plaguebearer has only grown. The entire city is becoming part of Baalshandor. What chance do you stand against a monster the size of Arkham?",
+    "backName": "Behold the Flesh",
+    "backText": "Shuffle the set-aside Unbound Power encounter set into the encounter deck, along with the encounter discard pile.\nCheck Campaign Log. If a location is recorded as the Site of Unbinding, the lead investigator draws the set-aside Flesh Unbound encounter card.",
+    "backFlavor": "I live, I die. I only grow.\nResistance is useless. Yours, and others.\nUnbound, my power has no equal."
+  },
+  "78216": {
+    "name": "Monstrous City",
+    "typeCode": "agenda",
+    "text": "Locations with horror on them cannot be flipped or make attacks of opportunity.\nForced – At the end of the round, for each investigator at a non-Miasma location with no horror on it: You must either flip the nearest Stable location, or place 1 doom on the nearest Miasma enemy with no horror on it.",
+    "flavor": "With each passing moment, I grow more powerful.\nHeed the Call.\nMy flesh will be your end.",
+    "backName": "Behold The Blood",
+    "backText": "If it is not Act 4:\nI transcend.\nI evolve.\nI bring my gifts to all the creatures on this wretched world.\n\nHeed the call.\n(→R1)\nIf it is Act 4:\nBound?\nAgain?\nThen I will claim you.\n(→R2)"
+  },
+  "78217": {
+    "name": "Death of the Plaguebearer",
+    "typeCode": "act",
+    "text": "Baalshandor’s location gains the Miasma trait and: “[fast]: Parley. Investigate. If you succeed, deal 1 damage to Baalshandor.”\nObjective – Defeat Baalshandor.",
+    "flavor": "It all comes down to this. Destroy Baalshandor and end his rein of pestilence.",
+    "backName": "A Sliver of Hope",
+    "backText": "Check Campaign Log. If an investigator controls Suspicious Briefcase and the investigators “received a cryptic riddle”:\nYou cannot kill Baalshandor. Death and life are the same to the Plaguebearer.\nBut with strange aeons, even death may die.\nProceed to Act 2a: The Reagent.\nOtherwise, if an investigator controls Herbert West:\n“I have a theory. If death is a necessary form of this creature’s life cycle… what if we could trap it in an undying state?”\nProceed to Act 2a: The Doctor.\nOtherwise:\nYou have nothing. The Plaguebearer is everywhere and only growing. But if you can give him no quarter, nowhere to spread…\nProceed to Act 3a: Stunt the Growth."
+  },
+  "78218": {
+    "name": "The Reagent",
+    "typeCode": "act",
+    "text": "[reaction] When a Miasma location would flip, if an investigator at that location controls Suspicious Briefcase, you may spend 2 [per_investigator] clues as a group: Place 1 horror on that location.\nObjective – At the end of the round, if each location has a horror on it, advance.\nObjective – This isn’t working. At the end of the round, the investigators may advance.",
+    "flavor": "Baalshandor may have dominion over death. But if you could sever that connection using the re-animation reagent…",
+    "backName": "Fruits of Science",
+    "backText": "If each location has a horror on it:\nThe creatures that Arkham has become thrash about madly, then grow still. You tentatively inch closer, then grab a tendril. You can feel the pulse of the monster, but it no longer moves.\nYour heart catches in your throat. Did it work?\nYou shake yourself, and find that you are standing before the form of Baalshandor.\nWHAT HAVE YOU DONE?\nRemember that “you have conquered death.” Advance to act 3b.\nOtherwise:\nA massive limb of flesh comes bearing down upon you. You trip as you dodge, and the briefcase goes sliding underneath the arm’s path. You cry out as you hear the telltale crunching of glass.\nIf Suspicious Briefcase is in any play area, remove it from the game. Advance to act 3a."
+  },
+  "78219": {
+    "name": "The Doctor",
+    "typeCode": "act",
+    "text": "[reaction] When a Miasma location would flip, if an investigator at that location controls Herbert West, you may spend 2 [per_investigator] clues as a group: Place 1 horror on that location.\nObjective – At the end of the round, if each location has a horror on it, advance.\nObjective – West’s plan is folly. At the end of the round, the investigators may advance.",
+    "flavor": "“We can stop this – You just have to trust me.” Herbert says. What choice do you have?",
+    "backName": "Life’s Purpose",
+    "backText": "If each location has a horror on it:\nThe creatures that Arkham has become thrash about madly, then grow still. “Death throes! It’s working!” West cackles with delight.\nYour heart catches in your throat. Is Dr. West right?\nYou shake yourself from your thoughts, and find that you are standing before the form of Baalshandor. He holds West aloft before his jaws.\nWHAT HAVE YOU DONE?\n“I am Herbert West. And I have conquered death.”\nWest is pulled into the god’s maw still grinning.\nRemember that “Herbert West conquered death”. Move each investigator to Baalshandor’s location. Advance to act 3b.\nOtherwise:\nYou hear a shout, and see West grappling with muscle and sinew growing from the ground to trap his limbs. Before you can react, they have covered the doctor altogether.\nIf Herbert West is in any play area, remove him from the game. Advance to act 3a."
+  },
+  "78220": {
+    "name": "Stunt the Growth",
+    "typeCode": "act",
+    "text": "[reaction] After you defeat and flip a Miasma enemy, if you “know of the binding”, the investigators spend 2 [per_investigator] clues as a group: Place 1 horror on the Stable location side of that enemy.\nObjective – At the end of the round, if each location has a horror on it, advance.",
+    "flavor": "Fighting the Plaguebearer isn’t working. He’s only growing further. But if you can purify his strongholds in Arkham and find a way to bind him, you could at least bind him to the spot.",
+    "backName": "Fury of the Plaguebearer",
+    "backText": "Remove each location and story asset at those locations from the game. Discard each enemy that is removed this way.\nPut the set aside Body of Baalshandor (Thrashing), Mind of Baalshandor (Scheming), and Soul of Baalshandor (Hating) into play. Move each investigator to the Soul of Baalshandor.\nPut the set-aside Baalshandor enemy into play next to the act deck. For the remainder of the scenario, Baalshandor is considered to be in play but is not at any location.",
+    "backFlavor": "The city falls silent. The world seems to fall away. All that exists is you and Baalshandor. He looms in your vision, the same shape as before, but thrice his previous impossible size.\nENOUGH. DIE.\nIn moments, you are swallowed whole."
+  },
+  "78221": {
+    "name": "Life of the Plaguebearer",
+    "typeCode": "act",
+    "text": "Forced – When you defeat a Miasma location enemy: Deal 1 [per_investigator] damage to Baalshandor.\nForced – When a location enemy enters play: Heal 1 [per_investigator] damage from Baalshandor.\nObjective – If Baalshandor is defeated, advance.",
+    "flavor": "The Plaguebearer is defeated, his plots foiled. It’s time to end this nightmare once and for all.",
+    "backName": "Life’s Undoing",
+    "backText": "If “you have conquered death”, (→R7).\nIf “Herbest West conquered death”, (→R8).\nOtherwise, (→R3).",
+    "backFlavor": "IMPOSSIBLE.\nYOU CANNOT WIN!\nYOU ARE NOTHING!\nI AM… UNDONE…"
+  },
+  "78222": {
+    "name": "Arkham Advertiser",
+    "subname": "Word of Mouth",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may return an event from their discard pile to their hand.",
+    "backName": "Arkham Advertiser",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Exile the event in your hand with the highest experience cost."
+  },
+  "78223": {
+    "name": "Bank of Arkham",
+    "subname": "The War Chest",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may gain 2 resources.",
+    "backName": "Bank of Arkham",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Lose all your resources."
+  },
+  "78224": {
+    "name": "General Store",
+    "subname": "Lend a Hand",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may play an asset from their hand, reducing it’s resource cost by 1.",
+    "backName": "General Store",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Choose a non-permanent asset you control. Discard each asset in your play area and hand with the same resource cost as the chosen asset."
+  },
+  "78225": {
+    "name": "Hibb’s Roadhouse",
+    "subname": "Seedy Underbelly",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may gets +1 to each of their skills until the end of the round.",
+    "backName": "Hibb’s Roadhouse",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: You automatically fail the next test you take this phase."
+  },
+  "78226": {
+    "name": "Ma’s Boarding House",
+    "subname": "Heart of Arkham",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may return an Ally asset from their discard pile to their hand.",
+    "backName": "Ma’s Boarding House",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Move damage from this location onto a single Ally asset you control equal to that asset’s remaining health."
+  },
+  "78227": {
+    "name": "Orne Library",
+    "subname": "The Brain’s Paradise",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may draw 2 cards.",
+    "backName": "Orne Library",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Choose and discard all but 2 cards from your hand."
+  },
+  "78228": {
+    "name": "River Docks",
+    "subname": "Take to Arms",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may return a skill card from their discard pile to their hand.",
+    "backName": "River Docks",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Discard each skill card in your hand."
+  },
+  "78229": {
+    "name": "Ye Olde Magick Shoppe",
+    "subname": "With Eyes Unseen",
+    "typeCode": "location",
+    "traits": "Stable.",
+    "text": "[reaction] After you flip to this side of this location: Each investigator at this location may return the highest cost asset in their discard pile to their hand.",
+    "backName": "Ye Olde Magick Shoppe",
+    "backText": "Miasma. Elite.\nForced – After you start your turn at this location: Draw the top card of the encounter deck."
+  },
+  "78230": {
+    "name": "Arkham Advertiser",
+    "subname": "Final Edition",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[reaction] After you play an event at this location: Draw 1 card and gain 1 resource. (Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Good News",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may search their deck and discard pile for an event, and play it at no cost.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "“We’ve been piecing together the details of all of this - doing what research we can ever since you saved us.” Doyle motions to a desk plastered with back-issues and snippets of old articles. “It might sound batty, but everything that’s happened in the past day - it fits a pattern. You fit a pattern, too. A pattern that don’t always end good - but it don’t always end bad neither. And, if you’ll hear it, I think we have some ideas about how you might make it a happy ending.”"
+  },
+  "78231": {
+    "name": "Bank of Arkham",
+    "subname": "Market Close",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[reaction] After you successfully investigate this location: Gain 2 resources. (Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Lucky Break",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may gain 10 resources.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "“Let me be perfectly clear. This gold I am entrusting you is not enchanted. We have kept it in the bank since its founding merely because its proper owner has never come to collect it. That the bank and the city have prospered despite the overwhelming odds that come with the instability of this region while it lay in our deepest vault is merely a coincidence.\nPlease do bring it back when this is all over.”"
+  },
+  "78232": {
+    "name": "General Store",
+    "subname": "Everything Must Go",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[fast] Spend any number of resources: Search the top X cards of your deck for an asset and put it into play, where X is twice the number of resources you spent. Shuffle your deck. (Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Needful Things",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may return any number of assets in play to their hand. Each investigator may play any number of assets from their hand at no cost.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "“While you were out, the oddest man dropped by. Thin, pointy little beard. Said he had something for you - this amulet. Said you’d need it when the time was right.” Davy looks out the window at the increasing carnage all over town.\n“Now seems like the right time.”"
+  },
+  "78233": {
+    "name": "Hibb’s Roadhouse",
+    "subname": "Last Call",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[reaction] After you succeed at a skill test by 2 or more at this location: Heal 1 damage or 1 horror from a card you control.(Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Restorative Spirits",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may heal 3 damage and 3 horror. If an investigator controls Hibbs, that investigator may instead heal all damage and horror from their investigator.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "A safe is dragged out from under the bar - dusty, and clearly decades old. Inside, beside a tattered deed, is a bottle of something vaguely luminescent. “Hibbs always joked he had some water from the fountain of youth. We always figured it was a sham, but what do you know? We took a vote and think you deserve it.”"
+  },
+  "78234": {
+    "name": "Ma’s Boarding House",
+    "subname": "Friends to the End",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[fast]: Search your deck for an Ally asset and add it to your hand. Shuffle your deck. (Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Divine Intervention",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may search the collection for a level 0-3 Ally asset and put it into play under their control.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "“I know you think I’m a doddering old fool. But there is power in prayer. Miracles can occur.” Ma Matheson opens the door to reveal a face you never thought you’d see again. “The Lord works in mysterious ways, dearie.”"
+  },
+  "78235": {
+    "name": "Orne Library",
+    "subname": "Past Due",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[reaction] After the draw cards step of upkeep, if you have 5 or more cards in hand: Draw 1 card.\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Librarian’s Gambit",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may draw until they reach their maximum hand size. Shuffle any weaknesses drawn this way back into your deck.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "Armitage trembles as he hands you a sheet of parchment. “Against my better judgement, I’ve been reading through the Necronomicon Ex Mortis. I have found an invocation of power…. it will either grant you immense knowledge or it will kill someone on the spot. Frustratingly difficult to say. My capability with Aramaic is lacking, but I am confident this will do what you need. I trust you will destroy this translation once it is no longer needed - using it twice would have catastrophic results.”"
+  },
+  "78236": {
+    "name": "River Docks",
+    "subname": "Quitting Time",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[reaction] When you commit an eligible skill card to a skill test at this location: It gains [wild] and the text: “After this test ends, you may draw 1 card.” (Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Lunacy’s Reward",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may search their deck and discard pile for up to 3 skill cards and add them to their hand.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "“Some time ago, the boys found one of the warehouses sorta empty. Filled with corpses and deathtraps. And… weirder stuff. We’ve kept it under lock and key, but figured you might know what to do with it.” Abner hefts a longbox filled to the brim with unspeakable implements. Just what you need to give you a boost - or destroy something completely."
+  },
+  "78237": {
+    "name": "Ye Olde Magick Shoppe",
+    "subname": "The End of Days",
+    "typeCode": "location",
+    "traits": "Rallied.",
+    "text": "[fast]: Draw the top card of the encounter deck. Then, search your deck for a Spell or Relic asset and put it into play. Shuffle your deck. (Limit once per round.)\nWhile it is not act 1, this location gains: “[free] Spend 2 [per_investigator] clues: Flip this location and resolve its story text.”",
+    "backName": "Heart’s Desire",
+    "backText": "The investigator who flipped this card chooses one:\n– Each investigator may search the collection for a level 0-3 non-Ally asset and put it into play under their control.\n– Flip any number of non-Rallied locations.\n– Place a horror token on a location.\nFlip this card over and place a horror token on it.",
+    "backFlavor": "Miriam’s form rises through the air, energy crackling between her hands and the ground. “Such a strange thing, our fragile forms. Yet the power we hold sway over… What is your wish, mortal? You need merely envision what you desire, and I will summon it from your world or the next.”"
+  },
+  "78238": {
+    "name": "Body of Baalshandor",
+    "subname": "Thrashing",
+    "typeCode": "location",
+    "traits": "Miasma. Elite.",
+    "text": "[fast]: Parley. Lose 1 resource. Move to the Soul of Baalshandor.",
+    "backName": "Body of Baalshandor",
+    "backText": "Miasma.\nForced – After you start your turn at this location: If you do not control a copy of Strength of Flesh, flip Body of Baalshandor.",
+    "backFlavor": "No living flesh may betray my might.\nHeed the call, puppet."
+  },
+  "78239": {
+    "name": "Mind of Baalshandor",
+    "subname": "Scheming",
+    "typeCode": "location",
+    "traits": "Miasma. Elite.",
+    "text": "[fast]: Parley. Choose and discard a card from your hand. Move to the Body of Baalshandor.",
+    "backName": "Mind of Baalshandor",
+    "backText": "Miasma.\nForced – After you start your turn at this location: If you do not control a copy of Unbreakable Will, flip Mind of Baalshandor.",
+    "backFlavor": "My mind is endless.\nWhat mortal will can stand against me?"
+  },
+  "78240": {
+    "name": "Soul of Baalshandor",
+    "subname": "Hating",
+    "typeCode": "location",
+    "traits": "Miasma. Unbinding. Elite.",
+    "text": "Retaliate. Alert.\n[fast][fast]: Parley. Move to the Mind of Baalshandor.",
+    "backName": "Soul of Baalshandor",
+    "backText": "Miasma. Unbinding.\nForced – After you start your turn at this location, if there is another investigator at this location: Flip this location.",
+    "backFlavor": "I am the darkness in each heart,\nthe stain upon each soul.\nNone dare fight the Plaguebearer."
+  },
+  "78241": {
+    "name": "Crater of Unbinding",
+    "typeCode": "location",
+    "traits": "Stable. Unbinding.",
+    "text": "Crater of Unbinding is connected to each Stable location, and vice-versa.\nInvestigators at attached location are considered to be engaged with each Miasma enemy during the enemy phase.",
+    "backName": "Cradle of Baalshandor",
+    "backText": "Miasma. Unbinding.\nCradle of Baalshandor is connected to each location with a horror on it, and vice-versa.\nForced – After you start your turn at this location: place 1 doom on this location."
+  },
+  "78242": {
+    "name": "Greyson’s Loyalists",
+    "typeCode": "asset",
+    "traits": "Human. Agency.",
+    "text": "[fast] If you control Agent Greyson: Move Greyson’s Loyalists to an adjacent location.\n[reaction] At the end of the round, if it is not act 1, exile Agent Greyson: Flip this card and resolve its story text.\nForced – At the end of the round: Greyson’s Loyalists deals 2 damage to each enemy at their location.",
+    "backName": "Their Finest Hour",
+    "backText": "Remember that “you know of the binding”. You may defeat any Miasma enemy. You may place 1 horror on any location. Remove this card from the game.",
+    "backFlavor": "Greyson motions you aside, and shoves a binder full of papers into your hands. “Contingency plan, sent from on high. I can’t make heads or tails of it - but you can. You got one shot at this. Understood?”\nBefore you can respond, Greyson turns to her assembled agents with grim-faced determination.\n“It’s the end of the world. You’re gonna die tonight. Same as everybody else. But there’s two differences between you and the rest of the world.\n“One - they didn’t sign up for this.\nTwo - You got a chance to stop it. To save everyone you ever gave a damn about.\nSo what do you say, ladies? Who else feels like spitting in the face of death tonight?”"
+  },
+  "78243": {
+    "name": "Messenger of the Flame",
+    "typeCode": "asset",
+    "traits": "Monster. Servitor.",
+    "text": "Forced – At the start of the enemy phase, if Feed the Flame is at a Miasma location without horror: Defeat that location. Otherwise, move Feed the Flame once towards the nearest Miasma location without horror.\n[fast] If it is not act 1, the investigators spend 3 [per_investigator] clues, as a group: Parley. Out of desperation, you seek a bargain with Cthugha. Flip this card and resolve its story text.",
+    "backName": "Feed the Flame",
+    "backText": "Remember that “you know of the binding”. Remember that “your body belongs to Cthugha”. Exile each copy of Strength of Flesh. Choose up to 2 locations. Flip any Miasma locations chosen this way. Place a horror on the chosen locations. Flip this card back over and place a horror on it.",
+    "backFlavor": "The terrifying messenger offers a massive palm. Nervously, you place your hand on his own. Immediately, you are wracked with pain, as fire burns up the sides of your arm and around your neck. It burns away, leaving a deep black charring snaking down your limb. Your arm trails smoke that leads back to the Messenger. The knowledge burns in your mind - sigils and incantations to renew the bindings.\nThe deal is struck. You are kindling, waiting to be used."
+  },
+  "78244": {
+    "name": "Messenger of the King",
+    "typeCode": "asset",
+    "traits": "Monster. Servitor.",
+    "text": "Forced – At the start of the enemy phase, if Messenger of the King is at a Miasma location without horror: Defeat that location. Otherwise, move Messenger of the King once towards the nearest Miasma location without horror.\n[fast] If it is not act 1, the investigators spend 3 [per_investigator] clues, as a group: Parley. Out of desperation, you seek a bargain with the King. Flip this card and resolve its story text.",
+    "backName": "Beseech the King",
+    "backText": "Remember that “you know of the binding”. Remember that “you owe Hastur your life”. Exile each copy of Unbreakable Will. Choose up to 2 locations. Flip any Miasma locations chosen this way. Place a horror on the chosen locations. Remove this card from the game.",
+    "backFlavor": "You kneel before the enigmatic yellow Messenger. It lowers its towering mask to meet your gaze, then unfurls a lengthy scroll. With a wrinkled grey talon, it draws a ragged line across the bottom of the scroll, then beckons you to sign. Though the scroll is in a language you have never seen, you comprehend that your very existence is the price that is demanded. You sign without hesitation. The knowledge floods your mind - sigils and incantations to renew the bindings.\nYou must complete your task, then await the King’s mercy."
+  },
+  "78245": {
+    "name": "Baalshandor",
+    "subname": "The Plaguebearer",
+    "typeCode": "enemy",
+    "traits": "Ancient One. Elite.",
+    "text": "Victory 5.",
+    "flavor": "I am the progenitor.\nAll life bows to me.\nYour efforts are meaningless."
+  },
+  "78246": {
+    "name": "Flesh Unbound",
+    "typeCode": "treachery",
+    "traits": "Power.",
+    "text": "Cannot be canceled or discarded.\nRevelation – Attach to the location recorded in your Campaign Log as the Site of Unbinding.\nInvestigators at attached location are considered to be engaged with each Miasma enemy during the enemy phase."
+  },
+  "78247": {
+    "name": "Fear the Writhing Life",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Test [willpower] (3). If you fail, put Fear the Writhing Life into play in your threat area.\nForced – After your location flips: Take 2 damage.\n[reaction] After you defeat a Miasma enemy: Discard Fear the Writhing Life.",
+    "flavor": "Fear me."
+  },
+  "78248": {
+    "name": "Growing Destruction",
+    "typeCode": "treachery",
+    "traits": "Power.",
+    "text": "Revelation – Flip the nearest non-Rallied location to its enemy side. Then, choose one:\n– Test [willpower] (X). X is that location’s shroud value.\n– Test [combat] (X). X is that enemy’s fight value.\nIf you fail either test, that enemy attacks you, regardless of location.",
+    "flavor": "I cannot be contained."
+  },
+  "78249": {
+    "name": "One of Many",
+    "typeCode": "enemy",
+    "traits": "Monster. Servitor. Infected.",
+    "text": "Aloof. Hunter.\nForced – When One of Many’s location would flip: Cancel the flip of that location, remove all tokens from that location, and deal 1 horror to each investigator at that location.\n[reaction] After you defeat One of Many: Flip its location and resolve any story text.",
+    "flavor": "My servants are endless."
+  },
   "78250": {
     "name": "Agency Troubleshooter",
     "typeCode": "enemy",
@@ -1890,5 +2216,59 @@
     "traits": "Floor 0.",
     "text": "Revelation – Place Pickman’s Memory in the victory display, and attach each asset in the victory display to it. Spawn the set-aside Dr. Elias Pickman enemy at Pickman’s Memory.\nEach enemy and investigator in the victory display is considered to be at Pickman’s Memory.\nVictory 1.",
     "flavor": "A final moment, trapped in time."
+  },
+  "78222b": {
+    "name": "Mouth of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Exile the event in your hand with the highest experience cost."
+  },
+  "78223b": {
+    "name": "Chest of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Lose all your resources."
+  },
+  "78224b": {
+    "name": "Claws of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Choose a non-permanent asset you control. Discard each asset in your play area and hand with the same resource cost as the chosen asset."
+  },
+  "78225b": {
+    "name": "Belly of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: You automatically fail the next test you take this phase."
+  },
+  "78226b": {
+    "name": "Heart of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Move damage from this location onto a single Ally asset you control equal to that asset’s remaining health."
+  },
+  "78227b": {
+    "name": "Brain of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Choose and discard all but 2 cards from your hand."
+  },
+  "78228b": {
+    "name": "Arms of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Discard each skill card in your hand."
+  },
+  "78229b": {
+    "name": "Eye of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Elite.",
+    "text": "Forced – After you start your turn at this location: Draw the top card of the encounter deck."
+  },
+  "78241b": {
+    "name": "Cradle of Baalshandor",
+    "typeCode": "enemy",
+    "traits": "Miasma. Unbinding.",
+    "text": "Cradle of Baalshandor is connected to each location with a horror on it, and vice-versa.\nForced – After you start your turn at this location: place 1 doom on this location."
   }
 }

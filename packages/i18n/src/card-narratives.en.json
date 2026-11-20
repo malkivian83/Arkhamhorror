@@ -235,6 +235,54 @@
     "flavor": "The ritual is ready. If you enter a place beyond existence and eliminate the soul inside of the creature, you can destroy it, once and for all.",
     "backFlavor": "You speak the words. They tear at your very soul, thrashing in your sway like a wild animal. But you hold strong, and they strike true.\nPickman drops to his knees. As he gasps for air, a wound, like a rifle shot, appears on his chest. He frantically tears at the opening, as if trying to comprehend what is happening. With a terrible choking noise, he falls dead.\nThe memory begins to spin."
   },
+  "78214": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The worst has come to pass. Baalshandor walks the streets of Arkham, seeking your death.",
+    "backFlavor": "Death?\nYou think you threaten me with death?\nBear witness to my demise.\n\nThe being that is Baalshandor explodes outwards in a tide of flesh.\n\nDeath is my dominion. In death, I only grow.\nYour weapons, your magics - they mean nothing to me.\nNow it is my turn to bear witness.\n\nThroughout the city, you hear a cacophony of destruction as entire buildings, suddenly overtaken with flesh, tear themselves free…"
+  },
+  "78215": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "In death, the Plaguebearer has only grown. The entire city is becoming part of Baalshandor. What chance do you stand against a monster the size of Arkham?",
+    "backFlavor": "I live, I die. I only grow.\nResistance is useless. Yours, and others.\nUnbound, my power has no equal."
+  },
+  "78216": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "With each passing moment, I grow more powerful.\nHeed the Call.\nMy flesh will be your end.",
+    "backFlavor": "I transcend.\nI evolve.\nI bring my gifts to all the creatures on this wretched world.\n\nHeed the call.\n\nBound?\nAgain?\nThen I will claim you."
+  },
+  "78217": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "It all comes down to this. Destroy Baalshandor and end his rein of pestilence.",
+    "backFlavor": "You cannot kill Baalshandor. Death and life are the same to the Plaguebearer.\nBut with strange aeons, even death may die.\n\n“I have a theory. If death is a necessary form of this creature’s life cycle… what if we could trap it in an undying state?”\n\nYou have nothing. The Plaguebearer is everywhere and only growing. But if you can give him no quarter, nowhere to spread…"
+  },
+  "78218": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Baalshandor may have dominion over death. But if you could sever that connection using the re-animation reagent…",
+    "backFlavor": "The creatures that Arkham has become thrash about madly, then grow still. You tentatively inch closer, then grab a tendril. You can feel the pulse of the monster, but it no longer moves.\nYour heart catches in your throat. Did it work?\nYou shake yourself, and find that you are standing before the form of Baalshandor.\nWHAT HAVE YOU DONE?\n\nA massive limb of flesh comes bearing down upon you. You trip as you dodge, and the briefcase goes sliding underneath the arm’s path. You cry out as you hear the telltale crunching of glass."
+  },
+  "78219": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "“We can stop this – You just have to trust me.” Herbert says. What choice do you have?",
+    "backFlavor": "The creatures that Arkham has become thrash about madly, then grow still. “Death throes! It’s working!” West cackles with delight.\nYour heart catches in your throat. Is Dr. West right?\nYou shake yourself from your thoughts, and find that you are standing before the form of Baalshandor. He holds West aloft before his jaws.\nWHAT HAVE YOU DONE?\n“I am Herbert West. And I have conquered death.”\nWest is pulled into the god’s maw still grinning.\n\nYou hear a shout, and see West grappling with muscle and sinew growing from the ground to trap his limbs. Before you can react, they have covered the doctor altogether."
+  },
+  "78220": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Fighting the Plaguebearer isn’t working. He’s only growing further. But if you can purify his strongholds in Arkham and find a way to bind him, you could at least bind him to the spot.",
+    "backFlavor": "The city falls silent. The world seems to fall away. All that exists is you and Baalshandor. He looms in your vision, the same shape as before, but thrice his previous impossible size.\nENOUGH. DIE.\nIn moments, you are swallowed whole."
+  },
+  "78221": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "The Plaguebearer is defeated, his plots foiled. It’s time to end this nightmare once and for all.",
+    "backFlavor": "IMPOSSIBLE.\nYOU CANNOT WIN!\nYOU ARE NOTHING!\nI AM… UNDONE…"
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

@@ -7,9 +7,10 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **escenarios I–VII jugables; Interludios I–V resueltos (el V tras la R1 del VII);
-escenario VIII pendiente. Material completo en EN y ES.** Este documento recoge el
-inventario, las diferencias entre versiones y las decisiones pendientes. No sustituye a las
+Estado: **campaña completa y jugable: escenarios I–VIII, Interludios I–V y epílogo.
+Material completo en EN y ES.** Pendientes: locución de los relatos y caras nuevos de VI–VIII
+(saldo de ElevenLabs a cero) y revisión visual de la persona usuaria. Este documento recoge
+el inventario, las diferencias entre versiones y las decisiones tomadas. No sustituye a las
 guías: al implementar, contrasta cada paso con el PDF.
 
 Narración actualizada el 19/11/2026. Generados 39 MP3 nuevos con Martin Osborne,
@@ -31,16 +32,13 @@ si cambian textos, audios, manifiestos, reproductores o generadores afectados.
 
 ### Continuación de implementación · 2026-11-20
 
-- Último lote: VII · Muerte a la puesta de sol, sin commit (base `03a9d6ca`, VI e
-  Interludio V). Lotes anteriores en [el historial](historial-portador-de-la-plaga.md).
-- VII (`death-at-sundown.ts`, datos en `sundown-data.ts`; guía ES pp. 18–19 / EN pp. 21–22;
-  cartas ES 227–267, EN 221–261, códigos `78181`–`78212` y `78186b`, Memoria de Pickman).
-- La R1 encadena la resolución [tablilla] (anota `plaguebearerWarned`) y el Interludio V.
-- El VIII debe construir su bolsa con `plaguebearerChaosBag` y leer `plaguebearerWarned`,
-  `plaguebearerDeathConqueredWest`, `plaguebearerBaalshandorFirst` y `plaguebearerReagent`.
-- Narración: 21 relatos y 31 caras de planes/actos pendientes (saldo de ElevenLabs a cero).
-  Revisión visual de la mesa pendiente de la persona usuaria.
-- Siguiente: VIII · La hora bruja y epílogo.
+- Último lote: VIII · La hora bruja y epílogo, sin commit (base `812c1c51`). Lotes
+  anteriores en [el historial](historial-portador-de-la-plaga.md).
+- VIII (`midnight-hour.ts`, datos en `midnight-data.ts`; guía ES pp. 21–24 / EN pp. 24–29;
+  cartas ES 268–309, EN 262–303, códigos `78213`–`78249`; enemigos de Lugar `78222b`–`78229b`
+  y `78241b`). Con él termina la campaña: R1 la pierde; R2 y R4–R8 la ganan (`campaignWon`).
+- Narración: 36 relatos y 47 caras de planes/actos pendientes de locución.
+- Siguiente: locuciones y revisión visual; no queda contenido de la guía por implementar.
 
 ## Fuentes
 
@@ -421,16 +419,17 @@ implementar:
 
 - **VII, resolución [tablilla] (resuelto el 20/11/2026):** texto oculto tras la R1; ver el
   historial.
-- **Leales de Greyson:** quién lo controla.
+- **Leales de Greyson (resuelto el 20/11/2026):** apoyo sin controlador en el Motel Hibb (ES);
+  cualquiera que controle a la Agente Greyson usa sus capacidades.
 - **V:** Agente Greyson se busca «entre las cartas apartadas» sin haberla
   apartado; los Blasones no aparecen en ninguna figura.
 - **VI (resuelto el 20/11/2026):** ver el historial. La Cosa del agua (Élite) y Abner Weems
   (apoyo de historia) son cartas distintas; el Acólito y la Protagonista usan su Aparición;
   la Intro 2 pasa a la 3.
 - **VII (resuelto el 20/11/2026):** la Intro 4 pasa a la 5.
-- **VIII:** la R2 mezcla muertes, locura y «ganan la campaña»; la R0 no tiene
-  acceso definido; la conversión daño ↔ pistas de los lugares enemigo puede
-  encadenarse.
+- **VIII (resuelto el 20/11/2026):** R2 = todos mueren y ganan la campaña; R0 como texto
+  oculto tras cualquier resolución; la conversión daño ↔ pistas no se encadena. Ver el
+  historial.
 - **IV:** el reparto aleatorio de marcas y el caso de 8 lugares Infectados no
   están definidos.
 - **Int. II:** consulta «reactivo puro», que la guía solo anota en el VII.
