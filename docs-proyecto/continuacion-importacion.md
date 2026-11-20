@@ -1,7 +1,8 @@
 # Continuación de la importación
 
-- Lote 158: `original-core-investigators`; cuatro investigadores originales (Roland, Daisy, Skids, Agnes), ocho exclusivas/debilidades y cuatro mazos oficiales FFG, seleccionables y jugables. Textos completos EN/ES, reversos, retratos e imágenes. [Reglas y listas](158-investigadores-caja-original.md).
+- Lote 158: `dbcf5f0b`, `original-core-investigators`; cuatro investigadores originales (Roland, Daisy, Skids, Agnes), ocho exclusivas/debilidades y cuatro mazos oficiales FFG, seleccionables y jugables. Textos completos EN/ES, reversos, retratos e imágenes. [Reglas y listas](158-investigadores-caja-original.md).
 - Encargo vigente: incorporar y subir los 49 investigadores pendientes con sus reglas y mazos base. Preferir mazo oficial; donde no exista, seleccionar el más popular de ArkhamDB y archivar enlace/lista exacta. Sin mazos propios ni sustituciones silenciosas.
 - Investigadores: 23 personajes habilitados, 45 pendientes (sin versiones alternativas, reediciones ni Homúnculo perdido). Cartas estándar pendientes: 134; este lote añade investigadores y exclusivas.
 - Verificación: 23 pruebas de reglas, mazos/campaña, fuentes/modelos, presentación EN/ES y regresiones dirigidas de daño, acciones y límites. 227 casos distintos comprobados; tipos engine/cards/server/web, formato, lint y huellas correctos. Cambios en horror colocado/movido, acciones restringidas, límites, protección frente a ataques o eventos en mano invalidan los controles afectados.
+- Git: main; pulls inicial y final correctos, sin integraciones que invaliden los controles. Solo cambios propios preparados.
 - Siguiente: Zoey/Jim y sus exclusivas; después Mark/Akachi, Leo/Ursula y los demás investigadores. El diagnóstico check-decklist sufrió timeout SSR; cobertura de las cuatro listas oficiales comprobada con el registro real en pruebas dirigidas, sin cambios de cartas.
