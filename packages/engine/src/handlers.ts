@@ -66,6 +66,7 @@ import {
   playerCardBehavior,
   playerSourceMessages,
   playerCardDef,
+  allPlayerCardDefs,
   scenarioBehavior,
   storyBehavior,
   activeTreacheryBehavior,
@@ -678,6 +679,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: investigator.id,
         card,
         fromEncounterDeck: true,
+        ...(message.chooseWith ? { chooseWith: message.chooseWith } : {}),
       })
     }
 
@@ -763,6 +765,39 @@ export function handle(state: GameState, message: Message): GameState {
             { ...message, draw: { ...message.draw, stage: 'resolve' } },
           )
       }
+      if (message.chooseWith && message.draw) {
+        const original = state.queue.find(
+          (m): m is Extract<Message, { type: 'ResolveEncounterCard' }> =>
+            m.type === 'ResolveEncounterCard' && m.draw?.id === message.chooseWith,
+        )
+        if (original?.draw) {
+          const { chooseWith: _choice, ...resolve } = message
+          return push(
+            state,
+            {
+              type: 'Ask',
+              investigator: message.investigator,
+              question: {
+                kind: 'chooseOne',
+                prompt: 'prompt.searchDeck',
+                alwaysAsk: true,
+                choices: [original, resolve].map((draw, index) => ({
+                  label: 'choice.card',
+                  params: { card: draw.card.name },
+                  then: [
+                    {
+                      type: 'CancelEncounterDraw' as const,
+                      draw: index === 0 ? message.draw!.id : original.draw!.id,
+                      destination: 'discard' as const,
+                    },
+                  ],
+                })),
+              },
+            },
+            resolve,
+          )
+        }
+      }
       if (card.kind === 'location')
         return push(state, {
           type: 'PutEncounterLocation',
@@ -785,10 +820,19 @@ export function handle(state: GameState, message: Message): GameState {
             id,
             placement: { type: 'limbo' },
           }) ?? []),
-          {
-            type: 'Forced',
-            trigger: { type: 'whenTreacheryDrawn', investigator: investigator.id, treachery: id },
-          },
+          ...(!message.withoutDraw
+            ? [
+                {
+                  type: 'Forced' as const,
+                  trigger: {
+                    type: 'whenTreacheryDrawn' as const,
+                    investigator: investigator.id,
+                    treachery: id,
+                    ...(message.fromEncounterDeck ? { fromEncounterDeck: true } : {}),
+                  },
+                },
+              ]
+            : []),
           {
             type: 'RevealTreachery',
             treachery: id,
@@ -1818,6 +1862,13 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'afterGainResources',
           investigator: message.investigator,
           amount: message.amount,
+          ...(message.effectSource &&
+          allPlayerCardDefs().some(
+            (c) => c.code === message.effectSource || c.name === message.effectSource,
+          )
+            ? { playerCard: true }
+            : {}),
+          ...(message.effectAsset ? { sourceAsset: message.effectAsset } : {}),
         },
       })
     }
@@ -1946,17 +1997,40 @@ export function handle(state: GameState, message: Message): GameState {
         updateInvestigator(state, investigator.id, (i) => ({
           ...i,
           deck,
-          hand: unresolved || discardTekelili ? i.hand : [...i.hand, card],
+          hand: discardTekelili ? i.hand : [...i.hand, card],
           ...(discardTekelili ? { discard: [...i.discard, card] } : {}),
         })),
+        ...(!discardTekelili
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'whenPlayerCardDrawn' as const,
+                  investigator: investigator.id,
+                  card,
+                  fromDeck: true,
+                },
+              },
+            ]
+          : []),
         ...more,
       )
     }
 
     case 'ShuffleDrawnWeaknesses': {
       const investigator = getInvestigator(state, message.investigator)
-      const [deck, rng] = shuffle([...investigator.deck, ...message.codes], state.rng)
-      return updateInvestigator({ ...state, rng }, investigator.id, (i) => ({ ...i, deck }))
+      const hand = [...investigator.hand],
+        cards: string[] = []
+      for (const code of message.codes) {
+        const at = hand.lastIndexOf(code)
+        if (at >= 0) {
+          hand.splice(at, 1)
+          cards.push(code)
+        }
+      }
+      if (!cards.length) return state
+      const [deck, rng] = shuffle([...investigator.deck, ...cards], state.rng)
+      return updateInvestigator({ ...state, rng }, investigator.id, (i) => ({ ...i, hand, deck }))
     }
 
     case 'ResolveOpeningRevelations':
@@ -5248,6 +5322,16 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'CheckSlots', investigator: a.owner },
       )
     }
+    case 'AddNextScenarioResources':
+      return updateCampaignLog(state, (c) => ({
+        ...c,
+        values: {
+          ...c.values,
+          ['treasureResources:' + message.investigator]: String(
+            Number(c.values['treasureResources:' + message.investigator] ?? 0) + message.amount,
+          ),
+        },
+      }))
     case 'RecordNote':
       return updateCampaignLog(state, (c) => ({
         ...c,
@@ -5669,7 +5753,7 @@ export function handle(state: GameState, message: Message): GameState {
       // FAQ (fe de erratas, "Eliminación", paso 0): para sus debilidades la partida ha
       // terminado; se resuelven sus efectos de "cuando termine la partida".
       if (!message.weaknessesDone) {
-        const effects = gameEndEffects(state, [investigator.id])
+        const effects = gameEndEffects(state, [investigator.id], 'elimination')
         if (effects.length) return push(state, ...effects, { ...message, weaknessesDone: true })
       }
       if (!message.assetsDone) {
@@ -9977,6 +10061,40 @@ export function handle(state: GameState, message: Message): GameState {
       }
     }
 
+    case 'MoveResourcesToAsset': {
+      const a = state.assets[message.asset]
+      if (!a) return state
+      const amount = Math.min(
+        Math.max(0, message.amount),
+        getInvestigator(state, a.owner).resources,
+      )
+      return updateInvestigator(
+        { ...state, assets: { ...state.assets, [a.id]: { ...a, uses: a.uses + amount } } },
+        a.owner,
+        (i) => ({ ...i, resources: i.resources - amount }),
+      )
+    }
+    case 'ReturnLocationAttachment': {
+      const a = state.locationAttachments?.[message.attachment]
+      if (!a) {
+        const t = state.treacheries[message.attachment]
+        if (!t?.owner || t.placement.type !== 'location') return state
+        const { [t.id]: _removed, ...treacheries } = state.treacheries
+        return updateInvestigator({ ...state, treacheries }, t.owner, (i) => ({
+          ...i,
+          hand: [...i.hand, t.code],
+        }))
+      }
+      const { [a.id]: _removed, ...rest } = state.locationAttachments!
+      return updateInvestigator({ ...state, locationAttachments: rest }, a.owner, (i) => ({
+        ...i,
+        hand: [...i.hand, a.code],
+      }))
+    }
+    case 'ShuffleEncounterDeck': {
+      const [encounterDeck, rng] = shuffle(state.encounterDeck, state.rng)
+      return { ...state, encounterDeck, rng }
+    }
     case 'DiscardLocationAttachment': {
       const attachment = state.locationAttachments?.[message.attachment]
       if (!attachment) return state
@@ -10393,6 +10511,17 @@ export function handle(state: GameState, message: Message): GameState {
         })
         if (instead) return push(state, ...instead)
       }
+      if (message.discardContents)
+        return push(
+          state,
+          ...Object.values(state.enemies)
+            .filter((e) => e.location === message.location)
+            .map((e) => ({ type: 'DiscardEnemy' as const, enemy: e.id })),
+          ...state.investigators
+            .filter((i) => !i.eliminated && i.location === message.location)
+            .map((i) => ({ type: 'DefeatInvestigator' as const, investigator: i.id })),
+          { ...message, checked: true, discardContents: false },
+        )
       let next = state
       for (const t of Object.values(state.treacheries)) {
         if (t.placement.type === 'location' && t.placement.location === message.location) {
@@ -10946,7 +11075,12 @@ export function handle(state: GameState, message: Message): GameState {
             ),
           },
         },
-        { type: 'PutAssetIntoPlay', investigator: c.by, code: c.code },
+        {
+          type: 'PutAssetIntoPlay',
+          investigator: c.by,
+          code: c.code,
+          ...(c.owner ? { originalOwner: c.owner } : {}),
+        },
       )
     }
 
@@ -11536,6 +11670,19 @@ export function handle(state: GameState, message: Message): GameState {
                       type: 'whenCardsDrawn' as const,
                       investigator: drawer,
                       amount: 1,
+                    },
+                  },
+                ]
+              : []),
+            ...(message.drawFound
+              ? [
+                  {
+                    type: 'Forced' as const,
+                    trigger: {
+                      type: 'whenPlayerCardDrawn' as const,
+                      investigator: drawer,
+                      card,
+                      fromDeck: false,
                     },
                   },
                 ]
@@ -13790,10 +13937,12 @@ function resolveBaseToken(state: GameState, token: ChaosToken, investigator: str
       return { modifier: blessCurseModifier(state, token), revealAnother: true }
     case 'elderSign': {
       const self = getInvestigator(state, investigator)
-      return (
+      return withEffectSource(
         investigatorBehavior(self.id)?.elderSign?.(state, self) ?? {
           modifier: self.elderSignModifier,
-        }
+        },
+        playerCardDef(self.id)?.name ?? self.name,
+        self.id,
       )
     }
     default: {
@@ -14130,8 +14279,15 @@ function opportunityAttacks(
  * investigadores: las que siguen en su zona de amenaza, sus debilidades vinculadas en
  * otro lugar (Buscando a Izzie) y las que tienen en la mano.
  */
-function gameEndEffects(state: GameState, investigators: InvestigatorId[]): Message[] {
+function gameEndEffects(
+  state: GameState,
+  investigators: InvestigatorId[],
+  reason: 'gameEnds' | 'elimination' = 'gameEnds',
+): Message[] {
   return investigators.flatMap((id) => [
+    ...Object.values(state.assets)
+      .filter((a) => a.owner === id)
+      .flatMap((a) => assetBehavior(state, a)?.whenGameEndsInPlay?.(state, a, reason) ?? []),
     ...Object.values(state.treacheries)
       .filter((t) =>
         t.placement.type === 'threatArea'

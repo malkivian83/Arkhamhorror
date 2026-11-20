@@ -993,7 +993,11 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 /** `effectController`: investigator controlling the effect that produced it ("you"). */
-export type Message = MessageBody & { effectSource?: string; effectController?: InvestigatorId }
+export type Message = MessageBody & {
+  effectSource?: string
+  effectController?: InvestigatorId
+  effectAsset?: AssetId
+}
 type MessageBody =
   | { type: 'StartTokenGroup'; then: Extract<Message, { type: 'PlayerCardEffect' }> }
   | { type: 'StoreHeldChaosTokens'; group: string; tokens: ChaosToken[] }
@@ -1954,12 +1958,14 @@ type MessageBody =
   /** `ifEnemy`: resolved first when the card actually drawn is an enemy (Unaware). */
   | {
       type: 'DrawEncounterCard'
+      chooseWith?: string
       investigator: InvestigatorId
       ifEnemy?: Message[]
       windowResolved?: boolean
     }
   | {
       type: 'ResolveEncounterCard'
+      chooseWith?: string
       investigator: InvestigatorId
       card: EncounterCard
       exhaustAfterDraw?: boolean
@@ -2060,6 +2066,7 @@ type MessageBody =
     }
   | {
       type: 'RemoveLocation'
+      discardContents?: boolean
       location: LocationId
       checked?: boolean
       shuffleIntoEncounter?: boolean
@@ -2250,6 +2257,10 @@ type MessageBody =
   | { type: 'ExhaustLocationAttachment'; attachment: string }
   /** The attached event goes to its owner's discard pile. */
   | { type: 'DiscardLocationAttachment'; attachment: string }
+  | { type: 'ReturnLocationAttachment'; attachment: string }
+  | { type: 'ShuffleEncounterDeck' }
+  | { type: 'MoveResourcesToAsset'; asset: AssetId; amount: number }
+  | { type: 'AddNextScenarioResources'; investigator: InvestigatorId; amount: number }
   /** The queued resolution of this played event happens as if its player were at `location`. */
   | { type: 'PlayEventAt'; investigator: InvestigatorId; code: CardCode; location: LocationId }
   /** Ends an "as if you were at" resolution; `location` is where the investigator really is. */
@@ -2598,7 +2609,14 @@ export type Trigger =
   /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
   | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
   /** Tras ganar recursos por el efecto de una carta. */
-  | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'afterGainResources'
+      investigator: InvestigatorId
+      amount: number
+      playerCard?: boolean
+      sourceAsset?: AssetId
+    }
+  | { type: 'whenPlayerCardDrawn'; investigator: InvestigatorId; card: CardCode; fromDeck: boolean }
   | { type: 'afterDamageHealed'; investigator: InvestigatorId; amount: number }
   /** After `healer` heals horror from an investigator or an asset (from every healing source). */
   | {
@@ -2697,7 +2715,12 @@ export type Trigger =
   | { type: 'deckEmptied'; investigator: InvestigatorId }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
   | { type: 'whenEncounterDrawn' | 'afterEncounterDrawn'; draw: string }
-  | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
+  | {
+      type: 'whenTreacheryDrawn'
+      investigator: InvestigatorId
+      treachery: TreacheryId
+      fromEncounterDeck?: boolean
+    }
   | { type: 'afterCancelRevelation'; card: CardCode; weakness: boolean }
   | { type: 'afterEvade'; investigator: InvestigatorId; enemy: EnemyId }
   | {

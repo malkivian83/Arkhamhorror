@@ -248,6 +248,7 @@ export function prepareGame({
         investigator: setup.id,
         amount:
           (scenario.startingResources ?? 5) +
+          Math.max(0, Number(campaignLog?.values['treasureResources:' + setup.id] ?? 0) || 0) +
           bonus(setup, 'resources') +
           (boons.includes('hades') ? 2 : 0),
       },
@@ -345,7 +346,19 @@ export function prepareGame({
     encounterDiscard: [],
     victoryDisplay: [],
     victoryPoints: 0,
-    campaignLog: campaignLog ?? emptyCampaignLog(investigators.map((i) => i.id)),
+    campaignLog: campaignLog
+      ? {
+          ...campaignLog,
+          values: {
+            ...campaignLog.values,
+            ...Object.fromEntries(
+              investigators
+                .filter((i) => campaignLog.values['treasureResources:' + i.id] !== undefined)
+                .map((i) => ['treasureResources:' + i.id, '0']),
+            ),
+          },
+        }
+      : emptyCampaignLog(investigators.map((i) => i.id)),
     setAsideLocations: Object.fromEntries((scenario.setAsideLocations ?? []).map((l) => [l.id, l])),
     abilityUses: [],
     assets: {},

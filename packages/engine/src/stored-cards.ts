@@ -1,6 +1,6 @@
 import { shuffle } from './rng'
 // RR: Face Down, Out of Play, Attach To, Ownership and Control, Leaves Play.
-import { assetBehavior, playerCardDef, scenarioBehavior } from './content'
+import { assetBehavior, playerCardBehavior, playerCardDef, scenarioBehavior } from './content'
 import { canPlayByEffect } from './actions'
 import { getInvestigator, push, updateInvestigator } from './state'
 import type { Asset, GameState, Message } from './types'
@@ -144,7 +144,9 @@ export function handleStored(s: GameState, m: Message): GameState | undefined {
         m.from === 'discard' ? owner.discard.lastIndexOf(m.code) : owner[m.from].indexOf(m.code)
       if (
         !a ||
-        (a.owner !== owner.id && m.from !== 'discard') ||
+        (a.owner !== owner.id &&
+          m.from !== 'discard' &&
+          !(m.from === 'hand' && assetBehavior(s, a)?.storesForeignDraws)) ||
         at < 0 ||
         (limit !== undefined && (a.storedCards?.length ?? 0) >= limit)
       )
@@ -271,8 +273,18 @@ export function settleStoredCards(before: GameState, after: GameState): GameStat
   const messages: Message[] = []
   for (const a of Object.values(before.assets)) {
     if (after.assets[a.id]) continue
-    for (const c of a.storedCards ?? [])
-      next = updateInvestigator(next, c.owner, (i) => ({ ...i, discard: [...i.discard, c.code] }))
+    for (const c of a.storedCards ?? []) {
+      if (playerCardBehavior(a.code)?.drawStoredOnLeave)
+        messages.push({
+          type: 'MoveInspectedCard',
+          investigator: c.owner,
+          card: c.code,
+          to: 'hand',
+          drawFound: true,
+        })
+      else
+        next = updateInvestigator(next, c.owner, (i) => ({ ...i, discard: [...i.discard, c.code] }))
+    }
     for (const child of Object.values(after.assets))
       if (child.attachedTo === a.id) messages.push({ type: 'DiscardAsset', asset: child.id })
     const owner = a.originalOwner ?? a.owner

@@ -662,6 +662,13 @@ export interface PlayerCardBehavior {
   movementConnections?: (state: GameState, self: LocationAttachment) => LocationId[]
   /** Printed activated abilities usable while this card is in hand. */
   handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
+  drawStoredOnLeave?: boolean
+  storesForeignDraws?: boolean
+  whenGameEndsInPlay?: (
+    state: GameState,
+    self: Asset,
+    reason: 'gameEnds' | 'elimination',
+  ) => Message[]
   playsStoredCards?: boolean
   exhaustToPlayStored?: boolean
   hiddenStoredCards?: boolean

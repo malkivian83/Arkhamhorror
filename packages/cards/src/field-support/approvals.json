@@ -1,0 +1,93 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "6facfbc8a70a7c362cfbbeb7dfa2d77182dc01acd8b7ec9668efc0f3588b1b20",
+    "es": "8a0740781ee40bf33bb279fec07dbefed0e2b1cf6837032eb12cbc5b3ce67f67"
+  },
+  "cards": [
+    {
+      "code": "09037",
+      "status": "verified",
+      "module": "card-09037",
+      "test": "rules.test.ts",
+      "subname": "Remnant of the Unknown"
+    },
+    {
+      "code": "09054",
+      "status": "verified",
+      "module": "card-09054",
+      "test": "rules.test.ts",
+      "subname": "Working on Something Bigger"
+    },
+    {
+      "code": "08049",
+      "status": "verified",
+      "module": "card-08049",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "09071",
+      "status": "verified",
+      "module": "card-09071",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10123",
+      "status": "verified",
+      "module": "card-10123",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06158",
+      "status": "verified",
+      "module": "card-06158",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "secret" }
+    },
+    {
+      "code": "10024",
+      "status": "verified",
+      "adapter": "reviewed-absolution-x-v1",
+      "module": "card-10024",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07267",
+      "status": "verified",
+      "module": "card-07267",
+      "test": "rules.test.ts",
+      "subname": "The Council's Chosen"
+    },
+    {
+      "code": "09114",
+      "status": "verified",
+      "module": "card-09114",
+      "test": "rules.test.ts",
+      "subname": "Keeper of Esoteric Lore"
+    },
+    {
+      "code": "11100",
+      "status": "verified",
+      "module": "card-11100",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08113",
+      "status": "verified",
+      "adapter": "reviewed-dual-faction-v1",
+      "module": "card-08113",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09063",
+      "status": "verified",
+      "module": "card-09063",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "resource" }
+    }
+  ]
+}
