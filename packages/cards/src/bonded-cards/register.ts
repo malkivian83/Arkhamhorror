@@ -389,7 +389,7 @@ export function registerBondedCard(code: string): void {
           ]
         if (step !== 'grow' || !s.skillTest) return []
         const margin = Math.max(0, testMargin(s.skillTest))
-        const myconid = controls(s, by, [MYCONID])
+        const myconid = controls(s, by, [MYCONID, '10059', '10060'])
         return [
           {
             type: 'AfterCurrentSkillTest',

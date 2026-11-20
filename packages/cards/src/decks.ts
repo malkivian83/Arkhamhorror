@@ -145,6 +145,7 @@ export function requiredDeckSize(investigator: CardCode, deck: CardCode[] = []):
 
 export type DeckProblem =
   | { key: 'deck.problem.customizations' }
+  | { key: 'deck.problem.ancestralSkills' }
   | { key: 'deck.problem.unimplemented'; params: { card: string } }
   | { key: 'deck.problem.unknownInvestigator' }
   | { key: 'deck.problem.size'; params: { n: number; size: number } }
@@ -327,6 +328,15 @@ export function validateDeck(
         })
     }
   }
+
+  // FAQ: On the Mend is set aside at setup and cannot satisfy Ancestral Knowledge.
+  if (
+    deck.cards.includes('07303') &&
+    deck.cards.filter(
+      (code) => byCode(code)?.type === 'skill' && !byCode(code)?.bondedCard && code !== '09006',
+    ).length < 10
+  )
+    problems.push({ key: 'deck.problem.ancestralSkills' })
 
   const size = deck.cards.filter(countsForSize).length
   const required = requiredDeckSize(deck.investigator, deck.cards)

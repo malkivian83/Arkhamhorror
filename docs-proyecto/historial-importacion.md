@@ -1,5 +1,7 @@
 # Historial de la importación
 
+- Lote 153 (20/11): `campaign-planning`, `0cdb9b6e` (cierre `265ca357`); doce códigos y diseños/niveles estándar nuevos, cero vinculadas o reediciones. 1596 comportamientos, 529 históricos pendientes y 171 estándar con impresión. Motor/cartas/importación: 7765 casos; integración: 123. Tipos, lint/formato, fuentes, imágenes y build web correctos. [Detalle](153-planificacion-de-campana.md).
+
 - Lote 149 (18/11): `discard-rituals`, publicado como `be258d59`; siete cartas/niveles estándar nuevos, cero vinculadas o reediciones. 1556 comportamientos, 569 códigos históricos pendientes y 211 estándar; 6517 escaneos y miniaturas. Motor/cartas/importación: 7592 casos; cierre dirigido: 40 reglas; web: 14; guardados: 39. Tipos, lint/formato, imágenes y build web correctos. [Detalle](149-descarte-promesas-y-rituales.md).
 
 - Lote 148 (14/11): `extra-actions`, publicado como `bfc43e48`; ocho cartas/niveles estándar nuevos, cero reediciones. Acumulado 1549 comportamientos, 576 pendientes históricos y 218 estándar. Motor/cartas/importación y controles dirigidos finales correctos; build web correcto. High Noon y sus imágenes se integraron después en `f8cbefab` y `52d9e47f`; referencia de escenario corregida en `107e9dfb`. [Detalle](148-acciones-y-activaciones-adicionales.md).

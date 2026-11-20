@@ -253,3 +253,10 @@ la elección de trauma al adquirirla. [Reglas y diferencias](153-planificacion-d
 7. **Campaña** (`CAMPAIGN`, `CUSTOMIZABLE`, `DECK_TRAIT`, Tarot): requieren trabajo en la web y en
    el guardado; agruparlos en un bloque propio.
 8. Al final, `PHASE_CONTROL` (2 cartas, alta).
+
+## Estado tras el lote 154
+
+- **Reservas iniciales:** Ceñirse al plan, Conocimiento ancestral, Mercado de los bajos fondos y Encantadora; preparación previa a la mano sin Investigación, reservas boca abajo y mercado oculto.
+- **Biblioteca y vinculadas:** Pase de biblioteca 1/5 y Micónido voraz 4, Cepas sensible y carnívora; Crecimiento compartido y ranuras de Tomos vinculados revisadas. [Reglas y diferencias](154-reservas-iniciales.md).
+- Ocho códigos y diseños/niveles estándar nuevos; cero vinculadas nuevas o reediciones. Acumulado: **1604 comportamientos**, **521 códigos históricos pendientes**, **163 estándar con impresión pendientes**. Se conservan los inventarios históricos.
+- Cepa nutricia requiere traslado real de daño/horror; Curación espiritual, Dayana y Katja mantienen los bloqueos documentados.

@@ -424,7 +424,9 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
     ...new Set(investigator.discard.filter((c) => playerCardBehavior(c)?.playableFromDiscard)),
   ].filter((c) => !(fromDiscard && c === top))
   const stored = Object.values(state.assets).flatMap((a) =>
-    a.owner === id && assetBehavior(state, a)?.playsStoredCards
+    a.owner === id &&
+    assetBehavior(state, a)?.playsStoredCards &&
+    !(assetBehavior(state, a)?.exhaustToPlayStored && a.exhausted)
       ? (a.storedCards ?? []).map((c) => c.code)
       : [],
   )

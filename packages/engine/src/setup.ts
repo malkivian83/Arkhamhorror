@@ -251,6 +251,7 @@ export function prepareGame({
           bonus(setup, 'resources') +
           (boons.includes('hades') ? 2 : 0),
       },
+      { type: 'Forced', trigger: { type: 'beforeOpeningHand', investigator: setup.id } },
       {
         type: 'DrawOpeningHand',
         investigator: setup.id,

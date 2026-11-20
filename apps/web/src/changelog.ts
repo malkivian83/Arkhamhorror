@@ -10,6 +10,12 @@ export const changelog = [
     ],
   },
   {
+    id: 'opening-archives',
+    date: '2026-11-20',
+    title: 'app.changelog.openingArchives.title',
+    items: ['app.changelog.openingArchives.cards', 'app.changelog.openingArchives.rules'],
+  },
+  {
     id: 'plaguebearer-afternoon-war',
     date: '2026-11-20',
     title: 'app.changelog.plaguebearerAfternoonWar.title',

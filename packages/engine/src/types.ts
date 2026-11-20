@@ -1320,6 +1320,7 @@ type MessageBody =
    */
   | {
       type: 'PlayCard'
+      storedPlaySource?: AssetId
       fromStored?: { asset: AssetId; index: number }
       modifiersResolved?: boolean
       consideredModifiers?: AssetId[]
@@ -2280,6 +2281,7 @@ type MessageBody =
   | { type: 'ClearNextFight'; asset: AssetId }
   | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number; healer?: InvestigatorId }
   | { type: 'ReturnAssetToHand'; asset: AssetId }
+  | { type: 'ReturnAssetToDeck'; asset: AssetId }
   /** De la pila de descartes a la mano. */
   | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode }
   /**
@@ -2346,6 +2348,9 @@ type MessageBody =
       investigator: InvestigatorId
       draw?: boolean
     }
+  | { type: 'StoreRandomSkills'; asset: AssetId; count: number }
+  | { type: 'ShuffleStoredCards'; asset: AssetId }
+  | { type: 'MoveStoredToBottom'; asset: AssetId; index: number }
   | { type: 'CheckStoredAsset'; asset: AssetId }
   | { type: 'DrawStoredCards'; asset: AssetId }
   | { type: 'AttachControlledAsset'; asset: AssetId; host: AssetId; swap?: AssetId }
@@ -2743,6 +2748,7 @@ export type Trigger =
   | { type: 'enemyWouldPatrol'; enemy: EnemyId }
   | { type: 'enemyWouldEnterLocation'; enemy: EnemyId; location: LocationId }
   | { type: 'enemyDisengaged'; enemy: EnemyId; investigator: InvestigatorId }
+  | { type: 'beforeOpeningHand'; investigator: InvestigatorId }
   | { type: 'turnBegins'; investigator: InvestigatorId }
   | { type: 'turnEnds'; investigator: InvestigatorId }
   | { type: 'roundEnds' }

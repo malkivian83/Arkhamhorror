@@ -89,6 +89,11 @@
         "cards": "Escenario VII con la torre del Ayuntamiento de seis pisos, el Mazo de Ritual, la Memoria de Pickman y textos de historia literales EN/ES; su primera resolución ya lleva al Interludio V, La confrontación.",
         "rules": "Muerte a la puesta de sol muestra su referencia de fichas del caos; los relatos nuevos quedan pendientes de locución."
       },
+      "openingArchives": {
+        "title": "Reservas iniciales y Micónidos investigados",
+        "cards": "Ocho diseños y niveles nuevos: Ceñirse al plan, Conocimiento ancestral, Mercado de los bajos fondos, Encantadora, ambos niveles de Pase de biblioteca y dos mejoras investigadas del Micónido voraz.",
+        "rules": "Preparación antes de la mano inicial, robos del mercado oculto, Tomos vinculados sin ranuras y efectos de los crecimientos investigados."
+      },
       "plaguebearerAfternoonWar": {
         "title": "La llamada del Portador de la Plaga: Guerra al atardecer e Interludio V",
         "cards": "Escenario VI con los portales de la Llama y del Rey, daño y horror sobre los Lugares, apoyos de historia con Defender, Poder desatado y textos de historia literales EN/ES; Interludio V, La confrontación, listo para seguir a Muerte a la puesta de sol.",
@@ -565,6 +570,9 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "archiveAttach": "Vincular {card}",
+    "archivePay": "Pagar 1 recurso",
+    "archiveReturn": "Colocar el apoyo vinculado en la parte inferior de tu mazo",
     "containerDetach": "Desvincular {card}",
     "containerDrawAll": "Robar todas las cartas adjuntas",
     "containerSwap": "Intercambiar {card} con {old}",
@@ -1857,6 +1865,7 @@
     "sacrificialDoll": "Muñeca sacrificial: recibir 1 punto de daño, cancelar la ficha {token} y revelar hasta una ficha de símbolo"
   },
   "log": {
+    "archiveReveal": "El mazo de mercado revela: {card}",
     "ofudaReplenish": "{card}: primera ficha [bless] revelada en su Lugar esta ronda",
     "attachFailed": "No se puede vincular {card} allí y permanece en la pila de descartes",
     "enemyImmunePlayerCards": "{enemy} es inmune a los efectos de cartas de Jugador",
@@ -3447,6 +3456,7 @@
   },
   "deck": {
     "problem": {
+      "ancestralSkills": "Conocimiento ancestral requiere al menos 10 habilidades en tu mazo.",
       "campaignOnly": "Asceta solo puede incluirse en modo campaña.",
       "levelZeroSwap": "Adaptable debe sustituir una carta de nivel 0 que cuente para el tamaño del mazo.",
       "unknownInvestigator": "Investigador desconocido.",
@@ -3700,6 +3710,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "10060": "Cepa carnívora",
+      "10059": "Cepa sensible",
       "54007": "Te espera tu verdadero maestro",
       "10132": "Fuente dudosa",
       "03308": "El pago del barquero",
@@ -3868,6 +3880,14 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "10060": "Monstruo. Ciencia.",
+      "10059": "Criatura. Ciencia.",
+      "11118": "Objeto. Miskatonic.",
+      "11099": "Objeto. Miskatonic.",
+      "10079": "Talento. Truco.",
+      "09077": "Contacto. Ilegal.",
+      "07303": "Talento.",
+      "03264": "Talento.",
       "02110": "Talento.",
       "54012": "Objeto. Amuleto.",
       "54007": "Tarot.",
@@ -4844,6 +4864,14 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "10060": "Investigado. Límite de 1 por mazo.\n[fast]: Busca entre tus cartas enlazadas el Crecimiento prodigioso y añádelo a tu mano. Límite de una vez por ronda.\n[fast] Elige un Enemigo que no sea [[Élite]] en tu Lugar y con una cantidad de salud restante igual o menor que la cantidad de crecimiento del Micónido voraz: Derrota a ese Enemigo. Retira todo el crecimiento de Micónido voraz.",
+      "10059": "Investigado. Límite de 1 por mazo.\n[fast]: Busca entre tus cartas enlazadas el Crecimiento prodigioso y añádelo a tu mano. Límite de una vez por ronda.\n[reaction] Cuando un investigador robe una carta de Traición que no sea Debilidad, si el valor de velo de su Lugar es igual o menor que el crecimiento del Micónido voraz: Cancela los efectos de esa Traición y descártala. Retira todo el crecimiento del Micónido voraz.",
+      "11118": "Sólo para un mazo [[Miskatonic]], [[Erudito]]. Permanente. Límite de 1 por mazo.\n[free] Durante tu turno, si no hay ningún Apoyo vinculado al Pase de biblioteca, agota el Pase de biblioteca: Víncula un Apoyo [[Tomo]] de tu mano al Pase de biblioteca. El Apoyo vinculado no ocupa espacios.\n<b>Obligado -</b> Cuando acabe tu turno: Debes pagar 1 recurso o bien colocar el Apoyo vinculado en la parte inferior de tu mazo.",
+      "11099": "Sólo para un mazo [[Miskatonic]], [[Erudito]]. Límite de 1 por mazo.\n[free] Durante tu turno, si no hay ningún Apoyo vinculado al Pase de biblioteca, gasta 1 recurso: Vincula un Apoyo [[Tomo]] de tu mano a esta carta. El Apoyo vinculado no ocupa espacios. Límite de 1 Apoyo vinculado.\n<b>Obligado -</b> Cuando acabe tu turno: Coloca el Apoyo vinculado en la parte inferior de tu mazo.",
+      "10079": "Permanente. Excepcional.\n[reaction] Antes de que robes tu mano inicial: Busca en tu mazo hasta 3 cartas [[Truco]] distintas y vincúlalas boca abajo a Encantadora. Baraja tu mazo.\n[reaction] Cuando te enfrentes a un Enemigo, agota a Encantadora: Roba 1 carta vinculada o bien busca entre las 9 primeras cartas de tu mazo una copia de una carta vinculada y róbala.",
+      "09077": "Permanente. Excepcional. Recibes +10 al tamaño de mazo.\n[reaction] Antes de robar tu mano inicial, elige 10 cartas [[Ilegal]] de tu mazo: Barájalas y colócalas junto al Mercado de los bajos fondos, formando tu mazo de Mercado.\n[reaction] Al comienzo de tu turno: Revela las 2 primeras cartas de tu mazo de Mercado. Puedes gastar 1 recurso para robar 1 de ellas. Coloca el resto en la parte inferior, en cualquier orden.",
+      "07303": "Permanente. Excepcional.\nTu mazo debe incluir al menos 10 Habilidades. Tu tamaño de mazo aumenta en 5.\n[reaction] Antes de que robes tu mano inicial: Vincula boca abajo a esta carta 5 Habilidades aleatorias que no sean Debilidad de tu mazo.\n[free] Agota el Conocimiento ancestral: Roba 1 Habilidad vinculada.",
+      "03264": "Permanente. Excepcional.\n[reaction] Antes de que robes tu mano inicial: Busca en tu mazo hasta 3 Eventos [[Táctica]] y/o [[Suministros]] distintos y vincúlalos a Ceñirse al plan. Baraja tu mazo.\nLas cartas vinculadas a Ceñirse al plan pueden jugarse como si estuvieran en tu mano. Como coste adicional para jugar una carta vinculada, agota Ceñirse al plan.",
       "02110": "Permanente.\nEntre partida y partida de la campaña, puedes cambiar hasta 2 cartas de nivel 0 de tu mazo por el mismo número de cartas de nivel 0. Debes seguir todas las reglas de creación de mazos de tu investigador.",
       "54012": "Tienes 1 espacio de tarot adicional.\n Cada apoyo [[Tarot]] que no sea Debilidad en tu mano o asignado a una prueba de habilidad obtiene [wild] [wild].\n[reaction] Cuando comience la partida, si el Colgante de luna está en tu mano inicial: Ponlo en juego.",
       "54007": "Tienes 1 espacio arcano adicional.\nTus espacios arcanos se pueden usar para cartas que ocupen espacios de accesorio y viceversa.\n[reaction] Cuando comience la partida, si El Sumo Sacerdote • V está en tu mano inicial: Ponlo en juego.",
@@ -6252,6 +6280,14 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "10060": "Micónido voraz",
+      "10059": "Micónido voraz",
+      "11118": "Pase de biblioteca",
+      "11099": "Pase de biblioteca",
+      "10079": "Encantadora",
+      "09077": "Mercado de los bajos fondos",
+      "07303": "Conocimiento ancestral",
+      "03264": "Ceñirse al plan",
       "02110": "Adaptable",
       "54012": "Colgante de luna",
       "54007": "El Sumo Sacerdote • V",

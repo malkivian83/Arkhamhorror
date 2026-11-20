@@ -89,6 +89,11 @@
         "cards": "Scenario VII with the six-floor Town Hall tower, the Ritual deck, Pickman’s Memory and literal EN/ES story texts; its first resolution now leads to Interlude V, A Confrontation.",
         "rules": "Death at Sundown shows its chaos token reference; the new stories are pending narration."
       },
+      "openingArchives": {
+        "title": "Opening archives and researched Myconids",
+        "cards": "Eight new designs and levels: Stick to the Plan, Ancestral Knowledge, Underworld Market, Bewitching, both Library Pass levels and two researched Ravenous Myconids.",
+        "rules": "Opening-hand preparation, hidden Market draws, linked Tomes without slots and researched growth effects."
+      },
       "plaguebearerAfternoonWar": {
         "title": "Call of the Plaguebearer: The Afternoon War and Interlude V",
         "cards": "Scenario VI with the portals of the Flame and the King, damage and horror on locations, Defend story assets, Unbound Power and literal EN/ES story texts; Interlude V, A Confrontation, ready to follow Death at Sundown.",
@@ -565,6 +570,9 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "archiveAttach": "Attach {card}",
+    "archivePay": "Pay 1 resource",
+    "archiveReturn": "Place the attached asset on the bottom of your deck",
     "containerDetach": "Detach {card}",
     "containerDrawAll": "Draw every attached card",
     "containerSwap": "Switch {card} with {old}",
@@ -1857,6 +1865,7 @@
     "sacrificialDoll": "Sacrificial Doll: take 1 damage, cancel the {token} token and reveal until a symbol token"
   },
   "log": {
+    "archiveReveal": "Market deck reveals: {card}",
     "ofudaReplenish": "{card}: first [bless] token revealed at its location this round",
     "attachFailed": "{card} cannot be attached there and stays in the discard pile",
     "enemyImmunePlayerCards": "{enemy} is immune to player card effects",
@@ -3447,6 +3456,7 @@
   },
   "deck": {
     "problem": {
+      "ancestralSkills": "Ancestral Knowledge requires at least 10 skills in your deck.",
       "campaignOnly": "Ascetic can only be included in campaign mode.",
       "levelZeroSwap": "Adaptable must replace a level 0 card that counts toward deck size.",
       "unknownInvestigator": "Unknown investigator.",
@@ -3700,6 +3710,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "10060": "Carnivorous Strain",
+      "10059": "Sentient Strain",
       "54007": "Your True Master Awaits",
       "10132": "Dubious Source",
       "03308": "The Ferryman's Pay",
@@ -3868,6 +3880,14 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "10060": "Monster. Science.",
+      "10059": "Creature. Science.",
+      "11118": "Item. Miskatonic.",
+      "11099": "Item. Miskatonic.",
+      "10079": "Talent. Trick.",
+      "09077": "Connection. Illicit.",
+      "07303": "Talent.",
+      "03264": "Talent.",
       "02110": "Talent.",
       "54012": "Item. Charm.",
       "54007": "Tarot.",
@@ -4844,6 +4864,14 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "10060": "Researched. Limit 1 per deck.\n[fast]: Search your bonded cards for Uncanny Growth and add it to your hand. (Limit once per round.)\n[fast] Choose a non-[[Elite]] enemy at your location with equal or fewer remaining health than the amount of growth on Ravenous Myconid: Defeat that enemy. Remove all growth from Ravenous Myconid.",
+      "10059": "Researched. Limit 1 per deck.\n[fast]: Search your bonded cards for Uncanny Growth and add it to your hand. (Limit once per round.)\n[reaction] When an investigator draws a non-weakness treachery card, if their locations shroud is equal to or less than Ravenous Myconid's growth: Cancel that treachery's effects and discard it. Remove all growth from Ravenous Myconid.",
+      "11118": "[[Miskatonic]], [[Scholar]] deck only. Permanent. Limit 1 per deck.\n[fast] During your turn, if there is no asset attached to Library Pass, exhaust Library Pass: Attach a [[Tome]] asset from your hand to Library Pass. Attached asset takes up no slots.\n<b>Forced</b> - When your turn ends: You must either pay 1 resource or place attached asset on the bottom of your deck.",
+      "11099": "[[Miskatonic]], [[Scholar]] deck only. Limit 1 per deck.\n[fast] During your turn, if there is no asset attached to Library Pass, spend 1 resource: Attach a [[Tome]] asset from your hand to this card. Attached asset takes up no slots. Limit 1 attached asset.\n<b>Forced</b> - When your turn ends: Place attached asset on the bottom of your deck.",
+      "10079": "Permanent. Exceptional.\n[reaction] Before you draw your opening hand: Search your deck for up to 3 different [[Trick]] cards, and attach them facedown to Bewitching. Shuffle your deck.\n[reaction] When you engage an enemy, exhaust Bewitching: Either draw 1 attached card, or search the top 9 cards of your deck for a copy of an attached card, draw it, and shuffle your deck.",
+      "09077": "Permanent. Exceptional. You get +10 deck size.\n[reaction] Before drawing your opening hand, choose 10 [[Illicit]] cards from your deck: Shuffle them together and place them next to Underworld Market, as your market deck.\n[reaction] At the start of your turn: Reveal the top 2 cards of your market deck. You may spend 1 resource to draw 1 of them. Place the rest on the bottom, in any order.",
+      "07303": "Permanent. Exceptional.\nYour deck must include at least 10 skills. Your deck size is increased by 5.\n[reaction] Before drawing your opening hand: Attach 5 random non-weakness skills from your deck facedown to this card.\n[fast] Exhaust Ancestral Knowledge: Draw 1 attached skill.",
+      "03264": "Permanent. Exceptional.\n[reaction] Before you draw your opening hand: Search your deck for up to 3 different [[Tactic]] and/or [[Supply]] events, and attach them facedown to Stick to the Plan. Shuffle your deck.\nCards attached to Stick to the Plan may be played as if they were in your hand. As an additional cost to play an attached card, exhaust Stick to the Plan.",
       "02110": "Permanent.\nIn between each game of a campaign, you may swap up to two level 0 cards out of your deck in exchange for an equal number of level 0 cards. (You must still follow all deckbuilding rules for your investigator).",
       "54012": "You have 1 additional tarot slot.\nEach non-weakness [[Tarot]] asset in your hand or committed to a skill test gains [wild] [wild].\n[reaction] When the game begins, if Moon Pendant is in your opening hand: Put it into play.",
       "54007": "You have 1 additional arcane slot.\nYour arcane slots can be used to hold cards that take up accessory slots, and vice versa.\n[reaction] When the game begins, if The Hierophant • V is in your opening hand: Put it into play.",
@@ -6252,6 +6280,14 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "10060": "Ravenous Myconid",
+      "10059": "Ravenous Myconid",
+      "11118": "Library Pass",
+      "11099": "Library Pass",
+      "10079": "Bewitching",
+      "09077": "Underworld Market",
+      "07303": "Ancestral Knowledge",
+      "03264": "Stick to the Plan",
       "02110": "Adaptable",
       "54012": "Moon Pendant",
       "54007": "The Hierophant • V",

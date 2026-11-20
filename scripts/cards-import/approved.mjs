@@ -94,6 +94,8 @@ export function approvedDefinition(card, approval) {
     '06237': '06113:1',
     '06238': '06113:1',
     10044: '10045:1',
+    10059: '10045:1',
+    10060: '10045:1',
     '06021': '06022:1',
     '06276': '06277:1',
   }
@@ -157,6 +159,27 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'reviewed-creation-permanent-v1' &&
     ['08071', '08125'].includes(card.code) &&
     card.deckLimit === 1
+  const archiveModels = {
+    '03264': 'guardian:3:true',
+    '07303': 'seeker:3:true',
+    '09077': 'rogue:2:true',
+    10079: 'rogue:3:true',
+    11118: 'neutral:5:false',
+  }
+  const archivePermanent =
+    approval.adapter === 'reviewed-opening-archives-v1' &&
+    card.flags.permanent &&
+    card.deckLimit === 1 &&
+    archiveModels[card.code] ===
+      card.factions.join(',') + ':' + card.numbers.xp?.value + ':' + !!card.flags.exceptional
+  const libraryPass =
+    approval.adapter === 'reviewed-library-pass-v1' &&
+    card.code === '11099' &&
+    card.deckLimit === 1 &&
+    card.factions.join(',') === 'neutral' &&
+    card.numbers.xp?.value === 1
+  if (approval.adapter === 'reviewed-library-pass-v1' && !libraryPass)
+    throw new Error('Invalid Library Pass model')
   const planningPermanent =
     approval.adapter === 'reviewed-planning-permanent-v1' &&
     card.flags.permanent &&
@@ -287,6 +310,7 @@ export function approvedDefinition(card, approval) {
       !permanentReprint &&
       !creationPermanent &&
       !planningPermanent &&
+      !archivePermanent &&
       !talentPermanent &&
       !reviewedDarkHorse &&
       !fieldKeywords &&
@@ -307,6 +331,7 @@ export function approvedDefinition(card, approval) {
           key === 'exceptional' &&
           (reviewedBorrowedTime ||
             planningPermanent ||
+            archivePermanent ||
             fieldKeywords ||
             economyKeywords ||
             reviewedExceptional ||
@@ -343,6 +368,11 @@ export function approvedDefinition(card, approval) {
     class: card.factions[0],
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
+    ...(archivePermanent || libraryPass
+      ? { deckLimit: 1, ...(card.flags.exceptional ? { exceptional: true } : {}) }
+      : {}),
+    ...(archivePermanent && card.code === '07303' ? { deckSizeBonus: 5 } : {}),
+    ...(archivePermanent && card.code === '09077' ? { deckSizeBonus: 10 } : {}),
     ...(planningPermanent
       ? { deckLimit: card.deckLimit, ...(card.flags.exceptional ? { exceptional: true } : {}) }
       : {}),

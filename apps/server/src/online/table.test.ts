@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 import { newCampaign, startScenario, LOST_ENCOUNTER_LOCATIONS } from '@lcg/cards'
-import { skillTestValue, shroudOf, dispatch } from '@lcg/engine'
+import { skillTestValue, shroudOf, dispatch, registerTreachery } from '@lcg/engine'
 import { throughSetup } from '@lcg/engine/testing'
 import { tableView, tableStats } from './table'
 import { gameView } from './game'
@@ -43,6 +43,37 @@ it('keeps stored identities private while exposing face-up attachments and upgra
     upgrades: [{ code: '08074', owner: b, uses: 2 }],
   })
   expect(g.assets.atlas!.storedCards![0]!.code).toBe('01090')
+})
+
+it('keeps the Market deck hidden even from its controller while sharing revealed names', () => {
+  const g = throughSetup(
+    startScenario(newCampaign('night-of-the-zealot', ['tommy'], 'standard'), 8),
+  )
+  const owner = g.investigators[0]!.id
+  g.assets.market = {
+    id: 'market',
+    code: '09077',
+    owner,
+    uses: 0,
+    damage: 0,
+    horror: 0,
+    exhausted: false,
+    storedCards: [{ code: '01090', owner }],
+  }
+  g.log.push({ round: g.round, key: 'log.archiveReveal', params: { card: 'Test revealed card' } })
+  expect(tableView(g, owner).assets.market!.storedCards).toEqual([{ code: '', owner }])
+  expect(tableView(g, undefined).log.at(-1)?.params?.card).toBe('Test revealed card')
+  expect(g.assets.market.storedCards![0]!.code).toBe('01090')
+  registerTreachery({ code: 'blank-market', blanksAssetTrait: 'Illicit', revelation: () => [] })
+  g.treacheries.blank = {
+    id: 'blank',
+    kind: 'treachery',
+    code: 'blank-market',
+    name: 'Blank',
+    keywords: [],
+    placement: { type: 'threatArea', investigator: owner },
+  }
+  expect(tableView(g, owner).assets.market!.storedCards).toEqual([{ code: '', owner }])
 })
 
 it('hides Carnevale identities and private looks while exposing the global boss', () => {

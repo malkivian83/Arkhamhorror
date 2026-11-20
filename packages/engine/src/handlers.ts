@@ -276,6 +276,9 @@ export function handle(state: GameState, message: Message): GameState {
     if (replacement) return push(state, ...replacement)
   }
   switch (message.type) {
+    case 'StoreRandomSkills':
+    case 'ShuffleStoredCards':
+    case 'MoveStoredToBottom':
     case 'StorePlayerCard':
     case 'TakeStoredCard':
     case 'CheckStoredAsset':
@@ -3750,6 +3753,10 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
+      if (message.storedPlaySource) {
+        const source = state.assets[message.storedPlaySource]
+        if (!source || source.owner !== message.investigator || source.exhausted) return state
+      }
       const stored = prepareStoredPlay(state, message)
       if (stored) return stored
       if (message.fromDeck) {
@@ -4183,6 +4190,9 @@ export function handle(state: GameState, message: Message): GameState {
         paid,
         ...spentUses,
         ...additionalCosts,
+        ...(message.storedPlaySource
+          ? [{ type: 'ExhaustAsset' as const, asset: message.storedPlaySource }]
+          : []),
         ...spent,
         played,
         ...(message.noOpportunity ? [] : (message.before ?? [])),
@@ -4297,20 +4307,6 @@ export function handle(state: GameState, message: Message): GameState {
       // Checked before taking it from hand or discard, so the card stays where it was.
       if (playerCardBehavior(message.code)?.cannotEnterPlay?.(state, message.investigator))
         return state
-      if (message.fromHand) {
-        // "Put into play from your hand" is not playing it: no cost, no play windows.
-        const owner = getInvestigator(state, message.investigator)
-        const index = owner.hand.indexOf(message.code)
-        if (index < 0) return state
-        const { fromHand: _taken, ...rest } = message
-        return handle(
-          updateInvestigator(state, owner.id, (i) => ({
-            ...i,
-            hand: i.hand.filter((_, n) => n !== index),
-          })),
-          rest,
-        )
-      }
       if (uniqueAssetInPlay(state, message.code)) return state
       if (
         playerCardBehavior(message.code)?.limitTitle &&
@@ -4327,7 +4323,12 @@ export function handle(state: GameState, message: Message): GameState {
         )
       )
         return state
-      const full = (message.noSlot ? [] : (def.slots ?? [])).find(
+      const parent = message.attachedTo && state.assets[message.attachedTo]
+      const attachedSlotFree =
+        parent &&
+        parent.owner === message.investigator &&
+        assetBehavior(state, parent)?.attachmentSlots === 'all'
+      const full = (message.noSlot || attachedSlotFree ? [] : (def.slots ?? [])).find(
         (slot) => !slotsFit(state, message.investigator, slot, message.code),
       )
       if (full) {
@@ -4346,6 +4347,20 @@ export function handle(state: GameState, message: Message): GameState {
             })),
           },
         })
+      }
+      if (message.fromHand) {
+        // "Put into play from your hand" is not playing it: no cost, no play windows.
+        const owner = getInvestigator(state, message.investigator)
+        const index = owner.hand.indexOf(message.code)
+        if (index < 0) return state
+        const { fromHand: _taken, ...rest } = message
+        return handle(
+          updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            hand: i.hand.filter((_, n) => n !== index),
+          })),
+          rest,
+        )
       }
       if (message.fromDiscard) {
         const owner = getInvestigator(state, message.fromDiscard)
@@ -11137,6 +11152,7 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'ReturnAssetToDeck':
     case 'ReturnAssetToHand': {
       const asset = state.assets[message.asset]
       if (!asset || stuckInPlay(state, asset)) return state
@@ -11145,7 +11161,9 @@ export function handle(state: GameState, message: Message): GameState {
       const { [asset.id]: _gone, ...assets } = state.assets
       return updateInvestigator({ ...state, assets }, asset.originalOwner ?? asset.owner, (i) => ({
         ...i,
-        hand: i.eliminated ? i.hand : [...i.hand, asset.code],
+        ...(message.type === 'ReturnAssetToDeck'
+          ? { deck: [...i.deck, asset.code] }
+          : { hand: i.eliminated ? i.hand : [...i.hand, asset.code] }),
       }))
     }
 

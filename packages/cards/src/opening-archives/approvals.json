@@ -1,0 +1,72 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "2b88601afcd605d8afabde534e8f155c742fc4d6c89fe2bc677a1b1e6ad91dd5",
+    "es": "9c9277e01bb932a2a8d32aab8ae33c800f9e68a856a7ebd8b81aa6e7b31e92ec"
+  },
+  "cards": [
+    {
+      "code": "03264",
+      "status": "verified",
+      "adapter": "reviewed-opening-archives-v1",
+      "module": "card-03264",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07303",
+      "status": "verified",
+      "adapter": "reviewed-opening-archives-v1",
+      "module": "card-07303",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09077",
+      "status": "verified",
+      "adapter": "reviewed-opening-archives-v1",
+      "module": "card-09077",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10079",
+      "status": "verified",
+      "adapter": "reviewed-opening-archives-v1",
+      "module": "card-10079",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11099",
+      "status": "verified",
+      "adapter": "reviewed-library-pass-v1",
+      "module": "card-11099",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11118",
+      "status": "verified",
+      "adapter": "reviewed-opening-archives-v1",
+      "module": "card-11118",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10059",
+      "status": "verified",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "module": "card-10059",
+      "test": "rules.test.ts",
+      "subname": "Sentient Strain",
+      "uses": { "count": 0, "type": "growth" }
+    },
+    {
+      "code": "10060",
+      "status": "verified",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "module": "card-10060",
+      "test": "rules.test.ts",
+      "subname": "Carnivorous Strain",
+      "uses": { "count": 0, "type": "growth" }
+    }
+  ]
+}

@@ -663,6 +663,8 @@ export interface PlayerCardBehavior {
   /** Printed activated abilities usable while this card is in hand. */
   handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
   playsStoredCards?: boolean
+  exhaustToPlayStored?: boolean
+  hiddenStoredCards?: boolean
   storedLimit?: number
   discardWhenStoredEmpty?: boolean
   attachmentLimit?: number

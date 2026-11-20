@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   playerCardDef,
+  playerCardBehavior,
   assetVitals,
   effectiveVitals,
   slotCapacity,
@@ -63,7 +64,7 @@ function showUpgrades(asset: Asset) {
   })
 }
 function showStored(asset: Asset) {
-  if (props.privateHand) return
+  if (props.privateHand || playerCardBehavior(asset.code)?.hiddenStoredCards) return
   showPile({
     title: 'table.assetStored',
     params: { card: cardName(asset.code) },
@@ -441,7 +442,11 @@ const slots = computed(() => {
           :key="'stored:' + asset.id"
           class="asset-upgrades stored-cards"
         >
-          <button type="button" :disabled="privateHand" @click="showStored(asset)">
+          <button
+            type="button"
+            :disabled="privateHand || playerCardBehavior(asset.code)?.hiddenStoredCards"
+            @click="showStored(asset)"
+          >
             {{ t('table.assetStored', { card: cardName(asset.code) }) }} ({{
               asset.storedCards!.length
             }})

@@ -1,3 +1,4 @@
+import './opening-archives'
 import {
   upgradeDiscount,
   afterUpgrade,
