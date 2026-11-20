@@ -1,3 +1,4 @@
+import { chooseAssetToDiscard } from '../scenario-helpers'
 // RR: Archive of Conduits additional costs, research, movement, uses and optional effects.
 import { expect, it } from 'vitest'
 import {
@@ -206,18 +207,30 @@ it('Good Weather chooses a skill for all investigators, enforces the group limit
   s = run(s, { type: 'Step', step: 'investigationBegins' })
   s = choose(s, 'ability.playCard', { card: playerCardDef('11091')!.name })
   s = choose(s, 'skill.combat')
-  const a = Object.values(s.assets).find((a) => a.code === '11091')!
-  expect(a.form).toBe('combat')
+  expect(s.agendaEvents?.['11091']).toEqual({ owner: 'a', skill: 'combat', bonus: 2 })
   expect(by(s).discard).not.toContain('11091')
   expect(playerCardBehavior('11091')!.canPlay!(s, 'b')).toBe(false)
-  expect(
-    playerCardBehavior('11091')!.skillAura!(s, a, { investigator: 'b', skill: 'combat' } as never),
-  ).toBe(2)
-  expect(
-    playerCardBehavior('11091')!.skillAura!(s, a, { investigator: 'a', skill: 'agility' } as never),
-  ).toBe(0)
+  expect(chooseAssetToDiscard(s, 'a')).toEqual([])
+  for (const who of ['a', 'b']) {
+    const tested = run(s, {
+      type: 'BeginSkillTest',
+      investigator: who,
+      skill: 'combat',
+      difficulty: 2,
+      kind: { type: 'effect', source: 'Weather', onSuccess: [], onFail: [], onFailEach: [] },
+    })
+    expect(skillTestValue(tested).total).toBe(5)
+  }
+  const agility = run(s, {
+    type: 'BeginSkillTest',
+    investigator: 'b',
+    skill: 'agility',
+    difficulty: 2,
+    kind: { type: 'effect', source: 'Weather', onSuccess: [], onFail: [], onFailEach: [] },
+  })
+  expect(skillTestValue(agility).total).toBe(3)
   s = run(s, { type: 'Step', step: 'investigationBegins' })
-  expect(s.assets[a.id]).toBeUndefined()
+  expect(s.agendaEvents?.['11091']).toBeUndefined()
   expect(by(s).discard).toContain('11091')
 })
 it('I’ll take that plays an Item with the success margin discount and attaches to the EXACT new physical copy', () => {
@@ -273,7 +286,7 @@ it('registers all eight reviewed designs/levels once and removes them from the p
     expect(catalog.cards.find((c) => c.code === code)?.classification).toBe('standard-candidate')
   }
 })
-import { registerPlayerCard, assetTraits } from '@lcg/engine'
+import { registerPlayerCard, assetTraits, skillTestValue } from '@lcg/engine'
 import { newCampaign, purchaseOptions } from '../campaign'
 import { validateDeck } from '../decks'
 it('research gates purchasing all four upgrades, and the shared printed title has a one-card deck limit', () => {
@@ -405,4 +418,45 @@ it('Blood of Thoth also observes doom on an owned player treachery, but not othe
   s = run(s, { type: 'AddTreacheryTokens', treachery: 'weak', amount: 1 })
   s = choose(s, 'ability.advancedTest', { card: playerCardDef('11065')!.name })
   expect(s.assets['11065']!.uses).toBe(1)
+})
+it('Good Weather honors Wendy’s Amulet without leaving another physical copy in the deck', () => {
+  let s = owned('01014', 0)
+  s.investigators[0]!.hand = ['11091']
+  s = run(s, { type: 'Step', step: 'investigationBegins' })
+  s = choose(s, 'ability.playCard', { card: playerCardDef('11091')!.name })
+  s = choose(s, 'skill.combat')
+  expect(s.agendaEvents?.['11091']).toBeDefined()
+  expect(by(s).deck).not.toContain('11091')
+  s = run(s, { type: 'Step', step: 'investigationBegins' })
+  expect(by(s).deck.at(-1)).toBe('11091')
+  expect(by(s).discard).not.toContain('11091')
+})
+it('I’ll take that attaches its resolving copy even with Wendy’s Amulet in play', () => {
+  let s = owned('01014', 0)
+  s.locations.D = { ...s.locations.C!, id: 'D', name: 'Room D' }
+  s.investigators[0]!.hand = ['09067', '08033']
+  s = run(
+    s,
+    ...playerCardBehavior('09067')!.handReactions!(
+      s,
+      {
+        type: 'afterSkillTest',
+        investigator: 'a',
+        kind: 'investigate',
+        succeeded: true,
+        margin: 2,
+      },
+      'a',
+    )[0]!.then,
+  )
+  s = choose(s, 'choice.takeCard', { card: playerCardDef('08033')!.name })
+  for (const id of ['A', 'B', 'C', 'D'])
+    s = choose(s, 'choice.location', { location: 'Room ' + id })
+  expect(
+    Object.values(s.assets)
+      .find((a) => a.code === '08033')!
+      .upgrades?.map((u) => u.code),
+  ).toContain('09067')
+  expect(by(s).deck).not.toContain('09067')
+  expect(by(s).discard).not.toContain('09067')
 })

@@ -40,11 +40,14 @@ registro jugable, compra, escaneos, miniaturas y «Novedades» incluidos.
 - **«¡Me lo quedo!»:** exige investigación propia exitosa o evasión propia de
   un Humanoide. Aplica el margen de éxito como descuento a un Objeto que se
   pueda jugar, paga los costes restantes y se vincula a la instancia nueva,
-  aunque ya haya otra copia idéntica; el Objeto obtiene Ilegal.
+  aunque ya haya otra copia idéntica; el Objeto obtiene Ilegal. Conserva la zona
+  real del evento si estaba activo el Amuleto de Wendy.
 - **Buen tiempo:** ventana después del inicio de Investigación, Miríada y
   límite de grupo. Elige una habilidad y suma dos para todos los investigadores
   hasta el inicio de la siguiente fase de Investigación; se descarta antes de
-  ofrecer nuevas reacciones a ese inicio.
+  ofrecer nuevas reacciones a ese inicio. Permanece junto al Plan, separado de
+  los Apoyos: no puede elegirse para pagar un descarte de Apoyo. Respeta el
+  Amuleto de Wendy al entrar en juego y al descartarse.
 
 Referencias de texto: [Archivo sin identificar](https://arkhamdb.com/card/08033),
 [portales](https://arkhamdb.com/card/08041),

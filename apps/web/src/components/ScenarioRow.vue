@@ -2,6 +2,7 @@
 import {
   actBehavior,
   agendaBehavior,
+  playerCardDef,
   cluesToAdvanceAct,
   secondAgendaDoom,
   totalDoom,
@@ -131,6 +132,14 @@ const sortedBag = computed(() =>
       >
         <GameCard :code="tr.code" :name="tr.name" :width="40" thumbnail color="#b5462f" />
       </TableTarget>
+      <GameCard
+        v-for="(_event, code) in state.agendaEvents"
+        :key="code"
+        :code="String(code)"
+        :name="playerCardDef(String(code))?.name ?? String(code)"
+        :width="54"
+        thumbnail
+      />
     </div>
     <!-- Segundo mazo de Plan (Surgen estrellas negras). -->
     <div

@@ -1004,6 +1004,14 @@ export type Message = MessageBody & {
 }
 type MessageBody =
   | {
+      type: 'PutAgendaEvent'
+      investigator: InvestigatorId
+      code: CardCode
+      skill: SkillType
+      bonus: number
+      from: 'discard' | 'deck'
+    }
+  | {
       type: 'AdjustLeylines'
       target: { type: 'location' | 'enemy' | 'investigator'; id: string }
       amount: number
@@ -2239,6 +2247,8 @@ type MessageBody =
   | { type: 'EndAssetAbility'; asset: AssetId }
   | {
       type: 'AttachEventToAsset'
+      /** Actual zone holding this resolving event (Wendy's Amulet). */
+      from?: 'discard' | 'deck'
       asset: AssetId
       investigator: InvestigatorId
       code: CardCode
@@ -3158,6 +3168,8 @@ export interface GameState {
   placedAssets?: Record<PlacedAssetId, PlacedAsset>
   /** Player events attached to locations, by attachment id. */
   locationAttachments?: Record<string, LocationAttachment>
+  /** Player events beside the agenda, lasting until the next investigation phase. */
+  agendaEvents?: Record<CardCode, { owner: InvestigatorId; skill: SkillType; bonus: number }>
   /** Cartas de Historia en juego, por código. */
   stories?: Record<CardCode, StoryCardInPlay>
   /** Mazos propios del escenario (p. ej. el mazo de Invitados), por nombre. */

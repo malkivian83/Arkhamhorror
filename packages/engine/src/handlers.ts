@@ -277,6 +277,22 @@ export function handle(state: GameState, message: Message): GameState {
     if (replacement) return push(state, ...replacement)
   }
   switch (message.type) {
+    case 'PutAgendaEvent': {
+      const owner = getInvestigator(state, message.investigator)
+      const at = owner[message.from].lastIndexOf(message.code)
+      if (at < 0 || state.agendaEvents?.[message.code]) return state
+      return updateInvestigator(
+        {
+          ...state,
+          agendaEvents: {
+            ...state.agendaEvents,
+            [message.code]: { owner: owner.id, skill: message.skill, bonus: message.bonus },
+          },
+        },
+        owner.id,
+        (i) => ({ ...i, [message.from]: i[message.from].filter((_, n) => n !== at) }),
+      )
+    }
     case 'AdjustLeylines': {
       const { target, amount } = message
       if (target.type === 'investigator') {
@@ -427,13 +443,25 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'Step': {
-      const next = log({ ...state, phaseStep: message.step }, `log.step.${message.step}`, {
+      let next = log({ ...state, phaseStep: message.step }, `log.step.${message.step}`, {
         ...(message.investigator
           ? { name: getInvestigator(state, message.investigator).name }
           : {}),
       })
-      if (message.step === 'investigationBegins')
+      if (message.step === 'investigationBegins') {
+        for (const [code, event] of Object.entries(state.agendaEvents ?? {})) {
+          const bottom = eventsToDeckBottom(state, event.owner)
+          next = updateInvestigator(next, event.owner, (i) =>
+            i.eliminated
+              ? i
+              : bottom
+                ? { ...i, deck: [...i.deck, code] }
+                : { ...i, discard: [...i.discard, code] },
+          )
+        }
+        if (state.agendaEvents) next = { ...next, agendaEvents: {} }
         return push(next, { type: 'Forced', trigger: { type: 'investigationPhaseBegins' } })
+      }
       return [
         'mythosEnds',
         'enemyBegins',
@@ -5844,6 +5872,13 @@ export function handle(state: GameState, message: Message): GameState {
         assets: Object.fromEntries(
           Object.entries(next.assets).filter(([, a]) => a.owner !== investigator.id),
         ),
+        ...(next.agendaEvents
+          ? {
+              agendaEvents: Object.fromEntries(
+                Object.entries(next.agendaEvents).filter(([, e]) => e.owner !== investigator.id),
+              ),
+            }
+          : {}),
       }
       // RR "Elimination": las cartas de su zona de amenaza se descartan y las que posee
       // (sus debilidades) abandonan la partida; su descarte se vacía a continuación.
@@ -10172,7 +10207,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'AttachEventToAsset': {
       const asset = state.assets[message.asset]
       const owner = getInvestigator(state, message.investigator)
-      const index = owner.discard.lastIndexOf(message.code)
+      const from = message.from ?? 'discard'
+      const index = owner[from].lastIndexOf(message.code)
       const controller = asset && state.investigators.find((i) => i.id === asset.owner)
       if (
         !asset ||
@@ -10208,7 +10244,7 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
         owner.id,
-        (i) => ({ ...i, discard: i.discard.filter((_, n) => n !== index) }),
+        (i) => ({ ...i, [from]: i[from].filter((_, n) => n !== index) }),
       )
       return playerCardBehavior(message.code)?.attachedExtraSlots?.length
         ? push(attached, { type: 'CheckSlots', investigator: asset.owner })
@@ -14782,10 +14818,15 @@ export function skillTestValue(state: GameState): {
   const passive = Object.values(state.assets)
     .filter((a) => a.owner === investigator.id)
     .reduce((sum, a) => sum + (assetBehavior(state, a)?.skillModifier?.(state, a, test) ?? 0), 0)
-  const assetAuras = Object.values(state.assets).reduce(
-    (sum, a) => sum + (assetBehavior(state, a)?.skillAura?.(state, a, test) ?? 0),
-    0,
-  )
+  const assetAuras =
+    Object.values(state.assets).reduce(
+      (sum, a) => sum + (assetBehavior(state, a)?.skillAura?.(state, a, test) ?? 0),
+      0,
+    ) +
+    Object.values(state.agendaEvents ?? {}).reduce(
+      (sum, e) => sum + (e.skill === test.skill ? e.bonus : 0),
+      0,
+    )
   const auras =
     investigator.location === null
       ? 0
@@ -14870,6 +14911,10 @@ export function skillTestValue(state: GameState): {
       ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
       : 0)
   const sources = [
+    ...Object.entries(state.agendaEvents ?? {}).map(([code, e]) => ({
+      name: playerCardDef(code)?.name ?? code,
+      amount: e.skill === test.skill ? e.bonus : 0,
+    })),
     ...(test.effectSource
       ? [{ name: playerCardDef(test.effectSource)?.name ?? test.effectSource, amount: effectBonus }]
       : []),

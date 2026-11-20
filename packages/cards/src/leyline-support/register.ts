@@ -1,5 +1,6 @@
 // RR: Additional Costs, Research, Moving, Lasting Effects, Uses and triggered abilities.
 import {
+  eventsToDeckBottom,
   getInvestigator,
   getLocation,
   immuneToPlayerCards,
@@ -364,7 +365,12 @@ export function registerSupport(code: string): void {
                 type: 'PlayCard',
                 code,
                 investigator: by,
-                effect: [call(code, by, 'item', { discount: t.margin })],
+                effect: [
+                  call(code, by, 'item', {
+                    discount: t.margin,
+                    from: eventsToDeckBottom(s, by) ? 'deck' : 'discard',
+                  }),
+                ],
               },
             ],
           },
@@ -386,6 +392,7 @@ export function registerSupport(code: string): void {
                 },
                 call(code, by, 'attach', {
                   item: c,
+                  from: String(d.from),
                   previous: JSON.stringify(Object.keys(s.assets)),
                 }),
               ]),
@@ -398,7 +405,16 @@ export function registerSupport(code: string): void {
             (a) => a.owner === by && a.code === String(d.item) && !old.includes(a.id),
           )
           return a
-            ? [{ type: 'AttachEventToAsset', asset: a.id, investigator: by, code, trait: 'Item' }]
+            ? [
+                {
+                  type: 'AttachEventToAsset',
+                  asset: a.id,
+                  investigator: by,
+                  code,
+                  trait: 'Item',
+                  from: d.from === 'deck' ? 'deck' : 'discard',
+                },
+              ]
             : []
         }
         return []
@@ -407,7 +423,7 @@ export function registerSupport(code: string): void {
     return
   }
   if (code === '11091') {
-    const available = (s: GameState) => !Object.values(s.assets).some((a) => a.code === code)
+    const available = (s: GameState) => !s.agendaEvents?.[code]
     registerPlayerCard({
       code,
       canPlay: available,
@@ -420,15 +436,21 @@ export function registerSupport(code: string): void {
                 label: 'ability.playCard',
                 params: { card: cardName(code) },
                 then: [
-                  { type: 'PlayCard', code, investigator: by, effect: [call(code, by, 'weather')] },
+                  {
+                    type: 'PlayCard',
+                    code,
+                    investigator: by,
+                    effect: [
+                      call(code, by, 'weather', {
+                        from: eventsToDeckBottom(s, by) ? 'deck' : 'discard',
+                      }),
+                    ],
+                  },
                 ],
               },
             ]
           : [],
-      forced: (_s, t, a) =>
-        t.type === 'investigationPhaseBegins' ? [{ type: 'DiscardAsset', asset: a.id }] : [],
-      skillAura: (_s, a, t) => (a.form === t.skill ? 2 : 0),
-      effect: (s, by, step, d) =>
+      effect: (_s, by, step, d) =>
         step === 'weather'
           ? ask(
               by,
@@ -436,23 +458,18 @@ export function registerSupport(code: string): void {
                 label: 'skill.' + skill,
                 then: [
                   {
-                    type: 'PutAssetIntoPlay',
+                    type: 'PutAgendaEvent',
                     investigator: by,
                     code,
-                    fromDiscard: by,
-                    noSlot: true,
-                    onEntered: continuation(code, by, 'weatherForm', { skill }) as Extract<
-                      Message,
-                      { type: 'PlayerCardEffect' }
-                    >,
+                    skill,
+                    bonus: 2,
+                    from: d.from === 'deck' ? 'deck' : 'discard',
                   },
                 ],
               })),
               true,
             )
-          : step === 'weatherForm'
-            ? [{ type: 'SetAssetForm', asset: String(d.asset), form: String(d.skill) }]
-            : [],
+          : [],
     })
     return
   }

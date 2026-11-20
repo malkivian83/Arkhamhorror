@@ -44,6 +44,7 @@ it('round-trips shared leylines and the pending choice about consuming a line', 
     horror: 0,
     exhausted: false,
   }
+  s.agendaEvents = { '11091': { owner: by, skill: 'combat', bonus: 2 } }
   s.queue = []
   s.pending = {
     investigator: by,
@@ -64,5 +65,6 @@ it('round-trips shared leylines and the pending choice about consuming a line', 
   expect(restored.state!.locations[loc]!.leylines).toBe(2)
   expect(restored.state!.investigators[0]!.leylines).toBe(1)
   expect(restored.state!.assets.archive!.uses).toBe(3)
+  expect(restored.state!.agendaEvents).toEqual(s.agendaEvents)
   expect(restored.state!.pending).toEqual(s.pending)
 })
