@@ -202,6 +202,11 @@ function game(value: unknown): asserts value is GameState {
         ))
     )
       fail()
+    if (
+      a.flexibleSlot !== undefined &&
+      !['hand', 'accessory', 'arcane'].includes(String(a.flexibleSlot))
+    )
+      fail()
     if (a.attachedTo !== undefined && typeof a.attachedTo !== 'string') fail()
     const seen = new Set([id])
     let parent: unknown = a.attachedTo
@@ -386,6 +391,25 @@ function campaign(value: unknown): asserts value is Campaign {
   for (const i of value.investigators) {
     if (!object(i) || typeof i.id !== 'string' || ids.has(i.id) || !strings(i.deck)) fail()
     ids.add(i.id)
+    if (i.planning !== undefined) {
+      const p = i.planning
+      if (
+        !object(p) ||
+        !integer(p.arcane) ||
+        p.arcane < 0 ||
+        p.arcane > 2 ||
+        typeof p.rabbit !== 'boolean' ||
+        !integer(p.upgrades) ||
+        p.upgrades < 0 ||
+        (p.swaps !== undefined && (!integer(p.swaps) || p.swaps < 0 || p.swaps > 4)) ||
+        (p.pelt !== undefined && (!integer(p.pelt) || p.pelt < 0 || p.pelt > 2)) ||
+        (p.peltUsed !== undefined && typeof p.peltUsed !== 'boolean') ||
+        (p.arcaneUsed !== undefined && typeof p.arcaneUsed !== 'boolean') ||
+        (p.customized !== undefined &&
+          (!strings(p.customized) || !p.customized.every((c) => playerCardDef(c))))
+      )
+        fail()
+    }
     if (
       playerCardDef(i.id)?.type !== 'investigator' ||
       !i.deck.every((code) => playerCardDef(code))

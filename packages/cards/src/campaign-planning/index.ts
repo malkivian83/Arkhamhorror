@@ -1,0 +1,16 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/campaign-planning.json'
+import './card-03308'
+import './card-04109'
+import './card-06167'
+import './card-08031'
+import './card-08046'
+import './card-08059'
+import './card-11095'
+import './card-10109'
+import './card-10132'
+import './card-54007'
+import './card-54012'
+import './card-02110'
+registerPlayerCards(data as PlayerCardDef[])
+export const CAMPAIGN_PLANNING_RENDERED_CODES = data.map((c) => c.code)

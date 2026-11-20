@@ -128,9 +128,8 @@ describe('imágenes españolas de referencia y alternativas', () => {
             ['skill', 'investigator', 'treachery', 'enemy'].includes(card.type_code) ||
             isPermanent(code) ||
             playerCardBehavior(code)?.dilemma ||
-            // Investigaciones que no se pueden jugar y no tienen coste impreso.
-            (playerCardBehavior(code)?.researchEffect &&
-              playerCardBehavior(code)?.cannotPlayFromHand &&
+            // Cartas que no se pueden jugar y no tienen coste impreso (Investigación, Envío de pieles).
+            (playerCardBehavior(code)?.cannotPlayFromHand &&
               playerCardDef(code)?.cost === undefined) ||
             // Debilidades de apoyo sin coste impreso (Barón Samedi).
             (playerCardDef(code)?.weakness && playerCardDef(code)?.cost === undefined) ||

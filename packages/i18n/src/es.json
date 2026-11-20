@@ -84,6 +84,16 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "plaguebearerAfternoonWar": {
+        "title": "La llamada del Portador de la Plaga: Guerra al atardecer e Interludio V",
+        "cards": "Escenario VI con los portales de la Llama y del Rey, daño y horror sobre los Lugares, apoyos de historia con Defender, Poder desatado y textos de historia literales EN/ES; Interludio V, La confrontación, listo para seguir a Muerte a la puesta de sol.",
+        "rules": "Descenso al mediodía ya muestra su referencia de fichas del caos; los relatos nuevos quedan pendientes de locución."
+      },
+      "campaignPlanning": {
+        "title": "12 cartas para planificar la campaña",
+        "cards": "Nuevos apoyos Permanentes, opciones de mazo, Envío de pieles y apoyos de Tarot.",
+        "rules": "Costes de experiencia, periodos de mejora, ranuras compartidas, guardados y juego online revisados."
+      },
       "assetContainers": {
         "title": "Cartas guardadas y apoyos adjuntos",
         "cards": "Trece cartas y niveles, incluidos Mochila (0/2), Atlas astronómico, Chaqueta de caza, Elle Rubash y Arma encantada.",
@@ -290,6 +300,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "flexibleSlot": "Elige el tipo de ranura flexible. Puedes cambiarlo cuando un apoyo entre en juego.",
     "storedSource": "Elige la copia que vas a jugar.",
     "research": "Puedes resolver una capacidad de Investigación de las cartas buscadas.",
     "chooseRevealToReplace": "Elige qué revelación sustituye esta capacidad",
@@ -1996,6 +2007,8 @@
     "tokensRevealedChoice": "Fichas reveladas para elegir: {tokens}."
   },
   "table": {
+    "flexibleSlot": "{n} ranura flexible compartida: {slots}; elegida: {chosen}",
+    "interchangeableSlots": "Ranuras intercambiables: {slots}",
     "attachedUses": "{card}: {n} usos",
     "assetStored": "Cartas guardadas en {card}",
     "assetAttachments": "Apoyos adjuntos a {card}",
@@ -3234,6 +3247,7 @@
     "killed": "Muerto: ya no puede seguir en la campaña.",
     "insane": "Enloquecido: ya no puede seguir en la campaña.",
     "shop": {
+      "adaptableExchange": "Intercambia una carta de nivel 0 con Adaptable",
       "title": "Mejora tu mazo",
       "help": "Elige la carta que entra, compárala con la que sale y confirma el gasto.",
       "availableXp": "{xp} exp. disponibles",
@@ -3428,6 +3442,8 @@
   },
   "deck": {
     "problem": {
+      "campaignOnly": "Asceta solo puede incluirse en modo campaña.",
+      "levelZeroSwap": "Adaptable debe sustituir una carta de nivel 0 que cuente para el tamaño del mazo.",
       "unknownInvestigator": "Investigador desconocido.",
       "size": "Tiene {n} cartas y deben ser {size} (sin contar exclusivas, debilidades ni permanentes).",
       "notAllowed": "{card} no está entre sus opciones de construcción.",
@@ -3679,6 +3695,9 @@
   },
   "offlineCard": {
     "subnames": {
+      "54007": "Te espera tu verdadero maestro",
+      "10132": "Fuente dudosa",
+      "03308": "El pago del barquero",
       "09092": "Propósito purificador",
       "06324": "Becaria de la biblioteca",
       "04021": "Ayudante del conservador",
@@ -3844,6 +3863,18 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "02110": "Talento.",
+      "54012": "Objeto. Amuleto.",
+      "54007": "Tarot.",
+      "10132": "Ayuda. Pacto.",
+      "10109": "Objeto. Suministros.",
+      "11095": "Estado.",
+      "08059": "Talento.",
+      "08046": "Favor. Ilegal.",
+      "08031": "Talento. Ritual.",
+      "06167": "Talento.",
+      "04109": "Talento.",
+      "03308": "Objeto. Reliquia.",
       "07261": "Hechizo. Mejora.",
       "08074": "Mejora.",
       "09092": "Aliado. Bruja.",
@@ -4808,6 +4839,18 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "02110": "Permanente.\nEntre partida y partida de la campaña, puedes cambiar hasta 2 cartas de nivel 0 de tu mazo por el mismo número de cartas de nivel 0. Debes seguir todas las reglas de creación de mazos de tu investigador.",
+      "54012": "Tienes 1 espacio de tarot adicional.\n Cada apoyo [[Tarot]] que no sea Debilidad en tu mano o asignado a una prueba de habilidad obtiene [wild] [wild].\n[reaction] Cuando comience la partida, si el Colgante de luna está en tu mano inicial: Ponlo en juego.",
+      "54007": "Tienes 1 espacio arcano adicional.\nTus espacios arcanos se pueden usar para cartas que ocupen espacios de accesorio y viceversa.\n[reaction] Cuando comience la partida, si El Sumo Sacerdote • V está en tu mano inicial: Ponlo en juego.",
+      "10132": "Permanente. Límite de 1 por mazo.\nTienes 1 espacio arcano, de mano o de accesorio adicional, que sólo puede usarse para un Apoyo [[Bendecido]] o [[Maldito]].",
+      "10109": "Mientras el Envío de pieles esté en tu mano, tu tamaño máximo se reduce en 3.\n[reaction] Cuando la partida termine o desistas, si el Envío de pieles está en tu mano: Reduce en 1 el coste de experiencia de la próxima carta nueva que adquieras antes del siguiente escenario.",
+      "11095": "Sólo modo de campaña. Permanente. Límite de 1 por mazo. Sólo puedes adquirir esta carta al crear el mazo.\nCuando adquieras esta carta, obtén 10 puntos de experiencia.\nNo puedes ganar experiencia durante el resto de la campaña.",
+      "08059": "Permanente. Límite de 1 por mazo. Compra esta carta al crear el mazo.\nDespués de cada escenario de una campaña, reduce en 1 el coste de experiencia de las 2 primeras cartas que mejores antes del siguiente escenario.\nAumenta en 1 el coste de experiencia de las nuevas cartas que compres.",
+      "08046": "Permanente. Límite de 1 por mazo. Compra esta carta al crear el mazo.\nTu mazo no puede incluir más de 1 copia de cada carta que no sea Debilidad ni característica (por nombre).\nReduce en 5 tu tamaño de mazo.",
+      "08031": "Permanente. Límite de 1 por mazo. Compra esta carta al crear el mazo.\nAumenta en 15 tu tamaño de mazo.\nDurante cada fase de Mantenimiento, en lugar de robar 1 carta, roba 2 cartas y descarta 1 de ellas.",
+      "06167": "Permanente.\nRecibes +5 al tamaño de mazo.\nLas Opciones de creación de mazos de tu investigador obtienen: \"una carta distinta de nivel 0 de cualquier clase ([guardian], [seeker], [rogue], [mystic] o [survivor]).\"",
+      "04109": "Permanente.\nCuando adquieras Investigación arcana, sufre 1 trauma mental.\nDespués de cada escenario de una campaña, reduce en 1 el coste de experiencia de la primera carta [[Hechizo]] que mejores antes del siguiente escenario.",
+      "03308": "Permanente. Excepcional.\nAl obtener experiencia durante la resolución de un escenario, si no fuiste derrotado durante ese escenario, obtienes 2 puntos de experiencia adicionales. Si fuiste derrotado durante ese escenario, <b>mueres</b>.",
       "07261": "Vincula esta carta a un Apoyo [[Arma]] controlado por un investigador que esté en tu Lugar. Límite de 1 por Apoyo.\nEl Apoyo vinculado obtiene el rasgo [[Reliquia]] y ocupa un espacio arcano además de sus otros espacios.\n[reaction] Cuando realices una acción de <b>Combatir</b> usando el Apoyo vinculado, agota esta carta: Añade la [willpower] del propietario de esta carta a tu [combat] para este ataque. Este ataque inflige +1 de daño.",
       "08074": "Usos (3 de durabilidad).\nVincula esta carta a un Apoyo [[Objeto]] controlado por un investigador que esté en tu Lugar.\n[fast] Durante una prueba de habilidad del Apoyo vinculado, gasta 1 de durabilidad: Recibes +2 a tu valor de habilidad para esta prueba.",
       "09092": "Recibes +1 a tu valor de habilidad al resolver una prueba de habilidad de un Apoyo vinculado.\n1 ficha de Perdición de cada Apoyo vinculado no cuenta para el umbral de perdición del plan.\n[free] Agota a Elle Rubash: Elige un Apoyo que esté en tu zona de juego y que tenga 1 o más fichas de Perdición. Vincúlaselo a elle Rubash o bien intercámbialo por un Apoyo vinculado. Límite de 2 Apoyos vinculados.",
@@ -6204,6 +6247,18 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "02110": "Adaptable",
+      "54012": "Colgante de luna",
+      "54007": "El Sumo Sacerdote • V",
+      "10132": "Relicario ocultista",
+      "10109": "Envío de pieles",
+      "11095": "Asceta",
+      "08059": "Por la madriguera de conejo",
+      "08046": "Apoyo de los bajos fondos",
+      "08031": "Aprendizaje obligado",
+      "06167": "Versátil",
+      "04109": "Investigación arcana",
+      "03308": "Óbolo de Caronte",
       "07261": "Arma encantada",
       "08074": "Apaño improvisado",
       "09092": "Elle Rubash",

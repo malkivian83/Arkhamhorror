@@ -11,7 +11,8 @@ export const IN_THE_THICK_OF_IT = '08125'
 registerPlayerCard({ code: IN_THE_THICK_OF_IT, permanent: {} })
 
 /** Printed campaign-creation experience, before buying the initial upgraded cards. */
-export const startingExperience = (deck: CardCode[]) => (deck.includes(IN_THE_THICK_OF_IT) ? 3 : 0)
+export const startingExperience = (deck: CardCode[]) =>
+  (deck.includes(IN_THE_THICK_OF_IT) ? 3 : 0) + (deck.includes('11095') ? 10 : 0)
 
 export const startingExperienceSpent = (deck: CardCode[], sheets: Customizations = {}) =>
   deck.reduce((spent, code, index) => {

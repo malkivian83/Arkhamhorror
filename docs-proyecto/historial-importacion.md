@@ -301,3 +301,5 @@
 - Lote 150, `e27d766c`: seis cartas/niveles de Encuentros; 1562 comportamientos y 205 estándar con impresión pendientes. Motor/cartas/importación: 659 archivos y 7624 pruebas; web, guardados, tipos, lint, formato, imágenes y build web correctos.
 
 - Lote 151, `67be2d74`: nueve cartas/niveles estándar nuevos de investigación y compromiso; 1571 comportamientos, 554 históricos y 196 estándar pendientes. Motor/cartas/importación: 7676 casos; reglas dirigidas: 35; web: 19; guardados: 39. Tipos, lint, fuentes, imágenes y build web correctos. [Detalle](151-investigacion-y-compromisos.md).
+
+- Lote 152: `861c7e22`, cierre `1176251e`; trece cartas/niveles estándar nuevos de almacenamiento y adjuntos. 1584 comportamientos, 541 históricos y 183 estándar pendientes; 6573 escaneos y miniaturas. Motor/cartas/importación: 7718 casos; cierre dirigido: 87; guardados: 39 y 61 tras ajuste de tipos. Tipos, lint, imágenes y build correctos. Corrección de presentación `71114112`: CI `44695674739` correcta, registrada en `d53ec860`. [Detalle](152-cartas-guardadas-y-apoyos-adjuntos.md).

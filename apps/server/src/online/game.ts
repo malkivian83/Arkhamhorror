@@ -182,6 +182,7 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
             own: own
               ? {
                   deck: [...own.deck],
+                  ...(own.planning ? { planning: structuredClone(own.planning) } : {}),
                   xp: campaign.log.investigators[own.id]?.xp ?? 0,
                   ...(own.customizations ? { customizations: own.customizations } : {}),
                   removable: removableCards(campaign, own.id),
@@ -191,6 +192,7 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
                         name: o.name,
                         cost: o.cost,
                         needsRemoval: o.needsRemoval,
+                        ...(o.exchange ? { exchange: true } : {}),
                         ...(o.replaces ? { replaces: o.replaces } : {}),
                       }))
                     : [],

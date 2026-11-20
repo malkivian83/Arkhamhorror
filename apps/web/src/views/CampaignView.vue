@@ -163,7 +163,7 @@ const options = computed(() =>
   onePrintingEach(
     campaign.value && shopping.value ? purchaseOptions(campaign.value, shopping.value) : [],
     // One entry per lower version replaced: each upgrade has its own cost (doc 100, C2).
-    (o) => (o.replaces ? `upgrade:${o.replaces}` : 'new'),
+    (o) => (o.exchange ? 'exchange' : o.replaces ? `upgrade:${o.replaces}` : 'new'),
   ).sort(
     (a, b) =>
       Number(b.implemented) - Number(a.implemented) ||
@@ -183,7 +183,7 @@ const customizableFor = (deck: string[]) =>
 function buy(o: PurchaseOption, remove?: string) {
   if (!shopping.value) return
   game.buy(shopping.value, o.code, {
-    upgrade: !!o.replaces,
+    upgrade: !!(o.replaces || o.exchange),
     ...(o.replaces ? { replaces: o.replaces } : {}),
     ...(remove ? { remove } : {}),
   })
@@ -353,7 +353,14 @@ function abandon() {
             <p v-else-if="campaign.log.investigators[i.id]?.insane" class="fate">
               {{ t('campaign.insane') }}
             </p>
-            <p v-else-if="!deckChangesAllowed" class="fate">{{ t('story.fof.noDeckChanges') }}</p>
+            <p
+              v-else-if="
+                !deckChangesAllowed && !purchaseOptions(campaign, i.id).some((o) => o.exchange)
+              "
+              class="fate"
+            >
+              {{ t('story.fof.noDeckChanges') }}
+            </p>
             <button
               v-else
               type="button"
@@ -372,7 +379,7 @@ function abandon() {
               :removable="removable"
               :deck="i.deck"
               :xp="campaign.log.investigators[i.id]?.xp ?? 0"
-              :disabled="!!game.state || !deckChangesAllowed"
+              :disabled="!!game.state"
               @buy="buy"
             />
             <details
@@ -389,6 +396,8 @@ function abandon() {
                 :key="code"
                 :code="code"
                 :sheet="i.customizations?.[code]"
+                :deck="i.deck"
+                :planning="i.planning"
                 :copies="i.deck.filter((c) => c === code).length"
                 :xp="campaign.log.investigators[i.id]?.xp ?? 0"
                 :removable="removable"

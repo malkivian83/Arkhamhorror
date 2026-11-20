@@ -123,6 +123,16 @@ export interface OnlineCampaignView {
   own: {
     xp?: number
     customizations?: Record<string, Record<string, number>>
+    planning?: {
+      arcane: number
+      rabbit: boolean
+      upgrades: number
+      arcaneUsed?: boolean
+      customized?: string[]
+      swaps?: number
+      pelt?: number
+      peltUsed?: boolean
+    }
     deck: string[]
     removable: string[]
     options: {
@@ -130,6 +140,7 @@ export interface OnlineCampaignView {
       name: string
       cost: number
       replaces?: string
+      exchange?: boolean
       needsRemoval: boolean
     }[]
   } | null

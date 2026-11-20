@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { playerCardDef } from '@lcg/engine'
 import type { PurchaseOption } from '@lcg/cards'
 import { computed, nextTick, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -26,7 +27,9 @@ const copies = (code: string) => props.deck?.filter((c) => c === code).length ??
 const choosesRemoval = computed(() => !props.option.replaces && props.option.needsRemoval)
 const outgoing = computed(() => props.option.replaces ?? removal.value)
 const removals = computed(() =>
-  [...new Set(props.removable)].sort((a, b) => name(a).localeCompare(name(b), locale.value)),
+  [...new Set(props.removable)]
+    .filter((c) => !props.option.exchange || (playerCardDef(c)?.xp ?? 0) === 0)
+    .sort((a, b) => name(a).localeCompare(name(b), locale.value)),
 )
 const blocker = computed(() => {
   if (props.disabled) return t('customization.unavailable')

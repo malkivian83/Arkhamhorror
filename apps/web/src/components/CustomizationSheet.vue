@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed, ref, useId, watch } from 'vue'
-import { customizationPurchaseCost } from '@lcg/cards'
+import {
+  customizationPurchaseCost,
+  planningCustomizationCost,
+  type CampaignInvestigator,
+} from '@lcg/cards'
 import { customizationCost, playerCardDef } from '@lcg/engine'
 import { useI18n } from 'vue-i18n'
 import { localName } from '../game/localized'
 import UpgradeCardInfo from './UpgradeCardInfo.vue'
 const props = defineProps<{
   code: string
+  deck?: string[]
+  planning?: CampaignInvestigator['planning']
   sheet?: Record<string, number> | undefined
   draft?: boolean
   disabled?: boolean
@@ -44,10 +50,21 @@ const total = computed(() => customizationCost(selectedSheet.value))
 const boxes = computed(() => total.value - customizationCost(props.sheet))
 /** Las casillas y, a partir de la segunda copia nueva, el coste de la carta (FAQ). */
 const cost = computed(() =>
-  customizationPurchaseCost(
-    props.sheet ?? {},
-    selectedSheet.value,
-    props.draft ? 0 : addedCopies.value,
+  (props.draft || !props.deck
+    ? (base: number) => base
+    : (base: number) =>
+        planningCustomizationCost(
+          base,
+          { deck: props.deck!, planning: props.planning },
+          props.code,
+          addedCopies.value,
+          Math.ceil(total.value / 2),
+        ))(
+    customizationPurchaseCost(
+      props.sheet ?? {},
+      selectedSheet.value,
+      props.draft ? 0 : addedCopies.value,
+    ),
   ),
 )
 const chosenRemovals = computed(() => removal.value.slice(0, addedCopies.value).filter(Boolean))

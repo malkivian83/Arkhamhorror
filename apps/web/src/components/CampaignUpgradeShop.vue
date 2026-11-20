@@ -39,7 +39,8 @@ const pending = ref<{ incoming: string; outgoing?: string } | null>(null)
 const name = (code: string) => localName(cardName(code))
 const levelOf = (code: string) => playerCardDef(code)?.xp ?? 0
 const copies = (code: string) => props.deck?.filter((c) => c === code).length ?? 0
-const key = (option: PurchaseOption) => `${option.code}:${option.replaces ?? 'new'}`
+const key = (option: PurchaseOption) =>
+  `${option.code}:${option.replaces ?? (option.exchange ? 'exchange' : 'new')}`
 const normalize = (value: string) =>
   value
     .normalize('NFD')
@@ -167,7 +168,8 @@ function buy(option: PurchaseOption, remove?: string) {
               <span class="price">{{ t('campaign.shop.price', { xp: option.cost }) }}</span>
             </div>
             <p class="tag" :class="option.replaces ? 'upgrade' : 'new'">
-              <template v-if="option.replaces">
+              <template v-if="option.exchange">{{ t('campaign.shop.adaptableExchange') }}</template>
+              <template v-else-if="option.replaces">
                 <span aria-hidden="true">↑</span>
                 {{
                   t('campaign.shop.upgradeFrom', {

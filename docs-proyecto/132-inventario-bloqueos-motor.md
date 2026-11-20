@@ -230,6 +230,14 @@ Se desbloquean solo cuando están todas. Las combinaciones más frecuentes:
 
 La asignación exacta por código está en `tmp/inventario-bloqueos.json`.
 
+## Estado tras el lote 153
+
+`campaign-planning`: doce diseños/niveles estándar nuevos; 1596 comportamientos,
+529 códigos históricos y 171 estándar con impresión pendientes. Descuentos y
+contadores de campaña, experiencia inicial, construcción de mazos, Mantenimiento,
+ranuras compartidas y comodines de Tarot. Curación espiritual conserva pendiente
+la elección de trauma al adquirirla. [Reglas y diferencias](153-planificacion-de-campana.md).
+
 ## Recomendación de orden
 
 1. **Candidatas sin motor nuevo y reimpresiones** (76 códigos): lotes directos.

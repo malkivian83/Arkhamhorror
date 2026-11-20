@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { allPlayerCardDefs } from '@lcg/engine'
+import { allPlayerCardDefs, playerCardDef } from '@lcg/engine'
 import CustomizationSheet from './CustomizationSheet.vue'
 import { useI18n } from 'vue-i18n'
 import { STARTER_DECKS, starterDeck, starterInvestigator, type DeckKey } from '@lcg/cards'
@@ -23,7 +23,8 @@ const name = (code: string) => localName(cardName(code))
 const selected = ref(''),
   remove = ref(''),
   search = ref('')
-const key = (o: { code: string; replaces?: string }) => `${o.code}:${o.replaces ?? ''}`
+const key = (o: { code: string; replaces?: string; exchange?: boolean }) =>
+  `${o.code}:${o.replaces ?? (o.exchange ? 'exchange' : '')}`
 const options = computed(() =>
   (props.campaign.own?.options ?? []).filter(
     (o) =>
@@ -67,7 +68,7 @@ function buy() {
   emit('action', {
     action: 'purchase',
     card: option.value.code,
-    upgrade: !!option.value.replaces,
+    upgrade: !!(option.value.replaces || option.value.exchange),
     ...(option.value.replaces ? { replaces: option.value.replaces } : {}),
     ...(option.value.needsRemoval ? { remove: remove.value } : {}),
   })
@@ -180,6 +181,8 @@ function buy() {
         :key="card.code"
         :code="card.code"
         :sheet="campaign.own.customizations?.[card.code]"
+        :deck="campaign.own.deck"
+        :planning="campaign.own.planning"
         :copies="campaign.own.deck.filter((c) => c === card.code).length"
         :xp="campaign.own.xp ?? 0"
         :removable="campaign.own.removable"
@@ -213,6 +216,7 @@ function buy() {
             <option value="">{{ t('online.campaignPlay.chooseCard') }}</option>
             <option v-for="o in options" :key="key(o)" :value="key(o)">
               {{ name(o.code) }} · {{ o.cost }} XP
+              {{ o.exchange ? t('campaign.shop.adaptableExchange') : '' }}
               {{ o.replaces ? t('online.campaignPlay.replaces', { card: name(o.replaces) }) : '' }}
             </option>
           </select>
@@ -222,7 +226,13 @@ function buy() {
           >{{ t('online.campaignPlay.remove') }}
           <select v-model="remove">
             <option value="">{{ t('online.campaignPlay.chooseCard') }}</option>
-            <option v-for="code in campaign.own.removable" :key="code" :value="code">
+            <option
+              v-for="code in campaign.own.removable.filter(
+                (c) => !option?.exchange || (playerCardDef(c)?.xp ?? 0) === 0,
+              )"
+              :key="code"
+              :value="code"
+            >
               {{ name(code) }}
             </option>
           </select>

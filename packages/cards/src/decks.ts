@@ -68,15 +68,19 @@ export interface PoolExtras {
 
 /** Opciones de construcción adicionales que dan las cartas del mazo. */
 const extraOptions = (deck: CardCode[]): ExtraDeckOption[] =>
-  [...new Set(deck)].flatMap((code) => {
+  deck.flatMap((code) => {
     const option = byCode(code)?.extraDeckOption
     return option ? [option] : []
   })
 
 const matchesExtra = (card: PlayerCardDef, option: ExtraDeckOption) =>
-  card.type === option.type &&
+  ['asset', 'event', 'skill'].includes(card.type) &&
+  (!option.type || card.type === option.type) &&
   (card.xp ?? 0) <= option.maxLevel &&
-  card.traits.some((t) => option.traits.includes(t))
+  (option.traits.length === 0 || card.traits.some((t) => option.traits.includes(t)))
+
+export const extraDeckAllows = (deck: CardCode[], card: PlayerCardDef): boolean =>
+  extraOptions(deck).some((o) => matchesExtra(card, o))
 
 /** Permitida por las opciones de clase y nivel del investigador. */
 export function investigatorTraitsAllow(investigator: CardCode, card: PlayerCardDef): boolean {
@@ -135,7 +139,7 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
 
 /** Cartas de mazo que pide el investigador más las que añaden sus cartas (Collector). */
 export function requiredDeckSize(investigator: CardCode, deck: CardCode[] = []): number {
-  const bonus = [...new Set(deck)].reduce((n, code) => n + (byCode(code)?.deckSizeBonus ?? 0), 0)
+  const bonus = deck.reduce((n, code) => n + (byCode(code)?.deckSizeBonus ?? 0), 0)
   return (byCode(investigator)?.deckSize ?? 30) + bonus
 }
 
@@ -210,7 +214,18 @@ export function validateDeck(
         !investigator.deckOptions!.some((o) => deckOptionAllows(o, c))
       )
     }).length
-    if (count > offClass)
+    const extra = Math.min(
+      extraSlots,
+      deck.cards.filter((c) => {
+        const card = cardFor(c)
+        return (
+          card &&
+          !investigator.deckOptions!.some((o) => deckOptionAllows(o, card)) &&
+          extraOptions(deck.cards).some((o) => matchesExtra(card, o))
+        )
+      }).length,
+    )
+    if (count > offClass + extra)
       problems.push({ key: 'deck.problem.offClassLimit', params: { n: offClass } })
   }
   const extraFor = (card: PlayerCardDef) => {
@@ -268,7 +283,7 @@ export function validateDeck(
     const title =
       name(code) +
       (playerCardBehavior(code)?.deckLimitBySubtitle ? ' · ' + byCode(code)?.subname : '')
-    const limit = byCode(code)?.deckLimit ?? 2
+    const limit = deck.cards.includes('08046') ? 1 : (byCode(code)?.deckLimit ?? 2)
     const seen = perTitle.get(title)
     perTitle.set(title, { n: (seen?.n ?? 0) + 1, limit: Math.min(seen?.limit ?? limit, limit) })
   }

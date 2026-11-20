@@ -5,6 +5,7 @@ import {
   effectiveVitals,
   slotCapacity,
   assetSlots,
+  assetBehavior,
   treacheryBehavior,
   type Asset,
   type GameState,
@@ -149,6 +150,27 @@ interface SlotBox {
  * sin ranura van aparte. Si un efecto deja ocupar más ranuras de las normales,
  * se añaden huecos extra junto a los de su tipo.
  */
+const slotPermissions = computed(() =>
+  assets.value.flatMap((a) => {
+    const b = assetBehavior(props.state, a)
+    return [
+      ...(b?.flexibleSlots ?? []).map((f) =>
+        t('table.flexibleSlot', {
+          n: f.count,
+          slots: f.slots.map((s) => t(`slot.${s}`)).join(' / '),
+          chosen: a.flexibleSlot ? t(`slot.${a.flexibleSlot}`) : '—',
+        }),
+      ),
+      ...(b?.interchangeableSlots
+        ? [
+            t('table.interchangeableSlots', {
+              slots: b.interchangeableSlots.map((s) => t(`slot.${s}`)).join(' / '),
+            }),
+          ]
+        : []),
+    ]
+  }),
+)
 const slots = computed(() => {
   const boxes: SlotBox[] = SLOT_ORDER.flatMap((type) =>
     Array.from({ length: slotCapacity(props.state, i.value.id, type) }, () => ({
@@ -470,6 +492,7 @@ const slots = computed(() => {
             t('table.nextFightBonus', { amount: asset.nextFightBonus })
           }}</span>
         </div>
+        <p v-for="permission in slotPermissions" :key="permission" class="tag">{{ permission }}</p>
         <div class="slots">
           <div
             v-for="(box, n) in slots.boxes"

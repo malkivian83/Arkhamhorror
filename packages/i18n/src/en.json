@@ -84,6 +84,16 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "plaguebearerAfternoonWar": {
+        "title": "Call of the Plaguebearer: The Afternoon War and Interlude V",
+        "cards": "Scenario VI with the portals of the Flame and the King, damage and horror on locations, Defend story assets, Unbound Power and literal EN/ES story texts; Interlude V, A Confrontation, ready to follow Death at Sundown.",
+        "rules": "High Noon Descent now shows its chaos token reference; the new stories are pending narration."
+      },
+      "campaignPlanning": {
+        "title": "12 cards for planning your campaign",
+        "cards": "New Permanent assets, deckbuilding options, Pelt Shipment and Tarot support.",
+        "rules": "Reviewed experience costs, upgrade periods, shared slots, saves and online play."
+      },
       "assetContainers": {
         "title": "Stored cards and attached assets",
         "cards": "Thirteen cards and levels, including Backpack (0/2), Astronomical Atlas, Hunting Jacket, Elle Rubash and Enchant Weapon.",
@@ -290,6 +300,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "flexibleSlot": "Choose the flexible slot type. You may reassess it when an asset enters play.",
     "storedSource": "Choose which copy to play.",
     "research": "You may resolve one Research ability among the searched cards.",
     "chooseRevealToReplace": "Choose which reveal this ability replaces",
@@ -1996,6 +2007,8 @@
     "tokensRevealedChoice": "Tokens revealed to choose from: {tokens}."
   },
   "table": {
+    "flexibleSlot": "{n} shared flexible slot: {slots}; chosen: {chosen}",
+    "interchangeableSlots": "Interchangeable slots: {slots}",
     "attachedUses": "{card}: {n} uses",
     "assetStored": "Cards stored on {card}",
     "assetAttachments": "Assets attached to {card}",
@@ -3234,6 +3247,7 @@
     "killed": "Killed: can no longer continue the campaign.",
     "insane": "Insane: can no longer continue the campaign.",
     "shop": {
+      "adaptableExchange": "Swap a level 0 card with Adaptable",
       "title": "Upgrade your deck",
       "help": "Pick the card that comes in, compare it with the one that leaves and confirm.",
       "availableXp": "{xp} XP available",
@@ -3428,6 +3442,8 @@
   },
   "deck": {
     "problem": {
+      "campaignOnly": "Ascetic can only be included in campaign mode.",
+      "levelZeroSwap": "Adaptable must replace a level 0 card that counts toward deck size.",
       "unknownInvestigator": "Unknown investigator.",
       "size": "It has {n} cards and must have {size} (not counting signatures, weaknesses or permanents).",
       "notAllowed": "{card} is not among their deckbuilding options.",
@@ -3679,6 +3695,9 @@
   },
   "offlineCard": {
     "subnames": {
+      "54007": "Your True Master Awaits",
+      "10132": "Dubious Source",
+      "03308": "The Ferryman's Pay",
       "09092": "Purifying Purpose",
       "06324": "Library Intern",
       "04021": "Assistant Curator",
@@ -3844,6 +3863,18 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "02110": "Talent.",
+      "54012": "Item. Charm.",
+      "54007": "Tarot.",
+      "10132": "Boon. Pact.",
+      "10109": "Item. Supply.",
+      "11095": "Condition.",
+      "08059": "Talent.",
+      "08046": "Favor. Illicit.",
+      "08031": "Talent. Ritual.",
+      "06167": "Talent.",
+      "04109": "Talent.",
+      "03308": "Item. Relic.",
       "07261": "Spell. Upgrade.",
       "08074": "Upgrade.",
       "09092": "Ally. Witch.",
@@ -4808,6 +4839,18 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "02110": "Permanent.\nIn between each game of a campaign, you may swap up to two level 0 cards out of your deck in exchange for an equal number of level 0 cards. (You must still follow all deckbuilding rules for your investigator).",
+      "54012": "You have 1 additional tarot slot.\nEach non-weakness [[Tarot]] asset in your hand or committed to a skill test gains [wild] [wild].\n[reaction] When the game begins, if Moon Pendant is in your opening hand: Put it into play.",
+      "54007": "You have 1 additional arcane slot.\nYour arcane slots can be used to hold cards that take up accessory slots, and vice versa.\n[reaction] When the game begins, if The Hierophant • V is in your opening hand: Put it into play.",
+      "10132": "Permanent. Limit 1 per deck.\nYou have 1 additional hand, accessory, or arcane slot, which can only be used to hold a [[Blessed]] or [[Cursed]] asset.",
+      "10109": "While Pelt Shipment is in your hand, your maximum hand size is reduced by 3.\n[reaction] When the game ends or you resign, if Pelt Shipment is in your hand: Reduce the experience cost of the next new card you purchase before the next scenario by 1.",
+      "11095": "Campaign mode only. Permanent. Limit 1 per deck. Purchase only at deck creation.\nWhen you purchase this card, gain 10 experience.\nFor the remainder of the campaign, you cannot earn experience.",
+      "08059": "Permanent. Limit 1 per deck. Purchase at deck creation.\nAfter each scenario of a campaign, reduce the experience cost of the first 2 cards you upgrade before the next scenario by 1.\nIncrease the experience cost for you to purchase new cards by 1.",
+      "08046": "Permanent. Limit 1 per deck. Purchase at deck creation.\nYour deck cannot include more than 1 copy of each non-weakness, non-signature card (by title).\nReduce your deck size by 5.",
+      "08031": "Permanent. Limit 1 per deck. Purchase at deck creation.\nIncrease your deck size by 15.\nDuring each upkeep phase, instead of drawing 1 card, draw 2 cards and discard 1 of them.",
+      "06167": "Permanent.\nYou get +5 Deck Size.\nYour investigator's Deckbuilding Options gain: \"one other level 0 card from any class ([guardian], [seeker], [rogue], [mystic], or [survivor]).\"",
+      "04109": "Permanent.\nWhen you purchase Arcane Research, suffer 1 mental trauma.\nAfter each scenario of a campaign, reduce the experience cost of the first [[Spell]] card you upgrade before the next scenario by 1.",
+      "03308": "Permanent. Exceptional.\nWhen earning experience during the resolution of a scenario, if you were not defeated during that scenario, you earn 2 additional experience. If you were defeated during that scenario, you are <b>killed</b>.",
       "07261": "Attach to a [[Weapon]] asset controlled by an investigator at your location. Limit 1 per asset.\nAttached asset gains the [[Relic]] trait and takes up an arcane slot in addition to its other slots.\n[reaction] When you perform a <b>Fight</b> action using attached asset, exhaust this card: Add the owner of this card's [willpower] to your [combat] for this attack. This attack deals +1 damage.",
       "08074": "Uses (3 durability).\nAttach to an [[Item]] asset controlled by an investigator at your location.\n[fast] During a skill test on attached asset, spend 1 durability: You get +2 skill value for this test.",
       "09092": "You get +1 skill value while resolving a skill test on an attached asset.\n1 doom on each attached asset does not count towards the agenda's doom threshold.\n[fast] Exhaust Elle Rubash: Choose an asset in your play area with 1 or more doom on it. Attach it to Elle Rubash, or switch it with an attached asset. (Limit 2 attached assets).",
@@ -6204,6 +6247,18 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "02110": "Adaptable",
+      "54012": "Moon Pendant",
+      "54007": "The Hierophant • V",
+      "10132": "Occult Reliquary",
+      "10109": "Pelt Shipment",
+      "11095": "Ascetic",
+      "08059": "Down the Rabbit Hole",
+      "08046": "Underworld Support",
+      "08031": "Forced Learning",
+      "06167": "Versatile",
+      "04109": "Arcane Research",
+      "03308": "Charon's Obol",
       "07261": "Enchant Weapon",
       "08074": "Jury-Rig",
       "09092": "Elle Rubash",

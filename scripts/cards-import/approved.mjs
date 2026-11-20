@@ -47,7 +47,18 @@ export function approvedDefinition(card, approval) {
     talentFactions[card.code] === card.factions.join(',')
   const reviewedTarot =
     approval.adapter === 'reviewed-tarot-v1' &&
-    (['05023', '05027', '05031', '05035', '05039', '54003', '54005', '05040'].includes(card.code) ||
+    ([
+      '05023',
+      '05027',
+      '05031',
+      '05035',
+      '05039',
+      '54003',
+      '54005',
+      '05040',
+      '54007',
+      '54012',
+    ].includes(card.code) ||
       { 54001: 'guardian:3', 54009: 'survivor:3', 54011: 'neutral:3' }[card.code] ===
         card.factions.join(',') + ':' + card.numbers.xp?.value) &&
     card.slots.unknown.join(',') === 'Tarot' &&
@@ -146,6 +157,12 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'reviewed-creation-permanent-v1' &&
     ['08071', '08125'].includes(card.code) &&
     card.deckLimit === 1
+  const planningPermanent =
+    approval.adapter === 'reviewed-planning-permanent-v1' &&
+    card.flags.permanent &&
+    ['02110', '03308', '04109', '06167', '08031', '08046', '08059', '11095', '10132'].includes(
+      card.code,
+    )
   const permanentReprint =
     card.flags.permanent &&
     approval.adapter === 'equivalent-permanent-v1' &&
@@ -249,6 +266,7 @@ export function approvedDefinition(card, approval) {
     11090: 'survivor',
     11096: 'neutral',
     11070: 'mystic',
+    11091: 'survivor',
   }
   const reviewedMyriad =
     approval.adapter === 'reviewed-myriad-v1' &&
@@ -268,6 +286,7 @@ export function approvedDefinition(card, approval) {
     (card.flags.permanent &&
       !permanentReprint &&
       !creationPermanent &&
+      !planningPermanent &&
       !talentPermanent &&
       !reviewedDarkHorse &&
       !fieldKeywords &&
@@ -287,6 +306,7 @@ export function approvedDefinition(card, approval) {
         !(
           key === 'exceptional' &&
           (reviewedBorrowedTime ||
+            planningPermanent ||
             fieldKeywords ||
             economyKeywords ||
             reviewedExceptional ||
@@ -323,6 +343,9 @@ export function approvedDefinition(card, approval) {
     class: card.factions[0],
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
+    ...(planningPermanent
+      ? { deckLimit: card.deckLimit, ...(card.flags.exceptional ? { exceptional: true } : {}) }
+      : {}),
     ...(reviewedBorrowedTime || reviewedExceptional || reviewedSinEater
       ? { exceptional: true, deckLimit: 1 }
       : {}),
@@ -335,6 +358,11 @@ export function approvedDefinition(card, approval) {
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
     ...(reviewedMyriad ? { myriad: true, deckLimit: card.deckLimit } : {}),
     ...(reviewedSledDog ? { deckLimit: 4 } : {}),
+    ...(planningPermanent && card.code === '06167'
+      ? { deckSizeBonus: 5, extraDeckOption: { traits: [], maxLevel: 0, count: 1 } }
+      : {}),
+    ...(planningPermanent && card.code === '08031' ? { deckSizeBonus: 15 } : {}),
+    ...(planningPermanent && card.code === '08046' ? { deckSizeBonus: -5 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),

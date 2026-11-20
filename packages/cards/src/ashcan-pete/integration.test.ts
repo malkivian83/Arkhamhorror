@@ -1,5 +1,5 @@
 // RR: Deck Customization, Signature Cards, Setup, Campaign Play, Base Value, Elder Sign.
-import { dispatch, playerCardDef } from '@lcg/engine'
+import { dispatch, playerCardDef, isPermanent } from '@lcg/engine'
 import { choose } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { investigatorCards, starterDeckList, validateDeck, cardPool } from '../decks'
@@ -65,7 +65,11 @@ describe('Pete integration', () => {
     c.log.investigators[PETE]!.xp = 5
     // A fresh level-zero off-class title, with one free title slot.
     const candidate = purchaseOptions(c, PETE).find(
-      (o) => playerCardDef(o.code)?.class === 'mystic' && o.level === 0 && !o.replaces,
+      (o) =>
+        playerCardDef(o.code)?.class === 'mystic' &&
+        o.level === 0 &&
+        !o.replaces &&
+        !isPermanent(o.code),
     )!
     expect(candidate).toBeDefined()
     expect(() => purchase(c, PETE, candidate.code, { remove: '12094' })).toThrow('Máximo 5')

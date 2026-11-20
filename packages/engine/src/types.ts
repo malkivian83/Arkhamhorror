@@ -127,6 +127,8 @@ export interface Investigator {
   eliminated: boolean
   /** Se retiró del escenario (también cuenta como eliminado). */
   resigned: boolean
+  /** Campaign restriction persists after elimination removes the Permanent asset. */
+  cannotEarnExperience?: boolean
   /** Recursos que tenía al quedar eliminado (Fortuna e insensatez: «dejar limpio el casino»). */
   resourcesWhenEliminated?: number
   deck: CardCode[]
@@ -527,7 +529,7 @@ export interface DeckOption {
 
 /** Opción de construcción que añade una carta (Collector: "un apoyo Relic o Charm…"). */
 export interface ExtraDeckOption {
-  type: PlayerCardDef['type']
+  type?: PlayerCardDef['type']
   /** Debe tener alguno de estos rasgos. */
   traits: string[]
   maxLevel: number
@@ -644,6 +646,7 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  flexibleSlot?: SlotType
   /** Physical face-down cards, out of play; their owners survive host/control changes. */
   storedCards?: { code: CardCode; owner: InvestigatorId }[]
   /** Face-up attachment: this asset remains in play and under its controller's control. */
@@ -2133,6 +2136,7 @@ type MessageBody =
   | { type: 'Story'; entry: StoryEntry; choices?: Choice[] }
   // ----- Registro de campaña -----
   | { type: 'RecordNote'; note: string; value?: string }
+  | { type: 'SetFlexibleSlot'; asset: AssetId; slot: SlotType }
   | { type: 'EndPlaySkillBonus'; id: string }
   | { type: 'AdjustSuccessMargin'; amount: number }
   | { type: 'CrossOutNote'; note: string }

@@ -168,6 +168,9 @@ export function prepareGame({
     )
     return {
       id: setup.id,
+      ...(setup.deck.some((code) => playerCardBehavior(code)?.cannotEarnExperience)
+        ? { cannotEarnExperience: true }
+        : {}),
       ...(setup.customizations
         ? {
             customizations: Object.fromEntries(

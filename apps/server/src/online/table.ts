@@ -250,6 +250,7 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'noSlot',
         'clues',
       ]),
+      ...(a.flexibleSlot ? { flexibleSlot: a.flexibleSlot } : {}),
       ...(a.attachedTo ? { attachedTo: a.attachedTo } : {}),
       ...(a.storedCards
         ? {
