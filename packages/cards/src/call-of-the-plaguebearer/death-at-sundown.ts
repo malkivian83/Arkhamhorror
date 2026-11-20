@@ -2,6 +2,7 @@ import {
   activeInvestigators,
   distancesFrom,
   enemyMaxHealth,
+  fightEnemies,
   getInvestigator,
   placedLocation,
   playerCardDef,
@@ -722,29 +723,31 @@ const fight = (
   skills: SkillType[],
   extra: { modifier?: number; damage: number; cost?: Message[] },
 ): AbilityOption[] =>
-  targets(s, by).flatMap((e) =>
-    skills.map((skill) => ({
-      key: `${asset}:fight:${skill}`,
-      label: 'ability.plaguebearer.sundown.fight',
-      params: { card: RITUAL_NAMES[code]!, enemy: e.name, skill },
-      target: { type: 'enemy' as const, id: e.id },
-      actions: 1,
-      provokes: false,
-      costs: extra.cost ?? [],
-      then: [
-        {
-          type: 'BeginSkillTest' as const,
-          investigator: by,
-          skill,
-          skillSelected: true,
-          difficulty: e.fight,
-          modifier: extra.modifier ?? 0,
-          source: asset,
-          kind: { type: 'fight' as const, enemy: e.id, extraDamage: extra.damage, onSuccess: [] },
-        },
-      ],
-    })),
-  )
+  fightEnemies(s, by)
+    .filter((e) => e.code !== Z.first)
+    .flatMap((e) =>
+      skills.map((skill) => ({
+        key: `${asset}:fight:${skill}`,
+        label: 'ability.plaguebearer.sundown.fight',
+        params: { card: RITUAL_NAMES[code]!, enemy: e.name, skill },
+        target: { type: 'enemy' as const, id: e.id },
+        actions: 1,
+        provokes: false,
+        costs: extra.cost ?? [],
+        then: [
+          {
+            type: 'BeginSkillTest' as const,
+            investigator: by,
+            skill,
+            skillSelected: true,
+            difficulty: e.fight,
+            modifier: extra.modifier ?? 0,
+            source: asset,
+            kind: { type: 'fight' as const, enemy: e.id, extraDamage: extra.damage, onSuccess: [] },
+          },
+        ],
+      })),
+    )
 for (const code of RITUAL)
   registerPlayerCard({
     code,
