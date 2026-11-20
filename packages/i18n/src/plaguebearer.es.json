@@ -274,6 +274,41 @@
       "section3": "West ha cometido terribles errores, pero no es tu enemigo. Le dejas liberarse de tu presa y se alisa las mangas de la camisa.\n\nLa campana del reloj comienza a dar la medianoche y West suelta un grito de pánico. Te giras para mirar qué ha visto. Un enorme ojo verde te observa a través de una de las esferas del reloj. Un gigantesco brazo comienza a destrozar la torre, apartas a West de su camino. Ambos os precipitáis al vacío dando con vuestros cuerpos contra un montón de arbustos.\n\nWest te agarra del brazo y te levanta. “Ha salvado mi vida, estoy en deuda con usted”.\n\nSus palabras reconfortan poco dado el mayúsculo ser que tienes a tu lado y que tiene la mirada fija en ti.\n\nHas vuelto a sobrevivir. Nunca más. Hora de morir.\n\nBaalshandor ha llegado a la ciudad.",
       "section3Effect": "Si Herbert West no está en el mazo de un investigador, un investigador puede incluir el Apoyo de historia Herbert West a su mazo. No cuenta para el tamaño de mazo de ese investigador.\nAnota en el registro de campaña que Baalshandor golpeó primero.",
       "section4": "Tienes muchas cosas que decirle a Herbert West. Pero ni es el momento, ni el lugar. Si la visión era cierta, aún estás en peligro. Agarras a West del brazo y le llevas escaleras abajo .\n\nSegún sales del Ayuntamiento, las campanas anuncian la medianoche. Miras atrás y te quedas de piedra al ver a un titánico ser destruyendo con su brazo la torre del reloj. Sus incontables ojos te buscan y te miran fijamente.\n\nMi brillante instrumento de liberación. Hora de morir.\n\nBaalshandor ha llegado a la ciudad."
+    },
+    "sundown": {
+      "introTitle": "Muerte a la puesta de sol",
+      "intro1": "7:37 p. m.\n\nTe saca de tu momentáneo lapsus mental el ratatatata de las metralletas. Un contingente de Sastres montados en veloces coches va dejando una excesiva estela de plomo tras de sí. El aire se te escapa del pecho cuando ves a su objetivo aparecer tras ellos. Pese a que la talla del amasijo de carne es ahora la de un pequeño edificio, no puede ser otro más que el Primero de muchos.",
+      "intro2": "“¡Rápido!”. West te grita señalando los agentes. “Ya han comenzado. ¿Recuerdas mi plan? Los Sastres han debido reunir los materiales necesarios y están llevando a la criatura al ayuntamiento. Debemos llegar antes de que esa cosa lo consiga”.\n\nEncuentras un coche abandonado y te pones en movimiento. A pesar de que la ruta es complicada teniendo en cuenta el estado de Arkham, consigues llegar a la Plaza de la Independencia sin mayores percances. Un grupo de Sastres que miran alrededor nerviosamente te reciben con las manos en sus armas cuando bajas del coche. West se aclara la garganta.",
+      "intro3": "“Eso no tiene ningún sentido...” Greyson observa pensativamente. “Espera. Deben de estar trabajando en una trampa. Le están llevando hacia algún lugar, ¿tal vez West haya encontrado una solución? Deberíamos seguirles ¡vamos, tomaremos mi coche!”.",
+      "intro4": "Los Sastres tienen pánico y están desorganizados, pero no son suicidas. Si están atrayendo la atención del monstruo, debe haber una razón tras ello.\n\nEncuentras un coche abandonado y sigues el sonido de los disparos.",
+      "intro5": "Atraviesas la ciudad siguiendo a los agentes lo mejor que puedes. Mientras el coche “señuelo” sigue atrayendo la atención de la criatura, observas un grupo cruzando la Plaza de la Independencia. Reconoces de inmediato la diminuta silueta de Herbert West entre ellos. Aparcas el coche a un lado y gritas al doctor, que se gira para mirarte.",
+      "intro6": "“Bueno, me alegra que todos lo hayamos conseguido”. Dice West en alto, invitándote a que le acompañes. “Esa criatura, Pickman, es el origen de todo esto. Si le destruimos, tendremos una minúscula posibilidad de acabar con esta locura. No será sencillo. Ya ha demostrado ser frustrantemente persistente a la hora de morirse”.\n\n“Afortunadamente, mis socios eran expertos en ciencias sobrenaturales. Hay un ritual, detallado en las notas de Robison, que permite ‘entrar en los recuerdos de un alma atormentada’ donde, si se está preparado, uno puede ‘purificar al anfitrión y permitirle descansar para siempre’. Puede servir a nuestros propósitos si conseguimos eliminar la infección subyacente y lo que sea que le mantiene vivo. Sin esas dos cosas no es más que un amasijo de carne que a duras penas puede levantar su propio peso. ¡Tendremos a este engendro muerto a la puesta de sol!”.",
+      "setupTitle": "Preparación",
+      "setup": "Reúne todas las cartas de los siguientes conjuntos de encuentros: Muerte a la puesta de sol, Supervivientes de la agencia, Esclavos del miasma y Vida y muerte. Al reunir el conjunto de encuentros Supervivientes de la Agencia, no cojas ningún enemigo.\n\nPon aparte, fuera del juego, al Primero de muchos, los Zarcillos del Primero y el Dr. Elias Pickman.\n\nPon en juego todos los Lugares con el Lugar Piso 0 abajo y el Lugar Piso 5 arriba. Cada investigador comienza la partida en la Plaza de la Independencia.\n\nReúne los Apoyos de historia L.E.P.R.A., Mochila de mago de emergencia y la Bendición del mañana y barájalos. Colócalos boca abajo sobre el Apoyo Runas de atadura para formar el Mazo de Ritual.\n\nComprueba el registro de campaña. Si aprendisteis las palabras de muerte, el investigador jefe comienza con el Apoyo Palabras de muerte en juego bajo su control y coloca el Apoyo Hoja oxidada en la parte superior del Mazo de Ritual. Si no, baraja los Apoyos Palabras de muerte y Hoja oxidada y colócalos en la parte superior del Mazo de Ritual.\n\nAlgunas cartas de este escenario hacen referencia al valor de Piso de un Lugar. Este valor es X, donde X es número al lado del rasgo Piso en los Lugares. Si un Lugar no tiene rasgo Piso, se considera que X es 0.\n\nBaraja el resto de cartas de Encuentro para formar el mazo de Encuentros.",
+      "agenda1bTitle": "...a la Tempestad",
+      "agenda1b": "Un tremendo crujido proviniente de la calle seguido por una multitud de gritos.\nEl Primero de muchos, se retuerce en la Plaza de la Independencia. Pese a que no queda nada que se asemeje a un humano en él, una cara se hace visible en el amasijo de carne. La retorcida cara mira al edificio sobre él y grita una única palabra.\n“¡WEST!”",
+      "agenda2bTitle": "Siempre arriba",
+      "agenda2b": "El Primero crece y se expande. En unos instantes la planta está completamente inhabitable.",
+      "agenda3bTitle": "Último de pocos",
+      "agenda3b": "Te apuras para completar el ritual, pero tu enemigo te atrapa desprevenido. En unos instantes te ves arrastrado de espaldas hacia el amasijo de carne.",
+      "act1bTitle": "Suena a plan",
+      "act1b": "Te encuentras con West subiendo las escaleras. “¡Tú! No tenemos mucho tiempo. Los Sastres se las han ingeniado para conseguir los componentes que les pedí. Pero ya sabes qué tipo de gente son, incapaces de hacer nada a derechas. Han dejado los componentes por toda la torre. He intentado organizarlos y que colaboren, pero con esta atroz criatura... han perdido la poca lógica que pudieran tener. Son poco más que animalillos asustados.\nLo que significa que es cosa nuestra. Hay bastantes componentes, pero sólo tres son indispensables – las runas de atadura, las cuales colocadas correctamente pueden atrapar el alma durante un momento en el tiempo. Una hoja ancestral del sujeto, para obligarle a postrarse. Y un libro, que contiene la frase que necesitamos para acabar con esta criatura. Consigue los componentes y reúnete conmigo en el tejado. ¡Cualquier otra cosa que encuentres puede que sea útil, pero no pierdas el tiempo con fruslerías!”",
+      "act2bTitle": "Memoria de Pickman",
+      "act2b": "Un último momento, atrapado en el tiempo.",
+      "act3bTitle": "Lenguas muertas",
+      "act3b": "Recitas las palabras. Te rasgan el alma, golpeándote como si fueran un animal salvaje. Pero aguantas estoicamente y surten efecto.\nPickman cae de rodillas. Boquea en busca de aire. Una herida, como el disparo de un rifle se abre en su pecho. Empieza a palparse la herida, como tratando de entender que acaba de ocurrir. Todo termina con un último intento de respirar que produce un ruido que te deja helado, ha muerto.\nLa memoria comienza a dar vueltas.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Pese a que una intensa sensación de victoria llena tu corazón, tu mente da vueltas. La memoria de Pickman se está desvaneciendo junto con su vida. Tienes que darte prisa en salir antes de morir con él. Pero algo dentro de ti te dice que esperes un instante. Sientes un fuerte palpitar en tus sienes y te desmayas.\n\nFue preocupante cuando el sujeto escapó. Su avanzado estado de infección se podía extender a la fauna local, que pronto estuvo totalmente fuera de control. Tuvimos mucha suerte de que West ofreciera su ayuda, algo nada común en ese pequeño egomaníaco, y la junta le entregó el control de la investigación del suero. Sus horribles Reanimados son nefastos soldados, pero cazadores aceptables.\n\nEl sujeto murió fácilmente, pero ya había infectado a un grupo de ciervos locales. Cazarlos a todos nos llevó toda una irritante noche. Pero ahora sólo queda el último. Le llamas y él se acerca, confundiéndote con un compañero infectado. Sólo un paso más cerca y...\n\nUn disparo resuena en el bosque, pero no es tuyo. El ciervo cae. Sientes un escalofrío. Te palpas instintivamente el torso y cuando levantas las manos para mirarlas , están húmedas, y mojadas de algo cálido y pegajoso.\n\nCaes de rodillas, angustiado, pidiendo ayuda al animal moribundo. Te patea en su agonía y caes al suelo sobre un enorme charco de la sangre del animal. Tus ojos comienzan a fallar mientras observas el cielo nocturno. Pese a que tu cuerpo ya no responde, tu mente bulle de ira, ¡después de todo lo que has peleado, no puedes morir así!\n\nUna figura que sujeta un humeante rifle aparece en tu campo de visión. “Bueno, esto no pinta bien para ti, Elias. En nuestro campo de estudio, no podemos permitirnos gente tan laxa en temas de seguridad. Afortunadamente, estoy preparado para esta eventualidad. Pronto estarás bien, una contribución a los avances de la ciencia”. La figura busca en su abrigo y saca una jeringa llena de un brillante líquido verde. Mientras le miras a los ojos, sientes un dolor punzante.\n\nTe despierta el zarandeo de una mano en tu hombro. Abres los ojos y ves a Herbert West, mirándote con preocupación. “¿Estás vivo? El monstruo ya no, lo hemos logrado”.",
+      "resolution1Effect": "Cada investigador obtiene una cantidad de experiencia igual al valor de Victoria X de cada carta que haya en la zona de victoria y cada carta en juego.\nCada investigador que fuera derrotado está Muerto.\nSi al menos 1 investigador ha muerto (durante o como consecuencia de este escenario): Lee Investigador derrotado.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Según la criatura trepa por el edificio, West se apresura desesperadamente para completar el ritual. Le ves atravesar el portal, para caer en las manos de Pickman, que le estaba esperando. “Dr. West, me agrada tanto que lo haya conseguido”. Los zarcillos del Primero se meten en el portal y un espeluznante grito te cala hasta los huesos. Pero no vas a tener que vivir demasiado con esa desagradable sensación, ya que el Primero acaba de aparecer para reclamar tu cuerpo también.",
+      "resolution2Effect": "Los investigadores pierden la campaña.",
+      "tabletTitle": "Resolución [tablet]",
+      "tablet": "No.\nImposible.\nHe sido demasiado indulgente contigo.\nMe encargaré de ti personalmente.",
+      "tabletEffect": "El primer investigador en leer esto anota en el registro de campaña que habéis sido advertidos. Después, dependiendo del nivel de dificultad, añade la siguiente ficha a la bolsa del caos: Fácil: -3, Normal: -5, Difícil: -6, Experto: -7.",
+      "defeatedTitle": "Investigador derrotado",
+      "defeated": "Cuando fuiste derrotado por el Primero, fue, de alguna manera, un alivio. Terriblemente doloroso, eso por supuesto. Pero hay algo tranquilizador en estar muerto. Los muertos no tienen que preocuparse por Baalshandor o del destino del mundo.\n\nPero según te vas sumiendo en tu ensueño, sientes un repentino tirón de gravedad...\n\nTus ojos se abren de golpe y ves a tus compañeros observándote nerviosamente. “¡No le quites el ojo a ese!” Grita West desde el otro lado de la habitación. “El serum puede que les deje algo inestables de ahora en adelante”.",
+      "defeatedEffect": "Cada investigador derrotado durante o como consecuencia de este escenario ya no está Muerto.\nSi algún investigador de los que ya no están muertos controla el Apoyo Voluntad inquebrantable, retíralo junto con la debilidad La futilidad del Hombre de su mazo. Debe añadir las cartas Fuerza de la carne y El abrazo de la muerte a su mazo. No cuentan para el tamaño de mazo de ese investigador.\nComprueba el registro de campaña. Por cada investigador que ya no esté muerto y que no se ha inyectado un reactivo puro, anota en el registro de campaña que se ha inyectado un reactivo puro."
     }
   },
   "note": {
@@ -476,6 +511,23 @@
         "combat": "Defender con {name}: [combat] ({difficulty})",
         "agility": "Defender con {name}: [agility] ({difficulty})"
       }
+    },
+    "sundown": {
+      "ransack": "Saquear (gastar {amount} pistas como grupo): vincular aquí la carta superior del Mazo de Ritual",
+      "ransackDeck": "Saquear la Plataforma de observación (gastar {amount} pistas): colocar {amount} pistas en ella",
+      "toVictory": "Colocar {card} en la zona de victoria",
+      "campaign": "Oficina de campaña: buscar entre las 3 primeras cartas de tu mazo",
+      "north": "Cámara del reloj norte: prueba de [intellect] (2)",
+      "south": "Cámara del reloj sur: parar el mecanismo, prueba de [combat] (1)",
+      "makeshift": "Laboratorio improvisado: mirar la carta superior del Mazo de Ritual",
+      "organizer": "Oficina del organizador: mirar las 3 primeras cartas de Encuentro",
+      "tinkerer": "Taller del manitas: recuperar un Apoyo Objeto",
+      "stalks": "Descartar El acechador acecha",
+      "attach": "Vincular {card} a tu Lugar",
+      "takeControl": "Tomar el control de {card}",
+      "fight": "Combatir a {enemy} con {card} ({skill})",
+      "words": "Palabras de muerte: recibir {amount} de horror directo para derrotar a {enemy}",
+      "runes": "Runas de atadura: recibir 1 daño directo, {enemy} no se prepara"
     }
   },
   "prompt": {
@@ -571,6 +623,17 @@
     "confrontation": {
       "decide": "Los investigadores deben decidir",
       "west": "¿Quién incluye a Herbert West en su mazo?"
+    },
+    "sundown": {
+      "climb": "Elige adónde se mueve el Primero de muchos",
+      "campaign": "Oficina de campaña: elige la carta que robas",
+      "makeshift": "Laboratorio improvisado: carta superior del Mazo de Ritual",
+      "organizer": "Oficina del organizador: ¿dónde colocas las cartas?",
+      "tinkerer": "Taller del manitas: elige el Apoyo Objeto que recuperas",
+      "crash": "Todo lo que sube...: pierde 1 recurso o descarta 1 carta",
+      "youOrMe": "O tú o yo: elige al investigador que se mueve al Primero de muchos",
+      "hatred": "Odio eterno: elige una opción",
+      "tablet": "La resolución contiene un texto oculto ([tablet]). ¿Decides leerlo?"
     }
   },
   "choice": {
@@ -711,6 +774,18 @@
     "confrontation": {
       "distrust": "No podemos confiar en West. No dejaréis que se escabulla otra vez.",
       "release": "Puede que haya algo contra West, pero es todo circunstancial. Dejémosle ir."
+    },
+    "sundown": {
+      "take": "Robar {card}",
+      "keepTop": "Dejar {card} arriba",
+      "toBottom": "Gastar 2 recursos: colocar {card} debajo",
+      "keepEncounter": "Dejarlas arriba",
+      "bottomEncounter": "Colocarlas debajo",
+      "recover": "Gastar {amount} recursos: añadir {card} a tu mano",
+      "loseResource": "Perder 1 recurso",
+      "discardCard": "Descartar 1 carta",
+      "tendrilsHere": "Preparar los Zarcillos del Primero y moverlos a tu Lugar",
+      "doom": "Colocar 1 perdición sobre el plan en curso"
     }
   }
 }

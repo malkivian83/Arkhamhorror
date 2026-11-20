@@ -90,7 +90,7 @@ it('ambos generadores reutilizan textos y respetan el saldo y el coste comunicad
   expect(result.files).toHaveLength(3)
   expect(result.files.reduce((sum, entry) => sum + entry.credits, 0)).toBe(48)
   expect(result.files[0]!.sha256).toBe(result.files[1]!.sha256)
-  expect(result.pending).toHaveLength(91)
+  expect(result.pending).toHaveLength(101)
 
   writeFileSync(
     join(fixture, 'packages/i18n/src/card-narratives.es.json'),
@@ -282,6 +282,18 @@ it('registra cada relato ES como grabado o pendiente, con la voz elegida y sin r
         'whispers',
       ].map((k) => `war.${k}`),
       ...['section1', 'section2', 'section3', 'section4'].map((k) => `confrontation.${k}`),
+      ...[
+        'intro1',
+        'intro2',
+        'intro3',
+        'intro4',
+        'intro5',
+        'intro6',
+        'resolution1',
+        'resolution2',
+        'tablet',
+        'defeated',
+      ].map((k) => `sundown.${k}`),
     ]
       .map((s) => `story.plaguebearer.${s}`)
       .sort(),

@@ -7,11 +7,10 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **escenarios I–VI jugables; Interludios I–IV resueltos al cerrar el II, el III,
-el IV y el V; Interludio V implementado (`confrontation(end)`) a la espera de encadenarlo
-tras las resoluciones del VII; escenarios VII–VIII pendientes. Material completo en EN y
-ES.** Este documento recoge el inventario, las diferencias entre versiones y las decisiones
-pendientes. No sustituye a las guías: al implementar, contrasta cada paso con el PDF.
+Estado: **escenarios I–VII jugables; Interludios I–V resueltos (el V tras la R1 del VII);
+escenario VIII pendiente. Material completo en EN y ES.** Este documento recoge el
+inventario, las diferencias entre versiones y las decisiones pendientes. No sustituye a las
+guías: al implementar, contrasta cada paso con el PDF.
 
 Narración actualizada el 19/11/2026. Generados 39 MP3 nuevos con Martin Osborne,
 priorizando los 31 relatos pendientes de la guía y después las ocho caras de los
@@ -32,18 +31,16 @@ si cambian textos, audios, manifiestos, reproductores o generadores afectados.
 
 ### Continuación de implementación · 2026-11-20
 
-- Último lote: VI · Guerra al atardecer e Interludio V, sin commit (base `d53ec860`).
-  Lotes anteriores (I–V, Interludios I–IV) en [el historial](historial-portador-de-la-plaga.md).
-- VI (`afternoon-war.ts`, datos en `war-data.ts`; guía ES pp. 16–17 / EN pp. 19–21; cartas
-  ES 189–226 y 377–380, EN 183–220 y 347–350, códigos `78151`–`78180`, `78290`–`78291`).
-- Interludio V (`confrontation.ts`; guía ES p. 20 / EN p. 23): el VII debe llamarlo desde
-  sus resoluciones; anota `plaguebearerDeathConqueredWest` o `plaguebearerBaalshandorFirst`
-  y lee `plaguebearerWarned` (clave que deberá anotar la resolución [tablilla] del VII).
-- Susurros insidiosos: los VII–VIII deben construir su bolsa con `plaguebearerChaosBag`
-  (retira la ficha anotada en `plaguebearerRemovedTokens`).
-- Narración: 11 relatos y 14 caras de planes/actos nuevos registrados como pendientes
-  (saldo de ElevenLabs a cero). Revisión visual de la mesa pendiente de la persona usuaria.
-- Siguiente: VII · Muerte a la puesta de sol.
+- Último lote: VII · Muerte a la puesta de sol, sin commit (base `03a9d6ca`, VI e
+  Interludio V). Lotes anteriores en [el historial](historial-portador-de-la-plaga.md).
+- VII (`death-at-sundown.ts`, datos en `sundown-data.ts`; guía ES pp. 18–19 / EN pp. 21–22;
+  cartas ES 227–267, EN 221–261, códigos `78181`–`78212` y `78186b`, Memoria de Pickman).
+- La R1 encadena la resolución [tablilla] (anota `plaguebearerWarned`) y el Interludio V.
+- El VIII debe construir su bolsa con `plaguebearerChaosBag` y leer `plaguebearerWarned`,
+  `plaguebearerDeathConqueredWest`, `plaguebearerBaalshandorFirst` y `plaguebearerReagent`.
+- Narración: 21 relatos y 31 caras de planes/actos pendientes (saldo de ElevenLabs a cero).
+  Revisión visual de la mesa pendiente de la persona usuaria.
+- Siguiente: VIII · La hora bruja y epílogo.
 
 ## Fuentes
 
@@ -422,15 +419,15 @@ traduce bien como «Dejarse los huesos».
 Estos puntos son iguales en las dos guías y necesitan una decisión al
 implementar:
 
-- **VII, resolución [tablilla]:** no tiene condición de acceso. Probablemente
-  la activa la ficha de tablilla; hay que comprobarlo en las cartas.
+- **VII, resolución [tablilla] (resuelto el 20/11/2026):** texto oculto tras la R1; ver el
+  historial.
 - **Leales de Greyson:** quién lo controla.
 - **V:** Agente Greyson se busca «entre las cartas apartadas» sin haberla
   apartado; los Blasones no aparecen en ninguna figura.
 - **VI (resuelto el 20/11/2026):** ver el historial. La Cosa del agua (Élite) y Abner Weems
   (apoyo de historia) son cartas distintas; el Acólito y la Protagonista usan su Aparición;
   la Intro 2 pasa a la 3.
-- **VII:** la Intro 4 no indica destino (presumiblemente la 5).
+- **VII (resuelto el 20/11/2026):** la Intro 4 pasa a la 5.
 - **VIII:** la R2 mezcla muertes, locura y «ganan la campaña»; la R0 no tiene
   acceso definido; la conversión daño ↔ pistas de los lugares enemigo puede
   encadenarse.

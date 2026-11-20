@@ -584,6 +584,83 @@
       "text": "Usando una serie de brebajes químicos que encuentras por el edificio, consigues aplacar las llamas. Además bosquejas unas runas protectoras en la pizarra. El portal a Fomalhaut desaparece de la existencia.\n\nConsigues convencer a los transeuntes enloquecidos de que lo que están viendo es una performance de vanguardia. Mientras, usas pintura del almacén para tapar los símbolos y acabar para siempre con el portal.",
       "file": "78158-back.mp3",
       "inputHash": "07359bf349bf5d0524e83bf28acaa7a76bc8a0f09bc6724a710692ba307a67f3"
+    },
+    {
+      "code": "78182",
+      "side": "front",
+      "text": "El suelo tiembla.\nSe acerca.",
+      "file": "78182-front.mp3",
+      "inputHash": "ccb0870f9bec0346d6e6b6f31fb15bfcb72513caf828ee8768ede7f3ca8ec8ff"
+    },
+    {
+      "code": "78182",
+      "side": "back",
+      "text": "Un tremendo crujido proviniente de la calle seguido por una multitud de gritos.\nEl Primero de muchos, se retuerce en la Plaza de la Independencia. Pese a que no queda nada que se asemeje a un humano en él, una cara se hace visible en el amasijo de carne. La retorcida cara mira al edificio sobre él y grita una única palabra.\n“¡WEST!”",
+      "file": "78182-back.mp3",
+      "inputHash": "6a7a6c0f95717e692b2a7284aee0b4d7b17132045d6f1e58d9ae68d4a72dca76"
+    },
+    {
+      "code": "78183",
+      "side": "front",
+      "text": "El Primero de muchos comienza a devorar el ayuntamiento de la ciudad planta a planta tras su presa. Será mejor que te asegures de que eso no te incluye.",
+      "file": "78183-front.mp3",
+      "inputHash": "c5bd4fbe0d1cac535e5243eacbaffe2c431945d61317cc2bb0c326f72b6a46f1"
+    },
+    {
+      "code": "78183",
+      "side": "back",
+      "text": "El Primero crece y se expande. En unos instantes la planta está completamente inhabitable.",
+      "file": "78183-back.mp3",
+      "inputHash": "17b669826e265b8909d3c30498a47cbd56635ff50056845881a2bdb4fcf0e7f6"
+    },
+    {
+      "code": "78184",
+      "side": "front",
+      "text": "La torre cruje y se tambalea como si estuviera mecida por el viento. La amalgama de carne ha devorado todo excepto el lugar del ritual. Es ahora o nunca.",
+      "file": "78184-front.mp3",
+      "inputHash": "bdc61a184b8fe079ece8c1e12a094d285e55cf6c463a1acbf66473dea0420ba2"
+    },
+    {
+      "code": "78184",
+      "side": "back",
+      "text": "Te apuras para completar el ritual, pero tu enemigo te atrapa desprevenido. En unos instantes te ves arrastrado de espaldas hacia el amasijo de carne.",
+      "file": "78184-back.mp3",
+      "inputHash": "fa9235264ff0a63ad26ba6487283c84e51329cee9d162060ec70e1648d2b4074"
+    },
+    {
+      "code": "78185",
+      "side": "front",
+      "text": "Visto lo visto, cualquier modo de intentar acabar con el Primero está más allá de tus capacidades. Por ahora, todo lo que puedes hacer es mantenerte fuera de su alcance.",
+      "file": "78185-front.mp3",
+      "inputHash": "4d2f3ece80a9128a969094ba44c12d281fa1d5f204fda5e9a1a09d063d12ba63"
+    },
+    {
+      "code": "78185",
+      "side": "back",
+      "text": "Te encuentras con West subiendo las escaleras. “¡Tú! No tenemos mucho tiempo. Los Sastres se las han ingeniado para conseguir los componentes que les pedí. Pero ya sabes qué tipo de gente son, incapaces de hacer nada a derechas. Han dejado los componentes por toda la torre. He intentado organizarlos y que colaboren, pero con esta atroz criatura... han perdido la poca lógica que pudieran tener. Son poco más que animalillos asustados.\nLo que significa que es cosa nuestra. Hay bastantes componentes, pero sólo tres son indispensables – las runas de atadura, las cuales colocadas correctamente pueden atrapar el alma durante un momento en el tiempo. Una hoja ancestral del sujeto, para obligarle a postrarse. Y un libro, que contiene la frase que necesitamos para acabar con esta criatura. Consigue los componentes y reúnete conmigo en el tejado. ¡Cualquier otra cosa que encuentres puede que sea útil, pero no pierdas el tiempo con fruslerías!”",
+      "file": "78185-back.mp3",
+      "inputHash": "774a0edca9525b1707a0e5d42f9dc6e5ab16ca3e1efdfe22b7acdf31b871f2db"
+    },
+    {
+      "code": "78186",
+      "side": "front",
+      "text": "Los Sastres han intentado terminar los preparativos para el ritual, pero sólo quedan minutos. Tendrás que hacer su trabajo por ellos.",
+      "file": "78186-front.mp3",
+      "inputHash": "f228031eb29bac16eeaa1a1f843b1f9fd474bcdf237851be3548d6b358385381"
+    },
+    {
+      "code": "78187",
+      "side": "front",
+      "text": "El ritual está listo. Si consigues entrar en un lugar más allá de la existencia y destruir el alma de la criatura allí, podrás acabar con ella, de una vez por todas.",
+      "file": "78187-front.mp3",
+      "inputHash": "98da129e360ac2ded33f3af5f5ebf357af18466cb2d37bb0b65130ad9954e097"
+    },
+    {
+      "code": "78187",
+      "side": "back",
+      "text": "Recitas las palabras. Te rasgan el alma, golpeándote como si fueran un animal salvaje. Pero aguantas estoicamente y surten efecto.\nPickman cae de rodillas. Boquea en busca de aire. Una herida, como el disparo de un rifle se abre en su pecho. Empieza a palparse la herida, como tratando de entender que acaba de ocurrir. Todo termina con un último intento de respirar que produce un ruido que te deja helado, ha muerto.\nLa memoria comienza a dar vueltas.",
+      "file": "78187-back.mp3",
+      "inputHash": "9f06062b4d2136893e873867ab089479ea8cc35258238e363b7d5917e149c175"
     }
   ]
 }

@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "plaguebearerDeathAtSundown": {
+        "title": "La llamada del Portador de la Plaga: Muerte a la puesta de sol",
+        "cards": "Escenario VII con la torre del Ayuntamiento de seis pisos, el Mazo de Ritual, la Memoria de Pickman y textos de historia literales EN/ES; su primera resolución ya lleva al Interludio V, La confrontación.",
+        "rules": "Muerte a la puesta de sol muestra su referencia de fichas del caos; los relatos nuevos quedan pendientes de locución."
+      },
       "plaguebearerAfternoonWar": {
         "title": "La llamada del Portador de la Plaga: Guerra al atardecer e Interludio V",
         "cards": "Escenario VI con los portales de la Llama y del Rey, daño y horror sobre los Lugares, apoyos de historia con Defender, Poder desatado y textos de historia literales EN/ES; Interludio V, La confrontación, listo para seguir a Muerte a la puesta de sol.",

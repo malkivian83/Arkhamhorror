@@ -57,7 +57,7 @@ it('connects campaign recordings to their exact narrative face and established v
     ceniza: 28,
     carnevale: 10,
     dunwich: 97,
-    plaguebearer: 67,
+    plaguebearer: 78,
   }
   const recordedFaces = new Set<string>()
   for (const [group, voiceId] of Object.entries(voices)) {

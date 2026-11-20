@@ -1342,6 +1342,253 @@
     "text": "Spawn – Location with the most damage.\nHunter. Retaliate.\nForced – After Molten Murder attacks you: You must either lose resources or discard cards equal to the total horror on its location.",
     "flavor": "“From hatred pure,\nFrom cleansing fire,\nBlessed be the perfect ash.”\n– Hymn of Pure Flame"
   },
+  "78181": {
+    "name": "Death at Sundown",
+    "typeCode": "scenario",
+    "text": "[skull]: -X. X is the Floor of your location.\n[cultist]: -5. If you succeed, you may immediately discover a clue from any revealed location.\n[tablet]: -2. If you fail, move the Tendrils of the First one location towards you.\n[elder_thing]: -3. If you fail, each investigator who has Heeded the Call must move one location towards the First Among Many.",
+    "backText": "[skull]: -X. X is 2 greater than the Floor of your location.\n[cultist]: -7. If you succeed, you may immediately discover a clue from any revealed location.\n[tablet]: -4. If you fail, move the Tendrils of the First one location towards you.\n[elder_thing]: -3. If you fail, each investigator who has Heeded the Call must move one location towards the First Among Many for each point you failed by."
+  },
+  "78182": {
+    "name": "The Calm Before",
+    "typeCode": "agenda",
+    "text": "Forced – When you would draw or reveal cards from the encounter deck: Draw or reveal that many cards from your deck, instead.",
+    "flavor": "The ground shakes.\nIt draws near.",
+    "backName": "The Writhing Storm",
+    "backText": "Put the set aside First Among Many and Tendrils of the First into play at Independence Square.",
+    "backFlavor": "A crash comes from ground level, followed by a multitude of screams.\nThe First Among Many quickly writhes into the space of Independence Square. Though little of it resembles a human form, a face is visible in the mound of flesh. The twisted face looks at the building above, and screams a single word.\n“WEST!”"
+  },
+  "78183": {
+    "name": "It Just Won’t Die",
+    "typeCode": "agenda",
+    "text": "Forced – When a Ritual story asset would enter a player’s discard pile or be removed from the game: Attach that asset to the Observation Deck.\n(Beware — Any investigator on First Among Many’s floor when the agenda advances will be killed.)",
+    "flavor": "The First Among Many begins to subsume the town hall floor by floor, pursuing its prey. You better make sure that doesn’t include you.",
+    "backName": "Ever Upwards",
+    "backText": "Each investigator on a location with a Floor trait matching the First Among Many’s location is killed.\nRemove each location with a Floor trait matching the First Among Many’s current location from the game, then move the First Among Many to a location with a Floor trait one greater than the removed locations. Attach any Ritual assets attached to those locations to the Observation Deck location, and discard any other attachments or enemies at the removed locations. If Tendrils of the First is discarded this way, place it in the victory display.\nIf the First is on a Floor 4 location, and the Rusted Blade and Killing Words are not in the victory display, (→R2).\nIf the First is on a Floor 5 location, advance to agenda 3a.\nFlip this agenda back to agenda 2a.",
+    "backFlavor": "The First grows and expands. Within moments, an entire floor is completely uninhabitable."
+  },
+  "78184": {
+    "name": "Final Breath",
+    "typeCode": "agenda",
+    "text": "Forced – When a Ritual story asset would enter a player’s discard pile or be removed from the game: Attach that asset to the Observation Deck.",
+    "flavor": "The tower creaks and groans as it sways in the wind. The mass of flesh has devoured all but the ritual site. It’s now or never.",
+    "backName": "Last Among Few",
+    "backText": "Each investigator is killed.",
+    "backFlavor": "You rush to complete the ritual, but your enemy catches you unaware. Within moments, you are dragged backwards, into the walls of flesh…"
+  },
+  "78185": {
+    "name": "Know the Unknowable",
+    "typeCode": "act",
+    "flavor": "Any way to destroy the First is beyond your grasp. For now, all you can do is hold it off.",
+    "backName": "He’s Got a Plan",
+    "backFlavor": "You run into West ascending a staircase. “You! We don’t have much time. The Tailors managed to gather the components to my specifications. But you know their type, incapable of doing anything right. The components are scattered throughout the tower. I’ve been trying to corral them, but with this creature… they’ve lost all logic. Barely better than panicked animals.\nWhich means it’s down to us. There were a number of useful components, but only three are crucial - the binding runes, which when correctly placed can trap the soul in a moment in time. An ancestral blade of the target, to bring it to heel. And a book, containing a phrase we need to kill this creature. You get them prepared and meet me on the roof. Anything else you find should prove useful, but don’t waste too much time!”"
+  },
+  "78186": {
+    "name": "Fight the Unfightable",
+    "typeCode": "act",
+    "text": "Each location that has not been “ransacked” gains: “[free] The investigators spend 1 [per_investigator] clues, as a group: Draw the top card of the Ritual deck and attach it to this location. Remember that you have “ransacked” this location.”\nObjective – If the following cards are in the victory display, advance:\n– Rusted Blade\n– Killing Words\n– Binding Runes",
+    "flavor": "The Tailors try to make the last of their ritual preparations, but minutes remain. You’ll have to do their jobs for them.",
+    "backName": "Pickman’s Memory",
+    "backText": "Floor 0.\nRevelation – Place Pickman’s Memory in the victory display, and attach each asset in the victory display to it. Spawn the set-aside Dr. Elias Pickman enemy at Pickman’s Memory.\nEach enemy and investigator in the victory display is considered to be at Pickman’s Memory.\nVictory 1.",
+    "backFlavor": "A final moment, trapped in time."
+  },
+  "78187": {
+    "name": "Kill the Unkillable",
+    "typeCode": "act",
+    "text": "Investigators, locations, and enemies in the victory display are still in play.\nForced – When an enemy in the victory display would be defeated by damage: Instead, exhaust that enemy and heal 1 damage from it.\nObjective – When Dr. Elias Pickman is defeated, advance. (Cards in play with victory points will be counted whether or not they are in the victory display.)",
+    "flavor": "The ritual is ready. If you enter a place beyond existence and eliminate the soul inside of the creature, you can destroy it, once and for all.",
+    "backName": "Dead Tongues",
+    "backText": "(→R1)",
+    "backFlavor": "You speak the words. They tear at your very soul, thrashing in your sway like a wild animal. But you hold strong, and they strike true.\nPickman drops to his knees. As he gasps for air, a wound, like a rifle shot, appears on his chest. He frantically tears at the opening, as if trying to comprehend what is happening. With a terrible choking noise, he falls dead.\nThe memory begins to spin."
+  },
+  "78188": {
+    "name": "Independence Square",
+    "typeCode": "location",
+    "traits": "Floor 0.",
+    "text": "You cannot trigger [action], [free], or [reaction] abilities at Independence Square.",
+    "flavor": "A sense of impending doom hangs over the park.",
+    "backText": "Floor 0.",
+    "backFlavor": "Independence Square, at the base of Town Hall, is completely abandoned."
+  },
+  "78189": {
+    "name": "Campaign Office",
+    "typeCode": "location",
+    "traits": "Floor 1.",
+    "text": "[action]: Search the top 3 cards of your deck for a card and draw it. If you drew a weakness this way, gain 3 resources. Shuffle your deck.",
+    "flavor": "“Own your flaws, and nothing can touch you!”\nWhat a stupid poster.",
+    "backText": "Floor 1.",
+    "backFlavor": "“Atkinson: Keeping Arkham Safe!”\nThey might want to change that slogan."
+  },
+  "78190": {
+    "name": "Office Lobby",
+    "typeCode": "location",
+    "traits": "Floor 1.",
+    "text": "Enemies at this location get –1 fight and –1 evade.",
+    "flavor": "That perfect combination of open space and obstacles that makes for an ideal firefight. Pity the previous human inhabitants lost theirs.",
+    "backText": "Floor 1.",
+    "backFlavor": "Blood splatters and shell casings. The Arkham mayoral staff have had a difficult day."
+  },
+  "78191": {
+    "name": "Makeshift Lab",
+    "typeCode": "location",
+    "traits": "Floor 2.",
+    "text": "[action]: Look at the top card of the Ritual Deck. You may spend 2 resources to place it on the bottom of the Ritual deck. If you control the Suspicious Briefcase asset, you may take an additional action. This does not count towards the number of actions you may take this turn.",
+    "flavor": "The plans for the ritual are scattered amongst the clutter.",
+    "backText": "Floor 2.",
+    "backFlavor": "What was once a kitchen has been rapidly arranged to work as an experimental station. The Tailors have been busy."
+  },
+  "78192": {
+    "name": "Organizer’s Office",
+    "typeCode": "location",
+    "traits": "Floor 2.",
+    "text": "[action]: Look at the top 3 cards of the encounter deck. If a Terror card is among the looked at cards, take 1 horror. You may place these cards on the top or bottom of the encounter deck in any order. (Group limit once per round.)",
+    "flavor": "The large window makes for a great view of your impending doom.",
+    "backText": "Floor 2.",
+    "backFlavor": "You’d call this office immaculately kept, except for the fine layer of dust on top of all the orderly papers."
+  },
+  "78193": {
+    "name": "Observatory",
+    "typeCode": "location",
+    "traits": "Floor 3.",
+    "text": "While you are at the Observatory, play with the top card of your deck revealed.\n[free] If there are no clues on this location and Killing Words is attached to this location: Place Killing Words in the victory display.",
+    "backText": "Floor 3.",
+    "backFlavor": "A previous mayor installed a massive viewing telescope into Town Hall “so that Arkham will always remember it has friends in the stars.”"
+  },
+  "78194": {
+    "name": "Tinkerer’s Workshop",
+    "typeCode": "location",
+    "traits": "Floor 3.",
+    "text": "[action] Spend X resources. X is the resource cost of an Item asset in your discard pile: Add that asset to your hand.\n[free] If there are no clues on this location and Rusted Blade is attached to this location: Place Rusted Blade in the victory display.",
+    "flavor": "With enough money and time, you could fix anything here.",
+    "backText": "Floor 3.",
+    "backFlavor": "The engineer in charge of public works turned most of the third floor into her personal workshop."
+  },
+  "78195": {
+    "name": "Clock Chamber North",
+    "typeCode": "location",
+    "traits": "Floor 4.",
+    "text": "Forced – After you reveal Clock Chamber North: Reveal Clock Chamber South.\n[action]: Test [intellect] (2). If you succeed, trigger the Forced effect on Clock Chamber South as if it were the end of the round.\nVictory 1.",
+    "flavor": "The core of the mechanism. Perhaps you could make some use of it?",
+    "backText": "Floor 4.",
+    "backFlavor": "An inscrutable engine of gears and pistons sits at the heart of the clock tower."
+  },
+  "78196": {
+    "name": "Clock Chamber South",
+    "typeCode": "location",
+    "traits": "Floor 4.",
+    "text": "Forced – At the end of the round: Deal 1 damage to each investigator and enemy at Clock Chamber South. Place 1 clue on Clock Chamber South.\n[action]: You stall the mechanism. Test [combat] (1). For each point you succeed by, reduce the shroud of Clock Chamber North by 1 for the remainder of the round.",
+    "flavor": "The winding gears form a very gradual deathtrap.",
+    "backText": "Floor 4.",
+    "backFlavor": "From a distance, you can see the many shifting gears and pistons. Seems dangerous."
+  },
+  "78197": {
+    "name": "Observation Deck",
+    "typeCode": "location",
+    "traits": "Stable. Floor 5.",
+    "text": "Forced – When you trigger the [free] ability on Act 2: Instead of remembering that you have “ransacked” the Observation Deck, place 1 [per_investigator] clues on Observation Deck.\n[free] If there are no clues on this location and Binding Runes is attached to this location: Place Binding Runes in the victory display.",
+    "flavor": "The howling wind drowns out the howling flesh below.",
+    "backText": "Stable. Floor 5.",
+    "backFlavor": "The fading rays illuminate a beautiful view of the surviving city. In this place of serenity, the surviving Tailors prepare to enter the memories of the First’s soul."
+  },
+  "78198": {
+    "name": "Binding Runes",
+    "typeCode": "asset",
+    "traits": "Item. Charm. Ritual.",
+    "text": "[reaction] When an enemy at your location would ready, take 1 direct damage: That enemy does not ready.\n[action]: Take control of Binding Runes or attach it to your current location. Any investigator at Binding Runes’s location may activate this ability. (Group limit once per round.)\nVictory 0."
+  },
+  "78199": {
+    "name": "Blessing of Tomorrow",
+    "typeCode": "asset",
+    "traits": "Spell. Ritual.",
+    "text": "You may take an additional action during your turn, which can only be used on [action] abilities.\n[action]: Take control of Blessing of Tomorrow or attach it to your current location. Any investigator at Blessing of Tomorrow’s location may activate this ability. (Group limit once per round.)",
+    "flavor": "It is, what may be."
+  },
+  "78200": {
+    "name": "EX.O.L",
+    "subname": "Experimental Ordinance Launcher",
+    "typeCode": "asset",
+    "traits": "Item. Weapon. Firearm. Agency. Ritual.",
+    "text": "Uses (3 ammo).\n[action] Spend 1 ammo: Fight. You get +4 [combat] for this attack. This attack deals +4 damage.\n[action]: Take control of EX.O.L or attach it to your current location. Any investigator at EX.O.L’s location may activate this ability. (Group limit once per round.)"
+  },
+  "78201": {
+    "name": "Hedge Mage’s Bag",
+    "typeCode": "asset",
+    "traits": "Item. Clothing. Ritual.",
+    "text": "You have 2 additional hand slots.\n[action]: Take control of Hedge Mage’s Bag or attach it to your current location. Any investigator at Hedge Mage’s Bag’s location may activate this ability. (Group limit once per round.)",
+    "flavor": "Built for holding all manner of oddities."
+  },
+  "78202": {
+    "name": "Killing Words",
+    "typeCode": "asset",
+    "traits": "Spell. Ritual.",
+    "text": "[action] Take direct horror equal to an enemy’s remaining health at your location: Parley. Defeat that enemy.\n[action]: Take control of Killing Words or attach it to your current location. Any investigator at Killing Words’s location may activate this ability. (Group limit once per round.)\nVictory 0."
+  },
+  "78203": {
+    "name": "Rusted Blade",
+    "typeCode": "asset",
+    "traits": "Item. Weapon. Melee. Ritual.",
+    "text": "[action]: Fight. You may use any skill (including [combat]) for this attack. This attack deals +1 damage.\n[action]: Take control of Rusted Blade or attach it to your current location. Any investigator at Rusted Blade’s location may activate this ability. (Group limit once per round.)\nVictory 0."
+  },
+  "78204": {
+    "name": "First Among Many",
+    "typeCode": "enemy",
+    "traits": "Monster. Infected. Elite.",
+    "text": "Massive. Cannot be defeated. Cannot be attacked or evaded.\nFirst Among Many’s location gains the Miasma trait and is connected to the victory display (as if it were a location) while the Tendrils of the First is moving.",
+    "flavor": "It howls West’s name over and over."
+  },
+  "78205": {
+    "name": "Tendrils of the First",
+    "typeCode": "enemy",
+    "traits": "Elite. Monster. Infected.",
+    "text": "Hunter. Massive. Retaliate.\nTendrils of the First cannot make attacks of opportunity.\nWhile Tendrils of the First is in the victory display, it is still considered to be in play.\nVictory 2."
+  },
+  "78206": {
+    "name": "Dr. Elias Pickman",
+    "subname": "The Mind of the Monster",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Elite. Sorcerer.",
+    "text": "Dr. Elias Pickman gets +X health, where X is the number of clues on Pickman’s Memory.\nDr. Elias Pickman cannot be defeated by damage.\nForced – When Elias Pickman would take any amount of damage from a source other than Rusted Blade: Reduce that damage to 1.",
+    "flavor": "“You will not stop me. You cannot stop me.”"
+  },
+  "78207": {
+    "name": "Come Crashing Down",
+    "typeCode": "treachery",
+    "traits": "Blunder.",
+    "text": "Revelation – Test [agility] (1). This test gets +X difficulty, where X is the number of the Floor of your location (Floor 1 is 1, Floor 2 is 2…). For each point you fail by, you must either lose 1 resource or choose and discard 1 card.",
+    "flavor": "It’s a long way to the bottom."
+  },
+  "78208": {
+    "name": "It’s You or Me.",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Peril.\nRevelation – Choose an investigator. That investigator must move directly to the First Among Many’s location.",
+    "flavor": "“I’m sorry!”"
+  },
+  "78209": {
+    "name": "Seeking Stalks",
+    "typeCode": "treachery",
+    "traits": "Power.",
+    "text": "Revelation –Test [agility] (3). If you fail, put Seeking Stalks into play in your threat area.\nForced – After you move: Resolve the Hunter keyword on Tendrils of the First.\n[action][action]: Discard Seeking Stalks. If you control a Melee asset, you may take an additional action. This does not count towards the number of actions you may take this turn."
+  },
+  "78210": {
+    "name": "Shrieking Affliction",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Test [willpower] (2). This test gets +1 difficulty for each of your hand slots that is filled. For each point you fail by, take 1 horror, to a maximum of 3 horror.",
+    "flavor": "A pitch that threatens to shatter your mind."
+  },
+  "78211": {
+    "name": "Undying Hatred",
+    "typeCode": "treachery",
+    "traits": "Omen.",
+    "text": "Revelation – You must either ready Tendrils of the First and move it directly to your location, or place 1 doom on the current agenda. This effect can cause the current agenda to advance.",
+    "flavor": "“WEST!”"
+  },
+  "78212": {
+    "name": "Writhing Closer",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Surge.\nRevelation – If Tendrils of the First is engaged with at least 1 investigator, it attacks each engaged investigator. Otherwise, move it 1 location towards the nearest investigator."
+  },
   "78250": {
     "name": "Agency Troubleshooter",
     "typeCode": "enemy",
@@ -1635,5 +1882,13 @@
     "text": "Spawn – Grand Hall.\nHunter. Alert. Retaliate. Cannot be defeated.\nForced – At the end of the round: Heal 1 damage from Ichabod.",
     "flavor": "“Once properly motivated, subjects can be guided and even follow simple commands. That proper motivation requires removal of the head is admittedly a flaw.”",
     "subname": "Head of Security"
+  },
+  "78186b": {
+    "name": "Pickman’s Memory",
+    "subname": "The End and the Beginning",
+    "typeCode": "location",
+    "traits": "Floor 0.",
+    "text": "Revelation – Place Pickman’s Memory in the victory display, and attach each asset in the victory display to it. Spawn the set-aside Dr. Elias Pickman enemy at Pickman’s Memory.\nEach enemy and investigator in the victory display is considered to be at Pickman’s Memory.\nVictory 1.",
+    "flavor": "A final moment, trapped in time."
   }
 }

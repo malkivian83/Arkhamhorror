@@ -200,6 +200,41 @@
     "flavor": "You have found the final portal! Now all you have to do is make it past a gargantuan monster and destroy the breach.",
     "backFlavor": "Using chemical implements from around the building, you put out the fires and scrawl a counter-formula on the board. The portal to Fomalhaut winks out of existence.\n\nYou convince the maddened citizens that they are merely viewing an avant-garde performance, and use paint from the prop rooms to wipe out the sigils and close the portal."
   },
+  "78182": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The ground shakes.\nIt draws near.",
+    "backFlavor": "A crash comes from ground level, followed by a multitude of screams.\nThe First Among Many quickly writhes into the space of Independence Square. Though little of it resembles a human form, a face is visible in the mound of flesh. The twisted face looks at the building above, and screams a single word.\n“WEST!”"
+  },
+  "78183": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The First Among Many begins to subsume the town hall floor by floor, pursuing its prey. You better make sure that doesn’t include you.",
+    "backFlavor": "The First grows and expands. Within moments, an entire floor is completely uninhabitable."
+  },
+  "78184": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "The tower creaks and groans as it sways in the wind. The mass of flesh has devoured all but the ritual site. It’s now or never.",
+    "backFlavor": "You rush to complete the ritual, but your enemy catches you unaware. Within moments, you are dragged backwards, into the walls of flesh…"
+  },
+  "78185": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Any way to destroy the First is beyond your grasp. For now, all you can do is hold it off.",
+    "backFlavor": "You run into West ascending a staircase. “You! We don’t have much time. The Tailors managed to gather the components to my specifications. But you know their type, incapable of doing anything right. The components are scattered throughout the tower. I’ve been trying to corral them, but with this creature… they’ve lost all logic. Barely better than panicked animals.\nWhich means it’s down to us. There were a number of useful components, but only three are crucial - the binding runes, which when correctly placed can trap the soul in a moment in time. An ancestral blade of the target, to bring it to heel. And a book, containing a phrase we need to kill this creature. You get them prepared and meet me on the roof. Anything else you find should prove useful, but don’t waste too much time!”"
+  },
+  "78186": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "The Tailors try to make the last of their ritual preparations, but minutes remain. You’ll have to do their jobs for them."
+  },
+  "78187": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "The ritual is ready. If you enter a place beyond existence and eliminate the soul inside of the creature, you can destroy it, once and for all.",
+    "backFlavor": "You speak the words. They tear at your very soul, thrashing in your sway like a wild animal. But you hold strong, and they strike true.\nPickman drops to his knees. As he gasps for air, a wound, like a rifle shot, appears on his chest. He frantically tears at the opening, as if trying to comprehend what is happening. With a terrible choking noise, he falls dead.\nThe memory begins to spin."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

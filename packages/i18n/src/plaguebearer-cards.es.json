@@ -1342,6 +1342,253 @@
     "text": "Aparición – Lugar con más daño.\nCazador. Represalia.\nObligado – Después de que el Asesino fundente te ataque: Debes perder X recursos o descartar X cartas de la mano, donde X es la cantidad total de horror en su Lugar.",
     "flavor": "“Del odio puro,\nDel fuego purificador,\nBendita sea la ceniza perfecta.”\n– Himno de la Llama Pura."
   },
+  "78181": {
+    "name": "Muerte a la puesta de sol",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X es el Piso de tu Lugar.\n[cultist]: –5. Si tienes éxito, descubre 1 pista de cualquier Lugar revelado.\n[tablet]: –2. Si fracasas, mueve los Zarcillos del Primero un Lugar hacia ti.\n[elder_thing]: –3. Si fracasas, cada investigador que haya escuchado la Llamada se mueve un Lugar hacia el Primero de muchos.",
+    "backText": "[skull]: –X. X es 2 más que el Piso de tu Lugar.\n[cultist]: –7. Si tienes éxito, descubre 1 pista de cualquier Lugar revelado.\n[tablet]: –4. Si fracasas, mueve los Zarcillos del Primero un Lugar hacia ti.\n[elder_thing]: –3. Si fracasas, por cada punto que te falte para tener éxito, cada investigador que haya escuchado la Llamada se mueve un Lugar hacia el Primero de muchos."
+  },
+  "78182": {
+    "name": "La calma que precede...",
+    "typeCode": "agenda",
+    "text": "Obligado – Cuando fueses a robar o revelar cartas del mazo de encuentros: En lugar de eso, roba o revela ese número de cartas de tu mazo.",
+    "flavor": "El suelo tiembla.\nSe acerca.",
+    "backName": "...a la Tempestad",
+    "backText": "Haz aparecer el Primero de muchos y los Zarcillos del Primero puestos aparte en la Plaza de la Independencia.",
+    "backFlavor": "Un tremendo crujido proviniente de la calle seguido por una multitud de gritos.\nEl Primero de muchos, se retuerce en la Plaza de la Independencia. Pese a que no queda nada que se asemeje a un humano en él, una cara se hace visible en el amasijo de carne. La retorcida cara mira al edificio sobre él y grita una única palabra.\n“¡WEST!”"
+  },
+  "78183": {
+    "name": "Simplemente no puede morir",
+    "typeCode": "agenda",
+    "text": "Obligado – Cuando un Apoyo de historia Ritual fuese a ser descartado o retirado de la partida: Vincula ese Apoyo a la Plataforma de observación.\n(Cuidado – Cualquier investigador en el mismo Piso que el Primero de muchos morirá al avanzar el Plan.)",
+    "flavor": "El Primero de muchos comienza a devorar el ayuntamiento de la ciudad planta a planta tras su presa. Será mejor que te asegures de que eso no te incluye.",
+    "backName": "Siempre arriba",
+    "backText": "Cada investigador que esté en un Lugar con el mismo rasgo Piso que el Lugar en el que está el Primero de muchos ha muerto.\nRetira de la partida cada Lugar con el mismo rasgo Piso que el Lugar en el que está el Primero de muchos. Después mueve al Primero de muchos a un Lugar con un rasgo Piso una unidad mayor que los Lugares retirados. Vincula cualquier Apoyo Ritual que estuviera vinculado a esos Lugares a la Plataforma de observación y descarta cualesquiera otras cartas vinculadas o enemigos de los lugares retirados. Si los Zarcillos del Primero son descartados de este modo, colócalos en la zona de victoria.\nSi el Primero de muchos está en un Lugar Piso 4, y la Hoja oxidada y las Palabras de muerte no están en la zona de victoria, (→R2).\nSi el Primero de muchos está en un Lugar Piso 5, avanza al plan 3a.\nSi no, dale la vuelta a esta carta al plan 2a.",
+    "backFlavor": "El Primero crece y se expande. En unos instantes la planta está completamente inhabitable."
+  },
+  "78184": {
+    "name": "Último aliento",
+    "typeCode": "agenda",
+    "text": "Obligado – Cuando un Apoyo de historia Ritual fuese a ser descartado o retirado de la partida: Vincula ese Apoyo a la Plataforma de observación.",
+    "flavor": "La torre cruje y se tambalea como si estuviera mecida por el viento. La amalgama de carne ha devorado todo excepto el lugar del ritual. Es ahora o nunca.",
+    "backName": "Último de pocos",
+    "backText": "Todos los investigadores han muerto.",
+    "backFlavor": "Te apuras para completar el ritual, pero tu enemigo te atrapa desprevenido. En unos instantes te ves arrastrado de espaldas hacia el amasijo de carne."
+  },
+  "78185": {
+    "name": "Conocer lo incognoscible",
+    "typeCode": "act",
+    "flavor": "Visto lo visto, cualquier modo de intentar acabar con el Primero está más allá de tus capacidades. Por ahora, todo lo que puedes hacer es mantenerte fuera de su alcance.",
+    "backName": "Suena a plan",
+    "backFlavor": "Te encuentras con West subiendo las escaleras. “¡Tú! No tenemos mucho tiempo. Los Sastres se las han ingeniado para conseguir los componentes que les pedí. Pero ya sabes qué tipo de gente son, incapaces de hacer nada a derechas. Han dejado los componentes por toda la torre. He intentado organizarlos y que colaboren, pero con esta atroz criatura... han perdido la poca lógica que pudieran tener. Son poco más que animalillos asustados.\nLo que significa que es cosa nuestra. Hay bastantes componentes, pero sólo tres son indispensables – las runas de atadura, las cuales colocadas correctamente pueden atrapar el alma durante un momento en el tiempo. Una hoja ancestral del sujeto, para obligarle a postrarse. Y un libro, que contiene la frase que necesitamos para acabar con esta criatura. Consigue los componentes y reúnete conmigo en el tejado. ¡Cualquier otra cosa que encuentres puede que sea útil, pero no pierdas el tiempo con fruslerías!”"
+  },
+  "78186": {
+    "name": "Combatir con lo imbatible",
+    "typeCode": "act",
+    "text": "Cada Lugar que no haya sido “saqueado” obtiene: “[free] Los investigadores gastan 1 pista [per_investigator] como grupo: Roba la carta superior del Mazo de Ritual y vincúlala a este Lugar. Recuerda que has “saqueado” este Lugar.”\nObjetivo – Si las siguientes cartas están en la zona de victoria, haz avanzar el acto:\n– Hoja oxidada.\n– Palabras de muerte.\n– Runas de atadura.",
+    "flavor": "Los Sastres han intentado terminar los preparativos para el ritual, pero sólo quedan minutos. Tendrás que hacer su trabajo por ellos.",
+    "backName": "Memoria de Pickman",
+    "backText": "Piso 0\nRevelación – Coloca la Memoria de Pickman en la zona de victoria y vincula cada Apoyo que haya en la zona de victoria a este Lugar. Haz aparecer el enemigo Dr. Elias Pickman en la Memoria de Pickman.\nCada enemigo e investigador en la zona de victoria se considera que está en la Memoria de Pickman.\nVictoria 1.",
+    "backFlavor": "Un último momento, atrapado en el tiempo."
+  },
+  "78187": {
+    "name": "Matar lo inmortal",
+    "typeCode": "act",
+    "text": "Los investigadores, Lugares y enemigos en la zona de victoria se consideran en juego.\nObligado – Cuando un enemigo en la zona de victoria fuese a ser derrotado por daño: En lugar de eso, agótalo y cúrale 1 punto de daño.\nObjetivo – Si el Dr. Elias Pickman es derrotado haz avanzar el acto. (Las cartas con puntos de victoria se contarán estén o no en la zona de victoria.)",
+    "flavor": "El ritual está listo. Si consigues entrar en un lugar más allá de la existencia y destruir el alma de la criatura allí, podrás acabar con ella, de una vez por todas.",
+    "backName": "Lenguas muertas",
+    "backText": "(→R1)",
+    "backFlavor": "Recitas las palabras. Te rasgan el alma, golpeándote como si fueran un animal salvaje. Pero aguantas estoicamente y surten efecto.\nPickman cae de rodillas. Boquea en busca de aire. Una herida, como el disparo de un rifle se abre en su pecho. Empieza a palparse la herida, como tratando de entender que acaba de ocurrir. Todo termina con un último intento de respirar que produce un ruido que te deja helado, ha muerto.\nLa memoria comienza a dar vueltas."
+  },
+  "78188": {
+    "name": "Plaza de la Independencia",
+    "typeCode": "location",
+    "traits": "Piso 0",
+    "text": "No puedes activar capacidades [action], [free] o [reaction] en la Plaza de la Independencia.",
+    "flavor": "La sensación de una condenación inminente inunda el parque.",
+    "backText": "Piso 0",
+    "backFlavor": "La Plaza de la Independencia, a los pies del Ayuntamiento está completamente abandonada."
+  },
+  "78189": {
+    "name": "Oficina de campaña",
+    "typeCode": "location",
+    "traits": "Piso 1",
+    "text": "[action]: Busca 1 carta entre las 3 primeras cartas de tu mazo, róbala y baraja tu mazo. Si robaste una debilidad gana 3 recursos.",
+    "flavor": "“¡Se dueño de tus defectos y nada podrá tocarte!”\nVaya estupidez de póster.",
+    "backText": "Piso 1",
+    "backFlavor": "“Atkinson: ¡Mantengamos Arkham a salvo!”\nQuiza deberían revisar ese eslogan."
+  },
+  "78190": {
+    "name": "Vestíbulo de las oficinas",
+    "typeCode": "location",
+    "traits": "Piso 1",
+    "text": "Los enemigos en este Lugar reciben –1 a combate y –1 a evitar.",
+    "flavor": "Esa perfecta combinación de espacios abiertos y de obstáculos es ideal para un tiroteo. Lástima que los que estuvieron aquí antes perdieron el suyo.",
+    "backText": "Piso 1",
+    "backFlavor": "Salpicaduras de sangre y casquillos de bala. En la principal institución de Arkham no han tenido un buen día."
+  },
+  "78191": {
+    "name": "Laboratorio improvisado",
+    "typeCode": "location",
+    "traits": "Piso 2",
+    "text": "[action]: Mira la carta superior del Mazo de Ritual. Puedes gastar 2 recursos para colocarla debajo del Mazo de Ritual. Si controlas el Apoyo Maletín sospechoso, puedes realizar una acción adicional (esta acción no cuenta para el número de acciones que puedes realizar en este turno).",
+    "flavor": "Las notas del ritual están desperdigadas entre el desorden.",
+    "backText": "Piso 2",
+    "backFlavor": "Lo que una vez fue una cocina ha sido rápidamente tranformada en un lugar donde llevar a cabo experimentos. Los Sastres han estado ocupados."
+  },
+  "78192": {
+    "name": "Oficina del organizador",
+    "typeCode": "location",
+    "traits": "Piso 2",
+    "text": "[action]: Mira las 3 cartas superiores del mazo de Encuentros. Si hay una carta Terror entre las cartas, recibe 1 punto de horror. Puedes colocar esas cartas en la parte superior o inferior del mazo de Encuentros en cualquier orden. Límite de grupo de una vez por ronda.",
+    "flavor": "La enorme ventana es perfecta para observar el horror inminente.",
+    "backText": "Piso 2",
+    "backFlavor": "Esta oficina está inmaculada, salvo por la fina capa de polvo que cubre los papeles perfectamente ordenados."
+  },
+  "78193": {
+    "name": "Observatorio",
+    "typeCode": "location",
+    "traits": "Piso 3",
+    "text": "Mientras te encuentres en el Observatorio juega con la primera carta de tu mazo revelada.\n[free] Si no hay pistas en este Lugar y las Palabras de Muerte están vinculadas a este Lugar: Coloca las Palabras de Muerte en la zona de victoria.",
+    "backText": "Piso 3",
+    "backFlavor": "Algún alcalde anterior añadió un enorme telescopio en el Ayuntamiento de manera que “Arkham siempre recuerde que tiene amigos en las estrellas”."
+  },
+  "78194": {
+    "name": "Taller del manitas",
+    "typeCode": "location",
+    "traits": "Piso 3",
+    "text": "[action] Gasta X recursos. X es el coste de recursos de un Apoyo Objeto en tu pila de descartes: Añade ese Apoyo a tu mano.\n[free] Si no hay pistas en este Lugar y la Hoja oxidada está vinculada a este Lugar: Coloca la Hoja oxidada en la zona de victoria.",
+    "flavor": "Con suficiente tiempo y dinero podrías arreglar cualquier cosa aquí.",
+    "backText": "Piso 3",
+    "backFlavor": "El ingeniero a cargo de las obras públicas ha convertido la mayor parte del tercer piso en su taller personal."
+  },
+  "78195": {
+    "name": "Cámara del reloj norte",
+    "typeCode": "location",
+    "traits": "Piso 4",
+    "text": "Obligado – Después de que reveles la Cámara del reloj norte, revela la Cámara del reloj sur.\n[action]: Realiza una prueba de [intellect] (2). Si tienes éxito, activa la capacidad Obligado de la Cámara del reloj sur como si fuera el final de la ronda.\nVictoria 1.",
+    "flavor": "El núcleo del mecanismo. Tal vez puedas usarlo para algo.",
+    "backText": "Piso 4",
+    "backFlavor": "Un inescrutable motor lleno de engranajes y pistones se asienta en el centro de la torre del reloj."
+  },
+  "78196": {
+    "name": "Cámara del reloj sur",
+    "typeCode": "location",
+    "traits": "Piso 4",
+    "text": "Obligado – Al final de la ronda: Inflige 1 punto de daño a cada investigador y enemigo en la Cámara del reloj sur. Coloca 1 pista en la Cámara del reloj sur.\n[action]: Tratas de parar el mecanismo. Realiza una prueba de [combat] (1). Por cada punto por encima del valor mínimo de éxito, reduce el valor de velo de la Cámara del reloj norte en 1 hasta el final de la ronda.",
+    "flavor": "El núcleo del mecanismo. Tal vez puedas usarlo para algo.",
+    "backText": "Piso 4",
+    "backFlavor": "Desde la distancia puedes observar los numerosos engranajes y pistones que no paran de moverse. Parecen peligrosos."
+  },
+  "78197": {
+    "name": "Plataforma de observación",
+    "typeCode": "location",
+    "traits": "Seguro. Piso 5",
+    "text": "Obligado – Cuando actives la capacidad [free] del Acto 2a: En lugar de recordar que has “saqueado” la Plataforma de observación, coloca 1 pista [per_investigator] en la Plataforma de observación.\n[free] Si no hay pistas en este Lugar y las Runas de atadura están vinculadas a este Lugar: Coloca las Runas de atadura en la zona de victoria.",
+    "flavor": "El aullar del viento ahoga el aullar de la carne más abajo.",
+    "backText": "Seguro. Piso 5",
+    "backFlavor": "Los tenues rayos de sol iluminan la bella vista de lo que queda de ciudad. En este lugar, los Sastres supervivientes se preparan para entrar en los recuerdos del alma del Primero."
+  },
+  "78198": {
+    "name": "Runas de atadura",
+    "typeCode": "asset",
+    "traits": "Objeto. Amuleto. Ritual",
+    "text": "[reaction] Cuando un enemigo en tu Lugar fuese a prepararse, recibe 1 punto de daño directo: Ese enemigo no se prepara.\n[action]: Toma el control de las Runas de atadura o vincúlalas a tu Lugar. Cualquier investigador en el Lugar de las Runas de atadura puede activar esta capacidad. Límite de grupo de una vez por ronda.\nVictoria 0."
+  },
+  "78199": {
+    "name": "Bendición del mañana",
+    "typeCode": "asset",
+    "traits": "Hechizo. Ritual",
+    "text": "Puedes realizar una acción adicional durante tu turno que sólo puede usarse para activar capacidades [action].\n[action]: Toma el control de la Bendición del mañana o vincúlala a tu Lugar. Cualquier investigador en el Lugar de la Bendición del mañana puede activar esta capacidad. Límite de grupo de una vez por ronda.",
+    "flavor": "Lo que puede ser, es."
+  },
+  "78200": {
+    "name": "L.E.P.R.A.",
+    "subname": "Lanzador Experimental de Proyectiles Raros de la Agencia",
+    "typeCode": "asset",
+    "traits": "Objeto. Arma. Arma de fuego. Agencia. Ritual",
+    "text": "Usos (3 municiones).\n[action] Gasta 1 munición: Combatir. Recibe +4 [combat] para este ataque. Este ataque inflige +4 de daño.\n[action]: Toma el control de L.E.P.R.A. o vincúlala a tu Lugar. Cualquier investigador en el Lugar de L.E.P.R.A. puede activar esta capacidad. Límite de grupo de una vez por ronda."
+  },
+  "78201": {
+    "name": "Mochila de mago de emergencia",
+    "typeCode": "asset",
+    "traits": "Objeto. Ropa. Ritual",
+    "text": "Tienes 2 espacios de mano adicionales.\n[action]: Toma el control de la Mochila de mago de emergencia o vincúlala a tu Lugar. Cualquier investigador en el Lugar de la Mochila de mago de emergencia puede activar esta capacidad. Límite de grupo de una vez por ronda.",
+    "flavor": "Pensada para llevar todo tipo de objetos peculiares."
+  },
+  "78202": {
+    "name": "Palabras de muerte",
+    "typeCode": "asset",
+    "traits": "Hechizo. Ritual",
+    "text": "[action] Recibe X puntos de horror directo, donde X es la salud restante de un enemigo en tu Lugar: Negociar. Derrota a ese enemigo.\n[action]: Toma el control de las Palabras de muerte o vincúlalas a tu Lugar. Cualquier investigador en el Lugar de las Palabras de muerte puede activar esta capacidad. Límite de grupo de una vez por ronda.\nVictoria 0."
+  },
+  "78203": {
+    "name": "Hoja oxidada",
+    "typeCode": "asset",
+    "traits": "Objeto. Arma. Cuerpo a cuerpo. Ritual",
+    "text": "[action]: Combatir. Puedes usar cualquier habilidad para este ataque (incluyendo [combat]). Este ataque inflige +1 de daño.\n[action]: Toma el control de la Hoja oxidada o vincúlala a tu Lugar. Cualquier investigador en el Lugar de la Hoja oxidada puede activar esta capacidad. Límite de grupo de una vez por ronda.\nVictoria 0."
+  },
+  "78204": {
+    "name": "Primero de muchos",
+    "typeCode": "enemy",
+    "traits": "Infectado. Monstruo. Élite",
+    "text": "Descomunal. No puede ser derrotado. No puede ser atacado o evitado.\nEl Lugar del Primero de muchos obtiene el rasgo Miasma y está conectado con la zona de victoria (como si fuera un Lugar) mientras los Zarcillos del Primero se mueven.",
+    "flavor": "No para de gritar el nombre de West una y otra vez."
+  },
+  "78205": {
+    "name": "Zarcillos del Primero",
+    "typeCode": "enemy",
+    "traits": "Infectado. Monstruo. Élite",
+    "text": "Cazador. Descomunal. Represalia.\nLos Zarcillos del Primero no pueden realizar ataques de oportunidad.\nMientras los Zarcillos del Primero estén en la zona de victoria, se considera que están en juego.\nVictoria 2."
+  },
+  "78206": {
+    "name": "Dr. Elias Pickman",
+    "subname": "La mente de la criatura",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Hechicero. Élite",
+    "text": "El Dr. Elias Pickman recibe +X de salud, donde X es el número de pistas sobre la Memoria de Pickman.\nEl Dr. Elias Pickman no puede ser derrotado por daño.\nObligado – Cuando el Dr. Elias Pickman fuese a recibir cualquier cantidad de daño de una fuente que no sea la Hoja Oxidada: Reduce ese daño a 1.",
+    "flavor": "“No me dentendréis, no podéis detenerme,”"
+  },
+  "78207": {
+    "name": "Todo lo que sube...",
+    "typeCode": "treachery",
+    "traits": "Equivocación",
+    "text": "Revelación – Realiza una prueba de [agility] (1). Esta prueba tiene +X de dificultad, donde X es el número de Piso de tu Lugar. Por cada punto que te falte para tener éxito debes perder 1 recurso o descartar 1 carta de tu mano,",
+    "flavor": "Hay un buen trecho hasta el fondo."
+  },
+  "78208": {
+    "name": "O tú o yo",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Peligro.\nRevelación – Elige un investigador. Ese investigador debe moverse inmediatamente al Lugar del Primero de muchos.",
+    "flavor": "“¡Lo siento!”"
+  },
+  "78209": {
+    "name": "El acechador acecha",
+    "typeCode": "treachery",
+    "traits": "Poder",
+    "text": "Revelación – Realiza una prueba de [agility] (3). Si fracasas, pon El acechador acecha en juego en tu zona de amenaza.\nObligado – Después de que te muevas: Resuelve la palabra clave Cazador de los Zarcillos del Primero.\n[action][action][action]: Descarta El acechador acecha. Si controlas un Apoyo Cuerpo a cuerpo, puedes realizar una acción adicional (esta acción no cuenta para el número de acciones que ese investigador puede realizar en cada turno)."
+  },
+  "78210": {
+    "name": "Aflicción sónica",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Realiza una prueba de [willpower] (2). Esta prueba recibe +1 de dificultad por cada uno de tus espacios de mano que esté ocupado. Por cada punto que te falte para tener éxito, recibe 1 punto de horror (max. 3).",
+    "flavor": "Un sonido que amenaza con destrozar tu mente."
+  },
+  "78211": {
+    "name": "Odio eterno",
+    "typeCode": "treachery",
+    "traits": "Augurio",
+    "text": "Revelación – Debes preparar a los Zarcillos del Primero y moverlos directamente a tu Lugar, o colocar 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.",
+    "flavor": "“¡WEST!”"
+  },
+  "78212": {
+    "name": "Retorciéndose a tu alrededor",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Oleada.\nRevelación – Si los Zarcillos del Primero están enfrentados al menos a 1 investigador, ataca a cada jugador enfrentado. Si no, muévelo 1 Lugar hacia el investigador más cercano."
+  },
   "78250": {
     "name": "Solucionador de la Agencia",
     "typeCode": "enemy",
@@ -1635,5 +1882,13 @@
     "text": "Aparición – Vestíbulo principal.\nCazador. Alerta. Represalia. No puede ser derrotado.\nObligado – Al final de la ronda: Cura 1 punto de daño a Ichabod.",
     "flavor": "“Una vez motivados, los sujetos pueden ser guiados e incluso obedecer órdenes simples. Que la adecuada motivación requiera de la amputación de la cabeza es francamente un incordio.”",
     "subname": "A la cabeza de la seguridad"
+  },
+  "78186b": {
+    "name": "Memoria de Pickman",
+    "subname": "El final y el principio",
+    "typeCode": "location",
+    "traits": "Piso 0",
+    "text": "Revelación – Coloca la Memoria de Pickman en la zona de victoria y vincula cada Apoyo que haya en la zona de victoria a este Lugar. Haz aparecer el enemigo Dr. Elias Pickman en la Memoria de Pickman.\nCada enemigo e investigador en la zona de victoria se considera que está en la Memoria de Pickman.\nVictoria 1.",
+    "flavor": "Un último momento, atrapado en el tiempo."
   }
 }

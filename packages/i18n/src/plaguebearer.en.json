@@ -274,6 +274,41 @@
       "section3": "West has made terrible mistakes. But he’s not your enemy. You let him slip from your grasp, and he straightens his sleeve.\n\nThe bells of the clock tower begin to ring out midnight, and West lets out a frightened gasp. You turn to face what he’s seeing. A massive green eye stares through the front face of the clock. As the massive red arm begins to tear through the tower, you tackle West out of the way. The two of you hurtle to the earth below, miraculously landing in a large bush.\n\nWest takes you by the arm and helps to pull you up. “You’ve saved my life. I am in your debt.”\n\nHis words are small comfort as you gaze upon the behemoth that stands nearby, gaze bearing down upon you.\n\nOnce again you survive. No longer. Time to die.\n\nBaalshandor has arrived on Earth.",
       "section3Effect": "If Herbert West is not in a player’s deck, they may include the Herbert West asset in their deck This card does not count against deck size.\nRecord in your campaign log that Baalshandor struck the first blow.",
       "section4": "You have words for Herbert West. But now is neither the time nor the place. If the vision was true, you are all still in imminent danger. You grab West by the arm and pull him with you down the stairs.\n\nAs you exit Town Hall, the bells begin to ring out the midnight hour. You look back, and are stunned to see a behemoth of a being smash its arm through the top of Town Hall. Its multitude of eyes swivel and stare down at you.\n\nAh. My clever instruments of unbinding. Time to die.\n\nBaalshandor has arrived on Earth."
+    },
+    "sundown": {
+      "introTitle": "Death at Sundown",
+      "intro1": "7:37 PM:\n\nYou are snapped from your momentary lapse by the telltale rat-a-tat of tommy guns. A contingent of Tailors hanging out of speeding cars fire an excessive amount of rounds behind them. You feel the breath leave your lungs as their target comes into view behind them. Though the mass of flesh is now the size of a small building, it can only be the First Among Many.",
+      "intro2": "“Quickly!” West shouts, pointing at the agents. “They’ve already started. Remember my plan? The Tailors should have gathered the necessary materials, and are drawing the beast to Town Hall. We need to get there before it arrives!”\n\nYou find an unattended motorcar, and get moving. Though your route is difficult in Arkham’s damaged state, you pull up to Independence Square without any serious fights. A group of Tailors look around nervously, hands on their sidearms as you exit the vehicle. West clears his throat.",
+      "intro3": "“That doesn’t make sense…” Greyson looks pensively. “Wait. They must be working on a trap. They’re luring it somewhere - maybe West found the answer? We should follow them. Come on- we’ll take my car!”",
+      "intro4": "The Tailors are panicky and disorganized, but they’re not suicidal. If they’re drawing the monster’s attention, it must be for a reason.\n\nYou find an unattended motorcar and follow the sounds of gunfire.",
+      "intro5": "You make your way across town, tailing the agents as best you can. While the cars serving as “bait” continue to draw the creature’s rage, you see a small group running across Independence Square. You recognize the diminutive shape of Herbert West among them. You pull the car aside and yell to the doctor, who turns to face you.",
+      "intro6": "“Well, glad we could all make it.” West says loudly, motioning to you to walk with him. “That creature - Pickman - is the source of all this. We destroy it, and we stand a sliver of a chance of putting an end to the madness. That won’t be easy. It’s proved frustratingly difficult to end permanently.\n\nFortunately, my associates were both experts in the eldritch sciences. There is a ritual, detailed in Robison’s notes, that could “enter the memories of a tormented soul” where, if prepared, one could “purify a host and lay it to rest”. It should serve our purposes as far as removing both the offending infection and whatever is keeping it alive. Without either, it’s merely a bundle of useless flesh that can’t support its own growth. We’ll have this monster dead by sundown!”",
+      "setupTitle": "Setup",
+      "setup": "Gather all cards from the following encounter sets: Death at Sundown, Agency Troubleshooters, Life and Death, The Plaguebearer’s Commands. When gathering cards from the Agency Troubleshooters set, do not include any enemies.\n\nSet the First Among Many, Tendrils of the First, and Dr. Elias Pickman cards aside, out of play.\n\nPut each location into play in a vertical layout, with the Floor 0 location on the bottom and the Floor 5 location at the top. Each investigator begins play at Independence Square.\n\nTake the EX.O.L, Hedge Mage’s Bag, and Blessing of Tomorrow story assets and shuffle them together. Place those cards facedown on top of the Binding Runes asset to form the Ritual Deck.\n\nCheck Campaign Log. If you learned the killing words, the lead investigator starts with the Killing Words asset under their control, and places the Rusted Blade asset on the top of the ritual deck. Otherwise, take the Rusted Blade and Killing Words asset and shuffle them together, then place them on top of the ritual deck.\n\nSome encounter cards in this scenario refer to the Floor value of your location. This value is X, where X is the Floor X trait of your current location. If your location lacks that trait, X is 0.\n\nShuffle the remaining encounter cards to build the encounter deck.",
+      "agenda1bTitle": "The Writhing Storm",
+      "agenda1b": "A crash comes from ground level, followed by a multitude of screams.\nThe First Among Many quickly writhes into the space of Independence Square. Though little of it resembles a human form, a face is visible in the mound of flesh. The twisted face looks at the building above, and screams a single word.\n“WEST!”",
+      "agenda2bTitle": "Ever Upwards",
+      "agenda2b": "The First grows and expands. Within moments, an entire floor is completely uninhabitable.",
+      "agenda3bTitle": "Last Among Few",
+      "agenda3b": "You rush to complete the ritual, but your enemy catches you unaware. Within moments, you are dragged backwards, into the walls of flesh…",
+      "act1bTitle": "He’s Got a Plan",
+      "act1b": "You run into West ascending a staircase. “You! We don’t have much time. The Tailors managed to gather the components to my specifications. But you know their type, incapable of doing anything right. The components are scattered throughout the tower. I’ve been trying to corral them, but with this creature… they’ve lost all logic. Barely better than panicked animals.\nWhich means it’s down to us. There were a number of useful components, but only three are crucial - the binding runes, which when correctly placed can trap the soul in a moment in time. An ancestral blade of the target, to bring it to heel. And a book, containing a phrase we need to kill this creature. You get them prepared and meet me on the roof. Anything else you find should prove useful, but don’t waste too much time!”",
+      "act2bTitle": "Pickman’s Memory",
+      "act2b": "A final moment, trapped in time.",
+      "act3bTitle": "Dead Tongues",
+      "act3b": "You speak the words. They tear at your very soul, thrashing in your sway like a wild animal. But you hold strong, and they strike true.\nPickman drops to his knees. As he gasps for air, a wound, like a rifle shot, appears on his chest. He frantically tears at the opening, as if trying to comprehend what is happening. With a terrible choking noise, he falls dead.\nThe memory begins to spin.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "Though a sense of victory fills your heart, your mind spins. Pickman’s memory is fading with his life. You have to get out before you die with him. But something deep within you compels you to stop for a moment. You feel a sudden throbbing in your temples, and black out.\n\nIt was troubling when the subject escaped. His advanced infection stage could spread to local fauna, which could quickly get out of hand. It was fortunate that West offered his assistance - surprisingly mature of the little egomaniac, given the board handing over control of his serum research to you. His awful Re-Animated are poor soldiers, but make acceptable hunters.\n\nThe target died fairly easily, but a group of local deer were infected. Culling them has made for an irritating evening. But now, only the one remains. You speak the call and it draws near, mistaking you for a fellow infected. Just a step closer and…\n\nA shot rings out in the forest, but not yours. The deer falls. You feel a sudden rush of cold. You instinctively pat at your torso and when you raise your hand from your chest, they are wet with something warm and sticky.\n\nYou fall to your knees, grasping at the dying animal for support. It kicks in its death throes, and you fall to the ground in a pool of the creature’s blood. Your eyes begin to unfocus as you stare into the night sky. Though your body is failing, your mind burns with rage - after all your achievements, this cannot be how you die!\n\nA figure loosely gripping a rifle walks into your vision. “Well. This does not look good for you, Elias. In our line of work, we cannot afford to be so cavalier with our safety. Fortunately, I am well prepared for such an eventuality. You’ll be alright shortly - a contribution to the advances of science.” The figure reaches into his coat, and produces a needle filled with a glowing green substance. As you stare into his eyes, you feel a stinging pain.\n\nYou are shaken awake by a hand on your shoulder. You open your eyes to Herbert West, staring at you with concern. “You’re alive? The monster is dead - we’ve done it.”",
+      "resolution1Effect": "Each investigator earns experience equal to the Victory X value of each card in the victory display and each card in play.\nEach defeated investigator is Killed.\nIf at least 1 investigator was killed (during or as a result of this scenario): Read Investigator Defeat.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "As the creature scales the building, West desperately fumbles to complete the ritual. You watch him step through the portal- and directly into the waiting hands of Pickman. “Dr. West. I’m so pleased you could make it.” The tendrils of the First shoot forward into the portal, and a blood-curdling scream rattles your bones. But you don’t have to live with the fear for long, as the ever expanding mass of the First finally claims your body as well.",
+      "resolution2Effect": "The investigators lose the campaign.",
+      "tabletTitle": "Resolution [tablet]",
+      "tablet": "No.\nImpossible.\nI have been too lenient with you.\nI will deal with you myself.",
+      "tabletEffect": "The first investigator to read this records in the Campaign Log that You have been warned. Then, depending on your difficulty level, add the following token to the bag: Easy: -3, Standard: -5, Hard: -6, Expert: -7.",
+      "defeatedTitle": "Investigator Defeat",
+      "defeated": "When you were overcome by the First, in a way, it was a relief. It was incredibly painful, of course. But there’s something calming about being dead. The dead don’t need to worry about Baalshandor, or the fate of the world.\n\nBut as you drift away in your reverie, you feel a sudden rush of gravity…\n\nYour eyes burst open, and you see your companions watching nervously. “Keep an eye on that one!” West shouts from across the room. “The serum may leave them somewhat unstable for the time being.”",
+      "defeatedEffect": "Each investigator defeated during or as a result of this scenario is no longer Killed.\nIf any investigators who are no longer killed in this way control the “Unbreakable Will” asset, remove it and the “Folly of Man” weakness from their deck. They must add the “Strength of Flesh” and “Death’s Hold” cards to their deck.\nCheck Campaign Log. For each investigator no longer killed in this way who has not imbibed a cardinal reagent, record in your Campaign log that they have imbibed a cardinal reagent."
     }
   },
   "note": {
@@ -476,6 +511,23 @@
         "combat": "Defend with {name}: [combat] ({difficulty})",
         "agility": "Defend with {name}: [agility] ({difficulty})"
       }
+    },
+    "sundown": {
+      "ransack": "Ransack (spend {amount} clues as a group): attach the top Ritual card here",
+      "ransackDeck": "Ransack the Observation Deck (spend {amount} clues): place {amount} clues on it",
+      "toVictory": "Place {card} in the victory display",
+      "campaign": "Campaign Office: search the top 3 cards of your deck",
+      "north": "Clock Chamber North: test [intellect] (2)",
+      "south": "Clock Chamber South: stall the mechanism, test [combat] (1)",
+      "makeshift": "Makeshift Lab: look at the top of the Ritual deck",
+      "organizer": "Organizer’s Office: look at the top 3 encounter cards",
+      "tinkerer": "Tinkerer’s Workshop: recover an Item asset",
+      "stalks": "Discard Seeking Stalks",
+      "attach": "Attach {card} to your location",
+      "takeControl": "Take control of {card}",
+      "fight": "Fight {enemy} with {card} ({skill})",
+      "words": "Killing Words: take {amount} direct horror to defeat {enemy}",
+      "runes": "Binding Runes: take 1 direct damage, {enemy} does not ready"
     }
   },
   "prompt": {
@@ -571,6 +623,17 @@
     "confrontation": {
       "decide": "The investigators must decide",
       "west": "Who includes Herbert West in their deck?"
+    },
+    "sundown": {
+      "climb": "Choose where the First Among Many moves",
+      "campaign": "Campaign Office: choose the card you draw",
+      "makeshift": "Makeshift Lab: top card of the Ritual deck",
+      "organizer": "Organizer’s Office: where do the looked-at cards go?",
+      "tinkerer": "Tinkerer’s Workshop: choose the Item asset to recover",
+      "crash": "Come Crashing Down: lose 1 resource or discard 1 card",
+      "youOrMe": "It’s You or Me: choose the investigator who moves to the First Among Many",
+      "hatred": "Undying Hatred: choose one",
+      "tablet": "The resolution has hidden text ([tablet]). Do you read it?"
     }
   },
   "choice": {
@@ -711,6 +774,18 @@
     "confrontation": {
       "distrust": "West can’t be trusted. You can’t let him slip away again.",
       "release": "West might be at fault, but this is all circumstantial. Let him go."
+    },
+    "sundown": {
+      "take": "Draw {card}",
+      "keepTop": "Leave {card} on top",
+      "toBottom": "Spend 2 resources: place {card} on the bottom",
+      "keepEncounter": "Leave them on top",
+      "bottomEncounter": "Place them on the bottom",
+      "recover": "Spend {amount} resources: add {card} to your hand",
+      "loseResource": "Lose 1 resource",
+      "discardCard": "Discard 1 card",
+      "tendrilsHere": "Ready Tendrils of the First and move it to your location",
+      "doom": "Place 1 doom on the current agenda"
     }
   }
 }

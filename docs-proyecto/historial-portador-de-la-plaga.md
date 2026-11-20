@@ -295,3 +295,52 @@ Estado vigente y fuentes en [94 · Portador de la Plaga](94-portador-de-la-plaga
   `verify-card-images` (6683); tipos de cards, i18n y web; Prettier y ESLint de lo tocado.
   La prueba de huellas de 680 caras pasa a 20 s (632 ms sola; superó 5 s bajo carga).
   Motor sin cambios: sin suite engine+cards. Sin navegador.
+
+### Continuación de implementación · 2026-11-20 (VII)
+
+- Lote: VII · Muerte a la puesta de sol, sin commit, sobre `03a9d6ca` (sin pull: cambios
+  ajenos en `main`; HEAD = origin/main tras `git fetch`). Fuentes en `E:\Plaguero`.
+- Emparejamiento: ES archivo = posición + 226 y colección = posición + 180; EN colección =
+  ES − 2. Los Lugares EN siguen orden alfabético (no la posición): se emparejan por nombre.
+  El reverso del acto 2 (Memoria de Pickman) es un Lugar vertical: código `78186b`.
+- Preparación: torre de seis pisos según la figura ES (Piso 5 arriba, Piso 0 abajo), inicio
+  en la Plaza, Mazo de Ritual (Hoja/Palabras arriba, L.E.P.R.A., Mochila y Bendición
+  barajadas, Runas al fondo; con las palabras de muerte el jefe empieza con ellas),
+  Supervivientes de la Agencia sin enemigos, Vida y muerte y Esclavos del miasma. Bolsa con
+  `plaguebearerChaosBag`. Introducciones 1→2→6, 1→3→5→6 o 1→4→5→6.
+- Reglas: plan 1 (se roba del propio mazo en vez de Encuentros) y 1b (Primero y Zarcillos en
+  la Plaza); plan 2 repetido (mata a quien está en el Piso del Primero, retira ese Piso,
+  Rituales a la Plataforma, el Primero sube; Piso 4 sin Hoja y Palabras en la zona de
+  victoria → R2; Piso 5 → plan 3); plan 3b mata a todos (R2). Acto 2 con «saquear» [free]
+  (la Plataforma recibe pistas), [free] de Observatorio/Taller/Plataforma a la zona de
+  victoria y objetivo de las tres claves; acto 2b pone la Memoria de Pickman con los Apoyos
+  de la zona de victoria y a Pickman; acto 3: enemigos de la Memoria se agotan y curan 1 en
+  vez de ser derrotados por daño, Pickman solo cae con las Palabras de muerte y su
+  derrota lleva a la R1. Seis Apoyos Ritual (tomar el control o vincular, límite de grupo
+  por ronda), seis Lugares con capacidades, tres enemigos, seis traiciones y las fichas.
+- Resoluciones: sin resolución → R2 (campaña perdida). R1: PX por zona de victoria y cartas
+  en juego, muertos (incluidos los del plan 2) que dejan de estarlo con Investigador
+  derrotado (Voluntad inquebrantable/La futilidad → Fuerza de la carne/El abrazo de la
+  muerte, `plaguebearerReagent`), resolución [tablilla] e Interludio V.
+- Decisiones: la resolución [tablilla] no tiene acceso en ninguna guía ni carta; es un texto
+  oculto con la voz de Baalshandor (como los Susurros del VI) que se ofrece tras la R1: el
+  primero que lo lee anota «habéis sido advertidos» y añade −3/−5/−6/−7. La Intro 4 pasa a
+  la 5 (West aparece en ella). EN manda: plan 2a vincula a la Plataforma de observación
+  (ES «Observatorio»); El acechador acecha cuesta [action][action] (ES tres); el sectario
+  «puedes» descubrir (ES obligatorio); la errata EN de la tablilla en Difícil («si fallas»)
+  ya está en la carta ES. La Cámara del reloj sur ES repite el texto de ambientación de la
+  norte (se conserva literal).
+- Aproximaciones: los Zarcillos «en la zona de victoria» se quedan junto al Primero (su Lugar
+  conecta con ella) y pasan a la Memoria cuando entra en juego; la Bendición del mañana da
+  una acción adicional sin restringirla a [action]; las Runas de atadura se ofrecen al
+  empezar el mantenimiento (`EnemyStaysExhausted`); la Plaza solo bloquea capacidades
+  [action] y las [free] del escenario; la Oficina del organizador deja las cartas arriba o
+  todas debajo (sin reordenar); el Observatorio no revela la carta superior del mazo; el
+  rasgo Miasma del Lugar del Primero no tiene efecto en este escenario.
+- Recursos: 33 entradas EN/ES (`plaguebearer-cards`), 98 caras AVIF y miniaturas WebP,
+  `media.json` 778 caras; relatos literales en `plaguebearer.{es,en}.json` y
+  `story/{es,en}.json`; 10 relatos y 11 caras de planes/actos pendientes de locución.
+- Verificación: 13 pruebas del VII; 517 dirigidas (carpeta del Portador, i18n, medios,
+  narración, referencias, presentación e imágenes ES); cobertura del Portador (112 partidas,
+  16 del VII); campaña (55); `verify-card-images` (6797); tipos, Prettier y ESLint de lo
+  tocado. Motor sin cambios. Sin navegador.

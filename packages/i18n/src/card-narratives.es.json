@@ -319,6 +319,41 @@
     "flavor": "¡Has encontrado el último portal! Ahora todo lo que tienes que hacer es superar a un monstruo ciclópeo y cerrar la brecha.",
     "backFlavor": "Usando una serie de brebajes químicos que encuentras por el edificio, consigues aplacar las llamas. Además bosquejas unas runas protectoras en la pizarra. El portal a Fomalhaut desaparece de la existencia.\n\nConsigues convencer a los transeuntes enloquecidos de que lo que están viendo es una performance de vanguardia. Mientras, usas pintura del almacén para tapar los símbolos y acabar para siempre con el portal."
   },
+  "78182": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "El suelo tiembla.\nSe acerca.",
+    "backFlavor": "Un tremendo crujido proviniente de la calle seguido por una multitud de gritos.\nEl Primero de muchos, se retuerce en la Plaza de la Independencia. Pese a que no queda nada que se asemeje a un humano en él, una cara se hace visible en el amasijo de carne. La retorcida cara mira al edificio sobre él y grita una única palabra.\n“¡WEST!”"
+  },
+  "78183": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "El Primero de muchos comienza a devorar el ayuntamiento de la ciudad planta a planta tras su presa. Será mejor que te asegures de que eso no te incluye.",
+    "backFlavor": "El Primero crece y se expande. En unos instantes la planta está completamente inhabitable."
+  },
+  "78184": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "La torre cruje y se tambalea como si estuviera mecida por el viento. La amalgama de carne ha devorado todo excepto el lugar del ritual. Es ahora o nunca.",
+    "backFlavor": "Te apuras para completar el ritual, pero tu enemigo te atrapa desprevenido. En unos instantes te ves arrastrado de espaldas hacia el amasijo de carne."
+  },
+  "78185": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Visto lo visto, cualquier modo de intentar acabar con el Primero está más allá de tus capacidades. Por ahora, todo lo que puedes hacer es mantenerte fuera de su alcance.",
+    "backFlavor": "Te encuentras con West subiendo las escaleras. “¡Tú! No tenemos mucho tiempo. Los Sastres se las han ingeniado para conseguir los componentes que les pedí. Pero ya sabes qué tipo de gente son, incapaces de hacer nada a derechas. Han dejado los componentes por toda la torre. He intentado organizarlos y que colaboren, pero con esta atroz criatura... han perdido la poca lógica que pudieran tener. Son poco más que animalillos asustados.\nLo que significa que es cosa nuestra. Hay bastantes componentes, pero sólo tres son indispensables – las runas de atadura, las cuales colocadas correctamente pueden atrapar el alma durante un momento en el tiempo. Una hoja ancestral del sujeto, para obligarle a postrarse. Y un libro, que contiene la frase que necesitamos para acabar con esta criatura. Consigue los componentes y reúnete conmigo en el tejado. ¡Cualquier otra cosa que encuentres puede que sea útil, pero no pierdas el tiempo con fruslerías!”"
+  },
+  "78186": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Los Sastres han intentado terminar los preparativos para el ritual, pero sólo quedan minutos. Tendrás que hacer su trabajo por ellos."
+  },
+  "78187": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "El ritual está listo. Si consigues entrar en un lugar más allá de la existencia y destruir el alma de la criatura allí, podrás acabar con ella, de una vez por todas.",
+    "backFlavor": "Recitas las palabras. Te rasgan el alma, golpeándote como si fueran un animal salvaje. Pero aguantas estoicamente y surten efecto.\nPickman cae de rodillas. Boquea en busca de aire. Una herida, como el disparo de un rifle se abre en su pecho. Empieza a palparse la herida, como tratando de entender que acaba de ocurrir. Todo termina con un último intento de respirar que produce un ruido que te deja helado, ha muerto.\nLa memoria comienza a dar vueltas."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

@@ -6118,5 +6118,887 @@
     "sha256": "8e6925c77e5ce3cc9aa39ba518afb283204ad3526de85e97cda8bb4e2a99522c",
     "width": 791,
     "height": 1048
+  },
+  {
+    "code": "78181",
+    "language": "es",
+    "source": "E:\\Plaguero\\227a.jpg",
+    "sourceSha256": "86018269342c0c9391bbf342e33e0ea8688d29c08935b3dc0c420e1ee46b30ea",
+    "sha256": "12ed469e1c5ee21daf9b9f4552044fa6a6885aee0fa673f7ad969bd0aaafb6c4",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78181b",
+    "language": "es",
+    "source": "E:\\Plaguero\\227b.jpg",
+    "sourceSha256": "d0fc54e199480f29b9c88909387a4a95621ee02f1652f99cf427a4cfb0b6eb3a",
+    "sha256": "2d8a19f3559ecd1ab5928070e1082f5baea001b0abb00cad175b16b4548a8c7d",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78181",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\221 - Death at Sundown-1.png",
+    "sourceSha256": "38d8b26e45a3c58e977df7a6540acb5891421104084e7fc8b164162457bcd2d4",
+    "sha256": "a7577f66f1541d60f48fb1115927e561d9b4832569a1025809901c36f60d7b63",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78181b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\221 - Death at Sundown-2.png",
+    "sourceSha256": "2c4f48e25700bbd823e91c6cf35b7b651926d203155a0f0afd931fad7bbb486e",
+    "sha256": "2076d290c3294c312fbe8d1940e833dd034899f99ee998de1b8304df05492415",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78182",
+    "language": "es",
+    "source": "E:\\Plaguero\\228a.jpg",
+    "sourceSha256": "6984f8805bf81e7a871e21294752cf1a43fa217dbb352418c763a2635ca99abb",
+    "sha256": "599107e80a16416ed8ed68b75daf537281c7fff5cf1c587895bd5f028cb45c1e",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78182b",
+    "language": "es",
+    "source": "E:\\Plaguero\\228b.jpg",
+    "sourceSha256": "760e808d4f904ee041f51199bdcf47778a673f71c3fdb9bce5d4bbdcb76396bd",
+    "sha256": "2b9cb79ccd52ee662c5896b2492522210f3ee6a85dcc67122b18b885807bc029",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78182",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\222 - The Calm Before-1.png",
+    "sourceSha256": "f23e0ae7af1698b9df0f9521103688acbcf07e8ef0423fc45c550440e84d165a",
+    "sha256": "d17c929a8827842db722ebfa5593fa732f57ebf8278383f836f4315b230e63ba",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78182b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\222 - The Calm Before-2.png",
+    "sourceSha256": "c5c6dd04ee6b1f33dcdf4c81b73532ef540f30e121e501d557c4ea5f148982e6",
+    "sha256": "6c9b102cb34d364763443557d575df7988a1a33548e49014fb0d1f48b604154e",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78183",
+    "language": "es",
+    "source": "E:\\Plaguero\\229a.jpg",
+    "sourceSha256": "42830d371b63818c6e8d8a72ea7e94ee74b414e3b66f77276068412c6337ef45",
+    "sha256": "098f0161c43d6afc6958170af4b8013af813d9d1c8156e2ddb488b6bae3eefd9",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78183b",
+    "language": "es",
+    "source": "E:\\Plaguero\\229b.jpg",
+    "sourceSha256": "9406fb972ec262d2fc21bc1a8b61ef4bfc4686afbca1bb182db68b6082e1704b",
+    "sha256": "824bbcac8cd3c378d6df5e524aa3f92bf64d389ebff25a34c3738c5cb9a03296",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78183",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\223 - It Just Won_t Die-1.png",
+    "sourceSha256": "dc4866571d7e3820f0c042c28df0b23382dcb7c5b79dc8c142ed8a3be33382d5",
+    "sha256": "675e5406de35c98f0a01028301646f92952788b6b3e2aaa13935fafba4e4fcdf",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78183b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\223 - It Just Won_t Die-2.png",
+    "sourceSha256": "32c04c7469eeab3b3d80e32edc12c82a9ea715fe8a95e50902caaf72ca7163f4",
+    "sha256": "719308267eaf88098c17a05db883b7493a80be5b6f0fb04286bbb7b4f9aaeeea",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78184",
+    "language": "es",
+    "source": "E:\\Plaguero\\230a.jpg",
+    "sourceSha256": "6cbb55b1907ab21dc9113c6a7be165c3facbb52f9b842ef0dfa820549cd0f5ec",
+    "sha256": "eb70b5cd25ae5e7b993fbddc866883543617daf33c4e860e035698f478345bf1",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78184b",
+    "language": "es",
+    "source": "E:\\Plaguero\\230b.jpg",
+    "sourceSha256": "b02e991b7b9a6a20bc350a1fa666a23cbfd6667463ec5bb7e0e5ada2a796b840",
+    "sha256": "d79a33c29748c08016fd8082d3f36d01027b8ee337c99f692d2c78b549b9ca38",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78184",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\224 - Final Breath-1.png",
+    "sourceSha256": "f0983536e4253f511a95811cf64868b3943090d750ccef14f6ab28c23a5187b0",
+    "sha256": "5528bf877b3135688ee1108922d02fa2a58e2bd954dccdc851b839a63be83ce1",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78184b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\224 - Final Breath-2.png",
+    "sourceSha256": "46cb16c471ca5fc4ca9dc299988c6b54ecbc08d35d26c7f0001f90ee58551f5d",
+    "sha256": "85a6f12753961d8e3d8d3557fd6b6cb674ffaec554c76db0d207bc32b5a5ac54",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78185",
+    "language": "es",
+    "source": "E:\\Plaguero\\231a.jpg",
+    "sourceSha256": "de3bb716c4df876023acdac1e48701d7d1b631e1c824c02b64967f17795c08e8",
+    "sha256": "6cf2afc554436d840f3a049d6a6eed432749640b8373c4ec5b8c0864c262b4ee",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78185b",
+    "language": "es",
+    "source": "E:\\Plaguero\\231b.jpg",
+    "sourceSha256": "6fdaf8ef5e77e48c177fa6e9da3e911ed71d1cbb3654e3f2d7dc234909033563",
+    "sha256": "00401ba320a2be78797e775d8024c01043a9773d5c25654deebba6f1fba742bd",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78185",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\225 - Know the Unknowable-1.png",
+    "sourceSha256": "4869c25277a0808035acaeaadf6e554555d27c5854acd80509725bced3dcbe70",
+    "sha256": "5e2d15c0cd46e6a10bd8446a6618b8fd8af95c94d319ae0ab9012f0736531a46",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78185b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\225 - Know the Unknowable-2.png",
+    "sourceSha256": "dfaaf3ad19a7f94485763c96698d9d7f62bbe09e700cc5d38ad81c9bcbd37292",
+    "sha256": "b2999f15b55aca821f60fe578f688dcd8cc946fa185f50431d8cd32f6e2238f2",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78186",
+    "language": "es",
+    "source": "E:\\Plaguero\\232a.jpg",
+    "sourceSha256": "ffcd2152916c0038002c3c25b0002a6680bff73f4f34c39d0ba059fe78313ffc",
+    "sha256": "98602c52fa453ab4937a951592c8eb5ed84e73f7285a74f93c5ae94aa41ade95",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78186b",
+    "language": "es",
+    "source": "E:\\Plaguero\\232b.jpg",
+    "sourceSha256": "57333d8150c946098ffb5b972f4141ccdbd88312d264b22692108c85949492a8",
+    "sha256": "8afb00a21094c6c01d44abb185fb195d06f51939e35aee43342de12ab8785303",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78186",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\226 - Fight the Unfightable-1.png",
+    "sourceSha256": "9f09c1a08b000b0f22e667de76cb440e25386ae3b619daebc7037c6d067d190b",
+    "sha256": "5cc5135ccde516a6ac27075b501e3e8010b27e3bfe2d1226857519bce6d48a2c",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78186b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\226 - Fight the Unfightable-2.png",
+    "sourceSha256": "86318f2deeca36a692659ce461357ba1b49b4b2768dedc65dc37e5dac4816751",
+    "sha256": "244857555ed049ed0d4e16ccdf749f086530d864e99a73de03245ea118a44367",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78187",
+    "language": "es",
+    "source": "E:\\Plaguero\\233a.jpg",
+    "sourceSha256": "8605510dfd416ee61867060a862251d7b5233d836b01deb94fe79708555525fd",
+    "sha256": "f600624db39661002355ad227c10fea230a1dbe4fc1ce1e2ccd44a7a6398aa48",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78187b",
+    "language": "es",
+    "source": "E:\\Plaguero\\233b.jpg",
+    "sourceSha256": "be03c5c34af48a21b8ff637220d842d04a3690df2a03634b3f2152e975b82d61",
+    "sha256": "b6e2d7e3067e52b6295783a42e382167f440c7399e39908af904fb28564e93de",
+    "width": 1035,
+    "height": 714
+  },
+  {
+    "code": "78187",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\227 - Kill the Unkillable-1.png",
+    "sourceSha256": "e55ab7b67e93c83c6352e922ea439dd01322d05d7b96534402ab55f386035c8c",
+    "sha256": "da983600175745ac3e0268038262a3b90ffeb3af2de43d2d34c5f81c5ae7fff9",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78187b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\227 - Kill the Unkillable-2.png",
+    "sourceSha256": "2d1835e21bd190b0defb03685c8c2f1397e7989b888c08799b76e16dcf3829e7",
+    "sha256": "54c2c830b5d96d65086614a3062bed974ab9861b4e69eecc15ad6cbe8e5c334c",
+    "width": 1048,
+    "height": 791
+  },
+  {
+    "code": "78188",
+    "language": "es",
+    "source": "E:\\Plaguero\\234b.jpg",
+    "sourceSha256": "3c8e5a334aabf94ed7e73af78ba2483486e200c68add90734baa3dfca0dc9f03",
+    "sha256": "83097173804da0fc88d731f5dc177120d18fb3a50010e19e0db773d1b2034873",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78188b",
+    "language": "es",
+    "source": "E:\\Plaguero\\234a.jpg",
+    "sourceSha256": "2d0c58b4bd167387282cd67e37728e19ccfb11ddd3001681d1dfa68448f57066",
+    "sha256": "ae7160628f7ae6b3b279e7f25efbe6bfd64e92bcd0fb90014f5f029313761303",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78188",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\231 - Independence Square-1.png",
+    "sourceSha256": "495d5b309538d12414f6d1c50704bde3f54c82785a2b50774de19165ba7dd635",
+    "sha256": "6549d437bbe5c19caa0759fc9333fcdaa3879f49532559db75124ff9c373feb1",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78188b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\231 - Independence Square-2.png",
+    "sourceSha256": "849be151ec304644fd0afb79be76baaea91cc19c163f2da48089297744e62171",
+    "sha256": "2405f6b80957b36dc5bc4b072b0b60ab81672f2b418fd2a3e4668906d62e77a4",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78189",
+    "language": "es",
+    "source": "E:\\Plaguero\\235b.jpg",
+    "sourceSha256": "4d923a5762c9e9f964083d696ca207b769e41b50539ec3aa2456f672b3ff9675",
+    "sha256": "f4e68092d00da9269fe4b5c553e96a3a5cbeb590d397ebf981210641e7e2c34f",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78189b",
+    "language": "es",
+    "source": "E:\\Plaguero\\235a.jpg",
+    "sourceSha256": "1b3bb2899234c799381dde106f53b0b2ead4a2bc70ca3bcfe0af4014979d9373",
+    "sha256": "4c7bad340f91e7c60a864bff7a1486658e5aef1364a651bffd1831a2c230fc08",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78189",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\228 - Campaign Office-1.png",
+    "sourceSha256": "5549bca24d20c23479352029660131dd34ccc28a9f717eacb95e719f23bcf050",
+    "sha256": "a82854d81e803f545d970495d81ce08981e0496b7b205c3c7d51fcab96ed548b",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78189b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\228 - Campaign Office-2.png",
+    "sourceSha256": "6cc5e5af3f6d00179b32d9fcf4d6edb909e18a56b9efbd593f8a68b1fcd23c76",
+    "sha256": "54bef2b25f5551bca8c45aa9697210ef00d520ff48ce206d363361c169df1cdb",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78190",
+    "language": "es",
+    "source": "E:\\Plaguero\\236b.jpg",
+    "sourceSha256": "1c2bbe81ae34d0c38ad9fff94989c789615e2dbbd40cd5df42a8dfacfb0f79bc",
+    "sha256": "838679e1012ebf923656143ddb70373341181435f46e66a96ad90a8dfc01887b",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78190b",
+    "language": "es",
+    "source": "E:\\Plaguero\\236a.jpg",
+    "sourceSha256": "7652d502bceb8047ede8182bc9a9ceb6e143828bd3bb84b869d3bcd02c8672f7",
+    "sha256": "f18148ad5f7c8155fab779a434e485ef9576d289ea61a1298f2d681423cafcf9",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78190",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\234 - Office Lobby-1.png",
+    "sourceSha256": "a6144156023ac5a536607822f110b4229d343618af1156af932d09691b7b652f",
+    "sha256": "780406988da9a011f07ce3bf194f053967cd63d12c52f6a4162b83db9dcd90e4",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78190b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\234 - Office Lobby-2.png",
+    "sourceSha256": "bd0bb6027970c8fa5ef9414265ab15cbd928c98645053f459aa925368d6357e5",
+    "sha256": "003a8679d3450b3c28a2104072c4c386c888b9559d5aec6cd5fa8d9ad617e6e1",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78191",
+    "language": "es",
+    "source": "E:\\Plaguero\\237b.jpg",
+    "sourceSha256": "b00fdd8494aa5fa72971d237002b213177f04e07ce029ab9470c73f1eff07f70",
+    "sha256": "ba535f3115c5485b91f7c908de4c72b27fc013af7f6b1e17a2a57dcc66b83535",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78191b",
+    "language": "es",
+    "source": "E:\\Plaguero\\237a.jpg",
+    "sourceSha256": "b209d7df8145c929636c16db36f663947c1ec5ebbad6c11aa842f0277d547e7f",
+    "sha256": "18712372374b462fffd456acd5a6d147393bba5977e8aab0a8513848a17491e6",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78191",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\232 - Makeshift Lab-1.png",
+    "sourceSha256": "020099c076de677b701efb24b6d66aaae024e854cc9080ca0031e621e6aa3cd0",
+    "sha256": "c5cca349a20e6c3468414b771425a3b51907f4366a88760cfe61238536157160",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78191b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\232 - Makeshift Lab-2.png",
+    "sourceSha256": "087f9c919309906258dafb7fdfbe9231f45aff4cd49ea768b093d8cc2ae1c5fa",
+    "sha256": "ba455ccce25ecc98a56196b61292e9d8fee6c96af6df56fbcae68709276ffbb4",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78192",
+    "language": "es",
+    "source": "E:\\Plaguero\\238b.jpg",
+    "sourceSha256": "bd316b15c8dc6d60246ace89121cd0ef41020dca54ae860eae98ef999e69990c",
+    "sha256": "21efb5734731cdb866355036670bb02c07f8dfc2bfc304585fd23d2404691c18",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78192b",
+    "language": "es",
+    "source": "E:\\Plaguero\\238a.jpg",
+    "sourceSha256": "012c08c1cdf94222d13bffb7c1f96f2bf2e0b140325a5209e25aab63068fb994",
+    "sha256": "c906470126be6e87e462ae219a97c831d1d8ea696402ebe27e4a4cc6da793d42",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78192",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\235 - Organizer_s Office-1.png",
+    "sourceSha256": "d7d472e3b67149c838aa60544eaf26dd8ad5163d042f2f795d94f232b841aafa",
+    "sha256": "47dd9921086e3480907310aa0dc45b464948fef4fdb3c3c7324c928f1d825a80",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78192b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\235 - Organizer_s Office-2.png",
+    "sourceSha256": "bf4991365b9328459f216c9822a9311b573e70e6409c23c4af3aac05b7f8dac1",
+    "sha256": "83091e8e41ab686d1e48a477de1f156b9dab00987fdc2720294d3ff477a4b8a3",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78193",
+    "language": "es",
+    "source": "E:\\Plaguero\\239b.jpg",
+    "sourceSha256": "b21e3297e7dc28351c43fef58ea0266f0756c6aac33239858752c6305fd566e8",
+    "sha256": "b0f79078b4f09e9be15422194b3d6644a21773b8c8ead3bbb07d51cf3a21bfd3",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78193b",
+    "language": "es",
+    "source": "E:\\Plaguero\\239a.jpg",
+    "sourceSha256": "feee3a1a4b193d44fe68cbe466c6472742ef6ffa4b3bfcfc24e3aac55718a63e",
+    "sha256": "b3228dcac3970c36dc567d09b1efbcb799c75944b383cdb48adfbbe0dd520a6a",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78193",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\233 - Observatory-1.png",
+    "sourceSha256": "008a0b31b1bf37b541e26828b5e0771c5159ac67e03b183a98777ba6e0f1081b",
+    "sha256": "03018d6b18af8e05743eccd8ad4f99013b1f4a416fb89bfcc93a7df8eea6bd50",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78193b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\233 - Observatory-2.png",
+    "sourceSha256": "a8e90237f851e86f84becb29b1f6183690ab01942d65499ff67f4273871fcd5c",
+    "sha256": "6c36f79fd3b3405de789a07b27ce111d4826da7566b513e7a4f40bbce88dd044",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78194",
+    "language": "es",
+    "source": "E:\\Plaguero\\240b.jpg",
+    "sourceSha256": "c81c8f4ff3b7022dbef2679bd0179387228a2e61019e6e2f62d5c5f435894c2d",
+    "sha256": "f9227ac46e20da9ecf7026e8343af0b9d3456e3ec26267c2b9412c18d984a877",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78194b",
+    "language": "es",
+    "source": "E:\\Plaguero\\240a.jpg",
+    "sourceSha256": "d1f6efdea465a64df524d82677bd7ac7a850cbacaabdb87e92e5ebc77394ff49",
+    "sha256": "97982bb0b0b327f1cbdf94f3148948d2a8f81d93eeb22eb3dd79050c5e605a01",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78194",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\236 - Tinkerer_s Workshop-1.png",
+    "sourceSha256": "c8a69a913e486f0bf33150ab37a6cc4d5ecbdb72ab30e81fac76f214e7526ab1",
+    "sha256": "32444b3bfc67b042f95e419f79d5436f68b0b6f9736aced73fe950353e61a040",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78194b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\236 - Tinkerer_s Workshop-2.png",
+    "sourceSha256": "77432f3534acf10931a835c9115daba400dc0b8bd67f2ca138f82d0f24bed595",
+    "sha256": "6a4bcdba37666290b0c90385ab73984cacf4cd3eee5539328639e72087b9fdf0",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78195",
+    "language": "es",
+    "source": "E:\\Plaguero\\241b.jpg",
+    "sourceSha256": "668f42eeacd9487e1028fe2e7da148ac87dd8c5873bd22ab1445ed4051cad7d4",
+    "sha256": "361052624b30dd98104fd4b5467cd967da40258f01ca35e84bf1b948b6654e52",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78195b",
+    "language": "es",
+    "source": "E:\\Plaguero\\241a.jpg",
+    "sourceSha256": "2379316151e0e387dfa2e2d319d0e6c5607e61b077f56aca832706300cbdba4a",
+    "sha256": "7c46ac9f090b9cec01413fe07f0129387f643c942cac620bff78158819c0f378",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78195",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\229 - Clock Chamber North-1.png",
+    "sourceSha256": "27d36f4bde505d8075a5fd185900ecf5e3223ca25e1abfca24a2258b484b9018",
+    "sha256": "2e67c5b38793ea424ac063b8becf48c33c049910b2217dbed145cb5cf5f8904d",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78195b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\229 - Clock Chamber North-2.png",
+    "sourceSha256": "f05a9f97a238920df437545f669e21b9e96cc11675c97f0ea961ae7a9e982100",
+    "sha256": "bdc9b7e21487486f862f0280fea6c5718b5935d9bc271bf6aaaa0b80a7bb1e28",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78196",
+    "language": "es",
+    "source": "E:\\Plaguero\\242b.jpg",
+    "sourceSha256": "634a30e6a9638382c7ede69ea2ac9db646aef58b9b2df566008b0c0278fa01a1",
+    "sha256": "d77d0ce5800e6043af948035fd537c10fdde6d465831c1b5c8a8c21eac40490c",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78196b",
+    "language": "es",
+    "source": "E:\\Plaguero\\242a.jpg",
+    "sourceSha256": "471992212b0de22338fbf37634c43ce9a6a41cf2510d2a58b4b647276a6f292d",
+    "sha256": "84f2a98ca97e37539b110f30b4c1c20c3dd2995738664f100936b64fd69235fb",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78196",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\230 - Clock Chamber South-1.png",
+    "sourceSha256": "f0a38b98ef062087195a04c2b2b2d82804ceb3d20e975aad05173a18b6313077",
+    "sha256": "0c66433720549abe872b346170a9b90202c01307e979dbeb8267cb998a465da6",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78196b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\230 - Clock Chamber South-2.png",
+    "sourceSha256": "d3cb36ca4b76714d924536abdc270f991284a5eb8a971cf90e7143e05c738093",
+    "sha256": "c9c909e1f2f0479ee7816af62d6d931e2ecdae41828da7dcfabd0e7876740410",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78197",
+    "language": "es",
+    "source": "E:\\Plaguero\\243b.jpg",
+    "sourceSha256": "fc1c7bfd319a1c1809c32e1a1d26092bd56ccb0e6742933de7fe607aebd95136",
+    "sha256": "b4303c84f3988b4c713b73d86fcc60495207451c305fb5a3c7ad223a04b90ed1",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78197b",
+    "language": "es",
+    "source": "E:\\Plaguero\\243a.jpg",
+    "sourceSha256": "67c1eabef949c4327096209f1f236ebef424ca48372e78c2306698a0fc802e4c",
+    "sha256": "4f57ad150f96af762b245d6c4cbbcbfe80d1e3cf0297c24a9e9180760fe1c455",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78197",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\237 - Tower Ceiling-1.png",
+    "sourceSha256": "b1f05650a5cda1969f283065f2d5e538df0dc04d57a34a0d858a53f9f7b771a7",
+    "sha256": "5ebb096877a835ae510743ad5adf6f27002f6f6460e6a79bd8f52472dc55b52f",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78197b",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\237 - Tower Ceiling-2.png",
+    "sourceSha256": "a58ce182dec4a63fdb972e52291e0fd506c5d36bbb3bfd1cce6f5efcafb69e8d",
+    "sha256": "415fc719f75eac0faf5938e9ca6b71f665bb7e3621886bb35b45e33ceb257e87",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78198",
+    "language": "es",
+    "source": "E:\\Plaguero\\244a.jpg",
+    "sourceSha256": "428756c89a397aba8374a68d8a0e00f79d31fce324e272f89b8e44c5ffb9a5b2",
+    "sha256": "18c1bc65724b0f0009c146bd441c18c8011a6a15945fa0774fb734f7964eb3aa",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78198",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\238 - Binding Runes-1.png",
+    "sourceSha256": "5541198f7081079c584db11a62944727ff65af0a77357f4404dca44b2dec6311",
+    "sha256": "f37ae6fbb0d32b3684d2292490b4bfe90d64c3b420053f1975f9e6ad5b633b88",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78199",
+    "language": "es",
+    "source": "E:\\Plaguero\\245a.jpg",
+    "sourceSha256": "0d81189d9d889216b4c9faab9c0c27acdb30f4491d311995c8e34353198fc301",
+    "sha256": "5779a16cc5f33ac43fd682c6f7578c7003e77a049e362fd9339810bebe57ae53",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78199",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\239 - Blessing of Tomorrow-1.png",
+    "sourceSha256": "0b843342af92fe692a118ce5ae8d2854c63a4269dc17cacdca50c1dd153a4f59",
+    "sha256": "c09081c9695969227bc3a96d4756b99d220ee67b491d86bc854023a61793ead6",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78200",
+    "language": "es",
+    "source": "E:\\Plaguero\\246a.jpg",
+    "sourceSha256": "ab568719104ec0bb3a3476f53f8cc64ce344e3eeeb04ce82fc69f5c8794ab1c6",
+    "sha256": "41afad8a476a383233cc72585b8cb2053daa7ce7caa6a45827943dbbd15b35ff",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78200",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\240 - EXOL-1.png",
+    "sourceSha256": "72f1b564f3ff6d00067c04f12c897ef34341eb524e09e0062f11096fe468e5cb",
+    "sha256": "51bf1050f0e38179090d2d04a0d77b573ee9e0148861ec5f616337326e07bbb1",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78201",
+    "language": "es",
+    "source": "E:\\Plaguero\\247a.jpg",
+    "sourceSha256": "1e3e6ba10a1cf13df3cc0168f594110d8320cd2b3b16dcc24ec2d962049a070e",
+    "sha256": "68f7093b65b40d2531aec160a0138af440f082ebcbab94c6b4af060ce765c9bb",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78201",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\241 - Enchanted Satchel-1.png",
+    "sourceSha256": "54b8b4bd6d1c779acc4474617486e3f85b61ceed421a83fd9fe0bd4dba773d46",
+    "sha256": "a87f998ee9b9d8514d5cea16b1560aa758f02cf18a5b58532cb4412f27709d24",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78202",
+    "language": "es",
+    "source": "E:\\Plaguero\\248a.jpg",
+    "sourceSha256": "cfed7d69909d6171641d246bc4e3e67a2b866186ecbc2dc1c788048e26b9f9c6",
+    "sha256": "4aeb149750ced6435f1fb04b7a28fb5d16d0071375a70ae16cda728333efdb3a",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78202",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\242 - Killing Words-1.png",
+    "sourceSha256": "9944084ec2d8c0f7fa81bb077eeaaaa19d09abfd20352cf1a12186ac5e7a1aa9",
+    "sha256": "91d937bd86ba2ca03b0f96e63406f77ac85ce7331b0094277709b67bd8e429e3",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78203",
+    "language": "es",
+    "source": "E:\\Plaguero\\249a.jpg",
+    "sourceSha256": "15a43194d26a752be1faa421a0d084df63c2178c9045447870d1b3256ce377e5",
+    "sha256": "0940da12374bc21a25fbde8448002af1220c6567292e509d0de96d3ad6f16e15",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78203",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\243 - Rusted Blade-1.png",
+    "sourceSha256": "d2c6f168f58a502486f6a02b2271543cb20c84f4873fa84d35dc29fa01c6c3dc",
+    "sha256": "1711b411d7008285e5f068c065f4f52560b041f2be79016e0b8dfc0e0083d187",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78204",
+    "language": "es",
+    "source": "E:\\Plaguero\\250a.jpg",
+    "sourceSha256": "3023c2c9327773d210f20cc6df016dcc0289dd3384d444931058a76a90732b3f",
+    "sha256": "f6b62f2165258157bdf9c8b8ae9a691a6d081bad477928e915cf9abc56302cfe",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78204",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\244 - First Among Many-1.png",
+    "sourceSha256": "844ccd5a35db37f19e9b32baf2cbb1fd71fbb4d3fdb9d575ae118af1f65174c8",
+    "sha256": "9bf1ada804efee3990e603e63a37ac623b62970d2ea0bef2be84ac3ede5e8845",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78205",
+    "language": "es",
+    "source": "E:\\Plaguero\\251a.jpg",
+    "sourceSha256": "acf5f75beb3797b0e626579de70764ec9b0be6bb19110122fa21bc468fa56c5e",
+    "sha256": "f4302bb2e597c146f508b0683ab11e7be5b275a47828e8835aa507f8f15db888",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78205",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\245 - Tendrils of the First-1.png",
+    "sourceSha256": "ea6a7a5df3a7ac90cb0e9e163ba02e6959a7805788147ab74dbad6a3f935010f",
+    "sha256": "6ec9ddf63681fbaa74fe2a1859a08546cfba08e8a85162a598b81b3e48d14479",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78206",
+    "language": "es",
+    "source": "E:\\Plaguero\\252a.jpg",
+    "sourceSha256": "a0271c22e35930784e3f63fde340dc87542b1609aed98f8e8d90624f5d18855c",
+    "sha256": "2574f3ac03bcc5f13c8b2bc08a0a8bc61ea192e4ef6d99c4b2125c4e23848d4c",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78206",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\246 - Dr. Elias Pickman-1.png",
+    "sourceSha256": "d160d538654777b76651b268f0e7de30f3845bd672af3ffff5ecda63c8bcb1de",
+    "sha256": "e5265b6c4479e4eb608f0aeae851adb115f603fdb5567a332ffe92f874243253",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78207",
+    "language": "es",
+    "source": "E:\\Plaguero\\253a.jpg",
+    "sourceSha256": "6d107387f06665ff98549262011cf7adfcfd603fa7ab4aac476da681adcff682",
+    "sha256": "1b87cfa088b031e71c20430b9c0fc18a27c58b1b945d5e61134e42cf618752b9",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78207",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\247 - Come Crashing Down-1.png",
+    "sourceSha256": "0248e97c6c1ca13a4b3d3b76132caf73b969cb7803bf075b67b03100eb6d6a52",
+    "sha256": "645fbc895b42258dba26c7d139e96f593baf6b2fd5a780850bc57ac88924df73",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78208",
+    "language": "es",
+    "source": "E:\\Plaguero\\255a.jpg",
+    "sourceSha256": "97dbe815a7ced27f433a395880d00733327f49cb8bc6ee8dfa25c5cd310a8b87",
+    "sha256": "74e60b994f489680dc26ef00aa8b5b89432715c826abbd6c3692348ab44d6c13",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78208",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\249 - It_s You or Me-1.png",
+    "sourceSha256": "38b6892a087d0ce06276111f40c1cde8a36732ad2672854681995273f9479908",
+    "sha256": "9c3cef9b3f32f95b687d335c9a1cc6cf49c5a525f1d3033b6213c05ed71110a4",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78209",
+    "language": "es",
+    "source": "E:\\Plaguero\\258a.jpg",
+    "sourceSha256": "09520c0042c132ba7ecde9b229d0f33d7265815da2ec8d5968e68c81f4ef6aee",
+    "sha256": "5fc351a6e068f481260bfd82382b792d48b6fda344f2afc41b8fa1620183cb90",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78209",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\252 - Seeking Stalks-1.png",
+    "sourceSha256": "17b6cda61366d574e84aad8447350ac749c261b43f5940af5c98baf0e6b1827e",
+    "sha256": "dfd5fdc7d803374112ce90a725e1bc4a703288cfa0a5539981f3296924ef6488",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78210",
+    "language": "es",
+    "source": "E:\\Plaguero\\260a.jpg",
+    "sourceSha256": "edeb6e2639db780dfdd1ef177b8a7dfa40bccd611dfe18557d208e1808b51a1a",
+    "sha256": "ebdbfae7b716f1887409100e0f9bbfaeb52b5b754fd53e93d73445361ea9e27a",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78210",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\254 - Shrieking Affliction-1.png",
+    "sourceSha256": "a8db79126caaa2bed814281b5e1a92bfa3b2492ff0ecd2ead24110cc36763e39",
+    "sha256": "5f29ba26fe8ce4c10e46772c96afc93e754355b108c8767463e166079d489f92",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78211",
+    "language": "es",
+    "source": "E:\\Plaguero\\263a.jpg",
+    "sourceSha256": "1908b64fe67d3204ae7cc877c94a9e1047a84b73c3a2153275d2c5f38dfe92ab",
+    "sha256": "c82bcfb38bdb62d602f38308b026d736f536efb216cb2ec1100aec9b2431da2c",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78211",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\257 - Undying Hatred-1.png",
+    "sourceSha256": "1a3ea9ec33b58ac3823ea2eb18e73fbced3abe33b7e9950717c99950f2c965f2",
+    "sha256": "c62cde914a57758316a8c4446fd91cec9edd2cf241e4d2f34d4f778e5c402216",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78212",
+    "language": "es",
+    "source": "E:\\Plaguero\\265a.jpg",
+    "sourceSha256": "df2a62811c6a3e965baa809e5fb21461606f0f837fdb09d9c162fe769b3475ef",
+    "sha256": "81faff38b1714da5b9acdafa5430ec835ffea8f37c6ba33ebca66ec180ac8d96",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78212",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\259 - Writhing Closer-1.png",
+    "sourceSha256": "268e0f29275ecf8f8a19be66ba1395560ab8ee2dd0f61a2a1cd1e5dc511bcff0",
+    "sha256": "a908c9aa32e6695d0f656fa93a5aa8abab143b681f70b8b92c9085e38a53253e",
+    "width": 791,
+    "height": 1048
   }
 ]

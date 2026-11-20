@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "plaguebearerDeathAtSundown": {
+        "title": "Call of the Plaguebearer: Death at Sundown",
+        "cards": "Scenario VII with the six-floor Town Hall tower, the Ritual deck, Pickman’s Memory and literal EN/ES story texts; its first resolution now leads to Interlude V, A Confrontation.",
+        "rules": "Death at Sundown shows its chaos token reference; the new stories are pending narration."
+      },
       "plaguebearerAfternoonWar": {
         "title": "Call of the Plaguebearer: The Afternoon War and Interlude V",
         "cards": "Scenario VI with the portals of the Flame and the King, damage and horror on locations, Defend story assets, Unbound Power and literal EN/ES story texts; Interlude V, A Confrontation, ready to follow Death at Sundown.",
