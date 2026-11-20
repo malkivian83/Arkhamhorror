@@ -25,6 +25,15 @@ describe('imágenes españolas de referencia y alternativas', () => {
     }
   })
 
+  it.each(['en', 'es'])('conserva la ausencia de coste de Revelación asombrosa en %s', (locale) => {
+    const card = fallbackCards(locale).find((c) => c.code === '06023')!
+    expect(card.type_code).toBe('event')
+    expect(card.cost).toBeUndefined()
+    expect(playerCardDef(card.code)?.cost).toBeUndefined()
+    expect(playerCardBehavior(card.code)?.cannotPlayFromHand).toBe(true)
+    expect(playerCardBehavior(card.code)?.researchEffect).toBeTypeOf('function')
+  })
+
   it.each([
     '01033',
     '01046',
@@ -119,6 +128,10 @@ describe('imágenes españolas de referencia y alternativas', () => {
             ['skill', 'investigator', 'treachery', 'enemy'].includes(card.type_code) ||
             isPermanent(code) ||
             playerCardBehavior(code)?.dilemma ||
+            // Investigaciones que no se pueden jugar y no tienen coste impreso.
+            (playerCardBehavior(code)?.researchEffect &&
+              playerCardBehavior(code)?.cannotPlayFromHand &&
+              playerCardDef(code)?.cost === undefined) ||
             // Debilidades de apoyo sin coste impreso (Barón Samedi).
             (playerCardDef(code)?.weakness && playerCardDef(code)?.cost === undefined) ||
             // Vinculadas sin coste impreso que solo entran por intercambio (Colgante de la reina).
