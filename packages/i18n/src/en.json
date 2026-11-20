@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "leylineSupport": {
+        "title": "Leylines and shared support",
+        "cards": "Eight new designs and levels: Archive of Conduits and its four researched gateways, Blood of Thoth, Good Weather and “I’ll take that!”.",
+        "rules": "Shared leylines, remote movement, immediate actions, research, Item discounts and a group skill bonus."
+      },
       "fieldSupport": {
         "title": "Draw replacements and field support",
         "cards": "Twelve new designs and levels, including Katja Eastbank, Ikiaq, Counterespionage, Martyr’s Vambrace, Otherworld Codex and Absolution.",
@@ -575,6 +580,12 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "conduitHealHorror": "Heal horror",
+    "conduitHealDamage": "Heal damage",
+    "conduitRemove": "Remove 1 leyline",
+    "conduitKeep": "Keep the leyline",
+    "conduitTravel": "{name}: move to {destination}",
+    "conduitEvadeMove": "{name}: disengage from {enemy} and move to {location}",
     "fieldRetrieve": "Return {card} to your hand",
     "fieldDeposit": "Move {n} resources to this asset",
     "fieldCounterPlayer": "Cancel the revelation and draw from your deck (+{n} resources)",
@@ -2031,6 +2042,7 @@
     "tokensRevealedChoice": "Tokens revealed to choose from: {tokens}."
   },
   "table": {
+    "leylines": "Leylines",
     "flexibleSlot": "{n} shared flexible slot: {slots}; chosen: {chosen}",
     "interchangeableSlots": "Interchangeable slots: {slots}",
     "attachedUses": "{card}: {n} uses",
@@ -2456,6 +2468,7 @@
       "escapedRewards": "Those who resigned earn the victory display experience plus 3 and suffer 3 mental trauma."
     },
     "note": {
+      "identifiedGateway": "You have identified the gateway.",
       "translatedGrimoire": "You have translated the grimoire.",
       "calculatedReckoning": "You have calculated the day of reckoning.",
       "identifiedStone": "You have identified the stone.",
@@ -3720,6 +3733,12 @@
   },
   "offlineCard": {
     "subnames": {
+      "11065": "Law Incarnate",
+      "08044": "Gateway to Paradise",
+      "08043": "Gateway to Aldebaran",
+      "08042": "Gateway to Acheron",
+      "08041": "Gateway to Tindalos",
+      "08033": "Unidentified",
       "09114": "Keeper of Esoteric Lore",
       "07267": "The Council's Chosen",
       "09054": "Working on Something Bigger",
@@ -3894,6 +3913,14 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "11091": "Blessed. Fortune.",
+      "09067": "Trick. Upgrade. Illicit.",
+      "11065": "Item. Relic.",
+      "08044": "Ritual.",
+      "08043": "Ritual.",
+      "08042": "Ritual.",
+      "08041": "Ritual.",
+      "08033": "Item. Tome. Occult.",
       "09063": "Item. Illicit.",
       "08113": "Pact.",
       "11100": "Innate. Augury.",
@@ -4890,6 +4917,14 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "11091": "Myriad. Fast. Play after the investigation phase begins. Group limit 1 in play.\nPut Good Weather into play next to the agenda deck and choose a skill. While this card is in play, each investigator gets +2 to the chosen skill.\n<b>Forced</b> - When the investigation phase begins: Discard Good Weather.",
+      "09067": "Fast. Play when you successfully evade a [[Humanoid]] enemy or successfully investigate.\nPlay an [[Item]] asset from your hand, reducing its cost by X, where X is the amount you succeeded by. Attach \"I'll take that!\" to that asset. Attached asset gains [[Illicit]].",
+      "11065": "[reaction] When 1 or more doom is placed on a card you control, exhaust Blood of Thoth: Place 1 resource on this card <i>(from the token pool)</i>, as an offering.\n[fast] If Blood of Thoth has 3 or more offerings on it, remove all offerings from Blood of Thoth and exhaust it: Choose an investigator at your location to immediately take an action as if it were their turn.",
+      "08044": "Researched. Uses (4 leylines). Limit 1 per deck.\n[fast]: Move 1 leyline from this asset to an investigator.\n[action]: Choose an investigator with a leyline. That investigator draws 1 card and heals 1 damage or 1 horror. You may remove the leyline to have them instead draw 2 cards and heal 2 damage or 2 horror.",
+      "08043": "Researched. Uses (4 leylines). Limit 1 per deck.\n[fast]: Move 1 leyline from this asset to a non-[[Elite]] enemy.\n[action]: Choose an investigator engaged with an enemy with a leyline. That investigator disengages from that enemy and moves to a connecting location. You may remove the leyline to automatically evade that enemy. This action does not provoke attacks of opportunity.",
+      "08042": "Researched. Uses (4 leylines). Limit 1 per deck.\n[fast]: Move 1 leyline from this asset to a revealed location.\n[action]: Choose an investigator and a revealed location with a leyline. That investigator moves to that location. You may remove the leyline to have them take an investigate action.",
+      "08041": "Researched. Uses (4 leylines). Limit 1 per deck.\n[fast]: Move 1 leyline from this asset to a non-[[Elite]] enemy.\n[action]: Choose an investigator, and an enemy with a leyline at a revealed location. That investigator moves to that location. You may remove the leyline to deal 1 damage to that enemy.",
+      "08033": "Limit 1 per deck. As an additional cost to play this asset, place 1 resource on 4 different locations, as leylines.\n[reaction] After you successfully investigate a location with a leyline, exhaust this asset: Move that leyline onto this asset. Then, if there are 4 leylines on it, discard it, take its leylines as resources, and record in your Campaign Log that \"you have identified the gateway.\"",
       "09063": "[fast] Exhaust Embezzled Treasure: Move up to 2 resources from your resource pool to Embezzled Treasure (to a maximum of 10 resources on it).\n<b>Forced</b> - When you resign or the game ends: For every 2 resources on Embezzled Treasure, an investigator of your choice begins the next scenario of the campaign with 1 additional resource in their resource pool.",
       "08113": "Limit 1 per investigator. Cannot leave play.\n[reaction] After you play Unscrupulous Loan: Gain 10 resources.\n<b>Forced</b> - When the game ends or you are eliminated, if you have fewer than 10 resources in your resource pool: Exile Unscrupulous Loan.",
       "11100": "[[Artist]], [[Clairvoyant]], [[Dreamer]], [[Performer]] deck only.\nCommit only to a skill test on a treachery. If this skill test is successful, put Dreams of the Clay into play in your play area instead of discarding it.\n[reaction] When you draw a non-peril treachery from the encounter deck, remove Dreams of the Clay from the game: Cancel its revelation effect and discard it.",
@@ -6318,6 +6353,14 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "11091": "Good Weather",
+      "09067": "\"I'll take that!\"",
+      "11065": "Blood of Thoth",
+      "08044": "Archive of Conduits",
+      "08043": "Archive of Conduits",
+      "08042": "Archive of Conduits",
+      "08041": "Archive of Conduits",
+      "08033": "Archive of Conduits",
       "09063": "Embezzled Treasure",
       "08113": "Unscrupulous Loan",
       "11100": "Dreams of the Clay",

@@ -1,7 +1,7 @@
-// RR: Replenish; "after doom is placed on a card with no doom" (Cat Mask).
+// RR: doom placement (Cat Mask and Blood of Thoth), distinct from the mythos threshold check.
 import { activeTreacheryBehavior, playerCardBehavior } from './content'
 import { push } from './state'
-import type { GameState } from './types'
+import type { GameState, Message } from './types'
 
 const listeners = new WeakMap<GameState['assets'], boolean>()
 function watches(s: GameState): boolean {
@@ -15,6 +15,32 @@ function watches(s: GameState): boolean {
 
 export function observeDoom(before: GameState, after: GameState): GameState {
   if (!watches(after)) return after
+  const controlled: Message[] = []
+  if (before.assets !== after.assets)
+    for (const [id, a] of Object.entries(after.assets))
+      if (before.assets[id] && (a.doom ?? 0) > (before.assets[id]!.doom ?? 0))
+        controlled.push({
+          type: 'Forced',
+          trigger: { type: 'afterDoomOnControlledCard', investigator: a.owner },
+        })
+  if (before.investigators !== after.investigators)
+    for (const i of after.investigators)
+      if ((i.doom ?? 0) > (before.investigators.find((x) => x.id === i.id)?.doom ?? 0))
+        controlled.push({
+          type: 'Forced',
+          trigger: { type: 'afterDoomOnControlledCard', investigator: i.id },
+        })
+  if (before.treacheries !== after.treacheries)
+    for (const [id, t] of Object.entries(after.treacheries))
+      if (
+        t.owner &&
+        (t.tokens ?? 0) > (before.treacheries[id]?.tokens ?? 0) &&
+        activeTreacheryBehavior(after, t)?.tokenKind === 'doom'
+      )
+        controlled.push({
+          type: 'Forced',
+          trigger: { type: 'afterDoomOnControlledCard', investigator: t.owner },
+        })
   let count = before.doom === 0 && after.doom > 0 ? 1 : 0
   if (before.secondAgenda?.doom === 0 && (after.secondAgenda?.doom ?? 0) > 0) count++
   if (before.investigators !== after.investigators)
@@ -44,9 +70,10 @@ export function observeDoom(before: GameState, after: GameState): GameState {
         activeTreacheryBehavior(after, card)?.tokenKind === 'doom'
       )
         count++
-  return count
+  return count || controlled.length
     ? push(
         after,
+        ...controlled,
         ...Array.from({ length: count }, () => ({
           type: 'Forced' as const,
           trigger: { type: 'afterDoomOnEmptyCard' as const },

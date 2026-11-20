@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "leylineSupport": {
+        "title": "Líneas ley y apoyo compartido",
+        "cards": "Ocho diseños y niveles nuevos: Archivo de conductos y sus cuatro portales investigados, Sangre de Thot, Buen tiempo y «¡Me lo quedo!».",
+        "rules": "Líneas ley compartidas, movimiento a distancia, acciones inmediatas, investigación, descuentos para Objetos y bonificación de habilidad para el grupo."
+      },
       "fieldSupport": {
         "title": "Sustituciones de robo y apoyo en la expedición",
         "cards": "Doce diseños y niveles nuevos, entre ellos Katja Eastbank, Ikiaq, Contraespionaje, el Códice de otro mundo y Absolución.",
@@ -575,6 +580,12 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "conduitHealHorror": "Curar horror",
+    "conduitHealDamage": "Curar daño",
+    "conduitRemove": "Retirar 1 línea ley",
+    "conduitKeep": "Conservar la línea ley",
+    "conduitTravel": "{name}: muévete a {destination}",
+    "conduitEvadeMove": "{name}: deja de estar enfrentado a {enemy} y muévete a {location}",
     "fieldRetrieve": "Devolver {card} a tu mano",
     "fieldDeposit": "Mover {n} recursos a este apoyo",
     "fieldCounterPlayer": "Cancelar la revelación y robar de tu mazo (+{n} recursos)",
@@ -2031,6 +2042,7 @@
     "tokensRevealedChoice": "Fichas reveladas para elegir: {tokens}."
   },
   "table": {
+    "leylines": "Líneas ley",
     "flexibleSlot": "{n} ranura flexible compartida: {slots}; elegida: {chosen}",
     "interchangeableSlots": "Ranuras intercambiables: {slots}",
     "attachedUses": "{card}: {n} usos",
@@ -2456,6 +2468,7 @@
       "escapedRewards": "Los que desistieron ganan la experiencia de la zona de victoria más 3 y sufren 3 trauma mental."
     },
     "note": {
+      "identifiedGateway": "Los investigadores han identificado el portal.",
       "translatedGrimoire": "Has traducido el grimorio.",
       "calculatedReckoning": "Has calculado el día del juicio.",
       "identifiedStone": "Has identificado la piedra.",
@@ -3720,6 +3733,12 @@
   },
   "offlineCard": {
     "subnames": {
+      "11065": "Ley encarnada",
+      "08044": "Portal al paraíso",
+      "08043": "Portal a Aldebarán",
+      "08042": "Portal a Aqueronte",
+      "08041": "Portal a Tíndalos",
+      "08033": "Sin identificar",
       "09114": "Guardiana del saber estotérico",
       "07267": "La elegida del consejo",
       "09054": "Trabajando en algo mayor",
@@ -3894,6 +3913,14 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "11091": "Bendecido. Fortuna.",
+      "09067": "Truco. Mejora. Ilegal.",
+      "11065": "Objeto. Reliquia.",
+      "08044": "Ritual.",
+      "08043": "Ritual.",
+      "08042": "Ritual.",
+      "08041": "Ritual.",
+      "08033": "Objeto. Tomo. Ocultismo.",
       "09063": "Objeto. Ilegal.",
       "08113": "Pacto.",
       "11100": "Innato. Presagio.",
@@ -4890,6 +4917,14 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "11091": "Miríada. Rápido. Juega esta carta después de que comience la fase de Investigación. Límite de grupo de 1 en juego.\nPon el Buen tiempo en juego junto al mazo de Plan y elige una habilidad. Mientras esta carta esté en juego, cada investigador recibe +2 a la habilidad elegida.\n<b>Obligado -</b> Cuando comience la fase de Investigación: Descarta el Buen tiempo.",
+      "09067": "Rápido. Juega esta carta sólo cuando evites con éxito un Enemigo [[Humanoide]] o investigues con éxito.\nJuega un Apoyo [[Objeto]] desde tu mano, reduciendo su coste en X, donde X es la cantidad de puntos que tengas por encima del valor mínimo de éxito. Vincula \"¡Me lo quedo!\" a ese Apoyo. El Apoyo vinculado obtiene [[Ilegal]].",
+      "11065": "[reaction] Cuando se coloque 1 ficha de Perdición o más en una carta que controles, agota la Sangre de Thoth: Coloca 1 recurso en esta carta <i>(de la reserva de fichas)</i>, como ofrenda.\n[free] Si la Sangre de Thoth tiene 3 o más ofrendas, retira todas las ofrendas de la Sangre de Thoth y agótala: Elige un investigador que esté en tu Lugar para que realice una acción inmediatamente como si fuera su turno.",
+      "08044": "Investigado. Usos (4 líneas ley). Límite de 1 por mazo.\n[fast]: Mueve 1 línea ley de este Apoyo a un investigador.\n[action]: Elige a un investigador que tenga una línea ley. Ese investigador roba 1 carta y se cura 1 punto de daño o 1 punto de horror. En lugar de eso, puedes retirar la línea ley para que robe 2 cartas y se cure 2 puntos de daño o 2 puntos de horror.",
+      "08043": "Investigado. Usos (4 líneas ley). Límite de 1 por mazo.\n[fast]: Mueve 1 línea ley de este Apoyo a un Enemigo que no sea [[Élite]].\n[action]: Elige a un investigador enfrentado a un Enemigo que tenga una línea ley. Ese investigador deja de estar enfrentado a ese Enemigo y se mueve a un Lugar conectado. Puedes retirar la línea ley para evitar automáticamente a ese Enemigo. Esta acción no provoca ataques de oportunidad.",
+      "08042": "Investigado. Usos (4 líneas ley). Límite de 1 por mazo.\n[fast]: Mueve 1 línea ley de este Apoyo a un Lugar revelado.\n[action]: Elige un investigador y un Lugar revelado que tenga una línea ley. Ese investigador se mueve a ese Lugar. Puedes retirar la línea ley para que el investigador realice una acción de investigar.",
+      "08041": "Investigado. Usos (4 líneas ley). Límite de 1 por mazo.\n[fast]: Mueve una línea ley de este Apoyo a un enemigo que no sea [[Élite]].\n[action]: Elige a un investigador y un Enemigo que tenga una línea ley y que esté en un Lugar revelado. Ese investigador se mueve a ese lugar. Puedes retirar la línea ley para infligir 1 punto de daño a ese enemigo.",
+      "08033": "Límite de 1 por mazo. Como coste adicional para jugar este Apoyo, coloca 1 recurso sobre 4 Lugares distintos, como líneas ley.\n[reaction] Después de que investigues con éxito un Lugar que tenga una línea ley, agota este Apoyo: Mueve esa línea ley sobre este Apoyo. A continuación, si hay 4 líneas ley sobre él, descártalo, coge sus líneas ley como recursos y anota en el registro de campaña que \"los investigadores han identificado el portal\".",
       "09063": "[free] Agota el tesoro desfalcado: Mueve hasta 2 recursos de tu reserva de recursos al Tesoro desfalcado (hasta un máximo de 10 recursos sobre éste).\n<b>Obligado</b> - Cuando desistas o acabe la partida: Por cada 2 recursos que haya sobre el Tesoro desfalcado, un investigador de tu elección comienza el siguiente escenario de la campaña con 1 recurso adicional en su reserva de recursos.",
       "08113": "Límite de 1 por investigador. No puede abandonar el juego.\n[reaction] Después de que juegues el Préstamo sin escrúpulos: Obtén 10 recursos.\n<b>Obligado</b> — Cuando acabe la partida o seas eliminado, si tienes menos de 10 recursos en tu reserva de recursos: Exilia el Préstamo sin escrúpulos.",
       "11100": "Sólo para un mazo [[Artista]], [[Clarividente]], [[Soñador]], [[Intérprete]].\nSólo puedes asignar esta carta a una prueba de habilidad de una Traición. Si esta prueba de habilidad tiene éxito, pon los Sueños de la arcilla en juego en tu zona de juego en vez de descartarlos.\n[reaction] Cuando robes una Traición que no tenga Peligro del mazo de Encuentros, retira los Sueños de la arcilla de la partida: Cancela su efecto de revelación y descártala.",
@@ -6318,6 +6353,14 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "11091": "Buen tiempo",
+      "09067": "\"¡Me lo quedo!\"",
+      "11065": "Sangre de Thoth",
+      "08044": "Archivo de conductos",
+      "08043": "Archivo de conductos",
+      "08042": "Archivo de conductos",
+      "08041": "Archivo de conductos",
+      "08033": "Archivo de conductos",
       "09063": "Tesoro desfalcado",
       "08113": "Préstamo sin escrúpulos",
       "11100": "Sueños de la arcilla",

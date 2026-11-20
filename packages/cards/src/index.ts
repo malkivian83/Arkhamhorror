@@ -1,3 +1,4 @@
+import { LEYLINE_SUPPORT_RENDERED_CODES } from './leyline-support'
 import { FIELD_SUPPORT_RENDERED_CODES } from './field-support'
 import { OPENING_ARCHIVES_RENDERED_CODES } from './opening-archives'
 export { planningCustomizationCost } from './campaign-planning/economy'
@@ -379,6 +380,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...CAMPAIGN_PLANNING_RENDERED_CODES,
   ...OPENING_ARCHIVES_RENDERED_CODES,
   ...FIELD_SUPPORT_RENDERED_CODES,
+  ...LEYLINE_SUPPORT_RENDERED_CODES,
   ...BONDED_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,

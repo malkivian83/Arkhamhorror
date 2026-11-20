@@ -266,3 +266,7 @@ la elección de trauma al adquirirla. [Reglas y diferencias](153-planificacion-d
 - Doce diseños/niveles estándar nuevos, cero vinculadas nuevas o reediciones. Katja deja de estar bloqueada: se conserva su sustitución de robo antes de los efectos. [Reglas y diferencias](155-robo-encuentros-y-apoyo.md).
 - **1616 comportamientos**, **509 códigos históricos pendientes**, **151 estándar con impresión pendientes**. Veinticuatro escaneos y miniaturas nuevos; inventarios históricos preservados.
 - Continúan Curación espiritual, Dayana y Cepa nutricia. Lucha sucia requiere seguimiento del enemigo en las pruebas de negociar y selección restringida de combate inmediato.
+
+## Estado tras el lote 156
+
+Ocho diseños/niveles estándar nuevos: los cinco Archivos de conductos, Sangre de Thoth, «¡Me lo quedo!» y Buen tiempo. Cero reediciones. **143 estándar con impresión** y **501 códigos históricos** pendientes. Recuento global actual: **1641 definiciones con comportamiento**, incluidas altas de campañas no recogidas en el anterior acumulado por incrementos. Dieciséis escaneos y miniaturas nuevos. [Reglas y controles](156-lineas-ley-y-apoyo.md).

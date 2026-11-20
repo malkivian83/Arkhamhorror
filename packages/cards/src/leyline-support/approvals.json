@@ -1,0 +1,80 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "3a903132e65e0dcaf05ead5793417c6ca65120148478b64208e32db0cd1114c4",
+    "es": "0dd896ee6f7cd001cc25b880f15fa978e1184a7fc0afd3b812b4c86068e1dd38"
+  },
+  "cards": [
+    {
+      "code": "08033",
+      "status": "verified",
+      "adapter": "reviewed-conduits-v1",
+      "uses": { "count": 0, "type": "leyline" },
+      "module": "card-08033",
+      "test": "rules.test.ts",
+      "subname": "Unidentified"
+    },
+    {
+      "code": "08041",
+      "status": "verified",
+      "adapter": "reviewed-conduits-v1",
+      "module": "card-08041",
+      "test": "rules.test.ts",
+      "subname": "Gateway to Tindalos",
+      "uses": { "count": 4, "type": "leyline" }
+    },
+    {
+      "code": "08042",
+      "status": "verified",
+      "adapter": "reviewed-conduits-v1",
+      "module": "card-08042",
+      "test": "rules.test.ts",
+      "subname": "Gateway to Acheron",
+      "uses": { "count": 4, "type": "leyline" }
+    },
+    {
+      "code": "08043",
+      "status": "verified",
+      "adapter": "reviewed-conduits-v1",
+      "module": "card-08043",
+      "test": "rules.test.ts",
+      "subname": "Gateway to Aldebaran",
+      "uses": { "count": 4, "type": "leyline" }
+    },
+    {
+      "code": "08044",
+      "status": "verified",
+      "adapter": "reviewed-conduits-v1",
+      "module": "card-08044",
+      "test": "rules.test.ts",
+      "subname": "Gateway to Paradise",
+      "uses": { "count": 4, "type": "leyline" }
+    },
+    {
+      "code": "11065",
+      "status": "verified",
+      "uses": { "count": 0, "type": "offering" },
+      "module": "card-11065",
+      "test": "rules.test.ts",
+      "subname": "Law Incarnate"
+    },
+    {
+      "code": "09067",
+      "status": "verified",
+      "module": "card-09067",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "11091",
+      "status": "verified",
+      "adapter": "reviewed-myriad-v1",
+      "module": "card-11091",
+      "test": "rules.test.ts",
+      "fast": true
+    }
+  ]
+}

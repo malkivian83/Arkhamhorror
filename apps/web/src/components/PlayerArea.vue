@@ -109,6 +109,9 @@ const tokens = computed((): { kind: TokenKind; value: number; label: string; tit
   const vitals = effectiveVitals(props.state, i.value)
   return [
     { kind: 'resource', value: i.value.resources, label: 'table.resources' },
+    ...(i.value.leylines
+      ? [{ kind: 'resource' as const, value: i.value.leylines, label: 'table.leylines' }]
+      : []),
     { kind: 'clue', value: i.value.clues, label: 'table.clues' },
     {
       kind: 'damage',
@@ -236,7 +239,7 @@ const slots = computed(() => {
             <!-- El número va en una pastilla oscura junto a la ficha: sobre la imagen no se leía. -->
             <ul class="tokens">
               <!-- Con clave por investigador: al cambiar el que se muestra, sus fichas no destellan. -->
-              <li v-for="token in tokens" :key="`${i.id}:${token.kind}`" :title="token.title">
+              <li v-for="token in tokens" :key="`${i.id}:${token.label}`" :title="token.title">
                 <span class="token-icon"
                   ><TokenBadge
                     :kind="token.kind"
@@ -385,6 +388,14 @@ const slots = computed(() => {
                 :size="26"
               />
               <TokenBadge v-if="e.doom" class="corner bl" kind="doom" :value="e.doom" :size="26" />
+              <TokenBadge
+                v-if="e.leylines"
+                class="corner tr"
+                kind="resource"
+                :value="e.leylines"
+                :size="26"
+                :title="t('table.leylines')"
+              />
               <TokenBadge
                 v-if="e.clues"
                 class="corner br"

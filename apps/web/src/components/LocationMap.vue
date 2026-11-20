@@ -140,6 +140,13 @@ const treacheriesAt = (id: string) =>
           class="enemy-damage"
         />
         <TokenBadge v-if="e.doom" kind="doom" :value="e.doom" :size="22" />
+        <TokenBadge
+          v-if="e.leylines"
+          kind="resource"
+          :value="e.leylines"
+          :size="22"
+          :title="t('table.leylines')"
+        />
       </GameCard>
     </TableTarget>
   </section>
@@ -218,6 +225,14 @@ const treacheriesAt = (id: string) =>
             :title="t('table.doom')"
           />
           <!-- Llaves sobre el Lugar (Ciudad de los Antiguos). -->
+          <TokenBadge
+            v-if="l.leylines"
+            class="loc-leyline"
+            kind="resource"
+            :value="l.leylines"
+            :size="30"
+            :title="t('table.leylines')"
+          />
           <span v-if="l.keys?.length" class="keys loc-keys" :title="t('table.keys')">
             <ChaosTokenView v-for="(key, n) in l.keys" :key="n" :token="key" :size="22" />
           </span>
@@ -358,6 +373,14 @@ const treacheriesAt = (id: string) =>
               :size="24"
             />
             <TokenBadge v-if="e.doom" class="placed-doom" kind="doom" :value="e.doom" :size="22" />
+            <TokenBadge
+              v-if="e.leylines"
+              class="placed-leyline"
+              kind="resource"
+              :value="e.leylines"
+              :size="22"
+              :title="t('table.leylines')"
+            />
             <span v-if="e.keys?.length" class="keys enemy-keys" :title="t('table.keys')">
               <ChaosTokenView v-for="(key, n) in e.keys" :key="n" :token="key" :size="18" />
             </span>
@@ -574,6 +597,18 @@ const treacheriesAt = (id: string) =>
 }
 .loc-doom {
   top: 42px;
+}
+.loc-leyline {
+  position: absolute;
+  left: -10px;
+  top: 78px;
+  z-index: 2;
+}
+.placed-leyline {
+  position: absolute;
+  right: -8px;
+  top: 6px;
+  z-index: 2;
 }
 .keys {
   position: absolute;

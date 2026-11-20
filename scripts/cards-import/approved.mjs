@@ -35,6 +35,14 @@ export function approvedDefinition(card, approval) {
         (['08112', '08113'].includes(card.code) && card.factions.join(',') === 'rogue,survivor')))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
+  const reviewedConduits =
+    approval.adapter === 'reviewed-conduits-v1' &&
+    ['08033', '08041', '08042', '08043', '08044'].includes(card.code) &&
+    card.deckLimit === 1 &&
+    card.factions.join(',') === 'seeker' &&
+    card.numbers.xp?.value === (card.code === '08033' ? 0 : 4)
+  if (['08033', '08041', '08042', '08043', '08044'].includes(card.code) && !reviewedConduits)
+    throw new Error(`Conduits require their reviewed deck limit and level: ${card.code}`)
   const talentFactions = {
     '08120': 'guardian,mystic,survivor',
     '08121': 'guardian,seeker,mystic',
@@ -370,6 +378,7 @@ export function approvedDefinition(card, approval) {
   return {
     code: card.code,
     name: card.name,
+    ...(reviewedConduits ? { deckLimit: 1 } : {}),
     // Reviewed subtitle distinguishing same-level versions absent from the frozen inventory.
     ...(approval.subname ? { subname: approval.subname } : {}),
     type: card.type,

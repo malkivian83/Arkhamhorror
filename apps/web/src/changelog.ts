@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'leyline-support',
+    date: '2026-11-20',
+    title: 'app.changelog.leylineSupport.title',
+    items: ['app.changelog.leylineSupport.cards', 'app.changelog.leylineSupport.rules'],
+  },
+  {
     id: 'field-support',
     date: '2026-11-20',
     title: 'app.changelog.fieldSupport.title',

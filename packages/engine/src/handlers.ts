@@ -277,6 +277,36 @@ export function handle(state: GameState, message: Message): GameState {
     if (replacement) return push(state, ...replacement)
   }
   switch (message.type) {
+    case 'AdjustLeylines': {
+      const { target, amount } = message
+      if (target.type === 'investigator') {
+        if (!state.investigators.some((i) => i.id === target.id)) return state
+        return updateInvestigator(state, target.id, (i) => ({
+          ...i,
+          leylines: Math.max(0, (i.leylines ?? 0) + amount),
+        }))
+      }
+      if (target.type === 'enemy') {
+        if (!state.enemies[target.id]) return state
+        return updateEnemy(state, target.id, (e) => ({
+          ...e,
+          leylines: Math.max(0, (e.leylines ?? 0) + amount),
+        }))
+      }
+      const location = state.locations[target.id]
+      return location
+        ? {
+            ...state,
+            locations: {
+              ...state.locations,
+              [target.id]: {
+                ...location,
+                leylines: Math.max(0, (location.leylines ?? 0) + amount),
+              },
+            },
+          }
+        : state
+    }
     case 'StoreRandomSkills':
     case 'ShuffleStoredCards':
     case 'MoveStoredToBottom':
@@ -402,6 +432,8 @@ export function handle(state: GameState, message: Message): GameState {
           ? { name: getInvestigator(state, message.investigator).name }
           : {}),
       })
+      if (message.step === 'investigationBegins')
+        return push(next, { type: 'Forced', trigger: { type: 'investigationPhaseBegins' } })
       return [
         'mythosEnds',
         'enemyBegins',

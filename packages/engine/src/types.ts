@@ -55,6 +55,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Resource tokens placed here as leylines (Archive of Conduits). */
+  leylines?: number
   engagementSuppression?: number
   etherealRound?: number
   nextFightTokenConversion?: { turn: number; code: CardCode }
@@ -181,6 +183,7 @@ export interface Investigator {
 }
 
 export interface Location {
+  leylines?: number
   /** Keys on this location: chaos tokens that never enter the chaos bag. */
   keys?: ChaosToken[]
   /** Recursos colocados en el Lugar (Góndola). */
@@ -276,6 +279,7 @@ export interface EnemyCard {
 }
 
 export interface Enemy extends EnemyCard {
+  leylines?: number
   /** Keys placed on this enemy (Reawakened Elder Thing). */
   keys?: ChaosToken[]
   /** Investigadores a los que no atacará esta ronda. */
@@ -999,6 +1003,11 @@ export type Message = MessageBody & {
   effectAsset?: AssetId
 }
 type MessageBody =
+  | {
+      type: 'AdjustLeylines'
+      target: { type: 'location' | 'enemy' | 'investigator'; id: string }
+      amount: number
+    }
   | { type: 'StartTokenGroup'; then: Extract<Message, { type: 'PlayerCardEffect' }> }
   | { type: 'StoreHeldChaosTokens'; group: string; tokens: ChaosToken[] }
   | { type: 'ReturnHeldChaosTokens'; group: string }
@@ -2550,6 +2559,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'afterDoomOnControlledCard'; investigator: InvestigatorId }
   | {
       type: 'afterTokenManipulated'
       investigator: InvestigatorId
@@ -2579,6 +2589,7 @@ export type Trigger =
     }
   | { type: 'roundBegins' }
   | { type: 'mythosPhaseBegins' }
+  | { type: 'investigationPhaseBegins' }
   | { type: 'whenMythosEncounterStepBegins' }
   | { type: 'afterHunterMove'; enemy: EnemyId }
   | { type: 'agendaAdvances'; code?: CardCode }
