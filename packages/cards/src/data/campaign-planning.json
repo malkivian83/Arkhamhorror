@@ -1,0 +1,142 @@
+[
+  {
+    "code": "03308",
+    "name": "Charon's Obol",
+    "subname": "The Ferryman's Pay",
+    "type": "asset",
+    "class": "rogue",
+    "deckLimit": 1,
+    "exceptional": true,
+    "traits": ["Item", "Relic"],
+    "unique": true,
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "04109",
+    "name": "Arcane Research",
+    "type": "asset",
+    "class": "mystic",
+    "deckLimit": 2,
+    "traits": ["Talent"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "06167",
+    "name": "Versatile",
+    "type": "asset",
+    "class": "neutral",
+    "deckLimit": 2,
+    "deckSizeBonus": 5,
+    "extraDeckOption": { "traits": [], "maxLevel": 0, "count": 1 },
+    "traits": ["Talent"],
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08031",
+    "name": "Forced Learning",
+    "type": "asset",
+    "class": "seeker",
+    "deckLimit": 1,
+    "deckSizeBonus": 15,
+    "traits": ["Talent", "Ritual"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08046",
+    "name": "Underworld Support",
+    "type": "asset",
+    "class": "rogue",
+    "deckLimit": 1,
+    "deckSizeBonus": -5,
+    "traits": ["Favor", "Illicit"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08059",
+    "name": "Down the Rabbit Hole",
+    "type": "asset",
+    "class": "mystic",
+    "deckLimit": 1,
+    "traits": ["Talent"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "11095",
+    "name": "Ascetic",
+    "type": "asset",
+    "class": "neutral",
+    "deckLimit": 1,
+    "traits": ["Condition"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "10109",
+    "name": "Pelt Shipment",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Supply"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "10132",
+    "name": "Occult Reliquary",
+    "subname": "Dubious Source",
+    "type": "asset",
+    "class": "neutral",
+    "deckLimit": 1,
+    "traits": ["Boon", "Pact"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "54007",
+    "name": "The Hierophant • V",
+    "subname": "Your True Master Awaits",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "54012",
+    "name": "Moon Pendant",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Charm"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {},
+    "slots": ["accessory"]
+  },
+  {
+    "code": "02110",
+    "name": "Adaptable",
+    "type": "asset",
+    "class": "rogue",
+    "deckLimit": 2,
+    "traits": ["Talent"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  }
+]

@@ -663,6 +663,8 @@ export interface PlayerCardBehavior {
   /** Printed activated abilities usable while this card is in hand. */
   handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
   playsStoredCards?: boolean
+  exhaustToPlayStored?: boolean
+  hiddenStoredCards?: boolean
   storedLimit?: number
   discardWhenStoredEmpty?: boolean
   attachmentLimit?: number
@@ -874,6 +876,15 @@ export interface PlayerCardBehavior {
   beforeSkillTestResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
   extraSlots?: Partial<Record<SlotType, number>>
+  /** One shared slot, assignable to any listed type (not one slot per type). */
+  flexibleSlots?: { slots: SlotType[]; count: number; traits?: string[] }[]
+  /** Printed permission to use these slot types interchangeably. */
+  interchangeableSlots?: SlotType[]
+  purchaseAtCreation?: boolean
+  cannotEarnExperience?: boolean
+  upkeepDraw?: { amount: number; discard: number }
+  handSizeInHand?: number
+  tarotIcons?: number
   /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */
   restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
   /** While true for its controller, it does not take up its slots (Sacrificial Doll). */

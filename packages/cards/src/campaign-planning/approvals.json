@@ -1,0 +1,98 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "4681159cfda7101e370679bd712d3aa78277253fbbd38670542311231f53f6d4",
+    "es": "483314f8f02ec822b6aa89a30a25b0914b922c3b2f7e8ea47533c1c70d0aaefe"
+  },
+  "cards": [
+    {
+      "code": "03308",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-03308",
+      "test": "rules.test.ts",
+      "subname": "The Ferryman's Pay"
+    },
+    {
+      "code": "04109",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-04109",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06167",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-06167",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08031",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-08031",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08046",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-08046",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08059",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-08059",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11095",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-11095",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10109",
+      "status": "verified",
+      "module": "card-10109",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10132",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-10132",
+      "test": "rules.test.ts",
+      "subname": "Dubious Source"
+    },
+    {
+      "code": "54007",
+      "status": "verified",
+      "adapter": "reviewed-tarot-v1",
+      "module": "card-54007",
+      "test": "rules.test.ts",
+      "subname": "Your True Master Awaits"
+    },
+    {
+      "code": "54012",
+      "status": "verified",
+      "adapter": "reviewed-tarot-v1",
+      "module": "card-54012",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "02110",
+      "status": "verified",
+      "adapter": "reviewed-planning-permanent-v1",
+      "module": "card-02110",
+      "test": "rules.test.ts"
+    }
+  ]
+}

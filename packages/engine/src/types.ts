@@ -127,6 +127,8 @@ export interface Investigator {
   eliminated: boolean
   /** Se retiró del escenario (también cuenta como eliminado). */
   resigned: boolean
+  /** Campaign restriction persists after elimination removes the Permanent asset. */
+  cannotEarnExperience?: boolean
   /** Recursos que tenía al quedar eliminado (Fortuna e insensatez: «dejar limpio el casino»). */
   resourcesWhenEliminated?: number
   deck: CardCode[]
@@ -527,7 +529,7 @@ export interface DeckOption {
 
 /** Opción de construcción que añade una carta (Collector: "un apoyo Relic o Charm…"). */
 export interface ExtraDeckOption {
-  type: PlayerCardDef['type']
+  type?: PlayerCardDef['type']
   /** Debe tener alguno de estos rasgos. */
   traits: string[]
   maxLevel: number
@@ -644,6 +646,7 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  flexibleSlot?: SlotType
   /** Physical face-down cards, out of play; their owners survive host/control changes. */
   storedCards?: { code: CardCode; owner: InvestigatorId }[]
   /** Face-up attachment: this asset remains in play and under its controller's control. */
@@ -1317,6 +1320,7 @@ type MessageBody =
    */
   | {
       type: 'PlayCard'
+      storedPlaySource?: AssetId
       fromStored?: { asset: AssetId; index: number }
       modifiersResolved?: boolean
       consideredModifiers?: AssetId[]
@@ -2133,6 +2137,7 @@ type MessageBody =
   | { type: 'Story'; entry: StoryEntry; choices?: Choice[] }
   // ----- Registro de campaña -----
   | { type: 'RecordNote'; note: string; value?: string }
+  | { type: 'SetFlexibleSlot'; asset: AssetId; slot: SlotType }
   | { type: 'EndPlaySkillBonus'; id: string }
   | { type: 'AdjustSuccessMargin'; amount: number }
   | { type: 'CrossOutNote'; note: string }
@@ -2276,6 +2281,7 @@ type MessageBody =
   | { type: 'ClearNextFight'; asset: AssetId }
   | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number; healer?: InvestigatorId }
   | { type: 'ReturnAssetToHand'; asset: AssetId }
+  | { type: 'ReturnAssetToDeck'; asset: AssetId }
   /** De la pila de descartes a la mano. */
   | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode }
   /**
@@ -2342,6 +2348,9 @@ type MessageBody =
       investigator: InvestigatorId
       draw?: boolean
     }
+  | { type: 'StoreRandomSkills'; asset: AssetId; count: number }
+  | { type: 'ShuffleStoredCards'; asset: AssetId }
+  | { type: 'MoveStoredToBottom'; asset: AssetId; index: number }
   | { type: 'CheckStoredAsset'; asset: AssetId }
   | { type: 'DrawStoredCards'; asset: AssetId }
   | { type: 'AttachControlledAsset'; asset: AssetId; host: AssetId; swap?: AssetId }
@@ -2739,6 +2748,7 @@ export type Trigger =
   | { type: 'enemyWouldPatrol'; enemy: EnemyId }
   | { type: 'enemyWouldEnterLocation'; enemy: EnemyId; location: LocationId }
   | { type: 'enemyDisengaged'; enemy: EnemyId; investigator: InvestigatorId }
+  | { type: 'beforeOpeningHand'; investigator: InvestigatorId }
   | { type: 'turnBegins'; investigator: InvestigatorId }
   | { type: 'turnEnds'; investigator: InvestigatorId }
   | { type: 'roundEnds' }

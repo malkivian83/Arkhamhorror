@@ -276,6 +276,9 @@ export function handle(state: GameState, message: Message): GameState {
     if (replacement) return push(state, ...replacement)
   }
   switch (message.type) {
+    case 'StoreRandomSkills':
+    case 'ShuffleStoredCards':
+    case 'MoveStoredToBottom':
     case 'StorePlayerCard':
     case 'TakeStoredCard':
     case 'CheckStoredAsset':
@@ -3750,6 +3753,10 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
+      if (message.storedPlaySource) {
+        const source = state.assets[message.storedPlaySource]
+        if (!source || source.owner !== message.investigator || source.exhausted) return state
+      }
       const stored = prepareStoredPlay(state, message)
       if (stored) return stored
       if (message.fromDeck) {
@@ -4183,6 +4190,9 @@ export function handle(state: GameState, message: Message): GameState {
         paid,
         ...spentUses,
         ...additionalCosts,
+        ...(message.storedPlaySource
+          ? [{ type: 'ExhaustAsset' as const, asset: message.storedPlaySource }]
+          : []),
         ...spent,
         played,
         ...(message.noOpportunity ? [] : (message.before ?? [])),
@@ -4297,20 +4307,6 @@ export function handle(state: GameState, message: Message): GameState {
       // Checked before taking it from hand or discard, so the card stays where it was.
       if (playerCardBehavior(message.code)?.cannotEnterPlay?.(state, message.investigator))
         return state
-      if (message.fromHand) {
-        // "Put into play from your hand" is not playing it: no cost, no play windows.
-        const owner = getInvestigator(state, message.investigator)
-        const index = owner.hand.indexOf(message.code)
-        if (index < 0) return state
-        const { fromHand: _taken, ...rest } = message
-        return handle(
-          updateInvestigator(state, owner.id, (i) => ({
-            ...i,
-            hand: i.hand.filter((_, n) => n !== index),
-          })),
-          rest,
-        )
-      }
       if (uniqueAssetInPlay(state, message.code)) return state
       if (
         playerCardBehavior(message.code)?.limitTitle &&
@@ -4327,7 +4323,12 @@ export function handle(state: GameState, message: Message): GameState {
         )
       )
         return state
-      const full = (message.noSlot ? [] : (def.slots ?? [])).find(
+      const parent = message.attachedTo && state.assets[message.attachedTo]
+      const attachedSlotFree =
+        parent &&
+        parent.owner === message.investigator &&
+        assetBehavior(state, parent)?.attachmentSlots === 'all'
+      const full = (message.noSlot || attachedSlotFree ? [] : (def.slots ?? [])).find(
         (slot) => !slotsFit(state, message.investigator, slot, message.code),
       )
       if (full) {
@@ -4346,6 +4347,20 @@ export function handle(state: GameState, message: Message): GameState {
             })),
           },
         })
+      }
+      if (message.fromHand) {
+        // "Put into play from your hand" is not playing it: no cost, no play windows.
+        const owner = getInvestigator(state, message.investigator)
+        const index = owner.hand.indexOf(message.code)
+        if (index < 0) return state
+        const { fromHand: _taken, ...rest } = message
+        return handle(
+          updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            hand: i.hand.filter((_, n) => n !== index),
+          })),
+          rest,
+        )
       }
       if (message.fromDiscard) {
         const owner = getInvestigator(state, message.fromDiscard)
@@ -4480,7 +4495,10 @@ export function handle(state: GameState, message: Message): GameState {
       )
       const behavior = assetBehavior(state, asset)
       // Losing slots can leave other assets without room (Bandolier).
-      return behavior?.restrictedSlots || behavior?.extraSlots
+      return behavior?.restrictedSlots ||
+        behavior?.extraSlots ||
+        behavior?.flexibleSlots ||
+        behavior?.interchangeableSlots
         ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
         : discarded
     }
@@ -5218,6 +5236,18 @@ export function handle(state: GameState, message: Message): GameState {
         ...state,
         playSkillBonuses: (state.playSkillBonuses ?? []).filter((b) => b.id !== message.id),
       }
+    case 'SetFlexibleSlot': {
+      const a = state.assets[message.asset]
+      if (
+        !a ||
+        !assetBehavior(state, a)?.flexibleSlots?.some((f) => f.slots.includes(message.slot))
+      )
+        return state
+      return push(
+        { ...state, assets: { ...state.assets, [a.id]: { ...a, flexibleSlot: message.slot } } },
+        { type: 'CheckSlots', investigator: a.owner },
+      )
+    }
     case 'RecordNote':
       return updateCampaignLog(state, (c) => ({
         ...c,
@@ -5496,7 +5526,15 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EarnExperience': {
       const victory = message.victory ? victoryTotal(state) : 0
       const amount = message.amount + victory
-      let next = updateRecords(state, message.investigator, (r) => ({ ...r, xp: r.xp + amount }))
+      const blocked = (id: string) =>
+        getInvestigator(state, id).cannotEarnExperience ||
+        Object.values(state.assets).some(
+          (a) => a.owner === id && assetBehavior(state, a)?.cannotEarnExperience,
+        )
+      let next = updateRecords(state, message.investigator, (r, i) => ({
+        ...r,
+        xp: r.xp + (blocked(i.id) ? 0 : amount),
+      }))
       for (const i of state.investigators.filter(
         (i) => !message.investigator || i.id === message.investigator,
       )) {
@@ -5505,7 +5543,12 @@ export function handle(state: GameState, message: Message): GameState {
             ...next,
             experience: [
               ...(next.experience ?? []),
-              { investigator: i.id, bonus: message.amount, victory, amount },
+              {
+                investigator: i.id,
+                bonus: blocked(i.id) ? 0 : message.amount,
+                victory: blocked(i.id) ? 0 : victory,
+                amount: blocked(i.id) ? 0 : amount,
+              },
             ],
           },
           'log.experience',
@@ -9591,7 +9634,28 @@ export function handle(state: GameState, message: Message): GameState {
         ...activeInvestigators(state).flatMap((i): Message[] => [
           ...(scenarioBehavior(state.scenarioId)?.skipsUpkeepDraw?.(state, i.id)
             ? []
-            : [{ type: 'DrawCards', investigator: i.id, amount: 1 } as Message]),
+            : (() => {
+                const replacement = Object.values(state.assets)
+                  .filter((a) => a.owner === i.id)
+                  .map((a) => assetBehavior(state, a)?.upkeepDraw)
+                  .find(Boolean)
+                return [
+                  {
+                    type: 'DrawCards',
+                    investigator: i.id,
+                    amount: replacement?.amount ?? 1,
+                  } as Message,
+                  ...(replacement?.discard
+                    ? [
+                        {
+                          type: 'ChooseDiscardFromHand' as const,
+                          investigator: i.id,
+                          amount: replacement.discard,
+                        },
+                      ]
+                    : []),
+                ]
+              })()),
           {
             type: 'GainResources',
             investigator: i.id,
@@ -11088,6 +11152,7 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'ReturnAssetToDeck':
     case 'ReturnAssetToHand': {
       const asset = state.assets[message.asset]
       if (!asset || stuckInPlay(state, asset)) return state
@@ -11096,7 +11161,9 @@ export function handle(state: GameState, message: Message): GameState {
       const { [asset.id]: _gone, ...assets } = state.assets
       return updateInvestigator({ ...state, assets }, asset.originalOwner ?? asset.owner, (i) => ({
         ...i,
-        hand: i.eliminated ? i.hand : [...i.hand, asset.code],
+        ...(message.type === 'ReturnAssetToDeck'
+          ? { deck: [...i.deck, asset.code] }
+          : { hand: i.eliminated ? i.hand : [...i.hand, asset.code] }),
       }))
     }
 
@@ -12436,6 +12503,10 @@ export function handSize(state: GameState, investigator: string): number {
     .reduce(
       (size, a) => size + (assetBehavior(state, a)?.handSize ?? 0),
       MAX_HAND_SIZE +
+        getInvestigator(state, investigator).hand.reduce(
+          (n, c) => n + (playerCardBehavior(c)?.handSizeInHand ?? 0),
+          0,
+        ) +
         (scenarioBehavior(state.scenarioId)?.handSizeModifier?.(state, investigator) ?? 0),
     )
 }
@@ -14174,12 +14245,21 @@ export function restrictedSlotCapacity(
   state: GameState,
   investigator: InvestigatorId,
   slot: SlotType,
-): { trait: string | string[]; count: number }[] {
+): { trait: string | string[]; count: number; flexible?: boolean }[] {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
-    .flatMap((a) => assetBehavior(state, a)?.restrictedSlots ?? [])
-    .filter((r) => r.slot === slot)
-    .map(({ trait, count }) => ({ trait, count }))
+    .flatMap((a) => [
+      ...(assetBehavior(state, a)?.restrictedSlots ?? [])
+        .filter((r) => r.slot === slot)
+        .map(({ trait, count }) => ({ trait, count })),
+      ...(a.flexibleSlot === slot
+        ? (assetBehavior(state, a)?.flexibleSlots ?? []).map((f) => ({
+            trait: f.traits ?? [],
+            count: f.count,
+            flexible: true,
+          }))
+        : []),
+    ])
 }
 
 /** The asset does not take up its slots right now (Sacrificial Doll). */
@@ -14197,43 +14277,85 @@ function slotsFit(
   slot: SlotType,
   adding?: CardCode,
 ): boolean {
-  const cards = Object.values(state.assets)
-    .filter((a) => a.owner === investigator && !a.noSlot && !slotFree(state, investigator, a.code))
-    .map((a) => ({ code: a.code, slots: assetSlots(a, state), traits: assetTraits(a) }))
+  const owned = Object.values(state.assets).filter((a) => a.owner === investigator)
   if (adding && !slotFree(state, investigator, adding))
-    cards.push({
+    owned.push({
+      id: '__prospectiveSlot',
       code: adding,
-      slots: playerCardDef(adding)?.slots ?? [],
-      traits: playerCardDef(adding)?.traits ?? [],
+      owner: investigator,
+      exhausted: false,
+      damage: 0,
+      horror: 0,
+      uses: 0,
     })
+  const exchange = owned.flatMap((a) => assetBehavior(state, a)?.interchangeableSlots ?? [])
+  const cards = owned
+    .filter((a) => !a.noSlot && !slotFree(state, investigator, a.code))
+    .map((a) => ({ code: a.code, slots: assetSlots(a, state), traits: assetTraits(a) }))
+
+  const component = new Set<SlotType>([slot])
+  const links = [
+    exchange,
+    ...owned.flatMap((a) => assetBehavior(state, a)?.flexibleSlots?.map((f) => f.slots) ?? []),
+  ]
+  for (let changed = true; changed;) {
+    changed = false
+    for (const link of links)
+      if (link.some((t) => component.has(t)))
+        for (const t of link)
+          if (!component.has(t)) {
+            component.add(t)
+            changed = true
+          }
+  }
   const groups = new Map<string, number>()
   const units = cards.flatMap((c) =>
     c.slots
-      .filter((s) => s === slot)
-      .flatMap(() => {
+      .filter((t) => component.has(t))
+      .flatMap((slot) => {
         const group = playerCardBehavior(c.code)?.sharedSlot
         if (group) {
-          const n = groups.get(group.key) ?? 0
-          groups.set(group.key, n + 1)
+          const key = group.key + ':' + slot,
+            n = groups.get(key) ?? 0
+          groups.set(key, n + 1)
           if (n % group.size !== 0) return []
         }
-        return [c.traits]
+        return [{ slot, traits: c.traits }]
       }),
   )
-  const restricted = restrictedSlotCapacity(state, investigator, slot)
-  const free = restricted.map((r) => r.count)
-  const place = (n: number, generic: number): boolean => {
-    if (n === units.length) return true
-    for (const [k, r] of restricted.entries()) {
-      if (!free[k] || ![r.trait].flat().some((t) => units[n]!.includes(t))) continue
-      free[k]!--
-      const placed = place(n + 1, generic)
-      free[k]!++
-      if (placed) return true
-    }
-    return generic > 0 && place(n + 1, generic - 1)
+  const tokens: { slots: SlotType[]; traits?: string[] }[] = []
+  for (const slot of Object.keys(SLOT_CAPACITY) as SlotType[]) {
+    for (let n = 0; n < slotCapacity(state, investigator, slot); n++) tokens.push({ slots: [slot] })
+    for (const r of restrictedSlotCapacity(state, investigator, slot).filter((r) => !r.flexible))
+      for (let n = 0; n < r.count; n++) tokens.push({ slots: [slot], traits: [r.trait].flat() })
   }
-  return place(0, slotCapacity(state, investigator, slot))
+  for (const a of owned)
+    for (const f of assetBehavior(state, a)?.flexibleSlots ?? [])
+      for (let n = 0; n < f.count; n++)
+        tokens.push({ ...f, slots: !adding && a.flexibleSlot ? [a.flexibleSlot] : f.slots })
+  // Bipartite matching allocates each shared/restricted slot exactly once.
+  const occupied = new Map<number, number>()
+  const place = (n: number, seen: Set<number>): boolean => {
+    const u = units[n]!
+    for (const [k, token] of tokens.entries()) {
+      if (
+        seen.has(k) ||
+        (token.traits && !token.traits.some((t) => u.traits.includes(t))) ||
+        !token.slots.some(
+          (slot) => slot === u.slot || (exchange.includes(slot) && exchange.includes(u.slot)),
+        )
+      )
+        continue
+      seen.add(k)
+      const other = occupied.get(k)
+      if (other === undefined || place(other, seen)) {
+        occupied.set(k, n)
+        return true
+      }
+    }
+    return false
+  }
+  return units.every((_, n) => place(n, new Set()))
 }
 
 /**
@@ -14246,14 +14368,36 @@ function slotOccupants(
   slot: SlotType,
   adding?: CardCode,
 ): Asset[] {
+  const allowed = new Set<SlotType>([slot])
+  const permissions = Object.values(state.assets)
+    .filter((a) => a.owner === investigator)
+    .flatMap((a) => {
+      const b = assetBehavior(state, a)
+      return [
+        ...(b?.interchangeableSlots ? [b.interchangeableSlots] : []),
+        ...(b?.flexibleSlots?.map((f) => f.slots) ?? []),
+      ]
+    })
+  for (let changed = true; changed;) {
+    changed = false
+    for (const p of permissions)
+      if (p.some((t) => allowed.has(t)))
+        for (const t of p)
+          if (!allowed.has(t)) {
+            allowed.add(t)
+            changed = true
+          }
+  }
   const occupying = Object.values(state.assets).filter(
     (a) =>
       a.owner === investigator &&
       !stuckInPlay(state, a) &&
       !slotFree(state, investigator, a.code) &&
-      assetSlots(a, state).includes(slot),
+      assetSlots(a, state).some((t) => allowed.has(t)),
   )
-  if (!restrictedSlotCapacity(state, investigator, slot).length) return occupying
+  if (!restrictedSlotCapacity(state, investigator, slot).length && allowed.size === 1)
+    return occupying
+
   const freeing = occupying.filter((a) => {
     const { [a.id]: _gone, ...assets } = state.assets
     return slotsFit({ ...state, assets }, investigator, slot, adding)
@@ -14278,6 +14422,14 @@ function commitIcons(
   bonus?: Partial<Record<string, number>>,
   wildIcons = false,
 ): number {
+  const tarot =
+    !playerCardDef(code)?.weakness &&
+    playerCardDef(code)?.traits.includes('Tarot') &&
+    zone !== 'discard'
+      ? Object.values(state.assets)
+          .filter((a) => zone === 'committed' || a.owner === by)
+          .reduce((n, a) => n + (assetBehavior(state, a)?.tarotIcons ?? 0), 0)
+      : 0
   const doublers =
     zone === 'committed'
       ? activeCommitted(test).filter(
@@ -14287,21 +14439,22 @@ function commitIcons(
   return (
     Math.max(
       0,
-      wildIcons
-        ? [
-            playerCardDef(code)?.icons,
-            bonus,
-            playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
-          ].reduce(
-            (sum, icons) => sum + Object.values(icons ?? {}).reduce((n, v) => n + (v ?? 0), 0),
-            0,
-          )
-        : matchingIcons(playerCardDef(code)?.icons, test.skill) +
+      tarot +
+        (wildIcons
+          ? [
+              playerCardDef(code)?.icons,
+              bonus,
+              playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
+            ].reduce(
+              (sum, icons) => sum + Object.values(icons ?? {}).reduce((n, v) => n + (v ?? 0), 0),
+              0,
+            )
+          : matchingIcons(playerCardDef(code)?.icons, test.skill) +
             matchingIcons(bonus, test.skill) +
             matchingIcons(
               playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
               test.skill,
-            ),
+            )),
     ) *
     2 ** doublers
   )

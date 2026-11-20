@@ -1,5 +1,6 @@
 import {
   previewToken,
+  playerCardBehavior,
   expeditionChoiceCard,
   skillTestValue,
   successChance,
@@ -19,6 +20,7 @@ function entities<T, R>(values: Record<string, T>, project: (value: T) => R): Re
 
 const publicLogParams: Record<string, string[]> = {
   'log.round': ['round'],
+  'log.archiveReveal': ['card'],
   'log.phase': ['phase'],
   'log.mulligan': ['name', 'n'],
   'log.encounter': ['name', 'card', 'code'],
@@ -250,12 +252,14 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'noSlot',
         'clues',
       ]),
+      ...(a.flexibleSlot ? { flexibleSlot: a.flexibleSlot } : {}),
       ...(a.attachedTo ? { attachedTo: a.attachedTo } : {}),
       ...(a.storedCards
         ? {
             storedCards: a.storedCards.map((c) => ({
               owner: c.owner,
-              code: a.owner === mine ? c.code : '',
+              code:
+                a.owner === mine && !playerCardBehavior(a.code)?.hiddenStoredCards ? c.code : '',
             })),
           }
         : {}),

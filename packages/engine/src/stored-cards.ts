@@ -1,3 +1,4 @@
+import { shuffle } from './rng'
 // RR: Face Down, Out of Play, Attach To, Ownership and Control, Leaves Play.
 import { assetBehavior, playerCardDef, scenarioBehavior } from './content'
 import { canPlayByEffect } from './actions'
@@ -6,7 +7,9 @@ import type { Asset, GameState, Message } from './types'
 
 export function storedSources(s: GameState, by: string, code?: string) {
   return Object.values(s.assets).flatMap((a) =>
-    a.owner === by && assetBehavior(s, a)?.playsStoredCards
+    a.owner === by &&
+    assetBehavior(s, a)?.playsStoredCards &&
+    !(assetBehavior(s, a)?.exhaustToPlayStored && a.exhausted)
       ? (a.storedCards ?? []).flatMap((c, index) =>
           code === undefined || c.code === code ? [{ asset: a, index, card: c }] : [],
         )
@@ -73,12 +76,66 @@ export function prepareStoredPlay(
   return push(
     remove(projected, source.asset, source.index),
     { type: 'CheckStoredAsset', asset: source.asset.id },
-    { ...play, from: 'hand', byEffect: true, originalOwner: source.card.owner },
+    {
+      ...play,
+      from: 'hand',
+      byEffect: true,
+      originalOwner: source.card.owner,
+      ...(assetBehavior(s, source.asset)?.exhaustToPlayStored
+        ? { storedPlaySource: source.asset.id }
+        : {}),
+    },
   )
 }
 
 export function handleStored(s: GameState, m: Message): GameState | undefined {
   switch (m.type) {
+    case 'StoreRandomSkills': {
+      const a = s.assets[m.asset]
+      if (!a) return s
+      const owner = getInvestigator(s, a.owner)
+      const eligible = owner.deck.flatMap((c, index) =>
+        playerCardDef(c)?.type === 'skill' && !playerCardDef(c)?.weakness ? [index] : [],
+      )
+      const [random, rng] = shuffle(eligible, s.rng)
+      const chosen = random.slice(0, m.count)
+      return updateInvestigator(
+        {
+          ...s,
+          rng,
+          assets: {
+            ...s.assets,
+            [a.id]: {
+              ...a,
+              storedCards: [
+                ...(a.storedCards ?? []),
+                ...chosen.map((index) => ({ code: owner.deck[index]!, owner: owner.id })),
+              ],
+            },
+          },
+        },
+        owner.id,
+        (i) => ({ ...i, deck: i.deck.filter((_, index) => !chosen.includes(index)) }),
+      )
+    }
+    case 'ShuffleStoredCards': {
+      const a = s.assets[m.asset]
+      if (!a) return s
+      const [storedCards, rng] = shuffle(a.storedCards ?? [], s.rng)
+      return { ...s, rng, assets: { ...s.assets, [a.id]: { ...a, storedCards } } }
+    }
+    case 'MoveStoredToBottom': {
+      const a = s.assets[m.asset],
+        c = a?.storedCards?.[m.index]
+      if (!a || !c) return s
+      return {
+        ...s,
+        assets: {
+          ...s.assets,
+          [a.id]: { ...a, storedCards: [...a.storedCards!.filter((_, i) => i !== m.index), c] },
+        },
+      }
+    }
     case 'StorePlayerCard': {
       const a = s.assets[m.asset],
         owner = getInvestigator(s, m.investigator)

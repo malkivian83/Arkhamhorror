@@ -168,6 +168,9 @@ export function prepareGame({
     )
     return {
       id: setup.id,
+      ...(setup.deck.some((code) => playerCardBehavior(code)?.cannotEarnExperience)
+        ? { cannotEarnExperience: true }
+        : {}),
       ...(setup.customizations
         ? {
             customizations: Object.fromEntries(
@@ -248,6 +251,7 @@ export function prepareGame({
           bonus(setup, 'resources') +
           (boons.includes('hades') ? 2 : 0),
       },
+      { type: 'Forced', trigger: { type: 'beforeOpeningHand', investigator: setup.id } },
       {
         type: 'DrawOpeningHand',
         investigator: setup.id,

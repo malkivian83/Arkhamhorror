@@ -1027,22 +1027,8 @@ registerScenario({
   enemyKeyword: (s, e, keyword) =>
     (keyword === 'hunter' || keyword === ('patrol' as never)) && inProcession(s, e) ? false : null,
   enemyHealthModifier: (_s, e) => e.doom ?? 0,
-  enemyDamageModifier: (s, e) =>
-    e.code === E.vicePresident
-      ? Math.max(0, players(s) - Number(s.scenarioMeta?.chorusVpReduce ?? 0))
-      : e.code === E.armitage && armitageBonus(s, e)
-        ? 1
-        : e.code === E.miriam
-          ? Math.ceil(miriamX(s, e) / 2)
-          : 0,
-  enemyHorrorModifier: (s, e) =>
-    e.code === E.vicePresident
-      ? Math.max(0, players(s) - Number(s.scenarioMeta?.chorusVpReduce ?? 0))
-      : e.code === E.armitage && armitageBonus(s, e)
-        ? 1
-        : e.code === E.miriam
-          ? Math.floor(miriamX(s, e) / 2)
-          : 0,
+  enemyDamageModifier: (s, e) => fallenEliteDamage(s, e),
+  enemyHorrorModifier: (s, e) => fallenEliteHorror(s, e),
   forced: (s, t) => chorusForced(s, t),
   tokenEffect: (s, token, by) => {
     if (token === 'skull') {
@@ -1066,6 +1052,23 @@ registerScenario({
   },
   resolution: (s, outcome) => chorusResolution(s, outcome),
 })
+/** Modificadores de ataque de los Élite de Arkham caído (también en el VI). */
+export const fallenEliteDamage = (s: GameState, e: Enemy) =>
+  e.code === E.vicePresident
+    ? Math.max(0, players(s) - Number(s.scenarioMeta?.chorusVpReduce ?? 0))
+    : e.code === E.armitage && armitageBonus(s, e)
+      ? 1
+      : e.code === E.miriam
+        ? Math.ceil(miriamX(s, e) / 2)
+        : 0
+export const fallenEliteHorror = (s: GameState, e: Enemy) =>
+  e.code === E.vicePresident
+    ? Math.max(0, players(s) - Number(s.scenarioMeta?.chorusVpReduce ?? 0))
+    : e.code === E.armitage && armitageBonus(s, e)
+      ? 1
+      : e.code === E.miriam
+        ? Math.floor(miriamX(s, e) / 2)
+        : 0
 const armitageBonus = (s: GameState, e: Enemy) =>
   !!e.engagedWith && getInvestigator(s, e.engagedWith).hand.length >= 5
 function miriamX(s: GameState, e: Enemy): number {
@@ -1081,6 +1084,76 @@ function miriamX(s: GameState, e: Enemy): number {
   )
 }
 
+/**
+ * Enemigos Élite Infectados de Arkham caído: efectos que dependen del escenario. Los reutiliza
+ * Guerra al atardecer (VI), que baraja dos de ellos en el mazo de encuentros.
+ */
+export function fallenEliteForced(
+  s: GameState,
+  t: Parameters<NonNullable<import('@lcg/engine').ScenarioBehavior['forced']>>[1],
+): Message[] {
+  if (t.type === 'afterPlayCard' && playerCardDef(t.code)?.type === 'event') {
+    const at = getInvestigator(s, t.investigator).location
+    const doyle = Object.values(s.enemies).find((e) => e.code === E.doyle)
+    if (
+      doyle &&
+      at &&
+      (doyle.location === at || s.locations[at]?.connections.includes(doyle.location))
+    )
+      return [
+        { type: 'ReadyEnemy', enemy: doyle.id },
+        ...(doyle.engagedWith
+          ? [
+              {
+                type: 'EnemyAttack' as const,
+                enemy: doyle.id,
+                investigator: doyle.engagedWith,
+                exhaustAfter: false,
+              },
+            ]
+          : []),
+      ]
+  }
+  if (t.type === 'afterSkillTest' && t.succeeded && t.margin >= 2 && t.enemy) {
+    const e = s.enemies[t.enemy]
+    if (e?.code === E.hibbs && (t.kind === 'fight' || t.kind === 'evade'))
+      return [specific('chorus.hibbs', { investigator: t.investigator, enemy: e.id })]
+  }
+  if (t.type === 'afterCardsDrawn') {
+    const at = getInvestigator(s, t.investigator).location
+    const henry = Object.values(s.enemies).find((e) => e.code === E.armitage && e.location === at)
+    if (henry)
+      return [
+        { type: 'EngageEnemy', enemy: henry.id, investigator: t.investigator },
+        { type: 'EnemyAttack', enemy: henry.id, investigator: t.investigator, exhaustAfter: false },
+      ]
+  }
+  if (t.type === 'afterEnemyAttack') {
+    const e = s.enemies[t.enemy]
+    if (e?.code === E.vicePresident)
+      return [{ type: 'SetScenarioMeta', key: 'chorusVpReduce', value: 0 }]
+    if (e?.code === E.ma) {
+      const before = JSON.parse(String(s.scenarioMeta?.chorusMa ?? '[]')) as [string, number][]
+      return before
+        .filter(([id, n]) => s.assets[id] && s.assets[id]!.damage + s.assets[id]!.horror > n)
+        .map(([id]): Message => ({ type: 'RemoveAssetFromGame', asset: id }))
+    }
+  }
+  // La Cosa del agua: como coste adicional, asigna todas las cartas de habilidad elegibles.
+  if (t.type === 'afterSkillTestInitiated' && s.skillTest) {
+    const kind = s.skillTest.kind
+    if ((kind.type === 'fight' || kind.type === 'evade') && s.enemies[kind.enemy]?.code === E.thing)
+      return getInvestigator(s, t.investigator)
+        .hand.filter((c) => playerCardDef(c)?.type === 'skill')
+        .map((code): Message => ({
+          type: 'CommitCard',
+          investigator: t.investigator,
+          code,
+          byEffect: true,
+        }))
+  }
+  return []
+}
 /** Margen actual de la prueba en curso (valor final menos dificultad). */
 const margin = (s: GameState) =>
   s.skillTest
@@ -1120,33 +1193,8 @@ function chorusForced(
     if ((s.scenarioDecks?.[PROCESSION] ?? []).includes(t.enemy.id))
       return [specific('chorus.leave', { enemy: t.enemy.id, code: t.enemy.code })]
   }
-  if (t.type === 'afterPlayCard' && playerCardDef(t.code)?.type === 'event') {
-    const at = getInvestigator(s, t.investigator).location
-    const doyle = Object.values(s.enemies).find((e) => e.code === E.doyle)
-    if (
-      doyle &&
-      at &&
-      (doyle.location === at || s.locations[at]?.connections.includes(doyle.location))
-    )
-      return [
-        { type: 'ReadyEnemy', enemy: doyle.id },
-        ...(doyle.engagedWith
-          ? [
-              {
-                type: 'EnemyAttack' as const,
-                enemy: doyle.id,
-                investigator: doyle.engagedWith,
-                exhaustAfter: false,
-              },
-            ]
-          : []),
-      ]
-  }
-  if (t.type === 'afterSkillTest' && t.succeeded && t.margin >= 2 && t.enemy) {
-    const e = s.enemies[t.enemy]
-    if (e?.code === E.hibbs && (t.kind === 'fight' || t.kind === 'evade'))
-      return [specific('chorus.hibbs', { investigator: t.investigator, enemy: e.id })]
-  }
+  const elite = fallenEliteForced(s, t)
+  if (elite.length) return elite
   if (t.type === 'afterSkillTest' && !t.succeeded && s.skillTest?.kind.type === 'effect') {
     const source = s.skillTest.kind.source
     if (source === K.march)
@@ -1154,15 +1202,6 @@ function chorusForced(
     if (source === K.sacrifice)
       return [specific('chorus.sacrifice', { investigator: t.investigator })]
     if (source === T.bankrupture) return [damage(t.investigator, -t.margin)]
-  }
-  if (t.type === 'afterCardsDrawn') {
-    const at = getInvestigator(s, t.investigator).location
-    const henry = Object.values(s.enemies).find((e) => e.code === E.armitage && e.location === at)
-    if (henry)
-      return [
-        { type: 'EngageEnemy', enemy: henry.id, investigator: t.investigator },
-        { type: 'EnemyAttack', enemy: henry.id, investigator: t.investigator, exhaustAfter: false },
-      ]
   }
   if (t.type === 'afterPlayCard' && playerCardDef(t.code)?.type === 'asset') {
     const goods = Object.values(s.treacheries).find(
@@ -1174,30 +1213,6 @@ function chorusForced(
       .at(-1)
     if (goods && held && fresh && held.id !== fresh.id)
       return [{ type: 'DiscardAsset', asset: held.id }, attachTo(goods.id, fresh.id)]
-  }
-  if (t.type === 'afterEnemyAttack') {
-    const e = s.enemies[t.enemy]
-    if (e?.code === E.vicePresident)
-      return [{ type: 'SetScenarioMeta', key: 'chorusVpReduce', value: 0 }]
-    if (e?.code === E.ma) {
-      const before = JSON.parse(String(s.scenarioMeta?.chorusMa ?? '[]')) as [string, number][]
-      return before
-        .filter(([id, n]) => s.assets[id] && s.assets[id]!.damage + s.assets[id]!.horror > n)
-        .map(([id]): Message => ({ type: 'RemoveAssetFromGame', asset: id }))
-    }
-  }
-  // La Cosa del agua: como coste adicional, asigna todas las cartas de habilidad elegibles.
-  if (t.type === 'afterSkillTestInitiated' && s.skillTest) {
-    const kind = s.skillTest.kind
-    if ((kind.type === 'fight' || kind.type === 'evade') && s.enemies[kind.enemy]?.code === E.thing)
-      return getInvestigator(s, t.investigator)
-        .hand.filter((c) => playerCardDef(c)?.type === 'skill')
-        .map((code): Message => ({
-          type: 'CommitCard',
-          investigator: t.investigator,
-          code,
-          byEffect: true,
-        }))
   }
   if (t.type === 'whenWouldSucceed' && s.skillTest && margin(s) >= 2) {
     const dry = Object.values(s.treacheries).find(

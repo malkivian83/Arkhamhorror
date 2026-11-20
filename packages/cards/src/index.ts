@@ -1,3 +1,6 @@
+import { OPENING_ARCHIVES_RENDERED_CODES } from './opening-archives'
+export { planningCustomizationCost } from './campaign-planning/economy'
+import { CAMPAIGN_PLANNING_RENDERED_CODES } from './campaign-planning'
 /**
  * Definiciones de cartas: datos estáticos (coste, iconos, rasgos, texto EN/ES).
  * El comportamiento de cada carta se añadirá junto a sus datos a medida que se
@@ -372,6 +375,8 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...ENCOUNTER_SEARCH_RENDERED_CODES,
   ...RESEARCH_COMMITMENTS_RENDERED_CODES,
   ...ASSET_CONTAINERS_RENDERED_CODES,
+  ...CAMPAIGN_PLANNING_RENDERED_CODES,
+  ...OPENING_ARCHIVES_RENDERED_CODES,
   ...BONDED_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,

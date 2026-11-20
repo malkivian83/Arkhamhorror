@@ -1,3 +1,13 @@
+import './opening-archives'
+import {
+  upgradeDiscount,
+  afterUpgrade,
+  newCardSurcharge,
+  newCardDiscount,
+  planningCustomizationCost,
+  type PlanningPeriod,
+} from './campaign-planning/economy'
+import './campaign-planning'
 import './direct-effects'
 import './round-effects'
 import './skill-replacement'
@@ -43,7 +53,7 @@ import './lasting-attachments'
 import './damage-reactions'
 import './encounter-draws'
 import './reused-capabilities'
-import { investigatorTraitsAllow, deckSlotsAllow } from './decks'
+import { investigatorTraitsAllow, deckSlotsAllow, extraDeckAllows, isStandard } from './decks'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -173,6 +183,7 @@ import './miguel-de-la-cruz'
 export type DeckKey = keyof typeof STARTER_DECKS
 
 export interface CampaignInvestigator {
+  planning?: PlanningPeriod | undefined
   customizations?: Customizations
   id: InvestigatorId
   /** Mazo actual (sin los apoyos de historia, que se añaden al empezar cada escenario). */
@@ -297,6 +308,13 @@ export function newCampaign(
   const log = emptyCampaignLog(investigators.map((i) => i.id))
   if (openingScenario) log.values.openingScenario = openingScenario
   for (const [n, investigator] of investigators.entries()) {
+    const record = log.investigators[investigator.id]!
+    record.mentalTrauma += investigator.deck.filter((c) => c === '04109').length
+    if (investigator.deck.includes('11095') && definition.standalone)
+      throw new Error('deck.problem.campaignOnly')
+    record.xp +=
+      startingExperience(investigator.deck) -
+      startingExperienceSpent(investigator.deck, investigator.customizations)
     if (!investigator.deck.includes(IN_THE_THICK_OF_IT)) continue
     const source = members[n]!
     const trauma = typeof source === 'string' ? undefined : source.startingTrauma
@@ -309,12 +327,8 @@ export function newCampaign(
       trauma.physical + trauma.mental !== 2
     )
       throw new Error('In the Thick of It requires a choice of two physical and/or mental trauma')
-    const record = log.investigators[investigator.id]!
     record.physicalTrauma += trauma.physical
     record.mentalTrauma += trauma.mental
-    record.xp +=
-      startingExperience(investigator.deck) -
-      startingExperienceSpent(investigator.deck, investigator.customizations)
   }
   // Father Mateo: bonus experience when the campaign begins.
   for (const investigator of investigators)
@@ -489,7 +503,12 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
         ([id]) => !campaign.log.values['boonWeakness:' + id],
       ),
     ),
-    campaignLog: campaign.log,
+    campaignLog: {
+      ...campaign.log,
+      values: Object.fromEntries(
+        Object.entries(campaign.log.values).filter(([key]) => !key.startsWith('peltShipment:')),
+      ),
+    },
     scenario: {
       ...scenario,
       ...(campaign.scenarioIndex === 0 && definition.prologue
@@ -734,6 +753,19 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
       },
     }
   }
+  const experience = [...(game.experience ?? [])]
+  if (game.scenarioMeta?.skipped !== 1)
+    for (const i of campaign.investigators) {
+      if (!i.deck.includes('03308')) continue
+      const record = log.investigators[i.id]
+      const playedBy = game.investigators.find((x) => x.id === i.id)
+      if (!record || !playedBy) continue
+      if (playedBy.eliminated && !playedBy.resigned) record.killed = true
+      else if (!i.deck.includes('11095')) {
+        record.xp += 2
+        experience.push({ investigator: i.id, bonus: 2, victory: 0, amount: 2 })
+      }
+    }
   const xp = Object.fromEntries(
     campaign.investigators.map((i) => [
       i.id,
@@ -744,7 +776,14 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
     ...campaign,
     scenarioIndex: campaign.scenarioIndex + 1,
     investigators: campaign.investigators.map(
-      ({ exiled: _last, dejaVuUsed: _used, owedFills: _owed, myriadCredits: _myriad, ...i }) => {
+      ({
+        exiled: _last,
+        dejaVuUsed: _used,
+        owedFills: _owed,
+        myriadCredits: _myriad,
+        planning: _planning,
+        ...i
+      }) => {
         // RR Exile: exiled copies leave the deck; they must be purchased again (FAQ 1.18).
         const exiled = (game.exiled ?? []).filter((e) => e.investigator === i.id).map((e) => e.code)
         const deck = i.deck.filter((code) => !log.removedCards?.includes(code))
@@ -752,6 +791,19 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
         return {
           ...i,
           deck,
+          ...(deck.includes('04109') ||
+          deck.includes('08059') ||
+          deck.includes('02110') ||
+          Number(game.campaignLog?.values['peltShipment:' + i.id] ?? 0) > 0
+            ? {
+                planning: {
+                  arcane: deck.filter((c) => c === '04109').length,
+                  rabbit: deck.includes('08059'),
+                  upgrades: 0,
+                  pelt: Number(game.campaignLog?.values['peltShipment:' + i.id] ?? 0),
+                },
+              }
+            : {}),
           ...(i.customizations
             ? { customizations: retainedCustomizations(deck, i.customizations) }
             : {}),
@@ -767,7 +819,7 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
         outcome: game.outcome,
         ...(game.scenarioMeta?.skipped === 1 ? { skipped: true } : {}),
         xp,
-        ...(game.experience ? { experience: game.experience } : {}),
+        ...(experience.length ? { experience } : {}),
         ...(typeof game.scenarioMeta?.score === 'number' ? { score: game.scenarioMeta.score } : {}),
       },
     ],
@@ -784,7 +836,7 @@ export const DECK_SIZE = 30
 /** Tamaño del mazo de un investigador (más lo que añaden sus cartas, como Collector). */
 export const deckSizeOf = (investigator: InvestigatorId, deck: CardCode[] = []) =>
   (byCode(investigator)?.deckSize ?? DECK_SIZE) +
-  [...new Set(deck)].reduce((n, code) => n + (playerCardDef(code)?.deckSizeBonus ?? 0), 0)
+  deck.reduce((n, code) => n + (playerCardDef(code)?.deckSizeBonus ?? 0), 0)
 
 /** Cartas exclusivas (y debilidades exclusivas) de cualquier investigador. */
 const SIGNATURES = new Set(allPlayerCardDefs().flatMap((c) => c.signatures ?? []))
@@ -850,6 +902,7 @@ export interface PurchaseOption {
   /** Hace falta quitar otra carta para no pasar del tamaño del mazo. */
   needsRemoval: boolean
   implemented: boolean
+  exchange?: boolean
 }
 
 function member(campaign: Campaign, investigator: InvestigatorId): CampaignInvestigator {
@@ -863,13 +916,19 @@ export function purchaseOptions(
   campaign: Campaign,
   investigator: InvestigatorId,
 ): PurchaseOption[] {
-  if (campaignScenarios(campaign)[campaign.scenarioIndex - 1]?.allowDeckChangesAfter === false)
-    return []
+  const blocked =
+    campaignScenarios(campaign)[campaign.scenarioIndex - 1]?.allowDeckChangesAfter === false
   const { deck } = member(campaign, investigator)
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
   const options = byCode(investigator)?.deckOptions ?? []
   const full = deckSize(deck) >= deckSizeOf(investigator, deck)
   const self = member(campaign, investigator)
+  const offClassLimit = byCode(investigator)?.offClassLevelZeroLimit
+  const outsideCount = deck.filter((c) => {
+    const d = byCode(c)
+    return d && isStandard(c) && !d.reward && !options.some((o) => deckOptionAllows(o, d))
+  }).length
+  const extraCapacity = deck.reduce((n, c) => n + (byCode(c)?.extraDeckOption?.count ?? 0), 0)
   // FAQ 1.18: below the deck size after cards were removed, level 0 cards cost 0 experience.
   const short = freeFillSlots(self) > 0
   const excluded = byCode(investigator)?.excludedDeckTraits ?? []
@@ -886,6 +945,7 @@ export function purchaseOptions(
         !campaign.log.removedCards?.includes(card.code) &&
         ![IN_THE_THICK_OF_IT, '08071', '08019'].includes(card.code) &&
         isImplemented(card.code) &&
+        !playerCardBehavior(card.code)?.purchaseAtCreation &&
         investigatorTraitsAllow(investigator, card) &&
         deckSlotsAllow(deck, card) &&
         !isSignature(card.code) &&
@@ -893,7 +953,8 @@ export function purchaseOptions(
         (!playerCardBehavior(card.code)?.requiredResearch ||
           campaign.log.notes.includes(playerCardBehavior(card.code)!.requiredResearch!)) &&
         (options.some((o) => deckOptionAllows(o, card)) ||
-          offClassAllowed(byCode(investigator)!, card)),
+          offClassAllowed(byCode(investigator)!, card) ||
+          extraDeckAllows(deck, card)),
     )
     .flatMap((card): PurchaseOption[] => {
       const base = {
@@ -926,13 +987,17 @@ export function purchaseOptions(
         (byCode(code)?.exceptional ? 2 : 1)
       const upgrade: PurchaseOption[] = lower.map((replaces) => ({
         ...base,
-        cost: myriadCreditSource(self, card.code) ? 0 : price(card.code) - price(replaces),
+        cost: myriadCreditSource(self, card.code)
+          ? 0
+          : Math.max(0, price(card.code) - price(replaces) - upgradeDiscount(self, replaces)),
         replaces,
         needsRemoval: false,
       }))
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
-        !playerCardBehavior(card.code)?.requiredResearch && copies.length < (card.deckLimit ?? 2)
+        !playerCardBehavior(card.code)?.requiredResearch &&
+        copies.length <
+          (deck.includes('08046') && !isPermanent(card.code) ? 1 : (card.deckLimit ?? 2))
           ? [
               {
                 ...base,
@@ -940,12 +1005,35 @@ export function purchaseOptions(
                   myriadCreditSource(self, card.code) ||
                   (short && base.level === 0 && !isPermanent(card.code))
                     ? 0
-                    : Math.max(0, Math.max(1, price(card.code)) - dejaVu(self, deck, card.code)),
-                needsRemoval: full && !isPermanent(card.code),
+                    : Math.max(
+                        0,
+                        Math.max(
+                          1,
+                          price(card.code) + newCardSurcharge(self) - newCardDiscount(self),
+                        ) - dejaVu(self, deck, card.code),
+                      ),
+                needsRemoval:
+                  (full && !isPermanent(card.code)) ||
+                  (offClassLimit !== undefined &&
+                    !options.some((o) => deckOptionAllows(o, card)) &&
+                    outsideCount >=
+                      offClassLimit + (extraDeckAllows(deck, card) ? extraCapacity : 0)),
               },
             ]
           : []
-      return [...upgrade, ...add].filter((o) => o.cost <= xp)
+      const exchanges: PurchaseOption[] =
+        campaign.results.length > 0 &&
+        deck.includes('02110') &&
+        (self.planning?.swaps ?? 0) < 2 * deck.filter((c) => c === '02110').length &&
+        base.level === 0 &&
+        !isPermanent(card.code) &&
+        copies.length < (deck.includes('08046') ? 1 : (card.deckLimit ?? 2)) &&
+        removableCards(campaign, investigator).some(
+          (c) => (byCode(c)?.xp ?? 0) === 0 && c !== card.code,
+        )
+          ? [{ ...base, cost: 0, needsRemoval: true, exchange: true }]
+          : []
+      return [...(blocked ? [] : [...upgrade, ...add]), ...exchanges].filter((o) => o.cost <= xp)
     })
 }
 
@@ -1005,7 +1093,7 @@ export function purchase(
     .filter(
       (o) =>
         o.code === card &&
-        !!o.replaces === !!options.upgrade &&
+        !!(o.replaces || o.exchange) === !!options.upgrade &&
         (!options.replaces || o.replaces === options.replaces),
     )
     .sort((a, b) => a.cost - b.cost)
@@ -1015,21 +1103,19 @@ export function purchase(
   if (option.needsRemoval && (!out || !removableCards(campaign, investigator).includes(out))) {
     throw new Error('Hay que quitar una carta para no pasar del tamaño del mazo')
   }
+  if (option.exchange && (!out || (byCode(out)?.xp ?? 0) !== 0 || !countsForSize(out)))
+    throw new Error('deck.problem.levelZeroSwap')
   const deck = [...member(campaign, investigator).deck]
   if (out) deck.splice(deck.indexOf(out), 1)
   deck.push(card)
   const offClassLimit = byCode(investigator)?.offClassLevelZeroLimit
   if (
     offClassLimit !== undefined &&
-    deck.filter((c) => {
-      const d = byCode(c)
-      return (
-        d &&
-        countsForSize(c) &&
-        !d.reward &&
-        !byCode(investigator)!.deckOptions!.some((o) => deckOptionAllows(o, d))
-      )
-    }).length > offClassLimit
+    validateDeck(
+      { id: investigator, name: investigator, investigator, cards: deck },
+      false,
+      campaign.log.rewards ?? [],
+    ).problems.some((p) => p.key === 'deck.problem.offClassLimit')
   )
     throw new Error(`Máximo ${offClassLimit} cartas de otras clases`)
   const record = campaign.log.investigators[investigator]
@@ -1064,7 +1150,8 @@ export function purchase(
     ),
   )
   // Déjà Vu: the discounted repurchase uses up one exiled copy.
-  const discounted = !option.replaces && !freeFill && dejaVu(self, self.deck, card) > 0
+  const discounted =
+    !option.exchange && !option.replaces && !freeFill && dejaVu(self, self.deck, card) > 0
   const exiled = [...(self.exiled ?? [])]
   if (discounted) exiled.splice(exiled.indexOf(card), 1)
   const myriadSource = myriadCreditSource(self, card)
@@ -1076,9 +1163,19 @@ export function purchase(
       return {
         ...rest,
         deck,
+        planning: option.exchange
+          ? {
+              ...(self.planning ?? { arcane: 0, rabbit: false, upgrades: 0 }),
+              swaps: (self.planning?.swaps ?? 0) + 1,
+            }
+          : option.replaces
+            ? afterUpgrade(self, option.replaces)
+            : self.planning
+              ? { ...self.planning, peltUsed: true }
+              : undefined,
         ...(customizations ? { customizations } : {}),
         ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
-        ...(byCode(card)?.myriad
+        ...(byCode(card)?.myriad && !option.exchange
           ? {
               myriadCredits: {
                 ...i.myriadCredits,
@@ -1093,7 +1190,15 @@ export function purchase(
       ...campaign.log,
       investigators: {
         ...campaign.log.investigators,
-        [investigator]: { ...record, xp: record.xp - option.cost },
+        [investigator]: {
+          ...record,
+          xp: record.xp - option.cost,
+          mentalTrauma: record.mentalTrauma + (card === '04109' ? 1 : 0),
+          ...(card === '04109' &&
+          record.mentalTrauma + 1 >= (byCode(investigator)?.sanity ?? Infinity)
+            ? { insane: true }
+            : {}),
+        },
       },
     },
   }
@@ -1139,7 +1244,14 @@ export function customize(
   const copies = options.copies ?? (self.deck.includes(code) ? 0 : 1)
   if (!Number.isInteger(copies) || copies < 0 || copies > 2)
     throw new Error('customization.invalid')
-  const cost = customizationPurchaseCost(previous, sheet, copies)
+  const wasOwned = self.deck.includes(code)
+  const cost = planningCustomizationCost(
+    customizationPurchaseCost(previous, sheet, copies),
+    self,
+    code,
+    copies,
+    Math.ceil(customizationCost(sheet) / 2),
+  )
   if (customizationCost(sheet) <= customizationCost(previous) || cost > record.xp)
     throw new Error('customization.experience')
   const deck = [...self.deck]
@@ -1166,7 +1278,20 @@ export function customize(
   return {
     ...campaign,
     investigators: campaign.investigators.map((i) =>
-      i.id === investigator ? { ...i, deck, customizations } : i,
+      i.id === investigator
+        ? {
+            ...i,
+            deck,
+            customizations,
+            planning: wasOwned
+              ? self.planning
+                ? { ...afterUpgrade(self, code, true)!, ...(copies > 1 ? { peltUsed: true } : {}) }
+                : undefined
+              : self.planning
+                ? { ...self.planning, peltUsed: true }
+                : undefined,
+          }
+        : i,
     ),
     log: {
       ...campaign.log,
