@@ -1,6 +1,7 @@
+import { assetTraits } from './asset-upgrades'
 // RR: Additional Actions, Action Designators, Basic Actions, Aloof.
 import { actionKinds, abilityActionKinds, availableActions, availableAbilities } from './actions'
-import { playerCardBehavior, playerCardDef } from './content'
+import { playerCardBehavior } from './content'
 import type { GameState, ImmediateActionRule, Action, AbilityOption } from './types'
 const matches = (kinds: string[], rule?: ImmediateActionRule) =>
   !rule?.types || kinds.some((k) => rule.types!.includes(k))
@@ -31,8 +32,7 @@ export function filterImmediateAbilities(
       matches(kinds, rule) &&
       (!rule?.basic || kinds.length === 1) &&
       (!rule?.asset || asset?.id === rule.asset) &&
-      (!rule?.traits ||
-        (asset && playerCardDef(asset.code)?.traits.some((t) => rule.traits!.includes(t))))
+      (!rule?.traits || (asset && assetTraits(asset).some((t) => rule.traits!.includes(t))))
     )
   })
 }

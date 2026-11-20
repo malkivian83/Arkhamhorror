@@ -207,7 +207,14 @@ function minimumPlayCost(
   const i = getInvestigator(state, id)
   const zones: ('hand' | 'discard')[] = from
     ? [from]
-    : i.hand.includes(code) && !behavior?.onlyFromDiscard
+    : (i.hand.includes(code) ||
+          Object.values(state.assets).some(
+            (a) =>
+              a.owner === id &&
+              assetBehavior(state, a)?.playsStoredCards &&
+              a.storedCards?.some((c) => c.code === code),
+          )) &&
+        !behavior?.onlyFromDiscard
       ? ['hand']
       : ['discard']
   const topEvent = i.discard.findLast((c) => playerCardDef(c)?.type === 'event')

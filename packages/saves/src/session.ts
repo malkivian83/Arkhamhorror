@@ -190,6 +190,27 @@ function game(value: unknown): asserts value is GameState {
       !integer(a.uses)
     )
       fail()
+    if (
+      a.storedCards !== undefined &&
+      (!Array.isArray(a.storedCards) ||
+        !a.storedCards.every(
+          (c) =>
+            object(c) &&
+            typeof c.code === 'string' &&
+            !!playerCardDef(c.code) &&
+            ids.has(String(c.owner)),
+        ))
+    )
+      fail()
+    if (a.attachedTo !== undefined && typeof a.attachedTo !== 'string') fail()
+    const seen = new Set([id])
+    let parent: unknown = a.attachedTo
+    while (typeof parent === 'string') {
+      if (seen.has(parent)) fail()
+      seen.add(parent)
+      const host = (value.assets as Record<string, unknown>)[parent]
+      parent = object(host) ? host.attachedTo : undefined
+    }
   }
   if (
     !Array.isArray(value.queue) ||

@@ -4,7 +4,7 @@ import { ask, continuation } from '../dunwich-pilot/effects'
 const filled = (s: GameState, by: string) =>
   Object.values(s.assets)
     .filter((a) => a.owner === by && !a.noSlot)
-    .flatMap(assetSlots)
+    .flatMap((a) => assetSlots(a, s))
     .filter((slot) => slot === 'arcane').length
 registerPlayerCard({
   code: '08061',

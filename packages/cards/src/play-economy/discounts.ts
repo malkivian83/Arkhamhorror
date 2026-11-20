@@ -20,7 +20,7 @@ const illicit = (c: string) => playerCardDef(c)?.traits.includes('Illicit') ?? f
 const exhaust = (a: Asset): Message => ({ type: 'ExhaustAsset', asset: a.id })
 const allyInPlay = (s: GameState, a: Asset) =>
   Object.values(s.assets).some(
-    (other) => other.owner === a.owner && !other.noSlot && assetSlots(other).includes('ally'),
+    (other) => other.owner === a.owner && !other.noSlot && assetSlots(other, s).includes('ally'),
   )
 export function registerDiscount(code: string): boolean {
   if (code === '60470') {

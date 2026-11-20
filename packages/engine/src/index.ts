@@ -74,6 +74,7 @@ export {
 } from './expedition'
 export {
   assetSlots,
+  assetTraits,
   assetVitals,
   attachedAttackDamageBonus,
   attachedAttackSkillBonus,
@@ -105,6 +106,7 @@ export {
   canEnter,
   cardCost,
   commitBlocked,
+  fastAbilitiesBlocked,
   investigationBlocked,
   leavingBlocked,
   moveBlocked,

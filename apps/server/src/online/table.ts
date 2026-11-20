@@ -250,8 +250,17 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'noSlot',
         'clues',
       ]),
+      ...(a.attachedTo ? { attachedTo: a.attachedTo } : {}),
+      ...(a.storedCards
+        ? {
+            storedCards: a.storedCards.map((c) => ({
+              owner: c.owner,
+              code: a.owner === mine ? c.code : '',
+            })),
+          }
+        : {}),
       ...(a.upgrades
-        ? { upgrades: a.upgrades.map((u) => pick(u, ['code', 'owner', 'exhausted'])) }
+        ? { upgrades: a.upgrades.map((u) => pick(u, ['code', 'owner', 'exhausted', 'uses'])) }
         : {}),
     })),
     placedAssets: entities(g.placedAssets ?? {}, (a) => ({

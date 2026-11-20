@@ -6,6 +6,7 @@
  * el comportamiento vive en código registrado aquí, de modo que el estado sigue
  * siendo JSON y una partida se reconstruye con el mismo contenido cargado.
  */
+import { assetTraits } from './asset-upgrades'
 import type {
   AbilityOption,
   Act,
@@ -661,6 +662,30 @@ export interface PlayerCardBehavior {
   movementConnections?: (state: GameState, self: LocationAttachment) => LocationId[]
   /** Printed activated abilities usable while this card is in hand. */
   handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
+  playsStoredCards?: boolean
+  storedLimit?: number
+  discardWhenStoredEmpty?: boolean
+  attachmentLimit?: number
+  attachmentSlots?: 'all' | 'hand'
+  blanksAttachedAsset?: boolean
+  attachedDoomDiscount?: number
+  observesAssetDiscards?: boolean
+  attachedExtraSlots?: SlotType[]
+  attachedTraits?: string[]
+  attachedTestOptions?: (
+    state: GameState,
+    host: Asset,
+    index: number,
+    test: SkillTest,
+  ) => ReactionOption[]
+  attachedReactions?: (
+    state: GameState,
+    trigger: Trigger,
+    host: Asset,
+    index: number,
+  ) => ReactionOption[]
+  /** Research card seen in a search of its controller's own deck (once per search). */
+  researchEffect?: (state: GameState, investigator: InvestigatorId) => Message[]
   /** Printed permission to commit this card from its owner's discard pile. */
   commitFromDiscard?: boolean
   /** Its printed restriction applies only to readying in upkeep. */
@@ -1061,6 +1086,8 @@ export interface PlayerCardBehavior {
   ignoresOpportunityAttacks?: (state: GameState, self: Asset, enemy: Enemy) => boolean
   /** Test options also usable during another investigator's test at this location. */
   helpsOtherTests?: boolean
+  /** Its printed range also includes connecting locations (Bestow Resolve). */
+  helpsConnectingTests?: boolean
   /** Subscribe to action-ability completion without changing other games' queued messages. */
   observesActionAbilities?: boolean
   /** Observe the types of consecutive completed actions (Haste). */
@@ -1186,14 +1213,16 @@ export function assetOwnerVitals(
 }
 
 export function assetBehavior(state: GameState, asset: Asset): PlayerCardBehavior | undefined {
-  const traits = playerCardDef(asset.code)?.traits ?? []
+  const traits = assetTraits(asset)
   const blank = Object.values(state.treacheries).some(
     (t) =>
       t.placement.type === 'threatArea' &&
       t.placement.investigator === asset.owner &&
       traits.includes(activeTreacheryBehavior(state, t)?.blanksAssetTrait ?? '\u0000'),
   )
-  const behavior = blank ? undefined : playerCardBehavior(asset.code)
+  const parent = asset.attachedTo ? state.assets[asset.attachedTo] : undefined
+  const parentBlank = parent && assetBehavior(state, parent)?.blanksAttachedAsset
+  const behavior = blank || parentBlank ? undefined : playerCardBehavior(asset.code)
   if (!behavior || !playerCardDef(asset.code)?.uses) return behavior
   const lent = usesLenders(state, asset).reduce((n, l) => n + l.uses, 0)
   if (!lent) return behavior

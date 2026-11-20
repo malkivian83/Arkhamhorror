@@ -644,6 +644,10 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  /** Physical face-down cards, out of play; their owners survive host/control changes. */
+  storedCards?: { code: CardCode; owner: InvestigatorId }[]
+  /** Face-up attachment: this asset remains in play and under its controller's control. */
+  attachedTo?: AssetId
   /** Serializable choices that belong to this physical player card instance. */
   abilityState?: Record<string, string | number | boolean>
   /** Identity in the expedition log, independent of the card's printed version. */
@@ -654,7 +658,7 @@ export interface Asset {
   /** Printed upgrades retain their owner's sheet when control changes. */
   customization?: Record<string, number>
   /** Player events attached to this instance; owner is retained on control changes. */
-  upgrades?: { code: CardCode; owner: InvestigatorId; exhausted?: boolean }[]
+  upgrades?: { code: CardCode; owner: InvestigatorId; exhausted?: boolean; uses?: number }[]
   /** Skill bonus for the next fight using this asset this turn (Iron Sights). */
   nextFightBonus?: number
   originalOwner?: InvestigatorId
@@ -796,6 +800,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** Per-test limits belong to this test, even if the granting asset becomes blank. */
+  usedAbilities?: string[]
   symbolsAsZero?: boolean
   virtualToken?: ChaosToken
   earlyReveal?: boolean
@@ -853,6 +859,13 @@ export interface SkillTest {
     toDeckBottom?: boolean
     returnToHand?: boolean
     putIntoPlay?: boolean
+    /** Practice Makes Perfect: this exact commitment returns after a successful test. */
+    returnAfterSuccess?: boolean
+    /** Surprising Find: its Research ability supplied this exact copy. */
+    research?: boolean
+    /** Copycat: owner of a card committed by another investigator. */
+    owner?: InvestigatorId
+    wildIcons?: boolean
   }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
@@ -1265,6 +1278,7 @@ type MessageBody =
       round: number
     }
   | { type: 'CommitWindow' }
+  | { type: 'MarkTestAbility'; key: string }
   | {
       type: 'CommitCard'
       /** Isabelle: shuffle the committed card into its owner's deck after the test. */
@@ -1275,6 +1289,13 @@ type MessageBody =
       /** Explicit card-effect permission may exceed the ordinary helper allowance. */
       byEffect?: boolean
       toDeckBottom?: boolean
+      returnAfterSuccess?: boolean
+      fromAsset?: AssetId
+      fromStored?: { asset: AssetId; index: number }
+      research?: boolean
+      fromInvestigator?: InvestigatorId
+      wildIcons?: boolean
+      allowConnecting?: boolean
     }
   | { type: 'DiscardTopAndCommit'; investigator: InvestigatorId }
   | {
@@ -1296,6 +1317,7 @@ type MessageBody =
    */
   | {
       type: 'PlayCard'
+      fromStored?: { asset: AssetId; index: number }
       modifiersResolved?: boolean
       consideredModifiers?: AssetId[]
       asFast?: boolean
@@ -1345,6 +1367,7 @@ type MessageBody =
     }
   | {
       type: 'PutAssetIntoPlay'
+      attachedTo?: AssetId
       investigator: InvestigatorId
       code: CardCode
       originalOwner?: InvestigatorId
@@ -2000,6 +2023,7 @@ type MessageBody =
   | { type: 'Forced'; trigger: Trigger }
   | {
       type: 'UseAbility'
+      baseSkill?: number
       /** Original action symbols when a card resolves the ability without taking an action. */
       printedActions?: number
       actionKind?: ActionName
@@ -2190,7 +2214,7 @@ type MessageBody =
       amount: number
       checkAgenda?: boolean
     }
-  | { type: 'BeginAssetAbility'; asset: AssetId; actions?: number }
+  | { type: 'BeginAssetAbility'; asset: AssetId; actions?: number; baseSkill?: number }
   | { type: 'EndAssetAbility'; asset: AssetId }
   | {
       type: 'AttachEventToAsset'
@@ -2260,6 +2284,8 @@ type MessageBody =
    */
   | {
       type: 'SearchDeck'
+      /** Fixed cards seen by this search, after its Research window. */
+      searched?: CardCode[]
       investigator: InvestigatorId
       title?: string
       /** Restrict a trait search to a printed card type (Establish Motive). */
@@ -2285,6 +2311,7 @@ type MessageBody =
     }
   | {
       type: 'TakeFromDeck'
+      attachedTo?: AssetId
       fromBottom?: boolean
       investigator: InvestigatorId
       code: CardCode
@@ -2292,6 +2319,36 @@ type MessageBody =
       drawFound?: boolean
       discount?: number
     }
+  /** Open one shared Research window, preserving the original searched group. */
+  | {
+      type: 'BeginDeckSearch'
+      investigator: InvestigatorId
+      top?: number
+      cards?: CardCode[]
+      then: Extract<Message, { type: 'SearchDeck' | 'PlayerCardEffect' }>
+    }
+  | { type: 'DiscardFromDeck'; investigator: InvestigatorId; code: CardCode }
+  | {
+      type: 'StorePlayerCard'
+      asset: AssetId
+      investigator: InvestigatorId
+      code: CardCode
+      from: 'hand' | 'deck' | 'discard'
+    }
+  | {
+      type: 'TakeStoredCard'
+      asset: AssetId
+      index: number
+      investigator: InvestigatorId
+      draw?: boolean
+    }
+  | { type: 'CheckStoredAsset'; asset: AssetId }
+  | { type: 'DrawStoredCards'; asset: AssetId }
+  | { type: 'AttachControlledAsset'; asset: AssetId; host: AssetId; swap?: AssetId }
+  | { type: 'DetachControlledAsset'; asset: AssetId }
+  | { type: 'SpendUpgradeUses'; asset: AssetId; index: number; amount: number }
+  /** Draw a chosen group atomically; resolve revelations after returning the searched deck. */
+  | { type: 'DrawSearchedCards'; investigator: InvestigatorId; cards: CardCode[] }
   | { type: 'ShuffleDeck'; investigator: InvestigatorId }
   /** Shuffle the resolving event only if its provisional copy is still present. */
   | {
@@ -2310,6 +2367,7 @@ type MessageBody =
     }
   | {
       type: 'MoveInspectedCard'
+      drawer?: InvestigatorId
       /** Draw the selected revealed card rather than merely adding it to hand. */
       drawFound?: boolean
       investigator?: InvestigatorId
@@ -2609,7 +2667,13 @@ export type Trigger =
   /** Se ha jugado una carta (pagado su coste), de cualquier tipo (Acordes tortuosos). */
   | { type: 'afterPlayCard'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterEventPlayed'; investigator: InvestigatorId; code: CardCode }
-  | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
+  | {
+      type: 'afterActionAbility'
+      investigator: InvestigatorId
+      code: CardCode
+      asset?: AssetId
+      effects?: Message[]
+    }
   | {
       type: 'afterCompletedAction'
       investigator: InvestigatorId
@@ -2617,6 +2681,7 @@ export type Trigger =
       previous: string[]
     }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
+  | { type: 'afterAssetDiscarded'; asset: Asset }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
   | { type: 'afterHandDiscard'; investigator: InvestigatorId; cards: CardCode[] }
   /** The last card left the investigator's deck, before any later reshuffle. */
@@ -3044,7 +3109,7 @@ export interface GameState {
   assets: Record<AssetId, Asset>
   /** Nested triggered abilities currently resolving, outermost first. */
   resolvingAssets?: AssetId[]
-  resolvingAssetActions?: { asset: AssetId; actions: number }[]
+  resolvingAssetActions?: { asset: AssetId; actions: number; baseSkill?: number }[]
   /** Apoyos sin dueño (Invitados en localizaciones, reliquias vinculadas a enemigos). */
   placedAssets?: Record<PlacedAssetId, PlacedAsset>
   /** Player events attached to locations, by attachment id. */

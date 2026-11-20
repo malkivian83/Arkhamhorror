@@ -146,7 +146,7 @@ export function registerEvents(code: string): boolean {
       play: (s, by) => {
         const filled = Object.values(s.assets)
           .filter((a) => a.owner === by)
-          .reduce((n, a) => n + assetSlots(a).filter((slot) => slot === 'arcane').length, 0)
+          .reduce((n, a) => n + assetSlots(a, s).filter((slot) => slot === 'arcane').length, 0)
         return [
           {
             type: 'DrawCards',

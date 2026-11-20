@@ -12,7 +12,7 @@ registerPlayerCard({
         (a) =>
           a.owner === self.owner && !a.noSlot && playerCardDef(a.code)?.traits.includes('Weapon'),
       )
-      .flatMap(assetSlots)
+      .flatMap((a) => assetSlots(a, s))
       .filter((slot) => slot === 'hand').length >= 2
       ? 1
       : 0,
