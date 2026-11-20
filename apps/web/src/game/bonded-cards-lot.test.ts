@@ -26,8 +26,11 @@ const errata = (code: string, text: string) =>
       )
     : text
 
-const campaignFor = (code: string) => {
-  const buyer = investigatorCards().find((i) => cardPool(i.code).some((c) => c.code === code))!
+const campaignFor = (code: string, ...upgrades: string[]) => {
+  const buyer = investigatorCards().find((i) => {
+    const pool = cardPool(i.code)
+    return [code, ...upgrades].every((required) => pool.some((c) => c.code === required))
+  })!
   const cards = [
     ...(buyer.signatures ?? []),
     ...cardPool(buyer.code)
@@ -82,7 +85,7 @@ it.each(
 })
 
 it('bonded cards are never offered and the Researched diaries need the interpreted dreams', () => {
-  let campaign = campaignFor('06112')
+  let campaign = campaignFor('06112', '06236', '06237', '06238')
   const id = campaign.investigators[0]!.id
   const shop = () => purchaseOptions(campaign, id).map((o) => o.code)
   for (const c of bonded.filter((c) => 'bondedCard' in c)) expect(shop()).not.toContain(c.code)

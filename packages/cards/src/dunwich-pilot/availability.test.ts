@@ -66,11 +66,11 @@ describe('pilot availability and lossless deck import', () => {
   })
   it('also preserves a future investigator without pretending the deck is playable', () => {
     const { deck, unknown } = deckFromArkhamDb(
-      { name: 'Future', investigator_code: '01001', slots: { '99999': 2 } },
+      { name: 'Future', investigator_code: '99998', slots: { '99999': 2 } },
       'id',
     )
-    expect(deck).toMatchObject({ investigator: '01001', cards: ['99999', '99999'] })
-    expect(unknown).toEqual(['01001', '99999'])
+    expect(deck).toMatchObject({ investigator: '99998', cards: ['99999', '99999'] })
+    expect(unknown).toEqual(['99998', '99999'])
     expect(validateDeck(deck).problems).toContainEqual({ key: 'deck.problem.unknownInvestigator' })
   })
   it.each([-1, 0.5, Infinity, 1001])('rejects invalid quantities: %s', (count) => {

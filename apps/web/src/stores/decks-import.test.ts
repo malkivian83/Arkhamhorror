@@ -38,12 +38,12 @@ describe('ArkhamDB deck persistence', () => {
       'fetch',
       vi.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ name: 'Future', investigator_code: '01001', slots: { '02019': 2 } }),
+        json: async () => ({ name: 'Future', investigator_code: '99998', slots: { '02019': 2 } }),
       }),
     )
     const store = useDecksStore()
     expect((await store.importFromArkhamDb('123')).ok).toBe(true)
-    expect(store.decks[0]!.investigator).toBe('01001')
+    expect(store.decks[0]!.investigator).toBe('99998')
     expect(store.check(store.decks[0]!).problems).toEqual([
       { key: 'deck.problem.unknownInvestigator' },
     ])

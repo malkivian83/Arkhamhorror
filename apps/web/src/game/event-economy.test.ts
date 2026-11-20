@@ -19,7 +19,11 @@ it.each(data)(
   (card) => {
     expect(allPlayerCardDefs().filter((c) => c.code === card.code)).toHaveLength(1)
     const behavior = playerCardBehavior(card.code)!,
-      buyer = investigatorCards().find((i) => cardPool(i.code).some((c) => c.code === card.code))!
+      buyer = investigatorCards().find(
+        (i) =>
+          i.offClassLevelZeroLimit === undefined &&
+          cardPool(i.code).some((c) => c.code === card.code),
+      )!
     expect(behavior).toBeDefined()
     expect(buyer).toBeDefined()
     const cards = [

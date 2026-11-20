@@ -6290,7 +6290,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       if (test.noTokens && !message.pending && message.token === undefined) return state
       // A second Frost token: no further token is revealed during this test.
-      if (test.stopRevealing && !message.pending && message.token === undefined) return state
+      if (test.stopRevealing && !message.pending) return state
       // The token held during its "when revealed" window resolves now, unless a
       // reaction canceled it (Wendy Adams) or changed what it is treated as (Father Mateo).
       if (message.pending) {

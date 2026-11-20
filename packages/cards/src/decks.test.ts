@@ -155,9 +155,9 @@ describe('mazos: ArkhamDB', () => {
     )
     expect(deck.cards.toSorted()).toEqual([code(20), code(20), '01016', '99999'].toSorted())
     expect(unknown).toEqual(['99999'])
-    const other = deckFromArkhamDb({ name: 'Roland', investigator_code: '01001', slots: {} }, 'id')
-    expect(other.deck.investigator).toBe('01001')
-    expect(other.unknown).toEqual(['01001'])
+    const other = deckFromArkhamDb({ name: 'Future', investigator_code: '99998', slots: {} }, 'id')
+    expect(other.deck.investigator).toBe('99998')
+    expect(other.unknown).toEqual(['99998'])
   })
 })
 
