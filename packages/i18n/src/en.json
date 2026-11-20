@@ -292,6 +292,11 @@
         "title": "Original core investigators",
         "cards": "Roland, Daisy, Skids and Agnes with signatures, weaknesses and four official FFG starter decks.",
         "rules": "Reviewed additional actions, moved horror, ability limits and round-long attack protection."
+      },
+      "dunwichInvestigators": {
+        "title": "Zoey Samaras and Jim Culver",
+        "cards": "Two investigators, four signatures/weaknesses and selectable official FFG starter decks.",
+        "rules": "Reviewed engagement windows, skull tokens, healing and enemy spawning."
       }
     }
   },
@@ -1913,7 +1918,9 @@
     "originalAgnes": "Deal 1 damage after horror is placed on Agnes",
     "originalCoverUp": "Discard {n} clues from Cover Up instead of discovering clues",
     "originalNecronomicon": "Move 1 horror from The Necronomicon to Daisy",
-    "originalHospitalDebts": "Move 1 resource to Hospital Debts"
+    "originalHospitalDebts": "Move 1 resource to Hospital Debts",
+    "zoeyEngage": "Gain 1 resource after becoming engaged with an enemy",
+    "jimSkull": "Treat this elder sign as a skull"
   },
   "log": {
     "archiveReveal": "Market deck reveals: {card}",
@@ -3763,6 +3770,10 @@
   },
   "offlineCard": {
     "subnames": {
+      "02012": "The Dead Listen",
+      "02006": "Symbol of Righteousness",
+      "02004": "The Musician",
+      "02001": "The Chef",
       "11073": "Artifact of the Dark God",
       "11048": "Signs of Revelation",
       "11047": "Signs of Aberration",
@@ -3955,6 +3966,12 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "02013": "Endtimes.",
+      "02012": "Item. Instrument. Relic.",
+      "02007": "Task.",
+      "02006": "Item. Charm.",
+      "02004": "Performer.",
+      "02001": "Believer. Hunter.",
       "11073": "Item. Relic. Cursed.",
       "07268": "Item. Instrument. Relic. Cursed.",
       "11060": "Ritual.",
@@ -4980,6 +4997,12 @@
       "01013": "Spell."
     },
     "summary": {
+      "02013": "<b>Revelation</b> - Reveal 5 chaos tokens from the chaos bag. For each [skull] and [auto_fail] token revealed, take 1 damage and 1 horror.",
+      "02012": "Jim Culver deck only.\n[reaction] When a [skull] token is revealed during a skill test, exhaust Jim's Trumpet: Heal 1 horror from an investigator at your location or a connecting location.",
+      "02007": "<b>Revelation</b> - Discard cards from the top of the encounter deck until an enemy is discarded. Attach Smite the Wicked to that enemy and spawn it at the location farthest from you.\n<b>Forced</b> - When the game ends, if attached enemy is in play: Zoey Samaras suffers 1 mental trauma.",
+      "02006": "Zoey Samaras deck only.\n[reaction] After an enemy becomes engaged with you, exhaust Zoey's Cross and spend 1 resource: Deal 1 damage to that enemy.",
+      "02004": "Treat the modifier on [skull] tokens you reveal as \"0.\"\nAnytime you reveal a [elder_sign] token, you may choose to instead treat it as a [skull] token.\n[elder_sign] effect: +1.",
+      "02001": "[reaction] After you become engaged with an enemy: Gain 1 resource.\n[elder_sign] effect: +1. If this skill test is successful during an attack, that attack deals +1 damage.",
       "11073": "Exceptional.\nYou get +1 [willpower].\nPlay with the top card of the encounter deck revealed.",
       "07268": "Exceptional. Seal (up to X [curse]).\n[action] Exhaust Flute of the Outer Gods and release 1 [curse] token sealed on it: Choose a non-[[Elite]] enemy at your location. Either move the chosen enemy to a connecting location, or deal its damage to any enemy at its location. This action does not provoke attacks of opportunity.",
       "11060": "Limit 1 per investigator.\nSeal (0). You may resolve this keyword again after you reveal a location or put a new location into play.\n[reaction] When you engage an enemy, exhaust Obscure and release a token sealed here: Immediately <b>Fight</b> or <b>Evade</b> that enemy. During this skill test, your base skill value is equal to the shroud value of your location.",
@@ -6412,6 +6435,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "02004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Jim's Trumpet, Final Rhapsody, 1 random basic weakness.",
+      "02001": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Zoey's Cross, Smite the Wicked, 1 random basic weakness.",
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
       "12110": "The campus opens up and the Servant is set aside temporarily.",
       "12111": "Choose Armitage’s bearer; the Servant returns to the Quad with clues. Draw Fire.",
@@ -6441,6 +6466,12 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "02013": "Final Rhapsody",
+      "02012": "Jim's Trumpet",
+      "02007": "Smite the Wicked",
+      "02006": "Zoey's Cross",
+      "02004": "Jim Culver",
+      "02001": "Zoey Samaras",
       "11073": "Eye of Ghatanothoa",
       "07268": "Flute of the Outer Gods",
       "11060": "Obscure",

@@ -292,6 +292,11 @@
         "title": "Investigadores de la caja básica original",
         "cards": "Roland, Daisy, Skids y Agnes, con exclusivas, debilidades y cuatro mazos oficiales de FFG.",
         "rules": "Acciones adicionales, horror movido, límites de capacidades y protección durante toda la ronda revisados."
+      },
+      "dunwichInvestigators": {
+        "title": "Zoey Samaras y Jim Culver",
+        "cards": "Dos investigadores, sus cuatro exclusivas/debilidades y sus mazos oficiales FFG, seleccionables.",
+        "rules": "Ventanas de enfrentamiento, fichas calavera, curación y aparición de Enemigos revisadas."
       }
     }
   },
@@ -1913,7 +1918,9 @@
     "originalAgnes": "Infligir 1 daño tras colocar horror en Agnes",
     "originalCoverUp": "Descartar {n} pistas de Encubrimiento en vez de descubrirlas",
     "originalNecronomicon": "Mover 1 horror del Necronomicón a Daisy",
-    "originalHospitalDebts": "Mover 1 recurso a Deudas de hospital"
+    "originalHospitalDebts": "Mover 1 recurso a Deudas de hospital",
+    "zoeyEngage": "Ganar 1 recurso tras enfrentarte a un Enemigo",
+    "jimSkull": "Tratar este signo arcano como una calavera"
   },
   "log": {
     "archiveReveal": "El mazo de mercado revela: {card}",
@@ -3763,6 +3770,10 @@
   },
   "offlineCard": {
     "subnames": {
+      "02012": "Los muertos escuchan",
+      "02006": "Símbolo de rectitud",
+      "02004": "El músico",
+      "02001": "La chef",
       "11073": "Artefacto del dios oscuro",
       "11048": "Señales de revelación",
       "11047": "Señales de aberración",
@@ -3955,6 +3966,12 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "02013": "Fin de los tiempos.",
+      "02012": "Objeto. Instrumento. Reliquia.",
+      "02007": "Tarea.",
+      "02006": "Objeto. Amuleto.",
+      "02004": "Artista.",
+      "02001": "Creyente. Cazador.",
       "11073": "Objeto. Reliquia. Maldito.",
       "07268": "Objeto. Instrumento. Reliquia. Maldito.",
       "11060": "Ritual.",
@@ -4980,6 +4997,12 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "02013": "<b>Revelación</b> - Revela 5 fichas de Caos de la bolsa de caos. Por cada ficha [skull] o [auto_fail] revelada, recibe 1 punto de daño y 1 punto de horror.",
+      "02012": "Sólo para el mazo de Jim Culver.\n[reaction] Cuando sea revelada una ficha [skull] durante una prueba de habilidad, agota La trompeta de Jim: Cura 1 punto de horror de un investigador que esté en tu Lugar o un Lugar conectado.",
+      "02007": "<b>Revelación</b> - Descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartado un Enemigo. Vincula Destruir a los malvados a ese Enemigo y haz que aparezca en el Lugar más alejado de ti.\n<b>Obligado</b> - Si el Enemigo vinculado está en juego cuando termine la partida: Sufres 1 trauma mental.",
+      "02006": "Sólo para el mazo de Zoey Samaras.\n[reaction] Después de que un Enemigo quede enfrentado a ti, agota la Cruz de Zoey y gasta 1 recurso: Inflige 1 punto de daño a ese Enemigo.",
+      "02004": "Considera el modificador de fichas [skull] que reveles como \"0.\"\nEn cualquier momento en el que reveles una ficha [elder_sign], puedes elegir considerarla como si fuera una ficha [skull].\nEfecto [elder_sign]: +1.",
+      "02001": "[reaction] Después de que quedes enfrentado a un Enemigo: Obtén un recurso.\nEfecto [elder_sign]: +1. Si esta prueba de habilidad tiene éxito durante un ataque, dicho ataque inflige +1 de daño.",
       "11073": "Excepcional.\nRecibes +1 [willpower].\nJuega con la primera carta del mazo de Encuentros revelada.",
       "07268": "Excepcional. Sello (hasta X [curse]).\n[action] Agota la Flauta de los Dioses Exteriores y libera 1 ficha [curse] sellada sobre ella: Elige un Enemigo que no sea [[Élite]] y que esté en tu Lugar. Mueve el Enemigo elegido a un Lugar conectado, o bien inflige su daño a cualquier Enemigo que esté en su Lugar. Esta acción no provoca ataques de oportunidad.",
       "11060": "Límite de 1 por investigador.\nSello (0). Puedes resolver esta palabra clave de nuevo después de que reveles un Lugar o pongas en juego un nuevo Lugar.\n[reaction] Cuando te enfrentes a un Enemigo, agota Nublar y libera una ficha sellada aquí: <b>Combatir</b> o <b>Evitar</b> inmediatamente ese Enemigo. Durante esta prueba de habilidad, el valor básico de tu habilidad es igual al valor de velo de tu Lugar.",
@@ -6412,6 +6435,8 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "02004": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Trompeta de Jim, Rapsodia final, 1 Debilidad básica aleatoria.",
+      "02001": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Cruz de Zoey, Destruir a los malvados, 1 Debilidad básica aleatoria.",
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
       "12110": "Se abre el campus y el Servant queda apartado temporalmente.",
       "12111": "Elige el portador de Armitage; el Servant vuelve al patio con pistas. Roba Fire.",
@@ -6441,6 +6466,12 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "02013": "Rapsodia final",
+      "02012": "La trompeta de Jim",
+      "02007": "Destruir a los malvados",
+      "02006": "Cruz de Zoey",
+      "02004": "Jim Culver",
+      "02001": "Zoey Samaras",
       "11073": "Ojo de Ghatanothoa",
       "07268": "Flauta de los Dioses Exteriores",
       "11060": "Nublar",

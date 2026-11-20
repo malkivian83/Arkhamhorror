@@ -1,0 +1,53 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sources": {
+    "en": "029a16997ff5858415935c179b76ecf9c3f7c13bbfada49b2fa21c67793d37cb",
+    "es": "53a560942372f7a41e4ae1fae9ce12333a07a56bccae682201a65264410aaa3f"
+  },
+  "cards": [
+    {
+      "code": "02001",
+      "status": "verified",
+      "adapter": "dunwich-investigators-v1",
+      "module": "card-02001",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "02004",
+      "status": "verified",
+      "adapter": "dunwich-investigators-v1",
+      "module": "card-02004",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "02006",
+      "status": "verified",
+      "adapter": "dunwich-investigators-v1",
+      "module": "card-02006",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "02007",
+      "status": "verified",
+      "adapter": "dunwich-investigators-v1",
+      "module": "card-02007",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "02012",
+      "status": "verified",
+      "adapter": "dunwich-investigators-v1",
+      "module": "card-02012",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "02013",
+      "status": "verified",
+      "adapter": "dunwich-investigators-v1",
+      "module": "card-02013",
+      "test": "rules.test.ts"
+    }
+  ]
+}

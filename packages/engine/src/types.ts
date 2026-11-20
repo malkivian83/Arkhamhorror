@@ -1655,7 +1655,7 @@ type MessageBody =
   /** Return resolved tokens and reveal afresh, retaining commitments and per-test usage. */
   | { type: 'RedrawSkillTestTokens'; use: string }
   /** Cancel the held token and treat it as another symbol (Father Mateo). */
-  | { type: 'TreatRevealedTokenAs'; token: ChaosToken }
+  | { type: 'TreatRevealedTokenAs'; token: ChaosToken; cancel?: boolean }
   /** Discard the asset and resolve its sealed token as if revealed (The Codex of Ages). */
   | {
       type: 'ResolveSealedToken'
@@ -1796,6 +1796,13 @@ type MessageBody =
   /** Cambia la carta de un enemigo (otra cara), conservando daño y posición. */
   | { type: 'FlipEnemy'; enemy: EnemyId; card: EnemyCard }
   | { type: 'SetAct'; index: number }
+  /** Spawn the specified discarded enemy without drawing or resolving its revelation. */
+  | {
+      type: 'SpawnEncounterDiscardEnemy'
+      code: CardCode
+      location: LocationId
+      onSpawn?: Extract<Message, { type: 'PlayerCardEffect' }>
+    }
   /** Descarta del mazo de encuentros hasta descartar un enemigo, y lo roba. */
   | { type: 'DiscardUntilEnemy'; investigator: InvestigatorId }
   /** Busca en el mazo y el descarte de encuentros un enemigo con el rasgo y lo roba. */

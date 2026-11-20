@@ -331,3 +331,12 @@
 - Verificación: 578 casos distintos dirigidos de motor/cartas/importación/web, incluidos 35 del lote; fuentes, adaptadores, duplicados, textos y guardados. Tipos engine/cards/server/web, formato, lint y huellas correctos. Invalidan los controles afectados los cambios en revelaciones múltiples, cancelación, sellado, extracción externa, costes X o visibilidad del mazo de Encuentros.
 - Git: main; pull inicial correcto. Pull final bloqueado por cambios ajenos de campaña conservados fuera; fetch confirma remoto sin novedades (cero commits por integrar).
 - Siguiente: capacidades ignorando costes o diseños distintos que reutilicen selección/sellado. Rite of Sanctification requiere consentimiento antes del pago ajeno; siguen Curación espiritual, Dayana, Cepa nutricia, Lucha sucia y Protección del Anirniq. [Inventario](132-inventario-bloqueos-motor.md) e [historial](historial-importacion.md).
+
+## Continuación archivada al cerrar el lote 159
+
+- Lote 158: `dbcf5f0b`, `original-core-investigators`; cuatro investigadores originales (Roland, Daisy, Skids, Agnes), ocho exclusivas/debilidades y cuatro mazos oficiales FFG, seleccionables y jugables. Textos completos EN/ES, reversos, retratos e imágenes. [Reglas y listas](158-investigadores-caja-original.md).
+- Encargo vigente: incorporar y subir los 49 investigadores pendientes con sus reglas y mazos base. Preferir mazo oficial; donde no exista, seleccionar el más popular de ArkhamDB y archivar enlace/lista exacta. Sin mazos propios ni sustituciones silenciosas.
+- Investigadores: 23 personajes habilitados, 45 pendientes (sin versiones alternativas, reediciones ni Homúnculo perdido). Cartas estándar pendientes: 134; este lote añade investigadores y exclusivas.
+- Verificación: 23 pruebas de reglas, mazos/campaña, fuentes/modelos, presentación EN/ES y regresiones dirigidas de daño, acciones y límites. 227 casos distintos comprobados; tipos engine/cards/server/web, formato, lint y huellas correctos. Cambios en horror colocado/movido, acciones restringidas, límites, protección frente a ataques o eventos en mano invalidan los controles afectados.
+- Git: main; pulls inicial y final correctos, sin integraciones que invaliden los controles. Solo cambios propios preparados.
+- Siguiente: Zoey/Jim y sus exclusivas; después Mark/Akachi, Leo/Ursula y los demás investigadores. El diagnóstico check-decklist sufrió timeout SSR; cobertura de las cuatro listas oficiales comprobada con el registro real en pruebas dirigidas, sin cambios de cartas.

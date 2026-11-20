@@ -278,3 +278,7 @@ Nueve diseños/niveles estándar nuevos de selección y sellado; cero reedicione
 ## Investigadores tras el lote 158
 
 Roland, Daisy, Skids y Agnes originales, con sus ocho exclusivas/debilidades y cuatro mazos oficiales FFG. **23 personajes jugables y 45 pendientes**, sin contar reediciones, alternativas ni Homúnculo perdido. No cambia el pendiente de cartas estándar (134). [Reglas y listas](158-investigadores-caja-original.md). Continúa el encargo de incorporar todos los pendientes con mazo oficial o, si no existe, el más popular de ArkhamDB.
+
+## Investigadores tras el lote 159
+
+Zoey y Jim originales con sus cuatro exclusivas/debilidades y sus mazos oficiales FFG. **25 personajes jugables y 43 pendientes**; excluye alternativas, reediciones y Homúnculo perdido. No cambia el pendiente de cartas estándar (134). [Reglas y listas](159-investigadores-dunwich.md).

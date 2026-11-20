@@ -6982,6 +6982,7 @@ export function handle(state: GameState, message: Message): GameState {
             skillTest: { ...test, revealing: { ...test.revealing, face: message.token } },
           }
         : { ...treated, tokenReveal: { ...state.tokenReveal!, face: message.token } }
+      if (message.cancel === false) return next
       return push(next, {
         type: 'Forced',
         trigger: {
@@ -9097,6 +9098,23 @@ export function handle(state: GameState, message: Message): GameState {
     case 'SetAct':
       return { ...state, actIndex: message.index }
 
+    case 'SpawnEncounterDiscardEnemy': {
+      const index = state.encounterDiscard.findLastIndex(
+        (c) => c.kind === 'enemy' && c.code === message.code,
+      )
+      const card = state.encounterDiscard[index]
+      if (!card || card.kind !== 'enemy' || !state.locations[message.location]) return state
+      return push(
+        { ...state, encounterDiscard: state.encounterDiscard.filter((_c, n) => n !== index) },
+        {
+          type: 'SpawnEnemy',
+          card,
+          location: message.location,
+          engageWith: null,
+          ...(message.onSpawn ? { onSpawn: message.onSpawn } : {}),
+        },
+      )
+    }
     case 'DiscardUntilEnemy': {
       const index = state.encounterDeck.findIndex((c) => c.kind === 'enemy')
       if (index < 0) {
@@ -14346,7 +14364,14 @@ function blessCurseModifier(state: GameState, token: 'bless' | 'curse'): number 
 /** Valor y efectos de una ficha del caos (RR paso 4). */
 function resolveToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
   if (state.skillTest?.ignoredTokenEffects?.includes(token)) return { modifier: 0 }
-  const effect = resolveBaseToken(state, token, investigator)
+  const base = resolveBaseToken(state, token, investigator)
+  const self = getInvestigator(state, investigator)
+  const effect = {
+    ...base,
+    modifier:
+      investigatorBehavior(self.id)?.tokenModifier?.(state, self, token, base.modifier) ??
+      base.modifier,
+  }
   const test = state.skillTest
   const target =
     test && (test.kind.type === 'fight' || test.kind.type === 'evade')

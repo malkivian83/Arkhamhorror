@@ -1132,6 +1132,13 @@ export interface InvestigatorBehavior {
   code: CardCode
   startingAssets?: CardCode[]
   fastOptions?: (state: GameState, self: Investigator) => ReactionOption[]
+  /** Change only the numerical modifier, retaining the symbol and scenario effects (Jim Culver). */
+  tokenModifier?: (
+    state: GameState,
+    self: Investigator,
+    token: ChaosToken,
+    modifier: number,
+  ) => number
   elderSign?: (state: GameState, self: Investigator) => TokenEffect
   reactions?: (state: GameState, trigger: Trigger, self: Investigator) => ReactionOption[]
   testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]

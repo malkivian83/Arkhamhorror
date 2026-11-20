@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'dunwich-investigators',
+    date: '2026-11-20',
+    title: 'app.changelog.dunwichInvestigators.title',
+    items: ['app.changelog.dunwichInvestigators.cards', 'app.changelog.dunwichInvestigators.rules'],
+  },
+  {
     id: 'original-core-investigators',
     date: '2026-11-20',
     title: 'app.changelog.originalCoreInvestigators.title',
