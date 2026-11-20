@@ -1,0 +1,81 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "f6ac16f0d3469be1ff5c15a6ad11d72690c97585435f16816e7c8debdc3f45c9",
+    "es": "373d6abe28b5a6a491281f60aba52a29250dcb9b50ea5af2a608db964f000ee2"
+  },
+  "cards": [
+    {
+      "code": "04197",
+      "status": "verified",
+      "module": "card-04197",
+      "test": "rules.test.ts",
+      "subname": "Will Try Anything Once"
+    },
+    {
+      "code": "10097",
+      "status": "verified",
+      "module": "card-10097",
+      "test": "rules.test.ts",
+      "subname": "Tried Everything Once"
+    },
+    {
+      "code": "04310",
+      "status": "verified",
+      "module": "card-04310",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "11046",
+      "status": "verified",
+      "adapter": "reviewed-dials-v1",
+      "module": "card-11046",
+      "test": "rules.test.ts",
+      "subname": "Signs of Cataclysm",
+      "uses": { "count": 4, "type": "charge" }
+    },
+    {
+      "code": "11047",
+      "status": "verified",
+      "adapter": "reviewed-dials-v1",
+      "module": "card-11047",
+      "test": "rules.test.ts",
+      "subname": "Signs of Aberration",
+      "uses": { "count": 4, "type": "charge" }
+    },
+    {
+      "code": "11048",
+      "status": "verified",
+      "adapter": "reviewed-dials-v1",
+      "module": "card-11048",
+      "test": "rules.test.ts",
+      "subname": "Signs of Revelation",
+      "uses": { "count": 4, "type": "charge" }
+    },
+    {
+      "code": "11060",
+      "status": "verified",
+      "module": "card-11060",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07268",
+      "status": "verified",
+      "adapter": "reviewed-flute-v1",
+      "module": "card-07268",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11073",
+      "status": "verified",
+      "adapter": "reviewed-encounter-eye-v1",
+      "module": "card-11073",
+      "test": "rules.test.ts",
+      "subname": "Artifact of the Dark God"
+    }
+  ]
+}

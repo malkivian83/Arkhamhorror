@@ -1,3 +1,4 @@
+import { resolvedFaces } from '../chaos-allies/common'
 // RR: Effects, Exile, Parley, Attach To, Play, Commit, Draw, Uses, Lasting Effects.
 import {
   canPlayByEffect,
@@ -224,6 +225,7 @@ export function registerDiscardRitual(code: string): void {
                   then: [
                     { type: 'SpendUses', asset: a.id, amount: n },
                     startTokens(code, by, {
+                      draws: Number(d.draws ?? 0) + 1,
                       event: String(d.event),
                       left: n,
                       countsDuringTest: true,
@@ -241,11 +243,12 @@ export function registerDiscardRitual(code: string): void {
         if (step !== 'token') return []
         const seen = [
           ...(JSON.parse(String(d.faces)) as (ChaosToken | null)[]),
-          d.canceled ? null : (d.token as ChaosToken),
+          ...resolvedFaces(d),
         ]
-        if (seen.length < Number(d.left) && s.chaosBag.length)
+        if (Number(d.draws ?? 0) + 1 < Number(d.left) && s.chaosBag.length)
           return [
             nextToken(code, by, {
+              draws: Number(d.draws ?? 0) + 1,
               event: String(d.event),
               left: d.left!,
               group: d.group!,

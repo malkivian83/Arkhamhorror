@@ -156,7 +156,7 @@ export interface Investigator {
   /** No chaos tokens for their next skill test during the turn started at this log index. */
   noTokensNextTest?: number
   noTokensNextRoundTest?: number
-  attackProtection?: { phase: Phase; round: number; nonElite: boolean }
+  attackProtection?: { phase: Phase; round: number; nonElite: boolean; untilRoundEnd?: boolean }
   /** Serialized effects lasting through the investigator's current actual turn. */
   turnSkillEffect?: {
     turn: number
@@ -455,6 +455,8 @@ export interface LocationCard {
 
 export interface AbilityLimit {
   per: 'turn' | 'round' | 'game' | 'phase'
+  /** Maximum uses in the period; defaults to one. */
+  max?: number
   /** Límite de grupo (compartido por todos los investigadores). */
   group?: boolean
 }
@@ -755,6 +757,8 @@ export type SkillTestKind =
  * tokens until a symbol is revealed" (Katarina Sojka).
  */
 export interface TokenRevealReplacement {
+  /** Logical reveals to keep; a nested child may itself resolve several tokens. */
+  resolve?: number
   investigator: InvestigatorId
   reveal: number
   prefer?: ChaosToken[]
@@ -771,6 +775,8 @@ export type TokenRevealTree =
       children: TokenRevealTree[]
       prefer?: ChaosToken[]
       selected?: number
+      selectedMany?: number[]
+      resolve?: number
       ignored: ChaosToken[]
     }
 
@@ -838,6 +844,7 @@ export interface SkillTest {
   afterEnd?: Message[]
   /** Replacement base value before modifiers and committed icons. */
   baseSkill?: number
+  baseFromShroud?: boolean
   /** True only for the standard fight, evade or investigate action. */
   basicAction?: boolean
   /** Preserve the unmodified difficulty so factors precede committed additive modifiers. */
@@ -896,12 +903,21 @@ export interface SkillTest {
   /** Al revelar, se sacan 2 fichas y este investigador elige cuál resolver (Mask of Silenus). */
   chooseToken?: InvestigatorId
   /** The last "reveal several, resolve one" choice of this test (Eyes of the Dreamer). */
-  tokenChoice?: { chosen: ChaosToken; ignored: ChaosToken[]; source?: string }
+  tokenChoice?: {
+    chosen: ChaosToken
+    chosenTokens?: ChaosToken[]
+    ignored: ChaosToken[]
+    source?: string
+  }
   /** Revealed by another ability during this test; returned by that ability, outside ST.8. */
   supplementalTokens?: ChaosToken[]
   supplementalFaces?: ChaosToken[]
+  supplementalResolvedTokens?: { token: ChaosToken; face: ChaosToken }[]
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
+  /** Physical tokens held for another selected reveal, and ones transferred to a seal. */
+  pendingTokens?: ChaosToken[]
+  sealedTokens?: ChaosToken[]
   /** Physical identity and applied modifier of each resolved token, in reveal order. */
   resolvedTokens?: {
     virtual?: boolean
@@ -1001,8 +1017,26 @@ export type Message = MessageBody & {
   effectSource?: string
   effectController?: InvestigatorId
   effectAsset?: AssetId
+  /** Internal continuation collecting a held reveal replaced by several tokens. */
+  outsideBatch?: {
+    outside: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    remaining: ChaosToken[]
+    faces: (ChaosToken | null)[]
+    physical: ChaosToken[]
+    ignored: ChaosToken[]
+  }
 }
 type MessageBody =
+  | {
+      type: 'ResolveChosenTokens'
+      drawn?: boolean
+      investigator: InvestigatorId
+      tokens: ChaosToken[]
+      ignored: ChaosToken[]
+      source?: string
+      outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    }
+  | { type: 'SealTestToken'; asset: AssetId; token: ChaosToken }
   | {
       type: 'PutAgendaEvent'
       investigator: InvestigatorId
@@ -1105,6 +1139,7 @@ type MessageBody =
       doNotExhaust?: boolean
       onDefeat?: Message[]
       baseSkill?: number
+      baseFromShroud?: boolean
       preserveModifier?: boolean
       noTokens?: boolean
       virtualToken?: ChaosToken
@@ -1281,6 +1316,7 @@ type MessageBody =
       /** The investigator already chose whether to replace the tested skill. */
       skillSelected?: boolean
       baseSkill?: number
+      baseFromShroud?: boolean
       basicAction?: boolean
       investigationCostsPaid?: boolean
       investigator: InvestigatorId
@@ -1619,7 +1655,7 @@ type MessageBody =
   /** Return resolved tokens and reveal afresh, retaining commitments and per-test usage. */
   | { type: 'RedrawSkillTestTokens'; use: string }
   /** Cancel the held token and treat it as another symbol (Father Mateo). */
-  | { type: 'TreatRevealedTokenAs'; token: ChaosToken }
+  | { type: 'TreatRevealedTokenAs'; token: ChaosToken; cancel?: boolean }
   /** Discard the asset and resolve its sealed token as if revealed (The Codex of Ages). */
   | {
       type: 'ResolveSealedToken'
@@ -1760,6 +1796,13 @@ type MessageBody =
   /** Cambia la carta de un enemigo (otra cara), conservando daño y posición. */
   | { type: 'FlipEnemy'; enemy: EnemyId; card: EnemyCard }
   | { type: 'SetAct'; index: number }
+  /** Spawn the specified discarded enemy without drawing or resolving its revelation. */
+  | {
+      type: 'SpawnEncounterDiscardEnemy'
+      code: CardCode
+      location: LocationId
+      onSpawn?: Extract<Message, { type: 'PlayerCardEffect' }>
+    }
   /** Descarta del mazo de encuentros hasta descartar un enemigo, y lo roba. */
   | { type: 'DiscardUntilEnemy'; investigator: InvestigatorId }
   /** Busca en el mazo y el descarte de encuentros un enemigo con el rasgo y lo roba. */
@@ -1834,7 +1877,12 @@ type MessageBody =
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
-  | { type: 'ProtectFromAttacks'; investigator: InvestigatorId; nonElite: boolean }
+  | {
+      type: 'ProtectFromAttacks'
+      investigator: InvestigatorId
+      nonElite: boolean
+      untilRoundEnd?: boolean
+    }
   | { type: 'AttackFromEncounterDiscard'; index: number; investigator: InvestigatorId }
   | { type: 'AttackWithoutLocation'; card: EnemyCard; investigator: InvestigatorId }
   | { type: 'EndAttackWithoutLocation'; enemy: EnemyId }
@@ -2051,6 +2099,7 @@ type MessageBody =
   | {
       type: 'UseAbility'
       baseSkill?: number
+      baseFromShroud?: boolean
       /** Original action symbols when a card resolves the ability without taking an action. */
       printedActions?: number
       actionKind?: ActionName
@@ -2638,6 +2687,7 @@ export type Trigger =
       sourceAsset?: AssetId
     }
   | { type: 'whenPlayerCardDrawn'; investigator: InvestigatorId; card: CardCode; fromDeck: boolean }
+  | { type: 'afterHorrorPlaced'; investigator: InvestigatorId; amount: number }
   | { type: 'afterDamageHealed'; investigator: InvestigatorId; amount: number }
   /** After `healer` heals horror from an investigator or an asset (from every healing source). */
   | {
@@ -3048,6 +3098,7 @@ export interface GameState {
   secondAgenda?: SecondAgendaDeck | null
   acts: Act[]
   actIndex: number
+  pendingOutsideTokens?: ChaosToken[]
   chaosBag: ChaosToken[]
   tokenValues: ScenarioTokenValues
   encounterDeck: EncounterCard[]

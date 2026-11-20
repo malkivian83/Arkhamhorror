@@ -722,6 +722,8 @@ export interface PlayerCardBehavior {
     investigator: InvestigatorId,
   ) => ReactionOption[]
 
+  /** Keep the top encounter card revealed while this asset is active. */
+  revealsEncounterTop?: boolean
   /** Optional modifiers of the card being played; one choice per source asset. */
   playModifiers?: (
     state: GameState,
@@ -964,7 +966,7 @@ export interface PlayerCardBehavior {
   /** Replaces discarding it when it is defeated (Cherished Keepsake: it is exiled instead). */
   whenDefeated?: (state: GameState, self: Asset) => Message[] | null
   /** Printed cost X: the values X may take (Pay Your Dues: remaining health of a target). */
-  xOptions?: (state: GameState, investigator: InvestigatorId) => number[]
+  xOptions?: (state: GameState, investigator: InvestigatorId, discount?: number) => number[]
   /** Event with the Parley designator: parley costs apply and `afterParley` follows. */
   parley?: boolean
   /** Additional action costs of playing the card, including a play granted by an effect. */
@@ -1017,6 +1019,8 @@ export interface PlayerCardBehavior {
     investigator: InvestigatorId,
     openingHand: CardCode[],
   ) => ReactionOption[]
+  /** Forced effects printed on a card while it is in its owner's hand. */
+  handForced?: (state: GameState, trigger: Trigger, owner: InvestigatorId) => Message[]
   /** Habilidades forzadas del apoyo en juego. */
   forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]
   /**
@@ -1128,6 +1132,13 @@ export interface InvestigatorBehavior {
   code: CardCode
   startingAssets?: CardCode[]
   fastOptions?: (state: GameState, self: Investigator) => ReactionOption[]
+  /** Change only the numerical modifier, retaining the symbol and scenario effects (Jim Culver). */
+  tokenModifier?: (
+    state: GameState,
+    self: Investigator,
+    token: ChaosToken,
+    modifier: number,
+  ) => number
   elderSign?: (state: GameState, self: Investigator) => TokenEffect
   reactions?: (state: GameState, trigger: Trigger, self: Investigator) => ReactionOption[]
   testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]
@@ -1140,6 +1151,8 @@ export interface InvestigatorBehavior {
   traitAction?: {
     /** Cards with this trait (and [action] abilities on controlled assets with it). */
     trait?: string
+    /** Restricted to action abilities; cannot pay to play a card (Daisy Walker). */
+    abilitiesOnly?: boolean
     /** Only to play cards of this type (Miguel de la Cruz: events). */
     cardType?: PlayerCardDef['type']
     active: (state: GameState, self: Investigator) => boolean
@@ -1334,4 +1347,11 @@ export function snapshotRegistries(): () => void {
     maps.forEach((map, i) => {
       for (const [key, value] of saved[i]!) if (map.get(key) !== value) map.set(key, value)
     })
+}
+
+/** Continuous encounter-deck information from active player cards (Eye of Ghatanothoa). */
+export function revealedEncounterTop(state: GameState) {
+  return Object.values(state.assets).some((a) => assetBehavior(state, a)?.revealsEncounterTop)
+    ? state.encounterDeck[0]
+    : undefined
 }

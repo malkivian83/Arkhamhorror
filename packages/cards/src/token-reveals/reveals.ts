@@ -55,7 +55,9 @@ function extraTokens(
 const matched = (test: SkillTest) =>
   !!test.succeeded &&
   test.tokenChoice !== undefined &&
-  (test.ignoredTokens ?? []).includes(test.tokenChoice.chosen)
+  (test.tokenChoice.chosenTokens ?? [test.tokenChoice.chosen]).some((token) =>
+    (test.ignoredTokens ?? []).includes(token),
+  )
 
 export function registerRevealReplacement(code: string): boolean {
   // Grotesque Statue (4, 2): when you would reveal a chaos token, spend 1 charge: reveal 2

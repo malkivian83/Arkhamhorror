@@ -51,38 +51,52 @@ export function drawReplacementTree(state: GameState, plan: TokenRevealReplaceme
         }
       if (token !== undefined) children.push({ token })
     }
-    return { children, ignored, ...(p.prefer ? { prefer: p.prefer } : {}) }
+    return {
+      children,
+      ignored,
+      ...(p.resolve ? { resolve: p.resolve } : {}),
+      ...(p.prefer ? { prefer: p.prefer } : {}),
+    }
   }
   const tree = build(plan)
   return { tree, chaosBag: bag, rng }
 }
-export function chosenTreeToken(tree: TokenRevealTree): ChaosToken | undefined {
-  if ('token' in tree) return tree.token
-  return tree.selected === undefined
-    ? undefined
-    : tree.children[tree.selected] && chosenTreeToken(tree.children[tree.selected]!)
+/** Tokens represented by a chosen logical reveal, including any nested replacement. */
+export function chosenTreeTokens(tree: TokenRevealTree): ChaosToken[] {
+  if ('token' in tree) return [tree.token]
+  const selected = tree.selectedMany ?? (tree.selected === undefined ? [] : [tree.selected])
+  if (selected.length < Math.min(tree.resolve ?? 1, tree.children.length)) return []
+  return selected.flatMap((n) => (tree.children[n] ? chosenTreeTokens(tree.children[n]!) : []))
 }
+export const chosenTreeToken = (tree: TokenRevealTree): ChaosToken | undefined =>
+  chosenTreeTokens(tree)[0]
 export function nextTreeChoice(
   tree: TokenRevealTree,
   path: number[] = [],
-): { path: number[]; choices: { token: ChaosToken; index: number }[] } | undefined {
-  if ('token' in tree || tree.selected !== undefined) return undefined
+):
+  | { path: number[]; choices: { token: ChaosToken; tokens: ChaosToken[]; index: number }[] }
+  | undefined {
+  if ('token' in tree) return undefined
+  const selected = tree.selectedMany ?? (tree.selected === undefined ? [] : [tree.selected])
+  if (selected.length >= Math.min(tree.resolve ?? 1, tree.children.length)) return undefined
   for (const [n, child] of tree.children.entries()) {
     const next = nextTreeChoice(child, [...path, n])
     if (next) return next
   }
   const all = tree.children.flatMap((child, index) => {
-    const token = chosenTreeToken(child)
-    return token === undefined ? [] : [{ token, index }]
+    const tokens = chosenTreeTokens(child)
+    return tokens.length && !selected.includes(index) ? [{ token: tokens[0]!, tokens, index }] : []
   })
-  const preferred = all.filter((c) => tree.prefer?.includes(c.token))
+  const preferred = all.filter((c) => c.tokens.some((t) => tree.prefer?.includes(t)))
   return all.length ? { path, choices: preferred.length ? preferred : all } : undefined
 }
 export function chooseTree(tree: TokenRevealTree, path: number[], index: number): TokenRevealTree {
   if ('token' in tree) return tree
   const [at, ...rest] = path
   return at === undefined
-    ? { ...tree, selected: index }
+    ? (tree.resolve ?? 1) > 1
+      ? { ...tree, selectedMany: [...(tree.selectedMany ?? []), index] }
+      : { ...tree, selected: index }
     : {
         ...tree,
         children: tree.children.map((c, n) => (n === at ? chooseTree(c, rest, index) : c)),

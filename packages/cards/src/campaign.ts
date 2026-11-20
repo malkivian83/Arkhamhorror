@@ -1,3 +1,6 @@
+import './dunwich-investigators'
+import './original-core-investigators'
+import './chaos-selection'
 import './leyline-support'
 import './field-support'
 import './opening-archives'
@@ -652,6 +655,9 @@ export function replacementOptions(campaign: Campaign): DeckKey[] {
  */
 export function campaignLost(campaign: Campaign): boolean {
   if (campaign.log.notes.includes(CAMPAIGN_LOST)) return true
+  // Una resolución final puede ganar la campaña aunque todos mueran o enloquezcan
+  // (La hora bruja, R2/R4/R5; La reina de ceniza también lo anota).
+  if (campaign.log.notes.includes('campaignWon')) return false
   return (
     !activeMembers(campaign).length &&
     !(replaceableMembers(campaign).length && replacementOptions(campaign).length)

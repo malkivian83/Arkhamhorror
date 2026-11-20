@@ -71,7 +71,11 @@ function usable(ability: BasicAbility, ctx: Ctx): boolean {
   return ability.available?.(ctx) ?? true
 }
 
-function options(code: string, ability: BasicAbility, ctx: Ctx): AbilityOption[] {
+export function basicAbilityOptions(
+  code: string,
+  ability: BasicAbility,
+  ctx: Ctx,
+): AbilityOption[] {
   if (!usable(ability, ctx)) return []
   const { state, self, investigator } = ctx
   const here = getInvestigator(state, investigator).location
@@ -177,7 +181,7 @@ export function registerBasicAsset(
       ...extra(code),
       abilities: (state, self, investigator) => {
         const ctx = { state, self, investigator }
-        return [...abilities.flatMap((a) => options(code, a, ctx)), ...more(code, ctx)]
+        return [...abilities.flatMap((a) => basicAbilityOptions(code, a, ctx)), ...more(code, ctx)]
       },
     })
   }

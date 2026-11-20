@@ -7,7 +7,7 @@ import {
   drawReplacementTree,
   nextTreeChoice,
   chooseTree,
-  chosenTreeToken,
+  chosenTreeTokens,
   treeTokens,
 } from './token-replacements'
 import { withEffectSource } from './effect-source'
@@ -22,6 +22,7 @@ import {
   attackBlocked,
   actionsThisRound,
   cardCost,
+  maximumCostX,
   playModifierOptions,
   spendableFor,
   commitBlocked,
@@ -183,6 +184,82 @@ export const MAX_HAND_SIZE = 8
  * reglamento (docs-proyecto/reglas).
  */
 export function handle(state: GameState, message: Message): GameState {
+  if (
+    (message.type === 'PlayerCardEffect' || message.type === 'ScenarioSpecific') &&
+    message.outsideBatch
+  ) {
+    const batch = message.outsideBatch,
+      d = message.data ?? {}
+    const faces = [
+      ...batch.faces,
+      ...(d.canceled
+        ? [null]
+        : d.tokens
+          ? (JSON.parse(String(d.tokens)) as (ChaosToken | null)[])
+          : [d.token as ChaosToken]),
+    ]
+    const physical = [
+      ...batch.physical,
+      ...(d.canceled
+        ? []
+        : d.physicalTokens
+          ? (JSON.parse(String(d.physicalTokens)) as ChaosToken[])
+          : [d.physical as ChaosToken]),
+    ]
+    const ignored = [
+      ...batch.ignored,
+      ...(!d.canceled ? (JSON.parse(String(d.ignored ?? '[]')) as ChaosToken[]) : []),
+    ]
+    const auto =
+      !!batch.outside.then.data?.countsDuringTest &&
+      state.heldChaosTokens?.[String(batch.outside.then.data?.group)] !== undefined
+    let next = state
+    if (!auto && !d.canceled)
+      next = {
+        ...next,
+        pendingOutsideTokens: [
+          ...(next.pendingOutsideTokens ?? []),
+          ...(d.physicalTokens
+            ? (JSON.parse(String(d.physicalTokens)) as ChaosToken[])
+            : [d.physical as ChaosToken]),
+          ...(JSON.parse(String(d.ignored ?? '[]')) as ChaosToken[]),
+        ],
+      }
+    const [token, ...remaining] = batch.remaining
+    if (token !== undefined)
+      return push(next, {
+        ...batch.outside,
+        token,
+        ignored: [],
+        offered: true,
+        then: {
+          ...batch.outside.then,
+          outsideBatch: { ...batch, remaining, faces, physical, ignored },
+        },
+      })
+    if (!auto)
+      next = {
+        ...next,
+        pendingOutsideTokens: withoutEach(next.pendingOutsideTokens ?? [], [
+          ...physical,
+          ...ignored,
+        ]),
+      }
+    const valid = faces.filter((t): t is ChaosToken => t !== null)
+    if (!auto && !valid.length) next = { ...next, chaosBag: [...next.chaosBag, ...ignored] }
+    return push(next, {
+      ...batch.outside.then,
+      data: {
+        ...batch.outside.then.data,
+        token: valid[0] ?? 0,
+        physical: physical[0] ?? 0,
+        tokens: JSON.stringify(faces),
+        physicalTokens: JSON.stringify(physical),
+        ignored: JSON.stringify(!auto && !valid.length ? [] : ignored),
+        canceled: valid.length === 0,
+      },
+    })
+  }
   if (message.type === 'StartTokenGroup') {
     const [id, next] = newId(state, 'reveal-group')
     return push(
@@ -1179,6 +1256,16 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'Forced': {
       const t = message.trigger
+      if (t.type === 'afterDamageAssigned') {
+        const amount = t.dealt
+          .filter((d) => d.investigator === t.investigator)
+          .reduce((n, d) => n + d.horror, 0)
+        if (amount > 0)
+          state = push(state, {
+            type: 'Forced',
+            trigger: { type: 'afterHorrorPlaced', investigator: t.investigator, amount },
+          })
+      }
       if (t.type === 'afterDrawCard' && playerCardDef(t.card)?.type === 'enemy')
         state = updateInvestigator(state, t.investigator, (i) => ({
           ...i,
@@ -3982,6 +4069,45 @@ export function handle(state: GameState, message: Message): GameState {
         discardAt >= 0 &&
         (message.byEffect || playableHand(state, investigator.id).includes(message.code))
       if (!def || (index < 0 && !fromDiscard)) return state
+      const xBehavior = playerCardBehavior(message.code)
+      if (xBehavior?.costX && message.noCost && message.x !== 0)
+        return handle(state, { ...message, x: 0 })
+      if (xBehavior?.costX && !message.noCost && message.x === undefined) {
+        const allowed =
+          xBehavior.xOptions?.(state, investigator.id, message.discount ?? 0) ??
+          Array.from(
+            {
+              length: maximumCostX(state, investigator.id, message.code, message.discount ?? 0) + 1,
+            },
+            (_, n) => n,
+          )
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseX',
+            choices: allowed
+              .filter(
+                (x) =>
+                  cardCost(
+                    state,
+                    investigator.id,
+                    message.code,
+                    message.discount ?? 0,
+                    x,
+                    undefined,
+                    true,
+                  ) <= spendableFor(state, investigator.id, message.code),
+              )
+              .map((x) => ({
+                label: 'choice.payX',
+                params: { n: x, card: def.name },
+                then: [{ ...message, x }],
+              })),
+          },
+        })
+      }
       if (!message.modifiersResolved) {
         const options = playModifierOptions(
           state,
@@ -3995,7 +4121,7 @@ export function handle(state: GameState, message: Message): GameState {
             investigator.id,
             message.code,
             message.discount ?? 0,
-            0,
+            message.x ?? 0,
             fromDiscard ? 'discard' : 'hand',
             false,
           )
@@ -4171,51 +4297,20 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const variant = variants?.find((v) => v.id === message.variant)
       if (variants && !variant) return state
-      // RR "X": the value is chosen while paying the cost, up to the resources available.
-      const xOptions = playerCardBehavior(message.code)?.xOptions?.(state, investigator.id)
-      if (
-        !message.noCost &&
-        playerCardBehavior(message.code)?.costX &&
-        message.x === undefined &&
-        xOptions
-      )
-        // X limited by the card (Pay Your Dues: the remaining health of a valid target).
-        return push(state, {
-          type: 'Ask',
-          investigator: investigator.id,
-          question: {
-            kind: 'chooseOne',
-            prompt: 'prompt.chooseX',
-            choices: xOptions
-              .filter((x) => x + Math.max(0, costIncrease) <= investigator.resources)
-              .map((x) => ({
-                label: 'choice.payX',
-                params: { n: x, card: def.name },
-                then: [{ ...message, x }],
-              })),
-          },
-        })
-      if (!message.noCost && playerCardBehavior(message.code)?.costX && message.x === undefined)
-        return push(state, {
-          type: 'Ask',
-          investigator: investigator.id,
-          question: {
-            kind: 'chooseOne',
-            prompt: 'prompt.chooseX',
-            choices: Array.from(
-              { length: Math.max(1, investigator.resources + 1 - costIncrease) },
-              (_, x) => ({
-                label: 'choice.payX',
-                params: { n: x, card: def.name },
-                then: [{ ...message, x }],
-              }),
-            ),
-          },
-        })
       const cost = message.noCost
         ? 0
         : message.x !== undefined
-          ? message.x + Math.max(0, costIncrease)
+          ? playerCardBehavior(message.code)?.costX
+            ? cardCost(
+                state,
+                investigator.id,
+                message.code,
+                message.discount ?? 0,
+                message.x + (variant?.cost ?? 0),
+                fromZone,
+                false,
+              )
+            : message.x + Math.max(0, costIncrease)
           : cardCost(
               state,
               investigator.id,
@@ -6100,6 +6195,7 @@ export function handle(state: GameState, message: Message): GameState {
             ...(message.autoSuccess ? { autoSucceed: true, noTokens: true } : {}),
             ...(noTokens ? { noTokens: true } : {}),
             ...(message.baseSkill !== undefined ? { baseSkill: message.baseSkill } : {}),
+            ...(message.baseFromShroud ? { baseFromShroud: true } : {}),
             ...(message.basicAction ? { basicAction: true } : {}),
             investigator: message.investigator,
             skill: message.skill,
@@ -6167,6 +6263,14 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RevealChaosToken': {
       // RR pasos 3 y 4: revelar ficha y resolver su símbolo. La ficha sale de la
       // bolsa hasta que termina la prueba (así "revela otra" no repite la misma).
+      if (message.token !== undefined && state.skillTest?.pendingTokens?.length)
+        state = {
+          ...state,
+          skillTest: {
+            ...state.skillTest,
+            pendingTokens: withoutEach(state.skillTest.pendingTokens, [message.token]),
+          },
+        }
       let test = state.skillTest
       if (!test) throw new EngineError('No hay prueba de habilidad')
       // Will to Survive, or an automatic success before revealing (FAQ): skip steps 3 and 4.
@@ -6208,6 +6312,30 @@ export function handle(state: GameState, message: Message): GameState {
       }
       // Premonition: se resuelve la ficha sellada en lugar de sacar una. Tokens sealed
       // on a card in play (The Codex of Ages, Serpents of Yig) stay sealed there.
+      const foresight =
+        message.token === undefined ? (state.sealed ?? []).filter((e) => !e.holder) : []
+      const firstForesight = foresight[0],
+        sameForesight = foresight.filter(
+          (e) =>
+            firstForesight &&
+            e.code === firstForesight.code &&
+            e.investigator === firstForesight.investigator,
+        )
+      if (firstForesight && sameForesight.length > 1)
+        return push(
+          updateInvestigator(
+            { ...state, sealed: (state.sealed ?? []).filter((e) => !sameForesight.includes(e)) },
+            firstForesight.investigator,
+            (i) => ({ ...i, discard: [...i.discard, firstForesight.code] }),
+          ),
+          {
+            type: 'ResolveChosenTokens',
+            investigator: test.investigator,
+            tokens: sameForesight.map((e) => e.token),
+            drawn: false,
+            ignored: [],
+          },
+        )
       const sealed =
         message.token === undefined ? (state.sealed ?? []).find((e) => !e.holder) : undefined
       const stillSealed = (state.sealed ?? []).filter((e) => e !== sealed)
@@ -6217,7 +6345,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (replacement && message.token === undefined) {
         const { nextTokenReplacement: _used, ...cleared } = state
         if (!sealed && state.chaosBag.length) {
-          if (replacement.nested) {
+          if (replacement.nested || (replacement.resolve ?? 1) > 1) {
             const drawn = drawReplacementTree(state, replacement)
             return push(
               { ...cleared, chaosBag: drawn.chaosBag, rng: drawn.rng },
@@ -6583,7 +6711,7 @@ export function handle(state: GameState, message: Message): GameState {
         : state
     case 'IgnoreHeldToken': {
       const test = state.skillTest
-      if (test?.revealing) {
+      if (test?.revealing && !state.tokenReveal) {
         const { revealing, ...rest } = test
         const next = {
           ...state,
@@ -6636,7 +6764,7 @@ export function handle(state: GameState, message: Message): GameState {
       // Wendy Adams: the held token is canceled and goes back to the bag; then a new one is
       // revealed (in a test, or again for the same effect outside a test).
       const test = state.skillTest
-      if (test?.revealing) {
+      if (test?.revealing && !state.tokenReveal) {
         const { revealing, ...rest } = test
         const next = log(
           {
@@ -6706,7 +6834,7 @@ export function handle(state: GameState, message: Message): GameState {
             ...(held.hold ? { hold: true } : {}),
             used: [...held.used, ...(message.use ? [message.use] : [])],
           })
-        : isSupplementalReveal(held.then)
+        : held.then.outsideBatch || isSupplementalReveal(held.then)
           ? push(notified, { ...held.then, data: { ...held.then.data, canceled: true } })
           : notified
     }
@@ -6854,6 +6982,7 @@ export function handle(state: GameState, message: Message): GameState {
             skillTest: { ...test, revealing: { ...test.revealing, face: message.token } },
           }
         : { ...treated, tokenReveal: { ...state.tokenReveal!, face: message.token } }
+      if (message.cancel === false) return next
       return push(next, {
         type: 'Forced',
         trigger: {
@@ -6899,6 +7028,14 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RevealTokenOutsideTest': {
       // RR: a chaos token revealed outside a skill test (scenario effects, Premonition).
       const { investigator } = message
+      if (message.token !== undefined && state.pendingOutsideTokens?.length)
+        state = {
+          ...state,
+          pendingOutsideTokens: withoutEach(state.pendingOutsideTokens, [
+            message.token,
+            ...(message.ignored ?? []),
+          ]),
+        }
       if (message.pending) {
         const held = state.tokenReveal
         if (!held) return state
@@ -6923,6 +7060,29 @@ export function handle(state: GameState, message: Message): GameState {
       if (message.token === undefined) {
         // Premonition (Forced): its sealed token is resolved instead; then it is discarded.
         const premonition = (state.sealed ?? []).find((e) => !e.holder)
+        const sameForesight = (state.sealed ?? []).filter(
+          (e) =>
+            premonition &&
+            !e.holder &&
+            e.code === premonition.code &&
+            e.investigator === premonition.investigator,
+        )
+        if (premonition && sameForesight.length > 1)
+          return push(
+            updateInvestigator(
+              { ...state, sealed: (state.sealed ?? []).filter((e) => !sameForesight.includes(e)) },
+              premonition.investigator,
+              (i) => ({ ...i, discard: [...i.discard, premonition.code] }),
+            ),
+            {
+              type: 'ResolveChosenTokens',
+              investigator,
+              tokens: sameForesight.map((e) => e.token),
+              drawn: false,
+              ignored: [],
+              outside: { ...message, offered: true },
+            },
+          )
         if (premonition)
           return push(
             updateInvestigator(
@@ -6986,7 +7146,7 @@ export function handle(state: GameState, message: Message): GameState {
         const { wouldReveal: _open, nextTokenReplacement: _used, ...closed } = state
         state = closed
         if (replacement && !replacement.untilSymbol && state.chaosBag.length) {
-          if (replacement.nested) {
+          if (replacement.nested || (replacement.resolve ?? 1) > 1) {
             const drawn = drawReplacementTree(state, replacement)
             return push(
               { ...state, chaosBag: drawn.chaosBag, rng: drawn.rng },
@@ -8005,7 +8165,8 @@ export function handle(state: GameState, message: Message): GameState {
         // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
         // Daga de la fortuna: comprueba iconos al atacar.
         ...(enemyBehavior(enemy.code)?.onAttack?.(next, enemy, investigator.id) ?? []),
-        ...(investigator.attackProtection?.phase === state.phase &&
+        ...((investigator.attackProtection?.untilRoundEnd ||
+          investigator.attackProtection?.phase === state.phase) &&
         investigator.attackProtection.round === state.round &&
         (!investigator.attackProtection.nonElite || !enemy.traits?.includes('Elite'))
           ? [{ type: 'CancelEnemyAttack' as const, enemy: enemy.id }]
@@ -8078,24 +8239,194 @@ export function handle(state: GameState, message: Message): GameState {
             prompt: 'prompt.chooseRevealedToken',
             alwaysAsk: next.choices.length > 1,
             choices: next.choices.map((c): Choice => ({
-              label: 'choice.resolveToken',
-              params: { token: String(c.token) },
+              label: c.tokens.length > 1 ? 'choice.resolveTokens' : 'choice.resolveToken',
+              params:
+                c.tokens.length > 1
+                  ? { tokens: c.tokens.map(String).join(' ') }
+                  : { token: String(c.token) },
               then: [{ ...message, tree: chooseTree(message.tree, next.path, c.index) }],
             })),
           },
         })
-      const token = chosenTreeToken(message.tree),
+      const tokens = chosenTreeTokens(message.tree),
         all = treeTokens(message.tree)
-      if (token === undefined) return { ...state, chaosBag: [...state.chaosBag, ...all] }
-      const at = all.indexOf(token),
-        ignored = all.filter((_, n) => n !== at)
+      if (!tokens.length) return { ...state, chaosBag: [...state.chaosBag, ...all] }
       return push(state, {
-        type: 'ResolveChosenToken',
-        token,
-        ignored,
+        type: 'ResolveChosenTokens',
+        investigator: message.investigator,
+        tokens,
+        ignored: withoutEach(all, tokens),
         ...(message.source ? { source: message.source } : {}),
         ...(message.outside ? { outside: message.outside } : {}),
       })
+    }
+    case 'ResolveChosenTokens': {
+      const { tokens, ignored, outside } = message
+      const penalty = state.nextTokenPenalty
+      const before: Message[] =
+        penalty && tokens.some((t) => penalty.tokens.includes(t))
+          ? [
+              {
+                type: penalty.returnToHand ? 'ReturnAssetToHand' : 'RemoveAssetFromGame',
+                asset: penalty.asset,
+              },
+            ]
+          : []
+      if (penalty) {
+        const { nextTokenPenalty: _used, ...rest } = state
+        state = rest
+      }
+      if (outside) {
+        const ignoredEffects: Message[] = ignored.length
+          ? [
+              {
+                type: 'Forced',
+                trigger: {
+                  type: 'afterTokenManipulated',
+                  investigator: message.investigator,
+                  operation: 'ignore',
+                },
+              },
+            ]
+          : []
+        const auto =
+          !!outside.then.data?.countsDuringTest &&
+          state.heldChaosTokens?.[String(outside.then.data?.group)] !== undefined
+        let next: GameState = {
+          ...state,
+          pendingOutsideTokens: [
+            ...(state.pendingOutsideTokens ?? []),
+            ...tokens,
+            ...(outside.hold && auto ? [] : ignored),
+          ],
+        }
+        if (outside.hold && auto) {
+          const group = String(outside.then.data?.group)
+          next = {
+            ...next,
+            heldChaosTokens: {
+              ...next.heldChaosTokens,
+              [group]: [...(next.heldChaosTokens?.[group] ?? []), ...ignored],
+            },
+            ...(next.skillTest
+              ? {
+                  skillTest: {
+                    ...next.skillTest,
+                    supplementalTokens: [...(next.skillTest.supplementalTokens ?? []), ...ignored],
+                  },
+                }
+              : {}),
+          }
+        }
+        if (outside.hold) {
+          const [token, ...remaining] = tokens
+          if (token === undefined) return next
+          return push(next, ...before, ...ignoredEffects, {
+            ...outside,
+            token,
+            ignored: [],
+            offered: true,
+            then: {
+              ...outside.then,
+              outsideBatch: { outside, remaining, faces: [], physical: [], ignored },
+            },
+          })
+        }
+        return push(
+          next,
+          ...before,
+          ...ignoredEffects,
+          ...tokens.map((token, n): Message => ({
+            ...outside,
+            token,
+            ignored: n === 0 ? ignored : [],
+            offered: true,
+          })),
+        )
+      }
+      if (!state.skillTest)
+        return { ...state, chaosBag: [...state.chaosBag, ...tokens, ...ignored] }
+      return push(
+        {
+          ...state,
+          skillTest: {
+            ...state.skillTest,
+            pendingTokens: [...(state.skillTest.pendingTokens ?? []), ...tokens],
+            tokenChoice: {
+              chosen: tokens[0]!,
+              chosenTokens: tokens,
+              ignored,
+              ...(message.source ? { source: message.source } : {}),
+            },
+            ignoredTokens: [...(state.skillTest.ignoredTokens ?? []), ...ignored],
+            ...(state.skillTest.revealCount !== undefined
+              ? { revealCount: state.skillTest.revealCount + ignored.length }
+              : {}),
+          },
+        },
+        ...before,
+        ...(ignored.length
+          ? [
+              {
+                type: 'Forced',
+                trigger: {
+                  type: 'afterTokenManipulated',
+                  investigator: message.investigator,
+                  operation: 'ignore',
+                },
+              } as Message,
+            ]
+          : []),
+        ...tokens.map((token): Message => ({
+          type: 'RevealChaosToken',
+          token,
+          drawn: message.drawn ?? true,
+        })),
+      )
+    }
+    case 'SealTestToken': {
+      const a = state.assets[message.asset],
+        test = state.skillTest
+      if (!a || !test) return state
+      let next: GameState
+      const normal = withoutEach(physicalResolvedTokens(test), test.sealedTokens ?? [])
+      if (normal.includes(message.token))
+        next = {
+          ...state,
+          skillTest: { ...test, sealedTokens: [...(test.sealedTokens ?? []), message.token] },
+        }
+      else {
+        if (!test.supplementalResolvedTokens?.some((t) => t.token === message.token)) return state
+        const group = Object.entries(state.heldChaosTokens ?? {}).find(([, held]) =>
+          held.includes(message.token),
+        )
+        if (!group) return state
+        next = {
+          ...state,
+          heldChaosTokens: {
+            ...state.heldChaosTokens,
+            [group[0]]: withoutEach(group[1], [message.token]),
+          },
+        }
+      }
+      return push(
+        {
+          ...next,
+          sealed: [
+            ...(next.sealed ?? []),
+            {
+              token: message.token,
+              investigator: a.owner,
+              code: a.code,
+              holder: { type: 'asset', id: a.id },
+            },
+          ],
+        },
+        {
+          type: 'Forced',
+          trigger: { type: 'afterTokenManipulated', investigator: a.owner, operation: 'seal' },
+        },
+      )
     }
     case 'ChooseRevealedToken': {
       const { tokens, prefer } = message
@@ -8134,7 +8465,15 @@ export function handle(state: GameState, message: Message): GameState {
     }
     case 'ResolveChosenToken': {
       const { token, ignored } = message
-      if (message.outside) return push(state, { ...message.outside, token, ignored })
+      if (message.outside)
+        return push(state, {
+          type: 'ResolveChosenTokens',
+          investigator: message.outside.investigator,
+          tokens: [token],
+          ignored,
+          ...(message.source ? { source: message.source } : {}),
+          outside: message.outside,
+        })
       const test = state.skillTest
       if (!test) return { ...state, chaosBag: [...state.chaosBag, token, ...ignored] }
       return push(
@@ -8759,6 +9098,23 @@ export function handle(state: GameState, message: Message): GameState {
     case 'SetAct':
       return { ...state, actIndex: message.index }
 
+    case 'SpawnEncounterDiscardEnemy': {
+      const index = state.encounterDiscard.findLastIndex(
+        (c) => c.kind === 'enemy' && c.code === message.code,
+      )
+      const card = state.encounterDiscard[index]
+      if (!card || card.kind !== 'enemy' || !state.locations[message.location]) return state
+      return push(
+        { ...state, encounterDiscard: state.encounterDiscard.filter((_c, n) => n !== index) },
+        {
+          type: 'SpawnEnemy',
+          card,
+          location: message.location,
+          engageWith: null,
+          ...(message.onSpawn ? { onSpawn: message.onSpawn } : {}),
+        },
+      )
+    }
     case 'DiscardUntilEnemy': {
       const index = state.encounterDeck.findIndex((c) => c.kind === 'enemy')
       if (index < 0) {
@@ -9141,7 +9497,12 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ProtectFromAttacks':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
-        attackProtection: { phase: state.phase, round: state.round, nonElite: message.nonElite },
+        attackProtection: {
+          phase: state.phase,
+          round: state.round,
+          nonElite: message.nonElite,
+          ...(message.untilRoundEnd ? { untilRoundEnd: true } : {}),
+        },
       }))
     case 'CancelEnemyAttack': {
       const enemy =
@@ -12338,6 +12699,14 @@ export function handle(state: GameState, message: Message): GameState {
         return push(
           updateInvestigator(moved, to.id, (i) => ({ ...i, [message.kind]: i[message.kind] + 1 })),
           { type: 'CheckDefeat', investigator: to.id },
+          ...(message.kind === 'horror'
+            ? [
+                {
+                  type: 'Forced' as const,
+                  trigger: { type: 'afterHorrorPlaced' as const, investigator: to.id, amount: 1 },
+                },
+              ]
+            : []),
         )
       const target = { ...moved.assets[to.id]!, [message.kind]: to[message.kind] + 1 }
       moved = { ...moved, assets: { ...moved.assets, [to.id]: target } }
@@ -13007,6 +13376,10 @@ function recordSupplemental(
           ...(face !== undefined
             ? {
                 supplementalFaces: [...(state.skillTest.supplementalFaces ?? []), face],
+                supplementalResolvedTokens: [
+                  ...(state.skillTest.supplementalResolvedTokens ?? []),
+                  { token, face },
+                ],
                 tokenConditions: (state.skillTest.tokenConditions ?? []).filter(
                   (c) => c.token !== face,
                 ),
@@ -13457,6 +13830,7 @@ export function poolTokensInPlay(state: GameState, token: 'bless' | 'curse'): nu
   const test = state.skillTest
   return [
     ...state.chaosBag,
+    ...(state.pendingOutsideTokens ?? []),
     ...(state.sealed ?? []).map((e) => e.token),
     ...Object.values(state.heldChaosTokens ?? {}).flat(),
     ...(state.tokenReveal ? [state.tokenReveal.token, ...(state.tokenReveal.ignored ?? [])] : []),
@@ -13479,7 +13853,7 @@ function withinPoolLimit(state: GameState, tokens: ChaosToken[]): ChaosToken[] {
 
 /** Resolved physical bless/curse tokens of a test (ignored ones go back to the bag). */
 function pooledTokens(test: SkillTest): ChaosToken[] {
-  return physicalResolvedTokens(test).filter(isPoolToken)
+  return withoutEach(physicalResolvedTokens(test), test.sealedTokens ?? []).filter(isPoolToken)
 }
 
 /** Older in-progress tests only saved the effective faces and their substitutions. */
@@ -13611,10 +13985,17 @@ function revealedThen(
   /** Held ignored tokens, returned by the effect with its revealed group (JSON list). */
   ignored?: ChaosToken[],
 ): Message {
+  const {
+    tokens: _tokens,
+    physicalTokens: _physical,
+    ignored: _ignored,
+    canceled: _canceled,
+    ...data
+  } = then.data ?? {}
   return {
     ...then,
     data: {
-      ...then.data,
+      ...data,
       token: face,
       physical: token,
       index,
@@ -13765,12 +14146,16 @@ export function revealedTestTokens(test: SkillTest): ChaosToken[] {
 
 /** Tokens that go back to the bag at ST.8: the physical ones, not what they were treated as. */
 function returnedTokens(test: SkillTest): ChaosToken[] {
-  return [
-    ...physicalResolvedTokens(test),
-    ...(test.ignoredTokens ?? []),
-    ...(test.earlyTokens ?? []).filter((t) => !t.virtual).map((t) => t.token),
-    ...(test.revealing && !test.revealing.virtual ? [test.revealing.token] : []),
-  ]
+  return withoutEach(
+    [
+      ...physicalResolvedTokens(test),
+      ...(test.pendingTokens ?? []),
+      ...(test.ignoredTokens ?? []),
+      ...(test.earlyTokens ?? []).filter((t) => !t.virtual).map((t) => t.token),
+      ...(test.revealing && !test.revealing.virtual ? [test.revealing.token] : []),
+    ],
+    test.sealedTokens ?? [],
+  )
 }
 
 /** El daño que causa una ficha del caos (calavera, sectario…) lleva la ficha como origen. */
@@ -13845,8 +14230,19 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
       playerCardDef(a.code)?.name ?? a.code,
     ),
   )
+  const fromHands = state.investigators
+    .filter((i) => !i.eliminated)
+    .flatMap((i) =>
+      i.hand.flatMap((code) =>
+        sourced(
+          playerCardBehavior(code)?.handForced?.(state, trigger, i.id),
+          playerCardDef(code)?.name ?? code,
+        ),
+      ),
+    )
   return [
     ...fromScenario,
+    ...fromHands,
     ...fromStories,
     ...fromPlaced,
     ...fromAttachments,
@@ -13968,7 +14364,14 @@ function blessCurseModifier(state: GameState, token: 'bless' | 'curse'): number 
 /** Valor y efectos de una ficha del caos (RR paso 4). */
 function resolveToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
   if (state.skillTest?.ignoredTokenEffects?.includes(token)) return { modifier: 0 }
-  const effect = resolveBaseToken(state, token, investigator)
+  const base = resolveBaseToken(state, token, investigator)
+  const self = getInvestigator(state, investigator)
+  const effect = {
+    ...base,
+    modifier:
+      investigatorBehavior(self.id)?.tokenModifier?.(state, self, token, base.modifier) ??
+      base.modifier,
+  }
   const test = state.skillTest
   const target =
     test && (test.kind.type === 'fight' || test.kind.type === 'evade')
@@ -14843,6 +15246,9 @@ export function skillTestValue(state: GameState): {
   )
   const base =
     (scenarioBehavior(state.scenarioId)?.skillBase?.(state, test) ??
+      (test.baseFromShroud && investigator.location
+        ? shroudOf(state, investigator.location)
+        : undefined) ??
       test.baseSkill ??
       Math.max(minimumBase, lasting?.bases?.[test.skill] ?? investigator.skills[test.skill])) *
     (doubling.base ? 2 : 1)

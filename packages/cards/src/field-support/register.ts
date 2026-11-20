@@ -1,3 +1,4 @@
+import { resolvedFaces, resolvedPhysical } from '../chaos-allies/common'
 // RR: Drawing Cards, Revelation, Cancel, Search, Healing, Uses, Campaign Play.
 import {
   getInvestigator,
@@ -180,12 +181,12 @@ export function registerSupport(code: string): void {
             {
               type: 'StoreHeldChaosTokens',
               group: String(d.group),
-              tokens: [d.physical as never, ...JSON.parse(String(d.ignored ?? '[]'))],
+              tokens: [...resolvedPhysical(d), ...JSON.parse(String(d.ignored ?? '[]'))],
             },
             call(code, by, 'draw', {
               ...d,
               left: Number(d.left) - 1,
-              faces: JSON.stringify([...faces, d.token]),
+              faces: JSON.stringify([...faces, ...resolvedFaces(d).filter((x) => x !== null)]),
             }),
           ]
         return []

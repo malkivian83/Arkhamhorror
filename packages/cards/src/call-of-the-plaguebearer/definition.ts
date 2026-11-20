@@ -7,6 +7,7 @@ import { MOURNING_CHORUS, mourningChorus } from './mourning-chorus'
 import { HIGH_NOON_DESCENT, highNoonDescent } from './high-noon-descent'
 import { AFTERNOON_WAR, afternoonWar } from './afternoon-war'
 import { DEATH_AT_SUNDOWN, deathAtSundown } from './death-at-sundown'
+import { MIDNIGHT_HOUR, midnightHour } from './midnight-hour'
 import './history-lesson'
 import './confrontation'
 registerCampaign({
@@ -69,6 +70,21 @@ registerCampaign({
                       build: ({ difficulty, log }) => deathAtSundown({ difficulty, log }),
                       keywords: ['hunter', 'massive', 'retaliate', 'aloof', 'peril', 'surge'],
                     }
-                  : { id },
+                  : id === MIDNIGHT_HOUR
+                    ? {
+                        id,
+                        build: ({ difficulty, log, seed }) =>
+                          midnightHour({ difficulty, log, seed }),
+                        keywords: [
+                          'hunter',
+                          'massive',
+                          'retaliate',
+                          'alert',
+                          'aloof',
+                          'peril',
+                          'surge',
+                        ],
+                      }
+                    : { id },
   ),
 })
