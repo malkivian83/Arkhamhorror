@@ -1,3 +1,6 @@
+import carcosaInvestigators from '../data/carcosa-investigators.json'
+import markOfficial from '../carcosa-investigators/decklist-6642.json'
+import akachiOfficial from '../carcosa-investigators/decklist-4814.json'
 import dunwichInvestigators from '../data/dunwich-investigators.json'
 import zoeyOfficial from '../dunwich-investigators/decklist-11965.json'
 import jimOfficial from '../dunwich-investigators/decklist-11969.json'
@@ -78,6 +81,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
 })
 registerPlayerCards([
   ...(dunwichInvestigators as PlayerCardDef[]),
+  ...(carcosaInvestigators as PlayerCardDef[]),
   ...(originalCore as PlayerCardDef[]),
   ...playerCards,
   ...(pete as PlayerCardDef[]),
@@ -119,6 +123,30 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  mark: {
+    investigator: 1,
+    investigatorCode: markOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(markOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  akachi: {
+    investigator: 1,
+    investigatorCode: akachiOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(akachiOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   zoey: {
     investigator: 1,
     investigatorCode: zoeyOfficial.investigator_code,

@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "carcosaInvestigators": {
+        "title": "Mark Harrigan y Akachi Onyele",
+        "cards": "Dos investigadores nuevos con sus cinco exclusivas y debilidades, ambas caras de Sophie y sus mazos iniciales oficiales de FFG.",
+        "rules": "Mark roba al colocarse daño en una carta que controla; Sophie cambia de cara según su daño. Akachi añade cargas iniciales, recupera apoyos y recursos, y resuelve Espíritus airados."
+      },
       "plaguebearerMidnightHour": {
         "title": "La llamada del Portador de la Plaga: La hora bruja y el epílogo",
         "cards": "Escenario VIII con Lugares enemigo que se dan la vuelta entre Arkham y Baalshandor, el Cuerpo, la Mente y el Alma de Baalshandor, los Leales de Greyson y los Mensajeros, resoluciones 0–8 y epílogo con texto literal EN/ES. La campaña ya se puede jugar hasta el final.",
@@ -340,6 +345,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "orderTestResults": "Elige el orden de los resultados de la prueba de habilidad",
     "flexibleSlot": "Elige el tipo de ranura flexible. Puedes cambiarlo cuando un apoyo entre en juego.",
     "storedSource": "Elige la copia que vas a jugar.",
     "research": "Puedes resolver una capacidad de Investigación de las cartas buscadas.",
@@ -600,6 +606,8 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "carcosaCash": "Mueve {n} cargas de {card} a tus recursos y descártalo",
+    "carcosaReturn": "Devuelve {card} a la mano",
     "chaosFluteDamage": "Infligir {n} de daño a {enemy}",
     "chaosFluteMove": "Mover a {enemy} a {location}",
     "chaosRelease": "Liberar {token}",
@@ -1363,6 +1371,8 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "carcosaSpirits": "Agota {card} y mueve 1 carga a los Espíritus airados",
+    "markDraw": "Mark Harrigan: roba 1 carta",
     "chaosShardRelease": "Atacar a {enemy} con {card}: liberar una ficha sellada",
     "chaosShardCharge": "Atacar a {enemy} con {card}: gastar 1 carga",
     "container": "Usar {card}",
@@ -3770,6 +3780,11 @@
   },
   "offlineCard": {
     "subnames": {
+      "03014": "Enviada de los alusi",
+      "03009b": "Todo fue culpa mía",
+      "03009": "Te llevo en mi memoria",
+      "03004": "La chamán",
+      "03001": "El soldado",
       "02012": "Los muertos escuchan",
       "02006": "Símbolo de rectitud",
       "02004": "El músico",
@@ -3966,6 +3981,14 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "03015": "Tarea.",
+      "03014": "Ritual.",
+      "03009b": "Objeto. Locura.",
+      "03009": "Objeto. Espíritu.",
+      "03008": "Defecto.",
+      "03007": "Experimentado. Experto.",
+      "03004": "Hechicero.",
+      "03001": "Veterano.",
       "02013": "Fin de los tiempos.",
       "02012": "Objeto. Instrumento. Reliquia.",
       "02007": "Tarea.",
@@ -4997,6 +5020,14 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "03015": "<b>Revelación</b> - Pon los Espíritus airados en juego en tu zona de amenaza.\n[free] Agota un Apoyo [[Hechizo]]: Mueve 1 carga de ese Apoyo a los Espíritus airados.\n<b>Obligado</b> - Si los Espíritus airados tienen menos de 4 cargas cuando termine la partida: Sufres 1 trauma físico.",
+      "03014": "Sólo para el mazo de Akachi Onyele.\n[free] Agota Portavoz de los espíritus: Elige un Apoyo que controles con \"Usos (cargas)\". Devuelve ese apoyo a tu mano o bien mueve todas las cargas de ese Apoyo a tu reserva de recursos <em>(como recursos)</em> y descarta ese Apoyo.",
+      "03009b": "Sophie no puede abandonar el juego.\nRecibes -1 a cada una de tus habilidades.\n<b>Obligado</b> - Si Mark Harrigan tiene 4 o menos puntos de daño: Dale la vuelta a Sophie.",
+      "03009": "Sólo para el mazo de Mark Harrigan.\nSophie no puede abandonar el juego.\n[free] Recibe 1 punto de daño directo: Recibes +2 a tu valor de habilidad para esta prueba de habilidad.\n<b>Obligado</b> - Si Mark Harrigan tiene 5 o más puntos de daño: Dale la vuelta a Sophie.",
+      "03008": "<b>Revelación</b> - Por cada 2 puntos de daño que tengas, recibe 1 punto de horror.",
+      "03007": "Sólo para el mazo de Mark Harrigan.\nSi esta prueba de habilidad tiene éxito durante un ataque, mueve 1 punto de daño de Mark Harrigan al Enemigo atacado.",
+      "03004": "Tus Apoyos con \"Usos (cargas)\" entran en juego con 1 carga adicional.\nEfecto [elder_sign]: +1. Añade 1 carga a un Apoyo con \"Usos (cargas)\" que controles.",
+      "03001": "Comienzas la partida con Sophie (Te llevo en mi memoria) en juego.\n[reaction] Después de que se coloque daño en una carta que controles: Roba 1 carta. Límite de una vez por fase.\nEfecto [elder_sign]: +1 por cada punto de daño que haya sobre Mark Harrigan.",
       "02013": "<b>Revelación</b> - Revela 5 fichas de Caos de la bolsa de caos. Por cada ficha [skull] o [auto_fail] revelada, recibe 1 punto de daño y 1 punto de horror.",
       "02012": "Sólo para el mazo de Jim Culver.\n[reaction] Cuando sea revelada una ficha [skull] durante una prueba de habilidad, agota La trompeta de Jim: Cura 1 punto de horror de un investigador que esté en tu Lugar o un Lugar conectado.",
       "02007": "<b>Revelación</b> - Descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartado un Enemigo. Vincula Destruir a los malvados a ese Enemigo y haz que aparezca en el Lugar más alejado de ti.\n<b>Obligado</b> - Si el Enemigo vinculado está en juego cuando termine la partida: Sufres 1 trauma mental.",
@@ -6435,6 +6466,8 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "03004": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas con \"Usos (cargas)\" de nivel 0-4, cartas [[Ocultismo]] de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Portavoz de los espíritus, Espíritus airados, 1 Debilidad básica aleatoria.",
+      "03001": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas [[Táctica]] de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): El frente doméstico, Neurosis de guerra, Sophie, 1 Debilidad básica aleatoria.",
       "02004": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Trompeta de Jim, Rapsodia final, 1 Debilidad básica aleatoria.",
       "02001": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Cruz de Zoey, Destruir a los malvados, 1 Debilidad básica aleatoria.",
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -6466,6 +6499,14 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "03015": "Espíritus airados",
+      "03014": "Portavoz de los espíritus",
+      "03009b": "Sophie",
+      "03009": "Sophie",
+      "03008": "Neurosis de guerra",
+      "03007": "El frente doméstico",
+      "03004": "Akachi Onyele",
+      "03001": "Mark Harrigan",
       "02013": "Rapsodia final",
       "02012": "La trompeta de Jim",
       "02007": "Destruir a los malvados",

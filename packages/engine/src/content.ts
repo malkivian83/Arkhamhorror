@@ -997,6 +997,8 @@ export interface PlayerCardBehavior {
     committedBy: InvestigatorId,
     copy?: SkillTest['committed'][number],
   ) => Message[]
+  /** The committed skill needs ST.7 result ordering (The Home Front). */
+  chooseResultOrder?: boolean
   /** Carta comprometida: después del paso 8, con la prueba ya cerrada. */
   afterCommittedTestEnds?: (
     state: GameState,
@@ -1130,6 +1132,7 @@ export interface PlayerCardBehavior {
  */
 export interface InvestigatorBehavior {
   code: CardCode
+  initialUsesBonus?: (code: CardCode) => number
   startingAssets?: CardCode[]
   fastOptions?: (state: GameState, self: Investigator) => ReactionOption[]
   /** Change only the numerical modifier, retaining the symbol and scenario effects (Jim Culver). */
@@ -1303,7 +1306,8 @@ export function deckOptionAllows(option: DeckOption, card: PlayerCardDef): boole
     (card.xp ?? 0) <= option.maxLevel &&
     (option.classes.length === 0 ||
       (card.classes ?? [card.class]).some((f) => option.classes.includes(f))) &&
-    (!option.traits || card.traits.some((t) => option.traits!.includes(t)))
+    (!option.traits || card.traits.some((t) => option.traits!.includes(t))) &&
+    (!option.uses || card.uses?.type === option.uses || card.uses?.type === option.uses + 's')
   )
 }
 

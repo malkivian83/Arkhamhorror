@@ -1,4 +1,22 @@
 {
+  "03001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "He'd burn the entire town down if necessary, but he wouldn't let those monsters take anyone else.",
+    "backFlavor": "There were plenty who returned from the war broken in body or spirit. But Mark Harrigan had witnessed horrors he could not explain. His beloved Sophie believed him when he wrote her about the things he saw - not the men killing other men, but the other things. The creatures. When he came home and went to visit her, he found the reasons she believed him: she had one of the creatures inside her, eating her from the inside out. As he watched in helpless horror, she faded away into the air, screaming as thing finished its meal. Now everyone thinks Mark Harrigan is crazy. Maybe he's finally lost it, after all. But he knows the monsters are real, and he will not rest until every last one is dead."
+  },
+  "03004": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"I will journey to the lands beyond. I do not fear them.\"",
+    "backFlavor": "As a young girl in Nigeria, Akachi became used to being set apart. Her habits of chattering away at thin air and secluding herself from other children led her village to believe she was mad. Her village Dibia was the first to see her true potential. He believed Akachi was marked by the spirits for greatness, and he taught her how to commune with them to her advantage. Under his tutelage, Akachi grew into a wise young leader, respected not just in her village, but in every community she aided. Now she meets her destiny head on, seeking out unnatural troubles that only her knowledge can stop."
+  },
+  "03007": {
+    "group": "investigators",
+    "typeCode": "skill",
+    "flavor": "The real war has only just begun."
+  },
+  "03008": { "group": "investigators", "typeCode": "treachery", "flavor": "War never changes." },
   "12106": {
     "group": "ceniza",
     "typeCode": "agenda",

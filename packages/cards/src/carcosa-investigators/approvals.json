@@ -1,0 +1,71 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sources": {
+    "en": "ddc568468c561c0b5542c3be35ab0fd84505a63ebe9bc47743b90084f0639689",
+    "es": "a6ef48db0aed8897f7fb8d80ac21d3c96cae6d15da517a78f89d46eec809b5a7"
+  },
+  "cards": [
+    {
+      "code": "03001",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03001",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03004",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03004",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03007",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03007",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03008",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03008",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03009",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03009",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03009b",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03009b",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03014",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03014",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03015",
+      "status": "verified",
+      "adapter": "carcosa-investigators-v1",
+      "module": "card-03015",
+      "test": "rules.test.ts"
+    }
+  ],
+  "decklists": {
+    "03001": "https://arkhamdb.com/decklist/view/6642",
+    "03004": "https://arkhamdb.com/decklist/view/4814"
+  }
+}

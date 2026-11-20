@@ -1,5 +1,7 @@
 # Historial de la importación
 
+- Lote 159 (20/11): `dunwich-investigators`, `3637c03e`, cierre `4802e0d2`; Zoey/Jim, cuatro exclusivas/debilidades y dos mazos oficiales FFG. 25 investigadores habilitados, 43 pendientes y 134 cartas estándar pendientes. Reglas/mazos/fuentes/guardados y 292 casos del alcance de motor, tipos/lint/formato/imágenes correctos. Regresiones de mazos y Helada corregidas después en `7984d452`. [Detalle](159-investigadores-dunwich.md).
+
 - Lote 154 (20/11): `opening-archives`, `390bb93a` (cierre `3f8cd2f7`); ocho diseños/niveles estándar nuevos, cero vinculadas nuevas y reediciones. 1604 comportamientos, 521 históricos pendientes y 163 estándar con impresión. Reglas, guardados, mesa online, fuentes, imágenes, tipos, lint/formato y build web verificados. [Detalle](154-reservas-iniciales.md).
 
 - Lote 153 (20/11): `campaign-planning`, `0cdb9b6e` (cierre `265ca357`); doce códigos y diseños/niveles estándar nuevos, cero vinculadas o reediciones. 1596 comportamientos, 529 históricos pendientes y 171 estándar con impresión. Motor/cartas/importación: 7765 casos; integración: 123. Tipos, lint/formato, fuentes, imágenes y build web correctos. [Detalle](153-planificacion-de-campana.md).

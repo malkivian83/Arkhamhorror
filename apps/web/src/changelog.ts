@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'carcosa-investigators',
+    date: '2026-11-20',
+    title: 'app.changelog.carcosaInvestigators.title',
+    items: ['app.changelog.carcosaInvestigators.cards', 'app.changelog.carcosaInvestigators.rules'],
+  },
+  {
     id: 'dunwich-investigators',
     date: '2026-11-20',
     title: 'app.changelog.dunwichInvestigators.title',

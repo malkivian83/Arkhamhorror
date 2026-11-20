@@ -1,0 +1,108 @@
+[
+  {
+    "code": "03001",
+    "name": "Mark Harrigan",
+    "subname": "The Soldier",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Veteran"],
+    "unique": true,
+    "health": 9,
+    "sanity": 5,
+    "skills": { "willpower": 3, "intellect": 2, "combat": 5, "agility": 3 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["guardian", "neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Tactic"], "maxLevel": 0 }
+    ],
+    "signatures": ["03007", "03008", "03009"]
+  },
+  {
+    "code": "03004",
+    "name": "Akachi Onyele",
+    "subname": "The Shaman",
+    "type": "investigator",
+    "class": "mystic",
+    "traits": ["Sorcerer"],
+    "unique": true,
+    "health": 6,
+    "sanity": 8,
+    "skills": { "willpower": 5, "intellect": 2, "combat": 3, "agility": 3 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["mystic", "neutral"], "maxLevel": 5 },
+      { "classes": [], "uses": "charge", "maxLevel": 4 },
+      { "classes": [], "traits": ["Occult"], "maxLevel": 0 }
+    ],
+    "signatures": ["03014", "03015"]
+  },
+  {
+    "code": "03007",
+    "name": "The Home Front",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced", "Expert"],
+    "xp": 0,
+    "icons": { "combat": 4 },
+    "slots": []
+  },
+  {
+    "code": "03008",
+    "name": "Shell Shock",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "03009",
+    "name": "Sophie",
+    "subname": "In Loving Memory",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Spirit"],
+    "unique": true,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "03009b",
+    "name": "Sophie",
+    "subname": "It Was All My Fault",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Madness"],
+    "unique": true,
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "03014",
+    "name": "Spirit-Speaker",
+    "subname": "Envoy of the Alusi",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Ritual"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "03015",
+    "name": "Angered Spirits",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Task"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  }
+]

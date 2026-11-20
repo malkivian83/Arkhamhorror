@@ -2352,6 +2352,12 @@ export function handle(state: GameState, message: Message): GameState {
       }
     }
 
+    case 'FlipPlayerAsset': {
+      const a = state.assets[message.asset]
+      return a && playerCardDef(message.code)?.type === 'asset'
+        ? { ...state, assets: { ...state.assets, [a.id]: { ...a, code: message.code } } }
+        : state
+    }
     case 'SetAssetAbilityState': {
       const a = state.assets[message.asset]
       return a
@@ -3928,6 +3934,7 @@ export function handle(state: GameState, message: Message): GameState {
             asset: asset.id,
             damage: message.damage,
             horror: message.horror,
+            owner: asset.owner,
           },
         },
       ]
@@ -3952,7 +3959,13 @@ export function handle(state: GameState, message: Message): GameState {
           if (defeated) effects.push({ type: 'DiscardAsset', asset: a.id, defeated: true })
           effects.push({
             type: 'Forced',
-            trigger: { type: 'afterAssetDamaged', asset: a.id, damage: d.damage, horror: d.horror },
+            trigger: {
+              type: 'afterAssetDamaged',
+              asset: a.id,
+              damage: d.damage,
+              horror: d.horror,
+              owner: a.owner,
+            },
           })
           if (defeated)
             effects.push({ type: 'Forced', trigger: { type: 'assetDefeated', asset: a } })
@@ -4636,6 +4649,9 @@ export function handle(state: GameState, message: Message): GameState {
                   (n, a) => n + (assetBehavior(state, a)?.initialUsesBonus?.(message.code) ?? 0),
                   0,
                 ) +
+              (investigatorBehavior(
+                getInvestigator(state, message.investigator).id,
+              )?.initialUsesBonus?.(message.code) ?? 0) +
               (message.entryUses ?? 0),
             ...(getInvestigator(state, message.investigator).customizations?.[message.code]
               ? {
@@ -7415,17 +7431,26 @@ export function handle(state: GameState, message: Message): GameState {
       // RR ST.7: the investigator chooses the order of results. Cancellation only
       // prevents pending effects; Take Heart can resolve before Neither Rain nor Snow.
       if (
-        !test.succeeded &&
-        activeCommitted(test).some((c) => playerCardBehavior(c.code)?.cancelsFailedTestEffects)
+        (!test.succeeded &&
+          activeCommitted(test).some(
+            (c) => playerCardBehavior(c.code)?.cancelsFailedTestEffects,
+          )) ||
+        (test.succeeded &&
+          activeCommitted(test).some((c) => playerCardBehavior(c.code)?.chooseResultOrder))
       ) {
         return push(state, {
           type: 'ResolveCancelableTestResults',
+          ...(test.succeeded ? { ordered: true as const } : {}),
           remaining: [
-            {
-              label: 'choice.resolveTestConsequences',
-              then: sourceResults,
-            },
-            ...committedResults,
+            ...Array.from({ length: test.succeeded ? (test.resultRepetitions ?? 1) : 1 }).flatMap(
+              () => [
+                {
+                  label: 'choice.resolveTestConsequences',
+                  then: sourceResults,
+                },
+                ...committedResults,
+              ],
+            ),
             { label: 'choice.resolveTokenConsequences', then: tokens },
           ].filter((effect) => effect.then.length > 0),
         })
@@ -7441,7 +7466,10 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ResolveCancelableTestResults': {
       const test = state.skillTest
-      if (!test || test.succeeded !== false) return state
+      if (!test || test.succeeded === null || (!message.ordered && test.succeeded !== false))
+        return state
+      if (message.ordered && !message.remaining.length) return state
+      if (message.ordered && message.cancel) return state
       if (message.cancel || !message.remaining.length)
         return log(state, 'log.failedTestEffectsCanceled')
       return push(state, {
@@ -7449,7 +7477,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: test.investigator,
         question: {
           kind: 'chooseOne',
-          prompt: 'prompt.orderCancelableTestResults',
+          prompt: message.ordered ? 'prompt.orderTestResults' : 'prompt.orderCancelableTestResults',
           choices: [
             ...message.remaining.map((effect, index) => ({
               label: effect.label,
@@ -7458,14 +7486,25 @@ export function handle(state: GameState, message: Message): GameState {
                 ...effect.then,
                 {
                   type: 'ResolveCancelableTestResults',
+                  ...(message.ordered ? { ordered: true as const } : {}),
                   remaining: message.remaining.filter((_, i) => i !== index),
                 } satisfies Message,
               ],
             })),
-            {
-              label: 'choice.cancelRemainingTestResults',
-              then: [{ type: 'ResolveCancelableTestResults', remaining: [], cancel: true }],
-            },
+            ...(!message.ordered
+              ? [
+                  {
+                    label: 'choice.cancelRemainingTestResults',
+                    then: [
+                      {
+                        type: 'ResolveCancelableTestResults' as const,
+                        remaining: [],
+                        cancel: true,
+                      },
+                    ],
+                  },
+                ]
+              : []),
           ],
         },
       })
@@ -10356,7 +10395,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveAssetFromGame': {
       if (!state.assets[message.asset]) return state
       const asset = state.assets[message.asset]!
-      if (asset.expeditionPartner) return state
+      if (asset.expeditionPartner || assetBehavior(state, asset)?.cannotLeavePlay?.(state, asset))
+        return state
       const instead = !message.leavingResolved
         ? assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
         : null
@@ -12662,6 +12702,15 @@ export function handle(state: GameState, message: Message): GameState {
             : updateInvestigator(state, message.from.id, (i) => ({ ...i, damage: i.damage - 1 }))
         return push(
           updateEnemy(removed, enemy.id, (e) => ({ ...e, damageTaken: e.damageTaken + 1 })),
+          {
+            type: 'Forced',
+            trigger: {
+              type: 'afterDamageMoved',
+              from: message.from,
+              to: message.to,
+              kind: message.kind,
+            },
+          },
           { type: 'CheckEnemyDefeat', enemy: enemy.id, ...(message.by ? { by: message.by } : {}) },
         )
       }
@@ -12699,6 +12748,16 @@ export function handle(state: GameState, message: Message): GameState {
         return push(
           updateInvestigator(moved, to.id, (i) => ({ ...i, [message.kind]: i[message.kind] + 1 })),
           { type: 'CheckDefeat', investigator: to.id },
+          {
+            type: 'Forced',
+            trigger: {
+              type: 'afterDamageMoved',
+              from: message.from,
+              to: message.to,
+              kind: message.kind,
+              owner: to.id,
+            },
+          },
           ...(message.kind === 'horror'
             ? [
                 {
@@ -12710,6 +12769,16 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const target = { ...moved.assets[to.id]!, [message.kind]: to[message.kind] + 1 }
       moved = { ...moved, assets: { ...moved.assets, [to.id]: target } }
+      const placed: Message = {
+        type: 'Forced',
+        trigger: {
+          type: 'afterDamageMoved',
+          from: message.from,
+          to: message.to,
+          kind: message.kind,
+          owner: target.owner,
+        },
+      }
       const vitals = assetVitals(target, moved)
       return (vitals.health !== undefined && target.damage >= vitals.health) ||
         (vitals.sanity !== undefined && target.horror >= vitals.sanity)
@@ -12717,8 +12786,9 @@ export function handle(state: GameState, message: Message): GameState {
             moved,
             { type: 'DiscardAsset', asset: target.id, defeated: true },
             { type: 'Forced', trigger: { type: 'assetDefeated', asset: target } },
+            placed,
           )
-        : moved
+        : push(moved, placed)
     }
 
     case 'ReturnAssetWithTrait': {

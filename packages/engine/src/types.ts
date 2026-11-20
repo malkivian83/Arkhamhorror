@@ -526,6 +526,8 @@ export type SkillIcon = SkillType | 'wild'
 /** Datos de una carta de jugador (sin texto). */
 /** Opción de construcción de mazo del reverso de un investigador. */
 export interface DeckOption {
+  /** Cards with this printed use type (Akachi: charges). */
+  uses?: string
   /** Empty: any class, when the option is defined by traits. */
   classes: string[]
   maxLevel: number
@@ -1130,6 +1132,8 @@ type MessageBody =
   | { type: 'ApplySkillTestResults'; prepared?: boolean }
   | {
       type: 'ResolveCancelableTestResults'
+      /** Order successful effects without offering cancellation. */
+      ordered?: true
       remaining: { label: string; params?: Record<string, string>; then: Message[] }[]
       cancel?: boolean
     }
@@ -1249,6 +1253,7 @@ type MessageBody =
       asset: AssetId
       values: Record<string, string | number | boolean>
     }
+  | { type: 'FlipPlayerAsset'; asset: AssetId; code: CardCode }
   | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
@@ -2809,7 +2814,20 @@ export type Trigger =
       byDamage: boolean
       byHorror: boolean
     }
-  | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
+  | {
+      type: 'afterAssetDamaged'
+      asset: AssetId
+      damage: number
+      horror: number
+      owner?: InvestigatorId
+    }
+  | {
+      type: 'afterDamageMoved'
+      from: DamageHolder
+      to: DamageHolder
+      kind: 'damage' | 'horror'
+      owner?: InvestigatorId
+    }
   /** Al terminar de asignar daño y horror: lo que ha recibido cada apoyo (con o sin dueño). */
   | {
       type: 'afterDamageAssigned'

@@ -1,4 +1,26 @@
 {
+  "03001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "Haría arder la ciudad hasta los cimientos si fuera necesario, pero no dejaría que esos monstruos se llevasen a nadie más.",
+    "backFlavor": "Muchos volvieron de la guerra rotos en cuerpo y espíritu. Pero Mark Harrigan había visto horrores que no podía explicar. Su amada Sophie le creía cuando le escribía acerca de las cosas que veía; no acerca de la muerte de hombres a manos de otros hombres, sino de las otras cosas. De las criaturas. Cuando volvió a casa y fue a visitarla, descubrió el motivo de que le creyera: tenía una de las criaturas en su interior, devorándola desde dentro. Ella se desvaneció en el aire, gritando mientras la cosa terminaba de comer y él observaba impotente y horrorizado. Ahora todo el mundo cree que Mark Harrigan está loco. Puede que a fin de cuentas haya perdido la cabeza. Pero sabe que los monstruos son reales, y no descansará hasta que no quede ni uno vivo."
+  },
+  "03004": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Viajaré a las tierras del otro lado. No las temo.\"",
+    "backFlavor": "Cuando era niña en Nigeria, Akachi estaba habituada a verse excluida. Su costumbre de charlotear a la nada y de aislarse de los demás niños llevó a que en la aldea pensaran que estaba loca. El primero en ver su verdadero potencial fue el anciano Dibia. Éste creía que los espíritus habían destinado a Akachi hacia la grandeza y le enseñó a aprovechar la comunicación con ellos. Bajo su tutela, Akachi se convirtió en una joven líder muy sabia, respetada no sólo en su aldea, sino en todas las comunidades a las que ayudó. Ahora se enfrentará directamente a su destino, y va en busca de problemas sobrenaturales que sólo sus conocimientos pueden detener."
+  },
+  "03007": {
+    "group": "investigators",
+    "typeCode": "skill",
+    "flavor": "La guerra de verdad no ha hecho más que comenzar."
+  },
+  "03008": {
+    "group": "investigators",
+    "typeCode": "treachery",
+    "flavor": "La guerra nunca cambia."
+  },
   "12106": {
     "group": "ceniza",
     "typeCode": "agenda",

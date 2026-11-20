@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "carcosaInvestigators": {
+        "title": "Mark Harrigan and Akachi Onyele",
+        "cards": "Two new investigators with their five signature cards, both faces of Sophie, and official FFG starter decks.",
+        "rules": "Mark draws after damage is placed on a card he controls; Sophie flips at the damage threshold. Akachi adds starting charges, recovers spells and resources, and resolves Angered Spirits."
+      },
       "plaguebearerMidnightHour": {
         "title": "Call of the Plaguebearer: The Midnight Hour and the epilogue",
         "cards": "Scenario VIII with location enemies that flip between Arkham and Baalshandor, the Body, Mind and Soul of Baalshandor, Greyson’s Loyalists and the Messengers, resolutions 0–8 and the epilogue in literal EN/ES text. The campaign can now be played to the end.",
@@ -340,6 +345,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "orderTestResults": "Choose the order of skill test results",
     "flexibleSlot": "Choose the flexible slot type. You may reassess it when an asset enters play.",
     "storedSource": "Choose which copy to play.",
     "research": "You may resolve one Research ability among the searched cards.",
@@ -600,6 +606,8 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "carcosaCash": "Move {n} charges from {card} to your resources and discard it",
+    "carcosaReturn": "Return {card} to hand",
     "chaosFluteDamage": "Deal {n} damage to {enemy}",
     "chaosFluteMove": "Move {enemy} to {location}",
     "chaosRelease": "Release {token}",
@@ -1363,6 +1371,8 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "carcosaSpirits": "Exhaust {card} and move 1 charge to Angered Spirits",
+    "markDraw": "Mark Harrigan: draw 1 card",
     "chaosShardRelease": "Attack {enemy} with {card}: release a sealed token",
     "chaosShardCharge": "Attack {enemy} with {card}: spend 1 charge",
     "container": "Use {card}",
@@ -3770,6 +3780,11 @@
   },
   "offlineCard": {
     "subnames": {
+      "03014": "Envoy of the Alusi",
+      "03009b": "It Was All My Fault",
+      "03009": "In Loving Memory",
+      "03004": "The Shaman",
+      "03001": "The Soldier",
       "02012": "The Dead Listen",
       "02006": "Symbol of Righteousness",
       "02004": "The Musician",
@@ -3966,6 +3981,14 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "03015": "Task.",
+      "03014": "Ritual.",
+      "03009b": "Item. Madness.",
+      "03009": "Item. Spirit.",
+      "03008": "Flaw.",
+      "03007": "Practiced. Expert.",
+      "03004": "Sorcerer.",
+      "03001": "Veteran.",
       "02013": "Endtimes.",
       "02012": "Item. Instrument. Relic.",
       "02007": "Task.",
@@ -4997,6 +5020,14 @@
       "01013": "Spell."
     },
     "summary": {
+      "03015": "<b>Revelation</b> - Put Angered Spirits into play in your threat area.\n[fast] Exhaust a [[Spell]] asset: Move 1 charge from that asset to Angered Spirits.\n<b>Forced</b> - When the game ends, if Angered Spirits has fewer than 4 charges on it: You suffer 1 physical trauma.",
+      "03014": "Akachi Onyele deck only.\n[fast] Exhaust Spirit-Speaker: Choose an asset you control with \"uses (charges).\" Either return that asset to your hand, or move all charges from that asset to your resource pool <i>(as resources)</i> and discard that asset.",
+      "03009b": "Sophie cannot leave play.\nYou get -1 to each of your skills.\n<b>Forced</b> - If Mark Harrigan has 4 or less damage on him: Flip Sophie.",
+      "03009": "Mark Harrigan deck only.\nSophie cannot leave play.\n[fast] Take 1 direct damage: You get +2 to your skill value for this skill test.\n<b>Forced</b> - If Mark Harrigan has 5 or more damage on him: Flip Sophie.",
+      "03008": "<b>Revelation</b> - For every 2 damage on you, take 1 horror.",
+      "03007": "Mark Harrigan deck only.\nIf this skill test is successful during an attack, move 1 damage from Mark Harrigan to the attacked enemy.",
+      "03004": "Your assets with \"uses (charges)\" enter play with 1 additional charge on them.\n[elder_sign] effect: +1. Add 1 charge to an asset with \"uses (charges)\" you control.",
+      "03001": "You begin the game with Sophie <i>(In Loving Memory)</i> in play.\n[reaction] After damage is placed on a card you control: Draw 1 card. (Limit once per phase.)\n[elder_sign] effect: +1 for each damage on Mark Harrigan.",
       "02013": "<b>Revelation</b> - Reveal 5 chaos tokens from the chaos bag. For each [skull] and [auto_fail] token revealed, take 1 damage and 1 horror.",
       "02012": "Jim Culver deck only.\n[reaction] When a [skull] token is revealed during a skill test, exhaust Jim's Trumpet: Heal 1 horror from an investigator at your location or a connecting location.",
       "02007": "<b>Revelation</b> - Discard cards from the top of the encounter deck until an enemy is discarded. Attach Smite the Wicked to that enemy and spawn it at the location farthest from you.\n<b>Forced</b> - When the game ends, if attached enemy is in play: Zoey Samaras suffers 1 mental trauma.",
@@ -6435,6 +6466,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "03004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Neutral cards level 0-5, cards with \"uses (charges)\" level 0-4, [[Occult]] cards level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Spirit-Speaker, Angered Spirits, 1 random basic weakness.",
+      "03001": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0-5, Neutral cards level 0-5, [[Tactic]] cards level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): The Home Front, Shell Shock, Sophie, 1 random basic weakness.",
       "02004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Jim's Trumpet, Final Rhapsody, 1 random basic weakness.",
       "02001": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Zoey's Cross, Smite the Wicked, 1 random basic weakness.",
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -6466,6 +6499,14 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "03015": "Angered Spirits",
+      "03014": "Spirit-Speaker",
+      "03009b": "Sophie",
+      "03009": "Sophie",
+      "03008": "Shell Shock",
+      "03007": "The Home Front",
+      "03004": "Akachi Onyele",
+      "03001": "Mark Harrigan",
       "02013": "Final Rhapsody",
       "02012": "Jim's Trumpet",
       "02007": "Smite the Wicked",
