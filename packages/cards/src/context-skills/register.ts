@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 import { engagedEnemies, getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
 import { ask } from '../dunwich-pilot/effects'
 import approvals from './approvals.json'
@@ -68,7 +69,7 @@ export function registerContextSkill(code: string): void {
       step === 'recover'
         ? ask(
             by,
-            [...new Set(getInvestigator(s, by).discard)]
+            [...new Set(movableDiscard(s, by))]
               .filter((c) => {
                 const d = playerCardDef(c)
                 return (

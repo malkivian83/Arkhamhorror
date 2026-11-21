@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 // RR: Activate, Evade, Fight, Skill Tests ST.1–ST.8, Uses, Move, Lasting Effects.
 import {
   engagedEnemies,
@@ -567,7 +568,7 @@ export function registerActionSupport(code: string): void {
           return []
         const by = a.owner,
           here = getInvestigator(s, by).location
-        const items = [...new Set(getInvestigator(s, by).discard)].filter((c) =>
+        const items = [...new Set(movableDiscard(s, by))].filter((c) =>
           playerCardDef(c)?.traits.includes('Item'),
         )
         const mayReplace = !!here && t.kind.location === here

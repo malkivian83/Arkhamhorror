@@ -464,6 +464,31 @@ export function cardAllowed(state: GameState, id: InvestigatorId, code: CardCode
  * Cards the investigator may play as if they were in hand: the hand plus, with an asset
  * such as Wendy's Amulet, the topmost event of their discard pile.
  */
+/** Physical discard without events whose effects are still resolving. */
+export function actualDiscard(state: GameState, id: InvestigatorId): CardCode[] {
+  const cards = [...getInvestigator(state, id).discard]
+  for (const frame of [...(state.resolvingPlayerEvents ?? [])].reverse()) {
+    if (frame.investigator !== id || !frame.provisional) continue
+    const at = cards.lastIndexOf(frame.code)
+    if (at >= 0) cards.splice(at, 1)
+  }
+  return cards
+}
+
+/** Cards that can currently be chosen to leave this physical discard pile. */
+export function movableDiscard(state: GameState, id: InvestigatorId): CardCode[] {
+  return discardLocked(state, id) ? [] : actualDiscard(state, id)
+}
+
+export function actualDiscardIndex(state: GameState, id: InvestigatorId, code: CardCode): number {
+  const count = actualDiscard(state, id).filter((c) => c === code).length
+  return (
+    getInvestigator(state, id)
+      .discard.map((c, n) => (c === code ? n : -1))
+      .filter((n) => n >= 0)[count - 1] ?? -1
+  )
+}
+
 /** RR Cannot: checked against current engagement, without persistent investigator flags. */
 export function discardLocked(state: GameState, id: InvestigatorId): boolean {
   return engagedEnemies(state, id).some((enemy) => enemyBehavior(enemy.code)?.locksEngagedDiscard)
@@ -472,7 +497,7 @@ export function discardLocked(state: GameState, id: InvestigatorId): boolean {
 export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
   const investigator = state.investigators.find((i) => i.id === id)
   if (!investigator) return []
-  const top = discardLocked(state, id) ? undefined : investigator.discard.at(-1)
+  const top = discardLocked(state, id) ? undefined : actualDiscard(state, id).at(-1)
   const fromDiscard =
     top !== undefined &&
     playerCardDef(top)?.type === 'event' &&
@@ -482,7 +507,7 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
   // Winging It: "you may play it from your discard pile" (any copy).
   const discarded = [
     ...new Set(
-      investigator.discard.filter(
+      actualDiscard(state, id).filter(
         (c) => !discardLocked(state, id) && playerCardBehavior(c)?.playableFromDiscard,
       ),
     ),

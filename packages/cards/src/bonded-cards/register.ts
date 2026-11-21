@@ -384,7 +384,7 @@ export function registerBondedCard(code: string): void {
           return [
             {
               type: 'AfterCurrentSkillTest',
-              then: [{ type: 'DiscardToHand', investigator: by, code }],
+              then: [{ type: 'DiscardToHand', investigator: by, code, playedEvent: true }],
             },
           ]
         if (step !== 'grow' || !s.skillTest) return []

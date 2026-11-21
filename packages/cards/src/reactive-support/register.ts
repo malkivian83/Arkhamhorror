@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 import { getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
 import { reaction } from '../core-2026/cards'
 import { ask, fightOptions } from '../dunwich-pilot/effects'
@@ -113,7 +114,7 @@ export function registerReactiveSupport(code: string): void {
         step === 'recover'
           ? ask(
               by,
-              [...new Set(getInvestigator(s, by).discard)]
+              [...new Set(movableDiscard(s, by))]
                 .filter((c) => {
                   const d = playerCardDef(c)
                   return (

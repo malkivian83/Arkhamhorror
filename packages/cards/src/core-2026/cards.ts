@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 /**
  * Resto de cartas de jugador de los mazos iniciales de la caja de 2026:
  * aliados, talentos, objetos, eventos y habilidades con efectos de reacción,
@@ -525,7 +526,7 @@ registerPlayerCard({
   reactions: (state, trigger, self) => {
     if (trigger.type !== 'afterEngage' || trigger.investigator !== self.owner) return []
     if (self.exhausted || !hasUses(self)) return []
-    const events = [...new Set(getInvestigator(state, self.owner).discard)].filter((c) => {
+    const events = [...new Set(movableDiscard(state, self.owner))].filter((c) => {
       const def = playerCardDef(c)
       return def?.type === 'event' && (def.xp ?? 0) === 0 && !def.weakness
     })
@@ -551,7 +552,7 @@ registerPlayerCard({
   code: code(75),
   abilities: (state, self, investigator): AbilityOption[] => {
     if (state.activeTurn !== investigator) return []
-    return [...new Set(getInvestigator(state, investigator).discard)]
+    return [...new Set(movableDiscard(state, investigator))]
       .filter((c) => {
         const def = playerCardDef(c)
         return def?.type === 'asset' && def.traits.some((t) => t === 'Tool' || t === 'Weapon')

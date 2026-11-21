@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 // RR: Triggered Abilities, Fight, Search, Damage, Limits, Uses, Fast.
 import {
   attackBlocked,
@@ -78,7 +79,7 @@ const inRange = (s: GameState, by: string, range: number) => {
 }
 const weaponChoices = (s: GameState, by: string): Choice[] => {
   const me = getInvestigator(s, by)
-  return [...new Set([...me.deck, ...me.discard])]
+  return [...new Set([...me.deck, ...movableDiscard(s, by)])]
     .filter((code) => {
       const def = playerCardDef(code)
       if (def?.type !== 'asset' || !def.traits.includes('Weapon')) return false
@@ -135,7 +136,7 @@ export function registerNathanielCard(code: string): void {
         step === 'elderSign' && s.skillTest?.kind.type === 'fight'
           ? ask(
               by,
-              [...new Set(getInvestigator(s, by).discard)]
+              [...new Set(movableDiscard(s, by))]
                 .filter((c) => playerCardDef(c)?.type === 'event')
                 .map((c) => ({
                   label: 'choice.takeCard',

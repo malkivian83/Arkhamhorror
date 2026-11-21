@@ -1,3 +1,5 @@
+export { movableDiscard } from './state'
+export { actualDiscard } from './resolving-events'
 export { adjacentPositions, discardLocked, emptyAdjacentPositions, gridNeighbors } from './state'
 export { cluesBlocked, commitIcons } from './handlers'
 export { filterImmediateActions, filterImmediateAbilities } from './immediate-options'

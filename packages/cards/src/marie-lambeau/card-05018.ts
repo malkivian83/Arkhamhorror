@@ -22,7 +22,12 @@ registerPlayerCard({
                 code: MYSTIFYING_SONG,
                 effect: [
                   { type: 'HoldAgenda' },
-                  { type: 'RemoveFromDiscard', investigator, code: MYSTIFYING_SONG },
+                  {
+                    type: 'RemoveFromDiscard',
+                    investigator,
+                    code: MYSTIFYING_SONG,
+                    playedEvent: true,
+                  },
                 ],
               },
             ],

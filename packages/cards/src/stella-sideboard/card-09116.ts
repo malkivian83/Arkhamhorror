@@ -1,6 +1,7 @@
 import {
   canPlayByEffect,
-  getInvestigator,
+  actualDiscard,
+  discardLocked,
   playerCardDef,
   registerPlayerCard,
   type GameState,
@@ -8,7 +9,7 @@ import {
 import { ask, cardName } from '../dunwich-pilot/effects'
 
 const items = (s: GameState, by: string) =>
-  [...new Set(getInvestigator(s, by).discard)].filter((code) => {
+  [...new Set(discardLocked(s, by) ? [] : actualDiscard(s, by))].filter((code) => {
     const d = playerCardDef(code)
     return d?.type === 'asset' && d.traits.includes('Item')
   })

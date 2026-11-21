@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 // RR: Uses, Fast Abilities, Skill Test Timing ST.6, Healing, Defeat, Search.
 import {
   registerPlayerCard,
@@ -168,7 +169,7 @@ export function registerAssets(code: string): boolean {
                             },
                           ],
                         },
-                        ...[...new Set(i.discard)]
+                        ...[...new Set(movableDiscard(s, i.id))]
                           .filter(
                             (c) =>
                               playerCardDef(c)?.type === 'asset' &&

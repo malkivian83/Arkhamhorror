@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 // RR: Reveal, Draw, Revelation, Heal, Ownership and Control, Discard Pile.
 import {
   registerPlayerCard,
@@ -26,7 +27,7 @@ export function registerTherapy(code: string): void {
       effect: (s, by, step, data) => {
         if (step !== 'recover') return []
         const selected = read(data.selected),
-          available = [...getInvestigator(s, by).discard]
+          available = [...movableDiscard(s, by)]
         for (const c of selected) {
           const n = available.indexOf(c)
           if (n >= 0) available.splice(n, 1)

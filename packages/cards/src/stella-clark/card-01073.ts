@@ -1,4 +1,5 @@
-import { getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
+import { movableDiscard } from '@lcg/engine'
+import { playerCardDef, registerPlayerCard } from '@lcg/engine'
 import { ask, cardName } from '../dunwich-pilot/effects'
 import { SCAVENGING } from './codes'
 
@@ -17,7 +18,7 @@ registerPlayerCard({
       self.exhausted
     )
       return []
-    const items = [...new Set(getInvestigator(state, self.owner).discard)].filter((code) =>
+    const items = [...new Set(movableDiscard(state, self.owner))].filter((code) =>
       playerCardDef(code)?.traits.includes('Item'),
     )
     if (!items.length) return []

@@ -21,7 +21,7 @@ registerPlayerCard({
     return fromDiscard
       ? [
           investigate,
-          { type: 'RemoveFromDiscard', investigator, code: WINGING_IT },
+          { type: 'RemoveFromDiscard', investigator, code: WINGING_IT, playedEvent: true },
           { type: 'ShuffleCardsIntoDeck', investigator, cards: [WINGING_IT] },
         ]
       : [investigate]

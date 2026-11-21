@@ -1,6 +1,7 @@
 // RR: Defeat, Reaction Opportunities, Play, Costs, Victory Display, Cannot; ST.6.
 import {
   canPlayByEffect,
+  actualDiscard,
   discardLocked,
   getInvestigator,
   playerCardDef,
@@ -21,7 +22,7 @@ export function registerYorickCard(code: string): void {
       code,
       reactions: (s, t, i) =>
         t.type === 'enemyDefeated' && t.by === i.id && mayParticipate(s, i.id)
-          ? [...new Set(i.discard)]
+          ? [...new Set(actualDiscard(s, i.id))]
               .filter(
                 (c) => playerCardDef(c)?.type === 'asset' && canPlayByEffect(s, i.id, c, 'discard'),
               )
@@ -54,7 +55,7 @@ export function registerYorickCard(code: string): void {
           ? ask(
               by,
               [
-                ...[...new Set(getInvestigator(s, by).discard)].map((c) => ({
+                ...[...new Set(actualDiscard(s, by))].map((c) => ({
                   label: 'choice.recoveryReturn',
                   params: { card: cardName(c) },
                   then: [{ type: 'DiscardToHand' as const, investigator: by, code: c }],

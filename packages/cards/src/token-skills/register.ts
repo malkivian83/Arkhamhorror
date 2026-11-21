@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 // RR: Skill Tests ST.2–ST.8, Costs, Ignore, Uses, Myriad, Lasting Effects.
 import {
   registerPlayerCard,
@@ -111,7 +112,7 @@ export function registerTokenSkill(code: string): void {
         step === 'recover'
           ? ask(
               by,
-              [...new Set(getInvestigator(s, by).discard)]
+              [...new Set(movableDiscard(s, by))]
                 .filter((c) => playerCardDef(c)?.traits.includes('Spell'))
                 .map<Choice>((c) => ({
                   label: 'choice.tokenSkillRecover',
@@ -266,9 +267,10 @@ export function registerTokenSkill(code: string): void {
       onlyFromDiscard: true,
       playableFromDiscard: true,
       play: (s, by) => [
-        ...getInvestigator(s, by)
-          .discard.filter((c) => playerCardDef(c)?.name === playerCardDef(code)?.name)
+        ...movableDiscard(s, by)
+          .filter((c) => playerCardDef(c)?.name === playerCardDef(code)?.name)
           .map((copy): Message => ({ type: 'DiscardToHand', investigator: by, code: copy })),
+        { type: 'DiscardToHand', investigator: by, code, playedEvent: true },
         ...(eventsToDeckBottom(s, by)
           ? [
               {
