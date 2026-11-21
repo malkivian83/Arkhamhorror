@@ -13,6 +13,7 @@ describe('orden del selector de historias', () => {
       'the-dunwich-legacy',
       'the-path-to-carcosa',
       'edge-of-the-earth',
+      'the-feast-of-hemlock-vale',
       'brethren-of-ash',
       'carnevale-of-horrors',
       'murder-at-the-excelsior-hotel',
