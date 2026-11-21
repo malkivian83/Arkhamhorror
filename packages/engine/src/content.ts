@@ -191,6 +191,8 @@ export interface ScenarioBehavior {
    * Escrito en la roca, acto 2: solo con los iconos de raíl alineados.
    */
   gridAdjacent?: (state: GameState, a: Location, b: Location) => boolean
+  /** Acciones adicionales para salir de un Lugar (Túnel cubierto de vegetación). */
+  leaveCost?: (state: GameState, location: LocationId) => number
   /** Conexiones adicionales solo cuando se mueve un enemigo (Biblioteca oculta). */
   enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
   /**
