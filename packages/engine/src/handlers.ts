@@ -1,3 +1,11 @@
+import { handleBeneath } from './investigator-beneath'
+import {
+  copyChoices,
+  copyHandReactions,
+  handleCopy,
+  prepareCopyPlay,
+  resolvingCopy,
+} from './event-copies'
 import { abilityActionKinds } from './actions'
 import { prepareStoredPlay, handleStored } from './stored-cards'
 import { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
@@ -354,6 +362,16 @@ export function handle(state: GameState, message: Message): GameState {
     if (replacement) return push(state, ...replacement)
   }
   switch (message.type) {
+    case 'BeginEventCopy':
+    case 'EndEventCopy':
+      return handleCopy(state, message) ?? state
+    case 'ChooseOpeningBeneath':
+    case 'DiscardOpeningExcess':
+    case 'StoreOpeningBeneath':
+    case 'DrawInvestigatorBeneath':
+    case 'RemoveRandomBeneath':
+      return handleBeneath(state, message) ?? state
+
     case 'PutAgendaEvent': {
       const owner = getInvestigator(state, message.investigator)
       const at = owner[message.from].lastIndexOf(message.code)
@@ -1543,7 +1561,7 @@ export function handle(state: GameState, message: Message): GameState {
         params: { card: playerCardDef(code)?.name ?? code },
         target: { type: 'hand', code },
         display: { kind: 'play', action: 'play', actions: 0 },
-        then: [{ type: 'PlayCard', investigator: id, code }, again],
+        then: [{ type: 'PlayCard', investigator: id, code, fastWindow: true }, again],
       }))
       const abilities: Choice[] = [
         ...(state.bonusActionGrants ?? [])
@@ -1671,6 +1689,22 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'TakeAction': {
+      if (message.action.kind === 'play' && message.action.as) {
+        const selected = message.action
+        if (
+          !availableActions(state, message.investigator).some(
+            (a) => a.kind === 'play' && a.card === selected.card && a.as === selected.as,
+          )
+        )
+          return state
+        return push(state, {
+          type: 'BeginEventCopy',
+          investigator: message.investigator,
+          physical: message.action.card,
+          as: message.action.as,
+          then: [{ ...message, action: { kind: 'play', card: message.action.as } }],
+        })
+      }
       const investigator = getInvestigator(state, message.investigator)
       const complete: Message = {
         type: 'CompleteAction',
@@ -2278,7 +2312,8 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'AttachPlayerCardToEnemy': {
       const owner = getInvestigator(state, message.investigator)
-      const at = owner.discard.lastIndexOf(message.code)
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const at = copy ? -1 : owner.discard.lastIndexOf(message.code)
       const asset = message.fromAsset ? state.assets[message.fromAsset] : undefined
       const attachment = message.fromLocationAttachment
         ? state.locationAttachments?.[message.fromLocationAttachment]
@@ -2303,12 +2338,13 @@ export function handle(state: GameState, message: Message): GameState {
           outOfPlay: (i.outOfPlay ?? []).filter((_, n) => n !== aside),
         }))
       } else {
-        if (at < 0) return state
+        if (at < 0 && !copy) return state
         source = updateInvestigator(state, owner.id, (i) => ({
           ...i,
           discard: i.discard.filter((_, n) => n !== at),
         }))
       }
+      const physicalCopy = asset?.physicalCopy ?? attachment?.physicalCopy
       const def = playerCardDef(message.code)
       const [id, next] = newId(source, 'treachery-')
       return {
@@ -2323,6 +2359,7 @@ export function handle(state: GameState, message: Message): GameState {
             keywords: [],
             id,
             owner: owner.id,
+            ...(physicalCopy ? { physicalCopy } : {}),
             placement: { type: 'enemy', enemy: message.enemy },
           },
         },
@@ -2834,6 +2871,20 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DrawOpeningHand': {
+      const rule = investigatorBehavior(message.investigator)?.openingReplacement
+      if (rule && !message.replacementDone) {
+        const delta = message.amount - 5
+        return push(
+          state,
+          { ...message, amount: Math.max(0, rule.draw + delta), replacementDone: true },
+          {
+            type: 'ChooseOpeningBeneath',
+            investigator: message.investigator,
+            keep: Math.max(0, rule.keep + delta),
+            maximum: rule.maximum,
+          },
+        )
+      }
       // Reglamento, "Setup": si robas una debilidad, apártala y roba otra; las
       // apartadas vuelven al mazo después del mulligan.
       if (message.amount <= 0) return state
@@ -2865,6 +2916,8 @@ export function handle(state: GameState, message: Message): GameState {
       // las cartas que quiera, robar otras tantas y barajar las apartadas.
       const investigator = getInvestigator(state, message.investigator)
       const count = message.count ?? 0
+      if (investigatorBehavior(investigator.id)?.openingReplacement)
+        return push(state, { type: 'FinishMulligan', investigator: investigator.id, count: 0 })
       const finish: Message = { type: 'FinishMulligan', investigator: investigator.id, count }
       const options = [...new Set(investigator.hand)]
       if (!state.interactive) return push(state, finish)
@@ -4010,6 +4063,12 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
+      const copyPlay = prepareCopyPlay(state, message)
+      if (copyPlay !== undefined) return copyPlay
+      const copyFrame = state.eventCopies?.findLast(
+        (f) => !f.paid && f.investigator === message.investigator && f.as === message.code,
+      )
+      if (copyFrame && !message.copyId) return push(state, { ...message, copyId: copyFrame.id })
       if (message.storedPlaySource) {
         const source = state.assets[message.storedPlaySource]
         if (!source || source.owner !== message.investigator || source.exhausted) return state
@@ -4402,9 +4461,12 @@ export function handle(state: GameState, message: Message): GameState {
       // La siguiente carta de su papel consume el descuento de Improvisación.
       const usedDiscount =
         !!investigator.nextRoleDiscount && cardOfRole(message.code, investigator.role)
-      const storeEvent = def.type === 'event' && !playerCardBehavior(message.code)?.removeAfterPlay
+      const storeEvent =
+        def.type === 'event' &&
+        !message.copyId &&
+        !playerCardBehavior(message.code)?.removeAfterPlay
       const toBottom = storeEvent && eventsToDeckBottom(state, investigator.id)
-      const paid = log(
+      let paid = log(
         updateInvestigator(state, investigator.id, ({ nextRoleDiscount, nextAssetFast, ...i }) => ({
           ...i,
           ...(nextRoleDiscount && !usedDiscount ? { nextRoleDiscount } : {}),
@@ -4429,6 +4491,13 @@ export function handle(state: GameState, message: Message): GameState {
         'log.play',
         { name: investigator.name, card: def.name },
       )
+      if (message.copyId)
+        paid = {
+          ...paid,
+          eventCopies: (paid.eventCopies ?? []).map((f) =>
+            f.id === message.copyId ? { ...f, paid: true } : f,
+          ),
+        }
       const spentUses: Message[] = Object.entries(message.usesPayment ?? {})
         .filter(([, n]) => n > 0)
         .map(([asset, amount]) => ({ type: 'SpendUses', asset, amount }))
@@ -4463,6 +4532,7 @@ export function handle(state: GameState, message: Message): GameState {
         ...(message.noOpportunity ? [] : (message.before ?? [])),
         {
           type: 'ResolvePlayedCard',
+          ...(message.copyId ? { eventCopy: message.copyId } : {}),
           discardedCost: message.discardedCost?.length ?? 0,
           ...(message.skillBonus ? { skillBonus: message.skillBonus } : {}),
           ...(message.variant !== undefined ? { variant: message.variant } : {}),
@@ -7830,7 +7900,24 @@ export function handle(state: GameState, message: Message): GameState {
       const events = [...(state.eventResolutions ?? [])]
       const at = events.lastIndexOf(message.code)
       if (at >= 0) events.splice(at, 1)
-      return { ...state, eventResolutions: events }
+      const frame = state.eventCopies?.findLast(
+        (f) => f.id === message.eventCopy && f.paid && f.as === message.code,
+      )
+      return {
+        ...state,
+        eventResolutions: events,
+        ...(frame && frame.destination !== 'play'
+          ? {
+              queue: state.queue.map((m) =>
+                m.type === 'Forced' &&
+                m.trigger.type === 'afterEventPlayed' &&
+                m.trigger.code === message.code
+                  ? { ...m, trigger: { ...m.trigger, code: frame.physical } }
+                  : m,
+              ),
+            }
+          : {}),
+      }
     }
     case 'PlayerCardEffect':
       return push(
@@ -7873,13 +7960,23 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'EventToVictory': {
       const owner = getInvestigator(state, message.investigator)
-      const index = owner.discard.lastIndexOf(message.code)
-      if (index < 0) return state
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
+      if (index < 0 && !copy) return state
       return updateInvestigator(
         {
           ...state,
-          victoryDisplay: [...state.victoryDisplay, message.code],
-          victoryPoints: (state.victoryPoints ?? 0) + message.points,
+          ...(copy
+            ? {
+                eventCopies: (state.eventCopies ?? []).map((f) =>
+                  f.id === copy.id ? { ...f, destination: 'victory' as const } : f,
+                ),
+              }
+            : {}),
+          victoryDisplay: [...state.victoryDisplay, copy?.physical ?? message.code],
+          victoryPoints:
+            (state.victoryPoints ?? 0) +
+            (copy ? (playerCardDef(copy.physical)?.victory ?? 0) : message.points),
         },
         owner.id,
         (i) => ({ ...i, discard: i.discard.filter((_, n) => n !== index) }),
@@ -10582,12 +10679,13 @@ export function handle(state: GameState, message: Message): GameState {
     }
     case 'AttachEventToLocation': {
       const owner = getInvestigator(state, message.investigator)
-      const index = owner.discard.lastIndexOf(message.code)
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
       const attached = Object.values(state.locationAttachments ?? {}).filter(
         (a) => a.location === message.location,
       )
       if (
-        index < 0 ||
+        (index < 0 && !copy) ||
         !state.locations[message.location] ||
         (message.limitTrait &&
           attached.some((a) => playerCardDef(a.code)?.traits.includes(message.limitTrait!))) ||
@@ -10710,7 +10808,8 @@ export function handle(state: GameState, message: Message): GameState {
       const asset = state.assets[message.asset]
       const owner = getInvestigator(state, message.investigator)
       const from = message.from ?? 'discard'
-      const index = owner[from].lastIndexOf(message.code)
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const index = copy ? -1 : owner[from].lastIndexOf(message.code)
       const controller = asset && state.investigators.find((i) => i.id === asset.owner)
       if (
         !asset ||
@@ -10721,7 +10820,7 @@ export function handle(state: GameState, message: Message): GameState {
             controller.location !== owner.location
           : asset.owner !== owner.id) ||
         (message.limitPerAsset && asset.upgrades?.some((u) => u.code === message.code)) ||
-        index < 0 ||
+        (index < 0 && !copy) ||
         !assetTraits(asset).includes(message.trait)
       )
         return state
@@ -13501,7 +13600,9 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
         cards(i.id)
           .filter(
             (code) =>
-              playerCardBehavior(code)?.playInAnyFastWindow ||
+              (playerCardBehavior(code)?.copyEvents
+                ? copyChoices(state, i.id, code, true, true).length > 0
+                : playerCardBehavior(code)?.playInAnyFastWindow) ||
               (i.nextAssetFast &&
                 state.activeTurn === i.id &&
                 playerCardDef(code)?.type === 'asset'),
@@ -13524,7 +13625,15 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
                       label: 'ability.playCard',
                       params: { card: playerCardDef(code)!.name },
                       target: { type: 'hand', code },
-                      then: [{ type: 'PlayCard', investigator: i.id, code }],
+                      then: [
+                        {
+                          type: 'PlayCard',
+                          investigator: i.id,
+                          code,
+                          fastWindow: true,
+                          anyFastWindow: true,
+                        },
+                      ],
                     },
                     { label: 'choice.skip', then: [] },
                   ],
@@ -13706,6 +13815,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
         (type !== 'skill' && scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code))
       )
         return []
+      if (playerCardBehavior(code)?.copyEvents) return copyHandReactions(state, trigger, i.id, code)
       return (playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []).filter(
         (option) => {
           // A reaction can play its card with a discount (Quick Shot). Use the

@@ -1,3 +1,4 @@
+import { settleCopies } from './event-copies'
 import { synchronizeTurnActions } from './turn-actions'
 import { messageController, messageSource, withEffectSource } from './effect-source'
 import { discardOrphanedUpgrades } from './asset-upgrades'
@@ -91,6 +92,31 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       ),
       message,
     )
+    state = settleCopies(before, state, message)
+    const copyId = message.eventCopy
+    if (copyId) {
+      const previous = new Set(rest)
+      const tag = (m: Message): Message =>
+        m.type === 'PlayCard' ? m : { ...m, eventCopy: m.eventCopy ?? copyId }
+      const visit = (v: unknown): unknown =>
+        Array.isArray(v)
+          ? v.map(visit)
+          : v && typeof v === 'object'
+            ? Object.fromEntries(
+                Object.entries(v).map(([k, x]) => [
+                  k,
+                  k === 'then' && Array.isArray(x) ? x.map((m) => tag(m as Message)) : visit(x),
+                ]),
+              )
+            : v
+      state = {
+        ...state,
+        queue: state.queue.map((m) => (previous.has(m) ? m : tag(m))),
+        ...(state.pending && state.pending !== before.pending
+          ? { pending: visit(state.pending) as NonNullable<GameState['pending']> }
+          : {}),
+      }
+    }
     state = observeDoom(before, state)
     const source = messageSource(before, message)
     if (source) {

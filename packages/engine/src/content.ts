@@ -641,6 +641,8 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Play this physical event as one of these events; it is removed instead of discarded. */
+  copyEvents?: (state: GameState, investigator: InvestigatorId) => CardCode[]
   /** Subscribe to doom placed on a previously doom-free card. */
   observesDoomPlacement?: boolean
   /** A replacement reaction before drawing the top encounter card. */
@@ -1142,6 +1144,12 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  openingReplacement?: {
+    draw: number
+    keep: number
+    maximum: number
+    canStore: (code: CardCode) => boolean
+  }
   code: CardCode
   /** Preserve physical committed copies for investigator reactions and delayed returns. */
   observesCommitCopies?: boolean

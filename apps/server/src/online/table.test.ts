@@ -343,3 +343,15 @@ it('exposes the exact expedition companion printing only to the investigator cho
   expect(choices.every((choice) => !('then' in choice))).toBe(true)
   expect(tableView(choosing, other!.id).pending?.question.choices).toEqual([])
 })
+
+it('exposes the public events beneath Sefina without exposing her private hand', () => {
+  const g = throughSetup(
+    startScenario(newCampaign('night-of-the-zealot', ['sefina', 'harvey'], 'standard'), 8),
+  )
+  const [a, b] = g.investigators
+  a!.beneath = ['01088', '01050']
+  a!.hand = ['03012', '01087']
+  const table = tableView(g, b!.id)
+  expect(table.investigators[0]!.beneath).toEqual(['01088', '01050'])
+  expect(table.investigators[0]!.hand).toEqual([])
+})

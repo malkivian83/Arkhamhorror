@@ -1,5 +1,7 @@
 # Historial de la importación
 
+- Lote 162 (21/11): `minh-thi-phan`, `919ad11c`; investigadora, dos exclusivas y mazo FFG 6644. 30 investigadores habilitados, 38 pendientes y 134 cartas estándar pendientes. 693 casos del alcance, tipos engine/cards/server, build web, lint/formato, 7085 escaneos/miniaturas y fuentes verificados; lista final con cero pendientes. [Detalle](162-investigadora-minh-thi-phan.md).
+
 - Lote 161 (20/11): `forgotten-age-investigators`, `083249bf`; Leo/Ursula, cuatro exclusivas/debilidades y dos mazos oficiales FFG. 29 investigadores habilitados, 39 pendientes y 134 cartas estándar pendientes. 363 casos del alcance, tipos engine/cards/server, build web, lint/formato, 7077 escaneos/miniaturas y huellas verificados. [Detalle](161-investigadores-era-olvidada.md).
 
 - Lote 160 (20/11): `carcosa-investigators`, `7a865456`; Mark/Akachi, cinco exclusivas/debilidades, reverso de Sophie y dos mazos oficiales FFG. 27 investigadores habilitados, 41 pendientes y 134 cartas estándar pendientes. 401 casos del alcance, tipos engine/cards/server, build web, lint/formato, 7061 escaneos/miniaturas y huellas verificados. [Detalle](160-investigadores-carcosa.md).

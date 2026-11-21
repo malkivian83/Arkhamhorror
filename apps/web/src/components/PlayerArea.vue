@@ -63,6 +63,13 @@ function showUpgrades(asset: Asset) {
     cards: (asset.upgrades ?? []).map((u) => ({ code: u.code, name: cardName(u.code) })),
   })
 }
+function showBeneath() {
+  showPile({
+    title: 'table.investigatorBeneath',
+    params: { card: cardName(i.value.id) },
+    cards: (i.value.beneath ?? []).map((code) => ({ code, name: cardName(code) })),
+  })
+}
 function showStored(asset: Asset) {
   if (props.privateHand || playerCardBehavior(asset.code)?.hiddenStoredCards) return
   showPile({
@@ -446,6 +453,11 @@ const slots = computed(() => {
         </div>
       </div>
 
+      <div v-if="i.beneath?.length" class="asset-upgrades stored-cards">
+        <button type="button" @click="showBeneath()">
+          {{ t('table.investigatorBeneath', { card: cardName(i.id) }) }} ({{ i.beneath.length }})
+        </button>
+      </div>
       <div class="zone play mat-slot">
         <h4 class="mat-label">{{ t('table.inPlay') }}</h4>
         <div

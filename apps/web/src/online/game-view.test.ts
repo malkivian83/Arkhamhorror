@@ -176,3 +176,21 @@ it('shows shared intermission instead of local campaign navigation and removes i
   fixture()
   expect(await render()).not.toContain('class="intermission"')
 })
+
+it('shows the public banked-event zone apart from a private hand', async () => {
+  const state = fixture()
+  state.investigators[1]!.beneath = ['01088', '01050']
+  const app = createSSRApp(PlayerArea, {
+    state,
+    investigator: state.investigators[1],
+    deciding: false,
+    privateHand: true,
+    handCount: 2,
+  })
+    .provide(tableControllerKey, onlineTable(gameClient('room')))
+    .use(createI18n({ legacy: false, locale: 'es', messages }))
+  const html = await renderToString(app)
+  expect(html).toContain('fuera del juego')
+  expect(html).toContain('(2)')
+  expect(html).not.toContain('class="view-hand"')
+})

@@ -1,3 +1,5 @@
+import sefinaCards from '../data/sefina-rousseau.json'
+import sefinaOfficial from '../sefina-rousseau/decklist-6645.json'
 import minhCards from '../data/minh-thi-phan.json'
 import minhOfficial from '../minh-thi-phan/decklist-6644.json'
 import forgottenInvestigators from '../data/forgotten-age-investigators.json'
@@ -85,6 +87,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(sefinaCards as PlayerCardDef[]),
   ...(minhCards as PlayerCardDef[]),
   ...(dunwichInvestigators as PlayerCardDef[]),
   ...(carcosaInvestigators as PlayerCardDef[]),
@@ -130,6 +133,18 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  sefina: {
+    investigator: 1,
+    investigatorCode: sefinaOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(sefinaOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   minh: {
     investigator: 1,
     investigatorCode: minhOfficial.investigator_code,

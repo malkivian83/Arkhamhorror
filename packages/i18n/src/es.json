@@ -312,6 +312,11 @@
         "title": "Minh Thi Phan se une a la investigación",
         "cards": "Minh con su mazo oficial FFG, Mente analítica y El Rey de Amarillo, con presentación completa en español e inglés.",
         "rules": "Iconos comodín para compañeros, aportaciones a distancia, grupos de cartas comprometidas y regreso de habilidades tras la prueba."
+      },
+      "sefinaRousseau": {
+        "title": "Sefina Rousseau y El mundo pintado",
+        "cards": "Sefina con su mazo oficial FFG, tres copias de El mundo pintado y Estrellas de las Híades, con presentación completa en español e inglés.",
+        "rules": "Preparación con trece cartas, eventos bajo la investigadora, copias con sus costes y ventanas, y retirada aleatoria reproducible."
       }
     }
   },
@@ -600,7 +605,10 @@
       "heal": "Elige qué curar.",
       "abbess": "¿Quién añade la Abadesa a su mazo?"
     },
-    "hiddenShelter": "Refugio oculto: {name} puede elegir una opción"
+    "hiddenShelter": "Refugio oculto: {name} puede elegir una opción",
+    "chooseEventCopy": "Elige el evento que copiar",
+    "openingBeneath": "Elige hasta cinco eventos para colocar bajo tu investigadora",
+    "openingDiscard": "Elige las cartas iniciales sobrantes que descartar"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -613,7 +621,8 @@
     "advanceAct": "Avanzar {act} (gastar {clues} pistas)",
     "endTurn": "Terminar el turno",
     "play": "Jugar {card}",
-    "playFast": "Jugar {card} (rápida)"
+    "playFast": "Jugar {card} (rápida)",
+    "playCopy": "Jugar {physical} como {card}"
   },
   "choice": {
     "carcosaCash": "Mueve {n} cargas de {card} a tus recursos y descártalo",
@@ -1377,7 +1386,12 @@
     "minhReturn": "Devolver {card} a su dueño tras la prueba",
     "commitGroup": "Comprometer un grupo de cartas",
     "commitGroupAdd": "Añadir {card} al grupo ({n})",
-    "commitGroupFinish": "Comprometer las {n} cartas elegidas"
+    "commitGroupFinish": "Comprometer las {n} cartas elegidas",
+    "eventCopy": "Copiar {card}",
+    "openingBeneath": "Colocar {card} debajo ({n} colocados)",
+    "openingBeneathDone": "Conservar las cartas iniciales restantes",
+    "openingDiscard": "Descartar {card} ({n} sobrantes)",
+    "sefinaDraw": "Robar {card} de debajo de Sefina"
   },
   "phase": {
     "setup": "Preparación",
@@ -1949,7 +1963,9 @@
     "jimSkull": "Tratar este signo arcano como una calavera",
     "leoPlay": "Jugar {card} con Leo (−1 al coste)",
     "ursulaInvestigate": "Ursula: realizar una acción de investigar",
-    "minhIcon": "Minh: añadir un icono comodín a {card}"
+    "minhIcon": "Minh: añadir un icono comodín a {card}",
+    "sefinaDraw": "Robar {card} de debajo de Sefina",
+    "playEventCopy": "Jugar {physical} como {card}"
   },
   "log": {
     "archiveReveal": "El mazo de mercado revela: {card}",
@@ -2349,7 +2365,8 @@
     "scenarioDeckRevealedHelp": "Solo se muestran las cartas reveladas. El reverso de la carta actual y las cartas siguientes permanecen ocultos hasta que el escenario los revele.",
     "globalEnemies": "Enemigos fuera de los Lugares",
     "maskedCarnevale": "Carnavalero enmascarado",
-    "treacheryTokens": "Fichas sobre la carta"
+    "treacheryTokens": "Fichas sobre la carta",
+    "investigatorBeneath": "Bajo {card} (fuera del juego)"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -3799,6 +3816,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "03003": "La pintora",
       "03011": "Primer acto",
       "03010": "Entre las líneas",
       "03002": "La secretaria",
@@ -4007,6 +4025,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "03013": "Maldición.",
+      "03012": "Hechizo.",
+      "03003": "Artista.",
       "03011": "Tomo.",
       "03010": "Talento.",
       "03002": "Ayudante.",
@@ -5055,6 +5076,9 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "03013": "<b>Revelación</b> - Elige al azar un Evento que esté bajo Sefina Rousseau y retíralo de la partida. Si no puedes, recibe 1 punto de daño y 1 punto de horror. Si tu mazo tiene 5 o más cartas, devuelve las Estrellas de las Híades a tu mazo y barájalo en lugar de descartarlas.",
+      "03012": "Sólo para el mazo de Sefina Rousseau.\nNo puede ser colocada bajo Sefina Rousseau.\nJuega El mundo pintado como una copia exacta de un Evento que no sea Excepcional y que esté bajo Sefina Rousseau. Retira El mundo pintado de la partida en lugar de descartarlo.",
+      "03003": "<b>Obligado</b> - Cuando fueses a robar tu mano inicial: Roba 13 cartas en lugar de la cantidad normal. Elige hasta 5 Eventos para colocarlos bajo esta carta y quédate 8 cartas como tu mano inicial. Descarta el resto. <em>(No puedes cambiar tu mano inicial.)</em>.\n[action]: Elige un Evento que esté bajo esta carta y róbalo. Esta acción no provoca ataques de oportunidad.\nEfecto [elder_sign]: +3. Puedes elegir un Evento que esté bajo esta carta y robarlo.",
       "03011": "<b>Revelación</b> - Pon El Rey de Amarillo en juego en tu zona de amenaza. No puede abandonar el juego excepto mediante la siguiente capacidad [reaction].\nNo puedes asignar exactamente 1 o 2 cartas a pruebas de habilidad.\n[reaction] Después de que tengas éxito una prueba de habilidad a la que Minh Thi Phan haya asignado al menos 6 iconos de habilidad iguales: Descarta El Rey de Amarillo.",
       "03010": "Sólo para el mazo de Minh Thi Phan.\nPuedes asignar 1 carta a cada prueba de habilidad realizada por un investigador que esté en otro Lugar.\n[reaction] Después de que asignes exactamente 1 carta a una prueba de habilidad, agota la Mente analítica: Roba 1 carta.",
       "03002": "[reaction] Después de que un investigador que esté en tu Lugar asigne una carta a una prueba de habilidad: Esa carta obtiene un icono [wild] hasta el final de la prueba. Límite de una vez por cada investigador por ronda.\nEfecto [elder_sign]: +1. Puedes elegir una carta de Habilidad asignada a esta prueba de habilidad para devolverla a la mano de su propietario después de que termine esta prueba.",
@@ -6510,6 +6534,7 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "03003": "<b>Tamaño de mazo</b>: 33.\n<b>Opciones de creación de mazos</b>: Cartas Rebelde ([rogue]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Místico ([mystic]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): 3 copias de El mundo pintado, 1 copia de Estrellas de las Híades, 1 Debilidad básica aleatoria.",
       "03002": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazo</b>: Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Superviviente ([survivor]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Mente analítica, El Rey de Amarillo (Primer acto), 1 Debilidad básica aleatoria.",
       "04002": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Buscador ([seeker]) de nivel 0-5, cartas [[Reliquia]] de nivel 0-4, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño de mazo): Jake Williams, Llamada de lo desconocido, 1 Debilidad básica aleatoria.",
       "04001": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Guardián ([guardian]) de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño del mazo): Mitch Brown, Comprado con sangre, 1 Debilidad básica aleatoria.",
@@ -6546,6 +6571,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "03013": "Estrellas de las Híades",
+      "03012": "El mundo pintado",
+      "03003": "Sefina Rousseau",
       "03011": "El Rey de Amarillo",
       "03010": "Mente analítica",
       "03002": "Minh Thi Phan",

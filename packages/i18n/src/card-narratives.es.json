@@ -1239,5 +1239,10 @@
     "typeCode": "investigator",
     "flavor": "\"Puedes confiar en mí para guiarte por lo desconocido.\"",
     "backFlavor": "Minh nunca tuvo la sensación de encajar realmente en los Estados Unidos. Las cosas habían sido aún más difíciles para su familia antes de trasladarse, pues eran vietnamitas viviendo en Corea bajo el dominio japonés. Trabajó mucho para completar su licenciatura, sin dejar de recordarse a sí misma lo mucho que habían sacrificado sus padres para venir a Estados Unidos. Al final, su padre conoció a un hombre de Arkham, el Sr. Thomas, que le ofreció un puesto en su oficina a Minh. Al principio era amable con ella, pero luego empezó a leer <em>El Rey de Amarrillo</em>, y su comportamiento cambió por completo. Se lo prestó a Minh, pero ésta no se atrevió a leer más allá del primer acto. Tres semanas después, encontraron muerto al Sr. Thomas, que se había suicidado. Y <i>El Rey de Amarillo</i> es la llave para llegar a la verdad."
+  },
+  "03003": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "backFlavor": "Incluso de joven, los fascinantes cuadros de Sefina atraían muchas miradas. Cuando un coleccionista de arte de París visitó Tahití y descubrió a Sefina, le ofreció financiar su obra a cambio de sus servicios creando imitaciones. Su buen ojo y firme mano eran perfectos para esa tarea, y Sefina encontró el arte de la falsificación más atrayente y cautivador de lo que había imaginado. Su obra más reciente la pagó un desconocido anónimo con una buena cuenta corriente, que le encargó recrear el panorama de una extraña ciudad alienígena. Cuando completó la última pincelada, se vio lanzada al mundo del cuadro. Apenas logró sobrevivir a la experiencia y se desmayó de agotamiento. Cuando despertó en su galería, supo que había sido algo real."
   }
 }

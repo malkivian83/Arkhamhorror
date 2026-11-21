@@ -312,6 +312,11 @@
         "title": "Minh Thi Phan joins the investigation",
         "cards": "Minh with her official FFG starter deck, Analytical Mind and The King in Yellow, with full English and Spanish presentation.",
         "rules": "Wild icons for teammates, remote contributions, atomic groups of committed cards and returning skills after the test."
+      },
+      "sefinaRousseau": {
+        "title": "Sefina Rousseau and The Painted World",
+        "cards": "Sefina with her official FFG starter deck, three Painted Worlds and Stars of Hyades, with full English and Spanish presentation.",
+        "rules": "Thirteen-card opening, events beneath the investigator, exact event copies with their costs and timing, and deterministic random removal."
       }
     }
   },
@@ -600,7 +605,10 @@
       "heal": "Choose what to heal.",
       "abbess": "Who adds the Abbess to their deck?"
     },
-    "hiddenShelter": "Hidden Shelter: {name} may choose one option"
+    "hiddenShelter": "Hidden Shelter: {name} may choose one option",
+    "chooseEventCopy": "Choose the event to copy",
+    "openingBeneath": "Choose up to five events to place beneath your investigator",
+    "openingDiscard": "Choose the excess opening cards to discard"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -613,7 +621,8 @@
     "advanceAct": "Advance {act} (spend {clues} clues)",
     "endTurn": "End turn",
     "play": "Play {card}",
-    "playFast": "Play {card} (fast)"
+    "playFast": "Play {card} (fast)",
+    "playCopy": "Play {physical} as {card}"
   },
   "choice": {
     "carcosaCash": "Move {n} charges from {card} to your resources and discard it",
@@ -1377,7 +1386,12 @@
     "minhReturn": "Return {card} to its owner after the test",
     "commitGroup": "Commit a group of cards",
     "commitGroupAdd": "Add {card} to the group ({n})",
-    "commitGroupFinish": "Commit the selected {n} cards"
+    "commitGroupFinish": "Commit the selected {n} cards",
+    "eventCopy": "Copy {card}",
+    "openingBeneath": "Place {card} beneath ({n} already placed)",
+    "openingBeneathDone": "Keep the remaining opening cards",
+    "openingDiscard": "Discard {card} ({n} excess)",
+    "sefinaDraw": "Draw {card} from beneath Sefina"
   },
   "phase": {
     "setup": "Setup",
@@ -1949,7 +1963,9 @@
     "jimSkull": "Treat this elder sign as a skull",
     "leoPlay": "Play {card} with Leo (−1 cost)",
     "ursulaInvestigate": "Ursula: take an investigate action",
-    "minhIcon": "Minh: add a wild icon to {card}"
+    "minhIcon": "Minh: add a wild icon to {card}",
+    "sefinaDraw": "Draw {card} from beneath Sefina",
+    "playEventCopy": "Play {physical} as {card}"
   },
   "log": {
     "archiveReveal": "Market deck reveals: {card}",
@@ -2349,7 +2365,8 @@
     "scenarioDeckRevealedHelp": "Only revealed cards are shown. The back of the current card and upcoming cards remain hidden until the scenario reveals them.",
     "globalEnemies": "Enemies outside locations",
     "maskedCarnevale": "Masked Carnevale-Goer",
-    "treacheryTokens": "Tokens on this card"
+    "treacheryTokens": "Tokens on this card",
+    "investigatorBeneath": "Beneath {card} (out of play)"
   },
   "difficulty": {
     "easy": "Easy",
@@ -3799,6 +3816,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "03003": "The Painter",
       "03011": "Act 1",
       "03010": "Between the Lines",
       "03002": "The Secretary",
@@ -4007,6 +4025,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "03013": "Curse.",
+      "03012": "Spell.",
+      "03003": "Artist.",
       "03011": "Tome.",
       "03010": "Talent.",
       "03002": "Assistant.",
@@ -5055,6 +5076,9 @@
       "01013": "Spell."
     },
     "summary": {
+      "03013": "<b>Revelation</b> - Randomly choose an event beneath Sefina Rousseau and remove it from the game. If you cannot, take 1 damage and 1 horror. If your deck has 5 or more cards in it, shuffle Stars of Hyades back into your deck instead of discarding it.",
+      "03012": "Sefina Rousseau deck only.\nCannot be placed beneath Sefina Rousseau.\nPlay The Painted World as an exact copy of a non-exceptional event that is beneath Sefina Rousseau. Remove The Painted World from the game instead of discarding it.",
+      "03003": "<b>Forced</b> - When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. <i>(You cannot mulligan.)</i>\n[action]: Choose an event beneath this card and draw it. Does not provoke attacks of opportunity.\n[elder_sign] effect: +3. You may choose an event beneath this card and draw it.",
       "03011": "<b>Revelation</b> - Put The King in Yellow into play in your threat area. It cannot leave play except through the [reaction] ability below.\nYou cannot commit exactly 1 or 2 cards to a skill test.\n[reaction] After a skill test is successful in which Minh Thi Phan has committed at least 6 matching skill icons for that test: Discard The King in Yellow.",
       "03010": "Minh Thi Phan deck only.\nYou may commit 1 card to each skill test performed by an investigator at another location.\n[reaction] After you commit exactly 1 card to a skill test, exhaust Analytical Mind: Draw 1 card.",
       "03002": "[reaction] After an investigator at your location commits a card to a skill test: That card gains a [wild] icon until the end of the test. (Limit once for each investigator per round.)\n[elder_sign] effect: +1. You may choose a skill card committed to this skill test to return to its owner's hand after this test ends.",
@@ -6510,6 +6534,7 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "03003": "<b>Deck Size</b>: 33.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5, Mystic cards ([mystic]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): 3 copies of The Painted World, 1 copy of Stars of Hyades, 1 random basic weakness.",
       "03002": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Neutral cards level 0-5, Survivor cards ([survivor]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Analytical Mind, The King in Yellow <i>(Act 1)</i>, 1 random basic weakness.",
       "04002": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> Seeker cards ([seeker]) level 0-5, [[Relic]] cards level 0-4, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Jake Williams, Call of the Unknown, 1 random basic weakness.",
       "04001": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> Guardian cards ([guardian]) level 0-5, Rogue cards ([rogue]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Mitch Brown, Bought in Blood, 1 random basic weakness.",
@@ -6546,6 +6571,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "03013": "Stars of Hyades",
+      "03012": "The Painted World",
+      "03003": "Sefina Rousseau",
       "03011": "The King in Yellow",
       "03010": "Analytical Mind",
       "03002": "Minh Thi Phan",

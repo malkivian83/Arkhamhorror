@@ -154,6 +154,8 @@ Documentos posteriores, por número:
 
 - [162 · Minh Thi Phan](162-investigadora-minh-thi-phan.md): investigadora y dos exclusivas, mazo oficial FFG, aportación a distancia y grupos de cartas contra El Rey de Amarillo.
 
+- [163 · Sefina Rousseau](163-investigadora-sefina-rousseau.md): mazo oficial FFG, preparación de trece cartas, eventos bajo la investigadora, copias con identidad física y Estrellas de las Híades.
+
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).
