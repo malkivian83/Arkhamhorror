@@ -311,7 +311,15 @@ export function registerSupport(code: string): void {
         : [],
     whenGameEndsInPlay: (s, a, reason) =>
       code === '08113' && getInvestigator(s, a.owner).resources < 10
-        ? [{ type: 'ExileCard', investigator: a.originalOwner ?? a.owner, code, asset: a.id }]
+        ? [
+            {
+              type: 'ExileCard',
+              investigator: a.originalOwner ?? a.owner,
+              code,
+              asset: a.id,
+              byOwnAbility: true,
+            },
+          ]
         : code === '09063' && (reason === 'gameEnds' || getInvestigator(s, a.owner).resigned)
           ? [call(code, a.owner, 'treasure', { left: Math.floor(a.uses / 2) })]
           : [],

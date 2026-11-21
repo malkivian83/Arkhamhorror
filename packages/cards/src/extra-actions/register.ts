@@ -34,7 +34,7 @@ const immediate = (by: string, rule: ImmediateActionRule = {}): Message => ({
   investigator: by,
   rule,
 })
-const canGrant = (s: GameState, by: string, rule: ImmediateActionRule) => {
+export const canGrant = (s: GameState, by: string, rule: ImmediateActionRule) => {
   const i = getInvestigator(s, by),
     own = turnActionTiming(s, by) !== null
   const preview: GameState = {

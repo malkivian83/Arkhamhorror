@@ -1,0 +1,10 @@
+import './card-03001'
+import './card-03004'
+import './card-03007'
+import './card-03008'
+import './card-03009'
+import './card-03009b'
+import './card-03014'
+import './card-03015'
+import approvals from './approvals.json'
+export const CARCOSA_INVESTIGATORS_RENDERED_CODES = approvals.cards.map((c) => c.code)

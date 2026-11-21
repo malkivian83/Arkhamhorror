@@ -126,8 +126,14 @@ const SETUP_PROMPTS = new Set([
  */
 export function throughSetup(state: GameState): GameState {
   let s = state
-  while (s.pending && SETUP_PROMPTS.has(s.pending.question.prompt)) {
-    s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+  while (s.pending) {
+    const setupReaction = s.phase === 'setup' && s.pending.question.prompt === 'prompt.reaction'
+    if (!setupReaction && !SETUP_PROMPTS.has(s.pending.question.prompt)) break
+    const choice = setupReaction
+      ? s.pending.question.choices.findIndex((option) => option.label === 'choice.skip')
+      : 0
+    if (choice < 0) break
+    s = applyInput(s, { investigator: s.pending.investigator, choice })
   }
   return s
 }

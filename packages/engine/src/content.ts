@@ -641,6 +641,8 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Play this physical event as one of these events; it is removed instead of discarded. */
+  copyEvents?: (state: GameState, investigator: InvestigatorId) => CardCode[]
   /** Subscribe to doom placed on a previously doom-free card. */
   observesDoomPlacement?: boolean
   /** A replacement reaction before drawing the top encounter card. */
@@ -803,7 +805,11 @@ export interface PlayerCardBehavior {
   revelation?: (state: GameState, investigator: InvestigatorId) => Message[]
   /** Dilemma cards share their printed maximum across the group each round. */
   dilemma?: boolean
-  /** Permission for a helper to commit from a different location. */
+  /** Continuous permission from an asset to help a test at any other location. */
+  remoteCommit?: boolean
+  /** If committing, this controller must contribute at least this many cards. */
+  minimumCommittedCards?: number
+  /** Permission printed on a committed card to help from another location. */
   commitFromLocation?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
   /** Continuous modifiers while this event is attached to an asset. */
   attachedVitals?: { health?: number; sanity?: number }
@@ -895,7 +901,14 @@ export interface PlayerCardBehavior {
   handSizeInHand?: number
   tarotIcons?: number
   /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */
-  restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
+  restrictedSlots?: {
+    slot: SlotType
+    count: number
+    trait?: string | string[]
+    nonUnique?: boolean
+  }[]
+  /** The first action with any of these designators each turn does not provoke. */
+  firstActionTypesSafe?: string[]
   /** While true for its controller, it does not take up its slots (Sacrificial Doll). */
   slotFree?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Damage or horror printed as already on the asset when it enters play (Jessica Hyde). */
@@ -997,6 +1010,8 @@ export interface PlayerCardBehavior {
     committedBy: InvestigatorId,
     copy?: SkillTest['committed'][number],
   ) => Message[]
+  /** The committed skill needs ST.7 result ordering (The Home Front). */
+  chooseResultOrder?: boolean
   /** Carta comprometida: después del paso 8, con la prueba ya cerrada. */
   afterCommittedTestEnds?: (
     state: GameState,
@@ -1129,7 +1144,16 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  openingReplacement?: {
+    draw: number
+    keep: number
+    maximum: number
+    canStore: (code: CardCode) => boolean
+  }
   code: CardCode
+  /** Preserve physical committed copies for investigator reactions and delayed returns. */
+  observesCommitCopies?: boolean
+  initialUsesBonus?: (code: CardCode) => number
   startingAssets?: CardCode[]
   fastOptions?: (state: GameState, self: Investigator) => ReactionOption[]
   /** Change only the numerical modifier, retaining the symbol and scenario effects (Jim Culver). */
@@ -1303,7 +1327,8 @@ export function deckOptionAllows(option: DeckOption, card: PlayerCardDef): boole
     (card.xp ?? 0) <= option.maxLevel &&
     (option.classes.length === 0 ||
       (card.classes ?? [card.class]).some((f) => option.classes.includes(f))) &&
-    (!option.traits || card.traits.some((t) => option.traits!.includes(t)))
+    (!option.traits || card.traits.some((t) => option.traits!.includes(t))) &&
+    (!option.uses || card.uses?.type === option.uses || card.uses?.type === option.uses + 's')
   )
 }
 

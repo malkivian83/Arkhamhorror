@@ -1,0 +1,42 @@
+[
+  {
+    "code": "03003",
+    "name": "Sefina Rousseau",
+    "subname": "The Painter",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Artist"],
+    "unique": true,
+    "health": 5,
+    "sanity": 9,
+    "skills": { "willpower": 4, "intellect": 2, "combat": 2, "agility": 4 },
+    "deckSize": 33,
+    "deckOptions": [
+      { "classes": ["rogue", "neutral"], "maxLevel": 5 },
+      { "classes": ["mystic"], "maxLevel": 2 }
+    ],
+    "signatures": ["03012", "03012", "03012", "03013"]
+  },
+  {
+    "code": "03012",
+    "name": "The Painted World",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Spell"],
+    "deckLimit": 3,
+    "xp": 0,
+    "icons": { "willpower": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "03013",
+    "name": "Stars of Hyades",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Curse"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  }
+]

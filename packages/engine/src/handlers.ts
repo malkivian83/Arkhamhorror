@@ -1,3 +1,11 @@
+import { handleBeneath } from './investigator-beneath'
+import {
+  copyChoices,
+  copyHandReactions,
+  handleCopy,
+  prepareCopyPlay,
+  resolvingCopy,
+} from './event-copies'
 import { abilityActionKinds } from './actions'
 import { prepareStoredPlay, handleStored } from './stored-cards'
 import { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
@@ -354,6 +362,16 @@ export function handle(state: GameState, message: Message): GameState {
     if (replacement) return push(state, ...replacement)
   }
   switch (message.type) {
+    case 'BeginEventCopy':
+    case 'EndEventCopy':
+      return handleCopy(state, message) ?? state
+    case 'ChooseOpeningBeneath':
+    case 'DiscardOpeningExcess':
+    case 'StoreOpeningBeneath':
+    case 'DrawInvestigatorBeneath':
+    case 'RemoveRandomBeneath':
+      return handleBeneath(state, message) ?? state
+
     case 'PutAgendaEvent': {
       const owner = getInvestigator(state, message.investigator)
       const at = owner[message.from].lastIndexOf(message.code)
@@ -1543,7 +1561,7 @@ export function handle(state: GameState, message: Message): GameState {
         params: { card: playerCardDef(code)?.name ?? code },
         target: { type: 'hand', code },
         display: { kind: 'play', action: 'play', actions: 0 },
-        then: [{ type: 'PlayCard', investigator: id, code }, again],
+        then: [{ type: 'PlayCard', investigator: id, code, fastWindow: true }, again],
       }))
       const abilities: Choice[] = [
         ...(state.bonusActionGrants ?? [])
@@ -1671,6 +1689,22 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'TakeAction': {
+      if (message.action.kind === 'play' && message.action.as) {
+        const selected = message.action
+        if (
+          !availableActions(state, message.investigator).some(
+            (a) => a.kind === 'play' && a.card === selected.card && a.as === selected.as,
+          )
+        )
+          return state
+        return push(state, {
+          type: 'BeginEventCopy',
+          investigator: message.investigator,
+          physical: message.action.card,
+          as: message.action.as,
+          then: [{ ...message, action: { kind: 'play', card: message.action.as } }],
+        })
+      }
       const investigator = getInvestigator(state, message.investigator)
       const complete: Message = {
         type: 'CompleteAction',
@@ -1761,6 +1795,15 @@ export function handle(state: GameState, message: Message): GameState {
                 ),
               }),
           actionsTaken: (i.actionsTaken ?? 0) + 1,
+          actionTypesThisTurn: {
+            turn: turnStartedAt(state),
+            types: [
+              ...(i.actionTypesThisTurn?.turn === turnStartedAt(state)
+                ? i.actionTypesThisTurn.types
+                : []),
+              ...actionKinds(message.action),
+            ],
+          },
           ...(message.action.kind === 'investigate' ||
           (message.action.kind === 'play' &&
             playerCardBehavior(message.action.card)?.investigateAction)
@@ -1788,6 +1831,7 @@ export function handle(state: GameState, message: Message): GameState {
               message.action.kind === 'investigate' ||
                 (message.action.kind === 'play' &&
                   !!playerCardBehavior(message.action.card)?.investigateAction),
+              actionKinds(message.action),
             )
           : []
       // RR, initiating abilities step 2 / attacks of opportunity: resource costs
@@ -2268,7 +2312,8 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'AttachPlayerCardToEnemy': {
       const owner = getInvestigator(state, message.investigator)
-      const at = owner.discard.lastIndexOf(message.code)
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const at = copy ? -1 : owner.discard.lastIndexOf(message.code)
       const asset = message.fromAsset ? state.assets[message.fromAsset] : undefined
       const attachment = message.fromLocationAttachment
         ? state.locationAttachments?.[message.fromLocationAttachment]
@@ -2293,12 +2338,13 @@ export function handle(state: GameState, message: Message): GameState {
           outOfPlay: (i.outOfPlay ?? []).filter((_, n) => n !== aside),
         }))
       } else {
-        if (at < 0) return state
+        if (at < 0 && !copy) return state
         source = updateInvestigator(state, owner.id, (i) => ({
           ...i,
           discard: i.discard.filter((_, n) => n !== at),
         }))
       }
+      const physicalCopy = asset?.physicalCopy ?? attachment?.physicalCopy
       const def = playerCardDef(message.code)
       const [id, next] = newId(source, 'treachery-')
       return {
@@ -2313,6 +2359,7 @@ export function handle(state: GameState, message: Message): GameState {
             keywords: [],
             id,
             owner: owner.id,
+            ...(physicalCopy ? { physicalCopy } : {}),
             placement: { type: 'enemy', enemy: message.enemy },
           },
         },
@@ -2352,6 +2399,24 @@ export function handle(state: GameState, message: Message): GameState {
       }
     }
 
+    case 'FlipPlayerAsset': {
+      const a = state.assets[message.asset]
+      return a && playerCardDef(message.code)?.type === 'asset'
+        ? { ...state, assets: { ...state.assets, [a.id]: { ...a, code: message.code } } }
+        : state
+    }
+    case 'SetTreacheryAbilityState': {
+      const t = state.treacheries[message.treachery]
+      return t
+        ? {
+            ...state,
+            treacheries: {
+              ...state.treacheries,
+              [t.id]: { ...t, abilityState: { ...t.abilityState, ...message.values } },
+            },
+          }
+        : state
+    }
     case 'SetAssetAbilityState': {
       const a = state.assets[message.asset]
       return a
@@ -2806,6 +2871,20 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DrawOpeningHand': {
+      const rule = investigatorBehavior(message.investigator)?.openingReplacement
+      if (rule && !message.replacementDone) {
+        const delta = message.amount - 5
+        return push(
+          state,
+          { ...message, amount: Math.max(0, rule.draw + delta), replacementDone: true },
+          {
+            type: 'ChooseOpeningBeneath',
+            investigator: message.investigator,
+            keep: Math.max(0, rule.keep + delta),
+            maximum: rule.maximum,
+          },
+        )
+      }
       // Reglamento, "Setup": si robas una debilidad, apártala y roba otra; las
       // apartadas vuelven al mazo después del mulligan.
       if (message.amount <= 0) return state
@@ -2837,6 +2916,8 @@ export function handle(state: GameState, message: Message): GameState {
       // las cartas que quiera, robar otras tantas y barajar las apartadas.
       const investigator = getInvestigator(state, message.investigator)
       const count = message.count ?? 0
+      if (investigatorBehavior(investigator.id)?.openingReplacement)
+        return push(state, { type: 'FinishMulligan', investigator: investigator.id, count: 0 })
       const finish: Message = { type: 'FinishMulligan', investigator: investigator.id, count }
       const options = [...new Set(investigator.hand)]
       if (!state.interactive) return push(state, finish)
@@ -2959,9 +3040,10 @@ export function handle(state: GameState, message: Message): GameState {
           discard: [...i.discard, message.card],
         }
       })
-      return message.deferHandReaction
+      const notified = message.deferHandReaction
         ? next
         : afterHandDiscard(next, message.investigator, [message.card])
+      return message.onDiscard ? push(notified, ...message.onDiscard) : notified
     }
 
     case 'CheckHandSize': {
@@ -3928,6 +4010,7 @@ export function handle(state: GameState, message: Message): GameState {
             asset: asset.id,
             damage: message.damage,
             horror: message.horror,
+            owner: asset.owner,
           },
         },
       ]
@@ -3952,7 +4035,13 @@ export function handle(state: GameState, message: Message): GameState {
           if (defeated) effects.push({ type: 'DiscardAsset', asset: a.id, defeated: true })
           effects.push({
             type: 'Forced',
-            trigger: { type: 'afterAssetDamaged', asset: a.id, damage: d.damage, horror: d.horror },
+            trigger: {
+              type: 'afterAssetDamaged',
+              asset: a.id,
+              damage: d.damage,
+              horror: d.horror,
+              owner: a.owner,
+            },
           })
           if (defeated)
             effects.push({ type: 'Forced', trigger: { type: 'assetDefeated', asset: a } })
@@ -3974,6 +4063,12 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
+      const copyPlay = prepareCopyPlay(state, message)
+      if (copyPlay !== undefined) return copyPlay
+      const copyFrame = state.eventCopies?.findLast(
+        (f) => !f.paid && f.investigator === message.investigator && f.as === message.code,
+      )
+      if (copyFrame && !message.copyId) return push(state, { ...message, copyId: copyFrame.id })
       if (message.storedPlaySource) {
         const source = state.assets[message.storedPlaySource]
         if (!source || source.owner !== message.investigator || source.exhausted) return state
@@ -4366,9 +4461,12 @@ export function handle(state: GameState, message: Message): GameState {
       // La siguiente carta de su papel consume el descuento de Improvisación.
       const usedDiscount =
         !!investigator.nextRoleDiscount && cardOfRole(message.code, investigator.role)
-      const storeEvent = def.type === 'event' && !playerCardBehavior(message.code)?.removeAfterPlay
+      const storeEvent =
+        def.type === 'event' &&
+        !message.copyId &&
+        !playerCardBehavior(message.code)?.removeAfterPlay
       const toBottom = storeEvent && eventsToDeckBottom(state, investigator.id)
-      const paid = log(
+      let paid = log(
         updateInvestigator(state, investigator.id, ({ nextRoleDiscount, nextAssetFast, ...i }) => ({
           ...i,
           ...(nextRoleDiscount && !usedDiscount ? { nextRoleDiscount } : {}),
@@ -4393,6 +4491,13 @@ export function handle(state: GameState, message: Message): GameState {
         'log.play',
         { name: investigator.name, card: def.name },
       )
+      if (message.copyId)
+        paid = {
+          ...paid,
+          eventCopies: (paid.eventCopies ?? []).map((f) =>
+            f.id === message.copyId ? { ...f, paid: true } : f,
+          ),
+        }
       const spentUses: Message[] = Object.entries(message.usesPayment ?? {})
         .filter(([, n]) => n > 0)
         .map(([asset, amount]) => ({ type: 'SpendUses', asset, amount }))
@@ -4427,6 +4532,7 @@ export function handle(state: GameState, message: Message): GameState {
         ...(message.noOpportunity ? [] : (message.before ?? [])),
         {
           type: 'ResolvePlayedCard',
+          ...(message.copyId ? { eventCopy: message.copyId } : {}),
           discardedCost: message.discardedCost?.length ?? 0,
           ...(message.skillBonus ? { skillBonus: message.skillBonus } : {}),
           ...(message.variant !== undefined ? { variant: message.variant } : {}),
@@ -4636,6 +4742,9 @@ export function handle(state: GameState, message: Message): GameState {
                   (n, a) => n + (assetBehavior(state, a)?.initialUsesBonus?.(message.code) ?? 0),
                   0,
                 ) +
+              (investigatorBehavior(
+                getInvestigator(state, message.investigator).id,
+              )?.initialUsesBonus?.(message.code) ?? 0) +
               (message.entryUses ?? 0),
             ...(getInvestigator(state, message.investigator).customizations?.[message.code]
               ? {
@@ -4706,7 +4815,7 @@ export function handle(state: GameState, message: Message): GameState {
         return saveExpeditionPartner({ ...state, assets }, asset, true)
       }
       // Reglamento, "Permanent": no puede abandonar el juego (ni Baron Samedi sin 3 perdición).
-      if (!asset || stuckInPlay(state, asset)) return state
+      if (!asset || (stuckInPlay(state, asset) && !message.byOwnAbility)) return state
       // Cherished Keepsake: "when … is defeated" replaces its discard (it is exiled).
       const defeated = message.defeated
         ? assetBehavior(state, asset)?.whenDefeated?.(state, asset)
@@ -4724,12 +4833,14 @@ export function handle(state: GameState, message: Message): GameState {
       )
       const behavior = assetBehavior(state, asset)
       // Losing slots can leave other assets without room (Bandolier).
-      return behavior?.restrictedSlots ||
+      const next =
+        behavior?.restrictedSlots ||
         behavior?.extraSlots ||
         behavior?.flexibleSlots ||
         behavior?.interchangeableSlots
-        ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
-        : discarded
+          ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
+          : discarded
+      return message.onDiscard ? push(next, ...message.onDiscard) : next
     }
 
     case 'CheckSlots': {
@@ -5023,7 +5134,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const committable = [...new Set(noCommit(investigator.id) ? [] : investigator.hand)].filter(
         (code) =>
-          canCommit(state, test, code, investigator.id) &&
+          canCommitFrom(state, investigator.id, code) &&
           !commitBlocked(state, investigator.id, playerCardDef(code)?.type ?? ''),
       )
       const discardCommits = activeInvestigators(state).flatMap((i) =>
@@ -5114,6 +5225,19 @@ export function handle(state: GameState, message: Message): GameState {
                       { type: 'CommitWindow' },
                     ],
             })),
+            ...(minimumCommittedCards(state, investigator.id) >
+              test.committed.filter((c) => c.by === investigator.id).length &&
+            hasCommitGroup(state, investigator.id, [])
+              ? [
+                  {
+                    label: 'choice.commitGroup',
+                    then: [
+                      { type: 'ChooseCommitGroup' as const, investigator: investigator.id },
+                      { type: 'CommitWindow' as const },
+                    ],
+                  },
+                ]
+              : []),
             ...committable.map((code): Choice => ({
               label: 'choice.commit',
               params: {
@@ -5270,6 +5394,49 @@ export function handle(state: GameState, message: Message): GameState {
             },
           }
         : state
+    case 'ChooseCommitGroup': {
+      const id = message.investigator,
+        cards = message.cards ?? [],
+        minimum = minimumCommittedCards(state, id)
+      if (!state.skillTest || !commitGroupState(state, id, cards, true)) return state
+      const remaining = [...getInvestigator(state, id).hand]
+      for (const c of cards) remaining.splice(remaining.indexOf(c), 1)
+      const choices: Choice[] = [...new Set(remaining)]
+        .filter((c) => hasCommitGroup(state, id, [...cards, c]))
+        .map((c) => ({
+          label: 'choice.commitGroupAdd',
+          params: { card: playerCardDef(c)?.name ?? c, n: cards.length + 1 },
+          target: { type: 'hand', code: c },
+          then: [{ ...message, cards: [...cards, c] }],
+        }))
+      if (cards.length >= minimum)
+        choices.push({
+          label: 'choice.commitGroupFinish',
+          params: { n: cards.length },
+          then: [{ type: 'CommitCardGroup', investigator: id, cards }],
+        })
+      choices.push({ label: 'choice.skip', then: [] })
+      return push(state, {
+        type: 'Ask',
+        investigator: id,
+        question: { kind: 'chooseOne', alwaysAsk: true, prompt: 'prompt.commitCards', choices },
+      })
+    }
+    case 'CommitCardGroup':
+      return commitGroupState(state, message.investigator, message.cards) ?? state
+    case 'ReturnCommittedAfterTest': {
+      const test = state.skillTest
+      if (!test) return state
+      return {
+        ...state,
+        skillTest: {
+          ...test,
+          committed: test.committed.map((c) =>
+            c.id === message.commitId ? { ...c, returnAfterTest: true } : c,
+          ),
+        },
+      }
+    }
     case 'CommitCard': {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
@@ -5318,6 +5485,9 @@ export function handle(state: GameState, message: Message): GameState {
       if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect, message))
         return state
       const trackCopy =
+        state.investigators.some(
+          (i) => !i.eliminated && investigatorBehavior(i.id)?.observesCommitCopies,
+        ) ||
         playerCardBehavior(message.code)?.observesCommitCopies ||
         Object.values(state.assets).some(
           (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
@@ -7415,17 +7585,26 @@ export function handle(state: GameState, message: Message): GameState {
       // RR ST.7: the investigator chooses the order of results. Cancellation only
       // prevents pending effects; Take Heart can resolve before Neither Rain nor Snow.
       if (
-        !test.succeeded &&
-        activeCommitted(test).some((c) => playerCardBehavior(c.code)?.cancelsFailedTestEffects)
+        (!test.succeeded &&
+          activeCommitted(test).some(
+            (c) => playerCardBehavior(c.code)?.cancelsFailedTestEffects,
+          )) ||
+        (test.succeeded &&
+          activeCommitted(test).some((c) => playerCardBehavior(c.code)?.chooseResultOrder))
       ) {
         return push(state, {
           type: 'ResolveCancelableTestResults',
+          ...(test.succeeded ? { ordered: true as const } : {}),
           remaining: [
-            {
-              label: 'choice.resolveTestConsequences',
-              then: sourceResults,
-            },
-            ...committedResults,
+            ...Array.from({ length: test.succeeded ? (test.resultRepetitions ?? 1) : 1 }).flatMap(
+              () => [
+                {
+                  label: 'choice.resolveTestConsequences',
+                  then: sourceResults,
+                },
+                ...committedResults,
+              ],
+            ),
             { label: 'choice.resolveTokenConsequences', then: tokens },
           ].filter((effect) => effect.then.length > 0),
         })
@@ -7441,7 +7620,10 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ResolveCancelableTestResults': {
       const test = state.skillTest
-      if (!test || test.succeeded !== false) return state
+      if (!test || test.succeeded === null || (!message.ordered && test.succeeded !== false))
+        return state
+      if (message.ordered && !message.remaining.length) return state
+      if (message.ordered && message.cancel) return state
       if (message.cancel || !message.remaining.length)
         return log(state, 'log.failedTestEffectsCanceled')
       return push(state, {
@@ -7449,7 +7631,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: test.investigator,
         question: {
           kind: 'chooseOne',
-          prompt: 'prompt.orderCancelableTestResults',
+          prompt: message.ordered ? 'prompt.orderTestResults' : 'prompt.orderCancelableTestResults',
           choices: [
             ...message.remaining.map((effect, index) => ({
               label: effect.label,
@@ -7458,14 +7640,25 @@ export function handle(state: GameState, message: Message): GameState {
                 ...effect.then,
                 {
                   type: 'ResolveCancelableTestResults',
+                  ...(message.ordered ? { ordered: true as const } : {}),
                   remaining: message.remaining.filter((_, i) => i !== index),
                 } satisfies Message,
               ],
             })),
-            {
-              label: 'choice.cancelRemainingTestResults',
-              then: [{ type: 'ResolveCancelableTestResults', remaining: [], cancel: true }],
-            },
+            ...(!message.ordered
+              ? [
+                  {
+                    label: 'choice.cancelRemainingTestResults',
+                    then: [
+                      {
+                        type: 'ResolveCancelableTestResults' as const,
+                        remaining: [],
+                        cancel: true,
+                      },
+                    ],
+                  },
+                ]
+              : []),
           ],
         },
       })
@@ -7707,7 +7900,24 @@ export function handle(state: GameState, message: Message): GameState {
       const events = [...(state.eventResolutions ?? [])]
       const at = events.lastIndexOf(message.code)
       if (at >= 0) events.splice(at, 1)
-      return { ...state, eventResolutions: events }
+      const frame = state.eventCopies?.findLast(
+        (f) => f.id === message.eventCopy && f.paid && f.as === message.code,
+      )
+      return {
+        ...state,
+        eventResolutions: events,
+        ...(frame && frame.destination !== 'play'
+          ? {
+              queue: state.queue.map((m) =>
+                m.type === 'Forced' &&
+                m.trigger.type === 'afterEventPlayed' &&
+                m.trigger.code === message.code
+                  ? { ...m, trigger: { ...m.trigger, code: frame.physical } }
+                  : m,
+              ),
+            }
+          : {}),
+      }
     }
     case 'PlayerCardEffect':
       return push(
@@ -7750,13 +7960,23 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'EventToVictory': {
       const owner = getInvestigator(state, message.investigator)
-      const index = owner.discard.lastIndexOf(message.code)
-      if (index < 0) return state
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
+      if (index < 0 && !copy) return state
       return updateInvestigator(
         {
           ...state,
-          victoryDisplay: [...state.victoryDisplay, message.code],
-          victoryPoints: (state.victoryPoints ?? 0) + message.points,
+          ...(copy
+            ? {
+                eventCopies: (state.eventCopies ?? []).map((f) =>
+                  f.id === copy.id ? { ...f, destination: 'victory' as const } : f,
+                ),
+              }
+            : {}),
+          victoryDisplay: [...state.victoryDisplay, copy?.physical ?? message.code],
+          victoryPoints:
+            (state.victoryPoints ?? 0) +
+            (copy ? (playerCardDef(copy.physical)?.victory ?? 0) : message.points),
         },
         owner.id,
         (i) => ({ ...i, discard: i.discard.filter((_, n) => n !== index) }),
@@ -7920,7 +8140,7 @@ export function handle(state: GameState, message: Message): GameState {
           continue
         }
         if (c.returnToHand || c.putIntoPlay) continue
-        if (c.returnAfterSuccess && test?.succeeded) {
+        if (c.returnAfterTest || (c.returnAfterSuccess && test?.succeeded)) {
           next = updateInvestigator(next, c.owner ?? c.by, (i) =>
             i.eliminated ? i : { ...i, hand: [...i.hand, c.code] },
           )
@@ -8663,7 +8883,12 @@ export function handle(state: GameState, message: Message): GameState {
       let next: GameState
       if (message.asset) {
         const asset = state.assets[message.asset]
-        if (!asset || asset.expeditionPartner) return state
+        if (
+          !asset ||
+          asset.expeditionPartner ||
+          (stuckInPlay(state, asset) && !message.byOwnAbility)
+        )
+          return state
         const { [asset.id]: _gone, ...assets } = state.assets
         next = { ...state, assets }
       } else {
@@ -9031,11 +9256,15 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const ofType = investigator.hand.filter((code) => {
         const def = playerCardDef(code)
-        return def?.type === message.cardType && (!def.weakness || !!message.includeWeaknesses)
+        return (
+          def?.type === message.cardType &&
+          (!message.trait || def.traits.includes(message.trait)) &&
+          (!def.weakness || !!message.includeWeaknesses)
+        )
       })
       if (ofType.length === 0) return state
       if (message.all) {
-        return afterHandDiscard(
+        const discarded = afterHandDiscard(
           updateInvestigator(state, investigator.id, (i) => ({
             ...i,
             hand: i.hand.filter((c) => !ofType.includes(c)),
@@ -9044,6 +9273,7 @@ export function handle(state: GameState, message: Message): GameState {
           investigator.id,
           ofType,
         )
+        return message.onDiscard ? push(discarded, ...message.onDiscard) : discarded
       }
       return push(state, {
         type: 'Ask',
@@ -9055,7 +9285,14 @@ export function handle(state: GameState, message: Message): GameState {
             label: 'choice.discard',
             params: { card: playerCardDef(code)?.name ?? code },
             target: { type: 'hand', code },
-            then: [{ type: 'DiscardFromHand', investigator: investigator.id, card: code }],
+            then: [
+              {
+                type: 'DiscardFromHand',
+                investigator: investigator.id,
+                card: code,
+                ...(message.onDiscard ? { onDiscard: message.onDiscard } : {}),
+              },
+            ],
           })),
         },
       })
@@ -10356,7 +10593,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveAssetFromGame': {
       if (!state.assets[message.asset]) return state
       const asset = state.assets[message.asset]!
-      if (asset.expeditionPartner) return state
+      if (asset.expeditionPartner || assetBehavior(state, asset)?.cannotLeavePlay?.(state, asset))
+        return state
       const instead = !message.leavingResolved
         ? assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
         : null
@@ -10441,12 +10679,13 @@ export function handle(state: GameState, message: Message): GameState {
     }
     case 'AttachEventToLocation': {
       const owner = getInvestigator(state, message.investigator)
-      const index = owner.discard.lastIndexOf(message.code)
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
       const attached = Object.values(state.locationAttachments ?? {}).filter(
         (a) => a.location === message.location,
       )
       if (
-        index < 0 ||
+        (index < 0 && !copy) ||
         !state.locations[message.location] ||
         (message.limitTrait &&
           attached.some((a) => playerCardDef(a.code)?.traits.includes(message.limitTrait!))) ||
@@ -10569,7 +10808,8 @@ export function handle(state: GameState, message: Message): GameState {
       const asset = state.assets[message.asset]
       const owner = getInvestigator(state, message.investigator)
       const from = message.from ?? 'discard'
-      const index = owner[from].lastIndexOf(message.code)
+      const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      const index = copy ? -1 : owner[from].lastIndexOf(message.code)
       const controller = asset && state.investigators.find((i) => i.id === asset.owner)
       if (
         !asset ||
@@ -10580,7 +10820,7 @@ export function handle(state: GameState, message: Message): GameState {
             controller.location !== owner.location
           : asset.owner !== owner.id) ||
         (message.limitPerAsset && asset.upgrades?.some((u) => u.code === message.code)) ||
-        index < 0 ||
+        (index < 0 && !copy) ||
         !assetTraits(asset).includes(message.trait)
       )
         return state
@@ -10720,6 +10960,19 @@ export function handle(state: GameState, message: Message): GameState {
               }
             : {}),
           actionsTaken: (i.actionsTaken ?? 0) + (message.actions > 0 ? 1 : 0),
+          ...(message.actions > 0
+            ? {
+                actionTypesThisTurn: {
+                  turn: turnStartedAt(state),
+                  types: [
+                    ...(i.actionTypesThisTurn?.turn === turnStartedAt(state)
+                      ? i.actionTypesThisTurn.types
+                      : []),
+                    ...abilityActionKinds(message),
+                  ],
+                },
+              }
+            : {}),
           ...(message.actions > 0 &&
           (message.actionKind === 'investigate' ||
             message.then.some((m) => m.type === 'BeginSkillTest' && m.kind.type === 'investigate'))
@@ -10738,6 +10991,7 @@ export function handle(state: GameState, message: Message): GameState {
                 message.then.some(
                   (m) => m.type === 'BeginSkillTest' && m.kind.type === 'investigate',
                 ),
+              abilityActionKinds(message),
             )
           : []
       if (message.playFromDiscard)
@@ -12662,6 +12916,15 @@ export function handle(state: GameState, message: Message): GameState {
             : updateInvestigator(state, message.from.id, (i) => ({ ...i, damage: i.damage - 1 }))
         return push(
           updateEnemy(removed, enemy.id, (e) => ({ ...e, damageTaken: e.damageTaken + 1 })),
+          {
+            type: 'Forced',
+            trigger: {
+              type: 'afterDamageMoved',
+              from: message.from,
+              to: message.to,
+              kind: message.kind,
+            },
+          },
           { type: 'CheckEnemyDefeat', enemy: enemy.id, ...(message.by ? { by: message.by } : {}) },
         )
       }
@@ -12699,6 +12962,16 @@ export function handle(state: GameState, message: Message): GameState {
         return push(
           updateInvestigator(moved, to.id, (i) => ({ ...i, [message.kind]: i[message.kind] + 1 })),
           { type: 'CheckDefeat', investigator: to.id },
+          {
+            type: 'Forced',
+            trigger: {
+              type: 'afterDamageMoved',
+              from: message.from,
+              to: message.to,
+              kind: message.kind,
+              owner: to.id,
+            },
+          },
           ...(message.kind === 'horror'
             ? [
                 {
@@ -12710,6 +12983,16 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const target = { ...moved.assets[to.id]!, [message.kind]: to[message.kind] + 1 }
       moved = { ...moved, assets: { ...moved.assets, [to.id]: target } }
+      const placed: Message = {
+        type: 'Forced',
+        trigger: {
+          type: 'afterDamageMoved',
+          from: message.from,
+          to: message.to,
+          kind: message.kind,
+          owner: target.owner,
+        },
+      }
       const vitals = assetVitals(target, moved)
       return (vitals.health !== undefined && target.damage >= vitals.health) ||
         (vitals.sanity !== undefined && target.horror >= vitals.sanity)
@@ -12717,8 +13000,9 @@ export function handle(state: GameState, message: Message): GameState {
             moved,
             { type: 'DiscardAsset', asset: target.id, defeated: true },
             { type: 'Forced', trigger: { type: 'assetDefeated', asset: target } },
+            placed,
           )
-        : moved
+        : push(moved, placed)
     }
 
     case 'ReturnAssetWithTrait': {
@@ -13178,7 +13462,7 @@ export function canCommitFrom(
   code: string,
   zone: 'hand' | 'discard' = 'hand',
   byEffect = false,
-  permission: { wildIcons?: boolean; allowConnecting?: boolean } = {},
+  permission: { wildIcons?: boolean; allowConnecting?: boolean; groupSize?: number } = {},
 ): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
@@ -13187,6 +13471,9 @@ export function canCommitFrom(
     investigator.eliminated ||
     !canCommit(state, test, code, id, zone, permission.wildIcons)
   )
+    return false
+  const minimum = minimumCommittedCards(state, id)
+  if (test.committed.filter((c) => c.by === id).length + (permission.groupSize ?? 1) < minimum)
     return false
   if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id, code)) return false
   if (commitBlocked(state, id, playerCardDef(code)?.type ?? '')) return false
@@ -13199,9 +13486,69 @@ export function canCommitFrom(
           getLocation(state, investigator.location).connections.includes(
             getInvestigator(state, test.investigator).location ?? '',
           )) ||
-        playerCardBehavior(code)?.commitFromLocation?.(state, test, id) === true) &&
+        playerCardBehavior(code)?.commitFromLocation?.(state, test, id) === true ||
+        (getInvestigator(state, test.investigator).location !== null &&
+          Object.values(state.assets).some(
+            (a) => a.owner === id && assetBehavior(state, a)?.remoteCommit,
+          ))) &&
       (byEffect || !test.committed.some((c) => c.by === id)))
   )
+}
+
+/** RR Committing Cards: contributions with a minimum are selected and committed atomically. */
+function minimumCommittedCards(state: GameState, id: string): number {
+  return Math.max(
+    0,
+    ...Object.values(state.assets)
+      .filter((a) => a.owner === id)
+      .map((a) => assetBehavior(state, a)?.minimumCommittedCards ?? 0),
+  )
+}
+function commitGroupState(
+  state: GameState,
+  id: string,
+  cards: string[],
+  incomplete = false,
+): GameState | null {
+  const test = state.skillTest
+  if (
+    !test ||
+    (test.commitRule && cards.length > 1) ||
+    (!incomplete && cards.length < minimumCommittedCards(state, id))
+  )
+    return null
+  let next: GameState = { ...state, queue: [] }
+  const notifications: Message[] = []
+  for (const code of cards) {
+    const before = next.skillTest!.committed.length
+    next = handle(next, {
+      type: 'CommitCard',
+      investigator: id,
+      code,
+      groupSize: Math.max(cards.length, minimumCommittedCards(state, id)),
+    })
+    if (next.skillTest?.committed.length !== before + 1) return null
+    notifications.push(
+      ...next.queue.map((m) =>
+        m.type === 'Forced' && m.trigger.type === 'afterCommit'
+          ? { ...m, trigger: { ...m.trigger, groupSize: cards.length } }
+          : m,
+      ),
+    )
+    next = { ...next, queue: [] }
+  }
+  return push({ ...next, queue: state.queue }, ...notifications)
+}
+function hasCommitGroup(state: GameState, id: string, cards: string[]): boolean {
+  if (!commitGroupState(state, id, cards, true)) return false
+  if (cards.length >= minimumCommittedCards(state, id)) return true
+  const remaining = [...getInvestigator(state, id).hand]
+  for (const c of cards) {
+    const at = remaining.indexOf(c)
+    if (at < 0) return false
+    remaining.splice(at, 1)
+  }
+  return [...new Set(remaining)].some((c) => hasCommitGroup(state, id, [...cards, c]))
 }
 
 /** Margen de la prueba en curso (valor final menos dificultad). */
@@ -13253,7 +13600,9 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
         cards(i.id)
           .filter(
             (code) =>
-              playerCardBehavior(code)?.playInAnyFastWindow ||
+              (playerCardBehavior(code)?.copyEvents
+                ? copyChoices(state, i.id, code, true, true).length > 0
+                : playerCardBehavior(code)?.playInAnyFastWindow) ||
               (i.nextAssetFast &&
                 state.activeTurn === i.id &&
                 playerCardDef(code)?.type === 'asset'),
@@ -13276,7 +13625,15 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
                       label: 'ability.playCard',
                       params: { card: playerCardDef(code)!.name },
                       target: { type: 'hand', code },
-                      then: [{ type: 'PlayCard', investigator: i.id, code }],
+                      then: [
+                        {
+                          type: 'PlayCard',
+                          investigator: i.id,
+                          code,
+                          fastWindow: true,
+                          anyFastWindow: true,
+                        },
+                      ],
                     },
                     { label: 'choice.skip', then: [] },
                   ],
@@ -13458,6 +13815,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
         (type !== 'skill' && scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code))
       )
         return []
+      if (playerCardBehavior(code)?.copyEvents) return copyHandReactions(state, trigger, i.id, code)
       return (playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []).filter(
         (option) => {
           // A reaction can play its card with a discount (Quick Shot). Use the
@@ -14711,7 +15069,21 @@ function opportunityAttacks(
   state: GameState,
   investigator: Investigator,
   investigate = false,
+  types: string[] = [],
 ): Message[] {
+  const prior =
+    investigator.actionTypesThisTurn?.turn === turnStartedAt(state)
+      ? investigator.actionTypesThisTurn.types
+      : []
+  if (
+    Object.values(state.assets).some(
+      (a) =>
+        a.owner === investigator.id &&
+        assetBehavior(state, a)?.firstActionTypesSafe?.some((t) => types.includes(t)) &&
+        !assetBehavior(state, a)?.firstActionTypesSafe?.some((t) => prior.includes(t)),
+    )
+  )
+    return []
   if (
     investigate &&
     investigator.lastInvestigateTurn !== turnStartedAt(state) &&
@@ -14872,13 +15244,17 @@ export function restrictedSlotCapacity(
   state: GameState,
   investigator: InvestigatorId,
   slot: SlotType,
-): { trait: string | string[]; count: number; flexible?: boolean }[] {
+): { trait?: string | string[]; count: number; flexible?: boolean; nonUnique?: boolean }[] {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .flatMap((a) => [
       ...(assetBehavior(state, a)?.restrictedSlots ?? [])
         .filter((r) => r.slot === slot)
-        .map(({ trait, count }) => ({ trait, count })),
+        .map(({ trait, count, nonUnique }) => ({
+          ...(trait ? { trait } : {}),
+          count,
+          ...(nonUnique ? { nonUnique: true } : {}),
+        })),
       ...(a.flexibleSlot === slot
         ? (assetBehavior(state, a)?.flexibleSlots ?? []).map((f) => ({
             trait: f.traits ?? [],
@@ -14947,14 +15323,19 @@ function slotsFit(
           groups.set(key, n + 1)
           if (n % group.size !== 0) return []
         }
-        return [{ slot, traits: c.traits }]
+        return [{ slot, traits: c.traits, unique: !!playerCardDef(c.code)?.unique }]
       }),
   )
-  const tokens: { slots: SlotType[]; traits?: string[] }[] = []
+  const tokens: { slots: SlotType[]; traits?: string[]; nonUnique?: boolean }[] = []
   for (const slot of Object.keys(SLOT_CAPACITY) as SlotType[]) {
     for (let n = 0; n < slotCapacity(state, investigator, slot); n++) tokens.push({ slots: [slot] })
     for (const r of restrictedSlotCapacity(state, investigator, slot).filter((r) => !r.flexible))
-      for (let n = 0; n < r.count; n++) tokens.push({ slots: [slot], traits: [r.trait].flat() })
+      for (let n = 0; n < r.count; n++)
+        tokens.push({
+          slots: [slot],
+          ...(r.trait ? { traits: [r.trait].flat() } : {}),
+          ...(r.nonUnique ? { nonUnique: true } : {}),
+        })
   }
   for (const a of owned)
     for (const f of assetBehavior(state, a)?.flexibleSlots ?? [])
@@ -14968,6 +15349,7 @@ function slotsFit(
       if (
         seen.has(k) ||
         (token.traits && !token.traits.some((t) => u.traits.includes(t))) ||
+        (token.nonUnique && u.unique) ||
         !token.slots.some(
           (slot) => slot === u.slot || (exchange.includes(slot) && exchange.includes(u.slot)),
         )
@@ -15040,7 +15422,7 @@ function activeCommitted(test: SkillTest): SkillTest['committed'] {
     : committed
 }
 
-function commitIcons(
+export function commitIcons(
   state: GameState,
   test: SkillTest,
   code: string,

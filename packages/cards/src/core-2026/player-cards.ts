@@ -1,3 +1,13 @@
+import sefinaCards from '../data/sefina-rousseau.json'
+import sefinaOfficial from '../sefina-rousseau/decklist-6645.json'
+import minhCards from '../data/minh-thi-phan.json'
+import minhOfficial from '../minh-thi-phan/decklist-6644.json'
+import forgottenInvestigators from '../data/forgotten-age-investigators.json'
+import leoOfficial from '../forgotten-age-investigators/decklist-38675.json'
+import ursulaOfficial from '../forgotten-age-investigators/decklist-38676.json'
+import carcosaInvestigators from '../data/carcosa-investigators.json'
+import markOfficial from '../carcosa-investigators/decklist-6642.json'
+import akachiOfficial from '../carcosa-investigators/decklist-4814.json'
 import dunwichInvestigators from '../data/dunwich-investigators.json'
 import zoeyOfficial from '../dunwich-investigators/decklist-11965.json'
 import jimOfficial from '../dunwich-investigators/decklist-11969.json'
@@ -77,7 +87,11 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(sefinaCards as PlayerCardDef[]),
+  ...(minhCards as PlayerCardDef[]),
   ...(dunwichInvestigators as PlayerCardDef[]),
+  ...(carcosaInvestigators as PlayerCardDef[]),
+  ...(forgottenInvestigators as PlayerCardDef[]),
   ...(originalCore as PlayerCardDef[]),
   ...playerCards,
   ...(pete as PlayerCardDef[]),
@@ -119,6 +133,78 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  sefina: {
+    investigator: 1,
+    investigatorCode: sefinaOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(sefinaOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  minh: {
+    investigator: 1,
+    investigatorCode: minhOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(minhOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  leo: {
+    investigator: 1,
+    investigatorCode: leoOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(leoOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  ursula: {
+    investigator: 1,
+    investigatorCode: ursulaOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(ursulaOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  mark: {
+    investigator: 1,
+    investigatorCode: markOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(markOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  akachi: {
+    investigator: 1,
+    investigatorCode: akachiOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(akachiOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   zoey: {
     investigator: 1,
     investigatorCode: zoeyOfficial.investigator_code,

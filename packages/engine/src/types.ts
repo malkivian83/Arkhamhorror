@@ -55,6 +55,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Cards beneath this investigator, out of play and not part of the hand. */
+  beneath?: CardCode[]
   /** Resource tokens placed here as leylines (Archive of Conduits). */
   leylines?: number
   engagementSuppression?: number
@@ -173,6 +175,7 @@ export interface Investigator {
   lastMoveTurn?: number
   /** Acciones realizadas en este turno. */
   actionsTaken?: number
+  actionTypesThisTurn?: { turn: number; types: string[] }
   /**
    * Cartas apartadas durante la mano inicial: debilidades robadas y las que se
    * cambian en el mulligan. Vuelven al mazo al terminar el mulligan.
@@ -369,6 +372,8 @@ export type TreacheryPlacement =
   | { type: 'act'; code: CardCode }
 
 export interface Treachery extends TreacheryCard {
+  physicalCopy?: { id: string; code: CardCode }
+  abilityState?: Record<string, string | number | boolean>
   id: TreacheryId
   placement: TreacheryPlacement
   /** Debilidad de un jugador: al descartarse va a su pila de descartes. */
@@ -526,6 +531,8 @@ export type SkillIcon = SkillType | 'wild'
 /** Datos de una carta de jugador (sin texto). */
 /** Opción de construcción de mazo del reverso de un investigador. */
 export interface DeckOption {
+  /** Cards with this printed use type (Akachi: charges). */
+  uses?: string
   /** Empty: any class, when the option is defined by traits. */
   classes: string[]
   maxLevel: number
@@ -544,6 +551,7 @@ export interface ExtraDeckOption {
 }
 
 export interface PlayerCardDef {
+  victory?: number
   /** Printed subtitle distinguishes mechanically different researched upgrades sharing a title. */
   subname?: string
   /** Upgrade sheet: stable option id -> number of experience checkboxes required. */
@@ -630,6 +638,7 @@ export interface PlacedAsset {
 
 /** Player event attached to a location (Traps); its owner keeps control (RR Attach To). */
 export interface LocationAttachment {
+  physicalCopy?: { id: string; code: CardCode }
   id: string
   code: CardCode
   owner: InvestigatorId
@@ -652,6 +661,7 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  physicalCopy?: { id: string; code: CardCode }
   flexibleSlot?: SlotType
   /** Physical face-down cards, out of play; their owners survive host/control changes. */
   storedCards?: { code: CardCode; owner: InvestigatorId }[]
@@ -667,7 +677,13 @@ export interface Asset {
   /** Printed upgrades retain their owner's sheet when control changes. */
   customization?: Record<string, number>
   /** Player events attached to this instance; owner is retained on control changes. */
-  upgrades?: { code: CardCode; owner: InvestigatorId; exhausted?: boolean; uses?: number }[]
+  upgrades?: {
+    physicalCopy?: { id: string; code: CardCode }
+    code: CardCode
+    owner: InvestigatorId
+    exhausted?: boolean
+    uses?: number
+  }[]
   /** Skill bonus for the next fight using this asset this turn (Iron Sights). */
   nextFightBonus?: number
   originalOwner?: InvestigatorId
@@ -873,6 +889,8 @@ export interface SkillTest {
     toDeckBottom?: boolean
     returnToHand?: boolean
     putIntoPlay?: boolean
+    /** This physical copy returns at ST.8, retaining its skill effects until then. */
+    returnAfterTest?: boolean
     /** Practice Makes Perfect: this exact commitment returns after a successful test. */
     returnAfterSuccess?: boolean
     /** Surprising Find: its Research ability supplied this exact copy. */
@@ -976,7 +994,7 @@ export interface ImmediateActionRule {
 }
 
 export type Action =
-  | { kind: 'play'; card: CardCode }
+  | { kind: 'play'; card: CardCode; as?: CardCode }
   | { kind: 'draw' }
   | { kind: 'resource' }
   | { kind: 'move'; to: LocationId }
@@ -1014,6 +1032,8 @@ export type PhaseStep =
 /** Todo lo que puede ocurrir en la partida. */
 /** `effectController`: investigator controlling the effect that produced it ("you"). */
 export type Message = MessageBody & {
+  /** Resolving physical event copy; inherited by its effects, not by new card plays. */
+  eventCopy?: string
   effectSource?: string
   effectController?: InvestigatorId
   effectAsset?: AssetId
@@ -1077,6 +1097,19 @@ type MessageBody =
   | { type: 'MoveResourcesToUses'; investigator: InvestigatorId; asset: AssetId; amount: number }
   | { type: 'PrimeFightTokenConversion'; investigator: InvestigatorId; code: CardCode }
   | { type: 'EndEventResolution'; code: CardCode }
+  | {
+      type: 'BeginEventCopy'
+      investigator: InvestigatorId
+      physical: CardCode
+      as: CardCode
+      then: Message[]
+    }
+  | { type: 'EndEventCopy'; id: string }
+  | { type: 'ChooseOpeningBeneath'; investigator: InvestigatorId; keep: number; maximum: number }
+  | { type: 'DiscardOpeningExcess'; investigator: InvestigatorId; keep: number }
+  | { type: 'StoreOpeningBeneath'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'DrawInvestigatorBeneath'; investigator: InvestigatorId; index: number }
+  | { type: 'RemoveRandomBeneath'; investigator: InvestigatorId; otherwise: Message[] }
   | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
   | { type: 'GameBegins' }
   | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }
@@ -1130,6 +1163,8 @@ type MessageBody =
   | { type: 'ApplySkillTestResults'; prepared?: boolean }
   | {
       type: 'ResolveCancelableTestResults'
+      /** Order successful effects without offering cancellation. */
+      ordered?: true
       remaining: { label: string; params?: Record<string, string>; then: Message[] }[]
       cancel?: boolean
     }
@@ -1249,13 +1284,24 @@ type MessageBody =
       asset: AssetId
       values: Record<string, string | number | boolean>
     }
+  | { type: 'FlipPlayerAsset'; asset: AssetId; code: CardCode }
+  | {
+      type: 'SetTreacheryAbilityState'
+      treachery: TreacheryId
+      values: Record<string, string | number | boolean>
+    }
   | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
   | { type: 'ChooseLead'; replacement?: boolean }
   | { type: 'SetLead'; investigator: InvestigatorId; replacement?: boolean }
   /** Mano inicial: las debilidades se apartan y se roba otra en su lugar. */
-  | { type: 'DrawOpeningHand'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'DrawOpeningHand'
+      investigator: InvestigatorId
+      amount: number
+      replacementDone?: boolean
+    }
   /** Lola Hayes: su papel (una clase o `neutral`). */
   | { type: 'SetRole'; investigator: InvestigatorId; role: string }
   /** Improvisación: hasta el final del turno, la siguiente carta del papel cuesta menos. */
@@ -1270,6 +1316,7 @@ type MessageBody =
   | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number; startingDone?: boolean }
   | {
       type: 'DiscardFromHand'
+      onDiscard?: Message[]
       investigator: InvestigatorId
       card: CardCode
       deferHandReaction?: boolean
@@ -1338,9 +1385,14 @@ type MessageBody =
       round: number
     }
   | { type: 'CommitWindow' }
+  | { type: 'ChooseCommitGroup'; investigator: InvestigatorId; cards?: CardCode[] }
+  | { type: 'CommitCardGroup'; investigator: InvestigatorId; cards: CardCode[] }
+  | { type: 'ReturnCommittedAfterTest'; commitId: number }
   | { type: 'MarkTestAbility'; key: string }
   | {
       type: 'CommitCard'
+      /** Internal atomic group size; CommitCardGroup validates the complete selection. */
+      groupSize?: number
       /** Isabelle: shuffle the committed card into its owner's deck after the test. */
       shuffleAfter?: boolean
       investigator: InvestigatorId
@@ -1377,6 +1429,10 @@ type MessageBody =
    */
   | {
       type: 'PlayCard'
+      copyAs?: CardCode
+      copyId?: string
+      fastWindow?: boolean
+      anyFastWindow?: boolean
       storedPlaySource?: AssetId
       fromStored?: { asset: AssetId; index: number }
       modifiersResolved?: boolean
@@ -1513,7 +1569,14 @@ type MessageBody =
   | { type: 'SetScenarioMeta'; key: string; value: string | number }
   | { type: 'ConnectLocations'; a: LocationId; b: LocationId }
   /** `defeated`: it leaves play because it was defeated (Cherished Keepsake is exiled). */
-  | { type: 'DiscardAsset'; asset: AssetId; defeated?: boolean }
+  | {
+      type: 'DiscardAsset'
+      asset: AssetId
+      defeated?: boolean
+      onDiscard?: Message[]
+      /** An explicit exception printed on this asset to its cannot-leave restriction. */
+      byOwnAbility?: boolean
+    }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | {
@@ -1775,6 +1838,8 @@ type MessageBody =
   /** Descarta de la mano las cartas (no debilidades) de un tipo: todas o una a elegir. */
   | {
       type: 'DiscardCardsOfType'
+      trait?: string
+      onDiscard?: Message[]
       investigator: InvestigatorId
       cardType: string
       all: boolean
@@ -1848,6 +1913,7 @@ type MessageBody =
   /** Exile from play (`asset`), hand (`from`), or the owner's discard pile by default. */
   | {
       type: 'ExileCard'
+      byOwnAbility?: boolean
       from?: 'hand' | 'discard'
       investigator: InvestigatorId
       code: CardCode
@@ -2677,7 +2743,13 @@ export type Trigger =
       amount: number
     }
   /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
-  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
+  | {
+      type: 'afterCommit'
+      by: InvestigatorId
+      tester: InvestigatorId
+      commitId?: number
+      groupSize?: number
+    }
   /** Tras ganar recursos por el efecto de una carta. */
   | {
       type: 'afterGainResources'
@@ -2809,7 +2881,20 @@ export type Trigger =
       byDamage: boolean
       byHorror: boolean
     }
-  | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
+  | {
+      type: 'afterAssetDamaged'
+      asset: AssetId
+      damage: number
+      horror: number
+      owner?: InvestigatorId
+    }
+  | {
+      type: 'afterDamageMoved'
+      from: DamageHolder
+      to: DamageHolder
+      kind: 'damage' | 'horror'
+      owner?: InvestigatorId
+    }
   /** Al terminar de asignar daño y horror: lo que ha recibido cada apoyo (con o sin dueño). */
   | {
       type: 'afterDamageAssigned'
@@ -3054,6 +3139,15 @@ export interface GameState {
   asIfLocations?: { investigator: InvestigatorId; at: LocationId; physical: LocationId }[]
   /** Nested player events whose effects are still resolving. */
   eventResolutions?: CardCode[]
+  hasEventCopies?: boolean
+  eventCopies?: {
+    id: string
+    investigator: InvestigatorId
+    physical: CardCode
+    as: CardCode
+    paid: boolean
+    destination?: 'play' | 'victory'
+  }[]
   enemyDefeats?: { round: number; location: LocationId }[]
   /** Keys spent during this scenario (experience for each pair). */
   keysSpent?: ChaosToken[]

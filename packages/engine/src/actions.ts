@@ -1,3 +1,4 @@
+import { copyPreview, copyTargets } from './event-copy-source'
 import {
   actBehavior,
   agendaBehavior,
@@ -55,6 +56,27 @@ import type {
   Treachery,
 } from './types'
 
+export function copyChoices(
+  s: GameState,
+  by: string,
+  physical: string,
+  fast: boolean,
+  anyWindow = false,
+): string[] {
+  return copyTargets(s, by, physical).filter(
+    (c) =>
+      (!anyWindow || playerCardBehavior(c)?.playInAnyFastWindow) &&
+      playableCards(copyPreview(s, by, physical, c), by, fast, true).includes(c),
+  )
+}
+export function playActions(s: GameState, by: string): Action[] {
+  return playableCards(s, by, false).flatMap((card) =>
+    playerCardBehavior(card)?.copyEvents
+      ? copyChoices(s, by, card, false).map((as) => ({ kind: 'play' as const, card, as }))
+      : [{ kind: 'play' as const, card }],
+  )
+}
+
 /** RR: Unique. The shared canonical title applies across controllers and printings. */
 export function uniqueAssetInPlay(state: GameState, code: CardCode): boolean {
   const def = playerCardDef(code)
@@ -65,10 +87,17 @@ export function uniqueAssetInPlay(state: GameState, code: CardCode): boolean {
 }
 
 /** Playable assets/events matching the requested fast or action window. */
-export function playableCards(state: GameState, id: InvestigatorId, fast: boolean): CardCode[] {
+export function playableCards(
+  state: GameState,
+  id: InvestigatorId,
+  fast: boolean,
+  ignoreCopies = false,
+): CardCode[] {
   const investigator = getInvestigator(state, id)
   if (investigator.eliminated || investigator.location === null) return []
   return [...new Set(playableHand(state, id))].filter((code) => {
+    if (playerCardBehavior(code)?.copyEvents)
+      return !ignoreCopies && copyChoices(state, id, code, fast).length > 0
     const def = playerCardDef(code)
     if (
       !def ||
@@ -150,6 +179,25 @@ export function canPlayByEffect(
   optionalModifiers = true,
   asFast = false,
 ): boolean {
+  if (playerCardBehavior(code)?.copyEvents)
+    return (
+      from === 'hand' &&
+      copyTargets(state, id, code).some(
+        (as) =>
+          playerCardBehavior(as)?.play !== undefined &&
+          canPlayByEffect(
+            copyPreview(state, id, code, as),
+            id,
+            as,
+            from,
+            noCost,
+            discount,
+            additionalActionsPaid,
+            optionalModifiers,
+            asFast,
+          ),
+      )
+    )
   const i = getInvestigator(state, id)
   const def = playerCardDef(code)
   if (!def || i.eliminated || i.location === null || !i[from].includes(code)) return false
@@ -260,6 +308,8 @@ export function playRestriction(
   id: InvestigatorId,
   code: CardCode,
 ): PlayRestriction | null {
+  if (playerCardBehavior(code)?.copyEvents)
+    return canPlayByEffect(state, id, code, 'hand') ? null : { key: 'unplayable.conditions' }
   const investigator = getInvestigator(state, id)
   const def = playerCardDef(code)
   if (!def) return null
@@ -327,29 +377,26 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   ) {
     const evades: Action[] = investigator.extraEvade
       ? [
-          ...playableCards(state, id, false)
-            .filter((card) => playerCardBehavior(card)?.evadeAction)
-            .map((card): Action => ({ kind: 'play', card })),
+          ...playActions(state, id).filter((a) => actionKinds(a).includes('evade')),
           ...engagedEnemies(state, id)
             .filter((e) => !e.cannotBeEvaded)
             .map((e): Action => ({ kind: 'evade', enemy: e.id })),
         ]
       : []
     const traitPlays: Action[] = trait
-      ? playableCards(state, id, false)
-          .filter(
-            (card) =>
-              traitActionCard(state, id, card) &&
-              !evades.some((a) => a.kind === 'play' && a.card === card) &&
-              actionCost(state, id, { kind: 'play', card }) <= 1,
-          )
-          .map((card): Action => ({ kind: 'play', card }))
+      ? playActions(state, id).filter(
+          (a) =>
+            a.kind === 'play' &&
+            traitActionCard(state, id, a.as ?? a.card) &&
+            !evades.some((e) => e.kind === 'play' && e.card === a.card && e.as === a.as) &&
+            actionCost(state, id, a) <= 1,
+        )
       : []
     return [...evades, ...traitPlays]
   }
 
   const actions: Action[] = [
-    ...playableCards(state, id, false).map((card): Action => ({ kind: 'play', card })),
+    ...playActions(state, id),
     { kind: 'draw' },
     { kind: 'resource' },
     ...(investigationBlocked(state, here) ? [] : [{ kind: 'investigate' } as Action]),
@@ -402,6 +449,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
 const hasTrait = (code: CardCode, trait: string) => !!playerCardDef(code)?.traits.includes(trait)
 
 export function actionKinds(action: Action): Action['kind'][] {
+  if (action.kind === 'play' && action.as) action = { kind: 'play', card: action.as }
   if (action.kind !== 'play') return [action.kind]
   const b = playerCardBehavior(action.card)
   return [
@@ -415,7 +463,7 @@ export function actionKinds(action: Action): Action['kind'][] {
 }
 export const isFightAction = (action: Action): boolean =>
   action.kind === 'fight' ||
-  (action.kind === 'play' && !!playerCardBehavior(action.card)?.fightAction)
+  (action.kind === 'play' && !!playerCardBehavior(action.as ?? action.card)?.fightAction)
 export function fightAbility(messages: Message[]): boolean {
   const visit = (v: unknown): boolean =>
     Array.isArray(v)
@@ -530,6 +578,7 @@ export function canAffordEntry(
 
 /** Acciones que cuesta una acción básica, con costes adicionales (Waterfront, Arcane Lock). */
 export function actionCost(state: GameState, id: InvestigatorId, action: Action): number {
+  if (action.kind === 'play' && action.as) action = { kind: 'play', card: action.as }
   const here = getInvestigator(state, id).location
   if (here === null) return 1
   // Frozen in Fear: costes adicionales de las traiciones de su zona de amenaza.
@@ -593,6 +642,17 @@ function moveCost(state: GameState, location: string): number {
 export function describeAction(state: GameState, id: InvestigatorId, action: Action): Choice {
   switch (action.kind) {
     case 'play': {
+      if (action.as)
+        return {
+          label: 'action.playCopy',
+          params: {
+            card: playerCardDef(action.as)?.name ?? action.as,
+            physical: playerCardDef(action.card)?.name ?? action.card,
+          },
+          target: { type: 'hand', code: action.card },
+          then: [],
+          display: { kind: 'play', action: 'play', actions: actionCost(state, id, action) },
+        }
       const target: ChoiceTarget = { type: 'hand', code: action.card }
       return {
         label: 'action.play',
