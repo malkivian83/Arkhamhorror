@@ -25,10 +25,11 @@ const RULES = new Set([
   'writtenInRock.mineCart',
   'writtenInRock.derailed',
   'hemlockHouse.setup',
+  'silentHeath.setup',
 ])
 // Párrafos de instrucciones dentro de un relato: se muestran, pero no se graban.
 const INSTRUCTION =
-  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a )/
+  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en )/
 const narrative = (body) =>
   body
     .split(/\n\s*\n/)

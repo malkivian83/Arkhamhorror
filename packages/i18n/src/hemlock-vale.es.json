@@ -288,6 +288,76 @@
         "title": "Resolución 2",
         "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Estudio de la Casa Cicuta completado. El organismo está más allá de toda comprensión. Una colonia de especies octópodas y gasterópodas infestaba toda la casa. La(s) criatura(s) parece(n) haber evolucionado en la propia casa. Se precisa más observación”."
       }
+    },
+    "silentHeath": {
+      "intro1": {
+        "title": "Introducción 1",
+        "body": "Bajáis de la camioneta de Theo acompañados por Leah Atwood y levantáis la vista hacia el punto más alto de la Isla de la Cicuta. La estrecha y sinuosa carretera da paso a una suave ceniza parecida a la arena que cubre el páramo. Un siniestro silencio lo impregna todo mientras subís por la colina con la cocinera del Valle.\n\n–Hay un motivo por el que aquí ya no vive nadie. Ya lo verán por sí mismos. No sé qué vive en las cuevas y no tengo la menor intención de averiguarlo.\n\nComo si respondiese a su afirmación, un fuerte viento levanta nubes de ceniza blanca."
+      },
+      "intro2": {
+        "title": "Introducción 2",
+        "body": "Bajáis de la camioneta de Theo bajo la lluvia torrencial acompañados por la Dra. Marquez. La estrecha y sinuosa carretera da paso a una suave ceniza parecida a la arena que cubre el páramo. Las rocas negras de la parte superior de la colina parecen dientes serrados. Un siniestro silencio lo impregna todo mientras subís por la colina con la profesora, que lleva un colorido poncho azul y amarillo.\n\n–Si hacemos caso a los lugareños, tenemos que ir por ahí –dice mientras señala colina arriba hacia unos árboles brillantes. Tras ascender por la empinada pendiente, la profesora da un grito ahogado.\n\nHileras de árboles cristalinos resplandecen a la luz. Un relámpago de las nubes del sur refracta un precioso fulgor prismático por las manzanas que cuelgan de las ramas y los nudosos troncos de los árboles. Aunque son hermosos, no podéis evitar sentir una punzada de ansiedad: pero llevan mucho tiempo muertos, congelados en el tiempo. La Dra. Marquez empieza a quitar un retoño con martillo y cincel.\n\n–Dispérsense para explorar las ruinas. Leah me advirtió que tuviéramos cuidado con las hormigas, pero no sé qué quería decir exactamente. Supongo que es mejor que no golpeemos ningún hormiguero –dice, absorta en su trabajo."
+      },
+      "intro3": {
+        "title": "Introducción 3",
+        "body": "Bajáis de la camioneta de Theo y levantáis la vista hacia el punto más alto de la Isla de la Cicuta. La estrecha y sinuosa carretera da paso a una suave ceniza parecida a la arena que cubre el páramo. Las rocas negras de la parte superior de la colina parecen dientes serrados. Un siniestro silencio lo impregna todo mientras subís por la colina y veis una figura ataviada con una túnica sobre una roca que sobresale. Está mirando fijamente la vista de la Isla de la Cicuta. Al acercaros, reconocéis a la madre Rachel. Asiente como para responder a vuestra presencia y luego extiende los brazos en pose exultante. El cielo que hay sobre vuestras cabezas resplandece con una banda de extraños colores."
+      },
+      "intro4": {
+        "title": "Introducción 4",
+        "body": "Bajáis de la camioneta de Theo y levantáis la vista hacia el punto más alto de la Isla de la Cicuta. La estrecha y sinuosa carretera da paso a una suave ceniza parecida a la arena que cubre el páramo. Las rocas negras de la parte superior de la colina parecen dientes serrados. Os sentís extrañamente tranquilizados por el silencio mientras subís colina arriba y veis las brillantes bandas de colores de la luz estelar que hay sobre vuestras cabezas."
+      },
+      "intro5": {
+        "title": "Introducción 5",
+        "body": "Llegáis a la antigua Finca Perla y os frenáis para evitar caer en el oscuro abismo que se abre frente a la ruinosa casa. Un tejado hecho pedazos en el extremo norte de la finca indica que se ha producido un violento impacto: a juzgar por los tablones dispersos, algo surgió del interior con la fuerza de un cañonazo. Mientras exploráis las ruinas, os preguntáis qué terrible catástrofe sufrió la familia Perla. Una sombra negra pasa velozmente por la periferia de vuestra visión. Cuando os giráis para mirarla, ha desaparecido."
+      },
+      "setup": {
+        "title": "Preparación del escenario",
+        "body": "La Arboleda de cristal, las Ruinas de la Finca Perla y la Pendiente de ceniza están en juego, conectadas por sus iconos; cada investigador comienza en las Ruinas de la Finca Perla. La Reina de progenie, los dos Parásitos de cristal, la Cámara de sal, el Túnel de larvas, la Zona de cría de cristal y los tres Restos cristalinos quedan apartados, junto con 3 Lugares al azar de Horrores en la roca (sin mirar su lado revelado). De día se coloca a Leah Atwood (Día 1), a la Dra. Rosa Marquez (Día 2) o a la madre Rachel (Día 3). Al avanzar el acto, las Cuevas entran adyacentes a los Lugares iniciales y se coloca una carta boca abajo bajo cada Lugar."
+      },
+      "codex1": {
+        "title": "Códice 1: Madre Rachel",
+        "body": "–No elegimos nuestro camino. Es el mismo tanto para los simples, como para los sabios o para los necios que piensan que son sabios. Ya han tomado las elecciones por nosotros. Lo mejor que podemos hacer es aceptar nuestro lugar –dice la matrona mientras se arrodilla y mira en dirección de la casa en ruinas–. Pronto sabrán cuál es su lugar. Igual que la gente del Valle.\n\nAumenta el nivel de relación de la madre Rachel. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "codex2": {
+        "title": "Códice 2: Leah Atwood",
+        "body": "–Éste era prácticamente el único lugar de la isla donde se podía lograr cultivar algo. De hecho, era imposible evitar que creciesen cosas. La familia Perla lo tenía muy bien montado: huertos de árboles frutales y viñedos, por no hablar de la minería y la caza de ballenas. Entonces, hace veinte años casi exactos, ocurrió algo. ¿Se puede creer que mi hermana habla de ello como si fuera una especie de milagro? –se burla.\n\nAnota en las Notas de Leah Atwood que Leah registró las ruinas de la Finca Perla.\n\nCada investigador obtiene 1 pista (de la reserva de fichas)."
+      },
+      "codexOmega": {
+        "title": "Códice Ω: Cámara de sal",
+        "body": "Una estrecha hendidura en el lateral de un túnel lleva a una espaciosa caverna. Hay formaciones de sal que crean delicados diseños arácnidos que cuelgan del techo y suben desde el suelo. El aire tiene un amargo sabor alcalino mezclado con un repugnante olor almizcleño. Por el suelo hay varios cuerpos secos, algunos de ellos humanos, recubiertos de sal. Puede que las criaturas de la zona empleen la sal de esta cámara como conservante natural. Es como una especie de despensa.\n\nCoge 1 de las cartas Restos cristalinos puestas aparte y las 2 primeras cartas del mazo de Encuentros. Barájalas y coloca esas 3 cartas boca abajo formando un montón bajo la Cámara de sal."
+      },
+      "codexPhi": {
+        "title": "Códice Φ: Zona de cría de cristal",
+        "body": "Entras en una enorme caverna del tamaño de un anfiteatro y llena de cristales de un blanco lechoso. Hay innumerables insectos colgados de las paredes y tumbados en el suelo, bajo una pálida luz acuosa que se filtra desde un agujero del techo. Te das cuenta de que la abertura de arriba es el enorme agujero que hay frente a la Finca Perla. Un grave zumbido subsónico impregna la estancia. Sientes como si hubieras entrado en un espacio sagrado.\n\nCoge 1 de las cartas Restos cristalinos puestas aparte y las 2 primeras cartas del mazo de Encuentros. Barájalas y coloca esas 3 cartas boca abajo formando un montón bajo la Zona de cría de cristal."
+      },
+      "codexPsi": {
+        "title": "Códice Ψ: Túnel de larvas",
+        "body": "Un hedor bilioso sale de un túnel repleto de insectos blancos almohadillados. Unas larvas monstruosas miran ciegas desde la oscuridad con ojos blancos y lechosos. La colonia de insectos mantiene a sus crías en este túnel para que maduren. A juzgar por los sangrientos restos resecos que hay en el suelo, los soldados mayores las alimentan con un suministro constante de fauna local y de cualquiera lo bastante idiota como para meterse en sus cuevas.\n\nCoge 1 de las cartas Restos cristalinos puestas aparte y las 2 primeras cartas del mazo de Encuentros. Barájalas y coloca esas 3 cartas boca abajo formando un montón bajo el Túnel de larvas."
+      },
+      "codexSigma": {
+        "title": "Códice Σ: Reina de progenie",
+        "body": "La enorme y corpulenta forma de un insecto sale a trompicones de un oscuro túnel. Las antenas de la reina de progenie oscilan en la oscuridad, emitiendo inquietantes vibraciones. En un instante, la cueva se llena de su progenie, y cada uno de ellos resplandece con una tenue luz azul.\n\nHaz aparecer la Reina de progenie en el Lugar más cercano a la mayoría de los investigadores (en un Lugar Cueva si es posible). Retira todos los Enemigos Insecto de la zona de victoria y hazlos aparecer en el Lugar de la Reina de progenie."
+      },
+      "noResolution": {
+        "title": "Sin resolución",
+        "body": "Mientras bajáis por la pendiente, completamente agotados, oís el sonido de un centenar de alas que baten. Unos pálidos insectos translúcidos cubren las rocas negras de la cumbre de la colina, zumbando incesantemente. ¿Qué se dicen unos a otros en su propio idioma alienígena? ¿Conocen el mundo que hay más allá del páramo? Os estremecéis al preguntaros cuántos más acechan en las cavernas del subsuelo."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "Ponéis los tres cadáveres disecados en la caja de la camioneta. La acumulación de minerales hace que sean a la vez pesados e increíblemente frágiles. La tripa del hijo está hinchada con cristales del tamaño de un balón de baloncesto, y la piel de la madre está curtida por la sal. No sabes qué ha deformado los cuerpos de la familia Perla, pero está claro que no fue un proceso rápido; cuando murieron ya tenían que haber sufrido una terrible deformación. Documentáis los restos y algunas muestras de formaciones cristalinas. La familia Perla se merecía algo mejor que esto. Cogéis una pala de la camioneta de Theo y os ponéis a cavar una tumba adecuada para los tres cadáveres."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "Dejáis los restos que habéis podido recuperar en la caja de la camioneta azul cielo de Theo. La acumulación de minerales hace que sean a la vez pesados e increíblemente frágiles. No sabes qué ha deformado los cuerpos de la familia Perla, pero está claro que no fue un proceso rápido; cuando murieron ya tenían que haber sufrido una terrible deformación. Documentáis los restos y algunas muestras de formaciones cristalinas y luego enterráis los restos en una tumba poco profunda al pie de la Cresta Perla."
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "Cuando habéis dejado atrás la Cresta Perla, estudiáis el diario de Susan Perla. Relata el ascenso y caída de las inversiones de Susan Perla en agricultura y minería en la Isla de la Cicuta durante la década anterior a 1906. Las entradas relativas a los negocios se intercalan con plegarias, ilustraciones de aves y detalles ocasionales sobre las extrañas “madrigueras” que hay bajo la Cresta Perla. Otras entradas mencionan una enfermedad que se propaga entre los trabajadores del huerto y la familia Perla, además de problemas redundantes en sus empresas mineras. La última entrada, escrita con letra larga y errática, te llama la atención:\n\nSigo sin estar segura de si lo que he experimentado fue un sueño o una visión. A medianoche, me desperté con la acuciante sensación de que me observaban y, cuando abrí los ojos, vi una pálida esfera de luz acuosa en un rincón de mi habitación, bailando como sacada de un cuento de hadas. En cuanto posé la mirada en ella, la cosa salió volando por la ventana y yo la seguí al huerto. Lo que vi sólo puedo describirlo como un milagro. Un centenar de luces feéricas más bailaban en el huerto. Mientras las observaba, su intensidad creció, y tuve la sensación como si volase. Una dicha embriagadora invadió mi mente y me sentí diferente de algún modo. Como si hubiera otra yo, otras cinco más, palpitando en mi pecho. Y cuando miré hacia los árboles, también me vi en ellos. En todo esto. Fuerte y gruesa con piel nudosa y ramas por brazos. Me vi a mí misma, mi lugar, en toda la creación. Y todos mis miedos por Ezra, por la mina y por nuestra salud se desvanecieron. Sólo conocía la dicha. ¡Cuánta dicha!\n\nSoy los ojos. Toda ojos que ven. Soy el brillo.\n\nSusan Perla. 22 de junio de 1906"
+      },
+      "resolution4": {
+        "title": "Resolución 4",
+        "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Cresta Perla explorada. Las colinas del norte quedaron devastadas por un suceso desconocido. La contaminación persistente ha producido la mineralización y cristalización de la vida orgánica. Las cavernas locales están invadidas por una enorme colonia de insectos. Éstos demuestran comportamientos y psicología de véspidos y termítidos. Se precisa más estudio”."
+      }
     }
   },
   "choice": {
@@ -328,7 +398,10 @@
       "horror": "Un Apoyo que controlas recibe 1 punto de horror"
     },
     "takeHorror": "Recibe {n} puntos de horror",
-    "takeDamage": "Recibe {n} puntos de daño"
+    "takeDamage": "Recibe {n} puntos de daño",
+    "toBottom": "{card}: colócala debajo del montón",
+    "leaveOnTop": "{card}: déjala encima",
+    "insectAttacks": "El Enemigo Insecto más cercano se mueve hasta ti, se enfrenta contigo y ataca"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -352,7 +425,9 @@
     "sylvieBedroom": "Elige el Dormitorio en el que se coloca la Pequeña Sylvie",
     "sylvieDeck": "Elige quién añade a la Pequeña Sylvie a su mazo",
     "chooseCost": "Elige cómo pagar",
-    "chooseAsset": "Elige un Apoyo"
+    "chooseAsset": "Elige un Apoyo",
+    "lookBeneath": "Carta superior bajo tu Lugar",
+    "victoryToDeck": "Puedes barajar un Enemigo de la zona de victoria en el mazo de Encuentros"
   },
   "ability": {
     "codex": "Códice {n}",
@@ -376,7 +451,12 @@
     "flipYourLocation": "Prepara tu Lugar y dale la vuelta",
     "placeSeal": "Gastad 1 pista [per_investigator] en grupo: coloca un sello en tu Lugar",
     "secretPassage": "Encontrar un pasadizo secreto",
-    "takeSylvie": "Tomar el control de la Pequeña Sylvie"
+    "takeSylvie": "Tomar el control de la Pequeña Sylvie",
+    "remainsToVictory": "Gastad 1 pista [per_investigator] en grupo: añade unos Restos cristalinos que controles a la zona de victoria",
+    "leaveTheHeath": "Desistir. Dejas atrás el páramo (tus Restos cristalinos van a la zona de victoria)",
+    "drawBeneath": "Roba la carta superior que hay bajo tu Lugar",
+    "lookBeneath": "Gastad 1 pista [per_investigator] en grupo: mira la carta superior bajo tu Lugar",
+    "nurseryDraw": "Recibe 1 de horror directo: roba la carta superior bajo la Zona de cría de cristal"
   },
   "keywords": {
     "dayNight": {
@@ -395,6 +475,7 @@
   "log": {
     "predationCanceled": "Se cancela la prueba de depredación (Gideon Mizrah).",
     "predationToken": "Prueba de depredación: {token}.",
-    "elderThingToPredation": "Una ficha de Primigenio pasa de la bolsa de caos a la de depredación."
+    "elderThingToPredation": "Una ficha de Primigenio pasa de la bolsa de caos a la de depredación.",
+    "queenTokens": "Comprobación de la Reina de progenie: {tokens}."
   }
 }

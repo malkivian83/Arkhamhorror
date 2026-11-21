@@ -1,6 +1,7 @@
 import { registerCampaign, type CampaignScenario } from '../campaign-definition'
 import { hemlockValeChaosBags } from './chaos-bag'
 import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
+import { SILENT_HEATH, silentHeath } from './silent-heath'
 import { DAY_ONE_SCENARIOS, HEMLOCK_WELCOME, welcomeToHemlockVale } from './welcome'
 import { NEXT_PRELUDE, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
 
@@ -11,6 +12,7 @@ import { NEXT_PRELUDE, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
 const BUILDS: Record<string, CampaignScenario['build']> = {
   [WRITTEN_IN_ROCK]: writtenInRock,
   [HEMLOCK_HOUSE]: (context) => hemlockHouse(context),
+  [SILENT_HEATH]: (context) => silentHeath(context),
 }
 
 const steps: CampaignScenario[] = [

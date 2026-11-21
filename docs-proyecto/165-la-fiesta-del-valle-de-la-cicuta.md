@@ -28,8 +28,14 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   invalidan cambios en `hemlock-house.ts`, `vale-encounters.ts` o el códice de `welcome.ts`.
 - También corrige la CI #448: `scenario-coverage.test.ts` usa la ruta del Valle
   (`valley.route`) para preparar los escenarios de esta campaña.
-- Siguiente: entrega 5 (El páramo silencioso, La hermana perdida y La cosa de las
-  profundidades).
+- Entrega 5 en lotes: **5a** El páramo silencioso (hecho, ver
+  [El páramo silencioso](#el-páramo-silencioso)); **5b** La hermana perdida; **5c** La
+  cosa de las profundidades. Verificado 5a: sus 13 pruebas, `hemlock-vale/`, cobertura de
+  partidas, campañas, `story-order` e i18n (851 pruebas); tipos de cards y web; Prettier y
+  ESLint. Lo invalidan cambios en `silent-heath.ts`, las Cuevas de `written-in-rock.ts` o
+  `vale-encounters.ts`.
+- Siguiente: lote 5b. Requiere hora por Lugar (Oscuro = Noche) en las cartas del Valle,
+  mazo de Cavernas, Enemigos de doble cara y Helen, Theo y Gideon controlados.
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -390,6 +396,43 @@ coste adicional real (ahora el daño se recibe al jugar la carta); descartar la
 Podredumbre fúngica si su apoyo abandona el juego; el códice Θ; las capacidades de Gideon,
 Judith y Theo controlados; y el modo independiente. Revisión visual pendiente: casa,
 Lugares-Enemigo (se ven a la vez como Lugar y como Enemigo), bolsa de depredación y textos.
+
+### El páramo silencioso
+
+Lote 5a, en `silent-heath.ts` (pruebas en `silent-heath.test.ts`).
+
+- **Lugares:** las Ruinas en [1, 1], la Pendiente en [3, 1] y la Arboleda en [2, 2],
+  conectadas por sus iconos. Se apartan 3 Cuevas al azar de Horrores en la roca, que
+  reutilizan los comportamientos de Escrito en la roca. De día se coloca a Leah (Día 1), a
+  la Dra. Marquez (Día 2) o a la madre Rachel (Día 3). Las Introducciones 1–3 siguen con la 5.
+- **Las madrigueras (reverso del acto 1):** las Cuevas entran sin revelar en [1, 2], [2, 1]
+  y [3, 2]. Las 3 Guaridas y las 3 cartas superiores se reparten boca abajo bajo los 6
+  Lugares (`Location.beneath`).
+- **Montones:** una Guarida robada entra en el primer espacio libre adyacente al Lugar del
+  que se robó. Su códice (Ω, Ψ o Φ) forma un montón con unos Restos apartados y las 2 cartas
+  superiores. El Túnel de larvas hace aparecer además una Larva incolora. Robos: acto 2
+  ([acción] sin pistas en tu Lugar; [rápida] mirar y poner debajo), Cámara de sal, Túnel de
+  larvas (tras evitar) y Zona de cría (al terminar el turno, con 1 horror directo).
+- **Restos cristalinos:** en el montón son una carta de encuentro con su código. Al
+  revelarse entran como apoyo de historia del investigador, sin ir al descarte. Si son
+  derrotados, vuelven con las 2 cartas superiores bajo la Guarida más cercana. La Arboleda
+  y el desistir de las Ruinas los llevan a la zona de victoria (Victoria 1).
+- **Insectos:** Larva (derrotada tras atacar), Soldado (Errante hacia Cuevas con pistas,
+  +2 de velo si está preparado) y Reina (+1 combate por Insecto y salud + día ×
+  investigadores). La Reina y la Desolación quitan Indiferente; la v.II además quita
+  Errante y da Cazador.
+- **Planes:** al colocar perdición, si la Reina está apartada, se sacan tantas fichas como
+  Insectos haya en la zona de victoria (sin pasar por una prueba). Si sale una calavera o
+  un fallo automático (plan 1) o un símbolo (plan 2), se lee el códice Σ: la Reina aparece
+  con los Insectos de la zona de victoria.
+- **Encuentros:** Resonancia imperiosa (una opción distinta por punto de fallo) y Defender
+  el nido. La tarjeta de referencia tiene las cuatro fichas de cada dificultad.
+- **Resoluciones:** según los Restos de la zona de victoria (3 → R1; 1–2 → R2; ninguno →
+  R4), con notas de campaña, Victoria, Cresta Perla explorada y siguiente preludio.
+
+Pendiente: el códice Θ de la Dra. Marquez (está colocada, pero sin reacción), las
+capacidades de Leah y la madre Rachel controladas y el modo independiente. Revisión visual
+pendiente: montones bajo los Lugares, Guaridas y Restos cristalinos.
 
 ## Entregas y criterios de aceptación
 

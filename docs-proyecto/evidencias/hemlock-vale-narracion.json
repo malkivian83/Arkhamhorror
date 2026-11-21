@@ -667,5 +667,102 @@
       "audioSha256": "e1e3b59e577c0388545cec180f71d0152567fde5420fb08a14c964b4ba373da8"
     }
   ],
-  "pending": []
+  "pending": [
+    {
+      "key": "story.silentHeath.intro1.body",
+      "file": "hemlock-vale-silent-heath-intro-1-25c93588.mp3",
+      "textSha256": "25c9358867467f47e004adb09d4d8c80a50ff78e2077da124e16cd3eb7e4d3ed",
+      "characters": 562
+    },
+    {
+      "key": "story.silentHeath.intro2.body",
+      "file": "hemlock-vale-silent-heath-intro-2-54b123d3.mp3",
+      "textSha256": "54b123d3c96969a30b96b0ee4e9f4bbbde7a99a699d9d098e615312ac2eeb961",
+      "characters": 1226
+    },
+    {
+      "key": "story.silentHeath.intro3.body",
+      "file": "hemlock-vale-silent-heath-intro-3-fbf2e382.mp3",
+      "textSha256": "fbf2e382c4f12c115393ef1a75ff6ae03adfca58e141ca9a7ab39cbc5c6c84e7",
+      "characters": 700
+    },
+    {
+      "key": "story.silentHeath.intro4.body",
+      "file": "hemlock-vale-silent-heath-intro-4-65975758.mp3",
+      "textSha256": "65975758efd79aabc34d0dc67da25c91b52b7eed50afdfa87f78ff900938b289",
+      "characters": 450
+    },
+    {
+      "key": "story.silentHeath.intro5.body",
+      "file": "hemlock-vale-silent-heath-intro-5-6031225d.mp3",
+      "textSha256": "6031225dd7d9e5f103826a69b0a810e3eeb37c38eecfef56372402ad3f9ea52a",
+      "characters": 527
+    },
+    {
+      "key": "story.silentHeath.codex1.body",
+      "file": "hemlock-vale-silent-heath-codex-1-09454540.mp3",
+      "textSha256": "094545407eb016e1ab84d5e1e685b32745ffdc2828ec01aef715a1a1d7b414ac",
+      "characters": 370
+    },
+    {
+      "key": "story.silentHeath.codex2.body",
+      "file": "hemlock-vale-silent-heath-codex-2-38e235ff.mp3",
+      "textSha256": "38e235ffa38b091d457886580701a9253957c9afa613cd50b1c5ab78565799ff",
+      "characters": 421
+    },
+    {
+      "key": "story.silentHeath.codexOmega.body",
+      "file": "hemlock-vale-silent-heath-codex-omega-102a9075.mp3",
+      "textSha256": "102a9075a496341d57b084feddca4359f905b63e2e07f64c014e794f081a25b6",
+      "characters": 478
+    },
+    {
+      "key": "story.silentHeath.codexPhi.body",
+      "file": "hemlock-vale-silent-heath-codex-phi-c886cc0d.mp3",
+      "textSha256": "c886cc0d9f36598bffe20fb291bfd50c00f011c410837cee80447bdfe09ecfba",
+      "characters": 444
+    },
+    {
+      "key": "story.silentHeath.codexPsi.body",
+      "file": "hemlock-vale-silent-heath-codex-psi-ef71a68b.mp3",
+      "textSha256": "ef71a68baa574ad0dbe3f2e205392d26b2949d8cff99875f1bdf36af492cd63e",
+      "characters": 449
+    },
+    {
+      "key": "story.silentHeath.codexSigma.body",
+      "file": "hemlock-vale-silent-heath-codex-sigma-5a1c494e.mp3",
+      "textSha256": "5a1c494ef54a2e090933531387eaac298cf91496f38c490a5cf509fb12261d45",
+      "characters": 284
+    },
+    {
+      "key": "story.silentHeath.noResolution.body",
+      "file": "hemlock-vale-silent-heath-no-resolution-704b5290.mp3",
+      "textSha256": "704b5290986dfc9fe52a8f4f3df276d2b3db3893c14da95781280dc70374836b",
+      "characters": 402
+    },
+    {
+      "key": "story.silentHeath.resolution1.body",
+      "file": "hemlock-vale-silent-heath-resolution-1-5fe69660.mp3",
+      "textSha256": "5fe69660dfb6fa32972555f81706bc6b76e0403c75f21f6dc10287785a644cf2",
+      "characters": 678
+    },
+    {
+      "key": "story.silentHeath.resolution2.body",
+      "file": "hemlock-vale-silent-heath-resolution-2-23552fb0.mp3",
+      "textSha256": "23552fb08cfeccc367a49fd0aa5e21b4ae711f59288b3b815af57eed1cf02568",
+      "characters": 505
+    },
+    {
+      "key": "story.silentHeath.resolution3.body",
+      "file": "hemlock-vale-silent-heath-resolution-3-be39b1fb.mp3",
+      "textSha256": "be39b1fb61cd48f5f46c3c2aa1a2ba97b1908173b70539a5cffe682b13079d7e",
+      "characters": 1729
+    },
+    {
+      "key": "story.silentHeath.resolution4.body",
+      "file": "hemlock-vale-silent-heath-resolution-4-aac202ee.mp3",
+      "textSha256": "aac202ee4592ad7963d86713d15f38c74c5f5ac17421e2ee471fbbc58b5e6cb8",
+      "characters": 435
+    }
+  ]
 }
