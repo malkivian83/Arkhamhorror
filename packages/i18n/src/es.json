@@ -2014,6 +2014,7 @@
     "chaosTokensAddedToBag": "Se añaden {n} ficha(s) a la bolsa del caos.",
     "chaosTokensRemovedFromBag": "Se devuelven {n} ficha(s) de la bolsa del caos a la reserva de fichas.",
     "chaosTokensAdded": "{scenario} añade {n} ficha(s) a la bolsa de campaña.",
+    "valleyFatigue": "Fatiga: una ficha {from} pasa a ser una ficha {to} durante el resto de la campaña.",
     "step": {
       "mythosBegins": "1.1 · Empieza la fase de mitos",
       "placeDoom": "1.2 · Se coloca 1 perdición en el plan",

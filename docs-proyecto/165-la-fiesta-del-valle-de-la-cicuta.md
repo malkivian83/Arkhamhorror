@@ -5,22 +5,24 @@ Hemlock Vale_ (FFG, 2024): 8 escenarios, de los que cada partida juega 6, y
 preludios jugables. Se incorpora con el mismo procedimiento que
 [Los confines de la Tierra](106-confines-de-la-tierra.md).
 
-**Estado:** entrega 0 completada; ninguna regla implementada.
+**Estado:** entregas 0 y 1 completadas; ningún escenario jugable todavía.
 
 ## Estado y continuación
 
-- Último paso: entrega 0 (21/11/2026), sobre `51f7e64a`. El pull
-  quedó impedido por cambios locales ajenos; `fetch` no muestra commits remotos
-  pendientes. Ver [Inventario y recursos](#inventario-y-recursos).
-- Siguiente: entrega 1 (estado de campaña).
-- Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales)
-  y queda una decisión que no impide empezar (ver
-  [Decisiones pendientes](#decisiones-pendientes)).
+- Último paso: entrega 1 (21/11/2026), sobre `12909541`. Ver
+  [Estado de campaña implementado](#estado-de-campaña-implementado).
+- Verificado: `valley.test.ts`, `hemlock-vale/chaos-bag.test.ts`,
+  `hemlock-vale-session.test.ts`, `cardText`, `session`, i18n y la suite del
+  motor; tipos de engine, cards y web; Prettier y ESLint. Lo invalidan cambios en
+  `valley.ts`, en los mensajes del Valle de `handlers.ts` o en la validación de
+  guardados.
+- Siguiente: entrega 2 (preludios y códice).
+- Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
 
 - [x] 0 · Fuentes, inventario EN/ES de `fhvc`, escaneos y miniaturas.
-- [ ] 1 · Estado de campaña: día y hora, habitantes, zonas exploradas, bolsa y fatiga.
+- [x] 1 · Estado de campaña: día y hora, habitantes, zonas exploradas, bolsa y fatiga.
 - [ ] 2 · Preludios y códice: preludio de bienvenida jugable de principio a fin.
 - [ ] 3 · Adyacencia por cuadrícula y Escrito en la roca.
 - [ ] 4 · La Casa Cicuta.
@@ -192,21 +194,51 @@ Reglas propias de cada escenario, en la entrega correspondiente:
 - Notas de campaña, investigadores muertos y locos, y bolsa de caos.
 - **Día/Hora:** tres filas de Día y Noche.
 - **Zonas exploradas (7):** Minas de la Punta Norte, Puerto de la Cicuta, Cresta
-  Perla, Costa de Akwan, Ciénaga de Eastwick, Bosque oriental y Campos del sur.
+  Perla, Costa de Akwan, Ciénaga de Eastwick, Bosque oriental (_Western Woods_
+  en inglés, que es la versión que manda) y Campos del sur.
 - **Habitantes (8)**, cada uno con notas y casillas de relación: Madre Rachel,
   Leah Atwood, Simeon Atwood, William Cicuta, River Hawthorne, Gideon Mizrah,
-  Judith Park y Theo Peters. El número de casillas por habitante se ha contado a
-  ojo (unas seis; Judith y Theo, siete). Hay que confirmarlo, porque los logros
-  piden niveles 6 y 7.
+  Judith Park y Theo Peters. Casillas contadas en el registro a 300 ppp: seis por
+  habitante; Judith y Theo, al menos siete (la decoración tapa el final de la
+  fila). La guía nunca exige más de 5 y el logro «Best Friends Forever!» pide 6.
 - Helen, Bertie, la Dra. Marquez y Ajax no tienen ficha: sus notas van a las
   notas de campaña.
 - También se registran las marcas de los fuegos artificiales (Alba del último
   día) y las entradas del códice elegidas en las tardes.
 
-Modelo propuesto: un estado tipado `valley` en `CampaignLog`, análogo a
-`ExpeditionState` de Confines y opcional para conservar la compatibilidad con los
-guardados existentes. Contendría día y hora, habitantes, zonas, marcas y entradas
-elegidas. Para no omitir claves, contrastarlo con `Key.hs` de la referencia.
+### Estado de campaña implementado
+
+Entrega 1. `CampaignLog.valley` (`ValleyState`, en `packages/engine/src/types.ts`)
+es opcional: los guardados anteriores siguen cargando y las demás campañas no lo
+tienen. Las funciones están en `packages/engine/src/valley.ts`.
+
+- **Día y hora:** `day` (1–3) y `time` (`day`/`night`), con los mensajes
+  `SetValleyTime` y `AdvanceValleyTime`: Día 1 → Noche 1 → … → Noche 3 (la guía
+  usa «Día/Noche 3»). `valleyTime(log)` lo pone a disposición de las cartas. La
+  hora por Lugar de La hermana perdida se hará en su entrega.
+- **Habitantes:** nivel, notas, marcas por nota y tachado.
+  - `ChangeRelationship` sube o baja de una en una, entre 0 y las casillas
+    impresas (`valleyResidents`), o fija el nivel en 0 con `reset`.
+  - `RecordResidentNote` anota notas; con `marks`, añade marcas como las de los
+    fuegos artificiales. `CrossOutResident` tacha al habitante.
+  - Para un habitante tachado, `relationshipLevel`, `residentNotes`,
+    `residentHasNote` y `residentMarks` devuelven 0 o nada, y `residentAvailable`
+    impide que entre en juego.
+- **Zonas y códice:** `SurveyArea` (siete claves en inglés) y `ChooseCodexEntry`.
+- **Bolsa:** `hemlockValeChaosBags` y `hemlockValeChaosBag(context)`, en
+  `packages/cards/src/hemlock-vale/chaos-bag.ts`. Aplican la errata de Experto y
+  no incluyen fallo automático inicial. Las fichas que añaden las decisiones usan
+  `AddChaosTokens`, que ya las guarda en `log.chaosTokens`.
+- **Fatiga:** `ValleyFatigue` usa el generador de la partida y cambia la bolsa en
+  juego, sin tocar las bendiciones ni las maldiciones. Anota las sustituciones en
+  `valley.fatigue`, que `hemlockValeChaosBag` aplica al preparar cada escenario.
+  Un −8 no se puede rebajar y obliga a repetir el proceso.
+- **Hora en el texto:** `activeTimeText(text, time)` quita los efectos de la otra
+  hora, tanto en el formato inglés como en el español. La web muestra [day] y
+  [night] como ☀ y ☾, porque la fuente de ArkhamDB no tiene esos glifos. Falta la
+  revisión visual.
+- **Partida independiente:** `randomValleyTime(seed)` elige el Indicador de
+  tiempo y la hora.
 
 ## Entregas y criterios de aceptación
 
@@ -355,6 +387,5 @@ La FAQ también confirma que preludio y escenario siguiente son la misma partida
 
 ## Decisiones pendientes
 
-1. **Casillas de relación por habitante:** confirmarlas en el registro (p. 70)
-   o en la referencia (`ResidentNotes.vue`, `campaigns.json`). No bloquea las
-   entregas 0–2.
+1. **Casillas de Judith y Theo:** se usan 7 porque la decoración del registro
+   (p. 71) tapa el final de su fila. Solo importa si su nivel pudiera pasar de 7.

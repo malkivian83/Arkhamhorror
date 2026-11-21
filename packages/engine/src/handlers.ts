@@ -147,6 +147,15 @@ import {
   tekeliliCopies,
 } from './expedition'
 import { sealHolderPresent } from './seals'
+import {
+  advanceValleyTime,
+  changeRelationship,
+  crossOutResident,
+  drawValleyFatigue,
+  newValley,
+  recordResidentNote,
+  surveyArea,
+} from './valley'
 import type {
   Action,
   Asset,
@@ -5677,6 +5686,62 @@ export function handle(state: GameState, message: Message): GameState {
       return state.campaignLog?.expedition
         ? state
         : updateCampaignLog(state, (c) => ({ ...c, expedition: newExpedition() }))
+
+    case 'InitializeValley':
+      return state.campaignLog?.valley
+        ? state
+        : updateCampaignLog(state, (c) => ({ ...c, valley: newValley() }))
+
+    case 'SetValleyTime':
+      return updateValley(state, (v) =>
+        v.day === message.day && v.time === message.time
+          ? v
+          : { ...v, day: message.day, time: message.time },
+      )
+
+    case 'AdvanceValleyTime':
+      return updateValley(state, advanceValleyTime)
+
+    case 'ChangeRelationship':
+      return updateValley(state, (v) =>
+        changeRelationship(v, message.resident, message.amount, message.reset),
+      )
+
+    case 'RecordResidentNote':
+      return updateValley(state, (v) =>
+        recordResidentNote(v, message.resident, message.note, message.marks),
+      )
+
+    case 'CrossOutResident':
+      return updateValley(state, (v) => crossOutResident(v, message.resident))
+
+    case 'SurveyArea':
+      return updateValley(state, (v) => surveyArea(v, message.area))
+
+    case 'ChooseCodexEntry':
+      return updateValley(state, (v) =>
+        v.codexChosen.includes(message.entry)
+          ? v
+          : { ...v, codexChosen: [...v.codexChosen, message.entry] },
+      )
+
+    case 'ValleyFatigue': {
+      if (!state.campaignLog?.valley) return state
+      // Las fichas de la reserva (bendición/maldición) no forman parte de la bolsa de campaña.
+      const pool = state.chaosBag.filter(isPoolToken)
+      const drawn = drawValleyFatigue(
+        state.chaosBag.filter((token) => !isPoolToken(token)),
+        state.rng,
+      )
+      const next = updateValley(
+        { ...state, chaosBag: [...drawn.bag, ...pool], rng: drawn.rng },
+        (v) => ({ ...v, fatigue: [...v.fatigue, ...drawn.fatigue] }),
+      )
+      return drawn.fatigue.reduce(
+        (current, { from, to }) => log(current, 'log.valleyFatigue', { from, to }),
+        next,
+      )
+    }
 
     case 'ChooseExpeditionPartners':
       return push(
@@ -15040,6 +15105,18 @@ function horrorHealed(
         trigger: { type: 'afterHorrorHealed', healer, amount, target },
       })
     : state
+}
+
+function updateValley(
+  state: GameState,
+  update: (valley: NonNullable<CampaignLog['valley']>) => NonNullable<CampaignLog['valley']>,
+): GameState {
+  const campaignLog = state.campaignLog
+  if (!campaignLog?.valley) return state
+  const valley = update(campaignLog.valley)
+  return valley === campaignLog.valley
+    ? state
+    : { ...state, campaignLog: { ...campaignLog, valley } }
 }
 
 function updateExpedition(

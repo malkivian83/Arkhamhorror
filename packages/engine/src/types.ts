@@ -2291,6 +2291,17 @@ type MessageBody =
     }
   | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
   | { type: 'InitializeExpedition' }
+  | { type: 'InitializeValley' }
+  | { type: 'SetValleyTime'; day: ValleyDay; time: ValleyTime }
+  | { type: 'AdvanceValleyTime' }
+  /** Sube (positivo) o baja (negativo) casillas; `reset` lo fija en 0. */
+  | { type: 'ChangeRelationship'; resident: ValleyResident; amount?: number; reset?: boolean }
+  | { type: 'RecordResidentNote'; resident: ValleyResident; note: string; marks?: number }
+  | { type: 'CrossOutResident'; resident: ValleyResident }
+  | { type: 'SurveyArea'; area: ValleyArea }
+  | { type: 'ChooseCodexEntry'; entry: string }
+  /** Fatiga de la larga noche: dos fichas numéricas pasan a valer una unidad menos. */
+  | { type: 'ValleyFatigue' }
   | {
       type: 'ChooseExpeditionPartners'
       required?: ExpeditionPartner[]
@@ -3090,8 +3101,61 @@ export interface ExpeditionState {
   supplies: ExpeditionSupply[]
 }
 
+/** La fiesta del Valle de la Cicuta: habitantes con entrada propia en el registro (p. 71). */
+export type ValleyResident =
+  | 'motherRachel'
+  | 'leahAtwood'
+  | 'simeonAtwood'
+  | 'williamHemlock'
+  | 'riverHawthorne'
+  | 'gideonMizrah'
+  | 'judithPark'
+  | 'theoPeters'
+
+/** Zonas exploradas del registro (p. 70); las claves siguen la guía inglesa. */
+export type ValleyArea =
+  | 'northPointMine'
+  | 'hemlockHarbor'
+  | 'pearlRidge'
+  | 'akwanShoreline'
+  | 'eastwickBog'
+  | 'westernWoods'
+  | 'southernFields'
+
+export type ValleyDay = 1 | 2 | 3
+export type ValleyTime = 'day' | 'night'
+
+export interface ValleyResidentRecord {
+  /** Casillas marcadas: el nivel de relación. */
+  level: number
+  /** Nombre tachado: no entra en juego y sus notas dejan de contar. */
+  crossedOut?: boolean
+  notes: string[]
+  /** Marcas junto a una nota («El plan está en marcha»). */
+  marks?: Record<string, number>
+}
+
+/** Fatiga: una ficha numérica sustituida por la de valor una unidad menor. */
+export interface ValleyFatigue {
+  from: number
+  to: number
+}
+
+export interface ValleyState {
+  day: ValleyDay
+  time: ValleyTime
+  residents: Record<ValleyResident, ValleyResidentRecord>
+  areasSurveyed: ValleyArea[]
+  /** Entradas del códice elegidas en las tardes. */
+  codexChosen: string[]
+  /** Sustituciones permanentes de la bolsa, en orden. */
+  fatigue: ValleyFatigue[]
+}
+
 export interface CampaignLog {
   expedition?: ExpeditionState
+  /** La fiesta del Valle de la Cicuta; ausente en las demás campañas y guardados antiguos. */
+  valley?: ValleyState
   /** Cards permanently removed from every investigator's deck by campaign effects. */
   removedCards?: CardCode[]
   /** Notas de campaña, por clave ("universityBurned"…). */

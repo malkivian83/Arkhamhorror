@@ -2014,6 +2014,7 @@
     "chaosTokensAddedToBag": "{n} token(s) added to the chaos bag.",
     "chaosTokensRemovedFromBag": "{n} token(s) returned from the chaos bag to the token pool.",
     "chaosTokensAdded": "{scenario} adds {n} token(s) to the campaign bag.",
+    "valleyFatigue": "Fatigue: a {from} token is replaced by a {to} token for the rest of the campaign.",
     "step": {
       "mythosBegins": "1.1 · Mythos phase begins",
       "placeDoom": "1.2 · Place 1 doom on the agenda",

@@ -74,6 +74,20 @@ export {
   type ExpeditionPartner,
 } from './expedition'
 export {
+  activeTimeText,
+  applyValleyFatigue,
+  LOWEST_CHAOS_VALUE,
+  newValley,
+  relationshipLevel,
+  residentAvailable,
+  residentHasNote,
+  residentMarks,
+  residentNotes,
+  valleyAreas,
+  valleyResidents,
+  valleyTime,
+} from './valley'
+export {
   assetSlots,
   assetTraits,
   assetVitals,
