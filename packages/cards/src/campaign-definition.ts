@@ -59,6 +59,11 @@ export interface CampaignDefinition {
   /** Opening scenarios that may be played in either order. */
   openingScenarios?: string[]
   scenarios: CampaignScenario[]
+  /**
+   * Orden variable: los escenarios jugados y el siguiente, según el registro (La fiesta
+   * del Valle de la Cicuta). Sin él se usa `scenarios` en orden.
+   */
+  route?: (log: CampaignLog) => CampaignScenario[]
   /** Bolsa del caos inicial por dificultad (guía de campaña). */
   chaosBags: Record<Difficulty, ChaosToken[]>
   /** Bolsa base para historias secundarias cuando la campaña modifica su composición inicial. */

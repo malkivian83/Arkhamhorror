@@ -1,0 +1,147 @@
+{
+  "campaignName": "La fiesta del Valle de la Cicuta",
+  "description": "Tres días en la Isla de la Cicuta: gánate a los habitantes del Valle y explora la isla antes de la fiesta.",
+  "scenarios": {
+    "hemlock-vale-welcome": "Preludio: ¡Bienvenidos al Valle de la Cicuta!",
+    "hemlock-vale-written-in-rock": "Escrito en la roca",
+    "hemlock-vale-hemlock-house": "La Casa Cicuta",
+    "hemlock-vale-silent-heath": "El páramo silencioso",
+    "hemlock-vale-lost-sister": "La hermana perdida",
+    "hemlock-vale-thing-in-the-depths": "La cosa de las profundidades"
+  },
+  "story": {
+    "welcome": {
+      "intro1": {
+        "title": "Introducción 1: Junio de 1926",
+        "body": "Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii.\n\nDespués de tres revisiones por separado de la junta y el comité de becas de la Universidad Miskatonic, hemos llegado a la Isla de la Cicuta. Nuestro chófer nos llevó por un puente de tierra natural al que llaman la “calzada”, y que sólo se puede cruzar con marea baja, hasta un pequeño pueblo pesquero llamado Akwan. Bertie mostró a los lugareños varios dibujos y fotografías de la planta alcalina, pero éstos no quisieron saber nada del asunto. O quizás de Bertie. Es extremadamente jovial.\n\nEl estudio está formado por mí, por mi ayudante Bertie Musgrave y por algunos contactos del Dr. Armitage. Insistió en que me acompañaran como parte de las condiciones de la beca. Sólo espero que no estorben. La isla es propiedad privada y lleva un tiempo sin admitir visitantes, hasta ahora. Los lugareños están publicitando una especie de festival por toda Nueva Inglaterra, incluso tan al sur como Boston o Arkham.\n\nEn Akwan no había alojamientos y, según la rumorología local, acampar en la isla es arriesgado. Los lugareños no ofrecieron ninguna respuesta cuando les pregunté al respecto, pero al menos pude hacerme con un mapa de la isla junto con algunos suministros básicos. Nos resignamos a instalar una tienda al oeste de Akwan, pero entonces conocimos a un joven llamado Theo que nos ofreció alojamiento en una aldea llamada “Valle de la Cicuta”.\n\nDra. Rosa Marquez\n\n–De verdad que les va a encantar el sitio –grita Theo desde la ventanilla de la camioneta. La Dra. Marquez, bronceada y atlética a sus 40 años, cierra su diario del estudio y levanta la mirada hacia el cielo. – No conozco a nadie a quien no le encante la Isla de la Cicuta –prosigue Theo–. ¡Y no sé por qué no hemos invitado a la gente antes! Supongo que vienen por la fiesta.\n\n–¿Es esta fiesta una especie de tradición local? –pregunta Bertie con un marcado acento británico. La brisa agita el mechón de espeso cabello del orondo hombre mientras se inclina hacia delante con ganas de saber la respuesta.\n\n–¡Es la primera vez que se celebra! En el Valle, todo el mundo ha tirado la casa por la ventana para que la gente se sienta bienvenida. ¡Estamos muy emocionados de tener visitantes! –responde el joven entre risas mientras la camioneta corona la colina. La Isla Cicuta se extiende en todas direcciones.\n\nHacia el sur, unos relucientes lagos negros salpican un enmarañado marjal que llega hacia la costa. En el norte, las colinas rematadas de blanco se reúnen en torno a protuberantes rocas de obsidiana que se asemejan a una columna vertebral al descubierto. Más allá de un grupo de colinas, el denso bosque oriental se extiende por la colina rocosa, dividido por un ancho río. Y más al norte aún, más allá de las colinas blancas, hay una desolada costa rocosa justo al borde de las grises aguas atlánticas.\n\nLa carretera pasa junto a abundantes tierras de cultivo hasta llegar a una aldea enclavada en las colinas. De los tejados y los postes de las vallas cuelgan llamativos arreglos forales y brillantes lazos. Un arcoíris prismático resplandece en el cielo despejado, dándole un aire idílico a la escena. Cuando la camioneta se detiene en el cruce de caminos, adultos y niños ataviados con capas blancas y doradas y máscaras de animales de madera se congregan a vuestro alrededor, sonriendo de oreja a oreja.\n\n–¡Willkommen! –exclama una imponente mujer de pelo gris acerado que lleva una capa blanca y dorada y atraviesa la multitud–. Bienvenidos al Valle de la Cicuta. Yo soy la madre Rachel, y ésta es mi gente. ¿Qué les trae aquí?"
+      },
+      "intro2": {
+        "title": "Introducción 2",
+        "body": "Os presentáis dando los nombres del equipo del estudio junto con vuestro respaldo de la Universidad Miskatonic. La Dra. Marquez se apoya marcadamente en su bastón mientras ofrece una mano para estrecharla."
+      },
+      "intro3": {
+        "title": "Introducción 3",
+        "body": "La matrona sonríe con benevolencia y dice: –Nos colma de alegría que hayan venido. Nuestra comida y refugio son suyos. La fiesta tendrá lugar dentro de tres días; tan sólo pedimos que abran sus mentes y corazones para experimentar nuestra forma de vida.\n\nLa Dra. Marquez os dedica una mirada furibunda mientras se apoya en su bastón y aclara: –En realidad venimos para realizar un estudio para la Universidad Miskatonic."
+      },
+      "intro4": {
+        "title": "Introducción 4",
+        "body": "La máscara de amabilidad de la madre Rachel se quiebra durante un instante cuando asimila la respuesta. –Conque exploradores. Ya veo. Son bienvenidos igualmente, pero no olviden cuál es su lugar. Tenemos reglas. No hagan daño a nadie en el Valle y no tendrán problemas. Quédense en la aldea durante la noche y tengan cuidado en la naturaleza, porque aquí es más cruel.\n\nA poca distancia, una pequeña cierva camina junto a una pareja de niños, casi como si quisiera contradecir las palabras de la matrona. Antes de poder preguntarle nada más, un grupo de lugareños se acercan a la camioneta, ansiosos por tener noticias del continente . Tras responder diversas preguntas sobre resultados deportivos y elecciones, la Dra. Marquez sugiere dividiros para conocer a los lugareños. –Preguntad sobre la isla y reuníos aquí de nuevo dentro de una hora."
+      },
+      "codex1": {
+        "title": "Códice 1: Madre Rachel",
+        "body": "–¿Qué son los Hijos de las Estrellas? –La madre Rachel repite la pregunta, entre perpleja y divertida. El polvo traza remolinos en la intensa luz que atraviesa la intricada vidriera–. Supongo que, si tuviera que expresarlo de forma sencilla, diría que somos todos. “Engendrados por la luz”, suelo decir. Igual que los cuerpos celestes, todos tenemos un sitio en esta vida, un propósito. Para algunos, su sitio es entender. Y para otros, su sitio es observar. La anciana esboza una sonrisa mientras una fila de niños entran en la capilla y se van sentando con las piernas cruzadas cerca del altar. –Y ahora, mi sitio es empezar la hora de los cuentos.\n\n"
+      },
+      "codex2": {
+        "title": "Códice 2: Leah Atwood",
+        "body": "La mujer madura de rojas mejillas se presenta como Leah Atwood, la hermana de la madre Rachel. –Estoy a cargo de todo lo que se echa al buche la gente de por aquí. Y sí, eso significa que estoy a cargo de la fiesta. Mi hermana ha sido muy específica acerca de todo lo que quiere que se prepare por anticipado. Le preguntas por lugares de interés para explorar en la Isla de la Cicuta y se limpia la frente con una mano enguantada. –Prácticamente no es necesario salir del Valle para ver algo extraño – dice mientras se coloca una mano en la cadera–. Hoy tenía pensado subir a la Cresta Perla. Ahí arriba hay algo que ha convertido los árboles en cristal. No sé si es lo que están buscando, pero está claro que es único.\n\n"
+      },
+      "codex3": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "–¡Bomba va! –grita una voz, seguida de una lluvia de chispas y petardos. Un perro blanco atraviesa el humo a la carrera en dirección a ti y da comienzo a un asalto de amistosos lametazos. Lo sigue un joven pecoso y regordete con una mata de brillante pelo rojo. –Ay, jolines. Pensé que era Theo. ¡Quítate, Digby! –le dice al perro antes de plantar una rodilla en el suelo para ponerse a recoger los restos–. Lo siento. Me llamo Simeon. Mi madre siempre está ocupada cocinando para la tita Rachel –añade mientras se rasca una zona de piel endurecida y roja en el cuello–. La tita Rachel dijo que quien ensucie el Valle se llevará 5 latigazos. Le preguntas por lugares de interés en la isla. –No puede ir a las minas que hay en la Cresta Perla. Las he reclamado para mi sociedad secreta –responde el joven.\n\n"
+      },
+      "codex4": {
+        "title": "Códice 4: William Cicuta",
+        "body": "En el exterior de la escuela del Valle, saludas a un hombre que se presenta como William Cicuta. –Me habían dicho que teníamos visitantes, pero no esperaba conocerlos tan pronto. Y sí, soy el último heredero vivo de la familia Cicuta –se jacta pese a que no has preguntado nada–. O tal vez no sea el último si esa acoplada de River se sale con la suya –añade con un gruñido. Te fijas en el ajado ejemplar de Walden que lleva bajo el brazo y le preguntas por lugares de interés locales. –Sé que es muy poco convencional, pero la vieja casa de mi familia tiene una... plaga peculiar –Parece mascar sus propias palabras–. Si pudieran exterminar lo que sea de lo que se trate en lugar de estudiarlo, creo que todos estaríamos en deuda con ustedes.\n\n"
+      },
+      "codex5": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–Soy amiga de “El gran perfil”, aunque seguramente lo conozca como John Barrymore. Nos conocimos en una piazza de Roma. Pura serendipia –cuenta River mientras charla con Bertie–. Aunque mi apellido sea Hawthorne, debe saber que soy una Cicuta de pura cepa. La última heredera de la fortuna de los Cicuta. Al menos si el dulce William quiere atender a razones –dice con amargura. Bertie responde varias preguntas más sobre sucesos actuales de la alta sociedad neoyorquina, de la cual no sabe nada, antes de preguntarle a River por lugares de interés. –Tengo entendido que las minas de la Punta Norte tienen unos cristales fascinantes –responde.\n\n"
+      },
+      "codex6": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "–Eres lo peor, Martha Jean –murmura el anciano. Te mira con suspicacia hasta que mencionas que vienes de Arkham–. Puede que fuera hace unos treinta años; pasé navegando cerca de una extraña luz bajo el río Miskatonic... La historia del viejo marinero no tarda en divagar hasta convertirse en otros cinco relatos menos interesantes, pero le escuchas hasta el final. Cuando le preguntas por lugares de interés locales, te contesta: –Cuidado. Antes de que haya dado cinco pasos fuera del Valle, algo le habrá mordido.\n\n"
+      },
+      "codex7": {
+        "title": "Códice 7: Judith Park",
+        "body": "Te acercas a una mujer compacta que lleva una bonita chaqueta de caza y que te observa como un halcón. Te presentas y le hablas del estudio. La mujer sacude la ceniza de la punta de su puro y te dice: –Me llamo Judith. Judith Park. Soy la que pone orden por aquí, lo cual significa principalmente disparar a animales alborotados. Durante el día todos parecen amistosos y majos, pero se vuelven raros por la noche. Algunos han empezado a tener un aspecto raro también. De vez en cuando, uno se mete en el pueblo y tengo que presentarle al viejo Jomo. Blande un fusil de caza casi tan largo como la altura de la mujer. La exhibición te impresiona, y le preguntas que si está disponible para contratarla. La joven te mira de arriba abajo: –Su amiga Marquez me ha contratado para escoltarla hoy a la Ciénaga de Eastwick. Si quiere venir, prepárese.\n\n"
+      },
+      "codex8": {
+        "title": "Códice 8: Theo Peters",
+        "body": "–Aguanta, aguanta –le dice Theo a la trabajadora mientras le aplica un trapo frío en la frente. Tras otra risa dolorida, la mujer se desmaya. Le preguntas a Theo qué ha ocurrido. –Es como una especie de golpe de calor, sólo que más... esto... como que te vas poniendo cada vez de mejor humor y luego pues... –Suspira–. No sé muy bien de qué se trata. A veces la gente enferma sin más.\n\nVarios lugareños se llevan a la trabajadora a un cobertizo cercano. Tras un rato de charla, preguntas a Theo por alguna buena zona para observar la fauna local de la Isla de la Cicuta. Te dedica una amplia sonrisa y contesta: –Mis hermanas y yo vimos un cangrejo herradura descomunal en la costa de Akwan. No sé si sigue allí, pero juro que era del tamaño de un cochecito. Si quiere venirse hoy, tengo unos asuntos familiares en Akwan.\n\n"
+      },
+      "codex9": {
+        "title": "Códice 9: Pensión",
+        "body": "De todos los aleros de la pensión cuelgan guirnaldas de flores. Un suculento olor sale de la puerta principal: pasteles de carne y cerveza fermentando. La propietaria se presenta como la Srta. Olmstead y te ofrece una habitación. –Estoy atenta a lo que sucede en el pueblo. Si quiere saber a qué se dedica la gente del Valle, estaré encantada de ayudar. Cuando le preguntas por la cerveza, hace un gesto despectivo con la mano. –No se me moleste en denunciarme a los partidarios de la ley seca. En la Isla de la Cicuta seguimos nuestras propias reglas –te dice antes de mirar de reojo hacia el porche–. Al menos hasta que alguien se sale con la suya. Cuando miras el porche, ves una preciosa figura con la piel de color ocre oscuro. Lleva un estiloso vestido con la capa blanca y dorada del Valle echada de forma casual sobre los hombros mientras borda un diseño floral en un marco redondo. Bertie le hace varias preguntas tímidamente mientras le muestra algunas fotografías y dibujos de la muestra que os trajo aquí.\n\n"
+      },
+      "codex10": {
+        "title": "Códice 10: El cruce de caminos",
+        "body": "Docenas de trabajadores se afanan en torno a la base de un gran árbol situado en el centro del cruce de caminos. Los numerosos rostros del árbol te miran con multitud de expresiones: unos ríen, otros tienen una mueca de pena o de terror. Cada expresión está exagerada de forma grotesca. Cuando preguntas por el árbol a uno de los carpinteros cercanos, hace una pausa para sopesar sus palabras. –Este árbol es la efigie. Una representación de... Bueno, quizás sea mejor considerarlo como un espíritu celestial. El mismo espíritu que vive en cada uno de nosotros.\n\nEl capataz te dice que tendrán que trabajar durante la noche para anticiparse a la lluvia de mañana. Mientras los observas trabajar, una carpintera tropieza y se cae. Theo acude corriendo desde su camioneta y la coge mientras la mujer se agarra los ojos y ríe de forma histérica.\n\n"
+      },
+      "codex11": {
+        "title": "Códice 11: Capilla Cicuta",
+        "body": "La pequeña capilla que hay en lo alto de la colina septentrional tiene un aire tranquilo y señorial. Le han injertado pequeños brotes de tal modo que parecen sugerir que las propias tablas han florecido. Mientras admiras el extraño fenómeno, dos mujeres que llevan capas blancas y doradas se te acercan. Les preguntas por la capilla y su confesión y te llevan al interior. En la parte de atrás, una colcha estilizada representa un ser mitológico deformado y de muchos brazos, con numerosos ojos y alas. –Construimos esta capilla hace unos veinte años, pero no tuvo mucho uso hasta nuestro resurgimiento. La madre Rachel siempre nos ha llamado “Hijos de las Estrellas”. Supongo que ésta es una de esas estrellas.\n\nLas dos mujeres se quedan en silencio cuando la madre Rachel entra en la capilla.\n\n"
+      },
+      "codex12": {
+        "title": "Códice 12: El viejo molino",
+        "body": "La Dra. Marquez se apoya precariamente en su bastón mientras toma muestras de varias flores silvestres que crecen en torno al molino. –Échele un vistazo a esto –dice la profesora mientras enseña una muestra que parece una mezcla de violeta, trilio y lupino unidas en el tallo–. Es similar a la extraña flor que motivó la expedición. Monopodial con docenas de expresiones distintas, pero sin señales de injertos. Ha crecido de forma natural.\n\nLe preguntas cómo es posible y la profesora sonríe: –No lo es. Lo cual es la razón por la que este estudio va a ser tan importante en mi carrera.\n\nDejas a la Dra. Marquez recogiendo muestras y ves a una mujer recia y de constitución fuerte vestida con un mono trabajando en el campo.\n\n"
+      },
+      "codex13": {
+        "title": "Códice 13: La Casa Atwood",
+        "body": "La antigua mansión de estilo Imperio es bonita desde lejos, pero tiene un aspecto desgastado y ajado al acercarte. En la entrada hay una anciana de piel marrón ahumado y tez cenicienta sentada en una silla de ruedas. Le tiemblan las manos mientras tose débilmente. –Sylvia, es la hora –dice un hombre mayor que sale de la casa y se sobresalta al verte–. ¡Uy, ya tenemos visitantes! Puede llamarme hermano David, y ésta es la hermana Sylvia. Soy el marido de la madre Rachel. Estamos muy contentos de que hayan venido.\n\nMientras lleva a Sylvia dentro, oyes el sonido de unas ramas que crujen a un lado de la casa.\n\n"
+      },
+      "codex14": {
+        "title": "Códice 14: Almacén general de Tad",
+        "body": "El rústico almacén general también hace las veces de farmacia. Tras el mostrador hay un hombre de mediana edad y calvicie incipiente con los brazos vendados que se presenta como Tad. –Estamos encantados de tener visitantes en el Valle. Sé que la madre Rachel está loca de contenta de ver caras nuevas. Y también es bueno para el negocio. Si compran algo, hoy les ofrezco descuento de recién llegados. Y ni que decir tiene que están todos invitados a la cena comunitaria de esta noche.\n\n"
+      },
+      "codex15": {
+        "title": "Códice 15: Escuela del Valle",
+        "body": "La campana que hay sobre la escuela toca tres veces mientras te acercas, llamando a los niños que llevan máscaras de animales. Una chica pelirroja con máscara de conejo tropieza y se cae al entrar, y la ayudas a levantarse. La delgada y severa maestra te invita a entrar y señala con un gesto las dos estanterías que hay en la pared del fondo: la escasa biblioteca comunitaria del Valle. Un hombre de mediana edad y porte señorial, con piel marrón como el nogal y barba gris, examina la otra estantería mientras miras lo que ofrece la biblioteca: varios maltrechos ejemplares de Relatos de nunca jamás, un manual de supervivencia y un montón de viejas recetas escritas a mano. –Pero ¿dónde está Edie? –pregunta uno de los niños a la maestra.\n\nÉsta contesta con voz cantarina: –La madre Rachel me ha dicho que Edie ha encontrado su sitio y que no debemos preocuparnos por ella. ¿Qué se dice?\n\n–La madre Rachel es la más sabia –replica la clase al unísono.\n\n"
+      },
+      "codex16": {
+        "title": "Códice 16: El salón comunitario",
+        "body": "–¡Bienvenidos al Valle! –te saluda una joven con peinado bob cuando entras por las puertas de granero dobles–. Hace mucho tiempo desde la última vez que tuvimos visitantes. Tienen que saber que en el Valle lo hacemos casi todo en el salón comunitario. Sé que la hermana Leah tiene planeado un baile de la comunidad mañana por la noche. –¡Oye, Gideon! ¡Dentro no se fuma! –le espeta la mujer a un anciano vestido con una chaqueta de marinero larga y azul que se encuentra en un rincón. El hombre se pone en pie y sale renqueante entre gruñidos. Ves que el tablón de corcho que hay en la pared de atrás tiene dibujos infantiles de plantas y pájaros con dientes, ojos y extremidades adicionales. La mujer desvía tu atención: –Si alguna vez quiere llamar a alguien del continente o, ya sabe, mandar un regalo a alguien especial del pueblo, soy su chica. Puede llamarme Martha Jean."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "Os reunís con Bertie y la Dra. Marquez en el cruce de caminos. Tras poner en común las posibles pistas para el estudio, la profesora despliega el mapa de la Isla de la Cicuta. –No esperaba que el pueblo fuese tan religioso –dice la Dra. Marquez.\n\nEl rostro de Bertie se ilumina al responder: –Casi parecen estar viviendo una especie de ideal trascendentalista. No tengo ni idea de cuáles son sus creencias exactas, la verdad, pero parecen bastante amables. –”Amables” es un posible adjetivo, sí –replica la Dra. Marquez con una sonrisa sombría–. Tenemos tres días antes de que la isla quede invadida por turistas. Odio los turistas.\n\n–¡Qué hostil suena eso ante la celebración! –exclama Bertie.\n\nLa Dra. Marquez lo fulmina con la mirada y añade: –Lo que quiero decir es que perturbarán los hábitats locales, así que tenemos un tiempo limitado. Podemos dividirnos para cubrir más terreno o podemos mantenernos juntos. Theo se ha ofrecido a llevarnos adonde queramos ir, e incluso ha dicho que podemos coger su camioneta por las noches, pero que no se lo digamos a la madre Rachel. Debido a las historias sobre la fauna letal, he contratado a Judith para que me acompañe a la Ciénaga de Eastwick. Si alguno queréis acompañarme, sois bienvenidos. Eso sí, estad de vuelta para la puesta de sol. –Yo quiero dar un paseo por el bosque oriental –dice Bertie–. Yo solo, si no os importa. Si las descripciones de la Srta. Olmstead son ciertas, tiene que ser una zona impresionante.\n\nSopesáis vuestras opciones."
+      },
+      "setup": {
+        "title": "Preparación del Preludio",
+        "body": "Día uno: el Indicador de tiempo muestra el Día 1. Los Lugares de El Valle están en juego por su lado de Día y sólo se conectan mediante sus iconos de conexión. Cada investigador comienza la partida en El cruce de caminos. Los Habitantes están puestos aparte, fuera del juego. El Plan empieza con 1 de Perdición por investigador.\n\nDurante los preludios no hay mazo de Encuentros: no se pueden resolver efectos que roben, busquen o miren cartas de ese mazo. Cuando avanza el Plan, cada investigador conserva para el siguiente escenario las cartas de la mano hasta su tamaño de mano inicial, los recursos hasta sus recursos iniciales, un único Apoyo que normalmente no empiece en juego y todas sus pistas."
+      },
+      "survey": {
+        "title": "Elegid dónde realizar el estudio",
+        "body": "¡Los investigadores deben elegir dónde realizarán el estudio hoy! A lo largo de la campaña habrá oportunidades para explorar varias zonas."
+      }
+    }
+  },
+  "choice": {
+    "survey": "«Venimos para realizar un estudio en nombre de la Universidad Miskatonic.»",
+    "feast": "«Hemos venido por la fiesta.»",
+    "tadsItem": "Gasta 1 recurso: busca una carta Objeto en tu mazo y juégala, ignorando su coste",
+    "keepNothing": "No conservar ningún Apoyo",
+    "route": {
+      "hemlock-vale-written-in-rock": "Afrontar los peligros de Escrito en la roca (minas de la Punta Norte)",
+      "hemlock-vale-hemlock-house": "Investigar La Casa Cicuta",
+      "hemlock-vale-silent-heath": "Explorar El páramo silencioso (Cresta Perla)",
+      "hemlock-vale-lost-sister": "Salvar a La hermana perdida (Akwan)",
+      "hemlock-vale-thing-in-the-depths": "Descubrir La cosa de las profundidades (Ciénaga de Eastwick)"
+    }
+  },
+  "prompt": {
+    "drawOrGain": "Roba 1 carta u obtén 1 recurso",
+    "playFree": "Puedes jugar una de estas cartas de tu mano, ignorando su coste",
+    "moveAnywhere": "Puedes moverte a cualquier Lugar",
+    "heal": "Cúrate 1 punto de daño o 1 de horror",
+    "tadsItem": "Almacén general de Tad",
+    "keepAsset": "Elige 1 Apoyo para conservarlo en el siguiente escenario"
+  },
+  "ability": {
+    "codex": "Códice {n}",
+    "parley": "Negociar con {card}",
+    "boardingHouseHeal": "Cúrate 1 de daño o 1 de horror (una vez por partida)",
+    "crossroadsMove": "Moverte a un Lugar conectado (límite de grupo: una vez por ronda)",
+    "chapelSpell": "Busca entre las 9 primeras cartas de tu mazo una carta Hechizo y róbala (una vez por partida)",
+    "schoolTome": "Busca en tu mazo un Apoyo Tomo y róbalo (una vez por partida)"
+  },
+  "keywords": {
+    "dayNight": {
+      "title": "Día y noche",
+      "body": "El texto que sigue a una palabra clave (Día) o (Noche) sólo está activo si el escenario o preludio tiene lugar durante el día o la noche respectivamente. El día y la hora actuales se anotan en el registro de campaña."
+    },
+    "prelude": {
+      "title": "Preludios",
+      "body": "Los preludios se juegan como un escenario, pero sin mazo de Encuentros. Los investigadores se ganan a los habitantes del Valle con las entradas del códice, y el final de cada preludio elige el siguiente escenario."
+    }
+  }
+}

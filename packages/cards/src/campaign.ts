@@ -148,6 +148,7 @@ import './call-of-the-plaguebearer/definition'
 import './the-dunwich-legacy/definition'
 import './fortune-and-folly/definition'
 import './edge-of-the-earth/definition'
+import './hemlock-vale/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
 import './core-2026/investigators'
@@ -369,6 +370,7 @@ export function campaignScenarios(campaign: Campaign): CampaignScenario[] {
       )
     return result
   }
+  if (definition.route) return insertSide(definition.route(campaign.log))
   if (!first || !definition.openingScenarios?.includes(first))
     return insertSide(definition.scenarios)
   const opening = definition.scenarios.filter((s) => definition.openingScenarios!.includes(s.id))
@@ -493,6 +495,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
     seed,
     investigators: members.map((i) => i.id),
   }
+  const carry = campaign.log.valley?.carry
   const scenario = prepareEncounterVariant(
     entry.build(context),
     campaign.id,
@@ -510,6 +513,10 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
     ),
     campaignLog: {
       ...campaign.log,
+      // Lo arrastrado del preludio se aplica una sola vez, al preparar este escenario.
+      ...(campaign.log.valley?.carry
+        ? { valley: (({ carry: _carry, ...valley }) => valley)(campaign.log.valley) }
+        : {}),
       values: Object.fromEntries(
         Object.entries(campaign.log.values).filter(([key]) => !key.startsWith('peltShipment:')),
       ),
@@ -543,6 +550,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
             : []),
         ]),
         physicalTrauma: record?.physicalTrauma ?? 0,
+        ...(carry?.[i.id] ? { carried: carry[i.id] } : {}),
         ...(i.customizations ? { customizations: i.customizations } : {}),
         mentalTrauma: record?.mentalTrauma ?? 0,
       }

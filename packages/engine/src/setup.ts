@@ -27,6 +27,7 @@ import type {
   ScenarioTokenValues,
   SkillType,
   StoryEntry,
+  ValleyCarry,
 } from './types'
 
 export const ENGINE_VERSION = 1
@@ -69,6 +70,11 @@ export interface ScenarioDefinition {
   tokenValues: ScenarioTokenValues
   /** Pasos de preparación del escenario (perdición inicial, apoyos…). */
   setup?: Message[]
+  /**
+   * Preludios de La fiesta del Valle de la Cicuta: no hay mazo de Encuentros, así que
+   * no se roba en la fase de Mitos ni se puede robar, buscar o mirar en él.
+   */
+  noEncounterDeck?: boolean
 }
 
 export interface InvestigatorSetup {
@@ -83,6 +89,11 @@ export interface InvestigatorSetup {
   /** En campaña: cada trauma físico/mental empieza el escenario como 1 daño/horror. */
   physicalTrauma?: number
   mentalTrauma?: number
+  /**
+   * Viene de un preludio que es la misma partida (La fiesta del Valle de la Cicuta):
+   * conserva esta mano como inicial, sin mulligan, estos recursos, pistas y apoyo.
+   */
+  carried?: ValleyCarry
 }
 
 export interface NewGameOptions {
@@ -156,9 +167,19 @@ export function prepareGame({
     )
   const players: Investigator[] = investigators.map((setup) => {
     const bonded = bondedCardsFor(setup.deck)
+    // Lo conservado del preludio no está en el mazo (una copia de cada carta).
+    const kept = [
+      ...(setup.carried?.hand ?? []),
+      ...(setup.carried?.asset ? [setup.carried.asset] : []),
+    ]
+    const remaining = [...setup.deck]
+    for (const code of kept) {
+      const index = remaining.indexOf(code)
+      if (index >= 0) remaining.splice(index, 1)
+    }
     let deck: CardCode[]
     ;[deck, rng] = shuffle(
-      setup.deck.filter(
+      remaining.filter(
         (code) =>
           !playerCardDef(code)?.bondedCard &&
           !playerCardBehavior(code)?.permanent &&
@@ -186,14 +207,14 @@ export function prepareGame({
       damage: setup.physicalTrauma ?? 0,
       horror: setup.mentalTrauma ?? 0,
       resources: 0,
-      clues: 0,
+      clues: setup.carried?.clues ?? 0,
       location: null,
       actionsRemaining: 0,
       turnTaken: false,
       eliminated: false,
       resigned: false,
       deck,
-      hand: [],
+      hand: [...(setup.carried?.hand ?? [])],
       discard: [],
       // RR Bonded: bonded cards begin the game set aside, out of play.
       ...(bonded.length ? { outOfPlay: bonded } : {}),
@@ -243,27 +264,52 @@ export function prepareGame({
       ...(boons.includes('destiny')
         ? [{ type: 'BoonDestiny', investigator: setup.id } as Message]
         : []),
-      {
-        type: 'GainResources',
-        investigator: setup.id,
-        amount:
-          (scenario.startingResources ?? 5) +
-          Math.max(0, Number(campaignLog?.values['treasureResources:' + setup.id] ?? 0) || 0) +
-          bonus(setup, 'resources') +
-          (boons.includes('hades') ? 2 : 0),
-      },
-      { type: 'Forced', trigger: { type: 'beforeOpeningHand', investigator: setup.id } },
-      {
-        type: 'DrawOpeningHand',
-        investigator: setup.id,
-        amount:
-          5 +
-          bonus(setup, 'openingHand') +
-          (boons.includes('thoth') ? 1 : 0) -
-          (boons.includes('destiny') ? 1 : 0),
-      },
+      ...(setup.carried?.asset
+        ? [
+            {
+              type: 'PutAssetIntoPlay',
+              investigator: setup.id,
+              code: setup.carried.asset,
+            } as Message,
+          ]
+        : []),
+      // Tras un preludio no se reciben recursos ni mano inicial nuevos (pasos 1-8 omitidos).
+      ...(setup.carried
+        ? [
+            {
+              type: 'GainResources',
+              investigator: setup.id,
+              amount: setup.carried.resources,
+            } as Message,
+          ]
+        : ([
+            {
+              type: 'GainResources',
+              investigator: setup.id,
+              amount:
+                (scenario.startingResources ?? 5) +
+                Math.max(
+                  0,
+                  Number(campaignLog?.values['treasureResources:' + setup.id] ?? 0) || 0,
+                ) +
+                bonus(setup, 'resources') +
+                (boons.includes('hades') ? 2 : 0),
+            },
+            { type: 'Forced', trigger: { type: 'beforeOpeningHand', investigator: setup.id } },
+            {
+              type: 'DrawOpeningHand',
+              investigator: setup.id,
+              amount:
+                5 +
+                bonus(setup, 'openingHand') +
+                (boons.includes('thoth') ? 1 : 0) -
+                (boons.includes('destiny') ? 1 : 0),
+            },
+          ] as Message[])),
     ]),
-    { type: 'InvestigatorsMulligan' },
+    ...(investigators.some((setup) => setup.carried)
+      ? []
+      : [{ type: 'InvestigatorsMulligan' } as Message]),
     ...story(scenario.setupInstructions),
     ...(startingLocation === null
       ? []
@@ -338,6 +384,7 @@ export function prepareGame({
     acts: scenario.acts.map((a) => ({ ...a })),
     actIndex: 0,
     chaosBag: [...scenario.chaosBag],
+    ...(scenario.noEncounterDeck ? { noEncounterDeck: true as const } : {}),
     tokenValues: { ...scenario.tokenValues },
     encounterDeck,
     setAside: [...(scenario.setAside ?? [])],

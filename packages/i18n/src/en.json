@@ -372,6 +372,7 @@
     "chooseHunterOrder": "The lead investigator chooses which enemy moves first.",
     "chooseAction": "Choose an action",
     "chooseNextInvestigator": "Who takes the next turn?",
+    "discardDownTo": "Discard down to {n} cards",
     "discardDownToHandSize": "Discard down to 8 cards",
     "advanceAct": "Spend clues to advance the act?",
     "chooseSkill": "Choose the skill to test",

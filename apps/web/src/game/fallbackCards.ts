@@ -544,7 +544,10 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     if (!cards.has(code))
       put({ code, name: text.name, real_name: text.name, type_code: text.typeCode ?? 'asset' })
   }
-  for (const [code, text] of Object.entries(data.edgeOfTheEarthCards)) {
+  for (const [code, text] of [
+    ...Object.entries(data.edgeOfTheEarthCards),
+    ...Object.entries(data.hemlockValeCards),
+  ]) {
     put({
       ...cards.get(code),
       code,

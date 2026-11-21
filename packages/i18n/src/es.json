@@ -372,6 +372,7 @@
     "chooseHunterOrder": "El investigador jefe elige qué enemigo mueve primero.",
     "chooseAction": "Elige una acción",
     "chooseNextInvestigator": "¿Quién juega el siguiente turno?",
+    "discardDownTo": "Descarta hasta tener {n} cartas",
     "discardDownToHandSize": "Descarta hasta tener 8 cartas",
     "advanceAct": "¿Gastar pistas para avanzar el acto?",
     "chooseSkill": "Elige la habilidad para la prueba",

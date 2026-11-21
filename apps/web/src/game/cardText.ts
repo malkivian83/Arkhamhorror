@@ -28,6 +28,7 @@ const FALLBACK: Record<string, [cls: string, text: string]> = {
   // La fiesta del Valle de la Cicuta: sin glifo en la fuente de ArkhamDB.
   day: ['tok', '☀'],
   night: ['tok', '☾'],
+  codex: ['tok', '§'],
   seal_a: ['tok seal', 'A'],
   seal_b: ['tok seal', 'B'],
   seal_c: ['tok seal', 'C'],

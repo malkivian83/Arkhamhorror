@@ -2302,6 +2302,12 @@ type MessageBody =
   | { type: 'ChooseCodexEntry'; entry: string }
   /** Fatiga de la larga noche: dos fichas numéricas pasan a valer una unidad menos. */
   | { type: 'ValleyFatigue' }
+  /** Elección del escenario siguiente al final de un preludio. */
+  | { type: 'ChooseValleyRoute'; scenario: string }
+  /** Anota lo que conserva el investigador (antes de que termine el preludio). */
+  | { type: 'RecordPreludeCarry'; investigator: InvestigatorId; asset?: AssetId; resources: number }
+  /** Descarta de la mano hasta quedarse con `size` cartas, a su elección. */
+  | { type: 'DiscardDownTo'; investigator: InvestigatorId; size: number }
   | {
       type: 'ChooseExpeditionPartners'
       required?: ExpeditionPartner[]
@@ -3150,6 +3156,18 @@ export interface ValleyState {
   codexChosen: string[]
   /** Sustituciones permanentes de la bolsa, en orden. */
   fatigue: ValleyFatigue[]
+  /** Escenarios elegidos tras cada preludio, en orden (sin el preludio de bienvenida). */
+  route?: string[]
+  /** Lo que cada investigador conserva del preludio para el escenario siguiente (p. 6). */
+  carry?: Record<InvestigatorId, ValleyCarry>
+}
+
+/** Preludio y escenario son la misma partida: mano, recursos, un apoyo y pistas. */
+export interface ValleyCarry {
+  hand: CardCode[]
+  resources: number
+  clues: number
+  asset?: CardCode
 }
 
 export interface CampaignLog {
@@ -3258,6 +3276,8 @@ export interface GameState {
   actIndex: number
   pendingOutsideTokens?: ChaosToken[]
   chaosBag: ChaosToken[]
+  /** Preludio sin mazo de Encuentros: no se roba, busca ni mira en él. */
+  noEncounterDeck?: true
   tokenValues: ScenarioTokenValues
   encounterDeck: EncounterCard[]
   encounterDiscard: EncounterCard[]

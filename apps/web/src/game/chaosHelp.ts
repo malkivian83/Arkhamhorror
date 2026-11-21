@@ -43,6 +43,7 @@ export function chaosHelp(
     'edge-of-the-earth-heart-of-madness-part-1': localeData(locale).edgeOfTheEarthCards['08648'],
     'edge-of-the-earth-heart-of-madness-part-2': localeData(locale).edgeOfTheEarthCards['08648'],
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
+    'hemlock-vale-welcome': localeData(locale).hemlockValeCards['10704'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],
     'dead-by-dawn': localeData(locale).plaguebearerCards['78047'],

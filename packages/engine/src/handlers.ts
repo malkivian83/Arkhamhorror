@@ -534,6 +534,7 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'MythosEncounterStep' },
       )
     case 'MythosEncounterStep':
+      if (state.noEncounterDeck) return state
       return push(
         state,
         ...activeInvestigators(state).map((i): Message => ({
@@ -805,6 +806,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DrawEncounterCard': {
+      if (state.noEncounterDeck) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated || investigator.location === null) return state
       const instead = scenarioBehavior(state.scenarioId)?.insteadOfEncounterDraw?.(
@@ -5725,6 +5727,43 @@ export function handle(state: GameState, message: Message): GameState {
           : { ...v, codexChosen: [...v.codexChosen, message.entry] },
       )
 
+    case 'ChooseValleyRoute':
+      return updateValley(state, (v) => ({ ...v, route: [...(v.route ?? []), message.scenario] }))
+
+    case 'RecordPreludeCarry': {
+      const investigator = getInvestigator(state, message.investigator)
+      const asset = message.asset ? state.assets[message.asset] : undefined
+      const carry = {
+        hand: [...investigator.hand],
+        resources: Math.min(investigator.resources, message.resources),
+        clues: investigator.clues,
+        ...(asset && asset.owner === investigator.id ? { asset: asset.code } : {}),
+      }
+      return updateValley(state, (v) => ({
+        ...v,
+        carry: { ...v.carry, [investigator.id]: carry },
+      }))
+    }
+
+    case 'DiscardDownTo': {
+      const investigator = getInvestigator(state, message.investigator)
+      if (investigator.hand.length <= message.size) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: investigator.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.discardDownTo',
+          promptParams: { n: message.size },
+          choices: [...new Set(investigator.hand)].map((card): Choice => ({
+            label: 'choice.discard',
+            params: { card },
+            then: [{ type: 'DiscardFromHand', investigator: investigator.id, card }, message],
+          })),
+        },
+      })
+    }
+
     case 'ValleyFatigue': {
       if (!state.campaignLog?.valley) return state
       // Las fichas de la reserva (bendición/maldición) no forman parte de la bolsa de campaña.
@@ -9443,6 +9482,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'SearchEncounterForTrait': {
+      if (state.noEncounterDeck) return state
       const matches = (c: EncounterCard) =>
         c.kind === 'enemy' && (c.traits ?? []).includes(message.trait)
       const selected = message.selected
@@ -12554,6 +12594,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'SearchEncounterForSpawn': {
+      if (state.noEncounterDeck) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated || !investigator.location) return state
       const candidates = (['deck', 'discard'] as const).flatMap((zone) => {
@@ -12618,6 +12659,7 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
     case 'SearchEncounterForEnemy': {
+      if (state.noEncounterDeck) return state
       // Paint the Town Red: el primer enemigo no Élite de las primeras cartas.
       const top = state.encounterDeck.slice(0, message.top)
       const index = top.findIndex((c) => c.kind === 'enemy' && !(c.traits ?? []).includes('Elite'))

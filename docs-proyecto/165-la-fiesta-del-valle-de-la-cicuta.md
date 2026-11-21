@@ -5,25 +5,25 @@ Hemlock Vale_ (FFG, 2024): 8 escenarios, de los que cada partida juega 6, y
 preludios jugables. Se incorpora con el mismo procedimiento que
 [Los confines de la Tierra](106-confines-de-la-tierra.md).
 
-**Estado:** entregas 0 y 1 completadas; ningún escenario jugable todavía.
+**Estado:** entregas 0–2 completadas; el preludio de bienvenida es jugable y los escenarios aún no.
 
 ## Estado y continuación
 
-- Último paso: entrega 1 (21/11/2026), sobre `12909541`. Ver
-  [Estado de campaña implementado](#estado-de-campaña-implementado).
-- Verificado: `valley.test.ts`, `hemlock-vale/chaos-bag.test.ts`,
-  `hemlock-vale-session.test.ts`, `cardText`, `session`, i18n y la suite del
-  motor; tipos de engine, cards y web; Prettier y ESLint. Lo invalidan cambios en
-  `valley.ts`, en los mensajes del Valle de `handlers.ts` o en la validación de
-  guardados.
-- Siguiente: entrega 2 (preludios y códice).
+- Último paso: entrega 2 (21/11/2026), sobre `bf2b2c60`. Ver
+  [Preludio de bienvenida implementado](#preludio-de-bienvenida-implementado).
+- Verificado: pruebas de `hemlock-vale/`, `valley.test.ts`, la suite del motor,
+  i18n, campañas y `apps/web/src/game` (dos pruebas pesadas agotaron el tiempo con
+  toda la ejecución y pasan por separado); tipos de engine, cards, i18n y web;
+  Prettier y ESLint. Lo invalidan cambios en `welcome.ts`, `setup.ts` (arrastre),
+  los mensajes del Valle o la ruta de `campaign.ts`.
+- Siguiente: entrega 3 (cuadrícula y Escrito en la roca).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
 
 - [x] 0 · Fuentes, inventario EN/ES de `fhvc`, escaneos y miniaturas.
 - [x] 1 · Estado de campaña: día y hora, habitantes, zonas exploradas, bolsa y fatiga.
-- [ ] 2 · Preludios y códice: preludio de bienvenida jugable de principio a fin.
+- [x] 2 · Preludios y códice: preludio de bienvenida jugable de principio a fin.
 - [ ] 3 · Adyacencia por cuadrícula y Escrito en la roca.
 - [ ] 4 · La Casa Cicuta.
 - [ ] 5 · El páramo silencioso, La hermana perdida y La cosa de las profundidades.
@@ -239,6 +239,44 @@ tienen. Las funciones están en `packages/engine/src/valley.ts`.
   revisión visual.
 - **Partida independiente:** `randomValleyTime(seed)` elige el Indicador de
   tiempo y la hora.
+
+### Preludio de bienvenida implementado
+
+Entrega 2, en `packages/cards/src/hemlock-vale/` (`welcome.ts`, `vale-locations.ts` y
+`definition.ts`). Textos en `packages/i18n/src/hemlock-vale.{en,es}.json`; el
+catálogo de las 301 cartas sale de `scripts/import-hemlock-vale-cards.mjs` (con
+`--check`).
+
+- **Campaña:** `the-feast-of-hemlock-vale`, con `route` en `CampaignDefinition`.
+  El orden se lee de `valley.route`; los cinco escenarios del Día 1 están
+  registrados sin `build`, así que tras el preludio la campaña se detiene en el
+  elegido. El preludio no permite gastar experiencia después (`allowDeckChangesAfter`).
+- **Sin mazo de Encuentros:** `ScenarioDefinition.noEncounterDeck` omite el robo de
+  la fase de Mitos y anula robos y búsquedas en ese mazo. Las cartas de jugador que
+  lo usan se pueden seguir jugando, pero no tienen efecto sobre él.
+- **Preparación:** Lugares de Día con sus iconos (p. 5), inicio en El cruce de
+  caminos, 1 de perdición por investigador, Día 1 y bolsa de la campaña. La
+  introducción añade la tablilla o el Primigenio.
+- **Códice:** `ScenarioSpecific` `codex`, resuelto con el estado del momento (las
+  cartas comprometidas a Negociar ya no están en la mano). Cada entrada se marca en
+  `scenarioMeta` y deja de ofrecerse; la 14 es por investigador. Los habitantes
+  entran como apoyos sin controlar (`PlaceAsset`) y su Negociar lee su entrada
+  (pruebas con la etiqueta `parley`, coste de recursos de Judith y descarte de Theo).
+- **Plan y acto:** las debilidades robadas se descartan; con el acto en juego no se
+  recibe daño ni horror. Al avanzar el plan no se retira a nadie hasta preparar la
+  R1: descartar hasta la mano inicial, elegir un apoyo, anotar recursos y pistas en
+  `valley.carry`, añadir el fallo automático y elegir el estudio.
+- **Arrastre:** `InvestigatorSetup.carried` empieza el escenario siguiente con esa
+  mano, sin mulligan ni recursos iniciales, con las pistas y el apoyo, y `startScenario`
+  lo consume una sola vez.
+- **Web:** referencia 10704, catálogo de cartas, iconos [codex] (§), y caras con
+  letra de esta campaña en `cards.ts`.
+
+Pendiente para cuando haya un escenario jugable (entrega 3): conservar los usos
+«una vez por partida» y no repetir las ventanas de inicio de partida entre el
+preludio y el escenario. Las capacidades de los habitantes controlados y la carta
+Día uno (10675, sin efecto) no hacen falta en este preludio. Revisión visual
+pendiente: mapa del Valle, apoyos colocados y textos del códice.
 
 ## Entregas y criterios de aceptación
 

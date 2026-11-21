@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { dispatch } from './engine'
+import { createGame, dispatch } from './engine'
 import { seedRng } from './rng'
-import { newTestGame } from './testing'
+import { choose, newTestGame, testInvestigator, testScenario, throughSetup } from './testing'
 import type { ChaosToken, GameState, Message } from './types'
 import {
   activeTimeText,
@@ -149,5 +149,44 @@ describe('Valle de la Cicuta: fatiga', () => {
     expect([...next.chaosBag].sort()).toEqual([...applyValleyFatigue(bag, fatigue), 'bless'].sort())
     expect(next.log.filter((entry) => entry.key === 'log.valleyFatigue')).toHaveLength(2)
     expect(dispatch(game, { type: 'ValleyFatigue' })).toEqual(game)
+  })
+})
+
+// Guía, p. 6: el preludio y el escenario siguiente son la misma partida.
+describe('Valle de la Cicuta: arrastre del preludio al escenario', () => {
+  it('empieza con la mano, los recursos, las pistas y el apoyo conservados, sin mulligan', () => {
+    const deck = Array.from({ length: 20 }, (_, n) => `a-card-${n}`)
+    const game = createGame({
+      seed: 3,
+      interactive: true,
+      scenario: testScenario(),
+      investigators: [
+        testInvestigator('a', {
+          deck,
+          carried: { hand: ['a-card-1', 'a-card-2'], resources: 3, clues: 2 },
+        }),
+      ],
+    })
+    const ready = throughSetup(game)
+    const a = ready.investigators[0]!
+    expect(a.hand).toEqual(['a-card-1', 'a-card-2'])
+    expect(a.resources).toBe(3)
+    expect(a.clues).toBe(2)
+    expect(a.deck).toHaveLength(18)
+    expect(a.deck).not.toContain('a-card-1')
+    expect(ready.log.some((entry) => entry.key.includes('mulligan'))).toBe(false)
+  })
+
+  it('descarta a elección hasta el tamaño indicado', () => {
+    const game = {
+      ...fresh(),
+      investigators: fresh().investigators.map((i) => ({ ...i, hand: ['x', 'y', 'z'] })),
+    }
+    let s = dispatch(game, { type: 'DiscardDownTo', investigator: 'a', size: 1 })
+    expect(s.pending?.question.prompt).toBe('prompt.discardDownTo')
+    s = choose(s, 'choice.discard', { card: 'x' })
+    s = choose(s, 'choice.discard', { card: 'z' })
+    expect(s.investigators[0]!.hand).toEqual(['y'])
+    expect(s.pending).toBeNull()
   })
 })

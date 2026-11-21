@@ -17,6 +17,8 @@ import cardNarrativesData from './card-narratives.es.json'
 import carnevaleCardsData from './carnevale-cards.es.json'
 import edgeOfTheEarthCardsData from './edge-of-the-earth-cards.es.json'
 import edgeOfTheEarth from './edge-of-the-earth.es.json'
+import hemlockVale from './hemlock-vale.es.json'
+import hemlockValeCardsData from './hemlock-vale-cards.es.json'
 import type { CardNarrative, CatalogCard } from './types'
 
 export const messages = {
@@ -29,6 +31,7 @@ export const messages = {
       'night-of-the-zealot': zealot.campaignName,
       'call-of-the-plaguebearer': plaguebearer.campaignName,
       'edge-of-the-earth': edgeOfTheEarth.campaignName,
+      'the-feast-of-hemlock-vale': hemlockVale.campaignName,
     },
     scenario: {
       ...base.campaign.scenario,
@@ -47,6 +50,7 @@ export const messages = {
       'edge-of-the-earth-heart-of-madness-part-1': edgeOfTheEarth.heartOneName,
       'edge-of-the-earth-heart-of-madness-part-2': edgeOfTheEarth.heartTwoName,
       'edge-of-the-earth-city-of-the-elder-things': edgeOfTheEarth.cityName,
+      ...hemlockVale.scenarios,
     },
   },
   setup: {
@@ -57,6 +61,7 @@ export const messages = {
       'the-dunwich-legacy': dunwich.description,
       'call-of-the-plaguebearer': plaguebearer.description,
       'edge-of-the-earth': edgeOfTheEarth.description,
+      'the-feast-of-hemlock-vale': hemlockVale.description,
     },
   },
   story: {
@@ -68,6 +73,7 @@ export const messages = {
     midnightMasks: zealot.midnightMasks,
     devourerBelow: zealot.devourerBelow,
     edgeOfTheEarth: edgeOfTheEarth.story,
+    hemlockVale: hemlockVale.story,
     note: {
       ...base.story.note,
       ...zealot.notes,
@@ -84,6 +90,7 @@ export const messages = {
     devourer: zealot.devourerAbilities,
     ...dunwich.abilities,
     edgeOfTheEarth: edgeOfTheEarth.ability,
+    hemlockVale: hemlockVale.ability,
   },
   choice: {
     ...base.choice,
@@ -93,6 +100,7 @@ export const messages = {
     devourer: zealot.devourerChoices,
     ...dunwich.choices,
     edgeOfTheEarth: edgeOfTheEarth.choice,
+    hemlockVale: hemlockVale.choice,
   },
   prompt: {
     ...base.prompt,
@@ -100,12 +108,15 @@ export const messages = {
     zealot: zealot.prompts,
     ...dunwich.prompts,
     edgeOfTheEarth: edgeOfTheEarth.prompt,
+    hemlockVale: hemlockVale.prompt,
   },
+  keywords: { ...base.keywords, ...hemlockVale.keywords },
 } as const
 
 export const cardNarratives: Record<string, CardNarrative> = cardNarrativesData
 export const carnevaleCards: Record<string, CatalogCard> = carnevaleCardsData
 export const edgeOfTheEarthCards: Record<string, CatalogCard> = edgeOfTheEarthCardsData
+export const hemlockValeCards: Record<string, CatalogCard> = hemlockValeCardsData
 export const excelsiorCards: Record<string, CatalogCard> = excelsiorCardsData
 export const carcosaCards: Record<string, CatalogCard> = carcosaCardsData
 export const fortuneCards: Record<string, CatalogCard> = fortuneCardsData
