@@ -186,6 +186,11 @@ export interface ScenarioBehavior {
   hiddenHandWeight?: (state: GameState, investigator: InvestigatorId) => number
   /** Conexiones que el escenario añade a una localización (Pasadizos, Sr. Peabody). */
   connections?: (state: GameState, location: Location) => LocationId[]
+  /**
+   * En una cuadrícula, si dos Lugares adyacentes están conectados (por defecto, sí).
+   * Escrito en la roca, acto 2: solo con los iconos de raíl alineados.
+   */
+  gridAdjacent?: (state: GameState, a: Location, b: Location) => boolean
   /** Conexiones adicionales solo cuando se mueve un enemigo (Biblioteca oculta). */
   enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
   /**

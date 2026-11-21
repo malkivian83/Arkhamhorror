@@ -16,7 +16,10 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   toda la ejecución y pasan por separado); tipos de engine, cards, i18n y web;
   Prettier y ESLint. Lo invalidan cambios en `welcome.ts`, `setup.ts` (arrastre),
   los mensajes del Valle o la ruta de `campaign.ts`.
-- Siguiente: entrega 3 (cuadrícula y Escrito en la roca).
+- Entrega 3 en lotes: **3a** cuadrícula (hecho, ver
+  [Cuadrícula](#cuadrícula-de-lugares)); **3b** acto 1 de Escrito en la roca;
+  **3c** acto 2 (raíles, Vagoneta, descarrilamiento) y resoluciones.
+- Siguiente: lote 3b.
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -271,6 +274,17 @@ catálogo de las 301 cartas sale de `scripts/import-hemlock-vale-cards.mjs` (con
   lo consume una sola vez.
 - **Web:** referencia 10704, catálogo de cartas, iconos [codex] (§), y caras con
   letra de esta campaña en `cards.ts`.
+
+### Cuadrícula de Lugares
+
+Lote 3a. `ScenarioDefinition.grid` activa `GameState.grid`: `position` es
+[columna, fila] y `recomputeConnections` conecta los Lugares que comparten un lado,
+además de por sus iconos (no en diagonal; un Lugar sin símbolo no conserva
+conexiones impresas). `ScenarioBehavior.gridAdjacent` permite que el escenario
+exija algo más (raíles alineados en el acto 2). Mensajes `SlideLocation` (a un
+espacio vacío) y `SwapLocations`; `PutLocationIntoPlay` admite `position`.
+Las cartas siguen en su Lugar porque se referencian por su id. Ayudas:
+`gridNeighbors` y `emptyAdjacentPositions`. Pruebas en `grid.test.ts`.
 
 Pendiente para cuando haya un escenario jugable (entrega 3): conservar los usos
 «una vez por partida» y no repetir las ventanas de inicio de partida entre el

@@ -75,6 +75,8 @@ export interface ScenarioDefinition {
    * no se roba en la fase de Mitos ni se puede robar, buscar o mirar en él.
    */
   noEncounterDeck?: boolean
+  /** Los Lugares forman una cuadrícula: los adyacentes están conectados. */
+  grid?: boolean
 }
 
 export interface InvestigatorSetup {
@@ -385,6 +387,7 @@ export function prepareGame({
     actIndex: 0,
     chaosBag: [...scenario.chaosBag],
     ...(scenario.noEncounterDeck ? { noEncounterDeck: true as const } : {}),
+    ...(scenario.grid ? { grid: true as const } : {}),
     tokenValues: { ...scenario.tokenValues },
     encounterDeck,
     setAside: [...(scenario.setAside ?? [])],

@@ -177,15 +177,26 @@ export function recomputeConnections(state: GameState): GameState {
     !l.revealed && l.unrevealed ? l.unrevealed : { symbol: l.symbol, connectsTo: l.connectsTo }
   const all = Object.values(state.locations)
   if (
+    !state.grid &&
     !all.some((l) => l.symbol !== undefined || l.extraConnections?.length) &&
     !scenarioBehavior(state.scenarioId)?.connections
   )
     return state
+  const gridAdjacent = scenarioBehavior(state.scenarioId)?.gridAdjacent
   const locations = { ...state.locations }
   for (const l of all) {
+    // En la cuadrícula, la adyacencia se recalcula siempre (los Lugares se deslizan).
+    const byGrid = state.grid
+      ? all
+          .filter((o) => o.id !== l.id && adjacentPositions(l.position, o.position))
+          .filter((o) => gridAdjacent?.(state, l, o) ?? true)
+          .map((o) => o.id)
+      : []
     const bySymbol =
       l.symbol === undefined
-        ? l.connections
+        ? state.grid
+          ? []
+          : l.connections
         : all
             .filter(
               (o) => o.id !== l.id && (face(l).connectsTo ?? []).includes(face(o).symbol ?? ''),
@@ -195,9 +206,53 @@ export function recomputeConnections(state: GameState): GameState {
       ...(l.extraConnections ?? []),
       ...(scenarioBehavior(state.scenarioId)?.connections?.(state, l) ?? []),
     ].filter((id) => id !== l.id && state.locations[id])
-    locations[l.id] = { ...l, connections: [...new Set([...bySymbol, ...extra])] }
+    locations[l.id] = { ...l, connections: [...new Set([...bySymbol, ...byGrid, ...extra])] }
   }
   return { ...state, locations }
+}
+
+/** Comparten un lado: misma columna y filas contiguas, o al revés (no en diagonal). */
+export function adjacentPositions(a?: [number, number], b?: [number, number]): boolean {
+  if (!a || !b) return false
+  return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) === 1
+}
+
+/** Lugares que comparten un lado con este en la cuadrícula, conectados o no. */
+export function gridNeighbors(state: GameState, location: LocationId): Location[] {
+  const self = state.locations[location]
+  return Object.values(state.locations).filter(
+    (o) => o.id !== location && adjacentPositions(self?.position, o.position),
+  )
+}
+
+/** Espacios vacíos adyacentes a un Lugar de la cuadrícula, dentro de `bounds` si se dan. */
+export function emptyAdjacentPositions(
+  state: GameState,
+  location: LocationId,
+  bounds?: { columns: [number, number]; rows: [number, number] },
+): [number, number][] {
+  const position = state.locations[location]?.position
+  if (!position) return []
+  const taken = new Set(
+    Object.values(state.locations).flatMap((l) => (l.position ? [l.position.join(',')] : [])),
+  )
+  const [c, r] = position
+  return (
+    [
+      [c, r - 1],
+      [c + 1, r],
+      [c, r + 1],
+      [c - 1, r],
+    ] as [number, number][]
+  ).filter(
+    ([x, y]) =>
+      !taken.has(`${x},${y}`) &&
+      (!bounds ||
+        (x >= bounds.columns[0] &&
+          x <= bounds.columns[1] &&
+          y >= bounds.rows[0] &&
+          y <= bounds.rows[1])),
+  )
 }
 
 /** Localización de un apoyo sin dueño (la del enemigo al que está vinculado, si es el caso). */

@@ -11284,7 +11284,13 @@ export function handle(state: GameState, message: Message): GameState {
         setAsideLocations,
         locations: {
           ...state.locations,
-          [card.id]: { ...card, connections: [...card.connections], revealed: false, clues: 0 },
+          [card.id]: {
+            ...card,
+            connections: [...card.connections],
+            revealed: false,
+            clues: 0,
+            ...(message.position ? { position: message.position } : {}),
+          },
         },
       }
       return push(recomputeConnections(placed), {
@@ -11295,6 +11301,32 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.investigator ? { investigator: message.investigator } : {}),
         },
       })
+    }
+
+    case 'SlideLocation': {
+      const location = state.locations[message.location]
+      if (!location) return state
+      const taken = Object.values(state.locations).some(
+        (l) => l.position?.[0] === message.position[0] && l.position?.[1] === message.position[1],
+      )
+      if (taken) return state
+      return recomputeConnections(
+        updateLocation(state, message.location, (l) => ({ ...l, position: message.position })),
+      )
+    }
+
+    case 'SwapLocations': {
+      const a = state.locations[message.a]
+      const b = state.locations[message.b]
+      const from = a?.position
+      const to = b?.position
+      if (!a || !b || !from || !to || a.id === b.id) return state
+      const swapped = updateLocation(
+        updateLocation(state, a.id, (l) => ({ ...l, position: to })),
+        b.id,
+        (l) => ({ ...l, position: from }),
+      )
+      return recomputeConnections(swapped)
     }
 
     case 'RemoveLocation': {

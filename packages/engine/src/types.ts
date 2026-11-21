@@ -2187,7 +2187,17 @@ type MessageBody =
   | { type: 'ActAdvanced' }
   | { type: 'DiscardEnemy'; enemy: EnemyId }
   | { type: 'MoveEnemy'; enemy: EnemyId; location: LocationId }
-  | { type: 'PutLocationIntoPlay'; location: LocationId; investigator?: InvestigatorId }
+  | {
+      type: 'PutLocationIntoPlay'
+      location: LocationId
+      investigator?: InvestigatorId
+      /** Espacio de la cuadrícula donde se coloca. */
+      position?: [number, number]
+    }
+  /** Desliza un Lugar (con todo lo que hay en él) a un espacio vacío adyacente. */
+  | { type: 'SlideLocation'; location: LocationId; position: [number, number] }
+  /** Intercambia el espacio de dos Lugares, con todo lo que hay en ellos. */
+  | { type: 'SwapLocations'; a: LocationId; b: LocationId }
   | {
       type: 'PutEncounterLocation'
       card: EncounterLocationCard
@@ -3278,6 +3288,11 @@ export interface GameState {
   chaosBag: ChaosToken[]
   /** Preludio sin mazo de Encuentros: no se roba, busca ni mira en él. */
   noEncounterDeck?: true
+  /**
+   * Lugares en una cuadrícula (`position` = [columna, fila]): cada Lugar está conectado a
+   * los adyacentes, además de por sus iconos (La fiesta del Valle de la Cicuta, p. 3).
+   */
+  grid?: true
   tokenValues: ScenarioTokenValues
   encounterDeck: EncounterCard[]
   encounterDiscard: EncounterCard[]
