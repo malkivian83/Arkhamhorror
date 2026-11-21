@@ -1,4 +1,10 @@
-import { applyInput, type Difficulty, type GameState, type ScenarioOutcome } from '@lcg/engine'
+import {
+  applyInput,
+  investigatorBehavior,
+  type Difficulty,
+  type GameState,
+  type ScenarioOutcome,
+} from '@lcg/engine'
 import { choose, during, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { canPlayNext, finishScenario, newCampaign, startScenario } from '../campaign'
@@ -20,7 +26,21 @@ const teams = [
 ]
 
 function firstTurn(state: GameState): GameState {
-  const started = throughSetup(state)
+  let started = throughSetup(state)
+  // RR: Sefina sustituye la mano inicial: puede no guardar eventos y conserva ocho.
+  while (
+    started.pending &&
+    ['prompt.openingBeneath', 'prompt.openingDiscard'].includes(started.pending.question.prompt)
+  ) {
+    started = throughSetup(
+      choose(
+        started,
+        started.pending.question.prompt === 'prompt.openingBeneath'
+          ? 'choice.openingBeneathDone'
+          : 'choice.openingDiscard',
+      ),
+    )
+  }
   return started.pending?.question.prompt === 'prompt.chooseNextInvestigator'
     ? choose(started, 'choice.investigator')
     : started
@@ -45,7 +65,11 @@ describe('auditoría de cierre: preparación y reanudación del motor', () => {
             'investigation',
           )
           expect(game.investigators).toHaveLength(team.length)
-          expect(game.investigators.every((i) => i.hand.length === 5)).toBe(true)
+          for (const investigator of game.investigators) {
+            expect(investigator.hand).toHaveLength(
+              investigatorBehavior(investigator.id)?.openingReplacement?.keep ?? 5,
+            )
+          }
           expect(game.agendas.every((card) => card.code)).toBe(true)
           expect(game.acts.every((card) => card.code)).toBe(true)
           expect(game.pending?.question.choices.length).toBeGreaterThan(0)

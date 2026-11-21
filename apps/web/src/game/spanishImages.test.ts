@@ -134,6 +134,8 @@ describe('imágenes españolas de referencia y alternativas', () => {
             ['skill', 'investigator', 'treachery', 'enemy'].includes(card.type_code) ||
             isPermanent(code) ||
             playerCardBehavior(code)?.dilemma ||
+            // El mundo pintado copia el coste del evento elegido; no tiene coste impreso.
+            (playerCardBehavior(code)?.copyEvents && playerCardDef(code)?.cost === undefined) ||
             // Cartas que no se pueden jugar y no tienen coste impreso (Investigación, Envío de pieles).
             (playerCardBehavior(code)?.cannotPlayFromHand &&
               playerCardDef(code)?.cost === undefined) ||
