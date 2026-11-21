@@ -5,6 +5,19 @@ import { throughSetup } from '@lcg/engine/testing'
 import { tableView, tableStats } from './table'
 import { gameView } from './game'
 
+it('exposes only physical discard cards while an event source is still resolving', () => {
+  const g = throughSetup(
+    startScenario(newCampaign('night-of-the-zealot', ['yorick', 'rita'], 'standard'), 8),
+  )
+  const [a, b] = g.investigators
+  a!.discard = ['01050', '01088']
+  g.resolvingPlayerEvents = [
+    { id: 'event-test', investigator: a!.id, code: '01088', provisional: true },
+  ]
+  expect(tableView(g, b!.id).investigators[0]!.discard).toEqual(['01050'])
+  expect(g.investigators[0]!.discard).toEqual(['01050', '01088'])
+})
+
 it('keeps stored identities private while exposing face-up attachments and upgrade counters', () => {
   const g = throughSetup(
     startScenario(newCampaign('night-of-the-zealot', ['tommy', 'harvey'], 'standard'), 8),

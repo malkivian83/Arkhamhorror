@@ -1,0 +1,44 @@
+[
+  {
+    "code": "05005",
+    "name": "Rita Young",
+    "subname": "The Athlete",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Miskatonic"],
+    "unique": true,
+    "health": 9,
+    "sanity": 5,
+    "skills": { "willpower": 3, "intellect": 2, "combat": 3, "agility": 5 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["survivor", "neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Trick"], "maxLevel": 3 }
+    ],
+    "signatures": ["05016", "05017"]
+  },
+  {
+    "code": "05016",
+    "name": "\"I'm done runnin'!\"",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1, "wild": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "05017",
+    "name": "Hoods",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Cultist"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 3,
+    "weakness": "weakness"
+  }
+]

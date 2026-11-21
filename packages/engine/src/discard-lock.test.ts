@@ -143,6 +143,43 @@ it('rejects a direct discard commitment and its menu eligibility until engagemen
   expect(committed.skillTest!.committed.map((c) => c.code)).toEqual(['lock-skill'])
 })
 
+it('checks the source owner’s discard lock when an effect commits another player’s card', () => {
+  let s = game()
+  s = {
+    ...s,
+    investigators: s.investigators.map((i) => ({
+      ...i,
+      discard: i.id === 'b' ? ['lock-skill'] : [],
+    })),
+  }
+  s = dispatch(s, {
+    type: 'BeginSkillTest',
+    investigator: 'a',
+    skill: 'intellect',
+    difficulty: 1,
+    kind: { type: 'investigate', location: 'A' },
+  })
+  const message: Message = {
+    type: 'CommitCard',
+    investigator: 'a',
+    code: 'lock-skill',
+    from: 'discard',
+    fromInvestigator: 'b',
+    byEffect: true,
+  }
+  const unlockedSource = dispatch({ ...s, pending: null, queue: [] }, message)
+  expect(unlockedSource.skillTest!.committed).toContainEqual(
+    expect.objectContaining({ code: 'lock-skill', by: 'a', owner: 'b' }),
+  )
+  const foe = Object.values(s.enemies)[0]!
+  const lockedSource = dispatch(
+    { ...s, pending: null, queue: [], enemies: { [foe.id]: { ...foe, engagedWith: 'b' } } },
+    message,
+  )
+  expect(lockedSource.skillTest!.committed).toEqual([])
+  expect(lockedSource.investigators[1]!.discard).toEqual(['lock-skill'])
+})
+
 it('recovers a physical card normally once the locking enemy leaves', () => {
   const s = game()
   const next = dispatch(

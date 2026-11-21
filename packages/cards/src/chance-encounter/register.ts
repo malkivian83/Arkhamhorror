@@ -1,6 +1,8 @@
 // RR: Put into Play, Ownership and Control, Signature Cards, Delayed Effects, X.
 import {
   allPlayerCardDefs,
+  actualDiscard,
+  discardLocked,
   getInvestigator,
   playerCardDef,
   registerPlayerCard,
@@ -10,9 +12,9 @@ import {
 import { ask, continuation } from '../dunwich-pilot/effects'
 const targets = (s: GameState, by: string, x?: number) =>
   s.investigators
-    .filter((i) => !i.eliminated)
+    .filter((i) => !i.eliminated && !discardLocked(s, i.id))
     .flatMap((i) =>
-      [...new Set(i.discard)]
+      [...new Set(actualDiscard(s, i.id))]
         .filter((code) => {
           const d = playerCardDef(code)
           const signature = allPlayerCardDefs().some(

@@ -50,8 +50,16 @@ const choice = (code: string, then: Message[]): Choice => ({
   target: { type: 'hand', code },
   then,
 })
-const eligible = (s: GameState, by: string, zone: 'hand' | 'discard', cards: string[]) =>
-  [...new Set(cards)].filter((c) => canCommitFrom(s, by, c, zone, true))
+const eligible = (
+  s: GameState,
+  by: string,
+  zone: 'hand' | 'discard',
+  cards: string[],
+  owner = by,
+) =>
+  [...new Set(cards)].filter((c) =>
+    canCommitFrom(s, by, c, zone, true, { fromInvestigator: owner }),
+  )
 const gifts = (s: GameState, by: string) =>
   eligible(s, by, 'discard', getInvestigator(s, by).discard).filter(
     (c) =>
@@ -377,7 +385,7 @@ export function registerResearchCommitment(code: string): void {
             ...s.investigators
               .filter((i) => i.id !== by && !i.eliminated)
               .flatMap((i) =>
-                eligible(s, by, 'discard', i.discard)
+                eligible(s, by, 'discard', i.discard, i.id)
                   .filter((c) => playerCardDef(c)?.type === 'skill')
                   .map((c) => ({
                     ...choice(c, [

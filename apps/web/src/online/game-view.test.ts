@@ -194,3 +194,24 @@ it('shows the public banked-event zone apart from a private hand', async () => {
   expect(html).toContain('(2)')
   expect(html).not.toContain('class="view-hand"')
 })
+
+it('renders the physical discard top without showing an event still resolving', async () => {
+  const state = fixture(),
+    investigator = state.investigators[1]!
+  investigator.discard = ['01050', '01088']
+  state.resolvingPlayerEvents = [
+    { id: 'event-test', investigator: investigator.id, code: '01088', provisional: true },
+  ]
+  const app = createSSRApp(PlayerArea, {
+    state,
+    investigator,
+    deciding: false,
+    privateHand: true,
+    handCount: 0,
+  })
+    .provide(tableControllerKey, onlineTable(gameClient('room')))
+    .use(createI18n({ legacy: false, locale: 'es', messages }))
+  const html = await renderToString(app)
+  expect(html).toContain('/01050.')
+  expect(html).not.toContain('/01088.')
+})

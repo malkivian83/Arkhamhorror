@@ -183,7 +183,7 @@ export function registerService(code: string) {
         if (step === 'return')
           return eventsToDeckBottom(s, by)
             ? [{ type: 'TakeFromDeck', investigator: by, code, to: 'hand', fromBottom: true }]
-            : [{ type: 'DiscardToHand', investigator: by, code }]
+            : [{ type: 'DiscardToHand', investigator: by, code, playedEvent: true }]
         const e = s.enemies[String(data.enemy)]
         if (step !== 'success' || !e) return []
         if (code === '10114')

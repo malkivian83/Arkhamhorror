@@ -1130,5 +1130,16 @@
     "group": "investigators",
     "typeCode": "enemy",
     "flavor": "\"Hell is empty and all the devils are here.\"\n - William Shakespeare, The Tempest"
+  },
+  "05005": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"You got a bone to pick? Fine by me. I don't need your permission to leave you in the dust.\"",
+    "backFlavor": "Clocks do not lie. In the past, people have said hurtful things to Rita. They have threatened her, deemed her inferior. But ever since she started running competitively, Rita has only cared about the clock. The clock says that Rita is faster then the rest. It says she is stronger and has trained harder. Now, she may have to fight for her life. Someone is after her. That much she's sure of. She has no idea who it is or why they want her, but there have been several strange men hanging around her dorm. They plan to make an example of her. But they will have to catch her, and the clock says they cannot."
+  },
+  "05017": {
+    "group": "investigators",
+    "typeCode": "enemy",
+    "flavor": "\"You damn cowards always cover your faces. You're just like the damn Klan, always too scared to let people see who you are…\"\n - Graham McNeill, <u>Ghouls of the Miskatonic</u>"
   }
 }

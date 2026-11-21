@@ -111,10 +111,12 @@ it('moves the actually defeated enemy and event to victory without retaining a d
 it('does not double-count an enemy that already entered victory on defeat', () => {
   let s = patch(game(), [], ['03016'])
   s = dispatch(s, spawnAt('A', { ...ghoul, code: 'victory-foe', victory: 2 }))
+  s = { ...s, encounterDiscard: [{ ...ghoul, code: 'victory-foe', victory: 2 }] }
   s = dispatch(clear(s), { type: 'DefeatEnemy', enemy: Object.values(s.enemies)[0]!.id, by: 'b' })
   s = choose(s, 'ability.playCard', { card: playerCardDef('03016')!.name })
   expect(s.victoryDisplay).toEqual(['victory-foe', '03016'])
   expect(s.victoryPoints).toBe(3)
+  expect(s.encounterDiscard.map((c) => c.code)).toEqual(['victory-foe'])
 })
 
 it('Graveyard Ghouls has printed enemy values, Hunter and exclusive prey', () => {
@@ -138,4 +140,39 @@ it('the engaged weakness prevents both Yorick recovery effects and releases them
   expect(next.investigators[0]!.hand).toEqual([])
   const unlocked = { ...s, enemies: {} }
   expect(b.reactions!(unlocked, trigger(), unlocked.investigators[0]!)).toHaveLength(1)
+})
+
+it('Quantum Flux never duplicates locked discard cards and still draws one card', () => {
+  let s = patch(game(), ['01088', '01089'], ['03196'])
+  s = dispatch(s, spawnAt('A', playerCardBehavior('03017')!.enemy!, '03005'))
+  const size = s.investigators[0]!.deck.length
+  s = dispatch(clear(s), { type: 'PlayCard', investigator: '03005', code: '03196', byEffect: true })
+  expect(s.investigators[0]!.discard).toEqual(['01088', '01089'])
+  expect(s.investigators[0]!.deck).toHaveLength(size - 1)
+  expect(s.investigators[0]!.hand).toHaveLength(1)
+  expect(s.resolvingPlayerEvents).toBeUndefined()
+})
+
+it('Salvage and A Chance Encounter exclude items and allies in the locked pile before paying', () => {
+  let s = patch(game(), ['01087', '01021'])
+  expect(playerCardBehavior('09116')!.canPlay!(s, '03005')).toBe(true)
+  expect(playerCardBehavior('03238')!.canPlay!(s, 'b')).toBe(true)
+  s = dispatch(s, spawnAt('A', playerCardBehavior('03017')!.enemy!, '03005'))
+  expect(playerCardBehavior('09116')!.canPlay!(s, '03005')).toBe(false)
+  expect(playerCardBehavior('03238')!.canPlay!(s, 'b')).toBe(false)
+})
+
+it('a new Bury Them Deep can enter victory while an older discarded copy remains locked', () => {
+  let s = patch(game(), ['03016'], ['03016'])
+  s = dispatch(
+    s,
+    spawnAt('A', playerCardBehavior('03017')!.enemy!, '03005'),
+    spawnAt('A', { ...ghoul, code: 'locked-burial' }),
+  )
+  const target = Object.values(s.enemies).find((e) => e.code === 'locked-burial')!
+  s = dispatch(clear(s), { type: 'DefeatEnemy', enemy: target.id, by: 'b' })
+  s = choose(s, 'ability.playCard', { card: playerCardDef('03016')!.name })
+  expect(s.victoryDisplay).toEqual(['locked-burial', '03016'])
+  expect(s.investigators[0]!.discard).toEqual(['03016'])
+  expect(s.resolvingPlayerEvents).toBeUndefined()
 })

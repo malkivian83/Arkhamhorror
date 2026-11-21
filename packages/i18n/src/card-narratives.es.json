@@ -1260,5 +1260,16 @@
     "group": "investigators",
     "typeCode": "enemy",
     "flavor": "\"El infierno está vacío y todos los demonios se hallan aquí.\"\n - William Shakespeare, La tempestad"
+  },
+  "05005": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"¿Tienes algún problema? Por mí, perfecto. No necesito tu permiso para que tragues polvo.\"",
+    "backFlavor": "Los relojes no mienten. En el pasado, la gente decía cosas hirientes a Rita. La amenazaban, la consideraban inferior. Pero desde que empezó a correr de forma competitiva, lo único que le importa a Rita es el reloj. El reloj dice que Rita es más rápida que el resto. Dice que es más fuerte y que ha entrenado más duro. Ahora, quizás tenga que luchar por su vida. Alguien va tras ella. Es lo único que sabe con certeza. No tiene ni idea de quiénes son o por qué la quieren a ella, pero ha visto a varios hombres extraños merodeando cerca de su residencia. Quieren hacerla servir de ejemplo. Pero tendrán que atraparla, y el reloj dice que no pueden."
+  },
+  "05017": {
+    "group": "investigators",
+    "typeCode": "enemy",
+    "flavor": "\"Malditos cobardes, siempre tapándoos la cara. Sois como el maldito Klan, siempre demasiado asustados como para dejar que la gente vea quiénes sois…\"\n - Graham McNeill, <u>Los gules de Miskatonic</u>"
   }
 }

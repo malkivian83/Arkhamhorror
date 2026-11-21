@@ -348,3 +348,6 @@
 - Verificación: 23 pruebas de reglas, mazos/campaña, fuentes/modelos, presentación EN/ES y regresiones dirigidas de daño, acciones y límites. 227 casos distintos comprobados; tipos engine/cards/server/web, formato, lint y huellas correctos. Cambios en horror colocado/movido, acciones restringidas, límites, protección frente a ataques o eventos en mano invalidan los controles afectados.
 - Git: main; pulls inicial y final correctos, sin integraciones que invaliden los controles. Solo cambios propios preparados.
 - Siguiente: Zoey/Jim y sus exclusivas; después Mark/Akachi, Leo/Ursula y los demás investigadores. El diagnóstico check-decklist sufrió timeout SSR; cobertura de las cuatro listas oficiales comprobada con el registro real en pruebas dirigidas, sin cambios de cartas.
+
+- 2026-11-21: lote 163 Sefina publicado en e0b1b9dd; corrección CI b570c636 y resumen 51f7e64a, CI/Deploy correctos. 31 investigadores habilitados, 37 pendientes y 134 cartas estándar pendientes.
+- Preparación de Yorick: 2043f4b0 (fuentes/lista), f8ea7b5d (bloqueo inicial), 9d77769e (reglas sin registro global, 344 casos). Integrados avances ajenos de Cicuta sin incluir sus cambios locales.

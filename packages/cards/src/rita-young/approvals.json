@@ -1,0 +1,33 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": { "05005": "https://arkhamdb.com/decklist/view/11961" },
+  "presentation": "rendered",
+  "sources": {
+    "en": "f72a1d17ff68c81bcec12bddbf35d0006bf50b82ddb5f9b2cedba9349a086963",
+    "es": "be7ea0c0babc5e4611f6b3d12b3c6c6f38eb1159bf5b8879abd9f8dbb58e7563"
+  },
+  "cards": [
+    {
+      "code": "05005",
+      "status": "verified",
+      "adapter": "rita-young-v1",
+      "module": "card-05005",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05016",
+      "status": "verified",
+      "adapter": "rita-young-v1",
+      "module": "card-05016",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05017",
+      "status": "verified",
+      "adapter": "rita-young-v1",
+      "module": "card-05017",
+      "test": "rules.test.ts"
+    }
+  ]
+}

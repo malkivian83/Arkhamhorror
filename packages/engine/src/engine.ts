@@ -1,3 +1,4 @@
+import { settleResolvingEvents } from './resolving-events'
 import { settleCopies } from './event-copies'
 import { synchronizeTurnActions } from './turn-actions'
 import { messageController, messageSource, withEffectSource } from './effect-source'
@@ -92,7 +93,7 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       ),
       message,
     )
-    state = settleCopies(before, state, message)
+    state = settleResolvingEvents(before, settleCopies(before, state, message), message)
     const copyId = message.eventCopy
     if (copyId) {
       const previous = new Set(rest)

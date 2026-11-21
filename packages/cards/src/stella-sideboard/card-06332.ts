@@ -1,10 +1,5 @@
-import {
-  canPlayByEffect,
-  getInvestigator,
-  playerCardDef,
-  registerPlayerCard,
-  type Choice,
-} from '@lcg/engine'
+import { movableDiscard } from '@lcg/engine'
+import { canPlayByEffect, playerCardDef, registerPlayerCard, type Choice } from '@lcg/engine'
 import { ask, cardName } from '../dunwich-pilot/effects'
 
 // RR: after successful investigation (ST.6), Play, Discard Pile. No play action is taken.
@@ -20,7 +15,7 @@ registerPlayerCard({
       self.exhausted
     )
       return []
-    const choices: Choice[] = [...new Set(getInvestigator(s, self.owner).discard)]
+    const choices: Choice[] = [...new Set(movableDiscard(s, self.owner))]
       .filter((c) => playerCardDef(c)?.traits.includes('Item'))
       .map((code) => ({
         label: 'choice.card',

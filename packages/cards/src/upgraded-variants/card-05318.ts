@@ -37,7 +37,7 @@ registerPlayerCard({
                 ]
               : []),
             continuation(code, by, 'fill'),
-            { type: 'RemoveFromDiscard', investigator: by, code },
+            { type: 'RemoveFromDiscard', investigator: by, code, playedEvent: true },
           ],
         },
         ...[...new Set(available)]

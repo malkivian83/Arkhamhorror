@@ -1153,6 +1153,14 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  /** Optional replacement of exhaustion/disengagement; successful evasion windows still follow. */
+  replaceEvade?: (
+    state: GameState,
+    self: Investigator,
+    enemy: Enemy,
+    message: Extract<Message, { type: 'EvadeEnemy' }>,
+  ) => Message[] | null
+
   openingReplacement?: {
     draw: number
     keep: number

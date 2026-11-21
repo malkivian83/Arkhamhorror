@@ -1,9 +1,9 @@
+import { movableDiscard } from '@lcg/engine'
 import { customizedCard, getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
 import { ask } from '../dunwich-pilot/effects'
-const candidates = (s: Parameters<typeof getInvestigator>[0], by: string, resolving = false) => {
-  const discard = getInvestigator(s, by).discard
-  const index = resolving ? discard.lastIndexOf('06165') : -1
-  return [...new Set(discard.filter((_, n) => n !== index))].filter((c) => {
+const candidates = (s: Parameters<typeof getInvestigator>[0], by: string) => {
+  const discard = movableDiscard(s, by)
+  return [...new Set(discard)].filter((c) => {
     const d = playerCardDef(c)
     return (
       !!d &&
@@ -21,7 +21,7 @@ registerPlayerCard({
   play: (s, by) =>
     ask(
       by,
-      candidates(s, by, true).map((code) => ({
+      candidates(s, by).map((code) => ({
         label: 'choice.reactiveRecover',
         params: { card: playerCardDef(code)!.name },
         then: [{ type: 'DiscardToHand', investigator: by, code }],

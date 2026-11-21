@@ -52,9 +52,9 @@ export interface LocalizedCard {
 const INVESTIGATOR_PACKS: Record<string, string[]> = {
   core: ['01005', '01014', '01015'],
   dwl: ['02005', '02014', '02015', '02003', '02010', '02011', '02002', '02008', '02009'],
-  ptc: ['03006', '03018', '03019'],
+  ptc: ['03006', '03018', '03019', '03005', '03016', '03017'],
   tfa: ['04004', '04013', '04014'],
-  tcu: ['05006', '05018', '05019'],
+  tcu: ['05006', '05018', '05019', '05005', '05016', '05017'],
   // André Patel's starter pack: every card is playable (60351–60384).
   and: Array.from({ length: 34 }, (_, n) => String(60351 + n)),
   // Stella Clark's starter pack: every card is playable (60501–60531).
@@ -89,7 +89,7 @@ const SOURCES: Record<string, string[]> = {
 }
 // v11: Nathaniel Cho and Harvey Walters in EN/ES.
 // v13: Tommy Muldoon, Carolyn Fern, Marie Lambeau (starter) and Miguel de la Cruz.
-const CACHE_PREFIX = 'lcg:cards:v17:'
+const CACHE_PREFIX = 'lcg:cards:v18:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

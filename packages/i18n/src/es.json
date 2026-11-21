@@ -317,6 +317,11 @@
         "title": "Sefina Rousseau y El mundo pintado",
         "cards": "Sefina con su mazo oficial FFG, tres copias de El mundo pintado y Estrellas de las Híades, con presentación completa en español e inglés.",
         "rules": "Preparación con trece cartas, eventos bajo la investigadora, copias con sus costes y ventanas, y retirada aleatoria reproducible."
+      },
+      "yorickRita": {
+        "title": "William Yorick y Rita Young",
+        "cards": "Dos investigadores, sus exclusivas, debilidades y mazos iniciales oficiales exactos.",
+        "rules": "Recupera apoyos pagando su coste, lleva enemigos derrotados a victoria y reacciona al evitar; los eventos en resolución se distinguen de las cartas descartadas."
       }
     }
   },
@@ -1392,7 +1397,10 @@
     "openingBeneath": "Colocar {card} debajo ({n} colocados)",
     "openingBeneathDone": "Conservar las cartas iniciales restantes",
     "openingDiscard": "Descartar {card} ({n} sobrantes)",
-    "sefinaDraw": "Robar {card} de debajo de Sefina"
+    "sefinaDraw": "Robar {card} de debajo de Sefina",
+    "ritaDamage": "Inflige 1 daño a {enemy}",
+    "ritaMove": "Muévete a {location}",
+    "ritaNormalEvade": "Agota al enemigo y deja de estar enfrentado a él"
   },
   "phase": {
     "setup": "Preparación",
@@ -1966,7 +1974,8 @@
     "ursulaInvestigate": "Ursula: realizar una acción de investigar",
     "minhIcon": "Minh: añadir un icono comodín a {card}",
     "sefinaDraw": "Robar {card} de debajo de Sefina",
-    "playEventCopy": "Jugar {physical} como {card}"
+    "playEventCopy": "Jugar {physical} como {card}",
+    "ritaEvade": "Reacciona tras evitar"
   },
   "log": {
     "archiveReveal": "El mazo de mercado revela: {card}",
@@ -3818,6 +3827,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05005": "La atleta",
       "03005": "El sepulturero",
       "03003": "La pintora",
       "03011": "Primer acto",
@@ -4028,6 +4038,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "05017": "Humanoide. Sectario.",
+      "05016": "Espíritu.",
+      "05005": "Miskatonic.",
       "03017": "Humanoide. Monstruo. Gul.",
       "03016": "Tarea.",
       "03005": "Protector.",
@@ -5082,6 +5095,9 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "05017": "<b>Presa</b> - Sólo Rita Young.\nAlerta. Cazador.\n<b>Obligado</b> - Después de que evites a los Encapuchados: Te atacan.",
+      "05016": "Sólo para el mazo de Rita Young.\nRápido. Juega esta carta sólo durante tu turno.\nPrepara todos los Enemigos que estén en tu Lugar y enfréntate a ellos. Durante el resto de tu turno, siempre que evites a un Enemigo, en lugar de agotarlo y dejar de estar enfrentado a ese Enemigo, puedes infligirle 1 punto de daño <i>(se siguen aplicando todos los demás efectos del éxito de esquivar)</i>.",
+      "05005": "[reaction] Después de que evites a un Enemigo: Inflige 1 punto de daño a ese Enemigo o bien muévete a un Lugar conectado. Límite de una vez por ronda.\nEfecto [elder_sign]: +2. Hasta el final de la ronda, ignora el límite de la capacidad [reaction] anterior.",
       "03017": "<b>Presa</b> - Sólo William Yorick.\nCazador.\nMientras los Gules del cementerio estén enfrentados a ti, ninguna carta puede abandonar tu pila descartes.",
       "03016": "Sólo para el mazo de William Yorick.\nRápido. Juega esta carta después de que sea derrotado un Enemigo que esté en tu Lugar y no sea [[Élite]].\nAñade ese Enemigo <em>(y esta carta)</em> a la zona de victoria.",
       "03005": "[reaction] Después de que derrotes a un Enemigo: Juega un Apoyo desde tu pila de descartes <em>(pagando su coste)</em>. Límite de una vez por ronda.\nEfecto [elder_sign]: +2. Si esta prueba tiene éxito, devuelve 1 carta de tu pila de descartes a tu mano.",
@@ -6543,6 +6559,7 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "05005": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Superviviente ([survivor]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas [[Truco]] de nivel 0-3.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): \"¡Se acabó el huir!\", Encapuchados, 1 Debilidad básica aleatoria.",
       "03005": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Superviviente ([survivor]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Guardián ([guardian]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Muertos y enterrados, Gules del cementerio, 1 Debilidad básica aleatoria.",
       "03003": "<b>Tamaño de mazo</b>: 33.\n<b>Opciones de creación de mazos</b>: Cartas Rebelde ([rogue]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Místico ([mystic]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): 3 copias de El mundo pintado, 1 copia de Estrellas de las Híades, 1 Debilidad básica aleatoria.",
       "03002": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazo</b>: Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Superviviente ([survivor]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Mente analítica, El Rey de Amarillo (Primer acto), 1 Debilidad básica aleatoria.",
@@ -6581,6 +6598,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "05017": "Encapuchados",
+      "05016": "\"¡Se acabó el huir!\"",
+      "05005": "Rita Young",
       "03017": "Gules del cementerio",
       "03016": "Muertos y enterrados",
       "03005": "William Yorick",

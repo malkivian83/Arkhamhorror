@@ -15,6 +15,7 @@ import {
 } from './content'
 import {
   cardAllowed,
+  actualDiscard,
   discardLocked,
   movementConnections,
   physicalLocation,
@@ -180,7 +181,8 @@ export function canPlayByEffect(
   optionalModifiers = true,
   asFast = false,
 ): boolean {
-  if (from === 'discard' && discardLocked(state, id)) return false
+  if (from === 'discard' && (discardLocked(state, id) || !actualDiscard(state, id).includes(code)))
+    return false
   if (playerCardBehavior(code)?.copyEvents)
     return (
       from === 'hand' &&

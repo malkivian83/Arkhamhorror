@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   playerCardDef,
+  actualDiscard,
   playerCardBehavior,
   assetVitals,
   effectiveVitals,
@@ -47,7 +48,8 @@ function handBlocked(code: string) {
   return handReason(props.state, i.value.id, code)
 }
 const playerBack = computed(() => cardBackImage('player'))
-const topDiscard = computed(() => i.value.discard.at(-1))
+const discarded = computed(() => actualDiscard(props.state, i.value.id))
+const topDiscard = computed(() => discarded.value.at(-1))
 
 function showHand() {
   showPile({
@@ -91,7 +93,7 @@ function showDiscard() {
   showPile({
     title: 'table.playerDiscard',
     params: { name: i.value.name },
-    cards: i.value.discard.map((code) => ({ code, name: cardName(code) })),
+    cards: discarded.value.map((code) => ({ code, name: cardName(code) })),
     newestFirst: true,
   })
 }
@@ -372,7 +374,7 @@ const slots = computed(() => {
             :color="classColor(topDiscard)"
           />
           <div v-else class="player-back empty" />
-          <span v-if="i.discard.length" class="count">{{ i.discard.length }}</span>
+          <span v-if="discarded.length" class="count">{{ discarded.length }}</span>
         </button>
       </div>
 

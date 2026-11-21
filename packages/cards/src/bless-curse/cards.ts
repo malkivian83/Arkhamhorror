@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 // RR: Chaos Bag (Bless/Curse tokens, token pool limit 10), Costs, Fast, Triggered Abilities,
 // Skill Tests ST.2-ST.8, Cancel, Enemy Attacks, Uses, Healing.
 import {
@@ -568,7 +569,7 @@ function registerSkill(code: string): boolean {
     registerPlayerCard({
       code,
       afterCommittedTestEnds: (s, test, _ok, by) =>
-        revealed(revealedTestTokens(test), 'curse') && getInvestigator(s, by).discard.includes(code)
+        revealed(revealedTestTokens(test), 'curse') && movableDiscard(s, by).includes(code)
           ? ask(
               by,
               [

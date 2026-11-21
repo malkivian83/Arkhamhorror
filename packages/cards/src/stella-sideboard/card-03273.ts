@@ -1,3 +1,4 @@
+import { movableDiscard } from '@lcg/engine'
 import { getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
 import { ask, continuation } from '../dunwich-pilot/effects'
 
@@ -6,7 +7,7 @@ import { ask, continuation } from '../dunwich-pilot/effects'
 registerPlayerCard({
   code: '03273',
   canPlay: (s, by) =>
-    getInvestigator(s, by).discard.some((code) => {
+    movableDiscard(s, by).some((code) => {
       const card = playerCardDef(code)
       return card?.type === 'skill' && card.traits.includes('Innate')
     }),
@@ -16,7 +17,7 @@ registerPlayerCard({
     if (step !== 'return' || remaining <= 0 || getInvestigator(s, by).eliminated) return []
     return ask(
       by,
-      [...new Set(getInvestigator(s, by).discard)]
+      [...new Set(movableDiscard(s, by))]
         .filter((code) => {
           const card = playerCardDef(code)
           return card?.type === 'skill' && card.traits.includes('Innate')

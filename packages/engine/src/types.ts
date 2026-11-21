@@ -55,6 +55,7 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  abilityState?: Record<string, string | number | boolean>
   /** Cards beneath this investigator, out of play and not part of the hand. */
   beneath?: CardCode[]
   /** Resource tokens placed here as leylines (Archive of Conduits). */
@@ -1286,6 +1287,11 @@ type MessageBody =
       asset: AssetId
       values: Record<string, string | number | boolean>
     }
+  | {
+      type: 'SetInvestigatorAbilityState'
+      investigator: InvestigatorId
+      values: Record<string, string | number | boolean>
+    }
   | { type: 'FlipPlayerAsset'; asset: AssetId; code: CardCode }
   | {
       type: 'SetTreacheryAbilityState'
@@ -2027,6 +2033,8 @@ type MessageBody =
   | { type: 'DefeatAllEnemiesWithoutWindows'; by: InvestigatorId }
   | {
       type: 'EvadeEnemy'
+      replacementResolved?: boolean
+      damageInstead?: { amount: number; code: CardCode }
       enemy: EnemyId
       by?: InvestigatorId
       doNotExhaust?: boolean
@@ -2457,7 +2465,7 @@ type MessageBody =
   | { type: 'ReturnAssetToHand'; asset: AssetId }
   | { type: 'ReturnAssetToDeck'; asset: AssetId }
   /** De la pila de descartes a la mano. */
-  | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode; playedEvent?: boolean }
   /**
    * Busca en el mazo (o en las `top` primeras) un apoyo con alguno de los rasgos
    * y lo lleva a la mano o lo juega con descuento; luego baraja.
@@ -3233,6 +3241,12 @@ export interface GameState {
   asIfLocations?: { investigator: InvestigatorId; at: LocationId; physical: LocationId }[]
   /** Nested player events whose effects are still resolving. */
   eventResolutions?: CardCode[]
+  resolvingPlayerEvents?: {
+    id: string
+    investigator: InvestigatorId
+    code: CardCode
+    provisional: boolean
+  }[]
   hasEventCopies?: boolean
   eventCopies?: {
     id: string
@@ -3240,7 +3254,7 @@ export interface GameState {
     physical: CardCode
     as: CardCode
     paid: boolean
-    destination?: 'play' | 'victory'
+    destination?: 'play' | 'victory' | 'hand'
   }[]
   enemyDefeats?: { round: number; location: LocationId }[]
   /** Keys spent during this scenario (experience for each pair). */

@@ -1,4 +1,4 @@
-import { discardLocked } from './state'
+import { actualDiscardIndex, discardLocked } from './state'
 import { shuffle } from './rng'
 // RR: Face Down, Out of Play, Attach To, Ownership and Control, Leaves Play.
 import { assetBehavior, playerCardBehavior, playerCardDef, scenarioBehavior } from './content'
@@ -143,7 +143,9 @@ export function handleStored(s: GameState, m: Message): GameState | undefined {
         owner = getInvestigator(s, m.investigator)
       const limit = a && assetBehavior(s, a)?.storedLimit
       const at =
-        m.from === 'discard' ? owner.discard.lastIndexOf(m.code) : owner[m.from].indexOf(m.code)
+        m.from === 'discard'
+          ? actualDiscardIndex(s, owner.id, m.code)
+          : owner[m.from].indexOf(m.code)
       if (
         !a ||
         (a.owner !== owner.id &&

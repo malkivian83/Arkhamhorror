@@ -317,6 +317,11 @@
         "title": "Sefina Rousseau and The Painted World",
         "cards": "Sefina with her official FFG starter deck, three Painted Worlds and Stars of Hyades, with full English and Spanish presentation.",
         "rules": "Thirteen-card opening, events beneath the investigator, exact event copies with their costs and timing, and deterministic random removal."
+      },
+      "yorickRita": {
+        "title": "William Yorick and Rita Young",
+        "cards": "Two investigators, their signature cards, weaknesses and exact official starter decks.",
+        "rules": "Recover paid assets from discard, bury defeated enemies and react to evasion; resolving events stay distinct from discarded cards."
       }
     }
   },
@@ -1392,7 +1397,10 @@
     "openingBeneath": "Place {card} beneath ({n} already placed)",
     "openingBeneathDone": "Keep the remaining opening cards",
     "openingDiscard": "Discard {card} ({n} excess)",
-    "sefinaDraw": "Draw {card} from beneath Sefina"
+    "sefinaDraw": "Draw {card} from beneath Sefina",
+    "ritaDamage": "Deal 1 damage to {enemy}",
+    "ritaMove": "Move to {location}",
+    "ritaNormalEvade": "Exhaust and disengage the enemy"
   },
   "phase": {
     "setup": "Setup",
@@ -1966,7 +1974,8 @@
     "ursulaInvestigate": "Ursula: take an investigate action",
     "minhIcon": "Minh: add a wild icon to {card}",
     "sefinaDraw": "Draw {card} from beneath Sefina",
-    "playEventCopy": "Play {physical} as {card}"
+    "playEventCopy": "Play {physical} as {card}",
+    "ritaEvade": "React after evading"
   },
   "log": {
     "archiveReveal": "Market deck reveals: {card}",
@@ -3818,6 +3827,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05005": "The Athlete",
       "03005": "The Gravedigger",
       "03003": "The Painter",
       "03011": "Act 1",
@@ -4028,6 +4038,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "05017": "Humanoid. Cultist.",
+      "05016": "Spirit.",
+      "05005": "Miskatonic.",
       "03017": "Humanoid. Monster. Ghoul.",
       "03016": "Task.",
       "03005": "Warden.",
@@ -5082,6 +5095,9 @@
       "01013": "Spell."
     },
     "summary": {
+      "05017": "<b>Prey</b> - Rita Young only.\nAlert. Hunter.\n<b>Forced</b> - After you evade Hoods: It attacks you.",
+      "05016": "Rita Young deck only.\nFast. Play only during your turn.\nReady and engage all enemies at your location. For the remainder of your turn, whenever you evade an enemy, instead of exhausting and disengaging from that enemy, you may deal it 1 damage. <i>(All other effects of the successful evasion still apply.)</i>",
+      "05005": "[reaction] After you evade an enemy: Either deal 1 damage to that enemy, or move to a connecting location. (Limit once per round.)\n[elder_sign] effect: +2. Until the end of the round, ignore the limit on the above [reaction] ability.",
       "03017": "<b>Prey</b> - William Yorick only.\nHunter.\nWhile Graveyard Ghouls is engaged with you, cards cannot leave your discard pile.",
       "03016": "William Yorick deck only.\nFast. Play after a non-[[Elite]] enemy at your location is defeated.\nAdd that enemy <i>(and this card)</i> to the victory display.",
       "03005": "[reaction] After you defeat an enemy: Play an asset from your discard pile <i>(paying its cost)</i>. (Limit once per round.)\n[elder_sign] effect: +2. If this test is successful, return 1 card from your discard pile to your hand.",
@@ -6543,6 +6559,7 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "05005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, [[Trick]] cards level 0-3.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): \"I'm done runnin'!,\" Hoods, 1 random basic weakness.",
       "03005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, Guardian cards ([guardian]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Bury Them Deep, Graveyard Ghouls, 1 random basic weakness.",
       "03003": "<b>Deck Size</b>: 33.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5, Mystic cards ([mystic]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): 3 copies of The Painted World, 1 copy of Stars of Hyades, 1 random basic weakness.",
       "03002": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Neutral cards level 0-5, Survivor cards ([survivor]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Analytical Mind, The King in Yellow <i>(Act 1)</i>, 1 random basic weakness.",
@@ -6581,6 +6598,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "05017": "Hoods",
+      "05016": "\"I'm done runnin'!\"",
+      "05005": "Rita Young",
       "03017": "Graveyard Ghouls",
       "03016": "Bury Them Deep",
       "03005": "William Yorick",

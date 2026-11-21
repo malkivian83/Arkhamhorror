@@ -1,3 +1,4 @@
+import { actualDiscard } from '@lcg/engine'
 import {
   availableAbilities,
   canPlayByEffect,
@@ -125,17 +126,16 @@ export function registerEvents(code: string): boolean {
   if (code === '03196') {
     registerPlayerCard({
       code,
-      play: (s, by) => {
-        const cards = [...getInvestigator(s, by).discard],
-          index = cards.lastIndexOf(code)
-        if (index >= 0) cards.splice(index, 1)
-        return [
-          { type: 'RemoveFromDiscard', investigator: by, code },
-          ...cards.map((c): Message => ({ type: 'RemoveFromDiscard', investigator: by, code: c })),
-          { type: 'ShuffleCardsIntoDeck', investigator: by, cards },
-          { type: 'DrawCards', investigator: by, amount: 1 },
-        ]
-      },
+      play: (s, by) => [
+        { type: 'RemoveFromDiscard', investigator: by, code, playedEvent: true },
+        {
+          type: 'ShuffleCardsIntoDeck',
+          investigator: by,
+          cards: actualDiscard(s, by),
+          fromDiscard: true,
+        },
+        { type: 'DrawCards', investigator: by, amount: 1 },
+      ],
     })
     return true
   }
@@ -143,7 +143,7 @@ export function registerEvents(code: string): boolean {
     registerPlayerCard({
       code,
       play: (s, by) => [
-        { type: 'RemoveFromDiscard', investigator: by, code },
+        { type: 'RemoveFromDiscard', investigator: by, code, playedEvent: true },
         {
           type: 'GainResources',
           investigator: by,

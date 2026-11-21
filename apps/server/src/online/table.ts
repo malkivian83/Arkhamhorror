@@ -1,3 +1,4 @@
+import { actualDiscard } from '@lcg/engine'
 import {
   previewToken,
   playerCardBehavior,
@@ -179,7 +180,7 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
       ]),
       hand: i.id === mine ? [...i.hand] : [],
       deck: Array<string>(i.deck.length).fill(''),
-      discard: [...i.discard],
+      discard: actualDiscard(g, i.id),
       ...(i.beneath ? { beneath: [...i.beneath] } : {}),
     })),
     locations: entities(g.locations, (l) => ({

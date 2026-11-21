@@ -1,0 +1,33 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": { "03005": "https://arkhamdb.com/decklist/view/4816" },
+  "presentation": "rendered",
+  "sources": {
+    "en": "114e1f545cc5e55df9f6fca7d677ab7c45c01e52b9e024e11ae0b1ac1ef00d9c",
+    "es": "38e244234584db3c4e75bd5286324a5fb2bd116ab0b602ad715059ab141cf8bd"
+  },
+  "cards": [
+    {
+      "code": "03005",
+      "status": "verified",
+      "adapter": "william-yorick-v1",
+      "module": "card-03005",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03016",
+      "status": "verified",
+      "adapter": "william-yorick-v1",
+      "module": "card-03016",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03017",
+      "status": "verified",
+      "adapter": "william-yorick-v1",
+      "module": "card-03017",
+      "test": "rules.test.ts"
+    }
+  ]
+}

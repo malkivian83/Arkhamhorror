@@ -1,3 +1,7 @@
+import yorickCards from '../data/william-yorick.json'
+import ritaCards from '../data/rita-young.json'
+import yorickOfficial from '../william-yorick/decklist-4816.json'
+import ritaOfficial from '../rita-young/decklist-11961.json'
 import sefinaCards from '../data/sefina-rousseau.json'
 import sefinaOfficial from '../sefina-rousseau/decklist-6645.json'
 import minhCards from '../data/minh-thi-phan.json'
@@ -87,6 +91,8 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(yorickCards as PlayerCardDef[]),
+  ...(ritaCards as PlayerCardDef[]),
   ...(sefinaCards as PlayerCardDef[]),
   ...(minhCards as PlayerCardDef[]),
   ...(dunwichInvestigators as PlayerCardDef[]),
@@ -133,6 +139,31 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  yorick: {
+    investigator: 1,
+    investigatorCode: yorickOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(yorickOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+  rita: {
+    investigator: 1,
+    investigatorCode: ritaOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(ritaOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
+
   sefina: {
     investigator: 1,
     investigatorCode: sefinaOfficial.investigator_code,

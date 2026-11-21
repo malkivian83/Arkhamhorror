@@ -1,3 +1,10 @@
+import {
+  actualDiscard,
+  eventDiscardIndex,
+  eventMovementBlocked,
+  pendingEvent,
+} from './resolving-events'
+import { actualDiscardIndex } from './state'
 import { discardLocked } from './state'
 import { handleBeneath } from './investigator-beneath'
 import {
@@ -2154,11 +2161,16 @@ export function handle(state: GameState, message: Message): GameState {
       if (investigator.deck.length === 0) {
         const [deck, rng] = discardLocked(state, investigator.id)
           ? ([[], state.rng] as [string[], typeof state.rng])
-          : shuffle(investigator.discard, state.rng)
+          : shuffle(actualDiscard(state, investigator.id), state.rng)
+        const provisional = [...investigator.discard]
+        for (const code of actualDiscard(state, investigator.id)) {
+          const at = provisional.indexOf(code)
+          if (at >= 0) provisional.splice(at, 1)
+        }
         const reshuffled = updateInvestigator({ ...state, rng }, investigator.id, (i) => ({
           ...i,
           deck,
-          discard: discardLocked(state, investigator.id) ? i.discard : [],
+          discard: discardLocked(state, investigator.id) ? i.discard : provisional,
         }))
         const horror: Message = {
           type: 'TakeDamage',
@@ -2328,7 +2340,9 @@ export function handle(state: GameState, message: Message): GameState {
     case 'AttachPlayerCardToEnemy': {
       const owner = getInvestigator(state, message.investigator)
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
-      const at = copy ? -1 : owner.discard.lastIndexOf(message.code)
+      const at = copy
+        ? -1
+        : eventDiscardIndex(state, owner.id, message.code, message.eventCopy, message.effectSource)
       const asset = message.fromAsset ? state.assets[message.fromAsset] : undefined
       const attachment = message.fromLocationAttachment
         ? state.locationAttachments?.[message.fromLocationAttachment]
@@ -2354,7 +2368,17 @@ export function handle(state: GameState, message: Message): GameState {
         }))
       } else {
         if (at < 0 && !copy) return state
-        if (at >= 0 && discardLocked(state, owner.id)) return state
+        if (
+          at >= 0 &&
+          eventMovementBlocked(
+            state,
+            owner.id,
+            message.code,
+            message.eventCopy,
+            message.effectSource,
+          )
+        )
+          return state
         source = updateInvestigator(state, owner.id, (i) => ({
           ...i,
           discard: i.discard.filter((_, n) => n !== at),
@@ -2433,6 +2457,11 @@ export function handle(state: GameState, message: Message): GameState {
           }
         : state
     }
+    case 'SetInvestigatorAbilityState':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        abilityState: { ...i.abilityState, ...message.values },
+      }))
     case 'SetAssetAbilityState': {
       const a = state.assets[message.asset]
       return a
@@ -4174,7 +4203,7 @@ export function handle(state: GameState, message: Message): GameState {
       const index = investigator.hand.indexOf(message.code)
       // Wendy's Amulet: the topmost event of the discard pile, as if it were in hand; Winging It:
       // any copy in the discard pile.
-      const discardAt = investigator.discard.lastIndexOf(message.code)
+      const discardAt = actualDiscardIndex(state, investigator.id, message.code)
       const fromDiscard =
         (index < 0 || message.from === 'discard') &&
         discardAt >= 0 &&
@@ -4483,6 +4512,9 @@ export function handle(state: GameState, message: Message): GameState {
         !message.copyId &&
         !playerCardBehavior(message.code)?.removeAfterPlay
       const toBottom = storeEvent && eventsToDeckBottom(state, investigator.id)
+      let resolvingId: string | undefined
+      if (storeEvent && !toBottom)
+        resolvingId = 'event-resolution:' + investigator.id + ':' + state.log.length
       let paid = log(
         updateInvestigator(state, investigator.id, ({ nextRoleDiscount, nextAssetFast, ...i }) => ({
           ...i,
@@ -4508,6 +4540,19 @@ export function handle(state: GameState, message: Message): GameState {
         'log.play',
         { name: investigator.name, card: def.name },
       )
+      if (resolvingId)
+        paid = {
+          ...paid,
+          resolvingPlayerEvents: [
+            ...(paid.resolvingPlayerEvents ?? []),
+            {
+              id: resolvingId,
+              investigator: investigator.id,
+              code: message.code,
+              provisional: true,
+            },
+          ],
+        }
       if (message.copyId)
         paid = {
           ...paid,
@@ -4515,6 +4560,7 @@ export function handle(state: GameState, message: Message): GameState {
             f.id === message.copyId ? { ...f, paid: true } : f,
           ),
         }
+      const resolutionId = message.copyId ?? resolvingId
       const spentUses: Message[] = Object.entries(message.usesPayment ?? {})
         .filter(([, n]) => n > 0)
         .map(([asset, amount]) => ({ type: 'SpendUses', asset, amount }))
@@ -4549,7 +4595,7 @@ export function handle(state: GameState, message: Message): GameState {
         ...(message.noOpportunity ? [] : (message.before ?? [])),
         {
           type: 'ResolvePlayedCard',
-          ...(message.copyId ? { eventCopy: message.copyId } : {}),
+          ...(resolutionId ? { eventCopy: resolutionId } : {}),
           discardedCost: message.discardedCost?.length ?? 0,
           ...(message.skillBonus ? { skillBonus: message.skillBonus } : {}),
           ...(message.variant !== undefined ? { variant: message.variant } : {}),
@@ -4585,7 +4631,11 @@ export function handle(state: GameState, message: Message): GameState {
       if (investigator.eliminated) {
         return def.type === 'asset'
           ? toOwnerDiscard(state, message.originalOwner ?? investigator.id, message.code)
-          : state
+          : handle(state, {
+              type: 'EndEventResolution',
+              code: message.code,
+              ...(message.eventCopy ? { eventCopy: message.eventCopy } : {}),
+            })
       }
       if (def.type === 'asset') {
         return push(state, {
@@ -5371,13 +5421,14 @@ export function handle(state: GameState, message: Message): GameState {
       if (i.eliminated || message.cards.length === 0) return state
       const hand = [...i.hand]
       const discard = [...i.discard]
-      const origin = message.fromDiscard ? discard : hand
+      const origin = message.fromDiscard ? actualDiscard(state, i.id) : hand
       const cards =
         message.fromHand || message.fromDiscard
           ? message.cards.filter((code) => {
               const index = origin.indexOf(code)
               if (index < 0) return false
               origin.splice(index, 1)
+              if (message.fromDiscard) discard.splice(discard.indexOf(code), 1)
               return true
             })
           : message.cards
@@ -5461,7 +5512,11 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
       const zone = message.from ?? 'hand'
-      if (zone === 'discard' && discardLocked(state, message.investigator)) return state
+      if (
+        zone === 'discard' &&
+        discardLocked(state, message.fromInvestigator ?? message.investigator)
+      )
+        return state
       if (message.fromStored) {
         const a = state.assets[message.fromStored.asset],
           c = a?.storedCards?.[message.fromStored.index]
@@ -5495,7 +5550,7 @@ export function handle(state: GameState, message: Message): GameState {
           ? 0
           : -1
         : zone === 'discard'
-          ? owner.discard.lastIndexOf(message.code)
+          ? actualDiscardIndex(state, owner.id, message.code)
           : owner[zone].indexOf(message.code)
       if (
         !test ||
@@ -8011,6 +8066,11 @@ export function handle(state: GameState, message: Message): GameState {
         nextFightTokenConversion: { turn: turnStartedAt(state), code: message.code },
       }))
     case 'EndEventResolution': {
+      if (state.resolvingPlayerEvents?.some((f) => f.id === message.eventCopy)) {
+        const remaining = state.resolvingPlayerEvents.filter((f) => f.id !== message.eventCopy)
+        const { resolvingPlayerEvents: _done, ...rest } = state
+        state = remaining.length ? { ...rest, resolvingPlayerEvents: remaining } : rest
+      }
       const events = [...(state.eventResolutions ?? [])]
       const at = events.lastIndexOf(message.code)
       if (at >= 0) events.splice(at, 1)
@@ -8075,9 +8135,15 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EventToVictory': {
       const owner = getInvestigator(state, message.investigator)
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
-      const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
+      const index = copy
+        ? -1
+        : eventDiscardIndex(state, owner.id, message.code, message.eventCopy, message.effectSource)
       if (index < 0 && !copy) return state
-      if (index >= 0 && discardLocked(state, owner.id)) return state
+      if (
+        index >= 0 &&
+        eventMovementBlocked(state, owner.id, message.code, message.eventCopy, message.effectSource)
+      )
+        return state
       return updateInvestigator(
         {
           ...state,
@@ -9736,6 +9802,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'RemoveFromDiscard': {
       const investigator = getInvestigator(state, message.investigator)
+      if (resolvingCopy(state, message.investigator, message.code, message.eventCopy)) return state
       // Played events are provisionally at deck bottom with Wendy's Amulet.
       // Remove that resolving copy, preserving earlier copies in the discard.
       if (message.playedEvent && eventsToDeckBottom(state, investigator.id)) {
@@ -9743,8 +9810,23 @@ export function handle(state: GameState, message: Message): GameState {
           ? updateInvestigator(state, investigator.id, (i) => ({ ...i, deck: i.deck.slice(0, -1) }))
           : state
       }
-      if (discardLocked(state, message.investigator)) return state
-      const at = investigator.discard.lastIndexOf(message.code)
+      if (
+        eventMovementBlocked(
+          state,
+          message.investigator,
+          message.code,
+          message.eventCopy,
+          message.effectSource,
+        )
+      )
+        return state
+      const at = eventDiscardIndex(
+        state,
+        investigator.id,
+        message.code,
+        message.eventCopy,
+        message.effectSource,
+      )
       if (at < 0) return state
       return updateInvestigator(state, investigator.id, (i) => ({
         ...i,
@@ -9762,11 +9844,14 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveDiscardFromGame': {
       if (discardLocked(state, message.investigator)) return state
       const investigator = getInvestigator(state, message.investigator)
-      if (investigator.discard.length === 0) return state
+      const physical = actualDiscard(state, investigator.id)
+      if (!physical.length) return state
+      const provisional = [...investigator.discard]
+      for (const code of physical) provisional.splice(provisional.indexOf(code), 1)
       return log(
-        updateInvestigator(state, investigator.id, (i) => ({ ...i, discard: [] })),
+        updateInvestigator(state, investigator.id, (i) => ({ ...i, discard: provisional })),
         'log.discardRemoved',
-        { name: investigator.name, n: investigator.discard.length },
+        { name: investigator.name, n: physical.length },
       )
     }
 
@@ -10167,6 +10252,16 @@ export function handle(state: GameState, message: Message): GameState {
       if (!previous || previous.hasNoStats || previous.cannotBeEvaded) return state
       if (ignoresPlayerCardEffect(previous, message.effectSource))
         return log(state, 'log.enemyImmunePlayerCards', { enemy: previous.name })
+      if (message.by && !message.replacementResolved) {
+        const by = getInvestigator(state, message.by)
+        const replacement = investigatorBehavior(by.id)?.replaceEvade?.(
+          state,
+          by,
+          previous,
+          message,
+        )
+        if (replacement) return push(state, ...replacement)
+      }
       const evaded = updateEnemy(state, message.enemy, (e) => ({
         ...e,
         engagedWith: message.doNotDisengage ? e.engagedWith : null,
@@ -10174,6 +10269,17 @@ export function handle(state: GameState, message: Message): GameState {
       }))
       return push(
         evaded,
+        ...(message.damageInstead
+          ? [
+              {
+                type: 'DamageEnemy' as const,
+                enemy: previous.id,
+                amount: message.damageInstead.amount,
+                ...(message.by ? { by: message.by } : {}),
+                source: { code: message.damageInstead.code },
+              },
+            ]
+          : []),
         ...(previous.exhausted || message.doNotExhaust
           ? []
           : [
@@ -10798,12 +10904,20 @@ export function handle(state: GameState, message: Message): GameState {
     case 'AttachEventToLocation': {
       if (
         !resolvingCopy(state, message.investigator, message.code, message.eventCopy) &&
-        discardLocked(state, message.investigator)
+        eventMovementBlocked(
+          state,
+          message.investigator,
+          message.code,
+          message.eventCopy,
+          message.effectSource,
+        )
       )
         return state
       const owner = getInvestigator(state, message.investigator)
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
-      const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
+      const index = copy
+        ? -1
+        : eventDiscardIndex(state, owner.id, message.code, message.eventCopy, message.effectSource)
       const attached = Object.values(state.locationAttachments ?? {}).filter(
         (a) => a.location === message.location,
       )
@@ -10934,11 +11048,27 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         from === 'discard' &&
         !resolvingCopy(state, message.investigator, message.code, message.eventCopy) &&
-        discardLocked(state, message.investigator)
+        eventMovementBlocked(
+          state,
+          message.investigator,
+          message.code,
+          message.eventCopy,
+          message.effectSource,
+        )
       )
         return state
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
-      const index = copy ? -1 : owner[from].lastIndexOf(message.code)
+      const index = copy
+        ? -1
+        : from === 'discard'
+          ? eventDiscardIndex(
+              state,
+              owner.id,
+              message.code,
+              message.eventCopy,
+              message.effectSource,
+            )
+          : owner[from].lastIndexOf(message.code)
       const controller = asset && state.investigators.find((i) => i.id === asset.owner)
       if (
         !asset ||
@@ -12146,17 +12276,48 @@ export function handle(state: GameState, message: Message): GameState {
       }))
     }
 
-    case 'DiscardToHand':
-      if (discardLocked(state, message.investigator)) return state
-      return updateInvestigator(state, message.investigator, (i) => {
-        const index = i.discard.lastIndexOf(message.code)
-        if (index < 0) return i
-        return {
-          ...i,
-          discard: i.discard.filter((_, n) => n !== index),
-          hand: [...i.hand, message.code],
-        }
-      })
+    case 'DiscardToHand': {
+      const sourceMatches =
+        message.effectSource === message.code ||
+        message.effectSource === playerCardDef(message.code)?.name
+      const own =
+        message.playedEvent &&
+        sourceMatches &&
+        pendingEvent(state, message.investigator, message.code, message.eventCopy)
+      const copy =
+        message.playedEvent &&
+        sourceMatches &&
+        resolvingCopy(state, message.investigator, message.code, message.eventCopy)
+      if (copy) {
+        if (copy.destination === 'hand') return state
+        return updateInvestigator(
+          {
+            ...state,
+            eventCopies: state.eventCopies!.map((f) =>
+              f.id === copy.id ? { ...f, destination: 'hand' as const } : f,
+            ),
+          },
+          message.investigator,
+          (i) => ({ ...i, hand: [...i.hand, copy.physical] }),
+        )
+      }
+      if (!own && discardLocked(state, message.investigator)) return state
+      const index = own
+        ? eventDiscardIndex(
+            state,
+            message.investigator,
+            message.code,
+            message.eventCopy,
+            message.effectSource,
+          )
+        : actualDiscardIndex(state, message.investigator, message.code)
+      if (index < 0) return state
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        discard: i.discard.filter((_, n) => n !== index),
+        hand: [...i.hand, message.code],
+      }))
+    }
 
     case 'DiscardFromDeck': {
       const owner = getInvestigator(state, message.investigator)
@@ -12610,13 +12771,29 @@ export function handle(state: GameState, message: Message): GameState {
       return result ? { ...state, encounterDeck: result[0], rng: result[1] } : state
     }
     case 'ShufflePlayedEvent': {
-      if (!message.fromBottom && discardLocked(state, message.investigator)) return state
+      if (
+        !message.fromBottom &&
+        eventMovementBlocked(
+          state,
+          message.investigator,
+          message.code,
+          message.eventCopy,
+          message.effectSource,
+        )
+      )
+        return state
       const owner = getInvestigator(state, message.investigator)
       if (owner.eliminated) return state
       if (message.fromBottom) {
         if (owner.deck.at(-1) !== message.code) return state
       } else if (!owner.discard.includes(message.code)) return state
-      const at = owner.discard.lastIndexOf(message.code)
+      const at = eventDiscardIndex(
+        state,
+        owner.id,
+        message.code,
+        message.eventCopy,
+        message.effectSource,
+      )
       const [deck, rng] = shuffle(
         message.fromBottom ? owner.deck : [...owner.deck, message.code],
         state.rng,
@@ -12847,7 +13024,17 @@ export function handle(state: GameState, message: Message): GameState {
       // Premonition: entra en juego con una ficha al azar sellada encima. With `token`
       // and `holder`, that token is searched for and sealed on a card in play (Seal keyword).
       const { holder } = message
-      if (!holder && discardLocked(state, message.investigator)) return state
+      if (
+        !holder &&
+        eventMovementBlocked(
+          state,
+          message.investigator,
+          message.code,
+          message.eventCopy,
+          message.effectSource,
+        )
+      )
+        return state
       if (holder && !sealHolderPresent(state, holder)) return state
       const [index, rng] =
         message.token === undefined
@@ -13298,6 +13485,9 @@ export function handle(state: GameState, message: Message): GameState {
       if (message.defeated && !findEnemy(state, message.enemy)) {
         const enemy = message.defeated
         if (enemy.id !== message.enemy) return state
+        // Encounter enemies with printed victory already entered the display on defeat.
+        // Do not take an older discarded enemy bearing the same printed code instead.
+        if (!enemy.owner && enemy.victory !== undefined) return state
         if (enemy.owner) {
           if (discardLocked(state, enemy.owner)) return state
           const owner = getInvestigator(state, enemy.owner)
@@ -13659,9 +13849,19 @@ export function canCommitFrom(
   code: string,
   zone: 'hand' | 'discard' = 'hand',
   byEffect = false,
-  permission: { wildIcons?: boolean; allowConnecting?: boolean; groupSize?: number } = {},
+  permission: {
+    wildIcons?: boolean
+    allowConnecting?: boolean
+    groupSize?: number
+    fromInvestigator?: string
+  } = {},
 ): boolean {
-  if (zone === 'discard' && discardLocked(state, id)) return false
+  const sourceOwner = permission.fromInvestigator ?? id
+  if (
+    zone === 'discard' &&
+    (!actualDiscard(state, sourceOwner).includes(code) || discardLocked(state, sourceOwner))
+  )
+    return false
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
   if (
