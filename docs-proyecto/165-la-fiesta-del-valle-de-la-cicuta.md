@@ -473,13 +473,23 @@ Alcance, como en las campañas anteriores:
   relato, no las instrucciones.
 - Texto narrativo (`flavor`/`back_flavor`) de planes y actos.
 
-Crear `scripts/generate-hemlock-vale-audio.mjs` a partir del generador de
-Confines (`--refresh`, `--generate`, `--only=`), con reutilización de textos
-idénticos y registro de coste, huellas y voz en
-`evidencias/hemlock-vale-narracion.json`. Para las cartas, añadir la campaña a
-`generate-campaign-card-audio.mjs`. La credencial se pasa por entrada estándar,
-sin guardarla. El 19/11/2026 el saldo de ElevenLabs quedó a cero: confirmar
-cuota antes de generar.
+Generador: `scripts/generate-hemlock-vale-audio.mjs`.
+
+- Opciones: `--refresh`, `--generate --key-stdin`, `--only=`.
+- Graba solo el relato. Deja fuera los textos de reglas (preparaciones, deslizar,
+  Vagoneta) y los párrafos de instrucciones de códices y discusiones.
+- Reutiliza por huella las grabaciones de textos idénticos y nunca sobrescribe una
+  grabación distinta.
+- Registra el coste, las huellas y la voz en `evidencias/hemlock-vale-narracion.json`.
+- El manifiesto de la web es `hemlockValeNarrationManifest.json`.
+
+El 21/11/2026 se grabaron los 60 relatos de las entregas 0–4: 41.071 caracteres y
+16.426 créditos del plan Starter. La cuenta gratuita no permite voces de la
+biblioteca por la API. No hay ningún texto ni párrafo repetido. Las frases
+compartidas entre las introducciones de La Casa Cicuta no se empalman, para no
+romper la entonación. Las entregas siguientes se graban con el mismo comando al
+añadir sus textos. Las cartas de plan y acto del Valle no tienen texto de
+ambientación en `hemlock-vale-cards.es.json`.
 
 ## Expansión de investigadores
 

@@ -1,4 +1,5 @@
 import plaguebearer from './plaguebearerNarrationManifest.json'
+import hemlockVale from './hemlockValeNarrationManifest.json'
 import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
 import { cardNarration } from './cardNarration'
 
@@ -12,6 +13,7 @@ const storyCardBacks: Record<string, string> = edgeOfTheEarth.cardBacks
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   ...Object.fromEntries(edgeOfTheEarth.entries.map(({ key, file }) => [key, { es: file }])),
   ...Object.fromEntries(Object.entries(plaguebearer).map(([key, file]) => [key, { es: file }])),
+  ...Object.fromEntries(Object.entries(hemlockVale).map(([key, file]) => [key, { es: file }])),
   'story.carnevale.intro': { es: 'carnevale-intro-salva.mp3' },
   'story.carnevale.noResolution': { es: 'carnevale-no-resolution-salva.mp3' },
   'story.carnevale.resolution1': { es: 'carnevale-resolution1-salva.mp3' },

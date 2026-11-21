@@ -3,6 +3,7 @@ import { i18n } from '../i18n'
 import { iconParts } from './cardText'
 import { storyNarration } from './narration'
 import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
+import hemlockVale from './hemlockValeNarrationManifest.json'
 
 /**
  * Textos de historia. Por defecto la mesa muestra un resumen propio (en los
@@ -154,7 +155,12 @@ export function storyBody(key: string): StoryBody {
       .map(paragraph),
     official: bundled || text !== undefined,
     officialLocale: !bundled && own === undefined && english !== undefined ? 'en' : null,
-    narration: (key.startsWith('story.edgeOfTheEarth.') ? text === undefined : own !== undefined)
+    // El Valle de la Cicuta lleva su texto oficial en los ficheros de idioma.
+    narration: (
+      key.startsWith('story.edgeOfTheEarth.') || key in hemlockVale
+        ? text === undefined
+        : own !== undefined
+    )
       ? storyNarration(key, current)
       : null,
   }

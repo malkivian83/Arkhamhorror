@@ -1,0 +1,671 @@
+{
+  "voiceId": "Nh2zY9kknu6z4pZy6FhD",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "language_code": "es"
+  },
+  "format": "mp3_44100_128",
+  "files": [
+    {
+      "file": "hemlock-vale-welcome-intro-1-1ccf1db9.mp3",
+      "keys": [
+        "story.welcome.intro1.body"
+      ],
+      "textSha256": "1ccf1db92e66f692ee0fffd06753147072ebda7731af670f29f571d7d2d70d43",
+      "characters": 3587,
+      "credits": 1435,
+      "bytes": 4180052,
+      "audioSha256": "b30695d88d249760ee2e31f59230c016f781d98e45d316da316a131b3560a908"
+    },
+    {
+      "file": "hemlock-vale-welcome-intro-2-7a7d63cc.mp3",
+      "keys": [
+        "story.welcome.intro2.body"
+      ],
+      "textSha256": "7a7d63ccf73478cdb294b78c27e08faf75ecc72a472e11fc9cc2bcb8a621a9c8",
+      "characters": 205,
+      "credits": 82,
+      "bytes": 212784,
+      "audioSha256": "1c1305d15169a0dd0f16ad7cc3daf306383b1ea6edb4bf0897f8ca5ad5049ad9"
+    },
+    {
+      "file": "hemlock-vale-welcome-intro-3-0af1608f.mp3",
+      "keys": [
+        "story.welcome.intro3.body"
+      ],
+      "textSha256": "0af1608f7a03094c275de4a3168ba8cccc11b06292b4e89d4e714f62ec8186be",
+      "characters": 420,
+      "credits": 168,
+      "bytes": 524163,
+      "audioSha256": "4d25a9b848b9d28e599d49e1237de74c010e5f209841adff6ddcc8c9a93caa07"
+    },
+    {
+      "file": "hemlock-vale-welcome-intro-4-b7845ba0.mp3",
+      "keys": [
+        "story.welcome.intro4.body"
+      ],
+      "textSha256": "b7845ba0d207acfd3cec1fa9eddc8dcbca8f55e45a2aac513939064acf89115b",
+      "characters": 844,
+      "credits": 338,
+      "bytes": 930002,
+      "audioSha256": "e6481c26853dee1c7033187884b40dbd04ac0e96abb849d14bae157740176d4e"
+    },
+    {
+      "file": "hemlock-vale-welcome-resolution-1-2dea3da7.mp3",
+      "keys": [
+        "story.welcome.resolution1.body"
+      ],
+      "textSha256": "2dea3da776eb2729f3105c2a3ca5b766a477c1454e6f9cb5fac32b5bf58457dc",
+      "characters": 1501,
+      "credits": 600,
+      "bytes": 1718273,
+      "audioSha256": "29a1e0e8150b55ea479a9d2e54923158ceb281497c6464a972a2ca392c60af06"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-1-b1d3e64a.mp3",
+      "keys": [
+        "story.welcome.codex1.body"
+      ],
+      "textSha256": "b1d3e64a0d732978d8c9a0c3235f297211efd8bc8f2aa4b5cc24dc5765eeb4ba",
+      "characters": 650,
+      "credits": 260,
+      "bytes": 797509,
+      "audioSha256": "b40bef37bb4f72970403ba362f8e5ed95fbafbf753f7ce2fa30ec17cd127865d"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-2-61a65d36.mp3",
+      "keys": [
+        "story.welcome.codex2.body"
+      ],
+      "textSha256": "61a65d36f28fddec5cfb3a39d4c722e197641963b02678f9e169a9c6f9ca4a09",
+      "characters": 719,
+      "credits": 288,
+      "bytes": 795419,
+      "audioSha256": "0b23b09571ca4ca5d1b080e15ed993e3b568414658b0faaeb9c349e4b96084e4"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-3-53b71653.mp3",
+      "keys": [
+        "story.welcome.codex3.body"
+      ],
+      "textSha256": "53b716539b09eb071fb2b26a80f7075da81c914e0c82fdfb0fd38313a70214e4",
+      "characters": 804,
+      "credits": 322,
+      "bytes": 920389,
+      "audioSha256": "8d5dfe49c14c67c8fba3e5320b0dc6c92561cae52c3e43fef25eaffb2851f501"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-4-950c7be3.mp3",
+      "keys": [
+        "story.welcome.codex4.body"
+      ],
+      "textSha256": "950c7be3a53672a1db4d18b1e691f16994f709d61933477df0b8f2290b80cddb",
+      "characters": 743,
+      "credits": 297,
+      "bytes": 829692,
+      "audioSha256": "21361a56596077be261be7d8b9e5aa50eec92b500e07e801689a431e4b1c1aaa"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-5-a2906d09.mp3",
+      "keys": [
+        "story.welcome.codex5.body"
+      ],
+      "textSha256": "a2906d09413045f061917d754ee272ddb75ced5d8aa121c313eb8b2049bd0157",
+      "characters": 643,
+      "credits": 257,
+      "bytes": 739830,
+      "audioSha256": "8caa39ee81d42eb96f51c59a859cceb5779ec8be0733490ff7a3b47110822a2b"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-6-d32ec838.mp3",
+      "keys": [
+        "story.welcome.codex6.body"
+      ],
+      "textSha256": "d32ec8387ce9ac6af3b9963d5145f3095f4bb4d000f76c6eae91fd5198b3ec06",
+      "characters": 514,
+      "credits": 206,
+      "bytes": 593963,
+      "audioSha256": "b923621599f361131424ee1f76ea911d9bbf4525c20e4cde76add4133aa4e424"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-7-b7fcd767.mp3",
+      "keys": [
+        "story.welcome.codex7.body"
+      ],
+      "textSha256": "b7fcd7677de08d861fff3aac83395a84fe636cddef50f4db6057ac30d1b0660c",
+      "characters": 844,
+      "credits": 338,
+      "bytes": 1014012,
+      "audioSha256": "916409a6a7b8269ea25810fe06edd849326e4e9c04934fbfc1be408b22322d3d"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-8-ee00615e.mp3",
+      "keys": [
+        "story.welcome.codex8.body"
+      ],
+      "textSha256": "ee00615e9f119a26e8f64b729a4ce7c9ed48e60df884a564278bd930824ff2f9",
+      "characters": 821,
+      "credits": 328,
+      "bytes": 927494,
+      "audioSha256": "131fd6c0a023f99e7db5cc380427365dc7b2c0a8cc8537d08487d0a369a8011f"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-9-c63e7a41.mp3",
+      "keys": [
+        "story.welcome.codex9.body"
+      ],
+      "textSha256": "c63e7a41d4ce4324c0b954820d589b3416df0d6bd1e2026641893fd7043571c9",
+      "characters": 1017,
+      "credits": 407,
+      "bytes": 1110560,
+      "audioSha256": "cfb2f9117630375c1d86b5772f66f429547e014df88e99811cbfe3d1674a5c8f"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-10-36d85dcd.mp3",
+      "keys": [
+        "story.welcome.codex10.body"
+      ],
+      "textSha256": "36d85dcd6c23528c8327477efd25fd2c0476f3c5c90c7b06401f67361a2f5f8f",
+      "characters": 842,
+      "credits": 337,
+      "bytes": 972216,
+      "audioSha256": "ddd804b5906f0759a8590ad7195ea661611b1249b77fea8f3b6e806dc4ea190c"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-11-a5e0d547.mp3",
+      "keys": [
+        "story.welcome.codex11.body"
+      ],
+      "textSha256": "a5e0d547a62d1f00ebe330c85c9cba36c4b661e95d89ab01624de3c5bfa8a1ea",
+      "characters": 794,
+      "credits": 318,
+      "bytes": 896565,
+      "audioSha256": "ba1d6bcc7468a8cb379c96c3926ac5d4976edd843403dc7cab5a45e8b75bf779"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-12-47133606.mp3",
+      "keys": [
+        "story.welcome.codex12.body"
+      ],
+      "textSha256": "4713360658c2bec423cc91dd8d5a55b152cf9567bce02ff9f66c58049dd3bcd7",
+      "characters": 725,
+      "credits": 290,
+      "bytes": 815481,
+      "audioSha256": "02bcdd0d54b15330033792b8b0c0433400b0cd759fcde100f1f74836926f068e"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-13-25e2a311.mp3",
+      "keys": [
+        "story.welcome.codex13.body"
+      ],
+      "textSha256": "25e2a31116689dccd294ec1115b7f9355617083438d7e590f79ac3164c78026f",
+      "characters": 612,
+      "credits": 245,
+      "bytes": 708483,
+      "audioSha256": "db3349750c6510768e7c316187ccc7815724aa84f0bdcf16777630d4d7062770"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-14-ff88974f.mp3",
+      "keys": [
+        "story.welcome.codex14.body"
+      ],
+      "textSha256": "ff88974fbafca2dfc359ab8ac15c6b782c1c4240c033030c871d58dcffeb5883",
+      "characters": 484,
+      "credits": 194,
+      "bytes": 542554,
+      "audioSha256": "054f60dc08bb5795f2615a83436e68dd715660b0dccef83d93fe61da0db74e72"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-15-71063151.mp3",
+      "keys": [
+        "story.welcome.codex15.body"
+      ],
+      "textSha256": "710631516cfb7a240a5a753c3dfe318aaa15d2c2612ea130392863be1a475937",
+      "characters": 954,
+      "credits": 382,
+      "bytes": 1070854,
+      "audioSha256": "0d89ad74fe0366e1815fdda9e7b98cbfd547c787db04fccd975158fa89032021"
+    },
+    {
+      "file": "hemlock-vale-welcome-codex-16-393b48e1.mp3",
+      "keys": [
+        "story.welcome.codex16.body"
+      ],
+      "textSha256": "393b48e1c3eaf2558144589ae5fabf2195937b33393b5705f91b801d5eec552b",
+      "characters": 877,
+      "credits": 351,
+      "bytes": 1024043,
+      "audioSha256": "b057c697c50c832412beb8f5b4c9de03cb04a6755c1699318dfdce96c6980e7b"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-intro-3579c947.mp3",
+      "keys": [
+        "story.writtenInRock.intro.body"
+      ],
+      "textSha256": "3579c94797fe2a20f50066e76eba3eea98973ee1043e007623697fbcec9f9d5f",
+      "characters": 1121,
+      "credits": 448,
+      "bytes": 1314106,
+      "audioSha256": "83a82f06975b27df4ccdb888b10b63d9b6576040c63690a61a664cb025382735"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-codex-5-8fa493fa.mp3",
+      "keys": [
+        "story.writtenInRock.codex5.body"
+      ],
+      "textSha256": "8fa493fa431166060a07e299dfe98fb08293ef159aba65d699644d202ddebca3",
+      "characters": 622,
+      "credits": 249,
+      "bytes": 700960,
+      "audioSha256": "62a6b8fed195e6c04f0eb3af681a8389b3f3462c355b0c086645602bfa44ffc0"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-cave-in-1-3df77c56.mp3",
+      "keys": [
+        "story.writtenInRock.caveIn1.body"
+      ],
+      "textSha256": "3df77c56f04e3aab7d893273364c9f9c31cb4ff9ff03a9a7b2a536aaa1e31df2",
+      "characters": 273,
+      "credits": 109,
+      "bytes": 308496,
+      "audioSha256": "b6d8932a07dbd183cbfe5a6632d792db7b94a3ecbfe28d921ad4cb8bdeb5c87b"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-cave-in-2-b5940d37.mp3",
+      "keys": [
+        "story.writtenInRock.caveIn2.body"
+      ],
+      "textSha256": "b5940d37d57d4fa241e174647270ca56e81de29ddb70f9af381acd7fb5a3ecfe",
+      "characters": 295,
+      "credits": 118,
+      "bytes": 316856,
+      "audioSha256": "737fecee5541974ea15afa76e6f2ae16adb163febb5a7ee8a3be5ae06174af74"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-cave-in-3-09ca677b.mp3",
+      "keys": [
+        "story.writtenInRock.caveIn3.body"
+      ],
+      "textSha256": "09ca677bf0c04f044ad64fc26f9d718137aad2add0a3e25610acf95689697992",
+      "characters": 295,
+      "credits": 118,
+      "bytes": 335246,
+      "audioSha256": "528808c0ad23f73f1a39d8b9adbe97eacbf7aca0e667f3233d1a3039f3aabd13"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-cave-in-4-45953642.mp3",
+      "keys": [
+        "story.writtenInRock.caveIn4.body"
+      ],
+      "textSha256": "45953642030aedb8c9948923fc93f4438adbdb7b17ff36e6fdf2b35564a65343",
+      "characters": 225,
+      "credits": 90,
+      "bytes": 255834,
+      "audioSha256": "945eea8e72c1b9195cd98ab7d0cbc60e621a1a5d9b46ab67d54ffa8713d570ae"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-codex-2a-2cf9c93c.mp3",
+      "keys": [
+        "story.writtenInRock.codex2a.body"
+      ],
+      "textSha256": "2cf9c93c52287dafb0ce661bec733a5f245cf95699e0d14f72e2155dd62aa15b",
+      "characters": 516,
+      "credits": 206,
+      "bytes": 609009,
+      "audioSha256": "c92c00a39b1e9c29a5528134bbcbc19505f1e67a4baca7a4db941ce078be605d"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-codex-2b-50a5b99e.mp3",
+      "keys": [
+        "story.writtenInRock.codex2b.body"
+      ],
+      "textSha256": "50a5b99edc88041c5e66c35bbf9e612ab3a8432f7070b6eaa67327a1a8850560",
+      "characters": 261,
+      "credits": 104,
+      "bytes": 308078,
+      "audioSha256": "ed424bc63f4231abaa324e6963781e48a903698c03fe7671df99507db731ec48"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-codex-3a-e3c4919c.mp3",
+      "keys": [
+        "story.writtenInRock.codex3a.body"
+      ],
+      "textSha256": "e3c4919cc01d7d099c3f8093889e9fd588bbea04ad93cc1a3be7aaa7d8361396",
+      "characters": 536,
+      "credits": 214,
+      "bytes": 623638,
+      "audioSha256": "42890a54cc94ecf78f60997fa77a60044b6262c1eb65ebea9265777c19bf22ca"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-codex-3b-ddf3e731.mp3",
+      "keys": [
+        "story.writtenInRock.codex3b.body"
+      ],
+      "textSha256": "ddf3e731f8807242b8eb22d7918637af0e9e54c7ae511d821eeb51f1a3ec4c2c",
+      "characters": 246,
+      "credits": 98,
+      "bytes": 301391,
+      "audioSha256": "7a0749d7c6c8fd261ac9f8ff2f960aa9163b60da00ba798fc66ac4cd4efbeb69"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-no-resolution-4f37d6cf.mp3",
+      "keys": [
+        "story.writtenInRock.noResolution.body"
+      ],
+      "textSha256": "4f37d6cf2806bf2adc1036bb9f636306922daf060b536cd1623ce1dabb96c31a",
+      "characters": 413,
+      "credits": 165,
+      "bytes": 507863,
+      "audioSha256": "729fd8f73da88e5fad0ebd872a3a4f61679f15f766422858f3c2460b8e856798"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-resolution-1-8b8d70cb.mp3",
+      "keys": [
+        "story.writtenInRock.resolution1.body"
+      ],
+      "textSha256": "8b8d70cb8d6ad6a60ce6efba5d3031fdff5106dcb64e14b73cc902ae631bd025",
+      "characters": 463,
+      "credits": 185,
+      "bytes": 539210,
+      "audioSha256": "94c54dfc1c2c5b392643e73eea9da4e25a266ed3022ce16f01f3546f9133eece"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-resolution-2-cdd1b4fe.mp3",
+      "keys": [
+        "story.writtenInRock.resolution2.body"
+      ],
+      "textSha256": "cdd1b4fe097d92b0c73b1be03a90d6f2c2ad79bae1a6db739fed4e73a62d1650",
+      "characters": 373,
+      "credits": 149,
+      "bytes": 483203,
+      "audioSha256": "a08bbf7d894406b73558f858f3d250acb2143c4fcdbadc8308632da8a946f7d6"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-resolution-3-27e5b425.mp3",
+      "keys": [
+        "story.writtenInRock.resolution3.body"
+      ],
+      "textSha256": "27e5b4252737d2152479186529f063c20204b33d1bae5acaac46c2208ec19c69",
+      "characters": 529,
+      "credits": 212,
+      "bytes": 606083,
+      "audioSha256": "376336085fd57605afcade24c1a6df6dce3e8a21b8c9159232e70eb55674c61f"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-resolution-4-bf6857c1.mp3",
+      "keys": [
+        "story.writtenInRock.resolution4.body"
+      ],
+      "textSha256": "bf6857c1b5adeb62fc78b7e0764abb3ca9dfdd52d115603ba754282ac00f5d10",
+      "characters": 540,
+      "credits": 216,
+      "bytes": 616950,
+      "audioSha256": "b79c4c8e79d80848d91bde7d2f97d06cc214eed6def1e6e4d1b8725fbab2c995"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-resolution-5-a4057ba7.mp3",
+      "keys": [
+        "story.writtenInRock.resolution5.body"
+      ],
+      "textSha256": "a4057ba71d1406bf7c51b7c271a7f375d3bb5f5ba2b35028aa98becc7f61bb57",
+      "characters": 298,
+      "credits": 119,
+      "bytes": 348621,
+      "audioSha256": "f8a50a27b58d6f15a46c2bbc17760b0b498ab6d3565fe1fd44493ed01f40b4bb"
+    },
+    {
+      "file": "hemlock-vale-written-in-rock-resolution-6-7dd266af.mp3",
+      "keys": [
+        "story.writtenInRock.resolution6.body"
+      ],
+      "textSha256": "7dd266af08d35dca87ea9277ac39a5518868d8adaaabd4e704b67b6b2c33d681",
+      "characters": 324,
+      "credits": 130,
+      "bytes": 414240,
+      "audioSha256": "340768ebdc2c20d4812b9f3c4c6e538f5a839adfdb39a477ef56e94b67d783b5"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-intro-1-fe90e7e0.mp3",
+      "keys": [
+        "story.hemlockHouse.intro1.body"
+      ],
+      "textSha256": "fe90e7e0655bef0c258e2ae29bf74bb717dbc186477d330a9e038f4195475ad5",
+      "characters": 1331,
+      "credits": 532,
+      "bytes": 1442420,
+      "audioSha256": "c36ef4a85d3e40020b73286615bf09a19b6f5e75796c4136a3aa73073ce3f383"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-intro-2-ba8db7fb.mp3",
+      "keys": [
+        "story.hemlockHouse.intro2.body"
+      ],
+      "textSha256": "ba8db7fbfc9e8b3f00acb6d94c91b9053cd92a0adab6cf855dda1a7ef9b02368",
+      "characters": 1848,
+      "credits": 739,
+      "bytes": 1988692,
+      "audioSha256": "124a2eb71f2f178feec9a3faed98b62b9a3eb1dc24392543fc6c6f48dfaead84"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-intro-3-0ea54472.mp3",
+      "keys": [
+        "story.hemlockHouse.intro3.body"
+      ],
+      "textSha256": "0ea5447246adcc9ba2c03eb6fffc4f435623395fb1cf2cb9ddc4ba57aa8a96cd",
+      "characters": 3433,
+      "credits": 1373,
+      "bytes": 3889989,
+      "audioSha256": "74faeb5934ff0aa4a312b3cf7b8a7761ec0f349d13d0c5f9c04277b55d418f2f"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-intro-4-e6201b4a.mp3",
+      "keys": [
+        "story.hemlockHouse.intro4.body"
+      ],
+      "textSha256": "e6201b4a08c1dfde99cb3c37c3f06085e93001d1fc07c2f693449d713b76a4cc",
+      "characters": 1471,
+      "credits": 588,
+      "bytes": 1617963,
+      "audioSha256": "2958d007a1a3657c7a9cb5bb91cbd0f450db0b6f4aef218713c2ef60cd98c1c6"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-act-1seals-1f1958c5.mp3",
+      "keys": [
+        "story.hemlockHouse.act1Seals.body"
+      ],
+      "textSha256": "1f1958c56a8e1578581fa38c1831b7cba99637bee0d33f51a5554dbe4f8864b2",
+      "characters": 207,
+      "credits": 83,
+      "bytes": 230756,
+      "audioSha256": "6f538db198a6e182ee5928749b6eb001b200256589acfee7270da4bd117b5327"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-act-1ruin-ee393914.mp3",
+      "keys": [
+        "story.hemlockHouse.act1Ruin.body"
+      ],
+      "textSha256": "ee39391452a12edd60dfda76ce0995f4a5b38e76617a94f1b697d292728477e4",
+      "characters": 187,
+      "credits": 75,
+      "bytes": 201081,
+      "audioSha256": "673f3b20a4c17618b932c6fbec3997695490f595059ecc0c5d2b308768edb0bc"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-4found-sylvie-0a6874fe.mp3",
+      "keys": [
+        "story.hemlockHouse.codex4FoundSylvie.body"
+      ],
+      "textSha256": "0a6874fe066d54c3ebd9d9de7981b94a8a52c252a81966d41c05573121516f42",
+      "characters": 633,
+      "credits": 253,
+      "bytes": 746936,
+      "audioSha256": "501d7242b7ea08f8e1df1a7cf503d841adb39976fb64438e955f6fe147184cd0"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-4day-1-b2cde673.mp3",
+      "keys": [
+        "story.hemlockHouse.codex4Day1.body"
+      ],
+      "textSha256": "b2cde6730d6df0cd8c133959d8dde66adb187c6447aaf06f336810e8bee97559",
+      "characters": 591,
+      "credits": 236,
+      "bytes": 696363,
+      "audioSha256": "59ec2914822c3bbb7f9a5b4f14cbb7fc322b02d86a378134c2a5ca8c99599a91"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-4argument-29105ee7.mp3",
+      "keys": [
+        "story.hemlockHouse.codex4Argument.body"
+      ],
+      "textSha256": "29105ee71c9d6c4422fd7ca644f6be66683480d5e7e443a582bfb1625319a6c0",
+      "characters": 295,
+      "credits": 118,
+      "bytes": 313930,
+      "audioSha256": "ea262ca371fa34666cbaca908a120ff1c86c1262cf2775415a56b2bbd3f805db"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-4day-2-6ba3b881.mp3",
+      "keys": [
+        "story.hemlockHouse.codex4Day2.body"
+      ],
+      "textSha256": "6ba3b8811de2a6e53b853892c20e7f9713cc7488cc5f7887a6163bf2512416ce",
+      "characters": 580,
+      "credits": 232,
+      "bytes": 672957,
+      "audioSha256": "815e93efa17d2404ceefa61524281e242cfbb5daa768e035dc39b060030fd696"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-6helping-68176313.mp3",
+      "keys": [
+        "story.hemlockHouse.codex6Helping.body"
+      ],
+      "textSha256": "68176313eb30d992a4cf7d90cac444b41dbc7a35aea35daaada9deb238931d9f",
+      "characters": 191,
+      "credits": 76,
+      "bytes": 215710,
+      "audioSha256": "938cd25f0485ccd7f99dfacdc45bb3d2801304f582e23a29ce88614d22a03fc4"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-6-b036bb02.mp3",
+      "keys": [
+        "story.hemlockHouse.codex6.body"
+      ],
+      "textSha256": "b036bb0253f4fcfba63afb403201020ad8e8fc35cd4b3c4a02ec0130bc8bcec8",
+      "characters": 511,
+      "credits": 204,
+      "bytes": 564287,
+      "audioSha256": "6bf03b049e83913cdd26c6ea148ed44c4c329f186dbbac57f3cf6de27dfbf2bd"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-7argument-6353a9a1.mp3",
+      "keys": [
+        "story.hemlockHouse.codex7Argument.body"
+      ],
+      "textSha256": "6353a9a1164c10a4ab1d52316bdbd3d0a52e975f61c061dcad60c946e244daf8",
+      "characters": 359,
+      "credits": 144,
+      "bytes": 419256,
+      "audioSha256": "9a9960d6cebc97a828cd51c496bebf4a044aea50df116b41a240a4f8ed4abba0"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-7day-2-2a4567f7.mp3",
+      "keys": [
+        "story.hemlockHouse.codex7Day2.body"
+      ],
+      "textSha256": "2a4567f7d0283e268cc6e7c8d4f265d941286e4f4a2c83a8d47d8e95d89ff29e",
+      "characters": 453,
+      "credits": 181,
+      "bytes": 507027,
+      "audioSha256": "f14abbe8d7546d25e83aca81da0c5e1929888f1697a6c091a1858130d8324248"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-7day-3-32dcfc32.mp3",
+      "keys": [
+        "story.hemlockHouse.codex7Day3.body"
+      ],
+      "textSha256": "32dcfc32f06763ac64e6bfb74cf9502b7ec6232f06e9e034009d63262a8f9d70",
+      "characters": 703,
+      "credits": 281,
+      "bytes": 789985,
+      "audioSha256": "25776fdd5e23b1c8ee6b23a1bfb606130f912b8585a30ee2fbc8f5c3c42abd46"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-codex-8-666597b4.mp3",
+      "keys": [
+        "story.hemlockHouse.codex8.body"
+      ],
+      "textSha256": "666597b47f061babdf699d0b00169aadf51803e343d5c7515c298f108af8e443",
+      "characters": 431,
+      "credits": 172,
+      "bytes": 524999,
+      "audioSha256": "9203e7dc87719558165aac2b687e18c2be3a1443627eba1b9639949d2bdb5b07"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-argument-1-da967226.mp3",
+      "keys": [
+        "story.hemlockHouse.argument1.body"
+      ],
+      "textSha256": "da96722649df45ed13685464cc3e19609867b5b9bee29d76168f41a6d9e576e8",
+      "characters": 662,
+      "credits": 265,
+      "bytes": 800016,
+      "audioSha256": "af8268cd14740c49fc904744dca7978150ba1b619f4cec462a0b77d0121a9fa2"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-argument-2-b463a237.mp3",
+      "keys": [
+        "story.hemlockHouse.argument2.body"
+      ],
+      "textSha256": "b463a237b753353b61b512f9a8f2e6fb53dbd2212114fdd4a2630217f40cb2fc",
+      "characters": 316,
+      "credits": 126,
+      "bytes": 392088,
+      "audioSha256": "3c49511fc23669c3f540d27f40e739c1b7455101b35a0a8cd09147ea2a40929e"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-argument-3-4b5c2739.mp3",
+      "keys": [
+        "story.hemlockHouse.argument3.body"
+      ],
+      "textSha256": "4b5c2739de02210b9662a893f975f9b13f6ff6d139c09b638948baaa9f9bc165",
+      "characters": 298,
+      "credits": 119,
+      "bytes": 346531,
+      "audioSha256": "04ef17e5767b5687fa68e3d1c19a97138670743eec5695bb10b7961be09c68de"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-no-resolution-a82b0c2e.mp3",
+      "keys": [
+        "story.hemlockHouse.noResolution.body"
+      ],
+      "textSha256": "a82b0c2eb81e6dbe1a1c7d467942183cab92bb72931b073ad1fc3217d2f9d2cb",
+      "characters": 188,
+      "credits": 75,
+      "bytes": 241205,
+      "audioSha256": "9ae8b8b97dadf7f6a5c4b4540a32eddf7cc0e2b7d18c08c3e281d90851f3c01f"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-resolution-1-26d1c5ae.mp3",
+      "keys": [
+        "story.hemlockHouse.resolution1.body"
+      ],
+      "textSha256": "26d1c5aea39abd9c20f034c3d7ae1ca40dc8f1684ea0f1fc5c310db3e48af43a",
+      "characters": 125,
+      "credits": 50,
+      "bytes": 145074,
+      "audioSha256": "a1b4ebf8d43d4b8ffee8d5110ef13aece901dd996e7adc357177265c72fcba6e"
+    },
+    {
+      "file": "hemlock-vale-hemlock-house-resolution-2-b3d2a742.mp3",
+      "keys": [
+        "story.hemlockHouse.resolution2.body"
+      ],
+      "textSha256": "b3d2a742e2ba541d61d7d747f3f741a5c44b9a44fb6e9558711132011a7d233f",
+      "characters": 328,
+      "credits": 131,
+      "bytes": 428451,
+      "audioSha256": "e1e3b59e577c0388545cec180f71d0152567fde5420fb08a14c964b4ba373da8"
+    }
+  ],
+  "pending": []
+}
