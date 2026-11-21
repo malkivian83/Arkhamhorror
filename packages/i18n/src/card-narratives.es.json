@@ -1244,5 +1244,21 @@
     "group": "investigators",
     "typeCode": "investigator",
     "backFlavor": "Incluso de joven, los fascinantes cuadros de Sefina atraían muchas miradas. Cuando un coleccionista de arte de París visitó Tahití y descubrió a Sefina, le ofreció financiar su obra a cambio de sus servicios creando imitaciones. Su buen ojo y firme mano eran perfectos para esa tarea, y Sefina encontró el arte de la falsificación más atrayente y cautivador de lo que había imaginado. Su obra más reciente la pagó un desconocido anónimo con una buena cuenta corriente, que le encargó recrear el panorama de una extraña ciudad alienígena. Cuando completó la última pincelada, se vio lanzada al mundo del cuadro. Apenas logró sobrevivir a la experiencia y se desmayó de agotamiento. Cuando despertó en su galería, supo que había sido algo real."
+  },
+  "03005": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Sólo soy un mero personaje de este drama, pero si tengo suerte, seguiré vivo cuando caiga el telón.\"",
+    "backFlavor": "William Yorick nunca quiso ser sepulturero. Se formó para ser actor y trabajó en Boston durante años, aceptando cualquier papel disponible. Shakespeare era lo mejor, claro, pero tras muchos años y apenas papeles, se vio obligado a admitir que su destino no estaba sobre el escenario. Cavar tumbas era un trabajo tedioso, pero los muertos eran un público excelente, y a William siempre le gustaron los soliloquios. El trabajo adquirió un cariz siniestro cuando encontró unas degeneradas criaturas que se comían a los muertos en sus tumbas. Desde esa noche, Yorick ha mantenido a raya las criaturas usando todos los medios a su disposición para proteger a los muertos."
+  },
+  "03016": {
+    "group": "investigators",
+    "typeCode": "event",
+    "flavor": "\"Aunque todo es locura, no deja de observar método en lo que dice.\"\n- William Shakespeare, Hamlet."
+  },
+  "03017": {
+    "group": "investigators",
+    "typeCode": "enemy",
+    "flavor": "\"El infierno está vacío y todos los demonios se hallan aquí.\"\n - William Shakespeare, La tempestad"
   }
 }

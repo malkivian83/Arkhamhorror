@@ -1,0 +1,45 @@
+[
+  {
+    "code": "03005",
+    "name": "William Yorick",
+    "subname": "The Gravedigger",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Warden"],
+    "unique": true,
+    "health": 8,
+    "sanity": 6,
+    "skills": { "willpower": 3, "intellect": 2, "combat": 4, "agility": 3 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["survivor", "neutral"], "maxLevel": 5 },
+      { "classes": ["guardian"], "maxLevel": 2 }
+    ],
+    "signatures": ["03016", "03017"]
+  },
+  {
+    "code": "03016",
+    "name": "Bury Them Deep",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Task"],
+    "cost": 0,
+    "xp": 0,
+    "victory": 1,
+    "icons": { "willpower": 1, "combat": 1, "wild": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "03017",
+    "name": "Graveyard Ghouls",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Monster", "Ghoul"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 3,
+    "weakness": "weakness"
+  }
+]

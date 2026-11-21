@@ -306,6 +306,7 @@ export function handle(state: GameState, message: Message): GameState {
     return push({ ...state, rng }, ...message.choices[at]!)
   }
   if (message.type === 'CycleBondedCat') {
+    if (discardLocked(state, message.investigator)) return state
     const owner = getInvestigator(state, message.investigator)
     const cards = [...owner.discard]
     const first = cards.indexOf(message.shuffled)
@@ -2353,6 +2354,7 @@ export function handle(state: GameState, message: Message): GameState {
         }))
       } else {
         if (at < 0 && !copy) return state
+        if (at >= 0 && discardLocked(state, owner.id)) return state
         source = updateInvestigator(state, owner.id, (i) => ({
           ...i,
           discard: i.discard.filter((_, n) => n !== at),
@@ -5364,6 +5366,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ShuffleCardsIntoDeck': {
+      if (message.fromDiscard && discardLocked(state, message.investigator)) return state
       const i = getInvestigator(state, message.investigator)
       if (i.eliminated || message.cards.length === 0) return state
       const hand = [...i.hand]
@@ -5458,6 +5461,7 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
       const zone = message.from ?? 'hand'
+      if (zone === 'discard' && discardLocked(state, message.investigator)) return state
       if (message.fromStored) {
         const a = state.assets[message.fromStored.asset],
           c = a?.storedCards?.[message.fromStored.index]
@@ -8073,6 +8077,7 @@ export function handle(state: GameState, message: Message): GameState {
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
       const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
       if (index < 0 && !copy) return state
+      if (index >= 0 && discardLocked(state, owner.id)) return state
       return updateInvestigator(
         {
           ...state,
@@ -10791,6 +10796,11 @@ export function handle(state: GameState, message: Message): GameState {
       return rest
     }
     case 'AttachEventToLocation': {
+      if (
+        !resolvingCopy(state, message.investigator, message.code, message.eventCopy) &&
+        discardLocked(state, message.investigator)
+      )
+        return state
       const owner = getInvestigator(state, message.investigator)
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
       const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
@@ -10921,6 +10931,12 @@ export function handle(state: GameState, message: Message): GameState {
       const asset = state.assets[message.asset]
       const owner = getInvestigator(state, message.investigator)
       const from = message.from ?? 'discard'
+      if (
+        from === 'discard' &&
+        !resolvingCopy(state, message.investigator, message.code, message.eventCopy) &&
+        discardLocked(state, message.investigator)
+      )
+        return state
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
       const index = copy ? -1 : owner[from].lastIndexOf(message.code)
       const controller = asset && state.investigators.find((i) => i.id === asset.owner)
@@ -12594,6 +12610,7 @@ export function handle(state: GameState, message: Message): GameState {
       return result ? { ...state, encounterDeck: result[0], rng: result[1] } : state
     }
     case 'ShufflePlayedEvent': {
+      if (!message.fromBottom && discardLocked(state, message.investigator)) return state
       const owner = getInvestigator(state, message.investigator)
       if (owner.eliminated) return state
       if (message.fromBottom) {
@@ -12830,6 +12847,7 @@ export function handle(state: GameState, message: Message): GameState {
       // Premonition: entra en juego con una ficha al azar sellada encima. With `token`
       // and `holder`, that token is searched for and sealed on a card in play (Seal keyword).
       const { holder } = message
+      if (!holder && discardLocked(state, message.investigator)) return state
       if (holder && !sealHolderPresent(state, holder)) return state
       const [index, rng] =
         message.token === undefined
@@ -13277,6 +13295,36 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EnemyToVictory': {
+      if (message.defeated && !findEnemy(state, message.enemy)) {
+        const enemy = message.defeated
+        if (enemy.id !== message.enemy) return state
+        if (enemy.owner) {
+          if (discardLocked(state, enemy.owner)) return state
+          const owner = getInvestigator(state, enemy.owner)
+          const code = enemy.originalCardCode ?? enemy.code
+          const at = owner.discard.lastIndexOf(code)
+          if (at < 0) return state
+          return updateInvestigator(
+            {
+              ...state,
+              victoryDisplay: [...state.victoryDisplay, code],
+              victoryPoints: (state.victoryPoints ?? 0) + (enemy.victory ?? 0),
+            },
+            owner.id,
+            (i) => ({ ...i, discard: i.discard.filter((_, n) => n !== at) }),
+          )
+        }
+        const at = state.encounterDiscard.findLastIndex(
+          (c) => c.kind === 'enemy' && c.code === enemy.code,
+        )
+        if (at < 0) return state
+        return {
+          ...state,
+          encounterDiscard: state.encounterDiscard.filter((_, n) => n !== at),
+          victoryDisplay: [...state.victoryDisplay, enemy.code],
+          victoryPoints: (state.victoryPoints ?? 0) + (enemy.victory ?? 0),
+        }
+      }
       const enemy = findEnemy(state, message.enemy)
       if (!enemy) return state
       const removed = log(removeEnemy(dropAttached(state, enemy), enemy.id), 'log.enemyToVictory', {
@@ -13613,6 +13661,7 @@ export function canCommitFrom(
   byEffect = false,
   permission: { wildIcons?: boolean; allowConnecting?: boolean; groupSize?: number } = {},
 ): boolean {
+  if (zone === 'discard' && discardLocked(state, id)) return false
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
   if (

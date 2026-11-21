@@ -2667,7 +2667,7 @@ type MessageBody =
   /** Colocación inicial: el jefe en `lead` y los demás en `others`. */
   | { type: 'PlaceAtStart'; lead: LocationId; others: LocationId }
   /** El enemigo abandona el juego y va a la zona de victoria (sin ser derrotado). */
-  | { type: 'EnemyToVictory'; enemy: EnemyId }
+  | { type: 'EnemyToVictory'; enemy: EnemyId; defeated?: Enemy }
   /** El enemigo se retira de la partida (no va a ninguna pila). */
   | { type: 'RemoveEnemyFromGame'; enemy: EnemyId; leavingResolved?: boolean }
 

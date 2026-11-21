@@ -3818,6 +3818,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "03005": "The Gravedigger",
       "03003": "The Painter",
       "03011": "Act 1",
       "03010": "Between the Lines",
@@ -4027,6 +4028,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "03017": "Humanoid. Monster. Ghoul.",
+      "03016": "Task.",
+      "03005": "Warden.",
       "03013": "Curse.",
       "03012": "Spell.",
       "03003": "Artist.",
@@ -5078,6 +5082,9 @@
       "01013": "Spell."
     },
     "summary": {
+      "03017": "<b>Prey</b> - William Yorick only.\nHunter.\nWhile Graveyard Ghouls is engaged with you, cards cannot leave your discard pile.",
+      "03016": "William Yorick deck only.\nFast. Play after a non-[[Elite]] enemy at your location is defeated.\nAdd that enemy <i>(and this card)</i> to the victory display.",
+      "03005": "[reaction] After you defeat an enemy: Play an asset from your discard pile <i>(paying its cost)</i>. (Limit once per round.)\n[elder_sign] effect: +2. If this test is successful, return 1 card from your discard pile to your hand.",
       "03013": "<b>Revelation</b> - Randomly choose an event beneath Sefina Rousseau and remove it from the game. If you cannot, take 1 damage and 1 horror. If your deck has 5 or more cards in it, shuffle Stars of Hyades back into your deck instead of discarding it.",
       "03012": "Sefina Rousseau deck only.\nCannot be placed beneath Sefina Rousseau.\nPlay The Painted World as an exact copy of a non-exceptional event that is beneath Sefina Rousseau. Remove The Painted World from the game instead of discarding it.",
       "03003": "<b>Forced</b> - When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. <i>(You cannot mulligan.)</i>\n[action]: Choose an event beneath this card and draw it. Does not provoke attacks of opportunity.\n[elder_sign] effect: +3. You may choose an event beneath this card and draw it.",
@@ -6536,6 +6543,7 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "03005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, Guardian cards ([guardian]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Bury Them Deep, Graveyard Ghouls, 1 random basic weakness.",
       "03003": "<b>Deck Size</b>: 33.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5, Mystic cards ([mystic]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): 3 copies of The Painted World, 1 copy of Stars of Hyades, 1 random basic weakness.",
       "03002": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Neutral cards level 0-5, Survivor cards ([survivor]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Analytical Mind, The King in Yellow <i>(Act 1)</i>, 1 random basic weakness.",
       "04002": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> Seeker cards ([seeker]) level 0-5, [[Relic]] cards level 0-4, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Jake Williams, Call of the Unknown, 1 random basic weakness.",
@@ -6573,6 +6581,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "03017": "Graveyard Ghouls",
+      "03016": "Bury Them Deep",
+      "03005": "William Yorick",
       "03013": "Stars of Hyades",
       "03012": "The Painted World",
       "03003": "Sefina Rousseau",

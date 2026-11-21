@@ -1,3 +1,4 @@
+import { discardLocked } from './state'
 // RR "Bonded" and "Set Aside": player cards kept out of play for each investigator.
 import { playerCardBehavior, playerCardDef } from './content'
 import { shuffle } from './rng'
@@ -98,7 +99,7 @@ export function handleSetAside(state: GameState, message: SetAsideMessage): Game
       const aside = [
         ...moved(owner.hand),
         ...moved(owner.deck),
-        ...moved(owner.discard),
+        ...(discardLocked(state, owner.id) ? [] : moved(owner.discard)),
         ...assets.map((a) => a.code),
         ...(state.removedBondedCards ?? [])
           .filter((c) => c.owner === owner.id && codes.has(c.code))
@@ -135,7 +136,7 @@ export function handleSetAside(state: GameState, message: SetAsideMessage): Game
           ...i,
           hand: keep(i.hand),
           deck: keep(i.deck),
-          discard: keep(i.discard),
+          discard: discardLocked(state, owner.id) ? i.discard : keep(i.discard),
           outOfPlay: [...(i.outOfPlay ?? []), ...aside],
         }),
       )
@@ -172,14 +173,14 @@ export function settleSetAside(before: GameState, after: GameState): GameState {
   let state = after
   if (before.investigators !== after.investigators)
     for (const i of state.investigators) {
-      const aside = [...i.discard, ...i.deck].filter(
+      const aside = [...(discardLocked(state, i.id) ? [] : i.discard), ...i.deck].filter(
         (c) => playerCardBehavior(c)?.setAsideInsteadOfDiscard,
       )
       if (!aside.length) continue
       const gone = (c: CardCode) => !playerCardBehavior(c)?.setAsideInsteadOfDiscard
       state = updateInvestigator(state, i.id, (x) => ({
         ...x,
-        discard: x.discard.filter(gone),
+        discard: discardLocked(state, i.id) ? x.discard : x.discard.filter(gone),
         deck: x.deck.filter(gone),
         outOfPlay: [...(x.outOfPlay ?? []), ...aside],
       }))
