@@ -40,6 +40,15 @@ export function scenarioLabel(campaign: Campaign, scenarioId: string | null): st
   })
 }
 
+/**
+ * Versión de las portadas que se publicaron después de que el navegador guardara su 404
+ * (el servidor cachea un día también los errores de /local-assets).
+ */
+const COVER_VERSIONS: Record<string, number> = {
+  'call-of-the-plaguebearer': 2,
+  'the-feast-of-hemlock-vale': 2,
+}
+
 /** Portada local de una campaña. */
 export const campaignCover = (id: string) =>
-  `/local-assets/setup/${id}.jpg${id === 'call-of-the-plaguebearer' ? '?v=2' : ''}`
+  `/local-assets/setup/${id}.jpg${COVER_VERSIONS[id] ? `?v=${COVER_VERSIONS[id]}` : ''}`

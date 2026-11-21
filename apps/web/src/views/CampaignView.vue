@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { campaignNoteValue } from '../game/campaignProgress'
+import { campaignCover, campaignNoteValue } from '../game/campaignProgress'
 import {
   activeMembers,
   campaignDefinition,
@@ -213,7 +213,7 @@ function abandon() {
           : []),
       ].join(' · ')
     "
-    :art="`/local-assets/setup/${campaign.id}.jpg`"
+    :art="campaignCover(campaign.id)"
     :eyebrow="t('setup.caseFile')"
     icon="campaign"
   >

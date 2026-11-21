@@ -4,6 +4,7 @@ import { expect, it } from 'vitest'
 import evidence from '../../../../docs-proyecto/evidencias/hemlock-vale-narracion.json'
 import texts from '../../../../packages/i18n/src/hemlock-vale.es.json'
 import { setAppLocale } from '../i18n'
+import { campaignCover } from './campaignProgress'
 import manifest from './hemlockValeNarrationManifest.json'
 import { storyNarration } from './narration'
 import { storyBody } from './story'
@@ -40,4 +41,11 @@ it('ofrece la grabación en el modal del relato en español', async () => {
   expect(storyBody(key).narration).toBe(storyNarration(key, 'es'))
   await setAppLocale('en', false)
   expect(storyBody(key).narration).toBeNull()
+})
+
+it('sirve la portada del Valle con versión, para saltar el 404 guardado en caché', () => {
+  const path = campaignCover('the-feast-of-hemlock-vale')
+  expect(path).toBe('/local-assets/setup/the-feast-of-hemlock-vale.jpg?v=2')
+  const image = readFileSync(new URL(`../../public${path.split('?')[0]}`, import.meta.url))
+  expect(image.subarray(0, 2)).toEqual(Buffer.from([0xff, 0xd8]))
 })
