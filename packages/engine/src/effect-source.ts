@@ -14,7 +14,13 @@ export function withEffectSource<T>(value: T, source: string, controller?: strin
   // An activated ability establishes its own source when it is processed.
   if (obj.type === 'UseAbility') return { ...obj, effectSource: own } as T
   const result = Object.fromEntries(
-    Object.entries(obj).map(([k, v]) => [k, withEffectSource(v, own, ownController)]),
+    Object.entries(obj).map(([k, v]) => [
+      k,
+      // A played card's effects establish their own source at ResolvePlayedCard.
+      k === 'effect' && (obj.type === 'PlayCard' || obj.type === 'ResolvePlayedCard')
+        ? v
+        : withEffectSource(v, own, ownController),
+    ]),
   )
   if (typeof obj.type === 'string' && /^[A-Z]/.test(obj.type)) {
     result.effectSource = own

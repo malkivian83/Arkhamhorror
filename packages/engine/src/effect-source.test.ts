@@ -68,3 +68,15 @@ it('keeps distinct sources on nested effects', () => {
   const messages = withEffectSource([{ type: 'TakeDamage', effectSource: 'Other card' }], 'Room')
   expect(messages[0]?.effectSource).toBe('Other card')
 })
+
+it('leaves a reaction event effect to establish its own source when played', () => {
+  const effect = [
+    { type: 'AttachPlayerCardToEnemy', investigator: 'a', code: 'event', enemy: 'enemy' },
+  ]
+  for (const type of ['PlayCard', 'ResolvePlayedCard']) {
+    const message = withEffectSource({ type, investigator: 'a', code: 'event', effect }, 'Attack')
+    expect(message).toHaveProperty('effectSource', 'Attack')
+    expect(message.effect).toEqual(effect)
+    expect(message.effect[0]).not.toHaveProperty('effectSource')
+  }
+})
