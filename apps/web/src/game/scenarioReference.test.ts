@@ -15,7 +15,9 @@ describe('scenario symbol reference', () => {
         (difficulty) => {
           const card = scenarioReference({ scenarioId: scenario.id, difficulty })
           expect(card).not.toBeNull()
-          expect(card!.back).toBe(difficulty === 'hard' || difficulty === 'expert')
+          // Escrito en la roca: una carta por par de dificultades, acto 1 en el anverso.
+          if (scenario.id !== 'hemlock-vale-written-in-rock')
+            expect(card!.back).toBe(difficulty === 'hard' || difficulty === 'expert')
           const art = `${card!.code}${card!.back ? 'b' : ''}`
           for (const locale of ['en', 'es'] as const) {
             const images = manifest[locale] as Record<string, string>

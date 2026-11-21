@@ -8,8 +8,18 @@ import {
 } from '@lcg/engine'
 import { testInvestigator, throughSetup, choose } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
+import { currentScenario, newCampaign, startScenario } from '../campaign'
 import { RESIDENTS } from './welcome'
 import { CAVES, ROCK, scrap, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
+import {
+  cartFacing,
+  cartLocation,
+  exitResolution,
+  facedLocation,
+  movable,
+  RAIL,
+  railsOf,
+} from './written-in-rock-act2'
 
 const players = ['a', 'b']
 const log = (time: 'day' | 'night' = 'day', day: 1 | 2 | 3 = 1) => ({
@@ -89,12 +99,13 @@ describe('Escrito en la roca: acto 1', () => {
       })),
       scenarioMeta: { ...game.scenarioMeta, scrap: 3 },
     }
-    const next = dispatch(atStation, { type: 'Forced', trigger: { type: 'roundEnds' } })
+    let next = dispatch(atStation, { type: 'Forced', trigger: { type: 'roundEnds' } })
+    while (next.pending) next = choose(next, next.pending.question.choices[0]!.label)
     expect(next.actIndex).toBe(1)
-    expect(Object.keys(next.locations)).toEqual([ROCK.controlStation])
+    expect(Object.keys(next.locations).some((id) => CAVES.some((c) => c.id === id))).toBe(false)
     expect(next.investigators.map((i) => i.clues)).toEqual([2, 2])
     expect(next.agendas[next.agendaIndex]!.code).toBe(ROCK.dangerousRide)
-    expect(next.scenarioMeta?.switch).toBe(3)
+    expect(next.scenarioMeta?.switch).toBe(4)
   })
 
   it('salir del Túnel cubierto de vegetación cuesta una acción más mientras tenga pistas', () => {
@@ -112,5 +123,119 @@ describe('Escrito en la roca: acto 1', () => {
         ROCK.overgrownTunnel,
       ),
     ).toBe(0)
+  })
+})
+
+const actTwo = (time: 'day' | 'night' = 'day') => {
+  const game = quiet(start(time))
+  const atStation: GameState = {
+    ...game,
+    investigators: game.investigators.map((i) => ({ ...i, location: ROCK.controlStation })),
+  }
+  let s = dispatch(atStation, { type: 'Forced', trigger: { type: 'roundEnds' } })
+  // Lee el interludio y elige que la Vagoneta mire al norte.
+  while (s.pending) {
+    const labels = s.pending.question.choices.map((c) => c.label)
+    s = choose(
+      s,
+      labels.includes('choice.hemlockVale.faceN') ? 'choice.hemlockVale.faceN' : labels[0]!,
+    )
+  }
+  return s
+}
+
+// Guía, pp. 10–11: interludio «El derrumbe» y acto 2.
+describe('Escrito en la roca: interludio y acto 2', () => {
+  it('coloca la red ferroviaria de 5×5 con la Vagoneta en el Puesto de control', () => {
+    const s = actTwo()
+    expect(s.actIndex).toBe(1)
+    expect(s.locations[ROCK.controlStation]!.position).toEqual([1, 5])
+    expect(s.locations[RAIL.railExit]!.position).toEqual([5, 1])
+    expect(Object.keys(s.locations)).toHaveLength(16)
+    expect(cartLocation(s)).toBe(ROCK.controlStation)
+    expect(cartFacing(s)).toBe('N')
+    // El Día 1 de día, Simeon espera en la Vía hundida A (fila 4 de la guía, columna 2).
+    const simeon = Object.values(s.placedAssets ?? {}).find(
+      (a) => a.code === RESIDENTS.simeonAtwood.code,
+    )
+    expect(simeon?.placement).toEqual({ type: 'location', location: RAIL.sunkenRailA })
+    expect(s.encounterDeck.some((c) => c.code === RAIL.wildRide)).toBe(true)
+  })
+
+  it('de noche, la Bestia subterránea aparece agotada en el Puesto de control', () => {
+    const beast = Object.values(actTwo('night').enemies).find(
+      (e) => e.code === RAIL.subterraneanBeast,
+    )
+    expect(beast).toMatchObject({ location: ROCK.controlStation, exhausted: true })
+  })
+
+  it('solo conecta los Lugares con raíles alineados y la Vagoneta descarrila si no lo están', () => {
+    const s = actTwo()
+    for (const location of Object.values(s.locations))
+      for (const other of location.connections) {
+        const a = s.locations[location.id]!.position!
+        const b = s.locations[other]!.position!
+        expect(Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1])).toBe(1)
+      }
+    // Sin Lugar al norte del Puesto de control movido aquí: forzamos un hueco.
+    const target = facedLocation(s)!
+    const aligned = railsOf(target.id).includes('S')
+    const moved = dispatch(s, { type: 'ScenarioSpecific', key: 'cartStep', data: { times: 1 } })
+    if (aligned) {
+      expect(cartLocation(moved)).toBe(target.id)
+      expect(moved.investigators.every((i) => i.location === target.id || i.eliminated)).toBe(true)
+    } else {
+      expect(moved.investigators.every((i) => i.eliminated)).toBe(true)
+    }
+  })
+
+  it('no se puede deslizar el Lugar de la Vagoneta ni la Salida férrea', () => {
+    const s = actTwo()
+    expect(movable(s, ROCK.controlStation)).toBe(false)
+    expect(movable(s, RAIL.railExit)).toBe(false)
+  })
+
+  it('al entrar en la Salida férrea avanza el acto y resuelve según los Atwood', () => {
+    const s = actTwo()
+    expect(exitResolution(s)).toBe(3)
+    const end = dispatch(
+      { ...s, pending: null, queue: [] },
+      { type: 'ScenarioSpecific', key: 'cartEntered', data: { location: RAIL.railExit } },
+    )
+    const done = end.pending ? choose(end, end.pending.question.choices[0]!.label) : end
+    expect(done.outcome).toEqual({ type: 'resolution', resolution: 3 })
+    const valley = done.campaignLog!.valley!
+    expect(valley.residents.simeonAtwood.crossedOut).toBe(true)
+    expect(valley.areasSurveyed).toContain('northPointMine')
+    expect(valley.route).toContain('hemlock-vale-first-evening')
+  })
+})
+
+// Guía, p. 6: tras el preludio se juega el escenario elegido con lo conservado.
+describe('Escrito en la roca en la campaña', () => {
+  it('empieza tras el preludio con la mano, los recursos y las pistas arrastrados', () => {
+    const campaign = newCampaign('the-feast-of-hemlock-vale', ['joe'], 'standard')
+    const deck = campaign.investigators[0]!.deck
+    const routed = {
+      ...campaign,
+      scenarioIndex: 1,
+      log: {
+        ...campaign.log,
+        valley: {
+          ...newValley(),
+          route: [WRITTEN_IN_ROCK],
+          carry: {
+            [campaign.investigators[0]!.id]: { hand: deck.slice(0, 3), resources: 4, clues: 1 },
+          },
+        },
+      },
+    }
+    expect(currentScenario(routed)).toBe(WRITTEN_IN_ROCK)
+    const game = startScenario(routed, 9, false)
+    const joe = game.investigators[0]!
+    expect(joe.hand).toEqual(deck.slice(0, 3))
+    expect(joe.resources).toBe(4)
+    expect(joe.clues).toBe(1)
+    expect(game.campaignLog!.valley!.carry).toBeUndefined()
   })
 })

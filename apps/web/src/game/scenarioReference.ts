@@ -48,7 +48,25 @@ const references: Record<string, { code: string; name: string }> = {
   'fortune-and-folly-part-2': { code: '88001', name: 'Fortune and Folly' },
 }
 
-export function scenarioReference(state: Pick<GameState, 'scenarioId' | 'difficulty'>) {
+/**
+ * Escrito en la roca tiene una carta por par de dificultades (10501 Fácil/Normal, 10502
+ * Difícil/Experto) con el acto 1 en el anverso y el acto 2 en el reverso.
+ */
+const BY_ACT: Record<string, { easy: string; hard: string; name: string }> = {
+  'hemlock-vale-written-in-rock': { easy: '10501', hard: '10502', name: 'Written in Rock' },
+}
+
+export function scenarioReference(
+  state: Pick<GameState, 'scenarioId' | 'difficulty'> & { actIndex?: number },
+) {
+  const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
+  const byAct = BY_ACT[state.scenarioId]
+  if (byAct)
+    return {
+      code: hard ? byAct.hard : byAct.easy,
+      name: byAct.name,
+      back: (state.actIndex ?? 0) > 0,
+    }
   const card = references[state.scenarioId]
   return card
     ? { ...card, back: state.difficulty === 'hard' || state.difficulty === 'expert' }

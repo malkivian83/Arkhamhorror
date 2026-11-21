@@ -1,6 +1,7 @@
 import { registerCampaign, type CampaignScenario } from '../campaign-definition'
 import { hemlockValeChaosBags } from './chaos-bag'
 import { DAY_ONE_SCENARIOS, HEMLOCK_WELCOME, welcomeToHemlockVale } from './welcome'
+import { NEXT_PRELUDE, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
 
 /**
  * Pasos de la campaña. El orden lo deciden los preludios (`valley.route`); los
@@ -15,7 +16,21 @@ const steps: CampaignScenario[] = [
     allowSideStoryBefore: false,
     keywords: ['codex', 'dayNight', 'prelude'],
   },
-  ...DAY_ONE_SCENARIOS.map((id): CampaignScenario => ({ id, allowSideStoryBefore: false })),
+  ...DAY_ONE_SCENARIOS.map((id): CampaignScenario =>
+    id === WRITTEN_IN_ROCK
+      ? {
+          id,
+          build: writtenInRock,
+          allowSideStoryBefore: false,
+          keywords: ['codex', 'dayNight', 'grid'],
+        }
+      : { id, allowSideStoryBefore: false },
+  ),
+  // Preludios de las tardes y albas (entregas 6–8).
+  ...[...new Set(Object.values(NEXT_PRELUDE))].map((id): CampaignScenario => ({
+    id,
+    allowSideStoryBefore: false,
+  })),
 ]
 
 const byId = new Map(steps.map((step) => [step.id, step]))

@@ -97,7 +97,7 @@ const LETTERED = new Set([
     ['a', 'b', 'c', 'd', 'e', 'f'].map((side) => `${code}${side}`),
   ),
   // La fiesta del Valle de la Cicuta: copias distintas con letra (Curvas, Lugares de La noche más larga).
-  ...['10510', '10511'].flatMap((code) => [`${code}a`, `${code}b`]),
+  ...['10510', '10511', '10512', '10513', '10514'].flatMap((code) => [`${code}a`, `${code}b`]),
   ...['10644', '10645', '10647'].flatMap((code) => ['a', 'b', 'c'].map((side) => `${code}${side}`)),
 ])
 

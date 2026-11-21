@@ -7,7 +7,12 @@
     "hemlock-vale-hemlock-house": "Hemlock House",
     "hemlock-vale-silent-heath": "The Silent Heath",
     "hemlock-vale-lost-sister": "The Lost Sister",
-    "hemlock-vale-thing-in-the-depths": "The Thing in the Depths"
+    "hemlock-vale-thing-in-the-depths": "The Thing in the Depths",
+    "hemlock-vale-first-evening": "Prelude: The First Evening",
+    "hemlock-vale-dawn-second-day": "Prelude: Dawn of the Second Day",
+    "hemlock-vale-second-evening": "Prelude: The Second Evening",
+    "hemlock-vale-dawn-final-day": "Prelude: Dawn of the Final Day",
+    "hemlock-vale-final-evening": "Prelude: The Final Evening"
   },
   "story": {
     "welcome": {
@@ -116,6 +121,78 @@
       "codex5": {
         "title": "Codex 5: River Hawthorne",
         "body": "“Fancy seeing you here,” River stands as you approach. They hold a woven basket filled to the brim with phosphorescent mushrooms and blood-red lichens. “I have quite the discerning palate, let me tell you. Eugénie Brazier herself said that I was the most demanding patron to grace her table. These are exquisite,” they inhale from their basket luxuriously, then gesture at the grim tunnel. “The things we do for love.” You offer to help them forage; after all, Dr. Marquez will want samples of the unusual growths."
+      },
+      "caveIn1": {
+        "title": "Scenario Interlude: The Cave-In",
+        "body": "As the rumbling subsides, you look back at the collapsed tunnel. There is no way back. With no other recourse, you follow the old rail line into the darkness. After some time, you come upon a brightly lit shed next to an old mine cart on the nearby tracks."
+      },
+      "caveIn2": {
+        "title": "Scenario Interlude: The Cave-In",
+        "body": "The shed is a former rail control station repurposed as a clubhouse. Hand-drawn maps and charts cover the walls and ceiling; they appear to be a young person’s handwriting. If someone was here recently, they may currently be trapped in the mine along with you."
+      },
+      "caveIn3": {
+        "title": "Scenario Interlude: The Cave-In",
+        "body": "A sharp trill echoes through the cavern, followed by a noisome clicking. Down a connecting tunnel, a stygian maw nested in writhing appendages advances. Your heart nearly stops as the monstrosity lets out another shrill staccato and charges toward you."
+      },
+      "caveIn4": {
+        "title": "Scenario Interlude: The Cave-In",
+        "body": "With the entrance collapsed, the only way out of the mine is through. You push the mine cart forward with every ounce of your strength and jump in, hoping the rusted tracks hold up."
+      },
+      "slideSwap": {
+        "title": "Sliding and Swapping Locations",
+        "body": "To slide a location, choose a location with an empty adjacent space and move it (and all cards at it) into that space. To swap 2 locations, move each of them into the space the other occupied. Locations with a story asset on them cannot be slid or swapped."
+      },
+      "mineCart": {
+        "title": "The Mine Cart",
+        "body": "Investigators ride in the Mine Cart: they are also at its location and cannot move independently. The Mine Cart only moves along a rail line to a connecting location, in the direction it is facing. When it enters a location, it may turn 90 degrees to face one of that location’s rail icons. If the location it moves to does not have aligned rails, the Mine Cart derails."
+      },
+      "derailed": {
+        "title": "The Mine Cart derails!",
+        "body": "The rails are not aligned. The cart leaves the tracks: each investigator is defeated and suffers 1 physical trauma."
+      },
+      "codex2a": {
+        "title": "Codex 2: Leah Atwood",
+        "body": "You find Leah staring down at a pool of milky, glowing liquid. She brushes tears from her eyes as you approach, and resists when you ask her to leave. “This is where I want to be,” she says. You describe the cave-in at the entrance, and the present danger. “None of it matters,” she says stonily, but eventually relents. As you lead her to the cart, you turn and see a round, humanoid shape outlined against the incandescent pool. It flits quickly behind a rock."
+      },
+      "codex2b": {
+        "title": "Codex 2: Leah Atwood",
+        "body": "Leah breaks her silence to grab the cart’s broken lever. “Not left! Right!” The cart wobbles on the tracks, then rights itself. You share a look of relief with the Vale cook as the cart careens forward."
+      },
+      "codex3a": {
+        "title": "Codex 3: Simeon Atwood",
+        "body": "As the mine cart judders over a rickety bridge, you notice a small figure dangling from the edge of a precipice. Acting on instinct, you lean down the lip of the mine cart and catch the figure by the forearm as you hurtle past. As you pull him into the cart, you recognize him as Simeon, chief mischief-maker of the Vale. He brushes himself off, cheeks white as paper. “I was looking for my stash. All part of the p—” he wheezes, then gives up. “Thanks for saving me. I don’t know what I would’ve done without you.”"
+      },
+      "codex3b": {
+        "title": "Codex 3: Simeon Atwood",
+        "body": "“No, no, don’t do it like that.” Simeon pulls the lever on the cart. “How are you still alive? I’m surprised you even found me.” He hits a switch at the side of the tunnel and grins rakishly. “That’s how it’s done.”"
+      },
+      "noResolution": {
+        "title": "No Resolution",
+        "body": "The last thing you remember before you are knocked unconscious is the cart careening into a canyon of light. Your head pounds as you awaken surrounded by glowing blue fungus and extravegant crystal formations. There is a path up the rock, but it will take hours to trek back even to the beginning of the rail tunnels. You sigh, exhausted, and wade through the underground river."
+      },
+      "resolution1": {
+        "title": "Resolution 1",
+        "body": "Simeon steps out of the mine cart looking dazed. “What a ride!” he shouts, troublingly unfazed. “No matter what, you are definitely going in the Miner’s Secret Order of Mischief ’s Hall of Fame! You’re in good company with George Washington Carver and my mom.” He nearly trips as the rail line slopes upward, toward the brilliant sky. You help him to his feet and lead him outside, into the clear fresh air."
+      },
+      "resolution2": {
+        "title": "Resolution 2",
+        "body": "Leah grips the side of the cart as you disembark. She bites her lip as she holds back tears, unseeing. As you lead her back up the tunnel, the sound of soft weeping echoes off the stone walls. As you emerge outside into the clean, fresh air, you work up the courage to ask Leah what she saw.\n\n“He’s gone. Simeon’s gone,” she replies."
+      },
+      "resolution3": {
+        "title": "Resolution 3",
+        "body": "You could swear you hear Simeon Atwood’s voice calling through the empty tunnels as you disembark. Unable to shake the sound, you double back through the tunnels in hopes of finding the young man. You eventually come to a shining abyss filled with crystals. A dark humanoid shape sits hunched over the carcass of a small animal. It skitters into the dark when you call. You shout Simeon’s name until your voice is hoarse, then retrace your steps to the exit with an awful lump in your throat."
+      },
+      "resolution4": {
+        "title": "Resolution 4",
+        "body": "You could swear you hear Leah Atwood’s voice calling through the empty tunnels as you disembark. Unable to shake the sound, you double back through the tunnels in hopes of finding the Vale cook. You eventually come to a shining abyss filled with crystals. A dark humanoid shape sits hunched over Leah’s body at the bottom. It skitters into the dark when you call. You take one last look at Leah’s lifeless body, then retrace your steps to the exit with an awful lump in your throat."
+      },
+      "resolution5": {
+        "title": "Resolution 5",
+        "body": "You hear a familiar chittering staccato as you disembark, followed by a scent of rot. More howls and shouts echo through the twisted cavern, prompting you to run to the exit. Once you emerge into the clear night air, you turn back and wonder what other terrors are written in rock beneath the island."
+      },
+      "resolution6": {
+        "title": "Resolution 6",
+        "body": "“Miskatonic Survey, June 1926. Members Marquez, Musgrave, et alii. We were lucky to escape from North Point Mine with our lives. Extreme instability and seismic tremors. Findings include asymmetrical crystal formations, rodents of unusual size, and an unusually aggressive insect population.”"
       }
     }
   },
@@ -134,7 +211,20 @@
     "directHorror": "Take 1 direct horror",
     "discardRandomTwo": "Discard 2 cards at random from your hand",
     "discardRandom": "Discard 1 card at random from your hand",
-    "directDamageToSucceed": "Take 1 direct damage to automatically succeed"
+    "directDamageToSucceed": "Take 1 direct damage to automatically succeed",
+    "cartLetMove": "Let the Mine Cart move",
+    "cartCancel": "Spend 1 switch: cancel the move",
+    "cartExtra": "Spend 1 switch: move an additional time",
+    "faceN": "Face up (north)",
+    "faceE": "Face right (east)",
+    "faceS": "Face down (south)",
+    "faceW": "Face left (west)",
+    "slide": "Slide {location} to column {column}, row {row}",
+    "swap": "Swap {a} and {b}",
+    "physicalTrauma": "Suffer 1 physical trauma",
+    "mentalTrauma": "Suffer 1 mental trauma",
+    "wildRideMove": "Move the Mine Cart 2 additional times",
+    "wildRideHurt": "Deal 1 direct damage and 1 direct horror to each investigator, Ally and Resident"
   },
   "prompt": {
     "drawOrGain": "Draw 1 card or gain 1 resource",
@@ -142,7 +232,13 @@
     "moveAnywhere": "You may move to any location",
     "heal": "Heal 1 damage or 1 horror",
     "tadsItem": "Tad's General Store",
-    "keepAsset": "Choose 1 asset to keep for the next scenario"
+    "keepAsset": "Choose 1 asset to keep for the next scenario",
+    "cartMoves": "The Mine Cart moves",
+    "cartFacing": "Choose which way the Mine Cart faces",
+    "slideOrSwap": "Slide or swap locations",
+    "trauma": "Choose your trauma",
+    "shardOwner": "Choose who adds the Prismatic Shard to their deck",
+    "takeControl": "Choose an investigator to take control"
   },
   "ability": {
     "codex": "Codex {n}",
@@ -152,7 +248,14 @@
     "chapelSpell": "Search the top 9 cards of your deck for a Spell card and draw it (once per game)",
     "schoolTome": "Search your deck for a Tome asset and draw it (once per game)",
     "dryBurrowMove": "Move to a connecting location (group limit once per round)",
-    "collectScrap": "Draw the top encounter card: move 1 scrap from your location to the scenario reference card"
+    "collectScrap": "Draw the top encounter card: move 1 scrap from your location to the scenario reference card",
+    "mazeClues": "Spend {n} clues as a group: slide a location into an empty adjacent space, or swap 2 adjacent locations",
+    "mazeResources": "Spend {n} resources: slide a revealed location into an empty adjacent space",
+    "takeShard": "Take control of the Prismatic Shard",
+    "turnSwap": "Swap 2 adjacent Rail locations (group limit once per game)",
+    "turnSlide": "Spend 2 resources: slide a location into an empty adjacent space (group limit once per game)",
+    "bridgeSwitch": "Spend 1 resource per investigator: place 1 switch on the scenario reference card",
+    "exhaustBeast": "Spend {n} clues as a group: exhaust the Subterranean Beast"
   },
   "keywords": {
     "dayNight": {
@@ -162,6 +265,10 @@
     "prelude": {
       "title": "Preludes",
       "body": "Preludes are played like scenarios, but without an encounter deck. The investigators befriend the residents of the Vale through codex entries, and the end of each prelude chooses the next scenario."
+    },
+    "grid": {
+      "title": "Location grid",
+      "body": "Locations are placed in a grid. Each location is connected to each location that shares a side with it, in addition to its connection icons. In act 2 of Written in Rock, only adjacent locations with aligned rail icons are connected."
     }
   }
 }

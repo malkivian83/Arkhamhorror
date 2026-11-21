@@ -19,9 +19,9 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - Entrega 3 en lotes: **3a** cuadrícula (hecho, ver
   [Cuadrícula](#cuadrícula-de-lugares)); **3b** acto 1 de Escrito en la roca;
   **3c** acto 2 (raíles, Vagoneta, descarrilamiento) y resoluciones.
-- Lote 3b hecho (ver [Escrito en la roca, acto 1](#escrito-en-la-roca-acto-1)); el
-  escenario aún no está enlazado a la campaña.
-- Siguiente: lote 3c.
+- Lotes 3b y 3c hechos: Escrito en la roca es jugable tras el preludio (ver
+  [Escrito en la roca, acto 2](#escrito-en-la-roca-acto-2)).
+- Siguiente: entrega 4 (La Casa Cicuta).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -29,7 +29,7 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - [x] 0 · Fuentes, inventario EN/ES de `fhvc`, escaneos y miniaturas.
 - [x] 1 · Estado de campaña: día y hora, habitantes, zonas exploradas, bolsa y fatiga.
 - [x] 2 · Preludios y códice: preludio de bienvenida jugable de principio a fin.
-- [ ] 3 · Adyacencia por cuadrícula y Escrito en la roca.
+- [x] 3 · Adyacencia por cuadrícula y Escrito en la roca.
 - [ ] 4 · La Casa Cicuta.
 - [ ] 5 · El páramo silencioso, La hermana perdida y La cosa de las profundidades.
 - [ ] 6 · La primera tarde y La hondonada retorcida.
@@ -312,6 +312,38 @@ Lote 3b, en `hemlock-vale/written-in-rock.ts` y `rock-encounters.ts` (pruebas en
 - **Habitantes:** el Negociar sirve en cualquier escenario de la campaña; bajo
   control dan su +1 de habilidad y, si son derrotados, baja su relación. Pendiente:
   los espacios extra de Madre Rachel y Gideon y las acciones extra de Judith y Theo.
+
+### Escrito en la roca, acto 2
+
+Lote 3c, en `written-in-rock-act2.ts`, enlazado como `build` del paso
+`hemlock-vale-written-in-rock`. Imágenes nuevas de las copias A/B (10512–10514) con
+sus reversos y miniaturas.
+
+- **Interludio:** red de 5×5 de la p. 11 (las filas de la guía se cuentan de abajo
+  arriba), Puesto de control abajo a la izquierda, Salida férrea arriba a la derecha,
+  elecciones al azar entre las parejas, 7 Lugares al azar en las casillas «?», Simeon
+  o Leah apartados en la Vía hundida A, Esquirla prismática, Bestia subterránea de
+  noche y agujas = chatarra + 1. Las cartas de Escrito en la roca y el descarte se
+  barajan en el mazo.
+- **Raíles:** `RAILS` guarda los iconos de cada carta (los de la referencia);
+  `gridAdjacent` solo conecta raíles alineados en el acto 2.
+- **Vagoneta:** estado en `scenarioMeta` (`cartLocation`, `cartFacing`); los
+  investigadores van con ella y no pueden hacer acciones de movimiento. Se mueve al
+  final de la fase de Enemigos, con la ficha de tablilla y con Curva deformada; el jefe
+  puede gastar agujas para cancelar o repetir (dos veces por fase). Gira 90° al entrar;
+  descarrila (derrota y 1 trauma físico) si no hay Lugar o raíl alineado. Derrumbe,
+  Viaje salvaje y la Bestia lista la detienen o modifican.
+- **Deslizar e intercambiar:** habilidades del acto 2, de las Curvas, del Puente y del
+  Híbrido excavador; nunca el Lugar con un Apoyo de historia ni la Salida férrea.
+- **Plan 2:** Cazador para todos, adyacentes conectados al moverse un Enemigo y, en su
+  reverso, derrota con trauma a elegir.
+- **Resoluciones:** R1–R5 según los Atwood, sin resolución según día y hora, y R6
+  (Esquirla, River, Victoria, zona explorada y siguiente preludio en `valley.route`).
+
+Pendiente: la reacción de la Esquirla prismática (ya se añade al mazo), resolver
+Cazador una vez más con el plan 2, impedir otros movimientos ajenos a la Vagoneta, el
+códice Θ de la Dra. Marquez y el modo independiente. Revisión visual pendiente: red
+ferroviaria, Vagoneta y textos.
 
 Pendiente para cuando haya un escenario jugable (entrega 3): conservar los usos
 «una vez por partida» y no repetir las ventanas de inicio de partida entre el

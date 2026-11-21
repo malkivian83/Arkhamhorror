@@ -7,7 +7,12 @@
     "hemlock-vale-hemlock-house": "La Casa Cicuta",
     "hemlock-vale-silent-heath": "El páramo silencioso",
     "hemlock-vale-lost-sister": "La hermana perdida",
-    "hemlock-vale-thing-in-the-depths": "La cosa de las profundidades"
+    "hemlock-vale-thing-in-the-depths": "La cosa de las profundidades",
+    "hemlock-vale-first-evening": "Preludio: La primera tarde",
+    "hemlock-vale-dawn-second-day": "Preludio: Alba del segundo día",
+    "hemlock-vale-second-evening": "Preludio: La segunda tarde",
+    "hemlock-vale-dawn-final-day": "Preludio: Alba del último día",
+    "hemlock-vale-final-evening": "Preludio: La última tarde"
   },
   "story": {
     "welcome": {
@@ -116,6 +121,78 @@
       "codex5": {
         "title": "Códice 5: River Hawthorne",
         "body": "–Qué casualidad encontrarnos aquí –dice River mientras se pone en pie cuando te acercas. Lleva una cesta tejida que va llena a rebosar de setas fosforescentes y líquenes del color de la sangre–. Permítame que le diga que tengo un paladar bastante exquisito. La propia Eugénie Brazier dijo que era la clienta más exigente que jamás se había sentado a su mesa. Todo esto es delicioso –añade mientras huele con placer el contenido de su cesta. Luego señala el siniestro túnel y afirma–: Las cosas que hago por amor.\n\nLe ofreces ayuda para recolectar; al fin y al cabo, la Dra. Marquez querrá muestras de las extrañas plantas."
+      },
+      "caveIn1": {
+        "title": "Interludio del escenario: El derrumbe",
+        "body": "Cuando el estruendo termina, contempláis el túnel desmoronado. No hay forma de volver. Sin otra alternativa, seguís la vieja línea férrea hacia la oscuridad. Tras un rato, llegáis a una caseta muy iluminada que se encuentra junto a una antigua vagoneta situada en las vías."
+      },
+      "caveIn2": {
+        "title": "Interludio del escenario: El derrumbe",
+        "body": "La caseta es un antiguo puesto de control ferroviario reconvertido en la sede de un club. Hay mapas y gráficos hechos a mano por todas las paredes y el techo; parecen obra de una persona joven. Si alguien ha estado aquí hace poco, puede que también se encuentre atrapado en la mina con vosotros."
+      },
+      "caveIn3": {
+        "title": "Interludio del escenario: El derrumbe",
+        "body": "Un agudo trino resuena por la caverna, seguido de unos ruidosos chasquidos. Por uno de los túneles conectados a vuestra ubicación avanzan unas fauces estigias sobre apéndices que se retuercen. Casi se os para el corazón cuando la monstruosidad emite otro estridente grito y carga hacia vosotros.\n\nPasa a El derrumbe 4."
+      },
+      "caveIn4": {
+        "title": "Interludio del escenario: El derrumbe",
+        "body": "Con la entrada colapsada, la única forma de salir de la mina es atravesándola. Empujáis la vagoneta hacia delante con todas vuestras fuerzas y os metéis en ella de un salto, con la esperanza de que las oxidadas vías aguanten."
+      },
+      "slideSwap": {
+        "title": "Deslizar e intercambiar Lugares",
+        "body": "Para deslizar un Lugar, elige un Lugar que tenga un espacio vacío adyacente y muévelo (con todas las cartas que haya en él) a ese espacio. Para intercambiar 2 Lugares, mueve cada uno al espacio que ocupaba el otro. Los Lugares con Apoyos de historia no se pueden deslizar ni intercambiar."
+      },
+      "mineCart": {
+        "title": "La Vagoneta",
+        "body": "Los investigadores van en la Vagoneta: también están en su Lugar y no pueden moverse por su cuenta. La Vagoneta sólo se mueve por una línea de ferrocarril a un Lugar conectado, en la dirección en la que mira. Al entrar en un Lugar puede girar 90 grados para mirar hacia uno de sus iconos de raíl. Si el Lugar al que se mueve no tiene los raíles alineados, la Vagoneta descarrila."
+      },
+      "derailed": {
+        "title": "¡La Vagoneta descarrila!",
+        "body": "Los raíles no están alineados. La Vagoneta se sale de la vía: cada investigador queda derrotado y sufre 1 trauma físico."
+      },
+      "codex2a": {
+        "title": "Códice 2: Leah Atwood",
+        "body": "Encuentras a Leah mirando fijamente un charco de un líquido lechoso y brillante. Se seca las lágrimas de los ojos cuando te acercas y se resiste cuando le pides que se vaya. –Es aquí donde quiero estar –dice. Le describes el derrumbe de la entrada y el peligro actual. –Nada de eso importa –responde impasiblemente, pero acaba por ceder. Mientras la llevas hacia la vagoneta, te giras y ves una forma redonda y humanoide que se recorta contra el charco incandescente. La silueta se esconde rápidamente tras una roca."
+      },
+      "codex2b": {
+        "title": "Códice 2: Leah Atwood",
+        "body": "Leah rompe su silencio para agarrar la palanca rota de la vagoneta. –¡A la izquierda no! ¡A la derecha! La vagoneta se tambalea sobre la vía y luego se estabiliza. Intercambias una mirada de alivio con la cocinera del Valle mientras el vehículo sigue su avance."
+      },
+      "codex3a": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "Mientras la vagoneta se estremece sobre un desvencijado puente, ves una pequeña figura que cuelga del borde de un precipicio. Actuando por instinto, te inclinas por el borde de la vagoneta y agarras a esa persona por el antebrazo mientras pasas a toda velocidad. Al meterla en el carro, reconoces a Simeon, el bromista en jefe del Valle. Se sacude el polvo, con las mejillas blancas como la cal, y dice: –Estaba buscando mi alijo. Era todo parte del p... –Jadea y luego se rinde–. Gracias por salvarme. No sé qué habría hecho sin usted."
+      },
+      "codex3b": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "–No, no, no lo haga así –dice Simeon mientras tira de la palanca de la vagoneta–. ¿Cómo puede seguir vivo? Me sorprende hasta que lograra encontrarme. Golpea una aguja que hay en el lateral del túnel y sonríe con jovialidad. –Así es como se hace."
+      },
+      "noResolution": {
+        "title": "Sin resolución",
+        "body": "Lo último que recordáis antes de quedar inconscientes es que la vagoneta se precipitaba hacia un abismo de luz. Cuando despertáis, rodeados de brillantes hongos azules y extravagantes formaciones de cristal, la cabeza os martillea como un bombo. Hay un camino que sube por la roca, pero os llevará horas regresar al comienzo de los túneles de la vía. Suspiráis agotados y empezáis a vadear por el río subterráneo."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "Simeon sale de la vagoneta con aspecto aturdido. –¡Menudo viaje! –grita. Resulta algo perturbador que esté impertérrito–. Pase lo que pase, ¡vais a entrar en el salón de la fama de la orden secreta minera de la diablura! Estaréis en buena compañía, con George Washington y mi madre.\n\nEstá a punto de tropezarse cuando la vía inicia una pendiente hacia arriba, hacia el brillante cielo. Lo ayudáis a mantener el equilibrio y lo lleváis fuera, hacia el aire fresco."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "Leah agarra el lateral de la vagoneta cuando desembarcáis. Se muerde el labio mientras contiene las lágrimas, sin ver nada. La lleváis túnel arriba y el sonido de sus sollozos resuena en las paredes de piedra. Cuando salís al exterior y sentís el fresco aire limpio, reunís el valor suficiente como para preguntarle a Leah qué vio. –Ya no está. Simeon ya no está –contesta."
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "Juraríais que oís la voz de Simeon Atwood resonando en los túneles vacíos cuando bajáis de la vagoneta. Incapaces de desembarazaros del sonido, volvéis por los túneles con la esperanza de encontrar al joven. Acabáis por llegar a un brillante abismo lleno de cristales. Una oscura forma humanoide está encorvada sobre el cadáver de un animal pequeño. Al llamarla, se va corriendo hacia la oscuridad. Gritáis el nombre de Simeon hasta quedaros roncos y luego desandáis el camino hacia la salida con un terrible nudo en la garganta."
+      },
+      "resolution4": {
+        "title": "Resolución 4",
+        "body": "Juraríais que oís la voz de Leah Atwood resonando en los túneles vacíos cuando bajáis de la vagoneta. Incapaces de desembarazaros del sonido, volvéis por los túneles con la esperanza de encontrar a la cocinera del Valle. Acabáis por llegar a un brillante abismo lleno de cristales. Una oscura forma humanoide está encorvada sobre el cadáver de Leah en el fondo. Al llamarla, se va corriendo hacia la oscuridad. Miráis por última vez el cuerpo sin vida de Leah y luego desandáis el camino hacia la salida con un terrible nudo en la garganta."
+      },
+      "resolution5": {
+        "title": "Resolución 5",
+        "body": "Al desembarcar, oís un chillido familiar, seguido del hedor de la putrefacción. Por la retorcida caverna resuenan más gritos y aullidos, así que echáis a correr hacia la salida. Cuando salís al limpio aire nocturno, os giráis y os preguntáis qué otros terrores hay escritos en la roca bajo la isla."
+      },
+      "resolution6": {
+        "title": "Resolución 6",
+        "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Tuvimos suerte de escapar con vida de las minas de la Punta Norte. Inestabilidad extrema y temblores sísmicos. Los hallazgos incluyen formaciones de cristal asimétricas, roedores de tamaño inusual y una población de insectos inusualmente agresivos”."
       }
     }
   },
@@ -134,7 +211,20 @@
     "directHorror": "Recibe 1 punto de horror directo",
     "discardRandomTwo": "Descarta 2 cartas al azar de tu mano",
     "discardRandom": "Descarta 1 carta al azar de tu mano",
-    "directDamageToSucceed": "Recibe 1 punto de daño directo para tener éxito automáticamente"
+    "directDamageToSucceed": "Recibe 1 punto de daño directo para tener éxito automáticamente",
+    "cartLetMove": "Dejar que la Vagoneta se mueva",
+    "cartCancel": "Gasta 1 aguja: cancela el movimiento",
+    "cartExtra": "Gasta 1 aguja: muévela una vez más",
+    "faceN": "Mirar hacia arriba (norte)",
+    "faceE": "Mirar a la derecha (este)",
+    "faceS": "Mirar hacia abajo (sur)",
+    "faceW": "Mirar a la izquierda (oeste)",
+    "slide": "Desliza {location} a la columna {column}, fila {row}",
+    "swap": "Intercambia {a} y {b}",
+    "physicalTrauma": "Sufre 1 trauma físico",
+    "mentalTrauma": "Sufre 1 trauma mental",
+    "wildRideMove": "Mueve la Vagoneta 2 veces más",
+    "wildRideHurt": "Inflige 1 daño directo y 1 horror directo a cada investigador, Aliado y Habitante"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -142,7 +232,13 @@
     "moveAnywhere": "Puedes moverte a cualquier Lugar",
     "heal": "Cúrate 1 punto de daño o 1 de horror",
     "tadsItem": "Almacén general de Tad",
-    "keepAsset": "Elige 1 Apoyo para conservarlo en el siguiente escenario"
+    "keepAsset": "Elige 1 Apoyo para conservarlo en el siguiente escenario",
+    "cartMoves": "La Vagoneta se mueve",
+    "cartFacing": "Elige hacia dónde mira la Vagoneta",
+    "slideOrSwap": "Desliza o intercambia Lugares",
+    "trauma": "Elige tu trauma",
+    "shardOwner": "Elige quién añade la Esquirla prismática a su mazo",
+    "takeControl": "Elige un investigador para que tome el control"
   },
   "ability": {
     "codex": "Códice {n}",
@@ -152,7 +248,14 @@
     "chapelSpell": "Busca entre las 9 primeras cartas de tu mazo una carta Hechizo y róbala (una vez por partida)",
     "schoolTome": "Busca en tu mazo un Apoyo Tomo y róbalo (una vez por partida)",
     "dryBurrowMove": "Moverte a un Lugar conectado (límite de grupo: una vez por ronda)",
-    "collectScrap": "Roba la carta superior del mazo de Encuentros: mueve 1 chatarra de tu Lugar a la carta de referencia"
+    "collectScrap": "Roba la carta superior del mazo de Encuentros: mueve 1 chatarra de tu Lugar a la carta de referencia",
+    "mazeClues": "Gasta {n} pistas en grupo: desliza un Lugar a un espacio vacío adyacente o intercambia 2 Lugares adyacentes",
+    "mazeResources": "Gasta {n} recursos: desliza un Lugar revelado a un espacio vacío adyacente",
+    "takeShard": "Toma el control de la Esquirla prismática",
+    "turnSwap": "Intercambia 2 Lugares Ferrocarril adyacentes (límite de grupo: una vez por partida)",
+    "turnSlide": "Gasta 2 recursos: desliza un Lugar a un espacio vacío adyacente (límite de grupo: una vez por partida)",
+    "bridgeSwitch": "Gasta 1 recurso por investigador: coloca 1 aguja en la carta de referencia",
+    "exhaustBeast": "Gasta {n} pistas en grupo: agota a la Bestia subterránea"
   },
   "keywords": {
     "dayNight": {
@@ -162,6 +265,10 @@
     "prelude": {
       "title": "Preludios",
       "body": "Los preludios se juegan como un escenario, pero sin mazo de Encuentros. Los investigadores se ganan a los habitantes del Valle con las entradas del códice, y el final de cada preludio elige el siguiente escenario."
+    },
+    "grid": {
+      "title": "Cuadrícula de Lugares",
+      "body": "Los Lugares forman una cuadrícula. Cada Lugar está conectado a los que comparten un lado con él, además de por sus iconos de conexión. En el acto 2 de Escrito en la roca, sólo se conectan los Lugares adyacentes con los iconos de raíl alineados."
     }
   }
 }

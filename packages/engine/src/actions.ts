@@ -602,8 +602,10 @@ export function actionCost(state: GameState, id: InvestigatorId, action: Action)
       extra +
       moveCost(physicalMovementState(state, id), physicalLocation(state, id) ?? here) +
       moveCost(state, action.to) +
-      (scenarioBehavior(state.scenarioId)?.leaveCost?.(state, physicalLocation(state, id) ?? here) ??
-        0)
+      (scenarioBehavior(state.scenarioId)?.leaveCost?.(
+        state,
+        physicalLocation(state, id) ?? here,
+      ) ?? 0)
     )
   return 1 + extra
 }
