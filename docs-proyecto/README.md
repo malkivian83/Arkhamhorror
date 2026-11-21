@@ -156,6 +156,9 @@ Documentos posteriores, por número:
 
 - [163 · Sefina Rousseau](163-investigadora-sefina-rousseau.md): mazo oficial FFG, preparación de trece cartas, eventos bajo la investigadora, copias con identidad física y Estrellas de las Híades.
 
+- [164 · Revisión de la referencia — 21/11/2026](164-revision-referencia-2026-11-21.md): recuentos frente a la auditoría 15, corpus de reglas `mcp/references` (Grimorio, FAQ v2.5, resoluciones fechadas, notas del motor), campañas completas y mapa de The Feast of Hemlock Vale.
+- [165 · La fiesta del Valle de la Cicuta](165-la-fiesta-del-valle-de-la-cicuta.md): hoja de ruta de la campaña; estructura de tres días, bolsa, reglas nuevas, registro, erratas, entregas, narración (voz `Nh2zY9kknu6z4pZy6FhD`) y expansión de investigadores.
+
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).

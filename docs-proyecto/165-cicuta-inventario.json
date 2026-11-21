@@ -1,0 +1,4098 @@
+{
+  "pack": "fhvc",
+  "status": "inventory-only",
+  "sources": {
+    "en": {
+      "path": "frontend/public/cards_en.json",
+      "sha256": "07ce283c7046c181f9e8a65e3d96016c2678850e41081ca87be0c8715eae1a1a"
+    },
+    "es": {
+      "path": "frontend/public/cards_es.json",
+      "sha256": "5e6443dfd49515069f246b977527042f462002bddf8cc693087c10b15ad3675d"
+    }
+  },
+  "counts": {
+    "codes": 301,
+    "visibleCodes": 251,
+    "sourceCopies": 355,
+    "encounterSets": 26,
+    "imageFaces": 413
+  },
+  "cards": [
+    {
+      "code": "10501",
+      "encounterSet": "written_in_rock",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10501",
+        "10501b"
+      ],
+      "name": {
+        "en": "Written in Rock",
+        "es": "Escrito en la roca"
+      }
+    },
+    {
+      "code": "10502",
+      "encounterSet": "written_in_rock",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10502",
+        "10502b"
+      ],
+      "name": {
+        "en": "Written in Rock",
+        "es": "Escrito en la roca"
+      }
+    },
+    {
+      "code": "10503",
+      "encounterSet": "written_in_rock",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10503",
+        "10503b"
+      ],
+      "name": {
+        "en": "Underground Survey",
+        "es": "Exploración subterránea"
+      }
+    },
+    {
+      "code": "10504",
+      "encounterSet": "written_in_rock",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10504",
+        "10504b"
+      ],
+      "name": {
+        "en": "Dangerous Ride",
+        "es": "Viaje peligroso"
+      }
+    },
+    {
+      "code": "10505",
+      "encounterSet": "written_in_rock",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10505",
+        "10505b"
+      ],
+      "name": {
+        "en": "Descent into the Mines",
+        "es": "Descenso a las minas"
+      }
+    },
+    {
+      "code": "10506",
+      "encounterSet": "written_in_rock",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10506",
+        "10506b"
+      ],
+      "name": {
+        "en": "The Underground Maze",
+        "es": "El laberinto subterráneo"
+      }
+    },
+    {
+      "code": "10507",
+      "encounterSet": "written_in_rock",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10507"
+      ],
+      "name": {
+        "en": "Mine Cart",
+        "es": "Vagoneta"
+      }
+    },
+    {
+      "code": "10508",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10508",
+        "10508b"
+      ],
+      "name": {
+        "en": "Control Station",
+        "es": "Puesto de control"
+      }
+    },
+    {
+      "code": "10509",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10509",
+        "10509b"
+      ],
+      "name": {
+        "en": "Rail Exit",
+        "es": "Salida férrea"
+      }
+    },
+    {
+      "code": "10510a",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10510a",
+        "10510ab"
+      ],
+      "name": {
+        "en": "Left Turn",
+        "es": "Curva a la izquierda"
+      }
+    },
+    {
+      "code": "10510b",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10510b",
+        "10510bb"
+      ],
+      "name": {
+        "en": "Left Turn",
+        "es": "Curva a la izquierda"
+      }
+    },
+    {
+      "code": "10511a",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10511a",
+        "10511ab"
+      ],
+      "name": {
+        "en": "Right Turn",
+        "es": "Curva a la derecha"
+      }
+    },
+    {
+      "code": "10511b",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10511b",
+        "10511bb"
+      ],
+      "name": {
+        "en": "Right Turn",
+        "es": "Curva a la derecha"
+      }
+    },
+    {
+      "code": "10512",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10512",
+        "10512b"
+      ],
+      "name": {
+        "en": "Alkaline Rail",
+        "es": "Raíl alcalino"
+      }
+    },
+    {
+      "code": "10513",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10513",
+        "10513b"
+      ],
+      "name": {
+        "en": "Warped Rail",
+        "es": "Raíl retorcido"
+      }
+    },
+    {
+      "code": "10514",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10514",
+        "10514b"
+      ],
+      "name": {
+        "en": "Sunken Rail",
+        "es": "Raíl hundido"
+      }
+    },
+    {
+      "code": "10515",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 3,
+      "faces": [
+        "10515",
+        "10515b"
+      ],
+      "name": {
+        "en": "Forked Rail",
+        "es": "Raíl bifurcado"
+      }
+    },
+    {
+      "code": "10516",
+      "encounterSet": "written_in_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10516",
+        "10516b"
+      ],
+      "name": {
+        "en": "Rail Bridge",
+        "es": "Puente férreo"
+      }
+    },
+    {
+      "code": "10517",
+      "encounterSet": "written_in_rock",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10517"
+      ],
+      "name": {
+        "en": "Subterranean Beast",
+        "es": "Bestia subterránea"
+      }
+    },
+    {
+      "code": "10518",
+      "encounterSet": "written_in_rock",
+      "type": "enemy",
+      "quantity": 3,
+      "faces": [
+        "10518"
+      ],
+      "name": {
+        "en": "Burrowing Hybrid",
+        "es": "Híbrido excavador"
+      }
+    },
+    {
+      "code": "10519",
+      "encounterSet": "written_in_rock",
+      "type": "enemy",
+      "quantity": 3,
+      "faces": [
+        "10519"
+      ],
+      "name": {
+        "en": "Frenzied Miner",
+        "es": "Minero enajenado"
+      }
+    },
+    {
+      "code": "10520",
+      "encounterSet": "written_in_rock",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10520"
+      ],
+      "name": {
+        "en": "Cave-In",
+        "es": "Derrumbe"
+      }
+    },
+    {
+      "code": "10521",
+      "encounterSet": "written_in_rock",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10521"
+      ],
+      "name": {
+        "en": "Wild Ride",
+        "es": "Trayecto salvaje"
+      }
+    },
+    {
+      "code": "10522",
+      "encounterSet": "written_in_rock",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10522"
+      ],
+      "name": {
+        "en": "Prismatic Shard",
+        "es": "Esquirla prismática"
+      }
+    },
+    {
+      "code": "10523",
+      "encounterSet": "hemlock_house",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10523",
+        "10523b"
+      ],
+      "name": {
+        "en": "Hemlock House",
+        "es": "La Casa Cicuta"
+      }
+    },
+    {
+      "code": "10524",
+      "encounterSet": "hemlock_house",
+      "type": "story",
+      "quantity": 1,
+      "faces": [
+        "10524"
+      ],
+      "name": {
+        "en": "The Predatory House",
+        "es": "La casa depredadora"
+      }
+    },
+    {
+      "code": "10524b",
+      "encounterSet": "hemlock_house",
+      "type": "story",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10524b"
+      ],
+      "name": {
+        "en": "Predation Test",
+        "es": "Prueba de depredación"
+      }
+    },
+    {
+      "code": "10525",
+      "encounterSet": "hemlock_house",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10525",
+        "10525b"
+      ],
+      "name": {
+        "en": "Eerie Silence",
+        "es": "Silencio espectral"
+      }
+    },
+    {
+      "code": "10526",
+      "encounterSet": "hemlock_house",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10526",
+        "10526b"
+      ],
+      "name": {
+        "en": "The House Stirs (v. I)",
+        "es": "La casa se agita (v.I)"
+      }
+    },
+    {
+      "code": "10527",
+      "encounterSet": "hemlock_house",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10527",
+        "10527b"
+      ],
+      "name": {
+        "en": "The House Stirs (v.II)",
+        "es": "La casa se agita (v.II)"
+      }
+    },
+    {
+      "code": "10528",
+      "encounterSet": "hemlock_house",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10528",
+        "10528b"
+      ],
+      "name": {
+        "en": "Living Walls",
+        "es": "Paredes vivientes"
+      }
+    },
+    {
+      "code": "10529",
+      "encounterSet": "hemlock_house",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10529",
+        "10529b"
+      ],
+      "name": {
+        "en": "Strange Infestation",
+        "es": "Infestación extraña"
+      }
+    },
+    {
+      "code": "10530",
+      "encounterSet": "hemlock_house",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10530",
+        "10530b"
+      ],
+      "name": {
+        "en": "Against the House",
+        "es": "Contra la casa"
+      }
+    },
+    {
+      "code": "10531",
+      "encounterSet": "hemlock_house",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10531",
+        "10531b"
+      ],
+      "name": {
+        "en": "The Heart of the House",
+        "es": "El corazón de la casa"
+      }
+    },
+    {
+      "code": "10532",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10532"
+      ],
+      "name": {
+        "en": "Bedroom",
+        "es": "Dormitorio"
+      }
+    },
+    {
+      "code": "10532b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10532b"
+      ],
+      "name": {
+        "en": "Living Bedroom",
+        "es": "Dormitorio viviente"
+      }
+    },
+    {
+      "code": "10533",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10533"
+      ],
+      "name": {
+        "en": "Bedroom",
+        "es": "Dormitorio"
+      }
+    },
+    {
+      "code": "10533b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10533b"
+      ],
+      "name": {
+        "en": "Living Bedroom",
+        "es": "Dormitorio viviente"
+      }
+    },
+    {
+      "code": "10534",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10534"
+      ],
+      "name": {
+        "en": "Bedroom",
+        "es": "Dormitorio"
+      }
+    },
+    {
+      "code": "10534b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10534b"
+      ],
+      "name": {
+        "en": "Living Bedroom",
+        "es": "Dormitorio viviente"
+      }
+    },
+    {
+      "code": "10535",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10535"
+      ],
+      "name": {
+        "en": "Bedroom",
+        "es": "Dormitorio"
+      }
+    },
+    {
+      "code": "10535b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10535b"
+      ],
+      "name": {
+        "en": "Living Bedroom",
+        "es": "Dormitorio viviente"
+      }
+    },
+    {
+      "code": "10536",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10536"
+      ],
+      "name": {
+        "en": "Washroom",
+        "es": "Baño"
+      }
+    },
+    {
+      "code": "10536b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10536b"
+      ],
+      "name": {
+        "en": "Living Washroom",
+        "es": "Baño viviente"
+      }
+    },
+    {
+      "code": "10537",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10537"
+      ],
+      "name": {
+        "en": "Washroom",
+        "es": "Baño"
+      }
+    },
+    {
+      "code": "10537b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10537b"
+      ],
+      "name": {
+        "en": "Living Washroom",
+        "es": "Baño viviente"
+      }
+    },
+    {
+      "code": "10538",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10538"
+      ],
+      "name": {
+        "en": "Washroom",
+        "es": "Baño"
+      }
+    },
+    {
+      "code": "10538b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10538b"
+      ],
+      "name": {
+        "en": "Living Washroom",
+        "es": "Baño viviente"
+      }
+    },
+    {
+      "code": "10539",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10539"
+      ],
+      "name": {
+        "en": "Library",
+        "es": "Biblioteca"
+      }
+    },
+    {
+      "code": "10539b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10539b"
+      ],
+      "name": {
+        "en": "Living Library",
+        "es": "Biblioteca viviente"
+      }
+    },
+    {
+      "code": "10540",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10540"
+      ],
+      "name": {
+        "en": "Library",
+        "es": "Biblioteca"
+      }
+    },
+    {
+      "code": "10540b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10540b"
+      ],
+      "name": {
+        "en": "Living Library",
+        "es": "Biblioteca viviente"
+      }
+    },
+    {
+      "code": "10541",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10541"
+      ],
+      "name": {
+        "en": "Parlor",
+        "es": "Salita"
+      }
+    },
+    {
+      "code": "10541b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10541b"
+      ],
+      "name": {
+        "en": "Living Parlor",
+        "es": "Salita viviente"
+      }
+    },
+    {
+      "code": "10542",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10542"
+      ],
+      "name": {
+        "en": "Dining Room",
+        "es": "Comedor"
+      }
+    },
+    {
+      "code": "10542b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10542b"
+      ],
+      "name": {
+        "en": "Living Dining Room",
+        "es": "Comedor viviente"
+      }
+    },
+    {
+      "code": "10543",
+      "encounterSet": "hemlock_house",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10543"
+      ],
+      "name": {
+        "en": "Foyer",
+        "es": "Vestíbulo"
+      }
+    },
+    {
+      "code": "10543b",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10543b"
+      ],
+      "name": {
+        "en": "Living Foyer",
+        "es": "Vestíbulo viviente"
+      }
+    },
+    {
+      "code": "10544",
+      "encounterSet": "hemlock_house",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10544"
+      ],
+      "name": {
+        "en": "Grappling Spawn",
+        "es": "Engendro apresador"
+      }
+    },
+    {
+      "code": "10545",
+      "encounterSet": "hemlock_house",
+      "type": "treachery",
+      "quantity": 4,
+      "faces": [
+        "10545"
+      ],
+      "name": {
+        "en": "Out of the Walls",
+        "es": "Salen de las paredes"
+      }
+    },
+    {
+      "code": "10546",
+      "encounterSet": "hemlock_house",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10546"
+      ],
+      "name": {
+        "en": "Pulled In",
+        "es": "Atraído"
+      }
+    },
+    {
+      "code": "10547",
+      "encounterSet": "hemlock_house",
+      "type": "enemy_location",
+      "quantity": 1,
+      "faces": [
+        "10547"
+      ],
+      "name": {
+        "en": "Shapeless Cellar",
+        "es": "Sótano informe"
+      }
+    },
+    {
+      "code": "10548",
+      "encounterSet": "hemlock_house",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10548"
+      ],
+      "name": {
+        "en": "Little Sylvie",
+        "es": "Pequeña Sylvie"
+      }
+    },
+    {
+      "code": "10549",
+      "encounterSet": "the_silent_heath",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10549",
+        "10549b"
+      ],
+      "name": {
+        "en": "The Silent Heath",
+        "es": "El páramo silencioso"
+      }
+    },
+    {
+      "code": "10550",
+      "encounterSet": "the_silent_heath",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10550",
+        "10550b"
+      ],
+      "name": {
+        "en": "Unsettling Silence",
+        "es": "Silencio inquietante"
+      }
+    },
+    {
+      "code": "10551",
+      "encounterSet": "the_silent_heath",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10551",
+        "10551b"
+      ],
+      "name": {
+        "en": "Desolation (v.I)",
+        "es": "Desolación (v.I)"
+      }
+    },
+    {
+      "code": "10552",
+      "encounterSet": "the_silent_heath",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10552",
+        "10552b"
+      ],
+      "name": {
+        "en": "Desolation (v.II)",
+        "es": "Desolación (v.II)"
+      }
+    },
+    {
+      "code": "10553",
+      "encounterSet": "the_silent_heath",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10553",
+        "10553b"
+      ],
+      "name": {
+        "en": "A Lost Legacy",
+        "es": "Un legado perdido"
+      }
+    },
+    {
+      "code": "10554",
+      "encounterSet": "the_silent_heath",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10554",
+        "10554b"
+      ],
+      "name": {
+        "en": "Searching the Heath",
+        "es": "Registrando el páramo"
+      }
+    },
+    {
+      "code": "10555",
+      "encounterSet": "the_silent_heath",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10555",
+        "10555b"
+      ],
+      "name": {
+        "en": "Crystal Grove",
+        "es": "Arboleda de cristal"
+      }
+    },
+    {
+      "code": "10556",
+      "encounterSet": "the_silent_heath",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10556",
+        "10556b"
+      ],
+      "name": {
+        "en": "Pearl Estate Ruins",
+        "es": "Ruinas de la Finca Perla"
+      }
+    },
+    {
+      "code": "10557",
+      "encounterSet": "the_silent_heath",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10557",
+        "10557b"
+      ],
+      "name": {
+        "en": "Ashen Slope",
+        "es": "Pendiente de ceniza"
+      }
+    },
+    {
+      "code": "10558",
+      "encounterSet": "the_silent_heath",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10558"
+      ],
+      "name": {
+        "en": "Salt Chamber",
+        "es": "Cámara de sal"
+      }
+    },
+    {
+      "code": "10559",
+      "encounterSet": "the_silent_heath",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10559"
+      ],
+      "name": {
+        "en": "Larval Tunnel",
+        "es": "Túnel de larvas"
+      }
+    },
+    {
+      "code": "10560",
+      "encounterSet": "the_silent_heath",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10560"
+      ],
+      "name": {
+        "en": "Crystal Nursery",
+        "es": "Zona de cría de cristal"
+      }
+    },
+    {
+      "code": "10561",
+      "encounterSet": "the_silent_heath",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10561"
+      ],
+      "name": {
+        "en": "Commanding Resonance",
+        "es": "Resonancia imperiosa"
+      }
+    },
+    {
+      "code": "10562",
+      "encounterSet": "the_silent_heath",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10562"
+      ],
+      "name": {
+        "en": "Defend the Nest",
+        "es": "Defender el nido"
+      }
+    },
+    {
+      "code": "10563",
+      "encounterSet": "the_silent_heath",
+      "type": "enemy",
+      "quantity": 3,
+      "faces": [
+        "10563"
+      ],
+      "name": {
+        "en": "Colorless Larva",
+        "es": "Larva incolora"
+      }
+    },
+    {
+      "code": "10564",
+      "encounterSet": "the_silent_heath",
+      "type": "enemy",
+      "quantity": 3,
+      "faces": [
+        "10564"
+      ],
+      "name": {
+        "en": "Brood Soldier",
+        "es": "Soldado de progenie"
+      }
+    },
+    {
+      "code": "10565",
+      "encounterSet": "the_silent_heath",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10565"
+      ],
+      "name": {
+        "en": "Brood Queen",
+        "es": "Reina de progenie"
+      }
+    },
+    {
+      "code": "10566",
+      "encounterSet": "the_silent_heath",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10566"
+      ],
+      "name": {
+        "en": "Crystal Remains",
+        "es": "Restos cristalinos"
+      }
+    },
+    {
+      "code": "10567",
+      "encounterSet": "the_silent_heath",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10567"
+      ],
+      "name": {
+        "en": "Crystal Remains",
+        "es": "Restos cristalinos"
+      }
+    },
+    {
+      "code": "10568",
+      "encounterSet": "the_silent_heath",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10568"
+      ],
+      "name": {
+        "en": "Crystal Remains",
+        "es": "Restos cristalinos"
+      }
+    },
+    {
+      "code": "10569",
+      "encounterSet": "the_lost_sister",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10569",
+        "10569b"
+      ],
+      "name": {
+        "en": "The Lost Sister",
+        "es": "La hermana perdida"
+      }
+    },
+    {
+      "code": "10570",
+      "encounterSet": "the_lost_sister",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10570",
+        "10570b"
+      ],
+      "name": {
+        "en": "Into the Caves",
+        "es": "En las cuevas"
+      }
+    },
+    {
+      "code": "10571",
+      "encounterSet": "the_lost_sister",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10571",
+        "10571b"
+      ],
+      "name": {
+        "en": "Darkness Closes In",
+        "es": "La oscuridad se cierne"
+      }
+    },
+    {
+      "code": "10572",
+      "encounterSet": "the_lost_sister",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10572",
+        "10572b"
+      ],
+      "name": {
+        "en": "The Missing Sibling",
+        "es": "La hermana desaparecida"
+      }
+    },
+    {
+      "code": "10573",
+      "encounterSet": "the_lost_sister",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10573",
+        "10573b"
+      ],
+      "name": {
+        "en": "On the Trail",
+        "es": "Tras el rastro"
+      }
+    },
+    {
+      "code": "10574",
+      "encounterSet": "the_lost_sister",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10574",
+        "10574b"
+      ],
+      "name": {
+        "en": "Face to Carapace",
+        "es": "Frente al caparazón"
+      }
+    },
+    {
+      "code": "10575",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10575",
+        "10575b"
+      ],
+      "name": {
+        "en": "Akwan",
+        "es": "Akwan"
+      }
+    },
+    {
+      "code": "10576",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10576",
+        "10576b"
+      ],
+      "name": {
+        "en": "Suspended Graveyard",
+        "es": "Cementerio suspendido"
+      }
+    },
+    {
+      "code": "10577",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10577",
+        "10577b"
+      ],
+      "name": {
+        "en": "Hidden Cove",
+        "es": "Cala oculta"
+      }
+    },
+    {
+      "code": "10578",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10578",
+        "10578b"
+      ],
+      "name": {
+        "en": "Weed-Choked Beach",
+        "es": "Playa invadida de algas"
+      }
+    },
+    {
+      "code": "10579",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10579",
+        "10579b"
+      ],
+      "name": {
+        "en": "Rocky Shoreline",
+        "es": "Orilla rocosa"
+      }
+    },
+    {
+      "code": "10580",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10580",
+        "10580b"
+      ],
+      "name": {
+        "en": "Underground Pools",
+        "es": "Charcos subterráneos"
+      }
+    },
+    {
+      "code": "10581",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10581",
+        "10581b"
+      ],
+      "name": {
+        "en": "Open Cave",
+        "es": "Cueva abierta"
+      }
+    },
+    {
+      "code": "10582",
+      "encounterSet": "the_lost_sister",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10582",
+        "10582b"
+      ],
+      "name": {
+        "en": "Fungal Cave",
+        "es": "Cueva fúngica"
+      }
+    },
+    {
+      "code": "10583a",
+      "encounterSet": "the_lost_sister",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10583a"
+      ],
+      "name": {
+        "en": "Limulus Hybrid [day]",
+        "es": "Híbrido límulo [day]"
+      }
+    },
+    {
+      "code": "10583b",
+      "encounterSet": "the_lost_sister",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10583b"
+      ],
+      "name": {
+        "en": "Limulus Hybrid [night]",
+        "es": "Híbrido límulo [night]"
+      }
+    },
+    {
+      "code": "10584a",
+      "encounterSet": "the_lost_sister",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10584a"
+      ],
+      "name": {
+        "en": "Crustacean Hybrid [day]",
+        "es": "Híbrido crustáceo [day]"
+      }
+    },
+    {
+      "code": "10584b",
+      "encounterSet": "the_lost_sister",
+      "type": "enemy",
+      "quantity": 2,
+      "hidden": true,
+      "faces": [
+        "10584b"
+      ],
+      "name": {
+        "en": "Crustacean Hybrid [night]",
+        "es": "Híbrido crustáceo [night]"
+      }
+    },
+    {
+      "code": "10585",
+      "encounterSet": "the_lost_sister",
+      "type": "enemy",
+      "quantity": 3,
+      "faces": [
+        "10585"
+      ],
+      "name": {
+        "en": "Cavern Moss",
+        "es": "Musgo de caverna"
+      }
+    },
+    {
+      "code": "10586",
+      "encounterSet": "the_lost_sister",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10586"
+      ],
+      "name": {
+        "en": "Reclaimed by Nature",
+        "es": "Reclamado por la naturaleza"
+      }
+    },
+    {
+      "code": "10587",
+      "encounterSet": "the_lost_sister",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10587"
+      ],
+      "name": {
+        "en": "Luminous Growth",
+        "es": "Crecimiento luminoso"
+      }
+    },
+    {
+      "code": "10588",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10588",
+        "10588b"
+      ],
+      "name": {
+        "en": "The Thing in the Depths",
+        "es": "La cosa de las profundidades"
+      }
+    },
+    {
+      "code": "10589",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10589",
+        "10589b"
+      ],
+      "name": {
+        "en": "Sinking Ground",
+        "es": "Terreno en hundimiento"
+      }
+    },
+    {
+      "code": "10590",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10590",
+        "10590b"
+      ],
+      "name": {
+        "en": "The Thing in the Bog",
+        "es": "La cosa de la ciénaga"
+      }
+    },
+    {
+      "code": "10591",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10591",
+        "10591b"
+      ],
+      "name": {
+        "en": "A Botanical Survey",
+        "es": "Un estudio botánico"
+      }
+    },
+    {
+      "code": "10592",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10592",
+        "10592b"
+      ],
+      "name": {
+        "en": "Discovery of a Lifetime",
+        "es": "Un descubrimiento irrepetible"
+      }
+    },
+    {
+      "code": "10593a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10593a"
+      ],
+      "name": {
+        "en": "Muddy Fen",
+        "es": "Lodazal"
+      }
+    },
+    {
+      "code": "10593b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 2,
+      "hidden": true,
+      "faces": [
+        "10593b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Open Water"
+      }
+    },
+    {
+      "code": "10594a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10594a"
+      ],
+      "name": {
+        "en": "Tangled Thicket",
+        "es": "Espesura enmarañada"
+      }
+    },
+    {
+      "code": "10594b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10594b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Aguas abiertas"
+      }
+    },
+    {
+      "code": "10595a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10595a"
+      ],
+      "name": {
+        "en": "Fetid Pool",
+        "es": "Estanque fétido"
+      }
+    },
+    {
+      "code": "10595b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 2,
+      "hidden": true,
+      "faces": [
+        "10595b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Aguas abiertas"
+      }
+    },
+    {
+      "code": "10596a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10596a"
+      ],
+      "name": {
+        "en": "Flooded Path",
+        "es": "Sendero anegado"
+      }
+    },
+    {
+      "code": "10596b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 2,
+      "hidden": true,
+      "faces": [
+        "10596b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Aguas abiertas"
+      }
+    },
+    {
+      "code": "10597a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10597a"
+      ],
+      "name": {
+        "en": "Abandoned Shack",
+        "es": "Cabaña abandonada"
+      }
+    },
+    {
+      "code": "10597b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10597b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Aguas abiertas"
+      }
+    },
+    {
+      "code": "10598a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10598a"
+      ],
+      "name": {
+        "en": "Rotten Dock",
+        "es": "Puerto podrido"
+      }
+    },
+    {
+      "code": "10598b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10598b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Aguas abiertas"
+      }
+    },
+    {
+      "code": "10599a",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10599a"
+      ],
+      "name": {
+        "en": "Covered Bridge",
+        "es": "Puente cubierto"
+      }
+    },
+    {
+      "code": "10599b",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10599b"
+      ],
+      "name": {
+        "en": "Open Water",
+        "es": "Aguas abiertas"
+      }
+    },
+    {
+      "code": "10600",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10600"
+      ],
+      "name": {
+        "en": "Thing in the Depths",
+        "es": "La cosa de las profundidades"
+      }
+    },
+    {
+      "code": "10601",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10601"
+      ],
+      "name": {
+        "en": "Chelydran Hybrid",
+        "es": "Híbrido chelydra"
+      }
+    },
+    {
+      "code": "10602",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "enemy",
+      "quantity": 5,
+      "faces": [
+        "10602"
+      ],
+      "name": {
+        "en": "Grasping Tendril",
+        "es": "Tentáculo aferrador"
+      }
+    },
+    {
+      "code": "10603",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10603"
+      ],
+      "name": {
+        "en": "Ground Disturbance",
+        "es": "Perturbación terrestre"
+      }
+    },
+    {
+      "code": "10604",
+      "encounterSet": "the_thing_in_the_depths",
+      "type": "treachery",
+      "quantity": 4,
+      "faces": [
+        "10604"
+      ],
+      "name": {
+        "en": "Sinking Sludge",
+        "es": "Fango movedizo"
+      }
+    },
+    {
+      "code": "10605",
+      "encounterSet": "the_twisted_hollow",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10605",
+        "10605b"
+      ],
+      "name": {
+        "en": "The Twisted Hollow",
+        "es": "La hondonada retorcida"
+      }
+    },
+    {
+      "code": "10606",
+      "encounterSet": "the_twisted_hollow",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10606",
+        "10606b"
+      ],
+      "name": {
+        "en": "Deepening Dark",
+        "es": "La oscuridad aumenta"
+      }
+    },
+    {
+      "code": "10607a",
+      "encounterSet": "the_twisted_hollow",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10607a"
+      ],
+      "name": {
+        "en": "Desperate Search",
+        "es": "Búsqeda desesperada"
+      }
+    },
+    {
+      "code": "10607b",
+      "encounterSet": "the_twisted_hollow",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10607b"
+      ],
+      "name": {
+        "en": "Ursine Hybrid",
+        "es": "Híbrido úrsido"
+      }
+    },
+    {
+      "code": "10608",
+      "encounterSet": "the_twisted_hollow",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10608",
+        "10608b"
+      ],
+      "name": {
+        "en": "Where's Bertie?",
+        "es": "¿Dónde está Bertie?"
+      }
+    },
+    {
+      "code": "10609",
+      "encounterSet": "the_twisted_hollow",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10609",
+        "10609b"
+      ],
+      "name": {
+        "en": "Back to the Vale!",
+        "es": "¡De vuelta al Valle!"
+      }
+    },
+    {
+      "code": "10610a",
+      "encounterSet": "the_twisted_hollow",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10610a"
+      ],
+      "name": {
+        "en": "Vale Lantern",
+        "es": "Farol del Valle"
+      }
+    },
+    {
+      "code": "10610b",
+      "encounterSet": "the_twisted_hollow",
+      "type": "asset",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10610b"
+      ],
+      "name": {
+        "en": "Vale Lantern",
+        "es": "Farol del Valle"
+      }
+    },
+    {
+      "code": "10611a",
+      "encounterSet": "the_twisted_hollow",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10611a"
+      ],
+      "name": {
+        "en": "Vale Lantern",
+        "es": "Farol del Valle"
+      }
+    },
+    {
+      "code": "10611b",
+      "encounterSet": "the_twisted_hollow",
+      "type": "asset",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10611b"
+      ],
+      "name": {
+        "en": "Vale Lantern",
+        "es": "Farol del Valle"
+      }
+    },
+    {
+      "code": "10612",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10612",
+        "10612b"
+      ],
+      "name": {
+        "en": "Glimmering Woods",
+        "es": "Prado destelleante"
+      }
+    },
+    {
+      "code": "10613",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10613",
+        "10613b"
+      ],
+      "name": {
+        "en": "Blighted Glade",
+        "es": "Claro afectado por la plaga"
+      }
+    },
+    {
+      "code": "10614",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10614",
+        "10614b"
+      ],
+      "name": {
+        "en": "Poisoned Marsh",
+        "es": "Marjal envenenado"
+      }
+    },
+    {
+      "code": "10615",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10615",
+        "10615b"
+      ],
+      "name": {
+        "en": "Fecund Thicket",
+        "es": "Espesura fecunda"
+      }
+    },
+    {
+      "code": "10616",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10616",
+        "10616b"
+      ],
+      "name": {
+        "en": "Mushroom Grove",
+        "es": "Arboleda de setas"
+      }
+    },
+    {
+      "code": "10617",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10617",
+        "10617b"
+      ],
+      "name": {
+        "en": "Moonlit Clearing",
+        "es": "Claro bañado por la luna"
+      }
+    },
+    {
+      "code": "10618",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 3,
+      "faces": [
+        "10618",
+        "10618b"
+      ],
+      "name": {
+        "en": "Crooked Path",
+        "es": "Sendero retorcido"
+      }
+    },
+    {
+      "code": "10619",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10619",
+        "10619b"
+      ],
+      "name": {
+        "en": "Corpse Grove",
+        "es": "Arboleda de cadáveres"
+      }
+    },
+    {
+      "code": "10620",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10620",
+        "10620b"
+      ],
+      "name": {
+        "en": "Bear Den",
+        "es": "Cubil del oso"
+      }
+    },
+    {
+      "code": "10621",
+      "encounterSet": "the_twisted_hollow",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10621",
+        "10621b"
+      ],
+      "name": {
+        "en": "The Twisted Hollow",
+        "es": "La hondonada retorcida"
+      }
+    },
+    {
+      "code": "10622",
+      "encounterSet": "the_twisted_hollow",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10622"
+      ],
+      "name": {
+        "en": "Deep Shadows",
+        "es": "Sombras profundas"
+      }
+    },
+    {
+      "code": "10623",
+      "encounterSet": "the_twisted_hollow",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10623"
+      ],
+      "name": {
+        "en": "Lurking Fear",
+        "es": "Miedo que acecha"
+      }
+    },
+    {
+      "code": "10624",
+      "encounterSet": "the_twisted_hollow",
+      "type": "treachery",
+      "quantity": 1,
+      "faces": [
+        "10624"
+      ],
+      "name": {
+        "en": "Stolen Light",
+        "es": "Stolen Light"
+      }
+    },
+    {
+      "code": "10625",
+      "encounterSet": "the_twisted_hollow",
+      "type": "enemy",
+      "quantity": 4,
+      "faces": [
+        "10625"
+      ],
+      "name": {
+        "en": "Stalking Hybrid",
+        "es": "Híbrido acechante"
+      }
+    },
+    {
+      "code": "10626",
+      "encounterSet": "the_longest_night",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10626",
+        "10626b"
+      ],
+      "name": {
+        "en": "The Longest Night",
+        "es": "La noche más larga"
+      }
+    },
+    {
+      "code": "10627",
+      "encounterSet": "the_longest_night",
+      "type": "story",
+      "quantity": 1,
+      "faces": [
+        "10627"
+      ],
+      "name": {
+        "en": "Barriers, Decoys, and Traps",
+        "es": "Barreras, señuelos y trampas"
+      }
+    },
+    {
+      "code": "10628",
+      "encounterSet": "the_longest_night",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10628",
+        "10628b"
+      ],
+      "name": {
+        "en": "The Onslaught",
+        "es": "La acometida"
+      }
+    },
+    {
+      "code": "10629",
+      "encounterSet": "the_longest_night",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10629",
+        "10629b"
+      ],
+      "name": {
+        "en": "The Longest Night",
+        "es": "La noche más larga"
+      }
+    },
+    {
+      "code": "10630",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10630",
+        "10630b"
+      ],
+      "name": {
+        "en": "The Farmhouse",
+        "es": "La granja"
+      }
+    },
+    {
+      "code": "10631",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10631",
+        "10631b"
+      ],
+      "name": {
+        "en": "Milkhouse",
+        "es": "Cabaña de ordeñado"
+      }
+    },
+    {
+      "code": "10632",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10632",
+        "10632b"
+      ],
+      "name": {
+        "en": "Vineyard",
+        "es": "Viñedo"
+      }
+    },
+    {
+      "code": "10633",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10633",
+        "10633b"
+      ],
+      "name": {
+        "en": "Coop",
+        "es": "Corral"
+      }
+    },
+    {
+      "code": "10634",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10634",
+        "10634b"
+      ],
+      "name": {
+        "en": "Barn",
+        "es": "Granero"
+      }
+    },
+    {
+      "code": "10635",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10635",
+        "10635b"
+      ],
+      "name": {
+        "en": "Pasture",
+        "es": "Pastizal"
+      }
+    },
+    {
+      "code": "10636",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10636",
+        "10636b"
+      ],
+      "name": {
+        "en": "Outer Fields",
+        "es": "Campo exterior"
+      }
+    },
+    {
+      "code": "10637",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10637",
+        "10637b"
+      ],
+      "name": {
+        "en": "Outer Fields",
+        "es": "Campo exterior"
+      }
+    },
+    {
+      "code": "10638",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10638",
+        "10638b"
+      ],
+      "name": {
+        "en": "Outer Fields",
+        "es": "Campo exterior"
+      }
+    },
+    {
+      "code": "10639",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10639",
+        "10639b"
+      ],
+      "name": {
+        "en": "Outer Fields",
+        "es": "Campo exterior"
+      }
+    },
+    {
+      "code": "10640",
+      "encounterSet": "the_longest_night",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10640",
+        "10640b"
+      ],
+      "name": {
+        "en": "Outer Fields",
+        "es": "Campo exterior"
+      }
+    },
+    {
+      "code": "10641",
+      "encounterSet": "the_longest_night",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10641"
+      ],
+      "name": {
+        "en": "The Captives",
+        "es": "Los cautivos"
+      }
+    },
+    {
+      "code": "10642",
+      "encounterSet": "the_longest_night",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10642"
+      ],
+      "name": {
+        "en": "Ajax",
+        "es": "Ajax"
+      }
+    },
+    {
+      "code": "10643",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10643"
+      ],
+      "name": {
+        "en": "Ursine Hybrid",
+        "es": "Híbrido úrsido"
+      }
+    },
+    {
+      "code": "10644a",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10644a"
+      ],
+      "name": {
+        "en": "Molting Hybrid",
+        "es": "Híbrido pelechado"
+      }
+    },
+    {
+      "code": "10644b",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10644b"
+      ],
+      "name": {
+        "en": "Molting Hybrid",
+        "es": "Híbrido pelechado"
+      }
+    },
+    {
+      "code": "10644c",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10644c"
+      ],
+      "name": {
+        "en": "Molting Hybrid",
+        "es": "Híbrido pelechado"
+      }
+    },
+    {
+      "code": "10645a",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10645a"
+      ],
+      "name": {
+        "en": "Lupine Hybrid",
+        "es": "Híbrido lupino"
+      }
+    },
+    {
+      "code": "10645b",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10645b"
+      ],
+      "name": {
+        "en": "Lupine Hybrid",
+        "es": "Híbrido lupino"
+      }
+    },
+    {
+      "code": "10645c",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10645c"
+      ],
+      "name": {
+        "en": "Lupine Hybrid",
+        "es": "Híbrido lupino"
+      }
+    },
+    {
+      "code": "10646",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 3,
+      "faces": [
+        "10646"
+      ],
+      "name": {
+        "en": "Capra Hybrid",
+        "es": "Híbrido caprino"
+      }
+    },
+    {
+      "code": "10647a",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10647a"
+      ],
+      "name": {
+        "en": "Equine Hybrid",
+        "es": "Híbrido equino"
+      }
+    },
+    {
+      "code": "10647b",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10647b"
+      ],
+      "name": {
+        "en": "Equine Hybrid",
+        "es": "Híbrido equino"
+      }
+    },
+    {
+      "code": "10647c",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10647c"
+      ],
+      "name": {
+        "en": "Equine Hybrid",
+        "es": "Híbrido equino"
+      }
+    },
+    {
+      "code": "10648",
+      "encounterSet": "the_longest_night",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10648"
+      ],
+      "name": {
+        "en": "Slithering Hybrid",
+        "es": "Híbrido reptante"
+      }
+    },
+    {
+      "code": "10649",
+      "encounterSet": "the_longest_night",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10649"
+      ],
+      "name": {
+        "en": "Endless Night",
+        "es": "Noche eterna"
+      }
+    },
+    {
+      "code": "10650",
+      "encounterSet": "the_longest_night",
+      "type": "treachery",
+      "quantity": 4,
+      "faces": [
+        "10650"
+      ],
+      "name": {
+        "en": "Incursion",
+        "es": "Incursión"
+      }
+    },
+    {
+      "code": "10651",
+      "encounterSet": "fate_of_the_vale",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10651",
+        "10651b"
+      ],
+      "name": {
+        "en": "Fate of the Vale",
+        "es": "El destino del Valle"
+      }
+    },
+    {
+      "code": "10652",
+      "encounterSet": "fate_of_the_vale",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10652",
+        "10652b"
+      ],
+      "name": {
+        "en": "The Silence",
+        "es": "El silencio"
+      }
+    },
+    {
+      "code": "10653",
+      "encounterSet": "fate_of_the_vale",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10653",
+        "10653b"
+      ],
+      "name": {
+        "en": "The Miasma",
+        "es": "La miasma"
+      }
+    },
+    {
+      "code": "10654",
+      "encounterSet": "fate_of_the_vale",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10654",
+        "10654b"
+      ],
+      "name": {
+        "en": "The Spiral",
+        "es": "La espiral"
+      }
+    },
+    {
+      "code": "10655",
+      "encounterSet": "fate_of_the_vale",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10655",
+        "10655b"
+      ],
+      "name": {
+        "en": "Shattered Memories",
+        "es": "Recuerdos fragmentados"
+      }
+    },
+    {
+      "code": "10656",
+      "encounterSet": "fate_of_the_vale",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10656",
+        "10656b"
+      ],
+      "name": {
+        "en": "Lost Self",
+        "es": "Yo perdido"
+      }
+    },
+    {
+      "code": "10657",
+      "encounterSet": "fate_of_the_vale",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10657",
+        "10657b"
+      ],
+      "name": {
+        "en": "Fate of the Vale (v.I)",
+        "es": "El destino del Valle (v.I)"
+      }
+    },
+    {
+      "code": "10658",
+      "encounterSet": "fate_of_the_vale",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10658",
+        "10658b"
+      ],
+      "name": {
+        "en": "Fate of the Vale (v.II)",
+        "es": "El destino del Valle (v.II)"
+      }
+    },
+    {
+      "code": "10659",
+      "encounterSet": "fate_of_the_vale",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10659",
+        "10659b"
+      ],
+      "name": {
+        "en": "Fate of the Vale (v.III)",
+        "es": "El destino del Valle (v.III)"
+      }
+    },
+    {
+      "code": "10660",
+      "encounterSet": "fate_of_the_vale",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10660",
+        "10660b"
+      ],
+      "name": {
+        "en": "Fate of the Vale (v.IV)",
+        "es": "El destino del Valle (v.IV)"
+      }
+    },
+    {
+      "code": "10661",
+      "encounterSet": "fate_of_the_vale",
+      "type": "investigator",
+      "quantity": 4,
+      "faces": [
+        "10661"
+      ],
+      "name": {
+        "en": "Shattered Self",
+        "es": "Yo fragmentado"
+      }
+    },
+    {
+      "code": "10661b",
+      "encounterSet": "fate_of_the_vale",
+      "type": "asset",
+      "quantity": 4,
+      "hidden": true,
+      "faces": [
+        "10661b"
+      ],
+      "name": {
+        "en": "Old Memory",
+        "es": "Viejo recuerdo"
+      }
+    },
+    {
+      "code": "10662a",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10662a"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10662b",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10662b"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10663a",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10663a"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10663b",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10663b"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10664a",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10664a"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10664b",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10664b"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10665a",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10665a"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10665b",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10665b"
+      ],
+      "name": {
+        "en": "Cosmic Emissary",
+        "es": "Emisario cósmico"
+      }
+    },
+    {
+      "code": "10666",
+      "encounterSet": "fate_of_the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10666",
+        "10666b"
+      ],
+      "name": {
+        "en": "Mirror Nest",
+        "es": "Nido de espejos"
+      }
+    },
+    {
+      "code": "10667",
+      "encounterSet": "fate_of_the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10667",
+        "10667b"
+      ],
+      "name": {
+        "en": "Mirror Nest",
+        "es": "Nido de espejos"
+      }
+    },
+    {
+      "code": "10668",
+      "encounterSet": "fate_of_the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10668",
+        "10668b"
+      ],
+      "name": {
+        "en": "Mirror Nest",
+        "es": "Nido de espejos"
+      }
+    },
+    {
+      "code": "10669",
+      "encounterSet": "fate_of_the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10669",
+        "10669b"
+      ],
+      "name": {
+        "en": "Mirror Nest",
+        "es": "Nido de espejos"
+      }
+    },
+    {
+      "code": "10670",
+      "encounterSet": "fate_of_the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10670"
+      ],
+      "name": {
+        "en": "The Abyss",
+        "es": "El abismo"
+      }
+    },
+    {
+      "code": "10670b",
+      "encounterSet": "fate_of_the_vale",
+      "type": "story",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10670b"
+      ],
+      "name": {
+        "en": "The Abyss",
+        "es": "El abismo"
+      }
+    },
+    {
+      "code": "10671",
+      "encounterSet": "fate_of_the_vale",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10671"
+      ],
+      "name": {
+        "en": "Crystal Mimic",
+        "es": "Mímico cristalino"
+      }
+    },
+    {
+      "code": "10672",
+      "encounterSet": "fate_of_the_vale",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10672"
+      ],
+      "name": {
+        "en": "Sublimation",
+        "es": "Sublimación"
+      }
+    },
+    {
+      "code": "10673",
+      "encounterSet": "fate_of_the_vale",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10673"
+      ],
+      "name": {
+        "en": "Fragmentation",
+        "es": "Fragmentación"
+      }
+    },
+    {
+      "code": "10674",
+      "encounterSet": "fate_of_the_vale",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10674"
+      ],
+      "name": {
+        "en": "Euphoria",
+        "es": "Euforia"
+      }
+    },
+    {
+      "code": "10675",
+      "encounterSet": "the_first_day",
+      "type": "story",
+      "quantity": 1,
+      "faces": [
+        "10675",
+        "10675b"
+      ],
+      "name": {
+        "en": "Day One",
+        "es": "Día uno"
+      }
+    },
+    {
+      "code": "10676",
+      "encounterSet": "the_first_day",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10676"
+      ],
+      "name": {
+        "en": "Swarm",
+        "es": "Enjambre"
+      }
+    },
+    {
+      "code": "10677",
+      "encounterSet": "the_second_day",
+      "type": "story",
+      "quantity": 1,
+      "faces": [
+        "10677",
+        "10677b"
+      ],
+      "name": {
+        "en": "Day Two",
+        "es": "Día dos"
+      }
+    },
+    {
+      "code": "10678",
+      "encounterSet": "the_second_day",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10678"
+      ],
+      "name": {
+        "en": "Downpour",
+        "es": "Aguacero"
+      }
+    },
+    {
+      "code": "10679",
+      "encounterSet": "the_final_day",
+      "type": "story",
+      "quantity": 1,
+      "faces": [
+        "10679",
+        "10679b"
+      ],
+      "name": {
+        "en": "Day Three",
+        "es": "Día tres"
+      }
+    },
+    {
+      "code": "10680",
+      "encounterSet": "the_final_day",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10680"
+      ],
+      "name": {
+        "en": "Otherworldly Visions",
+        "es": "Visiones sobrenaturales"
+      }
+    },
+    {
+      "code": "10681",
+      "encounterSet": "day_of_rest",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10681",
+        "10681b"
+      ],
+      "name": {
+        "en": "Welcome to Hemlock Vale!",
+        "es": "¡Bienvenidos al Valle de la Cicuta!"
+      }
+    },
+    {
+      "code": "10682",
+      "encounterSet": "day_of_rest",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10682",
+        "10682b"
+      ],
+      "name": {
+        "en": "Dawn of the First Day",
+        "es": "Alba del primer día"
+      }
+    },
+    {
+      "code": "10683",
+      "encounterSet": "day_of_rain",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10683",
+        "10683b"
+      ],
+      "name": {
+        "en": "Dark Clouds",
+        "es": "Nubes Oscuras"
+      }
+    },
+    {
+      "code": "10684",
+      "encounterSet": "day_of_rain",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10684",
+        "10684b"
+      ],
+      "name": {
+        "en": "Dawn of the Second Day",
+        "es": "Alba del segundo día"
+      }
+    },
+    {
+      "code": "10685",
+      "encounterSet": "day_of_rain",
+      "type": "skill",
+      "quantity": 4,
+      "faces": [
+        "10685"
+      ],
+      "name": {
+        "en": "The Hemlock Curse",
+        "es": "La maldición Cicuta"
+      }
+    },
+    {
+      "code": "10686",
+      "encounterSet": "day_of_the_feast",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10686",
+        "10686b"
+      ],
+      "name": {
+        "en": "All is Full of Love",
+        "es": "Todo está lleno de amor"
+      }
+    },
+    {
+      "code": "10687",
+      "encounterSet": "day_of_the_feast",
+      "type": "act",
+      "quantity": 1,
+      "faces": [
+        "10687",
+        "10687b"
+      ],
+      "name": {
+        "en": "Dawn of the Final Day",
+        "es": "Alba del último día"
+      }
+    },
+    {
+      "code": "10688",
+      "encounterSet": "day_of_the_feast",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10688",
+        "10688b"
+      ],
+      "name": {
+        "en": "Around the Table",
+        "es": "En torno a la mesa"
+      }
+    },
+    {
+      "code": "10689",
+      "encounterSet": "day_of_the_feast",
+      "type": "agenda",
+      "quantity": 1,
+      "faces": [
+        "10689",
+        "10689b"
+      ],
+      "name": {
+        "en": "Lambs to the Slaughter",
+        "es": "Corderos al matadero"
+      }
+    },
+    {
+      "code": "10690a",
+      "encounterSet": "day_of_the_feast",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10690a"
+      ],
+      "name": {
+        "en": "The Crossroads",
+        "es": "El cruce de caminos"
+      }
+    },
+    {
+      "code": "10690b",
+      "encounterSet": "day_of_the_feast",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10690b"
+      ],
+      "name": {
+        "en": "The Crossroads",
+        "es": "El cruce de caminos"
+      }
+    },
+    {
+      "code": "10691a",
+      "encounterSet": "day_of_the_feast",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10691a"
+      ],
+      "name": {
+        "en": "The Old Mill",
+        "es": "El viejo molino"
+      }
+    },
+    {
+      "code": "10691b",
+      "encounterSet": "day_of_the_feast",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10691b"
+      ],
+      "name": {
+        "en": "The Old Mill",
+        "es": "El viejo molino"
+      }
+    },
+    {
+      "code": "10692",
+      "encounterSet": "day_of_the_feast",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10692"
+      ],
+      "name": {
+        "en": "Frenzied Reveler",
+        "es": "Festejante enajenada"
+      }
+    },
+    {
+      "code": "10693",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10693"
+      ],
+      "name": {
+        "en": "Mother Rachel",
+        "es": "Madre Rachel"
+      }
+    },
+    {
+      "code": "10693b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10693b"
+      ],
+      "name": {
+        "en": "Mother Rachel",
+        "es": "Madre Rachel"
+      }
+    },
+    {
+      "code": "10694",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10694"
+      ],
+      "name": {
+        "en": "Leah Atwood",
+        "es": "Leah Atwood"
+      }
+    },
+    {
+      "code": "10694b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10694b"
+      ],
+      "name": {
+        "en": "Leah Atwood",
+        "es": "Leah Atwood"
+      }
+    },
+    {
+      "code": "10695",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10695"
+      ],
+      "name": {
+        "en": "Simeon Atwood",
+        "es": "Simeon Atwood"
+      }
+    },
+    {
+      "code": "10695b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10695b"
+      ],
+      "name": {
+        "en": "Simeon Atwood",
+        "es": "Simeon Atwood"
+      }
+    },
+    {
+      "code": "10696",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10696"
+      ],
+      "name": {
+        "en": "William Hemlock",
+        "es": "William Cicuta"
+      }
+    },
+    {
+      "code": "10696b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10696b"
+      ],
+      "name": {
+        "en": "William Hemlock",
+        "es": "William Cicuta"
+      }
+    },
+    {
+      "code": "10697",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10697"
+      ],
+      "name": {
+        "en": "River Hawthorne",
+        "es": "River Hawthorne"
+      }
+    },
+    {
+      "code": "10697b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10697b"
+      ],
+      "name": {
+        "en": "River Hawthorne",
+        "es": "River Hawthorne"
+      }
+    },
+    {
+      "code": "10698",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10698"
+      ],
+      "name": {
+        "en": "Gideon Mizrah",
+        "es": "Gideon Mizrah"
+      }
+    },
+    {
+      "code": "10698b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10698b"
+      ],
+      "name": {
+        "en": "Gideon Mizrah",
+        "es": "Gideon Mizrah"
+      }
+    },
+    {
+      "code": "10699",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10699"
+      ],
+      "name": {
+        "en": "Judith Park",
+        "es": "Judith Park"
+      }
+    },
+    {
+      "code": "10699b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10699b"
+      ],
+      "name": {
+        "en": "Judith Park",
+        "es": "Judith Park"
+      }
+    },
+    {
+      "code": "10700",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10700"
+      ],
+      "name": {
+        "en": "Theo Peters",
+        "es": "Theo Peters"
+      }
+    },
+    {
+      "code": "10700b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10700b"
+      ],
+      "name": {
+        "en": "Theo Peters",
+        "es": "Theo Peters"
+      }
+    },
+    {
+      "code": "10701",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10701"
+      ],
+      "name": {
+        "en": "Bertie Musgrave",
+        "es": "Bertie Musgrave"
+      }
+    },
+    {
+      "code": "10701b",
+      "encounterSet": "residents",
+      "type": "enemy",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10701b"
+      ],
+      "name": {
+        "en": "Bertie Musgrave",
+        "es": "Bertie Musgrave"
+      }
+    },
+    {
+      "code": "10702",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10702"
+      ],
+      "name": {
+        "en": "Dr. Rosa Marquez",
+        "es": "Dra. Rosa Marquez"
+      }
+    },
+    {
+      "code": "10703",
+      "encounterSet": "residents",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10703"
+      ],
+      "name": {
+        "en": "Helen Peters",
+        "es": "Helen Peters"
+      }
+    },
+    {
+      "code": "10704",
+      "encounterSet": "the_vale",
+      "type": "scenario",
+      "quantity": 1,
+      "faces": [
+        "10704",
+        "10704b"
+      ],
+      "name": {
+        "en": "The Vale",
+        "es": "El Valle"
+      }
+    },
+    {
+      "code": "10705a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10705a"
+      ],
+      "name": {
+        "en": "Boarding House",
+        "es": "Pensión"
+      }
+    },
+    {
+      "code": "10705b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10705b"
+      ],
+      "name": {
+        "en": "Boarding House",
+        "es": "Pensión"
+      }
+    },
+    {
+      "code": "10706a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10706a"
+      ],
+      "name": {
+        "en": "The Crossroads",
+        "es": "El cruce de caminos"
+      }
+    },
+    {
+      "code": "10706b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10706b"
+      ],
+      "name": {
+        "en": "The Crossroads",
+        "es": "El cruce de caminos"
+      }
+    },
+    {
+      "code": "10707a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10707a"
+      ],
+      "name": {
+        "en": "Hemlock Chapel",
+        "es": "Capilla Cicuta"
+      }
+    },
+    {
+      "code": "10707b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10707b"
+      ],
+      "name": {
+        "en": "Hemlock Chapel",
+        "es": "Capilla Cicuta"
+      }
+    },
+    {
+      "code": "10708a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10708a"
+      ],
+      "name": {
+        "en": "The Old Mill",
+        "es": "El viejo molino"
+      }
+    },
+    {
+      "code": "10708b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10708b"
+      ],
+      "name": {
+        "en": "The Old Mill",
+        "es": "El viejo molino"
+      }
+    },
+    {
+      "code": "10709a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10709a"
+      ],
+      "name": {
+        "en": "The Atwood House",
+        "es": "La Casa Atwood"
+      }
+    },
+    {
+      "code": "10709b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10709b"
+      ],
+      "name": {
+        "en": "The Atwood House",
+        "es": "La Casa Atwood"
+      }
+    },
+    {
+      "code": "10710a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10710a"
+      ],
+      "name": {
+        "en": "Tad's General Store",
+        "es": "Almacén general de Tad"
+      }
+    },
+    {
+      "code": "10710b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10710b"
+      ],
+      "name": {
+        "en": "Tad's General Store",
+        "es": "Almacén general de Tad"
+      }
+    },
+    {
+      "code": "10711a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10711a"
+      ],
+      "name": {
+        "en": "Vale Schoolhouse",
+        "es": "Escuela del Valle"
+      }
+    },
+    {
+      "code": "10711b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10711b"
+      ],
+      "name": {
+        "en": "Vale Schoolhouse",
+        "es": "Escuela del Valle"
+      }
+    },
+    {
+      "code": "10712a",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10712a"
+      ],
+      "name": {
+        "en": "The Commons",
+        "es": "El salón comunitario"
+      }
+    },
+    {
+      "code": "10712b",
+      "encounterSet": "the_vale",
+      "type": "location",
+      "quantity": 1,
+      "hidden": true,
+      "faces": [
+        "10712b"
+      ],
+      "name": {
+        "en": "The Commons",
+        "es": "El salón comunitario"
+      }
+    },
+    {
+      "code": "10713",
+      "encounterSet": "heirlooms",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10713"
+      ],
+      "name": {
+        "en": "Worry Rock",
+        "es": "Roca de la preocupación"
+      }
+    },
+    {
+      "code": "10714",
+      "encounterSet": "heirlooms",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10714"
+      ],
+      "name": {
+        "en": "Corn Husk Doll",
+        "es": "Muñeca de hojas de maíz"
+      }
+    },
+    {
+      "code": "10715",
+      "encounterSet": "heirlooms",
+      "type": "asset",
+      "quantity": 1,
+      "faces": [
+        "10715"
+      ],
+      "name": {
+        "en": "The Pearl Diary",
+        "es": "El diario Perla"
+      }
+    },
+    {
+      "code": "10716",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "location",
+      "quantity": 2,
+      "faces": [
+        "10716",
+        "10716b"
+      ],
+      "name": {
+        "en": "Dry Burrow",
+        "es": "Madriguera seca"
+      }
+    },
+    {
+      "code": "10717",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10717",
+        "10717b"
+      ],
+      "name": {
+        "en": "Alkaline Forest",
+        "es": "Bosque alcalino"
+      }
+    },
+    {
+      "code": "10718",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10718",
+        "10718b"
+      ],
+      "name": {
+        "en": "Iridescent Passage",
+        "es": "Pasadizo iridiscente"
+      }
+    },
+    {
+      "code": "10719",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10719",
+        "10719b"
+      ],
+      "name": {
+        "en": "Overgrown Tunnel",
+        "es": "Túnel invadido de vegetación"
+      }
+    },
+    {
+      "code": "10720",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "location",
+      "quantity": 1,
+      "faces": [
+        "10720",
+        "10720b"
+      ],
+      "name": {
+        "en": "Mineral Tunnel",
+        "es": "Túnel mineral"
+      }
+    },
+    {
+      "code": "10721",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10721"
+      ],
+      "name": {
+        "en": "Crystal Parasite",
+        "es": "Parásito de cristal"
+      }
+    },
+    {
+      "code": "10722",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10722"
+      ],
+      "name": {
+        "en": "Chroma Blight",
+        "es": "Plaga cromática"
+      }
+    },
+    {
+      "code": "10723",
+      "encounterSet": "horrors_in_the_rock",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10723"
+      ],
+      "name": {
+        "en": "Calcification",
+        "es": "Calcificación"
+      }
+    },
+    {
+      "code": "10724",
+      "encounterSet": "agents_of_the_colour",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10724"
+      ],
+      "name": {
+        "en": "Miasmatic Shadow",
+        "es": "Sombra miasmática"
+      }
+    },
+    {
+      "code": "10725",
+      "encounterSet": "agents_of_the_colour",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10725"
+      ],
+      "name": {
+        "en": "Alien Whispers",
+        "es": "Susurros alienígenas"
+      }
+    },
+    {
+      "code": "10726",
+      "encounterSet": "transfiguration",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10726"
+      ],
+      "name": {
+        "en": "Strange Mutations",
+        "es": "Mutaciones extrañas"
+      }
+    },
+    {
+      "code": "10727",
+      "encounterSet": "transfiguration",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10727"
+      ],
+      "name": {
+        "en": "Fungal Rot",
+        "es": "Putrefacción fúngica"
+      }
+    },
+    {
+      "code": "10728",
+      "encounterSet": "blight",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10728"
+      ],
+      "name": {
+        "en": "Enervation",
+        "es": "Enervación"
+      }
+    },
+    {
+      "code": "10729",
+      "encounterSet": "blight",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10729"
+      ],
+      "name": {
+        "en": "Desiccation",
+        "es": "Desecación"
+      }
+    },
+    {
+      "code": "10730",
+      "encounterSet": "refractions",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10730"
+      ],
+      "name": {
+        "en": "Empyrean Brilliance",
+        "es": "Brillo empíreo"
+      }
+    },
+    {
+      "code": "10731",
+      "encounterSet": "refractions",
+      "type": "treachery",
+      "quantity": 3,
+      "faces": [
+        "10731"
+      ],
+      "name": {
+        "en": "Captivating Gleam",
+        "es": "Resplandor cautivador"
+      }
+    },
+    {
+      "code": "10732",
+      "encounterSet": "the_forest",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10732"
+      ],
+      "name": {
+        "en": "Poisonblossom",
+        "es": "Broteponzoña"
+      }
+    },
+    {
+      "code": "10733",
+      "encounterSet": "the_forest",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10733"
+      ],
+      "name": {
+        "en": "Forest Watcher",
+        "es": "Vigilante del bosque"
+      }
+    },
+    {
+      "code": "10734",
+      "encounterSet": "the_forest",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10734"
+      ],
+      "name": {
+        "en": "Cochleal Stag",
+        "es": "Venado coclear"
+      }
+    },
+    {
+      "code": "10735",
+      "encounterSet": "the_forest",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10735"
+      ],
+      "name": {
+        "en": "Bloom",
+        "es": "Florecimiento"
+      }
+    },
+    {
+      "code": "10736",
+      "encounterSet": "the_forest",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10736"
+      ],
+      "name": {
+        "en": "Wall of Thorns",
+        "es": "Muro de espinas"
+      }
+    },
+    {
+      "code": "10737",
+      "encounterSet": "the_forest",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10737"
+      ],
+      "name": {
+        "en": "Call of the Wild",
+        "es": "Llamada de lo salvaje"
+      }
+    },
+    {
+      "code": "10738",
+      "encounterSet": "myconids",
+      "type": "enemy",
+      "quantity": 2,
+      "faces": [
+        "10738"
+      ],
+      "name": {
+        "en": "Black Amanita",
+        "es": "Amanita negra"
+      }
+    },
+    {
+      "code": "10739",
+      "encounterSet": "myconids",
+      "type": "enemy",
+      "quantity": 1,
+      "faces": [
+        "10739"
+      ],
+      "name": {
+        "en": "Corpse Lichen",
+        "es": "Liquen de cadáver"
+      }
+    },
+    {
+      "code": "10740",
+      "encounterSet": "myconids",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10740"
+      ],
+      "name": {
+        "en": "Psychotropic Spores",
+        "es": "Esporas psicotrópicas"
+      }
+    },
+    {
+      "code": "10741",
+      "encounterSet": "mutations",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10741"
+      ],
+      "name": {
+        "en": "Sudden Mutation",
+        "es": "Mutación repentina"
+      }
+    },
+    {
+      "code": "10742",
+      "encounterSet": "mutations",
+      "type": "treachery",
+      "quantity": 2,
+      "faces": [
+        "10742"
+      ],
+      "name": {
+        "en": "Unnatural Growth",
+        "es": "Crecimiento antinatural"
+      }
+    },
+    {
+      "code": "10743",
+      "encounterSet": "fire",
+      "type": "treachery",
+      "quantity": 5,
+      "faces": [
+        "10743"
+      ],
+      "name": {
+        "en": "Fire!",
+        "es": "¡Fuego!"
+      }
+    }
+  ]
+}
