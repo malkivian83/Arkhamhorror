@@ -103,6 +103,20 @@
         "title": "Elegid dónde realizar el estudio",
         "body": "¡Los investigadores deben elegir dónde realizarán el estudio hoy! A lo largo de la campaña habrá oportunidades para explorar varias zonas."
       }
+    },
+    "writtenInRock": {
+      "intro": {
+        "title": "Escenario: Escrito en la roca",
+        "body": "El camino que lleva a las minas de la Punta Norte recorre un angosto desfiladero situado en plena Cresta Perla. Como apenas tenéis datos, preguntáis por el Valle para recopilar más información sobre la mina, pero tan sólo recibís relatos contradictorios. Aunque la operación minera supuestamente ha cesado, hace poco que ha desaparecido gente en las minas. Se supone que los líquenes y el musgo son nutritivos, pero ¿hay algunos letales? Nadie os ha podido explicar tampoco por qué cerraron las minas.\n\nEl camino termina en la entrada de una enorme cueva. Seguís una vieja vía férrea y encontráis montones de equipo abandonado sobre el que crecen unos brillantes hongos amarillos. Éstos no parecen ni remotamente comestibles y emiten un hedor pútrido. Finalmente, el túnel da paso a una gran caverna llena de setas luminiscentes y altas formaciones de cristal. La tierra se mueve con un ligero temblor, seguido de un grito que resuena a más profundidad en la mina. Os armáis de valor y seguís aventurándoos por la cueva. Como mínimo, la Dra. Marquez querrá muestras de los extraños hongos que crecen en el equipo oxidado."
+      },
+      "setup": {
+        "title": "Preparación del escenario",
+        "body": "Cuatro Lugares Cueva al azar forman una fila (columnas 1–4) y el Puesto de control ocupa la columna 5. Cada Lugar tiene 1 recurso como chatarra. Los investigadores comienzan en el Lugar situado más a la izquierda. Si es el Día 1 de día, River Hawthorne está en el Lugar de la columna 3. Los Parásitos de cristal y las cartas de encuentro de Escrito en la roca quedan apartados. ¡Llegad al Puesto de control antes de que avance el Plan!"
+      },
+      "codex5": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–Qué casualidad encontrarnos aquí –dice River mientras se pone en pie cuando te acercas. Lleva una cesta tejida que va llena a rebosar de setas fosforescentes y líquenes del color de la sangre–. Permítame que le diga que tengo un paladar bastante exquisito. La propia Eugénie Brazier dijo que era la clienta más exigente que jamás se había sentado a su mesa. Todo esto es delicioso –añade mientras huele con placer el contenido de su cesta. Luego señala el siniestro túnel y afirma–: Las cosas que hago por amor.\n\nLe ofreces ayuda para recolectar; al fin y al cabo, la Dra. Marquez querrá muestras de las extrañas plantas."
+      }
     }
   },
   "choice": {
@@ -116,7 +130,11 @@
       "hemlock-vale-silent-heath": "Explorar El páramo silencioso (Cresta Perla)",
       "hemlock-vale-lost-sister": "Salvar a La hermana perdida (Akwan)",
       "hemlock-vale-thing-in-the-depths": "Descubrir La cosa de las profundidades (Ciénaga de Eastwick)"
-    }
+    },
+    "directHorror": "Recibe 1 punto de horror directo",
+    "discardRandomTwo": "Descarta 2 cartas al azar de tu mano",
+    "discardRandom": "Descarta 1 carta al azar de tu mano",
+    "directDamageToSucceed": "Recibe 1 punto de daño directo para tener éxito automáticamente"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -132,7 +150,9 @@
     "boardingHouseHeal": "Cúrate 1 de daño o 1 de horror (una vez por partida)",
     "crossroadsMove": "Moverte a un Lugar conectado (límite de grupo: una vez por ronda)",
     "chapelSpell": "Busca entre las 9 primeras cartas de tu mazo una carta Hechizo y róbala (una vez por partida)",
-    "schoolTome": "Busca en tu mazo un Apoyo Tomo y róbalo (una vez por partida)"
+    "schoolTome": "Busca en tu mazo un Apoyo Tomo y róbalo (una vez por partida)",
+    "dryBurrowMove": "Moverte a un Lugar conectado (límite de grupo: una vez por ronda)",
+    "collectScrap": "Roba la carta superior del mazo de Encuentros: mueve 1 chatarra de tu Lugar a la carta de referencia"
   },
   "keywords": {
     "dayNight": {

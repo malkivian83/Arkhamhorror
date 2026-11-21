@@ -30,6 +30,7 @@ import {
   type ValleyResident,
 } from '@lcg/engine'
 import type { ScenarioContext } from '../campaign-definition'
+import { skillBonus } from '../asset-utilities/register'
 import { hemlockValeChaosBag } from './chaos-bag'
 import { VALE, valeDayLocations } from './vale-locations'
 
@@ -469,11 +470,27 @@ function residentParley(
   }
 }
 
+/** «Mientras controles a…, recibes +1 [habilidad]» (lado de Apoyo de historia). */
+const CONTROLLED_SKILL: Partial<Record<ValleyResident, SkillType>> = {
+  leahAtwood: 'combat',
+  simeonAtwood: 'agility',
+  williamHemlock: 'intellect',
+  riverHawthorne: 'willpower',
+}
+
 for (const resident of Object.keys(RESIDENTS) as ValleyResident[]) {
+  const skill = CONTROLLED_SKILL[resident]
   registerPlayerCard({
     code: RESIDENTS[resident].code,
+    ...(skill ? { skillModifier: skillBonus(skill) } : {}),
+    // Obligado: después de que sea derrotado, se pone aparte y baja su nivel de relación.
+    forced: (_state, trigger, self) =>
+      trigger.type === 'assetDefeated' && trigger.asset.id === self.id
+        ? [{ type: 'ChangeRelationship', resident, amount: -1 }]
+        : [],
     placedAbilities: (state, self, investigator) => {
-      if (state.scenarioId !== HEMLOCK_WELCOME || self.faceDown) return []
+      // El Negociar de cada escenario lee su propio códice (`ScenarioSpecific` codex).
+      if (!state.scenarioId.startsWith('hemlock-vale-') || self.faceDown) return []
       if (codexResolved(state, RESIDENTS[resident].codex)) return []
       const parley = residentParley(state, resident, investigator)
       if (!parley) return []

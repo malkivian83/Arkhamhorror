@@ -19,7 +19,9 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - Entrega 3 en lotes: **3a** cuadrícula (hecho, ver
   [Cuadrícula](#cuadrícula-de-lugares)); **3b** acto 1 de Escrito en la roca;
   **3c** acto 2 (raíles, Vagoneta, descarrilamiento) y resoluciones.
-- Siguiente: lote 3b.
+- Lote 3b hecho (ver [Escrito en la roca, acto 1](#escrito-en-la-roca-acto-1)); el
+  escenario aún no está enlazado a la campaña.
+- Siguiente: lote 3c.
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -285,6 +287,31 @@ exija algo más (raíles alineados en el acto 2). Mensajes `SlideLocation` (a un
 espacio vacío) y `SwapLocations`; `PutLocationIntoPlay` admite `position`.
 Las cartas siguen en su Lugar porque se referencian por su id. Ayudas:
 `gridNeighbors` y `emptyAdjacentPositions`. Pruebas en `grid.test.ts`.
+
+### Escrito en la roca, acto 1
+
+Lote 3b, en `hemlock-vale/written-in-rock.ts` y `rock-encounters.ts` (pruebas en
+`written-in-rock.test.ts`). Aún sin `build` en la campaña: falta el acto 2.
+
+- **Preparación:** 4 de las 6 Cuevas al azar en las columnas 1–4 y el Puesto de
+  control en la 5, 1 chatarra en cada Lugar (`resources`), inicio en la columna 1,
+  River en la columna 3 el Día 1 de día, Parásitos de cristal apartados y mazo con
+  Horrores en la roca, Refracciones, Frío helador, Gules y el conjunto del día.
+- **Plan 1:** recoger chatarra robando del mazo de Encuentros (5 recursos si es una
+  traición [[Power]]); al avanzar, su perdición pasa al plan 2 y, si no lo avanza el
+  acto, su reverso (daño, Puesto de control y pistas a 0).
+- **Acto 1:** avanza al final de la ronda con todos en el Puesto de control; retira
+  las Cuevas y a River sin controlar, deja 2 pistas, salta al plan 2a y convierte la
+  chatarra en agujas (`scenarioMeta`). Después llega el interludio (lote 3c).
+- **Referencia:** fichas del acto 1 con la columna del Lugar y la chatarra.
+- **Cuevas:** las cinco con sus efectos. `ScenarioBehavior.leaveCost` (nuevo) cobra la
+  acción extra del Túnel cubierto de vegetación. El velo del Túnel mineral usa la mano
+  del investigador en turno.
+- **Encuentros:** Parásito de cristal, Plaga cromática, Calcificación, Fulgor
+  empíreo, Destello cautivador, Enjambre, Aguacero y Visiones de otro mundo.
+- **Habitantes:** el Negociar sirve en cualquier escenario de la campaña; bajo
+  control dan su +1 de habilidad y, si son derrotados, baja su relación. Pendiente:
+  los espacios extra de Madre Rachel y Gideon y las acciones extra de Judith y Theo.
 
 Pendiente para cuando haya un escenario jugable (entrega 3): conservar los usos
 «una vez por partida» y no repetir las ventanas de inicio de partida entre el

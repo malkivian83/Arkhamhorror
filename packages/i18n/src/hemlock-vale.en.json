@@ -103,6 +103,20 @@
         "title": "Choose where to survey",
         "body": "The investigators must choose where to survey today! You will have the opportunity to survey multiple areas over the course of the campaign."
       }
+    },
+    "writtenInRock": {
+      "intro": {
+        "title": "Scenario: Written in Rock",
+        "body": "The path to North Point Mine runs through a narrow ravine in the heart of Pearl Ridge. With little to go on, you asked around the Vale for more information about the mine, but all you could gather were several conflicting accounts. People have gone missing in the mines recently, although the mining operation is purportedly shut down. The lichens and moss are supposedly nutritious, but some are lethal? Nobody explained why the mine shut down in the first place, either.\n\nThe path ends at the mouth of a yawning cave. Following an old rail track in, you find heaps of abandoned equipment overgrown with bright yellow fungi. The fungus looks far from edible, and emits a putrescent stench. Eventually, the tunnel opens into a massive cavern filled with luminescent mushrooms and towering crystal formations. The ground shifts with a slight tremor, followed by an echoing cry from deeper in the mine. Steeling yourself, you trek deeper into the cave. At the very least, Dr. Marquez will want samples of the strange overgrowth on the rusted equipment."
+      },
+      "setup": {
+        "title": "Scenario setup",
+        "body": "Four random Cave locations are placed in a row (columns 1–4) with the Control Station in column 5. Each location has 1 resource on it, as a scrap. Investigators begin at the leftmost location. On Day 1 during the day, River Hawthorne is at the location in column 3. The Crystal Parasites and the Written in Rock encounter cards are set aside. Get to the Control Station before the agenda advances!"
+      },
+      "codex5": {
+        "title": "Codex 5: River Hawthorne",
+        "body": "“Fancy seeing you here,” River stands as you approach. They hold a woven basket filled to the brim with phosphorescent mushrooms and blood-red lichens. “I have quite the discerning palate, let me tell you. Eugénie Brazier herself said that I was the most demanding patron to grace her table. These are exquisite,” they inhale from their basket luxuriously, then gesture at the grim tunnel. “The things we do for love.” You offer to help them forage; after all, Dr. Marquez will want samples of the unusual growths."
+      }
     }
   },
   "choice": {
@@ -116,7 +130,11 @@
       "hemlock-vale-silent-heath": "Explore The Silent Heath",
       "hemlock-vale-lost-sister": "Save The Lost Sister",
       "hemlock-vale-thing-in-the-depths": "Discover The Thing in the Depths"
-    }
+    },
+    "directHorror": "Take 1 direct horror",
+    "discardRandomTwo": "Discard 2 cards at random from your hand",
+    "discardRandom": "Discard 1 card at random from your hand",
+    "directDamageToSucceed": "Take 1 direct damage to automatically succeed"
   },
   "prompt": {
     "drawOrGain": "Draw 1 card or gain 1 resource",
@@ -132,7 +150,9 @@
     "boardingHouseHeal": "Heal 1 damage or 1 horror (once per game)",
     "crossroadsMove": "Move to a connecting location (group limit once per round)",
     "chapelSpell": "Search the top 9 cards of your deck for a Spell card and draw it (once per game)",
-    "schoolTome": "Search your deck for a Tome asset and draw it (once per game)"
+    "schoolTome": "Search your deck for a Tome asset and draw it (once per game)",
+    "dryBurrowMove": "Move to a connecting location (group limit once per round)",
+    "collectScrap": "Draw the top encounter card: move 1 scrap from your location to the scenario reference card"
   },
   "keywords": {
     "dayNight": {
