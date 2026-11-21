@@ -1,0 +1,45 @@
+[
+  {
+    "code": "03002",
+    "name": "Minh Thi Phan",
+    "subname": "The Secretary",
+    "type": "investigator",
+    "class": "seeker",
+    "traits": ["Assistant"],
+    "unique": true,
+    "health": 7,
+    "sanity": 7,
+    "skills": { "willpower": 4, "intellect": 4, "combat": 2, "agility": 2 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["seeker", "neutral"], "maxLevel": 5 },
+      { "classes": ["survivor"], "maxLevel": 2 }
+    ],
+    "signatures": ["03010", "03011"]
+  },
+  {
+    "code": "03010",
+    "name": "Analytical Mind",
+    "subname": "Between the Lines",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 0,
+    "icons": { "wild": 2 },
+    "slots": []
+  },
+  {
+    "code": "03011",
+    "name": "The King in Yellow",
+    "subname": "Act 1",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Tome"],
+    "unique": true,
+    "xp": 0,
+    "icons": {},
+    "slots": ["hand"],
+    "weakness": "weakness"
+  }
+]

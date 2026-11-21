@@ -1233,5 +1233,11 @@
     "group": "investigators",
     "typeCode": "treachery",
     "flavor": "Pagamos un precio terrible por el conocimiento que buscábamos. ¿Mereció la pena?"
+  },
+  "03002": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Puedes confiar en mí para guiarte por lo desconocido.\"",
+    "backFlavor": "Minh nunca tuvo la sensación de encajar realmente en los Estados Unidos. Las cosas habían sido aún más difíciles para su familia antes de trasladarse, pues eran vietnamitas viviendo en Corea bajo el dominio japonés. Trabajó mucho para completar su licenciatura, sin dejar de recordarse a sí misma lo mucho que habían sacrificado sus padres para venir a Estados Unidos. Al final, su padre conoció a un hombre de Arkham, el Sr. Thomas, que le ofreció un puesto en su oficina a Minh. Al principio era amable con ella, pero luego empezó a leer <em>El Rey de Amarrillo</em>, y su comportamiento cambió por completo. Se lo prestó a Minh, pero ésta no se atrevió a leer más allá del primer acto. Tres semanas después, encontraron muerto al Sr. Thomas, que se había suicidado. Y <i>El Rey de Amarillo</i> es la llave para llegar a la verdad."
   }
 }

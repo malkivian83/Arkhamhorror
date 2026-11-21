@@ -1,5 +1,7 @@
 # Historial de la importación
 
+- Lote 161 (20/11): `forgotten-age-investigators`, `083249bf`; Leo/Ursula, cuatro exclusivas/debilidades y dos mazos oficiales FFG. 29 investigadores habilitados, 39 pendientes y 134 cartas estándar pendientes. 363 casos del alcance, tipos engine/cards/server, build web, lint/formato, 7077 escaneos/miniaturas y huellas verificados. [Detalle](161-investigadores-era-olvidada.md).
+
 - Lote 160 (20/11): `carcosa-investigators`, `7a865456`; Mark/Akachi, cinco exclusivas/debilidades, reverso de Sophie y dos mazos oficiales FFG. 27 investigadores habilitados, 41 pendientes y 134 cartas estándar pendientes. 401 casos del alcance, tipos engine/cards/server, build web, lint/formato, 7061 escaneos/miniaturas y huellas verificados. [Detalle](160-investigadores-carcosa.md).
 
 - Lote 159 (20/11): `dunwich-investigators`, `3637c03e`, cierre `4802e0d2`; Zoey/Jim, cuatro exclusivas/debilidades y dos mazos oficiales FFG. 25 investigadores habilitados, 43 pendientes y 134 cartas estándar pendientes. Reglas/mazos/fuentes/guardados y 292 casos del alcance de motor, tipos/lint/formato/imágenes correctos. Regresiones de mazos y Helada corregidas después en `7984d452`. [Detalle](159-investigadores-dunwich.md).

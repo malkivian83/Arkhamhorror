@@ -803,7 +803,11 @@ export interface PlayerCardBehavior {
   revelation?: (state: GameState, investigator: InvestigatorId) => Message[]
   /** Dilemma cards share their printed maximum across the group each round. */
   dilemma?: boolean
-  /** Permission for a helper to commit from a different location. */
+  /** Continuous permission from an asset to help a test at any other location. */
+  remoteCommit?: boolean
+  /** If committing, this controller must contribute at least this many cards. */
+  minimumCommittedCards?: number
+  /** Permission printed on a committed card to help from another location. */
   commitFromLocation?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
   /** Continuous modifiers while this event is attached to an asset. */
   attachedVitals?: { health?: number; sanity?: number }
@@ -1139,6 +1143,8 @@ export interface PlayerCardBehavior {
  */
 export interface InvestigatorBehavior {
   code: CardCode
+  /** Preserve physical committed copies for investigator reactions and delayed returns. */
+  observesCommitCopies?: boolean
   initialUsesBonus?: (code: CardCode) => number
   startingAssets?: CardCode[]
   fastOptions?: (state: GameState, self: Investigator) => ReactionOption[]

@@ -1,4 +1,4 @@
-export { cluesBlocked } from './handlers'
+export { cluesBlocked, commitIcons } from './handlers'
 export { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
 export {
   attackBlocked,

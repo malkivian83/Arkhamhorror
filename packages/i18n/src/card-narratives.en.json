@@ -1103,5 +1103,11 @@
     "group": "investigators",
     "typeCode": "treachery",
     "flavor": "We paid a terrible price for the knowledge we sought. Was it worth it?"
+  },
+  "03002": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"You can depend on me to guide you through the unknown.\"",
+    "backFlavor": "Minh never quite felt like she belonged in America. Things were even harder for her family before they moved, being Vietnamese in Korea under Japanese rule. She worked hard to get her college degree, reminding herself that her parents had sacrificed much to come to the States. Finally, her father became acquainted with a man from Arkham, Mr. Thomas, who offered Minh a job at his office. He was kind to her, at first - but then he started reading The King in Yellow, and his demeanor changed completely. He'd lent it to Minh, but she dared not read past the first act. Three weeks later, Mr. Thomas was found dead, having taken his own life... And The King in Yellow is the key to the truth."
   }
 }

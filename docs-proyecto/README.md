@@ -152,6 +152,8 @@ Documentos posteriores, por número:
 - [143 · Revisión de reglas de los lotes 129–136](143-revision-reglas-lotes-129-136.md): correcciones de la revisión de reglas y FAQ (fichas reveladas e ignoradas, sellar sin ficha, ventana previa a revelar, palabras clave ganadas o perdidas) y limitaciones que quedan.
 - [144 · Cartas vinculadas](144-cartas-vinculadas.md): 17 códigos (11 cartas/niveles nuevos, 6 vinculadas, 0 reediciones); cartas apartadas fuera del juego por investigador, vinculadas preparadas con el mazo y excluidas de mazos y tienda, búsqueda, intercambio y regreso al abandonar el juego; Espejo sagrado, Repertorio ocultista, Diarios oníricos, Micónido voraz, Segmento de ónice y Receptáculo vacío.
 
+- [162 · Minh Thi Phan](162-investigadora-minh-thi-phan.md): investigadora y dos exclusivas, mazo oficial FFG, aportación a distancia y grupos de cartas contra El Rey de Amarillo.
+
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).

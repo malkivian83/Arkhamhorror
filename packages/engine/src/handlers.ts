@@ -4745,7 +4745,7 @@ export function handle(state: GameState, message: Message): GameState {
         return saveExpeditionPartner({ ...state, assets }, asset, true)
       }
       // Reglamento, "Permanent": no puede abandonar el juego (ni Baron Samedi sin 3 perdición).
-      if (!asset || stuckInPlay(state, asset)) return state
+      if (!asset || (stuckInPlay(state, asset) && !message.byOwnAbility)) return state
       // Cherished Keepsake: "when … is defeated" replaces its discard (it is exiled).
       const defeated = message.defeated
         ? assetBehavior(state, asset)?.whenDefeated?.(state, asset)
@@ -5064,7 +5064,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const committable = [...new Set(noCommit(investigator.id) ? [] : investigator.hand)].filter(
         (code) =>
-          canCommit(state, test, code, investigator.id) &&
+          canCommitFrom(state, investigator.id, code) &&
           !commitBlocked(state, investigator.id, playerCardDef(code)?.type ?? ''),
       )
       const discardCommits = activeInvestigators(state).flatMap((i) =>
@@ -5155,6 +5155,19 @@ export function handle(state: GameState, message: Message): GameState {
                       { type: 'CommitWindow' },
                     ],
             })),
+            ...(minimumCommittedCards(state, investigator.id) >
+              test.committed.filter((c) => c.by === investigator.id).length &&
+            hasCommitGroup(state, investigator.id, [])
+              ? [
+                  {
+                    label: 'choice.commitGroup',
+                    then: [
+                      { type: 'ChooseCommitGroup' as const, investigator: investigator.id },
+                      { type: 'CommitWindow' as const },
+                    ],
+                  },
+                ]
+              : []),
             ...committable.map((code): Choice => ({
               label: 'choice.commit',
               params: {
@@ -5311,6 +5324,49 @@ export function handle(state: GameState, message: Message): GameState {
             },
           }
         : state
+    case 'ChooseCommitGroup': {
+      const id = message.investigator,
+        cards = message.cards ?? [],
+        minimum = minimumCommittedCards(state, id)
+      if (!state.skillTest || !commitGroupState(state, id, cards, true)) return state
+      const remaining = [...getInvestigator(state, id).hand]
+      for (const c of cards) remaining.splice(remaining.indexOf(c), 1)
+      const choices: Choice[] = [...new Set(remaining)]
+        .filter((c) => hasCommitGroup(state, id, [...cards, c]))
+        .map((c) => ({
+          label: 'choice.commitGroupAdd',
+          params: { card: playerCardDef(c)?.name ?? c, n: cards.length + 1 },
+          target: { type: 'hand', code: c },
+          then: [{ ...message, cards: [...cards, c] }],
+        }))
+      if (cards.length >= minimum)
+        choices.push({
+          label: 'choice.commitGroupFinish',
+          params: { n: cards.length },
+          then: [{ type: 'CommitCardGroup', investigator: id, cards }],
+        })
+      choices.push({ label: 'choice.skip', then: [] })
+      return push(state, {
+        type: 'Ask',
+        investigator: id,
+        question: { kind: 'chooseOne', alwaysAsk: true, prompt: 'prompt.commitCards', choices },
+      })
+    }
+    case 'CommitCardGroup':
+      return commitGroupState(state, message.investigator, message.cards) ?? state
+    case 'ReturnCommittedAfterTest': {
+      const test = state.skillTest
+      if (!test) return state
+      return {
+        ...state,
+        skillTest: {
+          ...test,
+          committed: test.committed.map((c) =>
+            c.id === message.commitId ? { ...c, returnAfterTest: true } : c,
+          ),
+        },
+      }
+    }
     case 'CommitCard': {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
@@ -5359,6 +5415,9 @@ export function handle(state: GameState, message: Message): GameState {
       if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect, message))
         return state
       const trackCopy =
+        state.investigators.some(
+          (i) => !i.eliminated && investigatorBehavior(i.id)?.observesCommitCopies,
+        ) ||
         playerCardBehavior(message.code)?.observesCommitCopies ||
         Object.values(state.assets).some(
           (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
@@ -7984,7 +8043,7 @@ export function handle(state: GameState, message: Message): GameState {
           continue
         }
         if (c.returnToHand || c.putIntoPlay) continue
-        if (c.returnAfterSuccess && test?.succeeded) {
+        if (c.returnAfterTest || (c.returnAfterSuccess && test?.succeeded)) {
           next = updateInvestigator(next, c.owner ?? c.by, (i) =>
             i.eliminated ? i : { ...i, hand: [...i.hand, c.code] },
           )
@@ -8727,7 +8786,7 @@ export function handle(state: GameState, message: Message): GameState {
       let next: GameState
       if (message.asset) {
         const asset = state.assets[message.asset]
-        if (!asset || asset.expeditionPartner) return state
+        if (!asset || asset.expeditionPartner || stuckInPlay(state, asset)) return state
         const { [asset.id]: _gone, ...assets } = state.assets
         next = { ...state, assets }
       } else {
@@ -13299,7 +13358,7 @@ export function canCommitFrom(
   code: string,
   zone: 'hand' | 'discard' = 'hand',
   byEffect = false,
-  permission: { wildIcons?: boolean; allowConnecting?: boolean } = {},
+  permission: { wildIcons?: boolean; allowConnecting?: boolean; groupSize?: number } = {},
 ): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
@@ -13308,6 +13367,9 @@ export function canCommitFrom(
     investigator.eliminated ||
     !canCommit(state, test, code, id, zone, permission.wildIcons)
   )
+    return false
+  const minimum = minimumCommittedCards(state, id)
+  if (test.committed.filter((c) => c.by === id).length + (permission.groupSize ?? 1) < minimum)
     return false
   if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id, code)) return false
   if (commitBlocked(state, id, playerCardDef(code)?.type ?? '')) return false
@@ -13320,9 +13382,69 @@ export function canCommitFrom(
           getLocation(state, investigator.location).connections.includes(
             getInvestigator(state, test.investigator).location ?? '',
           )) ||
-        playerCardBehavior(code)?.commitFromLocation?.(state, test, id) === true) &&
+        playerCardBehavior(code)?.commitFromLocation?.(state, test, id) === true ||
+        (getInvestigator(state, test.investigator).location !== null &&
+          Object.values(state.assets).some(
+            (a) => a.owner === id && assetBehavior(state, a)?.remoteCommit,
+          ))) &&
       (byEffect || !test.committed.some((c) => c.by === id)))
   )
+}
+
+/** RR Committing Cards: contributions with a minimum are selected and committed atomically. */
+function minimumCommittedCards(state: GameState, id: string): number {
+  return Math.max(
+    0,
+    ...Object.values(state.assets)
+      .filter((a) => a.owner === id)
+      .map((a) => assetBehavior(state, a)?.minimumCommittedCards ?? 0),
+  )
+}
+function commitGroupState(
+  state: GameState,
+  id: string,
+  cards: string[],
+  incomplete = false,
+): GameState | null {
+  const test = state.skillTest
+  if (
+    !test ||
+    (test.commitRule && cards.length > 1) ||
+    (!incomplete && cards.length < minimumCommittedCards(state, id))
+  )
+    return null
+  let next: GameState = { ...state, queue: [] }
+  const notifications: Message[] = []
+  for (const code of cards) {
+    const before = next.skillTest!.committed.length
+    next = handle(next, {
+      type: 'CommitCard',
+      investigator: id,
+      code,
+      groupSize: Math.max(cards.length, minimumCommittedCards(state, id)),
+    })
+    if (next.skillTest?.committed.length !== before + 1) return null
+    notifications.push(
+      ...next.queue.map((m) =>
+        m.type === 'Forced' && m.trigger.type === 'afterCommit'
+          ? { ...m, trigger: { ...m.trigger, groupSize: cards.length } }
+          : m,
+      ),
+    )
+    next = { ...next, queue: [] }
+  }
+  return push({ ...next, queue: state.queue }, ...notifications)
+}
+function hasCommitGroup(state: GameState, id: string, cards: string[]): boolean {
+  if (!commitGroupState(state, id, cards, true)) return false
+  if (cards.length >= minimumCommittedCards(state, id)) return true
+  const remaining = [...getInvestigator(state, id).hand]
+  for (const c of cards) {
+    const at = remaining.indexOf(c)
+    if (at < 0) return false
+    remaining.splice(at, 1)
+  }
+  return [...new Set(remaining)].some((c) => hasCommitGroup(state, id, [...cards, c]))
 }
 
 /** Margen de la prueba en curso (valor final menos dificultad). */
@@ -15185,7 +15307,7 @@ function activeCommitted(test: SkillTest): SkillTest['committed'] {
     : committed
 }
 
-function commitIcons(
+export function commitIcons(
   state: GameState,
   test: SkillTest,
   code: string,

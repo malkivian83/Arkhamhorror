@@ -307,6 +307,11 @@
         "title": "Leo y Ursula exploran la Era Olvidada",
         "cards": "Dos investigadores con sus mazos oficiales FFG, cartas exclusivas, debilidades y presentación completa en español e inglés.",
         "rules": "Aliados de Leo y Mitch, acciones de investigar de Ursula, protección de Jake y seguimiento de La llamada de lo desconocido."
+      },
+      "minhThiPhan": {
+        "title": "Minh Thi Phan se une a la investigación",
+        "cards": "Minh con su mazo oficial FFG, Mente analítica y El Rey de Amarillo, con presentación completa en español e inglés.",
+        "rules": "Iconos comodín para compañeros, aportaciones a distancia, grupos de cartas comprometidas y regreso de habilidades tras la prueba."
       }
     }
   },
@@ -1368,7 +1373,11 @@
     "shelterHorror": "Curarse 1 punto de horror",
     "replenishCharge": "Reponer 1 carga de {card}",
     "ursulaMove": "Moverte a un Lugar conectado",
-    "bloodHand": "Descartar todos los apoyos Aliado de la mano ({n})"
+    "bloodHand": "Descartar todos los apoyos Aliado de la mano ({n})",
+    "minhReturn": "Devolver {card} a su dueño tras la prueba",
+    "commitGroup": "Comprometer un grupo de cartas",
+    "commitGroupAdd": "Añadir {card} al grupo ({n})",
+    "commitGroupFinish": "Comprometer las {n} cartas elegidas"
   },
   "phase": {
     "setup": "Preparación",
@@ -1939,7 +1948,8 @@
     "zoeyEngage": "Ganar 1 recurso tras enfrentarte a un Enemigo",
     "jimSkull": "Tratar este signo arcano como una calavera",
     "leoPlay": "Jugar {card} con Leo (−1 al coste)",
-    "ursulaInvestigate": "Ursula: realizar una acción de investigar"
+    "ursulaInvestigate": "Ursula: realizar una acción de investigar",
+    "minhIcon": "Minh: añadir un icono comodín a {card}"
   },
   "log": {
     "archiveReveal": "El mazo de mercado revela: {card}",
@@ -3789,6 +3799,9 @@
   },
   "offlineCard": {
     "subnames": {
+      "03011": "Primer acto",
+      "03010": "Entre las líneas",
+      "03002": "La secretaria",
       "04008": "Compañero leal",
       "04006": "Único superviviente",
       "04002": "La exploradora",
@@ -3994,6 +4007,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "03011": "Tomo.",
+      "03010": "Talento.",
+      "03002": "Ayudante.",
       "04009": "Tarea.",
       "04008": "Aliado. Viajero.",
       "04007": "Defecto.",
@@ -5039,6 +5055,9 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "03011": "<b>Revelación</b> - Pon El Rey de Amarillo en juego en tu zona de amenaza. No puede abandonar el juego excepto mediante la siguiente capacidad [reaction].\nNo puedes asignar exactamente 1 o 2 cartas a pruebas de habilidad.\n[reaction] Después de que tengas éxito una prueba de habilidad a la que Minh Thi Phan haya asignado al menos 6 iconos de habilidad iguales: Descarta El Rey de Amarillo.",
+      "03010": "Sólo para el mazo de Minh Thi Phan.\nPuedes asignar 1 carta a cada prueba de habilidad realizada por un investigador que esté en otro Lugar.\n[reaction] Después de que asignes exactamente 1 carta a una prueba de habilidad, agota la Mente analítica: Roba 1 carta.",
+      "03002": "[reaction] Después de que un investigador que esté en tu Lugar asigne una carta a una prueba de habilidad: Esa carta obtiene un icono [wild] hasta el final de la prueba. Límite de una vez por cada investigador por ronda.\nEfecto [elder_sign]: +1. Puedes elegir una carta de Habilidad asignada a esta prueba de habilidad para devolverla a la mano de su propietario después de que termine esta prueba.",
       "04009": "<b>Revelación</b> - Pon la Llamada de lo desconocido en juego en tu zona de amenaza.\n<b>Obligado</b> - Al comienzo de tu turno: Elige un Lugar que no sea tu Lugar. Cuando termine tu turno, si no investigaste con éxito el Lugar elegido en este turno, recibe 2 puntos de horror, devuelve la Llamada de lo desconocido a tu mazo y baraja éste.",
       "04008": "Sólo para el mazo de Ursula Downs.\nEl primer movimiento o acción de investigar que realices en cada turno no provoca ataques de oportunidad.\n[reaction] Después de que reveles un Lugar o pongas un nuevo Lugar en juego, agota a Jake Williams: Roba 1 carta.",
       "04007": "<b>Revelación</b> - Debes descartar del juego un Apoyo [[Aliado]] que controles, o bien descartar todos los Apoyos [[Aliado]] de tu mano. Si no se descartó ningún Apoyo por este efecto, devuelve Comprado con sangre a tu mazo y baraja éste.",
@@ -6491,6 +6510,7 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "03002": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazo</b>: Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Superviviente ([survivor]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Mente analítica, El Rey de Amarillo (Primer acto), 1 Debilidad básica aleatoria.",
       "04002": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Buscador ([seeker]) de nivel 0-5, cartas [[Reliquia]] de nivel 0-4, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño de mazo): Jake Williams, Llamada de lo desconocido, 1 Debilidad básica aleatoria.",
       "04001": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Guardián ([guardian]) de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño del mazo): Mitch Brown, Comprado con sangre, 1 Debilidad básica aleatoria.",
       "03004": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Místico ([mystic]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas con \"Usos (cargas)\" de nivel 0-4, cartas [[Ocultismo]] de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Portavoz de los espíritus, Espíritus airados, 1 Debilidad básica aleatoria.",
@@ -6526,6 +6546,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "03011": "El Rey de Amarillo",
+      "03010": "Mente analítica",
+      "03002": "Minh Thi Phan",
       "04009": "Llamada de lo desconocido",
       "04008": "Jake Williams",
       "04007": "Comprado con sangre",

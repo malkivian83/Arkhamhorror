@@ -1,3 +1,5 @@
+import minhCards from '../data/minh-thi-phan.json'
+import minhOfficial from '../minh-thi-phan/decklist-6644.json'
 import forgottenInvestigators from '../data/forgotten-age-investigators.json'
 import leoOfficial from '../forgotten-age-investigators/decklist-38675.json'
 import ursulaOfficial from '../forgotten-age-investigators/decklist-38676.json'
@@ -83,6 +85,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(minhCards as PlayerCardDef[]),
   ...(dunwichInvestigators as PlayerCardDef[]),
   ...(carcosaInvestigators as PlayerCardDef[]),
   ...(forgottenInvestigators as PlayerCardDef[]),
@@ -127,6 +130,18 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  minh: {
+    investigator: 1,
+    investigatorCode: minhOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(minhOfficial.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   leo: {
     investigator: 1,
     investigatorCode: leoOfficial.investigator_code,

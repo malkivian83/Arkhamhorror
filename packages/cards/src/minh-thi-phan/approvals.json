@@ -1,0 +1,33 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": { "03002": "https://arkhamdb.com/decklist/view/6644" },
+  "presentation": "rendered",
+  "sources": {
+    "en": "7981d3c0515571540e7284c3e41d255e42f460450a1cfd7da09d311671d7255f",
+    "es": "b704de24cc7a1bf5d7468f581bcd60f1f95f67d219b9b70d1dd510147b6f9569"
+  },
+  "cards": [
+    {
+      "code": "03002",
+      "status": "verified",
+      "adapter": "minh-thi-phan-v1",
+      "module": "card-03002",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03010",
+      "status": "verified",
+      "adapter": "minh-thi-phan-v1",
+      "module": "card-03010",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03011",
+      "status": "verified",
+      "adapter": "minh-thi-phan-v1",
+      "module": "card-03011",
+      "test": "rules.test.ts"
+    }
+  ]
+}

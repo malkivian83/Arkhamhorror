@@ -877,6 +877,8 @@ export interface SkillTest {
     toDeckBottom?: boolean
     returnToHand?: boolean
     putIntoPlay?: boolean
+    /** This physical copy returns at ST.8, retaining its skill effects until then. */
+    returnAfterTest?: boolean
     /** Practice Makes Perfect: this exact commitment returns after a successful test. */
     returnAfterSuccess?: boolean
     /** Surprising Find: its Research ability supplied this exact copy. */
@@ -1351,9 +1353,14 @@ type MessageBody =
       round: number
     }
   | { type: 'CommitWindow' }
+  | { type: 'ChooseCommitGroup'; investigator: InvestigatorId; cards?: CardCode[] }
+  | { type: 'CommitCardGroup'; investigator: InvestigatorId; cards: CardCode[] }
+  | { type: 'ReturnCommittedAfterTest'; commitId: number }
   | { type: 'MarkTestAbility'; key: string }
   | {
       type: 'CommitCard'
+      /** Internal atomic group size; CommitCardGroup validates the complete selection. */
+      groupSize?: number
       /** Isabelle: shuffle the committed card into its owner's deck after the test. */
       shuffleAfter?: boolean
       investigator: InvestigatorId
@@ -1526,7 +1533,14 @@ type MessageBody =
   | { type: 'SetScenarioMeta'; key: string; value: string | number }
   | { type: 'ConnectLocations'; a: LocationId; b: LocationId }
   /** `defeated`: it leaves play because it was defeated (Cherished Keepsake is exiled). */
-  | { type: 'DiscardAsset'; asset: AssetId; defeated?: boolean; onDiscard?: Message[] }
+  | {
+      type: 'DiscardAsset'
+      asset: AssetId
+      defeated?: boolean
+      onDiscard?: Message[]
+      /** An explicit exception printed on this asset to its cannot-leave restriction. */
+      byOwnAbility?: boolean
+    }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | {
@@ -2692,7 +2706,13 @@ export type Trigger =
       amount: number
     }
   /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
-  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
+  | {
+      type: 'afterCommit'
+      by: InvestigatorId
+      tester: InvestigatorId
+      commitId?: number
+      groupSize?: number
+    }
   /** Tras ganar recursos por el efecto de una carta. */
   | {
       type: 'afterGainResources'
