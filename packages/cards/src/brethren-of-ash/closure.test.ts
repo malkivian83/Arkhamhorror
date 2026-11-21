@@ -41,7 +41,9 @@ describe('auditoría de cierre: preparación y reanudación del motor', () => {
         const campaign = newCampaign('brethren-of-ash', team, difficulty, 17)
         for (const scenarioIndex of [0, 1, 2]) {
           const game = firstTurn(startScenario({ ...campaign, scenarioIndex }, 23))
-          expect(game.phase).toBe('investigation')
+          expect(game.phase, JSON.stringify({ team, prompt: game.pending?.question })).toBe(
+            'investigation',
+          )
           expect(game.investigators).toHaveLength(team.length)
           expect(game.investigators.every((i) => i.hand.length === 5)).toBe(true)
           expect(game.agendas.every((card) => card.code)).toBe(true)

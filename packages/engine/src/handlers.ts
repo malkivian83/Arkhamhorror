@@ -8786,7 +8786,12 @@ export function handle(state: GameState, message: Message): GameState {
       let next: GameState
       if (message.asset) {
         const asset = state.assets[message.asset]
-        if (!asset || asset.expeditionPartner || stuckInPlay(state, asset)) return state
+        if (
+          !asset ||
+          asset.expeditionPartner ||
+          (stuckInPlay(state, asset) && !message.byOwnAbility)
+        )
+          return state
         const { [asset.id]: _gone, ...assets } = state.assets
         next = { ...state, assets }
       } else {

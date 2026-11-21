@@ -1877,6 +1877,7 @@ type MessageBody =
   /** Exile from play (`asset`), hand (`from`), or the owner's discard pile by default. */
   | {
       type: 'ExileCard'
+      byOwnAbility?: boolean
       from?: 'hand' | 'discard'
       investigator: InvestigatorId
       code: CardCode

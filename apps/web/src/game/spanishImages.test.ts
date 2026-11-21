@@ -5,7 +5,13 @@ import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
-import { isPermanent, playerCardBehavior, playerCardDef } from '@lcg/engine'
+import {
+  allPlayerCardDefs,
+  investigatorBehavior,
+  isPermanent,
+  playerCardBehavior,
+  playerCardDef,
+} from '@lcg/engine'
 
 describe('imágenes españolas de referencia y alternativas', () => {
   it('shows the player back for a dimensional duplicate instead of the Duplicator scan', () => {
@@ -134,7 +140,13 @@ describe('imágenes españolas de referencia y alternativas', () => {
             // Debilidades de apoyo sin coste impreso (Barón Samedi).
             (playerCardDef(code)?.weakness && playerCardDef(code)?.cost === undefined) ||
             // Vinculadas sin coste impreso que solo entran por intercambio (Colgante de la reina).
-            (playerCardDef(code)?.bondedCard && playerCardDef(code)?.cost === undefined)
+            (playerCardDef(code)?.bondedCard && playerCardDef(code)?.cost === undefined) ||
+            (playerCardDef(code)?.cost === undefined &&
+              allPlayerCardDefs().some(
+                (definition) =>
+                  definition.type === 'investigator' &&
+                  investigatorBehavior(definition.code)?.startingAssets?.includes(code),
+              ))
           )
             expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')
