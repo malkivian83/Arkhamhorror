@@ -1,3 +1,4 @@
+import { discardLocked } from './state'
 import { shuffle } from './rng'
 // RR: Face Down, Out of Play, Attach To, Ownership and Control, Leaves Play.
 import { assetBehavior, playerCardBehavior, playerCardDef, scenarioBehavior } from './content'
@@ -137,6 +138,7 @@ export function handleStored(s: GameState, m: Message): GameState | undefined {
       }
     }
     case 'StorePlayerCard': {
+      if (m.from === 'discard' && discardLocked(s, m.investigator)) return s
       const a = s.assets[m.asset],
         owner = getInvestigator(s, m.investigator)
       const limit = a && assetBehavior(s, a)?.storedLimit

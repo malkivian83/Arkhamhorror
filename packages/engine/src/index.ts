@@ -1,3 +1,4 @@
+export { adjacentPositions, discardLocked, emptyAdjacentPositions, gridNeighbors } from './state'
 export { cluesBlocked, commitIcons } from './handlers'
 export { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
 export {
@@ -73,6 +74,20 @@ export {
   tekeliliCopies,
   type ExpeditionPartner,
 } from './expedition'
+export {
+  activeTimeText,
+  applyValleyFatigue,
+  LOWEST_CHAOS_VALUE,
+  newValley,
+  relationshipLevel,
+  residentAvailable,
+  residentHasNote,
+  residentMarks,
+  residentNotes,
+  valleyAreas,
+  valleyResidents,
+  valleyTime,
+} from './valley'
 export {
   assetSlots,
   assetTraits,

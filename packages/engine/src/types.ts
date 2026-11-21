@@ -2187,7 +2187,17 @@ type MessageBody =
   | { type: 'ActAdvanced' }
   | { type: 'DiscardEnemy'; enemy: EnemyId }
   | { type: 'MoveEnemy'; enemy: EnemyId; location: LocationId }
-  | { type: 'PutLocationIntoPlay'; location: LocationId; investigator?: InvestigatorId }
+  | {
+      type: 'PutLocationIntoPlay'
+      location: LocationId
+      investigator?: InvestigatorId
+      /** Espacio de la cuadrícula donde se coloca. */
+      position?: [number, number]
+    }
+  /** Desliza un Lugar (con todo lo que hay en él) a un espacio vacío adyacente. */
+  | { type: 'SlideLocation'; location: LocationId; position: [number, number] }
+  /** Intercambia el espacio de dos Lugares, con todo lo que hay en ellos. */
+  | { type: 'SwapLocations'; a: LocationId; b: LocationId }
   | {
       type: 'PutEncounterLocation'
       card: EncounterLocationCard
@@ -2291,6 +2301,23 @@ type MessageBody =
     }
   | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
   | { type: 'InitializeExpedition' }
+  | { type: 'InitializeValley' }
+  | { type: 'SetValleyTime'; day: ValleyDay; time: ValleyTime }
+  | { type: 'AdvanceValleyTime' }
+  /** Sube (positivo) o baja (negativo) casillas; `reset` lo fija en 0. */
+  | { type: 'ChangeRelationship'; resident: ValleyResident; amount?: number; reset?: boolean }
+  | { type: 'RecordResidentNote'; resident: ValleyResident; note: string; marks?: number }
+  | { type: 'CrossOutResident'; resident: ValleyResident }
+  | { type: 'SurveyArea'; area: ValleyArea }
+  | { type: 'ChooseCodexEntry'; entry: string }
+  /** Fatiga de la larga noche: dos fichas numéricas pasan a valer una unidad menos. */
+  | { type: 'ValleyFatigue' }
+  /** Elección del escenario siguiente al final de un preludio. */
+  | { type: 'ChooseValleyRoute'; scenario: string }
+  /** Anota lo que conserva el investigador (antes de que termine el preludio). */
+  | { type: 'RecordPreludeCarry'; investigator: InvestigatorId; asset?: AssetId; resources: number }
+  /** Descarta de la mano hasta quedarse con `size` cartas, a su elección. */
+  | { type: 'DiscardDownTo'; investigator: InvestigatorId; size: number }
   | {
       type: 'ChooseExpeditionPartners'
       required?: ExpeditionPartner[]
@@ -2640,7 +2667,7 @@ type MessageBody =
   /** Colocación inicial: el jefe en `lead` y los demás en `others`. */
   | { type: 'PlaceAtStart'; lead: LocationId; others: LocationId }
   /** El enemigo abandona el juego y va a la zona de victoria (sin ser derrotado). */
-  | { type: 'EnemyToVictory'; enemy: EnemyId }
+  | { type: 'EnemyToVictory'; enemy: EnemyId; defeated?: Enemy }
   /** El enemigo se retira de la partida (no va a ninguna pila). */
   | { type: 'RemoveEnemyFromGame'; enemy: EnemyId; leavingResolved?: boolean }
 
@@ -3090,8 +3117,73 @@ export interface ExpeditionState {
   supplies: ExpeditionSupply[]
 }
 
+/** La fiesta del Valle de la Cicuta: habitantes con entrada propia en el registro (p. 71). */
+export type ValleyResident =
+  | 'motherRachel'
+  | 'leahAtwood'
+  | 'simeonAtwood'
+  | 'williamHemlock'
+  | 'riverHawthorne'
+  | 'gideonMizrah'
+  | 'judithPark'
+  | 'theoPeters'
+
+/** Zonas exploradas del registro (p. 70); las claves siguen la guía inglesa. */
+export type ValleyArea =
+  | 'northPointMine'
+  | 'hemlockHarbor'
+  | 'pearlRidge'
+  | 'akwanShoreline'
+  | 'eastwickBog'
+  | 'westernWoods'
+  | 'southernFields'
+
+export type ValleyDay = 1 | 2 | 3
+export type ValleyTime = 'day' | 'night'
+
+export interface ValleyResidentRecord {
+  /** Casillas marcadas: el nivel de relación. */
+  level: number
+  /** Nombre tachado: no entra en juego y sus notas dejan de contar. */
+  crossedOut?: boolean
+  notes: string[]
+  /** Marcas junto a una nota («El plan está en marcha»). */
+  marks?: Record<string, number>
+}
+
+/** Fatiga: una ficha numérica sustituida por la de valor una unidad menor. */
+export interface ValleyFatigue {
+  from: number
+  to: number
+}
+
+export interface ValleyState {
+  day: ValleyDay
+  time: ValleyTime
+  residents: Record<ValleyResident, ValleyResidentRecord>
+  areasSurveyed: ValleyArea[]
+  /** Entradas del códice elegidas en las tardes. */
+  codexChosen: string[]
+  /** Sustituciones permanentes de la bolsa, en orden. */
+  fatigue: ValleyFatigue[]
+  /** Escenarios elegidos tras cada preludio, en orden (sin el preludio de bienvenida). */
+  route?: string[]
+  /** Lo que cada investigador conserva del preludio para el escenario siguiente (p. 6). */
+  carry?: Record<InvestigatorId, ValleyCarry>
+}
+
+/** Preludio y escenario son la misma partida: mano, recursos, un apoyo y pistas. */
+export interface ValleyCarry {
+  hand: CardCode[]
+  resources: number
+  clues: number
+  asset?: CardCode
+}
+
 export interface CampaignLog {
   expedition?: ExpeditionState
+  /** La fiesta del Valle de la Cicuta; ausente en las demás campañas y guardados antiguos. */
+  valley?: ValleyState
   /** Cards permanently removed from every investigator's deck by campaign effects. */
   removedCards?: CardCode[]
   /** Notas de campaña, por clave ("universityBurned"…). */
@@ -3194,6 +3286,13 @@ export interface GameState {
   actIndex: number
   pendingOutsideTokens?: ChaosToken[]
   chaosBag: ChaosToken[]
+  /** Preludio sin mazo de Encuentros: no se roba, busca ni mira en él. */
+  noEncounterDeck?: true
+  /**
+   * Lugares en una cuadrícula (`position` = [columna, fila]): cada Lugar está conectado a
+   * los adyacentes, además de por sus iconos (La fiesta del Valle de la Cicuta, p. 3).
+   */
+  grid?: true
   tokenValues: ScenarioTokenValues
   encounterDeck: EncounterCard[]
   encounterDiscard: EncounterCard[]

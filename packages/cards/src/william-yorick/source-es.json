@@ -1,0 +1,157 @@
+[
+  {
+    "pack_code": "ptc",
+    "pack_name": "El camino a Carcosa",
+    "type_code": "investigator",
+    "type_name": "Investigador",
+    "faction_code": "survivor",
+    "faction_name": "Superviviente",
+    "position": 5,
+    "exceptional": false,
+    "myriad": false,
+    "code": "03005",
+    "name": "William Yorick",
+    "real_name": "William Yorick",
+    "subname": "El sepulturero",
+    "text": "[reaction] Después de que derrotes a un Enemigo: Juega un Apoyo desde tu pila de descartes <em>(pagando su coste)</em>. Límite de una vez por ronda.\nEfecto [elder_sign]: +2. Si esta prueba tiene éxito, devuelve 1 carta de tu pila de descartes a tu mano.",
+    "real_text": "[reaction] After you defeat an enemy: Play an asset from your discard pile <i>(paying its cost)</i>. (Limit once per round.)\n[elder_sign] effect: +2. If this test is successful, return 1 card from your discard pile to your hand.",
+    "quantity": 1,
+    "skill_willpower": 3,
+    "skill_intellect": 2,
+    "skill_combat": 4,
+    "skill_agility": 3,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Protector.",
+    "real_traits": "Warden.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "03016": {
+          "03016": "03016"
+        },
+        "03017": {
+          "03017": "03017"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["survivor", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["guardian"],
+        "level": {
+          "min": 0,
+          "max": 2
+        }
+      }
+    ],
+    "flavor": "\"Sólo soy un mero personaje de este drama, pero si tengo suerte, seguiré vivo cuando caiga el telón.\"",
+    "illustrator": "Jake Murray",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Superviviente ([survivor]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Guardián ([guardian]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Muertos y enterrados, Gules del cementerio, 1 Debilidad básica aleatoria.",
+    "back_flavor": "William Yorick nunca quiso ser sepulturero. Se formó para ser actor y trabajó en Boston durante años, aceptando cualquier papel disponible. Shakespeare era lo mejor, claro, pero tras muchos años y apenas papeles, se vio obligado a admitir que su destino no estaba sobre el escenario. Cavar tumbas era un trabajo tedioso, pero los muertos eran un público excelente, y a William siempre le gustaron los soliloquios. El trabajo adquirió un cariz siniestro cuando encontró unas degeneradas criaturas que se comían a los muertos en sus tumbas. Desde esa noche, Yorick ha mantenido a raya las criaturas usando todos los medios a su disposición para proteger a los muertos.",
+    "octgn_id": "10797ed5-43a5-432f-b85d-05937226cf86:ac16fd9d-15a3-4ff7-9441-644859039af6",
+    "url": "https://es.arkhamdb.com/card/03005",
+    "imagesrc": "/bundles/cards/03005.png",
+    "backimagesrc": "/bundles/cards/03005b.png"
+  },
+  {
+    "pack_code": "ptc",
+    "pack_name": "El camino a Carcosa",
+    "type_code": "event",
+    "type_name": "Evento",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 16,
+    "exceptional": false,
+    "myriad": false,
+    "code": "03016",
+    "name": "Muertos y enterrados",
+    "real_name": "Bury Them Deep",
+    "cost": 0,
+    "text": "Sólo para el mazo de William Yorick.\nRápido. Juega esta carta después de que sea derrotado un Enemigo que esté en tu Lugar y no sea [[Élite]].\nAñade ese Enemigo <em>(y esta carta)</em> a la zona de victoria.",
+    "real_text": "William Yorick deck only.\nFast. Play after a non-[[Elite]] enemy at your location is defeated.\nAdd that enemy <i>(and this card)</i> to the victory display.",
+    "quantity": 1,
+    "skill_willpower": 1,
+    "skill_combat": 1,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "victory": 1,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Tarea.",
+    "real_traits": "Task.",
+    "restrictions": {
+      "investigator": {
+        "03005": "03005"
+      }
+    },
+    "flavor": "\"Aunque todo es locura, no deja de observar método en lo que dice.\"\n- William Shakespeare, Hamlet.",
+    "illustrator": "Alexander Kozachenko",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "569aa886-e35c-4743-ab28-580054aa3acf",
+    "url": "https://es.arkhamdb.com/card/03016",
+    "imagesrc": "/bundles/cards/03016.png"
+  },
+  {
+    "pack_code": "ptc",
+    "pack_name": "El camino a Carcosa",
+    "type_code": "enemy",
+    "type_name": "Enemigo",
+    "subtype_code": "weakness",
+    "subtype_name": "Debilidad",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 17,
+    "exceptional": false,
+    "myriad": false,
+    "code": "03017",
+    "name": "Gules del cementerio",
+    "real_name": "Graveyard Ghouls",
+    "text": "<b>Presa</b> - Sólo William Yorick.\nCazador.\nMientras los Gules del cementerio estén enfrentados a ti, ninguna carta puede abandonar tu pila descartes.",
+    "real_text": "<b>Prey</b> - William Yorick only.\nHunter.\nWhile Graveyard Ghouls is engaged with you, cards cannot leave your discard pile.",
+    "quantity": 1,
+    "health": 3,
+    "health_per_investigator": false,
+    "enemy_damage": 1,
+    "enemy_horror": 1,
+    "enemy_fight": 3,
+    "enemy_evade": 2,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Humanoide. Monstruo. Gul.",
+    "real_traits": "Humanoid. Monster. Ghoul.",
+    "restrictions": {
+      "investigator": {
+        "03005": "03005"
+      }
+    },
+    "flavor": "\"El infierno está vacío y todos los demonios se hallan aquí.\"\n - William Shakespeare, La tempestad",
+    "illustrator": "Mike Capprotti",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "0545b58a-e4e5-47de-a1e0-fd9add65f674",
+    "url": "https://es.arkhamdb.com/card/03017",
+    "imagesrc": "/bundles/cards/03017.png"
+  }
+]

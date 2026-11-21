@@ -1,3 +1,4 @@
+import { discardLocked } from './state'
 import { handleBeneath } from './investigator-beneath'
 import {
   copyChoices,
@@ -147,6 +148,15 @@ import {
   tekeliliCopies,
 } from './expedition'
 import { sealHolderPresent } from './seals'
+import {
+  advanceValleyTime,
+  changeRelationship,
+  crossOutResident,
+  drawValleyFatigue,
+  newValley,
+  recordResidentNote,
+  surveyArea,
+} from './valley'
 import type {
   Action,
   Asset,
@@ -296,6 +306,7 @@ export function handle(state: GameState, message: Message): GameState {
     return push({ ...state, rng }, ...message.choices[at]!)
   }
   if (message.type === 'CycleBondedCat') {
+    if (discardLocked(state, message.investigator)) return state
     const owner = getInvestigator(state, message.investigator)
     const cards = [...owner.discard]
     const first = cards.indexOf(message.shuffled)
@@ -525,6 +536,7 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'MythosEncounterStep' },
       )
     case 'MythosEncounterStep':
+      if (state.noEncounterDeck) return state
       return push(
         state,
         ...activeInvestigators(state).map((i): Message => ({
@@ -796,6 +808,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DrawEncounterCard': {
+      if (state.noEncounterDeck) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated || investigator.location === null) return state
       const instead = scenarioBehavior(state.scenarioId)?.insteadOfEncounterDraw?.(
@@ -2139,11 +2152,13 @@ export function handle(state: GameState, message: Message): GameState {
       ]
       if (message.amount <= 0) return push(state, ...finish(message.revelations ?? []))
       if (investigator.deck.length === 0) {
-        const [deck, rng] = shuffle(investigator.discard, state.rng)
+        const [deck, rng] = discardLocked(state, investigator.id)
+          ? ([[], state.rng] as [string[], typeof state.rng])
+          : shuffle(investigator.discard, state.rng)
         const reshuffled = updateInvestigator({ ...state, rng }, investigator.id, (i) => ({
           ...i,
           deck,
-          discard: [],
+          discard: discardLocked(state, investigator.id) ? i.discard : [],
         }))
         const horror: Message = {
           type: 'TakeDamage',
@@ -2339,6 +2354,7 @@ export function handle(state: GameState, message: Message): GameState {
         }))
       } else {
         if (at < 0 && !copy) return state
+        if (at >= 0 && discardLocked(state, owner.id)) return state
         source = updateInvestigator(state, owner.id, (i) => ({
           ...i,
           discard: i.discard.filter((_, n) => n !== at),
@@ -4163,6 +4179,7 @@ export function handle(state: GameState, message: Message): GameState {
         (index < 0 || message.from === 'discard') &&
         discardAt >= 0 &&
         (message.byEffect || playableHand(state, investigator.id).includes(message.code))
+      if (fromDiscard && discardLocked(state, investigator.id)) return state
       if (!def || (index < 0 && !fromDiscard)) return state
       const xBehavior = playerCardBehavior(message.code)
       if (xBehavior?.costX && message.noCost && message.x !== 0)
@@ -4698,6 +4715,7 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       if (message.fromDiscard) {
+        if (discardLocked(state, message.fromDiscard)) return state
         const owner = getInvestigator(state, message.fromDiscard)
         const at = owner.discard.indexOf(message.code)
         if (at < 0) return state
@@ -4914,6 +4932,7 @@ export function handle(state: GameState, message: Message): GameState {
         ? { ...state, skillTest: { ...state.skillTest, replacementResults: message.then } }
         : state
     case 'RemoveCardFromDiscard': {
+      if (discardLocked(state, message.investigator)) return state
       const i = getInvestigator(state, message.investigator)
       const at = i.discard.indexOf(message.code)
       return at < 0
@@ -5347,6 +5366,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ShuffleCardsIntoDeck': {
+      if (message.fromDiscard && discardLocked(state, message.investigator)) return state
       const i = getInvestigator(state, message.investigator)
       if (i.eliminated || message.cards.length === 0) return state
       const hand = [...i.hand]
@@ -5441,6 +5461,7 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
       const zone = message.from ?? 'hand'
+      if (zone === 'discard' && discardLocked(state, message.investigator)) return state
       if (message.fromStored) {
         const a = state.assets[message.fromStored.asset],
           c = a?.storedCards?.[message.fromStored.index]
@@ -5677,6 +5698,99 @@ export function handle(state: GameState, message: Message): GameState {
       return state.campaignLog?.expedition
         ? state
         : updateCampaignLog(state, (c) => ({ ...c, expedition: newExpedition() }))
+
+    case 'InitializeValley':
+      return state.campaignLog?.valley
+        ? state
+        : updateCampaignLog(state, (c) => ({ ...c, valley: newValley() }))
+
+    case 'SetValleyTime':
+      return updateValley(state, (v) =>
+        v.day === message.day && v.time === message.time
+          ? v
+          : { ...v, day: message.day, time: message.time },
+      )
+
+    case 'AdvanceValleyTime':
+      return updateValley(state, advanceValleyTime)
+
+    case 'ChangeRelationship':
+      return updateValley(state, (v) =>
+        changeRelationship(v, message.resident, message.amount, message.reset),
+      )
+
+    case 'RecordResidentNote':
+      return updateValley(state, (v) =>
+        recordResidentNote(v, message.resident, message.note, message.marks),
+      )
+
+    case 'CrossOutResident':
+      return updateValley(state, (v) => crossOutResident(v, message.resident))
+
+    case 'SurveyArea':
+      return updateValley(state, (v) => surveyArea(v, message.area))
+
+    case 'ChooseCodexEntry':
+      return updateValley(state, (v) =>
+        v.codexChosen.includes(message.entry)
+          ? v
+          : { ...v, codexChosen: [...v.codexChosen, message.entry] },
+      )
+
+    case 'ChooseValleyRoute':
+      return updateValley(state, (v) => ({ ...v, route: [...(v.route ?? []), message.scenario] }))
+
+    case 'RecordPreludeCarry': {
+      const investigator = getInvestigator(state, message.investigator)
+      const asset = message.asset ? state.assets[message.asset] : undefined
+      const carry = {
+        hand: [...investigator.hand],
+        resources: Math.min(investigator.resources, message.resources),
+        clues: investigator.clues,
+        ...(asset && asset.owner === investigator.id ? { asset: asset.code } : {}),
+      }
+      return updateValley(state, (v) => ({
+        ...v,
+        carry: { ...v.carry, [investigator.id]: carry },
+      }))
+    }
+
+    case 'DiscardDownTo': {
+      const investigator = getInvestigator(state, message.investigator)
+      if (investigator.hand.length <= message.size) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: investigator.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.discardDownTo',
+          promptParams: { n: message.size },
+          choices: [...new Set(investigator.hand)].map((card): Choice => ({
+            label: 'choice.discard',
+            params: { card },
+            then: [{ type: 'DiscardFromHand', investigator: investigator.id, card }, message],
+          })),
+        },
+      })
+    }
+
+    case 'ValleyFatigue': {
+      if (!state.campaignLog?.valley) return state
+      // Las fichas de la reserva (bendición/maldición) no forman parte de la bolsa de campaña.
+      const pool = state.chaosBag.filter(isPoolToken)
+      const drawn = drawValleyFatigue(
+        state.chaosBag.filter((token) => !isPoolToken(token)),
+        state.rng,
+      )
+      const next = updateValley(
+        { ...state, chaosBag: [...drawn.bag, ...pool], rng: drawn.rng },
+        (v) => ({ ...v, fatigue: [...v.fatigue, ...drawn.fatigue] }),
+      )
+      return drawn.fatigue.reduce(
+        (current, { from, to }) => log(current, 'log.valleyFatigue', { from, to }),
+        next,
+      )
+    }
 
     case 'ChooseExpeditionPartners':
       return push(
@@ -7963,6 +8077,7 @@ export function handle(state: GameState, message: Message): GameState {
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
       const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
       if (index < 0 && !copy) return state
+      if (index >= 0 && discardLocked(state, owner.id)) return state
       return updateInvestigator(
         {
           ...state,
@@ -9378,6 +9493,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'SearchEncounterForTrait': {
+      if (state.noEncounterDeck) return state
       const matches = (c: EncounterCard) =>
         c.kind === 'enemy' && (c.traits ?? []).includes(message.trait)
       const selected = message.selected
@@ -9627,6 +9743,7 @@ export function handle(state: GameState, message: Message): GameState {
           ? updateInvestigator(state, investigator.id, (i) => ({ ...i, deck: i.deck.slice(0, -1) }))
           : state
       }
+      if (discardLocked(state, message.investigator)) return state
       const at = investigator.discard.lastIndexOf(message.code)
       if (at < 0) return state
       return updateInvestigator(state, investigator.id, (i) => ({
@@ -9643,6 +9760,7 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'RemoveDiscardFromGame': {
+      if (discardLocked(state, message.investigator)) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.discard.length === 0) return state
       return log(
@@ -10678,6 +10796,11 @@ export function handle(state: GameState, message: Message): GameState {
       return rest
     }
     case 'AttachEventToLocation': {
+      if (
+        !resolvingCopy(state, message.investigator, message.code, message.eventCopy) &&
+        discardLocked(state, message.investigator)
+      )
+        return state
       const owner = getInvestigator(state, message.investigator)
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
       const index = copy ? -1 : owner.discard.lastIndexOf(message.code)
@@ -10808,6 +10931,12 @@ export function handle(state: GameState, message: Message): GameState {
       const asset = state.assets[message.asset]
       const owner = getInvestigator(state, message.investigator)
       const from = message.from ?? 'discard'
+      if (
+        from === 'discard' &&
+        !resolvingCopy(state, message.investigator, message.code, message.eventCopy) &&
+        discardLocked(state, message.investigator)
+      )
+        return state
       const copy = resolvingCopy(state, message.investigator, message.code, message.eventCopy)
       const index = copy ? -1 : owner[from].lastIndexOf(message.code)
       const controller = asset && state.investigators.find((i) => i.id === asset.owner)
@@ -11171,7 +11300,13 @@ export function handle(state: GameState, message: Message): GameState {
         setAsideLocations,
         locations: {
           ...state.locations,
-          [card.id]: { ...card, connections: [...card.connections], revealed: false, clues: 0 },
+          [card.id]: {
+            ...card,
+            connections: [...card.connections],
+            revealed: false,
+            clues: 0,
+            ...(message.position ? { position: message.position } : {}),
+          },
         },
       }
       return push(recomputeConnections(placed), {
@@ -11182,6 +11317,32 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.investigator ? { investigator: message.investigator } : {}),
         },
       })
+    }
+
+    case 'SlideLocation': {
+      const location = state.locations[message.location]
+      if (!location) return state
+      const taken = Object.values(state.locations).some(
+        (l) => l.position?.[0] === message.position[0] && l.position?.[1] === message.position[1],
+      )
+      if (taken) return state
+      return recomputeConnections(
+        updateLocation(state, message.location, (l) => ({ ...l, position: message.position })),
+      )
+    }
+
+    case 'SwapLocations': {
+      const a = state.locations[message.a]
+      const b = state.locations[message.b]
+      const from = a?.position
+      const to = b?.position
+      if (!a || !b || !from || !to || a.id === b.id) return state
+      const swapped = updateLocation(
+        updateLocation(state, a.id, (l) => ({ ...l, position: to })),
+        b.id,
+        (l) => ({ ...l, position: from }),
+      )
+      return recomputeConnections(swapped)
     }
 
     case 'RemoveLocation': {
@@ -11820,6 +11981,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
 
     case 'CommitFromDiscard': {
+      if (discardLocked(state, message.investigator)) return state
       const test = state.skillTest
       // Habitación 245: solo puede comprometerse la carta superior (y la comprometida antes no).
       if (!test || test.commitRule) return state
@@ -11985,6 +12147,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DiscardToHand':
+      if (discardLocked(state, message.investigator)) return state
       return updateInvestigator(state, message.investigator, (i) => {
         const index = i.discard.lastIndexOf(message.code)
         if (index < 0) return i
@@ -12447,6 +12610,7 @@ export function handle(state: GameState, message: Message): GameState {
       return result ? { ...state, encounterDeck: result[0], rng: result[1] } : state
     }
     case 'ShufflePlayedEvent': {
+      if (!message.fromBottom && discardLocked(state, message.investigator)) return state
       const owner = getInvestigator(state, message.investigator)
       if (owner.eliminated) return state
       if (message.fromBottom) {
@@ -12489,6 +12653,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'SearchEncounterForSpawn': {
+      if (state.noEncounterDeck) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated || !investigator.location) return state
       const candidates = (['deck', 'discard'] as const).flatMap((zone) => {
@@ -12553,6 +12718,7 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
     case 'SearchEncounterForEnemy': {
+      if (state.noEncounterDeck) return state
       // Paint the Town Red: el primer enemigo no Élite de las primeras cartas.
       const top = state.encounterDeck.slice(0, message.top)
       const index = top.findIndex((c) => c.kind === 'enemy' && !(c.traits ?? []).includes('Elite'))
@@ -12681,6 +12847,7 @@ export function handle(state: GameState, message: Message): GameState {
       // Premonition: entra en juego con una ficha al azar sellada encima. With `token`
       // and `holder`, that token is searched for and sealed on a card in play (Seal keyword).
       const { holder } = message
+      if (!holder && discardLocked(state, message.investigator)) return state
       if (holder && !sealHolderPresent(state, holder)) return state
       const [index, rng] =
         message.token === undefined
@@ -13128,6 +13295,36 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EnemyToVictory': {
+      if (message.defeated && !findEnemy(state, message.enemy)) {
+        const enemy = message.defeated
+        if (enemy.id !== message.enemy) return state
+        if (enemy.owner) {
+          if (discardLocked(state, enemy.owner)) return state
+          const owner = getInvestigator(state, enemy.owner)
+          const code = enemy.originalCardCode ?? enemy.code
+          const at = owner.discard.lastIndexOf(code)
+          if (at < 0) return state
+          return updateInvestigator(
+            {
+              ...state,
+              victoryDisplay: [...state.victoryDisplay, code],
+              victoryPoints: (state.victoryPoints ?? 0) + (enemy.victory ?? 0),
+            },
+            owner.id,
+            (i) => ({ ...i, discard: i.discard.filter((_, n) => n !== at) }),
+          )
+        }
+        const at = state.encounterDiscard.findLastIndex(
+          (c) => c.kind === 'enemy' && c.code === enemy.code,
+        )
+        if (at < 0) return state
+        return {
+          ...state,
+          encounterDiscard: state.encounterDiscard.filter((_, n) => n !== at),
+          victoryDisplay: [...state.victoryDisplay, enemy.code],
+          victoryPoints: (state.victoryPoints ?? 0) + (enemy.victory ?? 0),
+        }
+      }
       const enemy = findEnemy(state, message.enemy)
       if (!enemy) return state
       const removed = log(removeEnemy(dropAttached(state, enemy), enemy.id), 'log.enemyToVictory', {
@@ -13464,6 +13661,7 @@ export function canCommitFrom(
   byEffect = false,
   permission: { wildIcons?: boolean; allowConnecting?: boolean; groupSize?: number } = {},
 ): boolean {
+  if (zone === 'discard' && discardLocked(state, id)) return false
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
   if (
@@ -15040,6 +15238,18 @@ function horrorHealed(
         trigger: { type: 'afterHorrorHealed', healer, amount, target },
       })
     : state
+}
+
+function updateValley(
+  state: GameState,
+  update: (valley: NonNullable<CampaignLog['valley']>) => NonNullable<CampaignLog['valley']>,
+): GameState {
+  const campaignLog = state.campaignLog
+  if (!campaignLog?.valley) return state
+  const valley = update(campaignLog.valley)
+  return valley === campaignLog.valley
+    ? state
+    : { ...state, campaignLog: { ...campaignLog, valley } }
 }
 
 function updateExpedition(
