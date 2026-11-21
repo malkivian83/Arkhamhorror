@@ -334,7 +334,7 @@ it('a Research Find waits through ineligible tests and provides no draw when its
   registerPlayerCards([
     {
       code: 'research-only-card',
-      name: 'Exclusive skill',
+      name: 'Exclusive research skill',
       type: 'skill',
       class: 'neutral',
       traits: [],
