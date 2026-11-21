@@ -1,3 +1,4 @@
+export { discardLocked } from './state'
 export { cluesBlocked, commitIcons } from './handlers'
 export { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
 export {

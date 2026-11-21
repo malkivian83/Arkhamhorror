@@ -409,10 +409,15 @@ export function cardAllowed(state: GameState, id: InvestigatorId, code: CardCode
  * Cards the investigator may play as if they were in hand: the hand plus, with an asset
  * such as Wendy's Amulet, the topmost event of their discard pile.
  */
+/** RR Cannot: checked against current engagement, without persistent investigator flags. */
+export function discardLocked(state: GameState, id: InvestigatorId): boolean {
+  return engagedEnemies(state, id).some((enemy) => enemyBehavior(enemy.code)?.locksEngagedDiscard)
+}
+
 export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
   const investigator = state.investigators.find((i) => i.id === id)
   if (!investigator) return []
-  const top = investigator.discard.at(-1)
+  const top = discardLocked(state, id) ? undefined : investigator.discard.at(-1)
   const fromDiscard =
     top !== undefined &&
     playerCardDef(top)?.type === 'event' &&
@@ -421,7 +426,11 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
     )
   // Winging It: "you may play it from your discard pile" (any copy).
   const discarded = [
-    ...new Set(investigator.discard.filter((c) => playerCardBehavior(c)?.playableFromDiscard)),
+    ...new Set(
+      investigator.discard.filter(
+        (c) => !discardLocked(state, id) && playerCardBehavior(c)?.playableFromDiscard,
+      ),
+    ),
   ].filter((c) => !(fromDiscard && c === top))
   const stored = Object.values(state.assets).flatMap((a) =>
     a.owner === id &&

@@ -23,6 +23,15 @@ Pendiente de implementación y pruebas:
   dejar de estar enfrentados; no se limita a Yorick.
 - Registro de mazo, presentación EN/ES, recursos y pruebas de integración.
 
+Base del motor en desarrollo: `EnemyBehavior.locksEngagedDiscard` y
+`discardLocked` consultan el enfrentamiento vivo. Cubiertos recuperación a mano,
+retirada individual/completa, permisos de juego, entrada de apoyos desde descarte,
+compromiso mediante `CommitFromDiscard` y agotamiento del mazo (sin mezcla ni
+pérdida del descarte, conservando el horror). Ocho casos finales dirigidos y 152 pruebas
+del motor previas correctos (153 casos distintos). Aún faltan las salidas a victoria, vinculaciones, sellado,
+mezcla por efectos y compromiso directo, además de filtrar objetivos y costes en
+cartas consumidoras. No registrar la debilidad hasta completar esas conexiones.
+
 Validación de fuentes: `node --test packages/cards/src/william-yorick/source.test.mjs`.
 El diagnóstico completo con `check-decklist.mjs --file` se interrumpió sin
 resultado al no finalizar la carga del registro; no se considera superado.

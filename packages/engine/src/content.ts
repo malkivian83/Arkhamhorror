@@ -368,6 +368,8 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  /** RR Cannot: cards cannot leave the discard of an investigator engaged with this enemy. */
+  locksEngagedDiscard?: boolean
   /** Permiso de combate remoto; no lo coloca allí ni permite enfrentarlo/evadirlo. */
   fightFromAnywhere?: boolean
   /**

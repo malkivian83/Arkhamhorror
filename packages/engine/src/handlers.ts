@@ -1,3 +1,4 @@
+import { discardLocked } from './state'
 import { handleBeneath } from './investigator-beneath'
 import {
   copyChoices,
@@ -2150,11 +2151,13 @@ export function handle(state: GameState, message: Message): GameState {
       ]
       if (message.amount <= 0) return push(state, ...finish(message.revelations ?? []))
       if (investigator.deck.length === 0) {
-        const [deck, rng] = shuffle(investigator.discard, state.rng)
+        const [deck, rng] = discardLocked(state, investigator.id)
+          ? ([[], state.rng] as [string[], typeof state.rng])
+          : shuffle(investigator.discard, state.rng)
         const reshuffled = updateInvestigator({ ...state, rng }, investigator.id, (i) => ({
           ...i,
           deck,
-          discard: [],
+          discard: discardLocked(state, investigator.id) ? i.discard : [],
         }))
         const horror: Message = {
           type: 'TakeDamage',
@@ -4174,6 +4177,7 @@ export function handle(state: GameState, message: Message): GameState {
         (index < 0 || message.from === 'discard') &&
         discardAt >= 0 &&
         (message.byEffect || playableHand(state, investigator.id).includes(message.code))
+      if (fromDiscard && discardLocked(state, investigator.id)) return state
       if (!def || (index < 0 && !fromDiscard)) return state
       const xBehavior = playerCardBehavior(message.code)
       if (xBehavior?.costX && message.noCost && message.x !== 0)
@@ -4709,6 +4713,7 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       if (message.fromDiscard) {
+        if (discardLocked(state, message.fromDiscard)) return state
         const owner = getInvestigator(state, message.fromDiscard)
         const at = owner.discard.indexOf(message.code)
         if (at < 0) return state
@@ -4925,6 +4930,7 @@ export function handle(state: GameState, message: Message): GameState {
         ? { ...state, skillTest: { ...state.skillTest, replacementResults: message.then } }
         : state
     case 'RemoveCardFromDiscard': {
+      if (discardLocked(state, message.investigator)) return state
       const i = getInvestigator(state, message.investigator)
       const at = i.discard.indexOf(message.code)
       return at < 0
@@ -9732,6 +9738,7 @@ export function handle(state: GameState, message: Message): GameState {
           ? updateInvestigator(state, investigator.id, (i) => ({ ...i, deck: i.deck.slice(0, -1) }))
           : state
       }
+      if (discardLocked(state, message.investigator)) return state
       const at = investigator.discard.lastIndexOf(message.code)
       if (at < 0) return state
       return updateInvestigator(state, investigator.id, (i) => ({
@@ -9748,6 +9755,7 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'RemoveDiscardFromGame': {
+      if (discardLocked(state, message.investigator)) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.discard.length === 0) return state
       return log(
@@ -11925,6 +11933,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
 
     case 'CommitFromDiscard': {
+      if (discardLocked(state, message.investigator)) return state
       const test = state.skillTest
       // Habitación 245: solo puede comprometerse la carta superior (y la comprometida antes no).
       if (!test || test.commitRule) return state
@@ -12090,6 +12099,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DiscardToHand':
+      if (discardLocked(state, message.investigator)) return state
       return updateInvestigator(state, message.investigator, (i) => {
         const index = i.discard.lastIndexOf(message.code)
         if (index < 0) return i
