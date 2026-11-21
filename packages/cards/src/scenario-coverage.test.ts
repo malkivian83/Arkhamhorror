@@ -1,3 +1,4 @@
+import { newValley } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
 import { newCampaign, startScenario } from './campaign'
 import { allCampaigns } from './campaign-definition'
@@ -13,6 +14,11 @@ describe('registered scenarios: complete legal games', () => {
         it.each([1, 2, 3, 4])(`${scenario.id}, ${difficulty}, %i investigators`, (players) => {
           const campaign = newCampaign(definition.id, team.slice(0, players), difficulty)
           campaign.scenarioIndex = scenarioIndex
+          // Las campañas con ruta (El Valle de la Cicuta) solo listan lo que eligen los preludios.
+          if (definition.route && scenarioIndex > 0) {
+            campaign.scenarioIndex = 1
+            campaign.log.valley = { ...newValley(), route: [scenario.id] }
+          }
           const seed = 101 + players
           const initial = startScenario(campaign, seed, players % 2 === 0)
           expect(initial.scenarioId).toBe(scenario.id)
