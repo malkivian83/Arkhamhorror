@@ -1,0 +1,157 @@
+[
+  {
+    "pack_code": "ptc",
+    "pack_name": "The Path to Carcosa",
+    "type_code": "investigator",
+    "type_name": "Investigator",
+    "faction_code": "survivor",
+    "faction_name": "Survivor",
+    "position": 5,
+    "exceptional": false,
+    "myriad": false,
+    "code": "03005",
+    "name": "William Yorick",
+    "real_name": "William Yorick",
+    "subname": "The Gravedigger",
+    "text": "[reaction] After you defeat an enemy: Play an asset from your discard pile <i>(paying its cost)</i>. (Limit once per round.)\n[elder_sign] effect: +2. If this test is successful, return 1 card from your discard pile to your hand.",
+    "real_text": "[reaction] After you defeat an enemy: Play an asset from your discard pile <i>(paying its cost)</i>. (Limit once per round.)\n[elder_sign] effect: +2. If this test is successful, return 1 card from your discard pile to your hand.",
+    "quantity": 1,
+    "skill_willpower": 3,
+    "skill_intellect": 2,
+    "skill_combat": 4,
+    "skill_agility": 3,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Warden.",
+    "real_traits": "Warden.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "03016": {
+          "03016": "03016"
+        },
+        "03017": {
+          "03017": "03017"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["survivor", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["guardian"],
+        "level": {
+          "min": 0,
+          "max": 2
+        }
+      }
+    ],
+    "flavor": "\"I am but a simple player in this drama, but if I am lucky, I'll live to see the curtains fall.\"",
+    "illustrator": "Jake Murray",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, Guardian cards ([guardian]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Bury Them Deep, Graveyard Ghouls, 1 random basic weakness.",
+    "back_flavor": "William Yorick never wanted to be a gravedigger. He had trained to be an actor and had worked for years in Boston, taking whatever parts were available. Shakespeare was the best stuff, of course, but after many years and hardly any roles, he was forced to admit that the stage was not his destiny. Digging graves was tedious work, but the dead made for an excellent audience, and William always did love a soliloquy. The job took a dark turn when he found degenerate creatures eating the dead in their graves. Ever since that night, Yorick has kept the creatures at bay, using whatever means he can to protect the dead.",
+    "octgn_id": "10797ed5-43a5-432f-b85d-05937226cf86:ac16fd9d-15a3-4ff7-9441-644859039af6",
+    "url": "https://arkhamdb.com/card/03005",
+    "imagesrc": "/bundles/cards/03005.png",
+    "backimagesrc": "/bundles/cards/03005b.png"
+  },
+  {
+    "pack_code": "ptc",
+    "pack_name": "The Path to Carcosa",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 16,
+    "exceptional": false,
+    "myriad": false,
+    "code": "03016",
+    "name": "Bury Them Deep",
+    "real_name": "Bury Them Deep",
+    "cost": 0,
+    "text": "William Yorick deck only.\nFast. Play after a non-[[Elite]] enemy at your location is defeated.\nAdd that enemy <i>(and this card)</i> to the victory display.",
+    "real_text": "William Yorick deck only.\nFast. Play after a non-[[Elite]] enemy at your location is defeated.\nAdd that enemy <i>(and this card)</i> to the victory display.",
+    "quantity": 1,
+    "skill_willpower": 1,
+    "skill_combat": 1,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "victory": 1,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Task.",
+    "real_traits": "Task.",
+    "restrictions": {
+      "investigator": {
+        "03005": "03005"
+      }
+    },
+    "flavor": "\"Though this be madness, yet there is method in 't.\"\n- William Shakespeare, Hamlet.",
+    "illustrator": "Alexander Kozachenko",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "569aa886-e35c-4743-ab28-580054aa3acf",
+    "url": "https://arkhamdb.com/card/03016",
+    "imagesrc": "/bundles/cards/03016.png"
+  },
+  {
+    "pack_code": "ptc",
+    "pack_name": "The Path to Carcosa",
+    "type_code": "enemy",
+    "type_name": "Enemy",
+    "subtype_code": "weakness",
+    "subtype_name": "Weakness",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 17,
+    "exceptional": false,
+    "myriad": false,
+    "code": "03017",
+    "name": "Graveyard Ghouls",
+    "real_name": "Graveyard Ghouls",
+    "text": "<b>Prey</b> - William Yorick only.\nHunter.\nWhile Graveyard Ghouls is engaged with you, cards cannot leave your discard pile.",
+    "real_text": "<b>Prey</b> - William Yorick only.\nHunter.\nWhile Graveyard Ghouls is engaged with you, cards cannot leave your discard pile.",
+    "quantity": 1,
+    "health": 3,
+    "health_per_investigator": false,
+    "enemy_damage": 1,
+    "enemy_horror": 1,
+    "enemy_fight": 3,
+    "enemy_evade": 2,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Humanoid. Monster. Ghoul.",
+    "real_traits": "Humanoid. Monster. Ghoul.",
+    "restrictions": {
+      "investigator": {
+        "03005": "03005"
+      }
+    },
+    "flavor": "\"Hell is empty and all the devils are here.\"\n - William Shakespeare, The Tempest",
+    "illustrator": "Mike Capprotti",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "0545b58a-e4e5-47de-a1e0-fd9add65f674",
+    "url": "https://arkhamdb.com/card/03017",
+    "imagesrc": "/bundles/cards/03017.png"
+  }
+]
