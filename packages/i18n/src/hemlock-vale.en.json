@@ -194,6 +194,100 @@
         "title": "Resolution 6",
         "body": "“Miskatonic Survey, June 1926. Members Marquez, Musgrave, et alii. We were lucky to escape from North Point Mine with our lives. Extreme instability and seismic tremors. Findings include asymmetrical crystal formations, rodents of unusual size, and an unusually aggressive insect population.”"
       }
+    },
+    "hemlockHouse": {
+      "intro1": {
+        "title": "Intro 1",
+        "body": "“Oh, please, it’s not haunted.” Theo smiles nonchalantly as he pulls his truck to a stop in front of the towering, shingle style manor. “Old Gideon says a lot of things about this place. But old Gideon also believes in underwater kingdoms filled with fish people,” he laughs. “I’m sure there’s something to it. Rumor is, there’s some kinda infestation in there. Rats, probably. Maybe even some wild animals taking refuge from the woods. It’s an old house, y’know? Lots of nooks in the walls, places for them to hide. Brother William asked Ms. Park to find and repair ’em, clear out whatever’s hiding in the walls, but she hasn’t gotten around to it yet. I still got all those supplies in my truck, if you feel like helping out.”\n\nYou unload several planks of wood, a box of tools, and a bucket of some foul-smelling chemical mixture from the back of Theo’s truck. As he drives off, you stare up at the crumbling manor. There is something crooked and unsettling in the arrangement of its windows, the slant of its gambrel roofs. The house’s previous grandeur has not set right with the landscape, perhaps by some crack in its foundation—or, if the rumors are right, whatever lives within its walls.\n\nProceed to Setup."
+      },
+      "intro2": {
+        "title": "Intro 2",
+        "body": "The rear wheels of Theo’s truck spit up mud as it putters toward the cape, where the shingle style manor towers atop a ruinous hill. “There it is,” Theo says, pointing at the silhouette of the manor, barely visible through the torrent of rain beating down on the windshield. “Old Gideon says a lot of things about this place. But old Gideon also believes in underwater kingdoms filled with fish people,” he laughs. “I’m sure there’s something to it. Rumor is, there’s some kinda infestation in there. Rats, probably. Maybe even some wild animals taking refuge from the woods. It’s an old house, y’know? Lots of nooks in the walls, places for them to hide. Gotta be even worse with all this rain.”\n\nHaving seen firsthand the kinds of terrors that dwell on Hemlock Isle, you know better than to assume the house’s other inhabitants to be mere rats or raccoons. You ask Theo what Mr. Hemlock wants done to the place, which elicits a brief chuckle. “He asked Ms. Park to repair the place and clear out whatever’s hiding in the walls. They’re both there right now, I think, if you wanna help out or chat with them. Can’t believe he still thinks the place is salvageable, but hey, who am I to judge?”\n\nTheo drops you off in front of the crumbling manor so you don’t have to plod through mud and rain. You shudder as you glance up at its crooked frame. There is something deeply unsettling about the arrangement of its windows and the slant of its gambrel roofs. Whatever grandeur this house may have had in its past life is long gone. It is but a shell of its former self—and you suspect the cause still dwells within its walls.\n\nProceed to Setup."
+      },
+      "intro3": {
+        "title": "Intro 3",
+        "body": "“Considering what Brother William was prattling on about last night at the dance? Yeah, maybe it is haunted. I dunno.” Theo sighs as his truck pulls to a stop in front of the towering, shingle style manor. Dark clouds loom over its gambrel roofs, its frame crooked and misshapen. Its attic truss is burnt almost to the frame, its outer wall exposed to the elements by extensive fire damage. “Old Gideon says a lot of things about this place. But old Gideon also believes in underwater kingdoms filled with fish people. Still…” Theo sighs, shaking his head. “Maybe there is something to it all. I thought if there was an infestation, it was probably rats, y’know? Maybe even some wild animals taking refuge from the woods. But Brother William looked downright terrified when he came back into town yesterday. Who knows?”\n\nYou ask Theo what Mr. Hemlock was doing here—perhaps you can help figure out what’s wrong with the place. “Last I checked, he asked Ms. Park to repair the place and clear out whatever’s hiding in the walls. That was a couple days ago. Ms. Park’s still here, but after yesterday I don’t think Brother William’s gonna be venturing anywhere near this place until it’s cleaned up.”\n\nYou point the fire damage out to Theo, who gives a whistle in response. “Yeah, that’s new. I did hear some pretty close thunder during that storm last night. Wouldn’t be surprised if that was from lightning. Lucky the rain must’ve put the fire out.” You wonder if it was in fact fortune that kept the old manor standing, or something else entirely. As if in response to your ruminations, something slithers just out of view from the exposed floor of the attic. You ask Theo if he saw it, but he only shrugs. “Saw what? You don’t plan on heading up there, do you? Be careful. This place was decrepit even before the storm.” He turns the ignition off and gets out of the truck, joining you under the awning of the manor’s front porch. “I’ll come with, ok? I won’t go all the way up there, but just in case something happens, I’ll be here.”\n\nYou nod. Having seen firsthand the kinds of terrors that dwell on Hemlock Isle, you know better than to assume the house’s other inhabitants to be mere rats or raccoons. It might be nice having Theo and his truck on hand for a swift exit. Taking in a deep breath, you glance once more at the manor’s crooked frame. There is something deeply unsettling about the arrangement of its windows and the slant of its roofs. Whatever grandeur this house may have had in its past life is long gone. It is but a shell of its former self—and you suspect the cause still dwells within its walls.\n\nUpon entering the house, you immediately climb its inner staircase up to the attic, leaving Theo downstairs. Scarred by fire damage and partially exposed to the wind, the decrepit bedroom bears no trace of whatever creature you saw from below. With each of your steps, the old building groans precariously. You cannot help but wonder if it is in fact the rumbling of an empty stomach…\n\nProceed to Setup."
+      },
+      "intro4": {
+        "title": "Intro 4",
+        "body": "Theo’s truck slows to a halt as you pull up in front of the towering, shingle style manor. From what you’ve been told, the old Hemlock House is infested with something or other—what exactly is a matter of some debate. Before lending you his truck for the night, Theo made mention of rats in the walls, or potentially wild animals taking refuge from the woods, not to mention the storm brewing on the horizon. But you’re not so sure. After all, you’ve already seen firsthand the kinds of terrors that dwell on Hemlock Isle—you know better than to assume mere rats or raccoons to be the issue.\n\nApproaching the crumbling manor, you find a stockpile of supplies tucked away near its entrance: several planks of wood, a box of tools, and a bucket of some foul-smelling chemical mixture. According to Theo, Mr. Hemlock had asked Judith to try to fix the place up and clear out whatever was infesting its walls. Seems like she hasn’t gotten very far yet. You look up at the house’s crooked frame, set against a backdrop of dark stormclouds. There is something deeply unsettling about the arrangement of its windows and the slant of its gambrel roofs. Whatever grandeur this house may have had in its past life is long gone. It is but a shell of its former self—and you suspect the cause still dwells within its walls.\n\nProceed to Setup."
+      },
+      "setup": {
+        "title": "Scenario setup",
+        "body": "The Parlor, Foyer and Dining Room form the 1st floor. Six random locations fill the 2nd and 3rd floors, and a random Bedroom is placed in the middle column of the 4th floor. Every location is in play Dormant side faceup. The Shapeless Cellar, The Predatory House, the Fire! treacheries and every copy of Out of the Walls and Pulled In are set aside. Investigators begin in the Foyer (in the 4th-floor Bedroom on Day 3). During the day, the residents of the house are placed as indicated by the current day."
+      },
+      "act1Seals": {
+        "title": "Strange Infestation",
+        "body": "Your efforts to suppress the strange infestation seem to have angered it. A noisome screech shakes the foundation of the house, and the air floods with a fetid stench of something awful down below."
+      },
+      "act1Ruin": {
+        "title": "Strange Infestation",
+        "body": "The foundations of the house shake as another room threatens to collapse. If you bring this house down, the abomination that lives inside it won't survive long."
+      },
+      "codex4FoundSylvie": {
+        "title": "Codex 4: William Hemlock",
+        "body": "“Wait! That doll—there she is!” William reaches for the doll, tears welling in his eyes. He stares into the doll’s dead eyes, his smile gentle, nostalgic. “My mother always loved this one. People said it looked like her.” You ask William what he intends to do now that he’s recovered it. “Well, it’s just a doll, but…it’s also a symbol,” he explains. “A symbol of my heritage. Where I came from. If I can just get mother to remember…perhaps we can rebuild. Start our legacy anew.” He shakes your hand vigorously. “Thank you for finding this. I truly appreciate it.”\n\nTake control of William Hemlock. Remember that you “found Little Sylvie.” Increase William Hemlock’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "codex4Day1": {
+        "title": "Codex 4: William Hemlock",
+        "body": "You ask William if there’s anything from his old home you should be watching out for. “This house is filled with old family trinkets and valuables. There’s one in particular I’d love to find, an old doll.” You had expected perhaps a valuable piece of jewelry or an heirloom, not a doll. William seems to catch on quickly. “I always liked playing with dolls. But my mother loved them even more.” He sighs wistfully. “I remember she had a special doll, one she always kept nearby. I wonder…if I show it to her, will she remember? Will she become her old self again…?”\n\nEach investigator gains 1 clue (from the token pool). For the rest of the scenario, the Little Sylvie story asset gains “[action]: Take control of Little Sylvie.” The investigator who controls Little Sylvie may trigger this codex again."
+      },
+      "codex4Argument": {
+        "title": "Codex 4: William Hemlock",
+        "body": "“Finally,” William says as you enter the room where Judith stands, arms crossed. “Where have you been? I hired you because I needed your help, not to stomp around my childhood home brooding.” The two square off, tension thick in the air…\n\nProceed to Codex Σ: The Argument."
+      },
+      "codex4Day2": {
+        "title": "Codex 4: William Hemlock",
+        "body": "William paces back and forth, wincing at every creak of the old house. You ask him if everything is ok, eliciting a deep sigh from the melancholy heir. “Oh, yes, everything is jake. Judith has run off and left me here alone, I can’t find my mother’s doll anywhere, and my childhood home is crumbling before my very eyes,” he says bitterly. “Help me find Judith, won’t you? That bearcat is supposed to be protecting me and helping me clean this place up.” He follows you close behind, eyes darting from shadow to shadow as the house growls angrily.\n\nTake control of William Hemlock. You may trigger this codex again if both William Hemlock and Judith Park are at the same location."
+      },
+      "codex6Helping": {
+        "title": "Codex 6: Gideon Mizrah",
+        "body": "You pull an old, yellowed map from a book and hold it up to Gideon. “Yes!” He exclaims, taking it from your hands and looking it over. “This is exactly what I was looking for. Thankee kindly!”\n\nIncrease Gideon Mizrah’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "codex6": {
+        "title": "Codex 6: Gideon Mizrah",
+        "body": "Gideon barely looks up from a musty book as you approach. “I don’t suppose ye’ve ever heard the story of the Delilah?” You tell him no, but you think you’re about to. He laughs. “The Delilah was a fishing vessel that mapped this island years ago.” He grabs another book as he rambles on about not only the Delilah, but also three other tangential stories. At length, you glean that the old man is looking for a map somewhere in the parlor.\n\nYou may cancel the next predation that would take place. Remember “you are helping Gideon.” An investigator may trigger this codex again."
+      },
+      "codex7Argument": {
+        "title": "Codex 7: Judith Park",
+        "body": "“There you are,” Judith struts to where William stands daydreaming. He snaps out of his reverie as she approaches, finger pointed at his chest. “You said this place had a rat problem, not…not this,” she says, gesturing vaguely. The two square off, tension thick in the air…\n\nProceed to Codex Σ: The Argument."
+      },
+      "codex7Day2": {
+        "title": "Codex 7: Judith Park",
+        "body": "Judith rolls her eyes as you ask her what she’s doing here. “William was here yesterday, but he got creeped out, so he asked me to come with him today to babysit him. Then he ran upstairs to ‘ponder his legacy’ and ‘ruminate upon his forebears’ or whatever nonsense.” She shakes her head. “Look, between you and me, this place is a wreck. Let’s find William, I’ll talk to him, and leave this place to rot. You with me?”\n\nTake control of Judith Park. You may trigger this codex again if both William Hemlock and Judith Park are at the same location."
+      },
+      "codex7Day3": {
+        "title": "Codex 7: Judith Park",
+        "body": "“Rats. ‘Rats,’ he said!” Judith scoffs. “Rats, my ass…” she trails off into grumbles, then faces you with a stern expression. “This place is a cesspool. There’s something in the walls that I swear is following me.” Any fear within her seems to have settled into anger. “It’s no wonder he didn’t want to come back with me today. There’s no ‘legacy’ here. Just a bunch of ugly furniture, and whatever creature has taken up residence.” You ask what she thinks should be done. “It’s too dangerous to be left alone as it is.” She may be right—it would surely upset William, but left as is, this house is a danger to him and the rest of Hemlock Isle.\n\nTake control of Judith Park. Remember that “Judith is remodeling.”"
+      },
+      "codex8": {
+        "title": "Codex 8: Theo Peters",
+        "body": "“No no no no no!” You hear Theo’s scream long before you see the young man running down the hallway. He barrels into you, nearly knocking you over. “Woah. I thought you were—” he looks over his shoulder. The hallway is dead silent. “You look like you might need some protection. Well, don’t worry. I can, uh. Protect you,” he puts on a fake swagger as he helps you to your feet.\n\nTake control of Theo Peters."
+      },
+      "argument1": {
+        "title": "Codex Σ: The Argument",
+        "body": "“Look, William, this place is a dump. There’s junk everywhere. It’s filthy, it’s rundown, and whatever is living in the walls, it sure as hell isn’t rats,” Judith explains.\n\nWilliam scowls. “This ‘dump’ is my childhood home. My family’s enduring legacy.”\n\n“If this was my family’s legacy, I’d change my name. Someone needs to tear this place down,” Judith retorts.\n\n“I am not tearing this house down!” William shouts. “That is absolutely unconscionable!” The two continue arguing, getting more and more heated, until you realize this argument won’t resolve itself on its own. You step in, voicing your thoughts…\n\nThe investigator resolving this codex must decide (choose one)."
+      },
+      "argument2": {
+        "title": "The Argument 2",
+        "body": "William’s gaze snaps to you, eyes pleading. Maybe he’s finally realized the truth. Perhaps he doesn’t care. “Alright, then,” he almost whispers. “Do as you will. The legacy of the Hemlocks is in tatters, and nobody seems to care. Why should you?” He departs, head hung low.\n\nRemove William Hemlock from the game. Each investigator may draw 1 card. Increase Judith Park’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "argument3": {
+        "title": "The Argument 3",
+        "body": "Judith glares at you. “Really? You too?” She rubs her eyes and swears under her breath. “Fine. Hold the whole festival here for all I care. But don’t come asking me for help when the place falls down. Or worse.” She gathers her things and makes for the door.\n\nRemove Judith Park from the game. Each investigator may draw 1 card. Increase William Hemlock’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "noResolution": {
+        "title": "No Resolution",
+        "body": "An awful clamor resounds through the house as the walls close in, threatening to collapse—to consume you like prey. Terrified, you burst through the front door and flee."
+      },
+      "resolution1": {
+        "title": "Resolution 1",
+        "body": "At long last, the horrors of Hemlock House are behind you. You can only hope the house’s “infestation” is gone.\n\nProceed to Resolution 2."
+      },
+      "resolution2": {
+        "title": "Resolution 2",
+        "body": "“Miskatonic Survey, June 1926. Members Marquez, Musgrave, et alii. Survey of Hemlock House complete. Organism defies comprehension. Colony of octopodial and gastropodial species infested the entire house. Creature(s) appear to have evolved in the house proper. Further observation needed.”Remove 1 {'{'}elderThing{'}'} token from the predation bag. Return any remaining {'{'}elderThing{'}'} tokens in the predation bag to the chaos bag for the remainder of the campaign.If the investigators “found Little Sylvie,” an investigator may add the Little Sylvie story asset to their deck. It does not count toward that investigator’s deck size.Each investigator earns experience equal to the Victory X value of each card in the victory display. Bonus experience is awarded based on the number of seals in play and the number of enemy-locations in the victory display when the scenario ended.In the “Areas Surveyed” section of your Campaign Log, check off Hemlock Harbor."
+      }
     }
   },
   "choice": {
@@ -224,7 +318,17 @@
     "physicalTrauma": "Suffer 1 physical trauma",
     "mentalTrauma": "Suffer 1 mental trauma",
     "wildRideMove": "Move the Mine Cart 2 additional times",
-    "wildRideHurt": "Deal 1 direct damage and 1 direct horror to each investigator, Ally and Resident"
+    "wildRideHurt": "Deal 1 direct damage and 1 direct horror to each investigator, Ally and Resident",
+    "placeCluesOnLocation": "Place {n} of your clues on your location",
+    "removeSeal": "Remove a seal from your location",
+    "judithIsRight": "“Judith is right. There’s nothing here to salvage.”",
+    "williamIsRight": "“It is William’s home. We should respect his wishes.”",
+    "whispers": {
+      "damage": "An asset you control takes 1 damage",
+      "horror": "An asset you control takes 1 horror"
+    },
+    "takeHorror": "Take {n} horror",
+    "takeDamage": "Take {n} damage"
   },
   "prompt": {
     "drawOrGain": "Draw 1 card or gain 1 resource",
@@ -238,7 +342,17 @@
     "slideOrSwap": "Slide or swap locations",
     "trauma": "Choose your trauma",
     "shardOwner": "Choose who adds the Prismatic Shard to their deck",
-    "takeControl": "Choose an investigator to take control"
+    "takeControl": "Choose an investigator to take control",
+    "flipLocation": "Choose the location that is flipped over",
+    "collapseTarget": "Choose an adjacent location for everything at the defeated location",
+    "parlorTest": "Test [intellect] (4) to deal 1 additional damage?",
+    "pulledIn": "Choose the enemy-location you are pulled toward",
+    "secretPassage": "Choose the location of the secret passage",
+    "argument": "Settle the argument",
+    "sylvieBedroom": "Choose the Bedroom where Little Sylvie is placed",
+    "sylvieDeck": "Choose who adds Little Sylvie to their deck",
+    "chooseCost": "Choose how to pay",
+    "chooseAsset": "Choose an asset"
   },
   "ability": {
     "codex": "Codex {n}",
@@ -255,7 +369,14 @@
     "turnSwap": "Swap 2 adjacent Rail locations (group limit once per game)",
     "turnSlide": "Spend 2 resources: slide a location into an empty adjacent space (group limit once per game)",
     "bridgeSwitch": "Spend 1 resource per investigator: place 1 switch on the scenario reference card",
-    "exhaustBeast": "Spend {n} clues as a group: exhaust the Subterranean Beast"
+    "exhaustBeast": "Spend {n} clues as a group: exhaust the Subterranean Beast",
+    "moveClueBelow": "Move 1 clue from this location to the location directly below it",
+    "parlorDamage": "Spend 1 clue: deal 2 damage to an enemy at a connecting location",
+    "foyerMove": "Move to a connecting location (limit once per turn)",
+    "flipYourLocation": "Ready your location and flip it over",
+    "placeSeal": "Spend 1 [per_investigator] clues as a group: place a seal on your location",
+    "secretPassage": "Find a secret passage",
+    "takeSylvie": "Take control of Little Sylvie"
   },
   "keywords": {
     "dayNight": {
@@ -270,5 +391,10 @@
       "title": "Location grid",
       "body": "Locations are placed in a grid. Each location is connected to each location that shares a side with it, in addition to its connection icons. In act 2 of Written in Rock, only adjacent locations with aligned rail icons are connected."
     }
+  },
+  "log": {
+    "predationCanceled": "The predation test is canceled (Gideon Mizrah).",
+    "predationToken": "Predation test: {token}.",
+    "elderThingToPredation": "An Elder Thing token moves from the chaos bag to the predation bag."
   }
 }

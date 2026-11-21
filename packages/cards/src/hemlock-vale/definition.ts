@@ -1,5 +1,6 @@
 import { registerCampaign, type CampaignScenario } from '../campaign-definition'
 import { hemlockValeChaosBags } from './chaos-bag'
+import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
 import { DAY_ONE_SCENARIOS, HEMLOCK_WELCOME, welcomeToHemlockVale } from './welcome'
 import { NEXT_PRELUDE, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
 
@@ -7,6 +8,11 @@ import { NEXT_PRELUDE, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
  * Pasos de la campaña. El orden lo deciden los preludios (`valley.route`); los
  * escenarios sin `build` todavía no se pueden jugar (docs-proyecto/165).
  */
+const BUILDS: Record<string, CampaignScenario['build']> = {
+  [WRITTEN_IN_ROCK]: writtenInRock,
+  [HEMLOCK_HOUSE]: (context) => hemlockHouse(context),
+}
+
 const steps: CampaignScenario[] = [
   {
     id: HEMLOCK_WELCOME,
@@ -16,16 +22,12 @@ const steps: CampaignScenario[] = [
     allowSideStoryBefore: false,
     keywords: ['codex', 'dayNight', 'prelude'],
   },
-  ...DAY_ONE_SCENARIOS.map((id): CampaignScenario =>
-    id === WRITTEN_IN_ROCK
-      ? {
-          id,
-          build: writtenInRock,
-          allowSideStoryBefore: false,
-          keywords: ['codex', 'dayNight', 'grid'],
-        }
-      : { id, allowSideStoryBefore: false },
-  ),
+  ...DAY_ONE_SCENARIOS.map((id): CampaignScenario => {
+    const build = BUILDS[id]
+    return build
+      ? { id, build, allowSideStoryBefore: false, keywords: ['codex', 'dayNight', 'grid'] }
+      : { id, allowSideStoryBefore: false }
+  }),
   // Preludios de las tardes y albas (entregas 6–8).
   ...[...new Set(Object.values(NEXT_PRELUDE))].map((id): CampaignScenario => ({
     id,

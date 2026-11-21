@@ -186,7 +186,7 @@ const treacheriesAt = (id: string) =>
     >
       <TableTarget :target="`location:${l.id}`">
         <GameCard
-          :code="printedCode(l.id)"
+          :code="l.shownCode ?? printedCode(l.id)"
           :name="l.revealed ? l.name : (l.unrevealedName ?? l.name)"
           :back="!l.revealed"
           :width="CARD_W"

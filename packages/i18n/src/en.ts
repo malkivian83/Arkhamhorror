@@ -110,6 +110,7 @@ export const messages = {
     edgeOfTheEarth: edgeOfTheEarth.prompt,
     hemlockVale: hemlockVale.prompt,
   },
+  log: { ...base.log, hemlockVale: hemlockVale.log },
   keywords: { ...base.keywords, ...hemlockVale.keywords },
 } as const
 

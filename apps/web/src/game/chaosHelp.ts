@@ -45,6 +45,7 @@ export function chaosHelp(
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
     'hemlock-vale-welcome': localeData(locale).hemlockValeCards['10704'],
     'hemlock-vale-written-in-rock': localeData(locale).hemlockValeCards['10501'],
+    'hemlock-vale-hemlock-house': localeData(locale).hemlockValeCards['10523'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],
     'dead-by-dawn': localeData(locale).plaguebearerCards['78047'],

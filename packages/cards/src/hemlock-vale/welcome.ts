@@ -83,6 +83,21 @@ const read = (state: GameState, key: string): Message[] =>
 // Códice (guía, p. 2): cada entrada se resuelve una vez por preludio.
 // ---------------------------------------------------------------------------
 
+/**
+ * Condiciones propias de un escenario para volver a activar un códice que no se ha dado
+ * por resuelto (La Casa Cicuta: William solo con la Pequeña Sylvie el Día 1).
+ */
+const codexGates: Record<
+  string,
+  (state: GameState, n: number, investigator: InvestigatorId) => boolean
+> = {}
+export function registerCodexGate(
+  scenario: string,
+  gate: (state: GameState, n: number, investigator: InvestigatorId) => boolean,
+) {
+  codexGates[scenario] = gate
+}
+
 const codexKey = (n: number, investigator?: InvestigatorId) =>
   investigator ? `codex:${n}:${investigator}` : `codex:${n}`
 export const codexResolved = (state: GameState, n: number, investigator?: InvestigatorId) =>
@@ -492,6 +507,8 @@ for (const resident of Object.keys(RESIDENTS) as ValleyResident[]) {
       // El Negociar de cada escenario lee su propio códice (`ScenarioSpecific` codex).
       if (!state.scenarioId.startsWith('hemlock-vale-') || self.faceDown) return []
       if (codexResolved(state, RESIDENTS[resident].codex)) return []
+      if (codexGates[state.scenarioId]?.(state, RESIDENTS[resident].codex, investigator) === false)
+        return []
       const parley = residentParley(state, resident, investigator)
       if (!parley) return []
       return [

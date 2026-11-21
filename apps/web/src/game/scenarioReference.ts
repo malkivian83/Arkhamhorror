@@ -23,6 +23,7 @@ const references: Record<string, { code: string; name: string }> = {
   'the-devourer-below': { code: '01142', name: 'The Devourer Below' },
   'ice-and-death-part-1': { code: '08501', name: 'Ice and Death' },
   'hemlock-vale-welcome': { code: '10704', name: 'The Vale' },
+  'hemlock-vale-hemlock-house': { code: '10523', name: 'Hemlock House' },
   'ice-and-death-part-2': { code: '08501', name: 'Ice and Death' },
   'ice-and-death-part-3': { code: '08501', name: 'Ice and Death' },
   'edge-of-the-earth-fatal-mirage': { code: '08549', name: 'Fatal Mirage' },

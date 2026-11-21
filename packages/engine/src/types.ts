@@ -193,6 +193,8 @@ export interface Location {
   resources?: number
   /** Physical single-sided encounter card currently represented by this location. */
   encounterCard?: EncounterLocationCard
+  /** Cara boca arriba con código propio (Lugar-Enemigo de La Casa Cicuta). */
+  shownCode?: CardCode
   id: LocationId
   name: string
   shroud: number

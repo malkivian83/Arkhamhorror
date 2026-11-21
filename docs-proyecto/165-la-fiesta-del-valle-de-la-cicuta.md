@@ -5,7 +5,7 @@ Hemlock Vale_ (FFG, 2024): 8 escenarios, de los que cada partida juega 6, y
 preludios jugables. Se incorpora con el mismo procedimiento que
 [Los confines de la Tierra](106-confines-de-la-tierra.md).
 
-**Estado:** entregas 0–2 completadas; el preludio de bienvenida es jugable y los escenarios aún no.
+**Estado:** entregas 0–4 completadas; son jugables el preludio de bienvenida, Escrito en la roca y La Casa Cicuta.
 
 ## Estado y continuación
 
@@ -21,7 +21,15 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   **3c** acto 2 (raíles, Vagoneta, descarrilamiento) y resoluciones.
 - Lotes 3b y 3c hechos: Escrito en la roca es jugable tras el preludio (ver
   [Escrito en la roca, acto 2](#escrito-en-la-roca-acto-2)).
-- Siguiente: entrega 4 (La Casa Cicuta).
+- Entrega 4 hecha (21/11/2026): La Casa Cicuta es jugable tras el preludio (ver
+  [La Casa Cicuta](#la-casa-cicuta)). Verificado: pruebas de `hemlock-vale/`, cobertura
+  de partidas completas de los escenarios del Valle, i18n, campañas, `story-order`,
+  referencia y ayuda de fichas de la web; tipos de cards y web; Prettier y ESLint. Lo
+  invalidan cambios en `hemlock-house.ts`, `vale-encounters.ts` o el códice de `welcome.ts`.
+- También corrige la CI #448: `scenario-coverage.test.ts` usa la ruta del Valle
+  (`valley.route`) para preparar los escenarios de esta campaña.
+- Siguiente: entrega 5 (El páramo silencioso, La hermana perdida y La cosa de las
+  profundidades).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -30,7 +38,7 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - [x] 1 · Estado de campaña: día y hora, habitantes, zonas exploradas, bolsa y fatiga.
 - [x] 2 · Preludios y códice: preludio de bienvenida jugable de principio a fin.
 - [x] 3 · Adyacencia por cuadrícula y Escrito en la roca.
-- [ ] 4 · La Casa Cicuta.
+- [x] 4 · La Casa Cicuta.
 - [ ] 5 · El páramo silencioso, La hermana perdida y La cosa de las profundidades.
 - [ ] 6 · La primera tarde y La hondonada retorcida.
 - [ ] 7 · Alba del segundo día, La segunda tarde y La noche más larga.
@@ -350,6 +358,38 @@ Pendiente para cuando haya un escenario jugable (entrega 3): conservar los usos
 preludio y el escenario. Las capacidades de los habitantes controlados y la carta
 Día uno (10675, sin efecto) no hacen falta en este preludio. Revisión visual
 pendiente: mapa del Valle, apoyos colocados y textos del códice.
+
+### La Casa Cicuta
+
+Entrega 4, en `hemlock-house.ts` (escenario) y `vale-encounters.ts` (¡Fuego!, Agentes
+del color, Transfiguración y Plaga, compartidos con los siguientes escenarios).
+
+- **Cuadrícula:** columnas 1–3 (izquierda, central, derecha) y piso f en la fila 5 − f;
+  el Sótano es el piso 0. Los Lugares empiezan revelados por el lado Letargo, con pistas.
+  El velo del Dormitorio es su piso + 1.
+- **Lugares-Enemigo:** el Lugar sigue en juego y, al darle la vuelta, entra un Enemigo
+  Masivo con el código del reverso (`10532b`…) en ese Lugar; `Location.shownCode` hace
+  que la web muestre esa cara. Al volver al lado Lugar se guarda su daño. No se mueven
+  por efectos de cartas. Al ser derrotados van a la zona de victoria y la columna cae un
+  piso; sin Lugares encima, el jefe elige un Lugar adyacente para lo que hubiera; sin
+  columna central, la izquierda se junta con la derecha.
+- **Depredación:** bolsa en `scenarioMeta` (`predation:*` y `predationAside:*`), creada
+  por el plan 1b según el día. Las fichas Primigenio que pasan de la bolsa de caos solo
+  salen de la de esta partida: la R2 las devuelve y la bolsa de campaña no cambia.
+- **Sellos:** recursos en el Lugar. Acto 1: 7 Lugares sellados o en la zona de victoria;
+  según sellos frente a Lugares-Enemigo derrotados pasa a El corazón de la casa (entra
+  el Sótano informe) o a Contra la casa (sin Lugares en juego, avanza).
+- **Habitantes y códice:** Gideon, William, Judith, Theo y la Pequeña Sylvie según el día
+  (de noche, ninguno; los tachados no entran). Códices 4, 6, 7, 8 y Σ.
+  `registerCodexGate` limita repetir el códice 4 a quien controle a la Pequeña Sylvie.
+- **Resoluciones:** sin resolución y R1 pasan a R2: XP por 8 y 10 sellos y Lugares-Enemigo,
+  Pequeña Sylvie al mazo, reformas de Judith, Victoria, zona explorada y siguiente preludio.
+
+Pendiente: las reacciones de la Pequeña Sylvie como carta de jugador; Desecación como
+coste adicional real (ahora el daño se recibe al jugar la carta); descartar la
+Podredumbre fúngica si su apoyo abandona el juego; el códice Θ; las capacidades de Gideon,
+Judith y Theo controlados; y el modo independiente. Revisión visual pendiente: casa,
+Lugares-Enemigo (se ven a la vez como Lugar y como Enemigo), bolsa de depredación y textos.
 
 ## Entregas y criterios de aceptación
 
