@@ -29,13 +29,17 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - También corrige la CI #448: `scenario-coverage.test.ts` usa la ruta del Valle
   (`valley.route`) para preparar los escenarios de esta campaña.
 - Entrega 5 en lotes: **5a** El páramo silencioso (hecho, ver
-  [El páramo silencioso](#el-páramo-silencioso)); **5b** La hermana perdida; **5c** La
+  [El páramo silencioso](#el-páramo-silencioso)); **5b** La hermana perdida (hecho); **5c** La
   cosa de las profundidades. Verificado 5a: sus 13 pruebas, `hemlock-vale/`, cobertura de
   partidas, campañas, `story-order` e i18n (851 pruebas); tipos de cards y web; Prettier y
   ESLint. Lo invalidan cambios en `silent-heath.ts`, las Cuevas de `written-in-rock.ts` o
   `vale-encounters.ts`.
-- Siguiente: lote 5b. Requiere hora por Lugar (Oscuro = Noche) en las cartas del Valle,
-  mazo de Cavernas, Enemigos de doble cara y Helen, Theo y Gideon controlados.
+- Lote 5b hecho (22/11/2026): La hermana perdida es jugable tras el preludio (ver
+  [La hermana perdida](#la-hermana-perdida)). Verificado: sus 11 pruebas, `hemlock-vale/`,
+  cobertura de partidas, campañas, `story-order`, i18n y narración de la web (893 pruebas);
+  tipos de cards (sin contar errores ajenos de `finn-calvin`) y web; Prettier y ESLint. Lo
+  invalidan cambios en `lost-sister.ts`, `vale-time.ts` o las Cuevas y encuentros compartidos.
+- Siguiente: lote 5c (La cosa de las profundidades).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -433,6 +437,42 @@ Lote 5a, en `silent-heath.ts` (pruebas en `silent-heath.test.ts`).
 Pendiente: el códice Θ de la Dra. Marquez (está colocada, pero sin reacción), las
 capacidades de Leah y la madre Rachel controladas y el modo independiente. Revisión visual
 pendiente: montones bajo los Lugares, Guaridas y Restos cristalinos.
+
+### La hermana perdida
+
+Lote 5b, en `lost-sister.ts` (pruebas en `lost-sister.test.ts`).
+
+- **Hora por Lugar:** `vale-time.ts` (`nightAt`, `nightFor`, `nightForEnemy`) decide si las
+  cartas de un Lugar usan sus efectos (Noche). En los demás escenarios manda el Indicador de
+  tiempo; en este, `registerDarkLocations` marca como Noche los Lugares Oscuros. Lo usan el
+  Parásito de cristal, el Fulgor empíreo, la Madriguera seca, la Sombra miasmática, Helen y
+  los Micónidos. Corrige también el Parásito de cristal, que leía el daño de su ataque en vez
+  de los daños que tiene encima.
+- **Oscuro:** el lado sin revelar («Caverna») es Cueva y Oscuro; el revelado, según la carta
+  (las Cuevas de Horrores en la roca siguen siendo Oscuras). Lo pierden con Crecimiento
+  luminoso o con la Cueva abierta iluminada (hasta la siguiente fase de Investigación).
+- **Mazo de Cavernas:** en `scenarioMeta.caverns` (ids de Lugares apartados). Akwan en
+  [6, 6] y las 3 primeras a la izquierda, debajo y a la derecha. Entra una Caverna adyacente
+  al descubrir la última pista de una Cueva y con el Cementerio suspendido; el Negociar de
+  Akwan (Días 1 y 2) ordena las 3 primeras. El reverso del acto 1 pone la Cueva fúngica junto
+  a un Costero (sin investigadores si se puede) y la rodea de Cavernas hasta 4 vecinos.
+- **Híbridos:** cada Enemigo de doble cara se da la vuelta en cuanto queda en un Lugar que no
+  le corresponde (comprobación en cada ventana Obligado). Conserva id, daño, perdición y
+  vinculadas, y aplica su Obligado al cambiar de lado. A la luz, el crustáceo reduce a 1 el
+  daño de los ataques y el límulo no hace ataques de oportunidad.
+- **Habitantes:** Helen, Theo (Días 1–2) y Gideon (Días 2–3) entran bajo control (Helen sin
+  espacio de aliado, con su +1 según la hora y su reacción de evitar); William en Akwan el
+  Día 3. Los habitantes controlados ya pueden Negociar (`welcome.ts`). Códices 4, 6, 8 (en
+  dos pasos: discusión y reconciliación con [willpower] (4)) y Σ.
+- **Encuentros:** Musgo cavernario, Recuperado por la naturaleza, Crecimiento luminoso y los
+  conjuntos compartidos Mutaciones (Mutación repentina, Crecimiento antinatural) y Micónidos
+  (Amanita negra, Liquen cadavérico, Esporas psicotrópicas).
+- **Resoluciones:** R1 con R2 (familia reunida) o R3 (Elizabeth salvada); sin resolución,
+  +1 XP; R4 con el tesoro de Gideon, Victoria, Costa de Akwan explorada y siguiente preludio.
+
+Pendiente: vincular el Musgo cavernario a un Objeto (ahora es un Enemigo normal), el códice
+Θ, el modo independiente y la revisión visual (mazo de Cavernas, Lugares Oscuros, Híbridos y
+textos).
 
 ## Entregas y criterios de aceptación
 

@@ -843,5 +843,108 @@
       "audioSha256": "030f785652b4bad3101f5489a0c02b13eb06f17fdd449bfdcb8783c6fa17f097"
     }
   ],
-  "pending": []
+  "pending": [
+    {
+      "key": "story.hemlockVale.lostSister.intro1.body",
+      "file": "hemlock-vale-lost-sister-intro-1-db4487ab.mp3",
+      "textSha256": "db4487abe96a6f4c123f210c48744ea327a5d4dcf8a87c19a96c23dd566ad5cb",
+      "characters": 1145
+    },
+    {
+      "key": "story.hemlockVale.lostSister.intro2.body",
+      "file": "hemlock-vale-lost-sister-intro-2-220f03a7.mp3",
+      "textSha256": "220f03a781b8a30a05f05fedeb077eacd5bbf173976d4d4aea2099b5fc65c255",
+      "characters": 1248
+    },
+    {
+      "key": "story.hemlockVale.lostSister.intro3.body",
+      "file": "hemlock-vale-lost-sister-intro-3-8a7de7f6.mp3",
+      "textSha256": "8a7de7f63796cb1c1a2e51661754819b89c24cd57282c73b711e11dd784b8dbf",
+      "characters": 729
+    },
+    {
+      "key": "story.hemlockVale.lostSister.intro4.body",
+      "file": "hemlock-vale-lost-sister-intro-4-6bfa4e2e.mp3",
+      "textSha256": "6bfa4e2eb7653b99f33fe6ca24ada9e02e92a03e5f832eee732219b35cc91c22",
+      "characters": 1014
+    },
+    {
+      "key": "story.hemlockVale.lostSister.intro5.body",
+      "file": "hemlock-vale-lost-sister-intro-5-784a1e26.mp3",
+      "textSha256": "784a1e26083e00641c07f1724346d6d2860ab543a16ded7fa66049e745804d05",
+      "characters": 476
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codex4.body",
+      "file": "hemlock-vale-lost-sister-codex-4-2a28842f.mp3",
+      "textSha256": "2a28842f2d2c5076fce8ebf1ee2c508b11f424af180aa1d37763919ac3b75141",
+      "characters": 715
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codex6.body",
+      "file": "hemlock-vale-lost-sister-codex-6-fd9d6438.mp3",
+      "textSha256": "fd9d643880118021a442a93af542f8d4b1f221476c8a99ae7ec8f46ccc3e9b2e",
+      "characters": 778
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codex8Tension.body",
+      "file": "hemlock-vale-lost-sister-codex-8tension-02e8b8fb.mp3",
+      "textSha256": "02e8b8fbd2ebe32faee229a4edd788c6df395deffb2d29f55dd4ead567d6cf87",
+      "characters": 82
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codex8Reconciled.body",
+      "file": "hemlock-vale-lost-sister-codex-8reconciled-8098efdb.mp3",
+      "textSha256": "8098efdbe8042f3a851ed7890d2b6d30fcd9403365ea72cf52e6879356aa6da4",
+      "characters": 630
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codex8Arguing.body",
+      "file": "hemlock-vale-lost-sister-codex-8arguing-4fb950f6.mp3",
+      "textSha256": "4fb950f61c1c389d12435a66df49a08b1ada6701a37d87da47543eb08a0a539e",
+      "characters": 1204
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codexSigmaReconciled.body",
+      "file": "hemlock-vale-lost-sister-codex-sigma-reconciled-0e2a9456.mp3",
+      "textSha256": "0e2a94562bda385c794620fcfac042df0a3023c96d09a5d45a7e1969fa5a9a3a",
+      "characters": 387
+    },
+    {
+      "key": "story.hemlockVale.lostSister.codexSigma.body",
+      "file": "hemlock-vale-lost-sister-codex-sigma-80364a6f.mp3",
+      "textSha256": "80364a6f86676e0fc19834ba6539faa3b875b5c3648415743452ea79d59885ec",
+      "characters": 295
+    },
+    {
+      "key": "story.hemlockVale.lostSister.noResolution.body",
+      "file": "hemlock-vale-lost-sister-no-resolution-da220919.mp3",
+      "textSha256": "da220919235c34cb0be09914a7eb10c73022e23ebf89aba6a00b85571b653e72",
+      "characters": 164
+    },
+    {
+      "key": "story.hemlockVale.lostSister.resolution1.body",
+      "file": "hemlock-vale-lost-sister-resolution-1-a31893fa.mp3",
+      "textSha256": "a31893fa9efa7bec1e1b75a0a5389311c8a1baf84ae09e3e64edc82d8ff5cdc3",
+      "characters": 779
+    },
+    {
+      "key": "story.hemlockVale.lostSister.resolution2.body",
+      "file": "hemlock-vale-lost-sister-resolution-2-a04229a4.mp3",
+      "textSha256": "a04229a475fc1c8a254ca3a3855e9789c40fd6d4fcefe93626f260bf0c006d5b",
+      "characters": 581
+    },
+    {
+      "key": "story.hemlockVale.lostSister.resolution3.body",
+      "file": "hemlock-vale-lost-sister-resolution-3-0d07f5bb.mp3",
+      "textSha256": "0d07f5bb0e226921125427a9914c3a954b978a57b5e8dee01c71f9b54a1eb6f5",
+      "characters": 859
+    },
+    {
+      "key": "story.hemlockVale.lostSister.resolution4.body",
+      "file": "hemlock-vale-lost-sister-resolution-4-4d48ff3c.mp3",
+      "textSha256": "4d48ff3cbb9de19914f225a0e5db66abb1392dbfab82c31e5cee8f843d617bda",
+      "characters": 461
+    }
+  ]
 }

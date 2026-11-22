@@ -181,11 +181,11 @@ describe('Ruta de La fiesta del Valle de la Cicuta', () => {
       ...campaign,
       log: {
         ...campaign.log,
-        valley: { ...welcomeValley(), route: ['hemlock-vale-lost-sister'] },
+        valley: { ...welcomeValley(), route: ['hemlock-vale-thing-in-the-depths'] },
       },
     }
     const steps = campaignScenarios(routed)
-    expect(steps.map((s) => s.id)).toEqual([HEMLOCK_WELCOME, 'hemlock-vale-lost-sister'])
+    expect(steps.map((s) => s.id)).toEqual([HEMLOCK_WELCOME, 'hemlock-vale-thing-in-the-depths'])
     expect(steps[1]!.build).toBeUndefined()
   })
 })

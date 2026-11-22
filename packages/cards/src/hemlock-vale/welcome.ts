@@ -503,6 +503,27 @@ for (const resident of Object.keys(RESIDENTS) as ValleyResident[]) {
       trigger.type === 'assetDefeated' && trigger.asset.id === self.id
         ? [{ type: 'ChangeRelationship', resident, amount: -1 }]
         : [],
+    // Bajo control, su dueño también puede Negociar (La hermana perdida: Theo y Gideon).
+    abilities: (state, self, investigator) => {
+      if (self.owner !== investigator || !state.scenarioId.startsWith('hemlock-vale-')) return []
+      if (codexResolved(state, RESIDENTS[resident].codex)) return []
+      if (codexGates[state.scenarioId]?.(state, RESIDENTS[resident].codex, investigator) === false)
+        return []
+      const parley = residentParley(state, resident, investigator)
+      if (!parley) return []
+      return [
+        {
+          key: `${self.id}:parley`,
+          label: 'ability.hemlockVale.parley',
+          params: { card: RESIDENTS[resident].code },
+          actions: parley.actions,
+          provokes: false,
+          parley: true,
+          ...(parley.costs ? { costs: parley.costs } : {}),
+          then: parley.then,
+        },
+      ]
+    },
     placedAbilities: (state, self, investigator) => {
       // El Negociar de cada escenario lee su propio códice (`ScenarioSpecific` codex).
       if (!state.scenarioId.startsWith('hemlock-vale-') || self.faceDown) return []

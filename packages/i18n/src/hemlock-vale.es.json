@@ -358,6 +358,84 @@
         "title": "Resolución 4",
         "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Cresta Perla explorada. Las colinas del norte quedaron devastadas por un suceso desconocido. La contaminación persistente ha producido la mineralización y cristalización de la vida orgánica. Las cavernas locales están invadidas por una enorme colonia de insectos. Éstos demuestran comportamientos y psicología de véspidos y termítidos. Se precisa más estudio”."
       }
+    },
+    "lostSister": {
+      "intro1": {
+        "title": "Introducción 1",
+        "body": "Estáis sentados en la pequeña cocina de la familia Peters, en Akwan, en la orilla norte de la Isla de la Cicuta. La fría agua del Atlántico lame los soportes de la casa mientras Helen Peters deja su taza humeante sobre la mesa.\n\n–Las cavernas de la orilla norte son una trampa mortal –dice con firmeza–. Creo que no saben dónde se están metiendo.\n\nLe decís que sois conscientes del peligro. Según los rumores locales, hace poco han desaparecido varias personas. La desaparición más reciente fue la hermana de Helen, y por eso habéis visitado el hogar de los Peters para ofrecer vuestra ayuda.\n\nHelen os mira de arriba abajo como tomándoos la medida y finalmente asiente: –Muy bien. No sé si sois valientes o estúpidos. O las dos cosas, como mi hermano pequeño –Se frota el ceño de frustración–. La última vez que vi a Lizzie, a Elizabeth, estaba dando un paseo con nuestro perro Bruce por la costa. Le dije que se mantuviera alejada de esas cuevas, pero nunca me hace caso. Es fácil perderse en ellas, y ahí dentro hay cosas que te perseguirían en las pesadillas.\n\nPone una linterna sobre la mesa y añade: –Pero es ahí por donde vamos a empezar."
+      },
+      "intro2": {
+        "title": "Introducción 2",
+        "body": "Seguís a Helen al exterior y cruzáis los entablados de Akwan. La localidad está situada en una pequeña bahía rocosa de la orilla norte de la isla y ha sido el hogar de familias abenaki y de antiguos balleneros desde hace generaciones. El constante ir y venir del agua sobre la costa de piedra crea un ambiente de inquietud espectral. Helen coge un arpón de la cabaña de un ballenero y os lleva a la playa.\n\nUna vieja camioneta conocida se detiene cerca. De ella se baja Theo que os saluda con una amplia sonrisa: –¡He vuelto! Tuve que regresar al Valle a por algo –os dice, pero se le borra la sonrisa al ver a Helen.\n\n–Me sorprende que hayas venido –dice Helen con frialdad.\n\nTheo parece abatido y replica: –Claro que he venido hermana. ¿Cómo no iba a venir?\n\nSu hermana no dice nada mientras pasa a vuestro lado y se dirige a la desolada costa. Una ola rompe contra el paseo, haciendo pedazos el aparente drama del momento. Le preguntáis a Theo el motivo de la gélida respuesta de su hermana y éste adopta un aspecto distante durante un momento.\n\n–Bueno, la gente a veces se distancia. Como dos ramas de un árbol. Siempre estarán conectadas, pero...\n\nLa larga metáfora se ve interrumpida por Helen que os llama desde la boca de una cueva costera."
+      },
+      "intro3": {
+        "title": "Introducción 3",
+        "body": "Mientras Helen y vosotros os preparáis para salir, el sonido de la lluvia rompe el silencio. Theo entra por la puerta delantera y se aparta el pelo mojado de la cara. Clava la mirada en los ojos de Helen.\n\n–Así que no ha vuelto aún –dice con seriedad. El agua de la lluvia gotea desde Theo sobre el ajado suelo mientras Helen echa chispas.\n\n–Me sorprende que hayas venido, hermanito. Supongo que más vale tarde que nunca. Coge la cuerda.\n\nSe echa un arpón al hombro y sale bajo la lluvia torrencial. Theo se apresura en buscar una cuerda y una segunda linterna mientras le preguntáis qué ocurre.\n\n–Nuestra hermana ha desaparecido. Le dije a Helen que volvería, pero ya han pasado dos días. Eso es... esto... eso es lo que ocurre."
+      },
+      "intro4": {
+        "title": "Introducción 4",
+        "body": "Seguís a Helen al exterior y cruzáis los entablados de Akwan. La localidad está situada en una pequeña bahía rocosa de la orilla norte de la isla y ha sido el hogar de familias abenaki y de antiguos balleneros desde hace generaciones.\n\n–La Isla de la Cicuta ya no es segura. Pensé que podría ser nuestro hogar, pero supongo que no es más que otra parada en el camino –dice Helen con melancolía. El pueblo está prácticamente desierto excepto por un viejo marinero que lleva una chaqueta azul marino. Cuando os acercáis, está a punto de dejar caer la caña de pescar.\n\n–¡Gideon! ¿Otra vez pescando? –dice Helen con una sonrisa burlona.\n\nEl viejo marinero saca su captura del agua.\n\n–Sólo un feo bacalao. Y este abadejo más feo aún.\n\nLos peces ensartados en el cordel tienen demasiadas aletas y protuberancias de espinazos como percebes.\n\n–¿Y tú, Helen? –pregunta Gideon.\n\nHelen le habla al viejo marinero sobre su hermana desaparecida y éste parece preocupado.\n\n–La pequeña Lizzie es un tesoro. Os ayudaré si queréis."
+      },
+      "intro5": {
+        "title": "Introducción 5",
+        "body": "Seguís a Helen al exterior y cruzáis los entablados de Akwan. El cielo nocturno es deprimente y está nublado, pero un inquietante resplandor permanece en el horizonte hacia el sur: una lejana luminiscencia cambiante de azules y verdes más allá de las copas de los árboles. La luz forma patrones familiares: una garra de león, una flor primaveral, un drakkar y, por último, una vaga silueta humanoide. Al bajar la vista, veis a Helen desaparecer en una cueva negra como la pez."
+      },
+      "setup": {
+        "title": "Preparación del escenario",
+        "body": "Akwan está en juego y cada investigador comienza allí. El mazo de Cavernas reúne los Lugares de La hermana perdida y las Cuevas de Horrores en la roca (se retiran 2 Cuevas al azar), barajados; sus 3 primeras cartas entran sin revelar a la izquierda, debajo y a la derecha de Akwan. La Cueva fúngica, el Híbrido límulo, los dos Parásitos de cristal y los dos Híbridos crustáceos quedan apartados. De día, Helen Peters, Theo Peters (Días 1 y 2) y Gideon Mizrah (Días 2 y 3) entran bajo el control de un investigador, y el Día 3 se coloca a William Cicuta en Akwan; de noche, solo Helen. Helen no ocupa espacio de aliado."
+      },
+      "darkLocations": {
+        "title": "Lugares Oscuro",
+        "body": "Los efectos de Día y Noche funcionan de modo distinto durante el escenario La hermana perdida. Durante este escenario, las cartas que estén en un Lugar Oscuro (incluido el propio Lugar) sólo usan efectos (Noche [willpower]). Las cartas que estén en todos los demás Lugares (incluido el propio Lugar) sólo usan efectos (Día [willpower]). Esta regla está en vigor independientemente de que este escenario se juegue durante el (Día [willpower]) o la (Noche [willpower]).\n\nÆ Durante la noche, la luz de la luna brilla tanto como el sol. A diferencia de los demás escenarios de esta campaña. la carta Indicador de tiempo no tiene ningún efecto en las mecánicas de juego durante el escenario La hermana perdida.\n\nEl conjunto de encuentros La hermana perdida contiene 3 Enemigos de doble cara. Estos Enemigos tienen un lado (Día [willpower]) y un lado (Noche [willpower]) y se consideran el mismo Enemigo. Si estos enemigos están en un Lugar Oscuro, dales la vuelta para mostrar su lado (Noche [willpower]). De igual modo, si estos Enemigos están en un Lugar sin el rasgo Oscuro, dales la vuelta para mostrar su lado (Día [willpower]).\n\nDar la vuelta de un lado a otro es un efecto inmediato que no se puede interrumpir. Cuando se le da la vuelta a un Enemigo de doble cara, éste conserva todas las fichas y cartas vinculadas (ten en cuenta que algunos Enemigos tienen efectos Obligado– que se activan después de darse la vuelta a un lado u otro)."
+      },
+      "codex4": {
+        "title": "Códice 4: William Cicuta",
+        "body": "William se encuentra sobre la orilla rocosa, mirando el ir y venir de las olas y la lejana cosa de Maine al otro lado. –Esta isla envenenada es todo lo que queda del apellido Cicuta. El legado de mi familia terminará conmigo –dice amargamente. Helen se adelanta con el rostro lívido y replica: –Esta isla no le pertenece a nadie; tu legado está muerto. Ya era un lugar salvaje antes de que tu familia se la quitara a la naturaleza, y ahora ésta quiere recuperarla. A William le tiembla el labio mientras levanta la mirada hacia el cielo. Una banda arcoíris de colores iridiscentes recorre el firmamento. –Todas las cosas buenas son libres y salvajes –cita con reverencia–. Tal vez vaya siendo hora de que lo acepte.\n\nAumenta el nivel de relación de William Cicuta. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "codex6": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "Gideon se inclina hacia delante y estudia una formación de arena negra y rocas. –Las cosas no siempre han sido tan extrañas aquí. La Isla de la Cicuta se ha vuelto bastante rara con el paso de los años. Pero ahora que lo pienso, supongo... El anciano pierde el hilo y queda sumido en sus pensamientos. Después de algún tiempo, se levanta tembloroso. –Aquí perdí una vieja reliquia familiar. Bueno, más que perderla, la enterré y se me ha olvidado dónde –comienza a decir antes de meterse en otros tres relatos que no tienen nada que ver antes de volver al tema principal–. No fui tan tonto como para enterrarla en mitad de la arena. Pero había una gran roca negra que tenía un aire como de ballena. Fue allí donde la enterré. Les agradecería mucho que me ayudasen a encontrarla.\n\nRecuerda que “Gideon está buscando una reliquia familiar” (Consejo: Si los investigadores controlan al menos 2 pistas [willpower] al final de este escenario, podéis ayudar a Gideon a encontrar lo que busca)."
+      },
+      "codex8Tension": {
+        "title": "Códice 8: Theo Peters",
+        "body": "La tensión alcanza su punto álgido cuando Theo y Helen empiezan a lanzarse pullas.\n\nElige un investigador que esté en el Lugar de Theo Peters para que realice una prueba de [willpower] (4). Si esta prueba tiene éxito, sigue leyendo. Si no es así, un investigador puede volver a activar este códice."
+      },
+      "codex8Reconciled": {
+        "title": "Códice 8: Theo Peters",
+        "body": "–Di lo que quieras, pero ¡los del Valle son más familia de lo que tú serás nunca! –grita Theo.\n\nIntervienes para intentar calmar a la pareja de hermanos, pero Helen, claramente herida por lo que ha dicho su hermano, le mira a los ojos y contesta: –Por favor, no digas eso. No lo digas nunca. Lizzie y tú sois el único hogar que tengo. El hogar no es este sitio, ni la Isla de la Cicuta ni desde luego Vermont. Sólo quiero que seamos una familia.\n\nSu dura fachada se rompe cuando empieza a llorar. Tras un instante, Theo mira a su hermana, con el labio tembloroso, y luego la rodea con los brazos para darle un abrazo sin palabras.\n\nAnota en las Notas de Theo Peters que Theo se ha reconciliado con Helen.\n\nAumenta el nivel de relación de Theo Peters. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "codex8Arguing": {
+        "title": "Códice 8: Theo Peters",
+        "body": "Mientras Theo y tú seguís a Helen por otro túnel recubierto de cieno, acabáis saliendo a una gran sala del tamaño de un anfiteatro. En la oscura y húmeda roca que os rodea hay formaciones de coral y enormes crustáceos. El grupo contiene el aliento durante un momento mientras asimiláis la increíble escena.\n\n–Sigamos moviéndonos –dice Helen con aspereza. No tarda en adelantarse a Theo y a ti, por lo que aprovechas para preguntarle al joven por la fría actitud de su hermana.\n\n–Culpa al Valle por... Bueno, por todo. Hace un año, apenas lográbamos llegar a fin de mes en Akwan. Intentó que empezara a dedicarme a la pesca, como mi padre, y... –parece ahogarse con sus palabras–. No es que yo ayudara nunca mucho. Pero cuando visité el Valle, sentí que tenía sitio allí. Era un lugar en el que encajaba. La madre Rachel dice...\n\n–Cállate –interrumpe Helen–. Bastante malo es ya que Lizzie te oyera poniendo a esa lunática por las nubes cuando estabas en casa. Si quieres ser su perrito faldero, adelante. Si quieres darnos la espalda, adelante. Pero no te pongas a soltar esa mierda conmigo delante.\n\nLas mejillas de Theo se ruborizan cuando su hermana mete el dedo en lo que parece ser una vieja herida.\n\nRecuerda que “Theo está discutiendo con Helen”. Un investigador puede volver a activar este códice si tanto Theo Peters como Helen Peters están en el mismo Lugar."
+      },
+      "codexSigmaReconciled": {
+        "title": "Códice Σ: La monstruosidad crustácea",
+        "body": "Un rancio y fétido olor a pescado podrido y moho inunda la caverna. Theo observa a sus hermanas huir de la cueva, con el dilema reflejado en el rostro, antes de volverse hacia ti. Se coloca a tu lado mientras la monstruosa criatura emite un rugido gorgoteante. –Estoy bastante seguro de que esa cosa se comió al perro de Lizzie –dice mientras desenvaina un cuchillo–. ¡Esto es por Bruce! \n\nMueve 1 punto de daño de Theo Peters al Enemigo Híbrido límulo."
+      },
+      "codexSigma": {
+        "title": "Códice Σ: La monstruosidad crustácea",
+        "body": "Theo observa a sus hermanas huir de la cueva, con el dilema reflejado en el rostro. La musgosa caverna huele a moho y putrefacción. El joven retrocede cuando la monstruosa criatura emite un rugido gorgoteante. –Se me ha olvidado algo en la camioneta. ¡Ahora vengo! –dice mientras huye del lugar.\n\nRetira a Theo Peters de la partida."
+      },
+      "noResolution": {
+        "title": "Sin resolución",
+        "body": "Vuestro esfuerzo ha alcanzado su límite. Los hongos antinaturales y la fauna agresiva son demasiado para vosotros. No tenéis más elección que abandonar la búsqueda."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "Regresáis a Akwan con Helen y Lizzie. La hermana más joven os da las gracias mientras vuelve la mirada y se queda mirando las cuevas. Helen le quita la raída correa de perro y dice: – Bruce era un buen perro.\n\nEl viento del océano tapa el redondo rostro de la Peters más joven con su oscuro pelo castaño y Helen le pasa el brazo por el hombro. Les preguntáis qué van a hacer ahora.\n\n–No podemos quedarnos aquí –dice Helen, dirigiéndose más a Elizabeth que a vosotros. Antes de que su hermana pueda protestar, Helen continúa–. ¿Te acuerdas de la historia que nos contó Nokemes? Ésa en la que Gluskab convertía a un hombre en árbol. Todo lo que hay en esta isla está mal. Se ha transformado en algo letal. A lo mejor ha llegado el momento de ir a visitar al tío George en Portland."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "Después de volver de su camioneta, Theo pregunta a su hermana que por qué se fue. Lizzie se enjuga las lágrimas de los ojos y le enseña la correa de perro rota.\n\n–Bruce quería dar un último paseo. Como los que solíamos dar.\n\nTheo parece decaído mientras sus dos hermanas contemplan el mar, con la mirada perdida más allá de las olas y las nubes plateadas. Theo duda y busca lo que quiere decir mientras sus hermanas siguen frente al rompiente oleaje.\n\n–Ven aquí, Theo –dice Helen mientras le hace un gesto para que se acerque. Los tres hermanos se juntan y miran el mar a lo lejos."
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "–Empezaré a hacer los preparativos pronto y ojalá que podamos salir de la isla en unos pocos días –os cuenta Helen–. Sugiero que tampoco tarden en marcharse.\n\nLe decís que al estudio aún le queda bastante y que todavía tenéis cosas que hacer. Al oír esto, Helen hace una mueca.\n\n–Ustedes mismos –dice. Después, tras un breve silencio, vuelve a miraros–. Lo siento. No sé por qué he dicho eso. Gracias por su ayuda. Nadie del Valle nos habría ayudado.\n\nBaja la mirada hacia Akwan, más allá de la orilla de arena negra y añade: –Gideon solía pescar aquí a menudo, pero ya no lo hace. El Valle nos lo quitó. Y ahora nos ha quitado a Theo.\n\nVuelve la mirada hacia vosotros.\n\n–Tengo que pedirles otro favor. Por favor, cuiden de Theo. Aunque sea un poco obtuso, tiene buen fondo. Asegúrense de que está bien. Da igual lo que piense, porque sigue siendo mi familia."
+      },
+      "resolution4": {
+        "title": "Resolución 4",
+        "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Costa norte y cuevas costeras extremadamente peligrosas. Identificadas docenas de hongos bioluminiscentes hasta ahora no documentadas. Ecosistema sumamente hostil con sensibilidad extrema a la luz. Se recomiendan más análisis y observación. Las futuras expediciones deberían venir preparadas con el equipo adecuado y extremar las precauciones. Evitar las cuevas de Akwan si es posible”."
+      }
     }
   },
   "choice": {
@@ -401,7 +479,12 @@
     "takeDamage": "Recibe {n} puntos de daño",
     "toBottom": "{card}: colócala debajo del montón",
     "leaveOnTop": "{card}: déjala encima",
-    "insectAttacks": "El Enemigo Insecto más cercano se mueve hasta ti, se enfrenta contigo y ataca"
+    "insectAttacks": "El Enemigo Insecto más cercano se mueve hasta ti, se enfrenta contigo y ataca",
+    "gridPosition": "Columna {column}, fila {row}",
+    "nearestEnemyAttacks": "El Enemigo más cercano te ataca",
+    "enemiesHeal": "Cada Enemigo de tu Lugar y de los conectados se cura 1 daño",
+    "cancelMove": "Cancela el movimiento",
+    "discardItem": "Descarta {card}"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -415,7 +498,7 @@
     "slideOrSwap": "Desliza o intercambia Lugares",
     "trauma": "Elige tu trauma",
     "shardOwner": "Elige quién añade la Esquirla prismática a su mazo",
-    "takeControl": "Elige un investigador para que tome el control",
+    "takeControl": "Elige quién toma el control de este Apoyo de historia",
     "flipLocation": "Elige el Lugar al que se da la vuelta",
     "collapseTarget": "Elige un Lugar adyacente para lo que había en el Lugar derrotado",
     "parlorTest": "¿Haces una prueba de [intellect] (4) para infligir 1 punto de daño adicional?",
@@ -427,7 +510,11 @@
     "chooseCost": "Elige cómo pagar",
     "chooseAsset": "Elige un Apoyo",
     "lookBeneath": "Carta superior bajo tu Lugar",
-    "victoryToDeck": "Puedes barajar un Enemigo de la zona de victoria en el mazo de Encuentros"
+    "victoryToDeck": "Puedes barajar un Enemigo de la zona de victoria en el mazo de Encuentros",
+    "cavernPosition": "Elige dónde entra en juego la carta de Cavernas",
+    "cavernOrder": "Elige la siguiente carta de la parte superior del mazo de Cavernas",
+    "chooseInvestigator": "Elige un investigador",
+    "weedChoked": "Playa ahogada en algas: cancela el movimiento o descarta un Apoyo Objeto"
   },
   "ability": {
     "codex": "Códice {n}",
@@ -456,7 +543,18 @@
     "leaveTheHeath": "Desistir. Dejas atrás el páramo (tus Restos cristalinos van a la zona de victoria)",
     "drawBeneath": "Roba la carta superior que hay bajo tu Lugar",
     "lookBeneath": "Gastad 1 pista [per_investigator] en grupo: mira la carta superior bajo tu Lugar",
-    "nurseryDraw": "Recibe 1 de horror directo: roba la carta superior bajo la Zona de cría de cristal"
+    "nurseryDraw": "Recibe 1 de horror directo: roba la carta superior bajo la Zona de cría de cristal",
+    "giveUpTheSearch": "Desistir. Abandonas la búsqueda",
+    "askAroundAkwan": "Negociar: mira las 3 primeras cartas del mazo de Cavernas y ordénalas",
+    "digThroughMoss": "Recibe 1 horror: pon en juego adyacente la primera carta del mazo de Cavernas",
+    "findLeash": "Gastad 2 pistas [per_investigator] en grupo: encontrasteis una correa de perro rota",
+    "findFootprints": "Gastad 2 pistas [per_investigator] en grupo: encontrasteis unas huellas",
+    "lightTheCave": "Prueba de [agility]: la Cueva abierta pierde Oscuro hasta la siguiente fase de Investigación",
+    "lureEnemy": "Gasta 1 pista [per_investigator]: mueve a tu Lugar un Enemigo de un Lugar Oscuro conectado",
+    "clearGrowth": "Prueba de [agility] (3) para descartar Crecimiento luminoso",
+    "clearSpores": "Descartar Esporas psicotrópicas",
+    "fungalHeal": "Cura 1 daño (Cueva fúngica)",
+    "helenEvades": "Agota a Helen Peters y hazle 1 daño: evita automáticamente a un Enemigo"
   },
   "keywords": {
     "dayNight": {
@@ -476,6 +574,7 @@
     "predationCanceled": "Se cancela la prueba de depredación (Gideon Mizrah).",
     "predationToken": "Prueba de depredación: {token}.",
     "elderThingToPredation": "Una ficha de Primigenio pasa de la bolsa de caos a la de depredación.",
-    "queenTokens": "Comprobación de la Reina de progenie: {tokens}."
+    "queenTokens": "Comprobación de la Reina de progenie: {tokens}.",
+    "weedChokedToken": "Playa ahogada en algas: {token}."
   }
 }

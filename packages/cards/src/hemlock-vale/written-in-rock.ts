@@ -40,6 +40,7 @@ import {
   horrorsInTheRockDeck,
   refractionsDeck,
 } from './rock-encounters'
+import { nightAt } from './vale-time'
 import { RESIDENTS } from './welcome'
 import {
   actTwoAbilities,
@@ -136,14 +137,12 @@ const ask = (investigator: InvestigatorId, prompt: string, choices: Choice[]): M
 // Cuevas (Horrores en la roca)
 // ---------------------------------------------------------------------------
 
-const isNight = (state: GameState) => valleyTime(state.campaignLog)?.time === 'night'
-
 for (const id of [ROCK.dryBurrow]) {
   registerLocation({
     code: id,
     // (Día) [rápida]: Moverte (límite de grupo: una vez por ronda).
     abilities: (state, self, investigator) =>
-      isNight(state) || state.activeTurn !== investigator
+      nightAt(state, self.id) || state.activeTurn !== investigator
         ? []
         : [
             {
@@ -159,7 +158,7 @@ for (const id of [ROCK.dryBurrow]) {
           ],
     // (Noche) Obligado: después de terminar tu turno aquí, recibe 1 de horror.
     forced: (state, trigger, self) =>
-      isNight(state) &&
+      nightAt(state, self.id) &&
       trigger.type === 'turnEnds' &&
       getInvestigator(state, trigger.investigator).location === self.id
         ? [{ type: 'TakeDamage', investigator: trigger.investigator, damage: 0, horror: 1 }]
@@ -477,7 +476,7 @@ registerScenario({
     return state.difficulty === 'easy' || state.difficulty === 'standard' ? Math.min(6, hand) : hand
   },
   enemyStat: (state, enemy, stat) =>
-    (stat === 'fight' ? crystalParasiteFight(state, enemy.code, enemy.damage) : 0) +
+    (stat === 'fight' ? crystalParasiteFight(state, enemy) : 0) +
     minerStat(state, enemy.code, enemy.location),
   // Acto 2: solo conectan los Lugares adyacentes con los iconos de raíl alineados.
   gridAdjacent: (state, a, b) => {

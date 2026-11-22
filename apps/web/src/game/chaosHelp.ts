@@ -47,6 +47,7 @@ export function chaosHelp(
     'hemlock-vale-written-in-rock': localeData(locale).hemlockValeCards['10501'],
     'hemlock-vale-hemlock-house': localeData(locale).hemlockValeCards['10523'],
     'hemlock-vale-silent-heath': localeData(locale).hemlockValeCards['10549'],
+    'hemlock-vale-lost-sister': localeData(locale).hemlockValeCards['10569'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],
     'dead-by-dawn': localeData(locale).plaguebearerCards['78047'],
