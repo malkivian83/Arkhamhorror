@@ -1607,6 +1607,8 @@ type MessageBody =
   | { type: 'MoveAssetCluesToEnemy'; asset: AssetId; enemy: EnemyId; amount: number }
   | {
       type: 'AssignDamage'
+      /** Only assets explicitly accepting direct damage/horror may receive it. */
+      direct?: boolean
       killInstead?: boolean
       investigator: InvestigatorId
       damage: number
@@ -2465,7 +2467,13 @@ type MessageBody =
   | { type: 'ReturnAssetToHand'; asset: AssetId }
   | { type: 'ReturnAssetToDeck'; asset: AssetId }
   /** De la pila de descartes a la mano. */
-  | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode; playedEvent?: boolean }
+  | {
+      type: 'DiscardToHand'
+      investigator: InvestigatorId
+      code: CardCode
+      playedEvent?: boolean
+      drawFound?: boolean
+    }
   /**
    * Busca en el mazo (o en las `top` primeras) un apoyo con alguno de los rasgos
    * y lo lleva a la mano o lo juega con descuento; luego baraja.

@@ -48,6 +48,7 @@ import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 import { hemlockValeChaosBag } from './chaos-bag'
 import {
   crystalParasite,
+  crystalParasiteFight,
   daySetDeck,
   horrorsInTheRockDeck,
   refractionsDeck,
@@ -894,9 +895,11 @@ registerScenario({
       ? 2
       : 0,
   enemyStat: (state, e, stat) =>
-    e.code === HEATH.broodQueen && stat === 'fight'
-      ? Object.values(state.enemies).filter((o) => o.id !== e.id && isInsect(o)).length
-      : 0,
+    stat !== 'fight'
+      ? 0
+      : e.code === HEATH.broodQueen
+        ? Object.values(state.enemies).filter((o) => o.id !== e.id && isInsect(o)).length
+        : crystalParasiteFight(state, e),
   enemyKeyword: (state, e, keyword) => {
     if (isInsect(e) && keyword === 'aloof') {
       // Desolación: los Insectos pierden Indiferente; también junto a la Reina de progenie.

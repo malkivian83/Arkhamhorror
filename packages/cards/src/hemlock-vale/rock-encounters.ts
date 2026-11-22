@@ -8,8 +8,8 @@ import {
   playerCardDef,
   registerEnemy,
   registerTreachery,
-  valleyTime,
   type Choice,
+  type Enemy,
   type EnemyCard,
   type GameState,
   type InvestigatorId,
@@ -18,6 +18,7 @@ import {
   type TreacheryCard,
 } from '@lcg/engine'
 import { copies, effectTest, enemy, treachery } from '../scenario-helpers'
+import { nightFor, nightForEnemy } from './vale-time'
 
 export const ROCK_CODES = {
   crystalParasite: '10721',
@@ -29,8 +30,6 @@ export const ROCK_CODES = {
   downpour: '10678',
   otherworldlyVisions: '10680',
 } as const
-
-const isNight = (state: GameState) => valleyTime(state.campaignLog)?.time === 'night'
 
 export const crystalParasite: EnemyCard = enemy({
   code: ROCK_CODES.crystalParasite,
@@ -99,18 +98,20 @@ const inThreatAreaOf = (self: Treachery, investigator: InvestigatorId) =>
 registerEnemy({
   code: ROCK_CODES.crystalParasite,
   forced: (state, trigger, self) =>
-    !isNight(state) && trigger.type === 'afterEnemyAttack' && trigger.enemy === self.id
+    !nightForEnemy(state, self) && trigger.type === 'afterEnemyAttack' && trigger.enemy === self.id
       ? [{ type: 'HealEnemy', enemy: self.id, amount: 2 }]
       : [],
   attackModifier: (state, self) => ({
-    damage: isNight(state) ? Math.floor(self.damage / 2) : 0,
+    damage: nightForEnemy(state, self) ? Math.floor(self.damageTaken / 2) : 0,
     horror: 0,
   }),
 })
 
 /** (Noche) +2 de combate por cada 2 daños del Parásito de cristal (en `enemyStat` del escenario). */
-export const crystalParasiteFight = (state: GameState, enemyCode: string, damage: number) =>
-  enemyCode === ROCK_CODES.crystalParasite && isNight(state) ? 2 * Math.floor(damage / 2) : 0
+export const crystalParasiteFight = (state: GameState, enemy: Enemy) =>
+  enemy.code === ROCK_CODES.crystalParasite && nightForEnemy(state, enemy)
+    ? 2 * Math.floor(enemy.damageTaken / 2)
+    : 0
 
 // Plaga cromática: tras robar cartas de tu mazo, 1 brillo; con 6, aparece un Parásito.
 registerTreachery({
@@ -205,7 +206,7 @@ registerTreachery({
 registerTreachery({
   code: ROCK_CODES.empyreanBrilliance,
   revelation: (state, investigator) => {
-    if (!isNight(state)) {
+    if (!nightFor(state, investigator)) {
       const hand = getInvestigator(state, investigator).hand.length
       return [
         effectTest(investigator, 'Empyrean Brilliance', 'willpower', hand >= 5 ? 4 : 2, {

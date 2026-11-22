@@ -12,7 +12,6 @@ import {
   push,
   registerEnemy,
   registerTreachery,
-  valleyTime,
   type Choice,
   type Enemy,
   type EnemyCard,
@@ -25,6 +24,7 @@ import {
   type TreacheryCard,
 } from '@lcg/engine'
 import { copies, effectTest, enemy, treachery } from '../scenario-helpers'
+import { nightForEnemy } from './vale-time'
 
 export const VALE_CODES = {
   miasmaticShadow: '10724',
@@ -42,8 +42,6 @@ const t = (
   traits: string[],
   keywords: TreacheryCard['keywords'] = [],
 ) => treachery({ code, name, traits, keywords })
-
-const isNight = (state: GameState) => valleyTime(state.campaignLog)?.time === 'night'
 
 const ask = (investigator: InvestigatorId, prompt: string, choices: Choice[]): Message => ({
   type: 'Ask',
@@ -87,7 +85,7 @@ export const blightDeck = [
 
 /** (Noche) Escurridizo de la Sombra miasmática. */
 export function valeEnemyKeyword(state: GameState, e: Enemy, keyword: EnemyKeyword) {
-  return e.code === VALE_CODES.miasmaticShadow && keyword === 'elusive' && isNight(state)
+  return e.code === VALE_CODES.miasmaticShadow && keyword === 'elusive' && nightForEnemy(state, e)
     ? true
     : null
 }
