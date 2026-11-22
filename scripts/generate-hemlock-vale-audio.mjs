@@ -26,10 +26,12 @@ const RULES = new Set([
   'writtenInRock.derailed',
   'hemlockHouse.setup',
   'silentHeath.setup',
+  'lostSister.setup',
+  'lostSister.darkLocations',
 ])
 // Párrafos de instrucciones dentro de un relato: se muestran, pero no se graban.
 const INSTRUCTION =
-  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en )/
+  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en |Mueve 1 punto|Recuerda que|Elige un investigador)/
 const narrative = (body) =>
   body
     .split(/\n\s*\n/)
@@ -47,7 +49,7 @@ const entries = Object.entries(story).flatMap(([scenario, parts]) =>
       if (!text || /\[[a-z_]+\]|\{\w+\}/i.test(text))
         throw new Error(`Narración inválida: ${scenario}.${part}`)
       return {
-        key: `story.${scenario}.${part}.body`,
+        key: `story.hemlockVale.${scenario}.${part}.body`,
         file: `hemlock-vale-${slug(scenario)}-${slug(part)}-${hash(text).slice(0, 8)}.mp3`,
         text,
       }
@@ -79,7 +81,10 @@ const evidence = existsSync(evidencePath)
   : { voiceId, settings, format, files: [] }
 if (evidence.voiceId !== voiceId || JSON.stringify(evidence.settings) !== JSON.stringify(settings))
   throw new Error('Configuración modificada')
-const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {}
+// El manifiesto se rehace con las claves actuales (las de la web: story.hemlockVale.*).
+const manifest = {}
+for (const file of evidence.files)
+  file.keys = file.keys.filter((key) => entries.some((entry) => entry.key === key))
 let apiKey = null
 let remaining = 0
 if (generate) {

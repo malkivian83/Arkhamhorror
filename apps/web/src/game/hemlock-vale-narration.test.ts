@@ -18,7 +18,7 @@ it('cada relato del Valle tiene su grabación verificada o figura como pendiente
   const pending = (evidence.pending as { key: string }[]).map(({ key }) => key)
   expect(recorded.filter((key) => pending.includes(key))).toEqual([])
   for (const key of [...recorded, ...pending]) {
-    const [, scenario, part] = key.split('.')
+    const [, , scenario, part] = key.split('.')
     expect(story[scenario!]?.[part!]?.body).toBeTruthy()
   }
   for (const [key, file] of Object.entries(manifest as Record<string, string>)) {
@@ -30,8 +30,10 @@ it('cada relato del Valle tiene su grabación verificada o figura como pendiente
     expect(hash(audio)).toBe(recording.audioSha256)
     expect(storyNarration(key, 'en')).toBeNull()
   }
+  // Las claves son las de los textos que muestra la partida (story.hemlockVale.*).
+  expect(storyNarration('story.hemlockVale.welcome.intro1.body', 'es')).toMatch(/.mp3$/)
   // Las reglas no se graban.
-  expect(storyNarration('story.hemlockHouse.setup.body', 'es')).toBeNull()
+  expect(storyNarration('story.hemlockVale.hemlockHouse.setup.body', 'es')).toBeNull()
 })
 
 it('ofrece la grabación en el modal del relato en español', async () => {
