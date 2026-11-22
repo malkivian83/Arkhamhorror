@@ -26,7 +26,8 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # The full checks already take ~13 minutes; allow the Plesk build and upload to finish.
+    timeout-minutes: 30
     outputs:
       sql: ${{ steps.plan.outputs.sql }}
       sql-matrix: ${{ steps.plan.outputs.sql-matrix }}
