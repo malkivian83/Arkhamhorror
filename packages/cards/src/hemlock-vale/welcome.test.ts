@@ -174,7 +174,7 @@ describe('Final del preludio de bienvenida', () => {
 
 // El orden de la campaña lo decide el preludio (guía, p. 9).
 describe('Ruta de La fiesta del Valle de la Cicuta', () => {
-  it('sigue con el escenario elegido, que aún no se puede jugar', () => {
+  it('sigue con el escenario elegido, ya jugable', () => {
     const campaign = newCampaign('the-feast-of-hemlock-vale', ['joe'], 'standard')
     expect(campaignScenarios(campaign).map((s) => s.id)).toEqual([HEMLOCK_WELCOME])
     const routed = {
@@ -186,7 +186,7 @@ describe('Ruta de La fiesta del Valle de la Cicuta', () => {
     }
     const steps = campaignScenarios(routed)
     expect(steps.map((s) => s.id)).toEqual([HEMLOCK_WELCOME, 'hemlock-vale-thing-in-the-depths'])
-    expect(steps[1]!.build).toBeUndefined()
+    expect(steps[1]!.build).toBeDefined()
   })
 })
 

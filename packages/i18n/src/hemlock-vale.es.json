@@ -436,6 +436,92 @@
         "title": "Resolución 4",
         "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Costa norte y cuevas costeras extremadamente peligrosas. Identificadas docenas de hongos bioluminiscentes hasta ahora no documentadas. Ecosistema sumamente hostil con sensibilidad extrema a la luz. Se recomiendan más análisis y observación. Las futuras expediciones deberían venir preparadas con el equipo adecuado y extremar las precauciones. Evitar las cuevas de Akwan si es posible”."
       }
+    },
+    "thingInTheDepths": {
+      "intro1": {
+        "title": "Introducción 1",
+        "body": "La carretera que lleva a la Ciénaga de Eastwick se bifurca bruscamente de la misma carretera que tomasteis desde Akwan. El paisaje es increíblemente dinámico, casi tropical, con troncos de árboles de diseños arcoíris que flanquean las orillas de oscuros estanques. La Dra. Marquez y Judith intercambian pullas amistosas en la caja de la camioneta, interrumpidas ocasionalmente para espantar insectos. Cuando la conversación empieza a tomar mal cariz, intentáis romper la tensión pidiéndole a Judith que os cuente una historia de caza."
+      },
+      "intro2": {
+        "title": "Introducción 2",
+        "body": "Judith no pierde un instante.\n\n–¿Ven esta cicatriz? Me la hicieron en una pelea en un garito. Un niño rico me cortó con una botella rota. Una riña amistosa, ya saben. Su familia era de esta zona, y quiero recalcar que eran muy ricos. Tenían tanto miedo de que se produjera un escándalo que me ofrecieron trabajo. Aunque tampoco me habría ido de la lengua.\n\n–No sé qué esperaba que me pudiera contar una guardaespaldas, pero eso no –dice la Dra. Marquez, posiblemente molesta. Una brisa acre con un dulce olor a muerte emana de la ciénaga y pone fin a la conversación. La camioneta se detiene. Judith hace una mueca, se pone un par de viejas botas de vadeo y comienza a caminar por la ciénaga con el fusil echado al hombro.\n\n–Puede creerme o no, pero yo estoy aquí únicamente por dinero.\n\nAumenta el nivel de relación de Judith Park. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "intro3": {
+        "title": "Introducción 3",
+        "body": "La actitud dura de la joven se relaja cuando empieza a contar: –En la Ciénaga de Eastwick vive algo grande. Un depredador alfa del tamaño de una ballena asesina, con dientes afilados como cuchillas y demasiados ojos. Huele a algas podridas.\n\nLe decís que parece que ha tenido alguna experiencia personal con la criatura y asiente.\n\n–Se la debo. O me la debe. ¿Ven esto? –señala una fea cicatriz de su mejilla–. Esa cosa estuvo a punto de dejarme sin ojo. Quiero ajustarle las cuentas.\n\nLa Dra. Marquez no se inmuta.\n\n–Supongo que se piensa que los académicos nos tragamos cualquier cuento, pero si espera que me crea que...\n\nUna brisa acre con un dulce olor a muerte emana de la ciénaga e interrumpe la frase. La camioneta se detiene. Judith se tapa la boca y la nariz con una bandana, se pone un par de viejas botas de vadeo y comienza a caminar por la ciénaga con el fusil echado al hombro.\n\n–Tal vez cambie de idea si se encuentra con la criatura.\n\nAnota en las Notas de Judith Park que Judith compartió una cuenta pendiente."
+      },
+      "intro4": {
+        "title": "Introducción 4",
+        "body": "“–Nunca he entendido por qué a todo el mundo le gusta tanto Viaje al centro de la Tierra. ¿Una tierra hueca? Parece una locura –parlotea Theo mientras la lluvia martillea sobre la cabina de la camioneta. El paisaje es increíblemente dinámico, casi tropical, con troncos de árboles de diseños arcoíris que flanquean las orillas de oscuros estanques. De pronto, la camioneta entra en una zona de barro profundo y se detiene de golpe.\n\n–Creo que voy a necesitar ayuda –dice Theo."
+      },
+      "intro5": {
+        "title": "Introducción 5",
+        "body": "Después de algunas dificultades, lográis sacar la camioneta del barro e indicáis a Theo para que evite todas las demás zonas conflictivas hasta llegar a una ladera rocosa. De la caja del camión se caen varias bolsas de suministros, pero Theo hace un gesto para que no os preocupéis.\n\n–Puedo recogerlas a la vuelta. Tengo que encargarme de unos asuntos familiares en Akwan.\n\nTheo os deja al borde de la ciénaga, que está envuelta en la neblina que crea la fría lluvia.\n\nCada investigador comienza el siguiente escenario con 2 recursos menos."
+      },
+      "intro6": {
+        "title": "Introducción 6",
+        "body": "Theo se coloca detrás de la camioneta y empuja con el hombro mientras pisáis a fondo. El vehículo avanza, pero hunde la rueda en otro bache. Theo se sube de nuevo a la camioneta y suspira, exasperado.\n\n–Creo que tendrán que seguir a pie desde aquí. No está tan lejos.\n\nCada investigador comienza el siguiente escenario con 1 acción menos."
+      },
+      "intro7": {
+        "title": "Introducción 7",
+        "body": "La carretera que lleva a la Ciénaga de Eastwick está repleta de peligrosos baches en los que se refleja el brillante resplandor prismático del cielo. Theo detiene la camioneta cuando la carretera empieza a volverse más peligrosa.\n\n–Siento hacer esto, pero mi vieja amiga no puede pasar por todo ese barro.\n\nOs bajáis de la caja de la camioneta, os despedís de Theo y camináis por la embarrada carretera junto a la espesura de llamativos árboles coloridos surcados por grietas de luz."
+      },
+      "intro8": {
+        "title": "Introducción 8",
+        "body": "La luz de la luna es tan brillante como si fuera de día e ilumina el desolado paisaje que rodea a la camioneta como un cuento de hadas de los hermanos Grimm. Una brisa acre con un dulce olor a muerte emana de la ciénaga cuando os detenéis en la costa y levantáis la mirada hacia la luna, que empieza a quedar tapada por las nubes. Un solitario y delgado árbol se recorta contra la luna como si fuera una mano que quisiera agarrarla. Sacáis los suministros de la camioneta y volvéis la vista atrás. El árbol ha desaparecido, dejando una oscura onda en su lugar."
+      },
+      "setup": {
+        "title": "Preparación del escenario",
+        "body": "Nueve de los diez Lugares de doble cara (se retira uno al azar) forman una cuadrícula de 3×3 con su lado Ciénaga boca arriba; cada investigador comienza en el Lugar inicial (abajo a la izquierda) y la Orilla norte está arriba a la derecha. El Día 2 o la Noche 2 el plan empieza con 1 de Perdición, y el Día 3, con 2. De día, el Día 1 se coloca a Judith Park en la Orilla norte y la Dra. Rosa Marquez entra bajo el control de un investigador (no ocupa espacio de aliado); los Días 2 y 3 se coloca a River Hawthorne en la Orilla norte. La Cosa de las profundidades, el Híbrido chelydra y los cinco Tentáculos aferradores quedan apartados."
+      },
+      "sinkingLocations": {
+        "title": "Lugares en hundimiento",
+        "body": "Durante este escenario se colocan fichas de Daño en Lugares como socavones para representar el hundimiento de la ciénaga. Cuando un Lugar tenga tres o más socavones, dale la vuelta mediante el efecto Obligado del plan.\n\nCuando se te indique que le des la vuelta a un Lugar, descarta todas las fichas de Daño de ese Lugar (no las de los investigadores o Enemigos). A continuación, dale la vuelta, conservando todos los investigadores, Enemigos, Traiciones vinculadas y pistas de ese Lugar. Descarta todas las cartas de Jugador vinculadas de ese Lugar."
+      },
+      "codex5Uncontrolled": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–Odio esta ciénaga. Es tan peligrosa que doy por sentado que todos los que han desaparecido del Valle fueron enviados aquí. Aun así, la madre Rachel me ha dicho que venga. Ojalá estuviera de vuelta en Nueva York –dice River, que parece fuera de lugar con esas botas de vadeo que le están grandes. Te entrega una cesta y añade: –Consíganme unos arándanos y dense prisa.\n\nRecuerda que “River ‘pidió’ ayuda”.\n\nToma el control de River Hawthorne. Puedes volver a activar este códice en el Lugar Ciénaga de los arándanos (consulta el diagrama de colocación de Lugares de la página 28)."
+      },
+      "codex5Controlled": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–Gracias. Probablemente pudiera haberlo hecho por mi cuenta, pero agradezco el gesto –dice River mientras reúne un ramillete de flores de arándano–. ¿Quién quiere flores de arándano? La madre Rachel. Supongo que manda aquí a la gente que no le cae bien con la esperanza de que “desaparezca”. Mira que he intentado congraciarme con esa vieja impertinente. Cuando haya recuperado esta isla de los Atwood, será la primera en desaparecer.\n\nAumenta el nivel de relación de River Hawthorne. Cada investigador obtiene 1 punto de experiencia adicional.\n\nRetira a River Hawthorne de la partida."
+      },
+      "codex7Grudge": {
+        "title": "Códice 7: Judith Park",
+        "body": "–¡Abajo! –grita Judith. Te agachas justo cuando la compacta mujer levanta el fusil, apunta y dispara hacia donde estaba tu cabeza. Se escucha un chillido y luego un sonoro chapoteo. Judith te ayuda a poneros en pie con una sonrisa de satisfacción. –Más les vale ayudarme a matar a esa cosa de las profundidades. Hoy mismo.\n\nElige un Enemigo en juego que no sea Élite. Derrota a ese Enemigo.\n\nToma el control de Judith Park."
+      },
+      "codex7": {
+        "title": "Códice 7: Judith Park",
+        "body": "Judith se agarra a la rama de un árbol para no perder el equilibrio. –Esta ciénaga se está hundiendo. La cosa no siempre ha estado tan mal. Es como si algo se hubiera movido en las profundidades. Algo grande. Supongo que deberíamos mantenernos juntos. Ya saben, para poder protegerles –dice con una sonrisa.\n\nToma el control de Judith Park."
+      },
+      "codexTheta": {
+        "title": "Códice Θ: Dra. Rosa Marquez",
+        "body": "–Mire esto –dice la Dra. Marquez mientras te hace señas para que te acerques a un tronco rayado–. Es imposible. Cinco especies distintas en una. No se me ocurre ningún método de injertos que pueda producir algo así. Golpea el tronco con su bastón, se agacha y arranca un puñado de gruesas raíces de tantos colores que parecen el cabello de un ángel. –Eso sí, son resistentes. Sus raíces parecen la red del micelio de una colonia de hongos, pero son mucho más gruesas. Quédense cerca de los árboles y no se hundirán.\n\nElige cualquier Lugar en juego. Si es un Lugar Ciénaga, retira todos los socavones que tenga. Si es un Lugar Hundido, dale la vuelta, conservando todas las fichas y cartas vinculadas."
+      },
+      "noResolution": {
+        "title": "Sin resolución",
+        "body": "Despertáis en un claro que hay cerca de la orilla de la ciénaga. Theo está sentado a poca distancia. Antes de poder decir nada, el joven os hace callar y señala un hueco entre los árboles. Hay un majestuoso ciervo recortado contra un rayo de luz. Sus largas astas están cubiertas de musgo y grupos de hongos, y brilla con una pálida incandescencia.\n\nTheo sonríe.\n\n–¿Verdad que es precioso? A ver, estoy seguro de que nos mataría si nos viera, pero en fin –Hace un gesto con la mano–. Me alegro de haberles encontrado. Había algo moviéndose por la orilla, pero no me molesté en ver qué era. Sólo me alegro de que estén bien."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "En cuanto las tijeras cortan el tallo, os dais cuenta de que algo va mal. El reptil gime cuando le quitáis del lomo la brillante flor gris, y luego abre la boca para mostrar hileras de dientes serrados mientras trata de morderos. Un fluido blanco arsénico brota del tallo hueco y os mancha con una hedionda secreción que os quema la piel. Casi se os cae la flor mientras retrocedéis a trompicones, conscientes de vuestro error. Los vapores del fluido os marean y otorgan al bosque una fluorescencia exagerada. La pobre criatura reptiliana se debate de dolor y se hunde, dejando remolinos de sangre lechosa en la superficie. Un agudo dolor obliga a quien lleva la flor a soltarla, y al examinarse la mano descubre un profundo corte en la palma. La forma de la herida sugiere que el tallo había empezado a penetrar en la carne. Metéis la muestra en un tarro para especímenes y os dirigís a la orilla sur."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "Oís el clic de un arma a vuestra espalda.\n\n–Atrás –dice Judith mientras sale de entre la maleza. Apunta al híbrido reptiliano y añade–: Apártense de esa cosa.\n\nLa Dra. Marquez se interpone entre Judith y la criatura.\n\n–Con el debido respeto, esa “cosa” es completamente inofensiva.\n\nComo si quisiera subrayar su afirmación, la criatura mordisquea una rama florecida.\n\n–En esta isla no hay nada inofensivo –replica Judith–. Todo, hasta las dulces tortugas, los adorables ciervos y los malditos conejos son letales. No sé cómo es posible que los lugareños no estén más asustados. Puedo garantizarles que esta tortuga... esta cosa no se limita a masticar flores.\n\n–Si dispara a lo que he venido aquí para estudiar, no cobrará nada –dice con frialdad la Dra. Marquez. La profesora saca una libreta y comienza a realizar un boceto de la criatura. Se hace el silencio en el grupo mientras una pareja de ranas atraviesa el estanque a nado frente a la criatura. En cuestión de segundos, el híbrido chelydra abre la boca para dejar al descubierto 4 hileras de dientes que llegan hasta la parte de atrás de su garganta y luego se traga las dos ranas.\n\nLa Dra. Marquez deja su libreta y exclama: Pero ¡qué demonios...!"
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "Encontráis el reptil florecido en un espejado estanque negro. Antes de poder siquiera moveros, un tentáculo espinado levanta al híbrido por los aires sobre unas fauces letales. La criatura emite un último gruñido lastimero mientras cae a la boca llena de colmillos. Se os revuelve el estómago al oír el chasquido de su caparazón entre las poderosas fauces de la abominación. A continuación se produce un grave retumbar satisfecho mientras la cosa se hunde bajo la ciénaga."
+      },
+      "resolution4": {
+        "title": "Resolución 4",
+        "body": "La cosa ruge de dolor mientras sacude sus numerosas extremidades. Varias ondas sísmicas recorren el blando terreno húmedo, reduciendo a astillas arboledas enteras. Buscáis algún asidero cuando se producen dos agudas explosiones. La monstruosa criatura gorgotea mientras sus vejigas de agua deshinchadas tratan de mantenerla a flote. Su último rugido se interrumpe cuando la cosa se hunde bajo la fétida ciénaga."
+      },
+      "resolution5": {
+        "title": "Resolución 5",
+        "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Zona estudiada: Ciénaga de Eastwick. Numerosa flora de tamaño anormal, variedad parasitaria capaz de controlar a su huésped. Ecosistema opresivamente abundante. Vida acuática agresiva. Más jungla que bosque. No es una ciénaga corriente. Habrá que volver con más financiación”."
+      }
     }
   },
   "choice": {
@@ -484,7 +570,10 @@
     "nearestEnemyAttacks": "El Enemigo más cercano te ataca",
     "enemiesHeal": "Cada Enemigo de tu Lugar y de los conectados se cura 1 daño",
     "cancelMove": "Cancela el movimiento",
-    "discardItem": "Descarta {card}"
+    "discardItem": "Descarta {card}",
+    "pushTheTruck": "–¡Podemos empujar!",
+    "revTheEngine": "–Forzaremos el motor.",
+    "placeSinkhole": "Coloca 1 socavón en el Lugar Ciénaga más cercano"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -514,7 +603,9 @@
     "cavernPosition": "Elige dónde entra en juego la carta de Cavernas",
     "cavernOrder": "Elige la siguiente carta de la parte superior del mazo de Cavernas",
     "chooseInvestigator": "Elige un investigador",
-    "weedChoked": "Playa ahogada en algas: cancela el movimiento o descarta un Apoyo Objeto"
+    "weedChoked": "Playa ahogada en algas: cancela el movimiento o descarta un Apoyo Objeto",
+    "stuckTruck": "La camioneta se ha quedado atascada en el barro",
+    "removeSinkhole": "Puedes retirar 1 socavón del Lugar Ciénaga más cercano"
   },
   "ability": {
     "codex": "Códice {n}",
@@ -554,7 +645,12 @@
     "clearGrowth": "Prueba de [agility] (3) para descartar Crecimiento luminoso",
     "clearSpores": "Descartar Esporas psicotrópicas",
     "fungalHeal": "Cura 1 daño (Cueva fúngica)",
-    "helenEvades": "Agota a Helen Peters y hazle 1 daño: evita automáticamente a un Enemigo"
+    "helenEvades": "Agota a Helen Peters y hazle 1 daño: evita automáticamente a un Enemigo",
+    "floodedPathMove": "Coloca 1 socavón aquí: Movimiento (a un Lugar conectado)",
+    "shackSinkhole": "Gasta 1 pista: mueve 1 socavón a un Enemigo de aquí, como daño",
+    "lureChelydran": "Gastad 1 pista [per_investigator] en grupo: esta ronda, el Errante del Híbrido chelydra lleva aquí",
+    "fleeTheBog": "Desistir. Huyes de la ciénaga",
+    "codexTheta": "Dra. Rosa Marquez: lee el códice Θ"
   },
   "keywords": {
     "dayNight": {

@@ -5,7 +5,7 @@ Hemlock Vale_ (FFG, 2024): 8 escenarios, de los que cada partida juega 6, y
 preludios jugables. Se incorpora con el mismo procedimiento que
 [Los confines de la Tierra](106-confines-de-la-tierra.md).
 
-**Estado:** entregas 0–4 completadas; son jugables el preludio de bienvenida, Escrito en la roca y La Casa Cicuta.
+**Estado:** entregas 0–5 completadas; son jugables el preludio de bienvenida y los cinco escenarios de exploración del Día 1.
 
 ## Estado y continuación
 
@@ -39,7 +39,9 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   cobertura de partidas, campañas, `story-order`, i18n y narración de la web (893 pruebas);
   tipos de cards (sin contar errores ajenos de `finn-calvin`) y web; Prettier y ESLint. Lo
   invalidan cambios en `lost-sister.ts`, `vale-time.ts` o las Cuevas y encuentros compartidos.
-- Siguiente: lote 5c (La cosa de las profundidades).
+- Lote 5c hecho (22/11/2026): La cosa de las profundidades es jugable (ver
+  [La cosa de las profundidades](#la-cosa-de-las-profundidades)); entrega 5 completa.
+- Siguiente: entrega 6 (La primera tarde y La hondonada retorcida).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -49,7 +51,7 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - [x] 2 · Preludios y códice: preludio de bienvenida jugable de principio a fin.
 - [x] 3 · Adyacencia por cuadrícula y Escrito en la roca.
 - [x] 4 · La Casa Cicuta.
-- [ ] 5 · El páramo silencioso, La hermana perdida y La cosa de las profundidades.
+- [x] 5 · El páramo silencioso, La hermana perdida y La cosa de las profundidades.
 - [ ] 6 · La primera tarde y La hondonada retorcida.
 - [ ] 7 · Alba del segundo día, La segunda tarde y La noche más larga.
 - [ ] 8 · Alba del último día, La última tarde, El destino del Valle y epílogo.
@@ -473,6 +475,42 @@ Lote 5b, en `lost-sister.ts` (pruebas en `lost-sister.test.ts`).
 Pendiente: vincular el Musgo cavernario a un Objeto (ahora es un Enemigo normal), el códice
 Θ, el modo independiente y la revisión visual (mazo de Cavernas, Lugares Oscuros, Híbridos y
 textos).
+
+### La cosa de las profundidades
+
+Lote 5c, en `thing-in-the-depths.ts` (pruebas en `thing-in-the-depths.test.ts`). Con él son
+jugables los cinco escenarios de exploración del Día 1.
+
+- **Cuadrícula:** 9 de los 10 Lugares de doble cara (uno al azar fuera) en 3×3, lado Ciénaga
+  boca arriba. Orilla norte en [3, 1], Lugar inicial en [1, 3], Ciénaga de los arándanos en
+  [3, 3] y centro en [2, 2]. El Día 2 o la Noche 2 el plan empieza con 1 de perdición; el Día 3
+  (de día), con 2.
+- **Socavones:** en `scenarioMeta` (`sink:<Lugar>`). Con 3 o más se quitan y el Lugar pasa a
+  Aguas abiertas (`sunk:<Lugar>`, velo 5, `shownCode` del reverso), conservando pistas,
+  investigadores, Enemigos y Traiciones. Los colocan los planes al terminar el turno en un Lugar
+  Ciénaga (2 con 1 o 2 investigadores), la tablilla, Perturbación del terreno, Lodo que te
+  hunde, el Muelle podrido y el Sendero anegado; el sectario y el códice Θ los quitan. Aguas
+  abiertas hace robar un Encuentro al entrar.
+- **Cosa de las profundidades:** aparece en el centro hundido con el reverso del plan 1; al
+  moverse está conectada a cada Lugar Hundido y se cura 2 tras atacar en una Ciénaga. Su
+  derrota es el objetivo del plan 2 (→R4).
+- **Híbrido chelydra:** Errante al Lugar vacío más cercano (o al elegido con el acto 2 esa
+  ronda); no se mueve enfrentado ni con una Abominación preparada en su Lugar, que además le
+  hace daño al final de la fase de Enemigos. En el Lugar inicial al final de la ronda avanza el
+  acto (→R2 el Día 1, →R1 si no); si es derrotado, →R3. Tentáculos aferradores con salud igual
+  al día.
+- **Habitantes:** Día 1, Judith en la Orilla norte y la Dra. Marquez bajo control (sin espacio
+  de aliado, +1 [intellect] y [agility], y códice Θ tras descubrir la última pista de su Lugar);
+  Días 2 y 3, River. Códice 5 en dos pasos (la segunda vez, en la Ciénaga de los arándanos) y 7.
+- **Introducciones:** el Día 1 según la relación de Judith (2 o 3); el Día 2 se elige empujar
+  (−2 recursos) o forzar el motor (1 acción menos el primer turno).
+- **El bosque** (compartido con La hondonada retorcida): Flor venenosa, Vigía del bosque, Ciervo
+  coclear, Florecimiento, Muro de espinas y Llamada de lo salvaje.
+- **Resoluciones:** R1–R4 y sin resolución, seguidas de la R5 (relación de River y Judith,
+  Victoria, Ciénaga de Eastwick explorada y siguiente preludio).
+
+Pendiente: descartar las cartas de jugador vinculadas al Lugar que se hunde, el modo
+independiente y la revisión visual (cuadrícula, socavones y Lugares Hundidos).
 
 ## Entregas y criterios de aceptación
 
