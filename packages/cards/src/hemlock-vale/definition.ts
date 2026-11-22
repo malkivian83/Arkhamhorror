@@ -3,6 +3,7 @@ import { hemlockValeChaosBags } from './chaos-bag'
 import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
 import { LOST_SISTER, lostSister } from './lost-sister'
 import { SILENT_HEATH, silentHeath } from './silent-heath'
+import { THING_IN_THE_DEPTHS, thingInTheDepthsScenario } from './thing-in-the-depths'
 import { DAY_ONE_SCENARIOS, HEMLOCK_WELCOME, welcomeToHemlockVale } from './welcome'
 import { NEXT_PRELUDE, WRITTEN_IN_ROCK, writtenInRock } from './written-in-rock'
 
@@ -15,6 +16,7 @@ const BUILDS: Record<string, CampaignScenario['build']> = {
   [HEMLOCK_HOUSE]: (context) => hemlockHouse(context),
   [SILENT_HEATH]: (context) => silentHeath(context),
   [LOST_SISTER]: (context) => lostSister(context),
+  [THING_IN_THE_DEPTHS]: (context) => thingInTheDepthsScenario(context),
 }
 
 const steps: CampaignScenario[] = [
