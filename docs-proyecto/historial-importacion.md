@@ -351,3 +351,6 @@
 
 - 2026-11-21: lote 163 Sefina publicado en e0b1b9dd; corrección CI b570c636 y resumen 51f7e64a, CI/Deploy correctos. 31 investigadores habilitados, 37 pendientes y 134 cartas estándar pendientes.
 - Preparación de Yorick: 2043f4b0 (fuentes/lista), f8ea7b5d (bloqueo inicial), 9d77769e (reglas sin registro global, 344 casos). Integrados avances ajenos de Cicuta sin incluir sus cambios locales.
+
+- 2026-11-21: lote 166 Yorick/Rita publicado en 636c6144; corrección de procedencia a5c2276a y cierre 8239fe38. 33 investigadores habilitados, 35 pendientes, 134 cartas estándar pendientes. Exclusivas contabilizadas.
+- CI 44950862375 correcta (a5c2276a): controles, paquete Plesk e instalación MySQL. Dos ejecuciones anteriores canceladas por subidas concurrentes; tres fallos de adjuntos reactivos corregidos. Deploy no consultado.
