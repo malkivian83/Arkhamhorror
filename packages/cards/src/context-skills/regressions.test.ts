@@ -106,7 +106,10 @@ it('requires a controlled Firearm or Ranged source for Crack Shot', () => {
 })
 
 it('applies Blood Curse directly even with an available damage-soaking asset', () => {
-  const ally = allPlayerCardDefs().find((d) => d.type === 'asset' && (d.health ?? 0) > 1)!
+  // Un Aliado cualquiera con salud: algunos apoyos con salud tienen sus propias reglas de daño.
+  const ally = allPlayerCardDefs().find(
+    (d) => d.type === 'asset' && (d.health ?? 0) > 1 && !!d.traits?.includes('Ally') && !d.story,
+  )!
   let s = during(
     game(),
     (s) => withAsset(patch({ hand: ['60467'] })(s), ally.code),
