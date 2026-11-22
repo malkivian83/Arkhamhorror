@@ -1028,6 +1028,215 @@
       "credits": 184,
       "bytes": 559690,
       "audioSha256": "4a18c5bf2e81e5167de9c27ef28a096fca963a00433b5e6a542499ed33c5e81e"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-1-a35ab636.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro1.body"
+      ],
+      "textSha256": "a35ab6361b783a9c3dfdbecc58515070565a0bc2434adaae23b4f92210caf38a",
+      "characters": 534,
+      "credits": 214,
+      "bytes": 601486,
+      "audioSha256": "0bf16b60fab85b7cf33f3d3fe2742530dda871327a582813591f9180ea3a963f"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-2-5b2c92e4.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro2.body"
+      ],
+      "textSha256": "5b2c92e409730b82666d471606cc6137c1d52de8c254e0f40c5d7bf4c4f7b9e1",
+      "characters": 786,
+      "credits": 314,
+      "bytes": 925404,
+      "audioSha256": "71cc0f852de39e88ab9638f9ca64ec4d793a4aff5a260485c6b5c7f34275badb"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-3-6f217f23.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro3.body"
+      ],
+      "textSha256": "6f217f2326ac89692b0b840e50d561d7a0ee2ee3d6cde378547db42586774ca4",
+      "characters": 950,
+      "credits": 380,
+      "bytes": 1090916,
+      "audioSha256": "8c4185cd94ea8034dfdd1a48939fdcb32c523986915dcd53e2b1094809262319"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-4-6c017948.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro4.body"
+      ],
+      "textSha256": "6c017948b2fb144440946318a76dd881f1a9b275442e92856f722be32e657e19",
+      "characters": 476,
+      "credits": 190,
+      "bytes": 575572,
+      "audioSha256": "7eae681344f93bfaf5c19dfb4efcdc8a75437eba8bffeaeb0264954b5440b7ab"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-5-661aa9dc.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro5.body"
+      ],
+      "textSha256": "661aa9dc8803802bf2d134be6c6971c68fbb77c01abab63f45c1e56dfe93792e",
+      "characters": 467,
+      "credits": 187,
+      "bytes": 486129,
+      "audioSha256": "89a3a2489e64d83206e99930982ff6dc3785734b33d016827c714162b0f7b96b"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-6-5649ba14.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro6.body"
+      ],
+      "textSha256": "5649ba1452e5552908ef144a2a7c49087725fc831c7cb613b0e22db24dcb7a43",
+      "characters": 267,
+      "credits": 107,
+      "bytes": 300555,
+      "audioSha256": "d30cade38cce532117fb3af52884a2c7e8bafa8127228d1e4bd6b08ffcf87c4d"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-7-f85a8d16.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro7.body"
+      ],
+      "textSha256": "f85a8d16c1b9b0a9402a93b23df9ef3652eca0f133cdc626242464c0a1a2162d",
+      "characters": 483,
+      "credits": 193,
+      "bytes": 543390,
+      "audioSha256": "ee1c9d4df370d14dc563383f8282c466561b2652ed95f42f7cb492191bebfeee"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-intro-8-53bf87ce.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.intro8.body"
+      ],
+      "textSha256": "53bf87ce1d5ad1aa15088e78ab8081f7ea4b2804d9012730c4cbd8fcb865dc03",
+      "characters": 560,
+      "credits": 224,
+      "bytes": 653313,
+      "audioSha256": "1e736002ed745d8c4dbbee6d76cf5f1414413f5a7d78d4b315839251db0e366c"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-codex-5uncontrolled-798d3c74.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.codex5Uncontrolled.body"
+      ],
+      "textSha256": "798d3c74389ef3dd2a75935d8f95eac09f8d42edb390a6e93c964c2c7f7fe7cc",
+      "characters": 368,
+      "credits": 147,
+      "bytes": 403791,
+      "audioSha256": "34766dc48f325bd70afb3461f019e5119e941eb73f493d4ea51d6970f2200794"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-codex-5controlled-aa4f8ccc.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.codex5Controlled.body"
+      ],
+      "textSha256": "aa4f8cccf477818de47a2a6d04beac756821b4cd3a08299a92b4a7f8841380aa",
+      "characters": 434,
+      "credits": 174,
+      "bytes": 470665,
+      "audioSha256": "ac6c8daecb479e0af9636e5f1f405eb2ed5b627af8f41da42f66a02584a26816"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-codex-7grudge-d3935fb3.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.codex7Grudge.body"
+      ],
+      "textSha256": "d3935fb3d683d98071cfc1fa62b442b4f52f82f7e5fe69a1f25aa3df8c1ed40c",
+      "characters": 322,
+      "credits": 129,
+      "bytes": 371190,
+      "audioSha256": "8282179827defc7c62a540a1bfe2ce6e13c2937c7109b3e7d74c6f9498bc4433"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-codex-7-07e92003.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.codex7.body"
+      ],
+      "textSha256": "07e92003d6c976c3d93f2e842d28e6fe35931bbcd85bef9192f9e72aff83fd4e",
+      "characters": 307,
+      "credits": 123,
+      "bytes": 383729,
+      "audioSha256": "5a989b0031298574b60816c21a6686271bb8ac9a3ba9421e93c5d950f060cdc8"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-codex-theta-ae64e386.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.codexTheta.body"
+      ],
+      "textSha256": "ae64e3860c5f3582c880ae145024405fef712f1f66d985d2d5a77fc5c47c2ee8",
+      "characters": 515,
+      "credits": 206,
+      "bytes": 626563,
+      "audioSha256": "995759baf3876083f2092867ad0cf0374da7c9d797acf01693455e3c26840524"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-no-resolution-97326616.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.noResolution.body"
+      ],
+      "textSha256": "97326616573a307689253e10116b1dd4dc81e983540acf11c53314228ac7322e",
+      "characters": 623,
+      "credits": 249,
+      "bytes": 713081,
+      "audioSha256": "191eaaf0ad58735fdd306f294d988d24a2bca357f35f903d443cd00648b64e05"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-resolution-1-963433a6.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.resolution1.body"
+      ],
+      "textSha256": "963433a65e8bc97bb9c1aeca039337c038e041062b8608ae31d7c6dced55c66c",
+      "characters": 902,
+      "credits": 361,
+      "bytes": 1019863,
+      "audioSha256": "7a5035f47aeddf19652f3241295f5e1e08262fe037af8e6e4939bb024ff0d4ed"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-resolution-2-1e9cceda.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.resolution2.body"
+      ],
+      "textSha256": "1e9ccedaa7ae8e061e7fcdb0857e47b0eff52d98e72d67266d4df1482b07b8cd",
+      "characters": 1207,
+      "credits": 483,
+      "bytes": 1355066,
+      "audioSha256": "fd300bbee5739f8a26f7bd4fe321dd37d035237c7b55b10712364ee9764c426d"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-resolution-3-0b210006.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.resolution3.body"
+      ],
+      "textSha256": "0b210006770512ccd54765fc875a7f292b9e6ec7a6a88fdedf96e7706e20e8f2",
+      "characters": 472,
+      "credits": 189,
+      "bytes": 539210,
+      "audioSha256": "94177193ce60f098914859c1fd8cd9b57dd00756b0215e958a0b47b252a3c8d3"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-resolution-4-78ffc8cd.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.resolution4.body"
+      ],
+      "textSha256": "78ffc8cd2139b8eafcf54771ba865948ba13f0162d6fa3f4a0f5b7756d2de9fb",
+      "characters": 411,
+      "credits": 164,
+      "bytes": 488637,
+      "audioSha256": "3bb887caca039de4ca04708c0716eca535faee1e647cd2614f99aa5e2d86ffc2"
+    },
+    {
+      "file": "hemlock-vale-thing-in-the-depths-resolution-5-08e83b23.mp3",
+      "keys": [
+        "story.hemlockVale.thingInTheDepths.resolution5.body"
+      ],
+      "textSha256": "08e83b23fe3431481da6c7e3b2d9431db3f408765f350665e91c27361f2e4bfe",
+      "characters": 351,
+      "credits": 140,
+      "bytes": 436392,
+      "audioSha256": "cb00c7c86e621bd6484cb875f22bc4abcd62c9ebc01a1aa7f9c78b3317284d04"
     }
   ],
   "pending": []
