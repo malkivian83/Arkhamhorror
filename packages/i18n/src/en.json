@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "finnCalvin": {
+        "title": "Finn Edwards and Calvin Wright",
+        "cards": "Two investigators with their signature cards, weaknesses and exact official FFG starter decks.",
+        "rules": "An extra evade action, Illicit searches, skills enhanced by damage and horror, and direct damage assignment."
+      },
       "carcosaInvestigators": {
         "title": "Mark Harrigan and Akachi Onyele",
         "cards": "Two new investigators with their five signature cards, both faces of Sophie, and official FFG starter decks.",
@@ -631,6 +636,15 @@
     "playCopy": "Play {physical} as {card}"
   },
   "choice": {
+    "finnClue": "Discover 1 clue at your location",
+    "finnSearchDeck": "Search the top 9 cards of your deck",
+    "finnSearchDiscard": "Search your discard pile",
+    "calvinHealDamage": "Heal 1 damage",
+    "calvinHealHorror": "Heal 1 horror",
+    "calvinTakeDamage": "Take 1 direct damage",
+    "calvinTakeHorror": "Take 1 direct horror",
+    "calvinPhysicalTrauma": "Take 1 direct damage and suffer 1 physical trauma",
+    "calvinMentalTrauma": "Take 1 direct horror and suffer 1 mental trauma",
     "carcosaCash": "Move {n} charges from {card} to your resources and discard it",
     "carcosaReturn": "Return {card} to hand",
     "chaosFluteDamage": "Deal {n} damage to {enemy}",
@@ -3827,6 +3841,9 @@
   },
   "offlineCard": {
     "subnames": {
+      "04005": "The Haunted",
+      "04011": "Never Leave Home Without It",
+      "04003": "The Bootlegger",
       "05005": "The Athlete",
       "03005": "The Gravedigger",
       "03003": "The Painter",
@@ -4038,6 +4055,13 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "04016": "Curse. Pact.",
+      "04015": "Talent.",
+      "04005": "Cursed. Drifter.",
+      "04012": "Blunder.",
+      "04011": "Item. Weapon. Firearm. Illicit.",
+      "04010": "Supply. Illicit.",
+      "04003": "Criminal.",
       "05017": "Humanoid. Cultist.",
       "05016": "Spirit.",
       "05005": "Miskatonic.",
@@ -5095,6 +5119,13 @@
       "01013": "Spell."
     },
     "summary": {
+      "04016": "<b>Revelation</b> - You must either (choose one):\n - Take 1 direct damage and suffer 1 physical trauma.\n - Take 1 direct horror and suffer 1 mental trauma.",
+      "04015": "Calvin Wright deck only.\nDirect damage and direct horror may be assigned to Until the End of Time.",
+      "04005": "You get +1 [willpower] and +1 [intellect] for each horror on you.\nYou get +1 [combat] and +1 [agility] for each damage on you.\n[elder_sign] effect: +0. You may either heal 1 damage or horror, or take 1 direct damage or direct horror.",
+      "04012": "<b>Revelation</b> - Ready each enemy at your location or a connecting location. Each hunter enemy at a connecting location moves 1 location toward you. If no enemies move as a result of this effect, shuffle Caught Red-Handed back into your deck.",
+      "04011": "Finn Edwards deck only. Fast. Uses (3 ammo).\n[action] Spend 1 ammo: <b>Fight.</b> You get +2 [combat] for this attack. If the attacked enemy is not engaged with you, you deal +1 damage for this attack.",
+      "04010": "Finn Edwards deck only.\nPlay only if there are no ready enemies at your location.\nSearch either your discard pile or the top 9 cards of your deck for an [[Illicit]] card and draw it. If you searched your deck, shuffle Smuggled Goods into your deck.",
+      "04003": "You may take an additional action during your turn, which can only be used to evade.\n[elder_sign] effect: +1 for each exhausted enemy in play. If you succeed by 2 or more, you may discover 1 clue at your location.",
       "05017": "<b>Prey</b> - Rita Young only.\nAlert. Hunter.\n<b>Forced</b> - After you evade Hoods: It attacks you.",
       "05016": "Rita Young deck only.\nFast. Play only during your turn.\nReady and engage all enemies at your location. For the remainder of your turn, whenever you evade an enemy, instead of exhausting and disengaging from that enemy, you may deal it 1 damage. <i>(All other effects of the successful evasion still apply.)</i>",
       "05005": "[reaction] After you evade an enemy: Either deal 1 damage to that enemy, or move to a connecting location. (Limit once per round.)\n[elder_sign] effect: +2. Until the end of the round, ignore the limit on the above [reaction] ability.",
@@ -6559,6 +6590,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "04005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, [[Spirit]] cards level 0-3, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Until the End of Time, Voice of the Messenger, 1 random basic weakness.",
+      "04003": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> [[Illicit]] cards level 0-5, Rogue cards ([rogue]) level 0-3, Neutral cards level 0-5, up to five other level 0 Seeker and/or Survivor cards ([seeker] and/or [survivor]).\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Smuggled Goods, Finn's Trusty .38, Caught Red-handed, 1 random basic weakness.",
       "05005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, [[Trick]] cards level 0-3.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): \"I'm done runnin'!,\" Hoods, 1 random basic weakness.",
       "03005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, Guardian cards ([guardian]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Bury Them Deep, Graveyard Ghouls, 1 random basic weakness.",
       "03003": "<b>Deck Size</b>: 33.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5, Mystic cards ([mystic]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): 3 copies of The Painted World, 1 copy of Stars of Hyades, 1 random basic weakness.",
@@ -6598,6 +6631,13 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "04016": "Voice of the Messenger",
+      "04015": "Until the End of Time",
+      "04005": "Calvin Wright",
+      "04012": "Caught Red-Handed",
+      "04011": "Finn's Trusty .38",
+      "04010": "Smuggled Goods",
+      "04003": "Finn Edwards",
       "05017": "Hoods",
       "05016": "\"I'm done runnin'!\"",
       "05005": "Rita Young",

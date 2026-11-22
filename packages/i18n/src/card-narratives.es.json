@@ -1271,5 +1271,27 @@
     "group": "investigators",
     "typeCode": "enemy",
     "flavor": "\"Malditos cobardes, siempre tapándoos la cara. Sois como el maldito Klan, siempre demasiado asustados como para dejar que la gente vea quiénes sois…\"\n - Graham McNeill, <u>Los gules de Miskatonic</u>"
+  },
+  "04003": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Nunca pierdas de vista la salida. Ni la mercancía.\"",
+    "backFlavor": "La Ley Seca fue lo mejor que le podría haber pasado a Finn Edwards. Hasta la prohibición del alcohol, su vida no tenía rumbo, y se dedicaba a hacer trabajillos aquí y allá. Pero después, la demanda de alcohol alcanzó un nivel tan frenético que podía ganarse la vida evitando la ley y dándole a la gente lo que quería. Su nuevo estilo de vida le sentaba con un guante a su personalidad, y le daba una dosis de peligro y mucho dinero en efectivo. Nunca lo pillaron, y nunca perdió una entrega. Ahora está envuelto en una especie de conspiración sobrenatural, pero incluso en eso, se mantiene fiel al mismo principio: entrega la mercancía y que no te pillen."
+  },
+  "04011": {
+    "group": "investigators",
+    "typeCode": "asset",
+    "flavor": "Era un arma vieja, maltratada, arañada y muy usada, pero nunca le había dejado tirado."
+  },
+  "04005": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Si le haces daño, te mataré.\"",
+    "backFlavor": "A veces, la vida te hace tomar una decisión: acepta la carga que has recibido o lucha por lo que eres y en lo que crees. Calvin eligió lo segundo. Al borde de la muerte, desangrándose en un camino de tierra, experimentó una visión: una aterradora visión de la Tierra desgarrada y de João, el amor de su vida, convirtiéndose en cenizas en el vórtice de un rugiente infierno. En ese momento, Calvin tomó otra decisión. Tocó la oscuridad y la arrastró a su interior. No iba a morir, al menos no ese día. El mundo lo necesitaba. João lo necesitaba."
+  },
+  "04015": {
+    "group": "investigators",
+    "typeCode": "asset",
+    "flavor": "Firme e inflexible, se mantenía resuelto a desafiar su destino."
   }
 }

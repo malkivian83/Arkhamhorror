@@ -1,0 +1,64 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": {
+    "04003": "https://arkhamdb.com/decklist/view/38677",
+    "04005": "https://arkhamdb.com/decklist/view/38679"
+  },
+  "presentation": "rendered",
+  "sources": {
+    "en": "322f8b86a2d3ef0a40b88bd2c60d47fce3c81844a87c78f5f180a15a5b4d5829",
+    "es": "4ce7e3e26dd925b4f58836874406676ceea035bf870504b64d633cd3ae919a00"
+  },
+  "cards": [
+    {
+      "code": "04003",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04003",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04010",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04010",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04011",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04011",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04012",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04012",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04005",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04005",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04015",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04015",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04016",
+      "status": "verified",
+      "adapter": "finn-calvin-v1",
+      "module": "card-04016",
+      "test": "rules.test.ts"
+    }
+  ]
+}

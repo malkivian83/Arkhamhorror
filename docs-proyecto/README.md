@@ -160,6 +160,7 @@ Documentos posteriores, por número:
 - [165 · La fiesta del Valle de la Cicuta](165-la-fiesta-del-valle-de-la-cicuta.md): hoja de ruta de la campaña; estructura de tres días, bolsa, reglas nuevas, registro, erratas, entregas, narración (voz `Nh2zY9kknu6z4pZy6FhD`) y expansión de investigadores.
 
 - [166 · William Yorick y Rita Young](166-investigadores-yorick-rita.md): dos investigadores, exclusivas, mazos FFG exactos, descarte protegido y sustitución de evasiones.
+- [167 · Finn Edwards y Calvin Wright](167-investigadores-finn-calvin.md): dos investigadores, mazos FFG exactos, búsqueda de Ilícitas, habilidades constantes y asignación de daño directo.
 
 ## Decisiones ya tomadas
 

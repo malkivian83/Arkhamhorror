@@ -1,0 +1,102 @@
+[
+  {
+    "code": "04003",
+    "name": "Finn Edwards",
+    "subname": "The Bootlegger",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Criminal"],
+    "unique": true,
+    "health": 7,
+    "sanity": 7,
+    "skills": { "willpower": 1, "intellect": 4, "combat": 3, "agility": 4 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["rogue"], "maxLevel": 3 },
+      { "classes": ["neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Illicit"], "maxLevel": 5 }
+    ],
+    "offClassLevelZeroLimit": 5,
+    "offClassLevelZeroClasses": ["seeker", "survivor"],
+    "signatures": ["04010", "04011", "04012"]
+  },
+  {
+    "code": "04010",
+    "name": "Smuggled Goods",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply", "Illicit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "04011",
+    "name": "Finn's Trusty .38",
+    "subname": "Never Leave Home Without It",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 1, "wild": 1 },
+    "slots": ["hand"],
+    "uses": { "count": 3, "type": "ammo" },
+    "fast": true
+  },
+  {
+    "code": "04012",
+    "name": "Caught Red-Handed",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Blunder"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "04005",
+    "name": "Calvin Wright",
+    "subname": "The Haunted",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Cursed", "Drifter"],
+    "unique": true,
+    "health": 6,
+    "sanity": 6,
+    "skills": { "willpower": 0, "intellect": 0, "combat": 0, "agility": 0 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["survivor", "neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Spirit"], "maxLevel": 3 }
+    ],
+    "signatures": ["04015", "04016"]
+  },
+  {
+    "code": "04015",
+    "name": "Until the End of Time",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "combat": 1, "wild": 1 },
+    "slots": [],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "04016",
+    "name": "Voice of the Messenger",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Curse", "Pact"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  }
+]

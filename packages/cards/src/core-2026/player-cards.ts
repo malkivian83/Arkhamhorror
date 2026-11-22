@@ -1,3 +1,6 @@
+import finnCalvinCards from '../data/finn-calvin.json'
+import finnOfficial from '../finn-calvin/decklist-38677.json'
+import calvinOfficial from '../finn-calvin/decklist-38679.json'
 import yorickCards from '../data/william-yorick.json'
 import ritaCards from '../data/rita-young.json'
 import yorickOfficial from '../william-yorick/decklist-4816.json'
@@ -91,6 +94,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(finnCalvinCards as PlayerCardDef[]),
   ...(yorickCards as PlayerCardDef[]),
   ...(ritaCards as PlayerCardDef[]),
   ...(sefinaCards as PlayerCardDef[]),
@@ -139,6 +143,30 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  finn: {
+    investigator: 1,
+    investigatorCode: finnOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(finnOfficial.slots)
+        .filter(([c]) => c !== '01000')
+        .flatMap(([c, n]) => Array.from({ length: n }, () => c)),
+      '12104',
+    ],
+  },
+  calvin: {
+    investigator: 1,
+    investigatorCode: calvinOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(calvinOfficial.slots)
+        .filter(([c]) => c !== '01000')
+        .flatMap(([c, n]) => Array.from({ length: n }, () => c)),
+      '12104',
+    ],
+  },
   yorick: {
     investigator: 1,
     investigatorCode: yorickOfficial.investigator_code,

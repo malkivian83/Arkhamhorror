@@ -1,0 +1,10 @@
+import '../core-2026/player-cards'
+import './card-04003'
+import './card-04010'
+import './card-04011'
+import './card-04012'
+import './card-04005'
+import './card-04015'
+import './card-04016'
+import approvals from './approvals.json'
+export const FINN_CALVIN_RENDERED_CODES = approvals.cards.map((c) => c.code)

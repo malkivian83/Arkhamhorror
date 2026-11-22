@@ -1107,6 +1107,10 @@ export interface PlayerCardBehavior {
   afterEventPlayWindow?: boolean
   /** Puede recibir el daño de otros investigadores de su localización (Bodyguard). */
   soaksForOthers?: boolean
+  /** Its controller may assign direct damage/horror to this asset. */
+  soaksDirect?: boolean
+  /** Finish assigning the whole damage/horror batch before defeating assigned assets. */
+  simultaneousAssignment?: boolean
   /**
    * Puede recibir el daño y el horror de cualquier investigador de su localización,
    * aunque no tenga dueño (Sargento Monroe).
@@ -1153,6 +1157,8 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  /** Constant modifier, independent of the printed or replaced base skill. */
+  skillModifier?: (state: GameState, self: Investigator, test: SkillTest) => number
   /** Optional replacement of exhaustion/disengagement; successful evasion windows still follow. */
   replaceEvade?: (
     state: GameState,

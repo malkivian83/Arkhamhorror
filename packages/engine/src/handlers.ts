@@ -3588,18 +3588,23 @@ export function handle(state: GameState, message: Message): GameState {
           { ...message, damageWindowResolved: true },
         )
       // RR "Damage and Horror": si hay apoyos que puedan recibirlo, el jugador asigna.
-      const canSoak =
-        !message.direct &&
-        !Object.values(state.treacheries).some(
+      const direct =
+        !!message.direct ||
+        Object.values(state.treacheries).some(
           (t) => t.placement.type !== 'limbo' && activeTreacheryBehavior(state, t)?.allDamageDirect,
-        ) &&
-        soakers(state, message.investigator, 'damage').length +
-          soakers(state, message.investigator, 'horror').length +
-          placedSoakers(state, message.investigator, 'damage').length +
-          placedSoakers(state, message.investigator, 'horror').length >
+        )
+      const canSoak =
+        !message.assignmentPart &&
+        !message.assignmentAssets &&
+        soakers(state, message.investigator, 'damage', direct).length +
+          soakers(state, message.investigator, 'horror', direct).length +
+          (direct
+            ? 0
+            : placedSoakers(state, message.investigator, 'damage').length +
+              placedSoakers(state, message.investigator, 'horror').length) >
           0
       if (canSoak) {
-        if (message.evenly && message.horror > 0)
+        if (!direct && message.evenly && message.horror > 0)
           return push(state, {
             type: 'AssignHorrorEvenly',
             investigator: message.investigator,
@@ -3609,6 +3614,7 @@ export function handle(state: GameState, message: Message): GameState {
           })
         return push(state, {
           type: 'AssignDamage',
+          ...(direct ? { direct: true } : {}),
           investigator: message.investigator,
           assignmentAssets: Object.values(state.assets).filter(
             (a) => a.owner === message.investigator,
@@ -3624,7 +3630,7 @@ export function handle(state: GameState, message: Message): GameState {
       const assigned: Message[] =
         !message.assignmentPart && (message.dealt?.length || message.damage || message.horror)
           ? [
-              ...(scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment &&
+              ...(simultaneousAssignment(state, message.assignmentAssets) &&
               message.dealt?.some((d) => d.asset || d.placed)
                 ? [{ type: 'FinalizeAssignedAssets' as const, dealt: message.dealt }]
                 : []),
@@ -3799,7 +3805,7 @@ export function handle(state: GameState, message: Message): GameState {
         return dealt.length
           ? push(
               state,
-              ...(scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment
+              ...(simultaneousAssignment(state, message.assignmentAssets)
                 ? [{ type: 'FinalizeAssignedAssets' as const, dealt }]
                 : []),
               {
@@ -3843,6 +3849,7 @@ export function handle(state: GameState, message: Message): GameState {
         return {
           type: 'AssignDamage',
           investigator,
+          ...(message.direct ? { direct: true } : {}),
           ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
           damage: kind === 'damage' ? damage - 1 : damage,
           horror: kind === 'horror' ? horror - 1 : horror,
@@ -3855,7 +3862,7 @@ export function handle(state: GameState, message: Message): GameState {
         }
       }
       const focused = message.focus
-        ? soakers(state, investigator, kind).filter((a) => a.id === message.focus)
+        ? soakers(state, investigator, kind, message.direct).filter((a) => a.id === message.focus)
         : []
       if (concentrated && message.focus === 'investigator')
         return push(state, {
@@ -3873,26 +3880,27 @@ export function handle(state: GameState, message: Message): GameState {
       const limits = Object.values(state.assets)
         .filter((a) => a.owner === investigator)
         .flatMap((a) => assetBehavior(state, a)?.assignmentTraitLimit ?? [])
-      const available = (focused.length ? focused : soakers(state, investigator, kind)).filter(
-        (a) =>
-          limits.every((limit) => {
-            if (!assetTraits(a).includes(limit.trait)) return true
-            return (
-              dealt.reduce(
-                (sum, d) =>
-                  sum +
-                  (d.asset &&
-                  playerCardDef(
-                    state.assets[d.asset]?.code ??
-                      message.assignmentAssets?.find((x) => x.id === d.asset)?.code ??
-                      '',
-                  )?.traits.includes(limit.trait)
-                    ? d.damage + d.horror
-                    : 0),
-                0,
-              ) < limit.amount
-            )
-          }),
+      const available = (
+        focused.length ? focused : soakers(state, investigator, kind, message.direct)
+      ).filter((a) =>
+        limits.every((limit) => {
+          if (!assetTraits(a).includes(limit.trait)) return true
+          return (
+            dealt.reduce(
+              (sum, d) =>
+                sum +
+                (d.asset &&
+                playerCardDef(
+                  state.assets[d.asset]?.code ??
+                    message.assignmentAssets?.find((x) => x.id === d.asset)?.code ??
+                    '',
+                )?.traits.includes(limit.trait)
+                  ? d.damage + d.horror
+                  : 0),
+              0,
+            ) < limit.amount
+          )
+        }),
       )
       const trait = message.assignFirst?.[kind]
       const mandatory = trait
@@ -3907,7 +3915,9 @@ export function handle(state: GameState, message: Message): GameState {
           assetBehavior(state, a)?.beforeOwnerAssignment?.includes(kind),
       )
       const placedOptions =
-        mandatory.length || focused.length ? [] : placedSoakers(state, investigator, kind)
+        message.direct || mandatory.length || focused.length
+          ? []
+          : placedSoakers(state, investigator, kind)
       const toInvestigator: Message = {
         type: 'TakeDamage',
         investigator,
@@ -3963,8 +3973,7 @@ export function handle(state: GameState, message: Message): GameState {
                       {
                         type: 'ResolveAssetDamageAssignment',
                         asset: a.id,
-                        deferDefeat: !!scenarioBehavior(state.scenarioId)
-                          ?.simultaneousAssetAssignment,
+                        deferDefeat: simultaneousAssignment(state, message.assignmentAssets),
                         then: rest({ asset: a.id }),
                         ifCanceled: rest({ asset: a.id }, true),
                       },
@@ -3973,8 +3982,7 @@ export function handle(state: GameState, message: Message): GameState {
                       {
                         type: 'DamageAsset',
                         asset: a.id,
-                        deferDefeat: !!scenarioBehavior(state.scenarioId)
-                          ?.simultaneousAssetAssignment,
+                        deferDefeat: simultaneousAssignment(state, message.assignmentAssets),
                         damage: 0,
                         horror: 1,
                       },
@@ -3989,7 +3997,7 @@ export function handle(state: GameState, message: Message): GameState {
                 {
                   type: 'DamagePlacedAsset',
                   placed: p.id,
-                  deferDefeat: !!scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment,
+                  deferDefeat: simultaneousAssignment(state, message.assignmentAssets),
                   damage: kind === 'damage' ? 1 : 0,
                   horror: kind === 'horror' ? 1 : 0,
                 },
@@ -12277,6 +12285,12 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DiscardToHand': {
+      if (
+        message.drawFound &&
+        (getInvestigator(state, message.investigator).eliminated ||
+          scenarioBehavior(state.scenarioId)?.cannotDrawCards?.(state, message.investigator))
+      )
+        return state
       const sourceMatches =
         message.effectSource === message.code ||
         message.effectSource === playerCardDef(message.code)?.name
@@ -12312,11 +12326,25 @@ export function handle(state: GameState, message: Message): GameState {
           )
         : actualDiscardIndex(state, message.investigator, message.code)
       if (index < 0) return state
-      return updateInvestigator(state, message.investigator, (i) => ({
+      const recovered = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         discard: i.discard.filter((_, n) => n !== index),
         hand: [...i.hand, message.code],
       }))
+      if (!message.drawFound) return recovered
+      const investigator = message.investigator,
+        card = message.code
+      return push(
+        recovered,
+        { type: 'Forced', trigger: { type: 'whenCardsDrawn', investigator, amount: 1 } },
+        {
+          type: 'Forced',
+          trigger: { type: 'whenPlayerCardDrawn', investigator, card, fromDeck: false },
+        },
+        { type: 'ResolveDrawnRevelations', investigator, cards: [card] },
+        { type: 'Forced', trigger: { type: 'afterDrawCard', investigator, card } },
+        { type: 'Forced', trigger: { type: 'afterCardsDrawn', investigator, amount: 1 } },
+      )
     }
 
     case 'DiscardFromDeck': {
@@ -15888,9 +15916,22 @@ function matchingIcons(icons: Partial<Record<string, number>> | undefined, skill
  * Apoyos que pueden recibir el daño u horror del investigador: los suyos y los
  * de otros investigadores de su localización que lo permitan (Bodyguard).
  */
-function soakers(state: GameState, investigator: string, kind: 'damage' | 'horror'): Asset[] {
+function simultaneousAssignment(state: GameState, assets?: Asset[]): boolean {
+  return (
+    !!scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment ||
+    !!assets?.some((a) => assetBehavior(state, a)?.simultaneousAssignment)
+  )
+}
+
+function soakers(
+  state: GameState,
+  investigator: string,
+  kind: 'damage' | 'horror',
+  direct = false,
+): Asset[] {
   const here = getInvestigator(state, investigator).location
   return Object.values(state.assets).filter((a) => {
+    if (direct && (a.owner !== investigator || !assetBehavior(state, a)?.soaksDirect)) return false
     if (a.owner !== investigator) {
       const other = getInvestigator(state, a.owner)
       const behavior = assetBehavior(state, a)
@@ -16010,9 +16051,13 @@ export function skillTestValue(state: GameState): {
         sum + commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus, c.wildIcons),
       0,
     ) * (doubling.icons ? 2 : 1)
-  const passive = Object.values(state.assets)
-    .filter((a) => a.owner === investigator.id)
-    .reduce((sum, a) => sum + (assetBehavior(state, a)?.skillModifier?.(state, a, test) ?? 0), 0)
+  const investigatorBonus =
+    investigatorBehavior(investigator.id)?.skillModifier?.(state, investigator, test) ?? 0
+  const passive =
+    investigatorBonus +
+    Object.values(state.assets)
+      .filter((a) => a.owner === investigator.id)
+      .reduce((sum, a) => sum + (assetBehavior(state, a)?.skillModifier?.(state, a, test) ?? 0), 0)
   const assetAuras =
     Object.values(state.assets).reduce(
       (sum, a) => sum + (assetBehavior(state, a)?.skillAura?.(state, a, test) ?? 0),
@@ -16109,6 +16154,7 @@ export function skillTestValue(state: GameState): {
       ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
       : 0)
   const sources = [
+    { name: investigator.name, amount: investigatorBonus },
     ...Object.entries(state.agendaEvents ?? {}).map(([code, e]) => ({
       name: playerCardDef(code)?.name ?? code,
       amount: e.skill === test.skill ? e.bonus : 0,
