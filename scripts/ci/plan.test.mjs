@@ -5,6 +5,153 @@ import { mkdtempSync, mkdirSync, writeFileSync, renameSync, rmSync } from 'node:
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import { changedFiles, planChanges } from './plan.mjs'
+import { isolatedCardTests, importedPaths } from './card-scopes.mjs'
+
+test('relative imports, reexports, side effects and literal dynamic imports expose cross-module links', () => {
+  const paths = importedPaths(
+    'packages/cards/src/another-module/card.ts',
+    `
+    import '../finn-calvin'
+    export { helper } from '../finn-calvin/register'
+    const load = () => import('@lcg/cards/finn-calvin/register')
+    const local = require('../finn-calvin/card-04003')
+    import fs from 'node:fs'
+  `,
+  )
+  assert.deepEqual(paths, [
+    'packages/cards/src/finn-calvin',
+    'packages/cards/src/finn-calvin/register',
+    'packages/cards/src/finn-calvin/register',
+    'packages/cards/src/finn-calvin/card-04003',
+  ])
+})
+
+test('reviewed modules keep dynamic contracts and saves/online consumers without unrelated suites', () => {
+  for (const module of [
+    'hemlock-vale',
+    'edge-of-the-earth',
+    'finn-calvin',
+    'william-yorick',
+    'rita-young',
+  ]) {
+    const p = planChanges([`packages/cards/src/${module}/register.ts`])
+    assert.equal(p.full, false)
+    assert.equal(p.sql, false)
+    assert.equal(p.images, false)
+    assert.ok(p.tests.includes(`packages/cards/src/${module}/`))
+    for (const guard of [
+      'packages/cards/src/scenario-coverage.test.ts',
+      'packages/cards/src/campaign.test.ts',
+      'packages/cards/src/decks.test.ts',
+      'packages/saves',
+      'apps/server/src/online/table.test.ts',
+    ])
+      assert.ok(p.tests.includes(guard), guard)
+    for (const unrelated of ['packages/cards', 'apps/web', 'apps/server', 'scripts/cards-import'])
+      assert.ok(!p.tests.includes(unrelated), unrelated)
+    assert.deepEqual(p.typePackages, ['@lcg/cards'])
+  }
+})
+
+test('a module helper consumed by another production module expands back to broad card checks', () => {
+  assert.equal(
+    isolatedCardTests('hemlock-vale', [
+      {
+        file: 'packages/cards/src/another-module/card.ts',
+        targets: ['packages/cards/src/hemlock-vale/common'],
+      },
+    ]),
+    undefined,
+  )
+  assert.equal(isolatedCardTests('unreviewed-module', []), undefined)
+  const p = planChanges(['packages/cards/src/advanced-tests/common.ts'])
+  assert.ok(p.tests.includes('packages/cards'))
+  assert.deepEqual(p.typePackages, ['@lcg/cards', '@lcg/saves', '@lcg/server'].sort())
+})
+
+test('reviewed registry boundaries retain contracts and a new external test is selected', () => {
+  const p = isolatedCardTests('finn-calvin', [
+    { file: 'packages/cards/src/index.ts', targets: ['packages/cards/src/finn-calvin'] },
+    {
+      file: 'apps/web/src/game/another.test.ts',
+      targets: ['packages/cards/src/finn-calvin/source-en.json'],
+    },
+  ])
+  assert.ok(p.includes('apps/web/src/game/another.test.ts'))
+  assert.ok(p.includes('packages/cards/src/cards.test.ts'))
+})
+
+test('global card registration/data and unknown modules keep broad coverage', () => {
+  for (const file of [
+    'packages/cards/src/index.ts',
+    'packages/cards/src/core-2026/player-cards.ts',
+    'packages/cards/src/data/finn-calvin.json',
+    'packages/cards/src/new-module/card.ts',
+  ]) {
+    const p = planChanges([file])
+    assert.ok(p.tests.includes('packages/cards'), file)
+    assert.ok(p.tests.includes('apps/web'), file)
+    assert.ok(p.tests.includes('apps/server'), file)
+  }
+})
+
+test('test-only edits select the changed test and its package types; SQL tests still require SQL', () => {
+  const file = 'packages/cards/src/finn-calvin/rules.test.ts'
+  const p = planChanges([file])
+  assert.deepEqual(p.tests, [file])
+  assert.deepEqual(p.typePackages, ['@lcg/cards'])
+  assert.equal(p.sql, false)
+  assert.equal(planChanges(['apps/server/src/accounts/accounts.mysql.test.ts']).sql, true)
+  assert.equal(planChanges(['packages/unknown/src/thing.test.ts']).full, true)
+})
+
+test('narration updates retain scenario/narration checks without image or unrelated web checks', () => {
+  const p = planChanges([
+    'scripts/generate-hemlock-vale-audio.mjs',
+    'apps/web/src/game/hemlockValeNarrationManifest.json',
+    'docs-proyecto/evidencias/hemlock-vale-narracion.json',
+    'apps/web/public/local-assets/story/audio/es/hemlock-vale-intro-123.mp3',
+  ])
+  assert.equal(p.full, false)
+  assert.equal(p.images, false)
+  assert.equal(p.sql, false)
+  assert.ok(p.tests.includes('apps/web/src/game/hemlock-vale-'))
+  assert.ok(!p.tests.includes('apps/web'))
+})
+
+test('card scan/inventory changes verify hashes and presentation without game or SQL suites', () => {
+  const p = planChanges([
+    'apps/web/public/local-assets/cards/es/04003.avif',
+    'apps/web/src/game/cardImageManifest.json',
+    'docs-proyecto/evidencias/miniaturas-cartas.json',
+  ])
+  assert.equal(p.images, true)
+  assert.equal(p.types, false)
+  assert.equal(p.sql, false)
+  assert.deepEqual(p.tests, [
+    'apps/web/src/game/spanishImages.test.ts',
+    'apps/web/src/game/fallbackCards.test.ts',
+  ])
+})
+
+test('a mixed module and engine/contract change cannot be narrowed', () => {
+  for (const file of [
+    'packages/engine/src/handlers.ts',
+    'packages/shared/src/index.ts',
+    'packages/saves/src/index.ts',
+  ]) {
+    const p = planChanges(['packages/cards/src/finn-calvin/register.ts', file])
+    assert.equal(p.full, true)
+    assert.equal(p.sql, true)
+    assert.deepEqual(p.typePackages, [])
+  }
+  assert.ok(
+    planChanges([
+      'packages/cards/src/hemlock-vale/common.ts',
+      'packages/cards/src/data/new.json',
+    ]).tests.includes('packages/cards'),
+  )
+})
 
 test('changelog and translations do not start SQL or game suites', () => {
   const p = planChanges([

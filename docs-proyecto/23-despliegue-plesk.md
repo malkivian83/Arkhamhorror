@@ -13,13 +13,31 @@ La selección aparece en el resumen de la ejecución de GitHub Actions.
 | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Changelog, traducciones JSON o estilos CSS/SCSS                              | Formato/lint de archivos editados y pruebas de idiomas; sin SQL ni suite de reglas.                                                                |
 | Código de la web                                                             | Formato/lint y pruebas de la web.                                                                                                                  |
-| Cartas o evidencias                                                          | Pruebas de cartas, importación y consumidores (web, guardados y servidor), tipos e imágenes. Se conserva este alcance por los registros dinámicos. |
+| Módulo de cartas revisado y aislado | Pruebas del módulo, contratos globales de campaña/mazos/registro, guardados, consumidores online y presentación vinculada; tipos de cartas, sin SQL. |
+| Registros globales, helpers compartidos, módulos sin revisar o evidencias desconocidas | Se conserva la selección amplia de cartas, importación y consumidores (web, guardados y servidor), con los tipos de esos paquetes. |
+| Escaneos, manifiesto de cartas e inventarios de imágenes | Huellas de originales/miniaturas y pruebas de presentación; sin suites de juego ni SQL. |
+| Solo archivos de pruebas | Esos archivos y tipos de su paquete. Una prueba MySQL sigue requiriendo el trabajo SQL. |
 | Servidor o migraciones                                                       | Pruebas del servidor y consumidores, tipos, MySQL y verificación de instalación.                                                                   |
 | Motor, contratos, guardados, dependencias, instalación o configuración común | Formato/lint, tipos y suite completos, imágenes, MySQL y verificación de instalación.                                                              |
 
 Los cambios combinados suman sus controles. MariaDB se añade solo en PR que
 necesiten SQL; las pruebas SQL incluyen cuentas y salas. Los cambios exclusivamente
 documentales siguen sin lanzar CI, excepto las evidencias utilizadas por las pruebas.
+
+Los límites revisados están en `scripts/ci/card-scopes.mjs`: Cicuta, Confines,
+Finn/Calvin, Yorick y Rita. Se conservan explícitamente los consumidores dinámicos;
+no se usa únicamente el análisis de importaciones. Si otro módulo de producción
+importa un helper de uno de ellos, se vuelve al alcance amplio. Las pruebas externas
+con importaciones explícitas se añaden a la selección. Los módulos nuevos no se
+incorporan automáticamente a la selección reducida: necesitan revisar sus conexiones.
+La narración de Cicuta conserva las pruebas del escenario, sus recursos y guardados,
+sin arrastrar pruebas de imágenes de cartas por cambiar archivos MP3.
+
+En el inventario de noviembre de 2026, una edición aislada de Cicuta selecciona
+32 archivos de pruebas y una de Finn/Calvin, 27, frente a los 844 de la selección
+amplia anterior. Son archivos, no casos individuales; el número cambia con el
+repositorio. No se eliminan pruebas ni se reducen las comprobaciones de cambios
+del motor, contratos, dependencias, instalación o configuración de CI.
 
 Cada CI compila una sola vez la web (incluidos sus tipos) y genera el paquete Plesk
 con el SHA del commit. Guarda `plesk-<sha>` durante siete días como un tar comprimido,

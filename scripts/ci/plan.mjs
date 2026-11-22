@@ -3,13 +3,55 @@ import { appendFileSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { pathToFileURL } from 'node:url'
+import { isolatedCardTests } from './card-scopes.mjs'
 
 /** Unknown paths and shared configuration deliberately fall back to the full suite. */
 export function planChanges(files, { fallback = false, event = 'push' } = {}) {
   const scopes = new Set()
+  const selected = new Set()
+  const typePackages = new Set()
   let images = false
+  function isolated(module) {
+    const tests = isolatedCardTests(module)
+    if (!tests) {
+      scopes.add('cards')
+      return
+    }
+    scopes.add('isolated-cards')
+    typePackages.add('@lcg/cards')
+    for (const test of tests) selected.add(test)
+  }
   for (const file of files) {
-    if (file.startsWith('docs-proyecto/evidencias/')) {
+    if (
+      /\.(?:test|spec)\.(?:ts|mjs)$/.test(file) &&
+      /^(?:packages\/(?:cards|engine|saves|shared|i18n)\/|apps\/(?:web|server)\/|scripts\/cards-import\/)/.test(
+        file,
+      )
+    ) {
+      selected.add(file)
+      const pkg = file.match(/^packages\/([^/]+)\//)?.[1]
+      if (pkg) typePackages.add(`@lcg/${pkg}`)
+      if (file.startsWith('apps/server/')) typePackages.add('@lcg/server')
+      if (file.endsWith('.mysql.test.ts')) scopes.add('server')
+    } else if (
+      [
+        'docs-proyecto/evidencias/imagenes-locales.json',
+        'docs-proyecto/evidencias/miniaturas-cartas.json',
+        'apps/web/src/game/cardImageManifest.json',
+      ].includes(file) ||
+      /^apps\/web\/public\/local-assets\/cards\//.test(file)
+    ) {
+      images = true
+      selected.add('apps/web/src/game/spanishImages.test.ts')
+      selected.add('apps/web/src/game/fallbackCards.test.ts')
+    } else if (
+      file === 'scripts/generate-hemlock-vale-audio.mjs' ||
+      file === 'docs-proyecto/evidencias/hemlock-vale-narracion.json' ||
+      file === 'apps/web/src/game/hemlockValeNarrationManifest.json' ||
+      /^apps\/web\/public\/local-assets\/story\/audio\/(?:en|es)\/hemlock-vale-.*\.mp3$/.test(file)
+    ) {
+      isolated('hemlock-vale')
+    } else if (file.startsWith('docs-proyecto/evidencias/')) {
       scopes.add('cards')
       images = true
     } else if (file.endsWith('.md') || file.startsWith('docs-proyecto/')) continue
@@ -18,11 +60,11 @@ export function planChanges(files, { fallback = false, event = 'push' } = {}) {
     else if (/^apps\/web\/src\/.*\.(css|scss)$/.test(file)) scopes.add('text')
     else if (/^apps\/web\/public\/local-assets\//.test(file)) {
       scopes.add('web')
-      images = true
     } else if (file.startsWith('apps/web/src/')) scopes.add('web')
     else if (file.startsWith('packages/cards/src/')) {
-      scopes.add('cards')
-      images = true
+      const module = file.match(/^packages\/cards\/src\/([^/]+)\//)?.[1]
+      if (module) isolated(module)
+      else scopes.add('cards')
     } else if (file.startsWith('apps/server/src/') || file.startsWith('apps/server/migrations/'))
       scopes.add('server')
     else scopes.add('full')
@@ -34,6 +76,7 @@ export function planChanges(files, { fallback = false, event = 'push' } = {}) {
     ? []
     : [
         ...new Set([
+          ...selected,
           ...(scopes.has('text') ? ['packages/i18n'] : []),
           ...(scopes.has('web') ? ['apps/web'] : []),
           // Registrations and scenario links are dynamic: related-import analysis is insufficient.
@@ -50,13 +93,16 @@ export function planChanges(files, { fallback = false, event = 'push' } = {}) {
         ]),
       ]
   const sql = full || server
+  if (cards) for (const pkg of ['@lcg/cards', '@lcg/saves', '@lcg/server']) typePackages.add(pkg)
+  if (server) for (const pkg of ['@lcg/server', '@lcg/saves', '@lcg/shared']) typePackages.add(pkg)
   return {
     files,
     full,
     tests,
     sql,
     images: images || full,
-    types: full || cards || server,
+    types: full || typePackages.size > 0,
+    typePackages: full ? [] : [...typePackages].sort(),
     sqlMatrix: {
       include: [
         { database: 'mysql', image: 'mysql:8.4' },

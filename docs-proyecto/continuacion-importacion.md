@@ -9,3 +9,5 @@
 - Siguiente grupo: estudiar Trish Scarborough y Tony Morgan; comprobar sus listas y dependencias antes de habilitarlos. El estado anterior de Yorick/Rita está archivado en historial-importacion.md.
 
 - CI/Deploy consultados por petición expresa: CI 45013450511 y Deploy 45014927341 correctos para fd525611; revisión confirmada en deploy-info.json de la rama deploy. La CI anterior agotó los 15 minutos durante el empaquetado tras pasar 10015 pruebas; check dispone ahora de 30 minutos, sin omitir controles. Pruebas de planificación (11) y formato del workflow correctos; check completo terminó en 15m53s.
+
+- Optimización de CI: módulos revisados con contratos dinámicos/guardados/online, tipos por paquete, pruebas aisladas y recursos separados. 20 pruebas del selector correctas; selección real de Cicuta: 1277 casos en 32 archivos, frente a 844 archivos del alcance amplio anterior. Formato/lint correctos. Subida autorizada el 22/11/2026; cierre «Acota las pruebas de CI a los módulos revisados». No se ha consultado una CI nueva. Política en 23-despliegue-plesk.md.

@@ -24,7 +24,14 @@ if (plan.full) {
     pnpm('exec', 'eslint', '--no-warn-ignored', '--', ...code.slice(i, i + 100))
 }
 // build:plesk checks web types, so do not run that typecheck twice.
-if (plan.types) pnpm('-r', '--filter', '!@lcg/web', 'typecheck')
+if (plan.types)
+  pnpm(
+    '-r',
+    ...(plan.typePackages?.length
+      ? plan.typePackages.flatMap((pkg) => ['--filter', pkg])
+      : ['--filter', '!@lcg/web']),
+    'typecheck',
+  )
 if (plan.full) pnpm('test')
 else if (plan.tests.length) pnpm('test', ...plan.tests)
 if (plan.images) {
