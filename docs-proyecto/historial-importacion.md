@@ -357,3 +357,5 @@
 
 - 2026-11-22: lote 167 Finn/Calvin publicado en 20e912cc, cierre ae67ec87. 35 perfiles habilitados, 33 pendientes y 134 cartas estándar pendientes; siete códigos contabilizados.
 - CI: fd525611 amplió check a 30 minutos; CI 45013450511 y Deploy 45014927341 correctos. Selección por módulos publicada en ed64f8f3 y CI 45064636845 correcta, consultada por petición expresa; no se consultó su Deploy.
+
+- 2026-11-23: lote 168 Trish/Dexter originales publicado en 9655408b, cierre a67ac64d. Seis códigos/diseños contabilizados, 37 perfiles habilitados, 31 pendientes y 134 cartas estándar pendientes. Listas 51875/51876; 368 casos de juego y 20 del selector, tipos y paquete web correctos; 7986 originales/miniaturas verificados.
