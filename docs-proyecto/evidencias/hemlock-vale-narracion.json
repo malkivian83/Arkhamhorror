@@ -1435,6 +1435,160 @@
       "credits": 685,
       "bytes": 1914296,
       "audioSha256": "aeecfb778dd8fe86bb737b7c796c74a0db20deab9ce8fe83ad0d65bfc77b6d98"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-intro-1-7dfb240b.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.intro1.body"
+      ],
+      "textSha256": "7dfb240bbde4d762c48cd808e8c3f6959c247e73f94dbb18b9b6855c415ea68a",
+      "characters": 1007,
+      "credits": 403,
+      "bytes": 1129786,
+      "audioSha256": "155eff69454707665de054b4109d080f26a50a1314efe428e15a04d12395e9e7"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-intro-2-c692870b.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.intro2.body"
+      ],
+      "textSha256": "c692870b4dc66bbde3275e5eaef064061fa76a1d34e322260806dfb9bdad663e",
+      "characters": 924,
+      "credits": 370,
+      "bytes": 1073362,
+      "audioSha256": "4fa7c82df2a84874e78d4175bf8c649c7e1e5b542c0939f203db6befb8923935"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-intro-3-7c3eab0c.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.intro3.body"
+      ],
+      "textSha256": "7c3eab0c334090a9f6945991c554d052387889506754ecec6689c17092f53cb2",
+      "characters": 974,
+      "credits": 390,
+      "bytes": 1124353,
+      "audioSha256": "d4cebfdae1c7fa2e614f628d0aa9b6dd83b3cb5f8c4bd82a93fcc89a1e5b037b"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-codex-7-4d99b922.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.codex7.body"
+      ],
+      "textSha256": "4d99b922190149785990a4b9a5dc898c788bc0030d6979d1584db72c98f443ca",
+      "characters": 668,
+      "credits": 267,
+      "bytes": 769923,
+      "audioSha256": "35882f67d6614393a48cc123a4093f0d5c74a8df5a5e7df210e4dfda0fde4b3e"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-codex-8-7c0df645.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.codex8.body"
+      ],
+      "textSha256": "7c0df64506e0b9ea8ac22bb004db4600f3392b59cb99e005c4e37078cccc75dc",
+      "characters": 538,
+      "credits": 215,
+      "bytes": 606083,
+      "audioSha256": "c5be3310dd4dc3fe068b1479c99444825e949db21b4370b05c0af1b16ab6b090"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-codex-omega-923b3f1c.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.codexOmega.body"
+      ],
+      "textSha256": "923b3f1c418f9a12c6a987a5379c280aaddbf988696df1a4a956559a52f19e03",
+      "characters": 389,
+      "credits": 156,
+      "bytes": 468993,
+      "audioSha256": "04548657500168f644553c03f3728150cdd2ff80bb94dff64fd37cabc7a0a4bd"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-codex-theta-aafc5bb5.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.codexTheta.body"
+      ],
+      "textSha256": "aafc5bb5817213bef6c0bd467d383d28f5c65dc400a62f8e1b8b789a036b4c8b",
+      "characters": 464,
+      "credits": 186,
+      "bytes": 545897,
+      "audioSha256": "b152af4385eeef095c3a7e8857d56077cd76ee6913d178cff0ea21e8b1bd2461"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-the-bear-1-16549a42.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.theBear1.body"
+      ],
+      "textSha256": "16549a42a2a28f23f1340cf170a3891f83cd2e9363e1cb11d96f54ba148930a2",
+      "characters": 428,
+      "credits": 171,
+      "bytes": 521238,
+      "audioSha256": "2395425eca416d3deab16136abe409810df9174e85c4176ad1960a551b02b307"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-the-bear-2-a0d5d624.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.theBear2.body"
+      ],
+      "textSha256": "a0d5d6245f7f30c6029e90c718a5e720597886e1ffc4afe815a522937619e8e4",
+      "characters": 589,
+      "credits": 236,
+      "bytes": 695109,
+      "audioSha256": "e8afbf9befd6a1fb02dfcbf9777f221a2fcf35d976a3772a7a43f7df1f5062f4"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-the-bear-3-4929e9c8.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.theBear3.body"
+      ],
+      "textSha256": "4929e9c8febbca84ca93446d662502604a86c02a35395aad6f0b1d0e11570484",
+      "characters": 228,
+      "credits": 91,
+      "bytes": 292196,
+      "audioSha256": "c194110c7f341e41fba2f9310b00eb4b24fbd871ce314f1cda6bfde4b19c96a1"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-no-resolution-10ba6256.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.noResolution.body"
+      ],
+      "textSha256": "10ba6256285c33d7dce0ea1b37878cd524ebf63f06b7d2e5750414df8afb43d4",
+      "characters": 1111,
+      "credits": 444,
+      "bytes": 1275236,
+      "audioSha256": "295ab66d0263099f6cd3d8f5be3733cd9950fe4d5b802a2c2d62e607ea04bb7d"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-resolution-1-f091a86e.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.resolution1.body"
+      ],
+      "textSha256": "f091a86ec25882e9c310ded924878368b6141460740848267cb5b05a9eb19ba3",
+      "characters": 1237,
+      "credits": 495,
+      "bytes": 1395190,
+      "audioSha256": "2379e0db2711282e7028aa5de18f5a7fad8af05905e8182bf0aead5e60099a46"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-resolution-2-4d26d1e5.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.resolution2.body"
+      ],
+      "textSha256": "4d26d1e5637014abdcb2744ac049218fe1240d3335d6c6243df14e9ee6af46e9",
+      "characters": 864,
+      "credits": 346,
+      "bytes": 1004816,
+      "audioSha256": "2eb2f9dadf33c630c5e951e935ec5d325a35004dccd09969205014a997aa170b"
+    },
+    {
+      "file": "hemlock-vale-twisted-hollow-resolution-3-9ae7e787.mp3",
+      "keys": [
+        "story.hemlockVale.twistedHollow.resolution3.body"
+      ],
+      "textSha256": "9ae7e78745620a108f70e3253f08e88f4f2b5823c64ddefba97275bd6181a4be",
+      "characters": 491,
+      "credits": 196,
+      "bytes": 599814,
+      "audioSha256": "44a3bfd4b875013ed095c339915062c4f7a42a84d109ac9cc73dcec0299a92af"
     }
   ],
   "pending": []
