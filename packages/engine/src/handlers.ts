@@ -3390,6 +3390,10 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         amount <= 0 ||
         cluesBlocked(state, investigator.id) ||
+        (!message.investigating &&
+          engagedEnemies(state, investigator.id).some(
+            (e) => enemyBehavior(e.code)?.cluesOnlyByInvestigating,
+          )) ||
         scenarioBehavior(state.scenarioId)?.cannotDiscoverClues?.(
           state,
           investigator.id,
@@ -4116,6 +4120,17 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
+      if (
+        !message.byEffect &&
+        !message.asFast &&
+        !message.fastWindow &&
+        !(
+          playerCardDef(message.code)?.type === 'asset' &&
+          getInvestigator(state, message.investigator).nextAssetFast
+        ) &&
+        playerCardBehavior(message.code)?.cannotPlayAction
+      )
+        return state
       const copyPlay = prepareCopyPlay(state, message)
       if (copyPlay !== undefined) return copyPlay
       const copyFrame = state.eventCopies?.findLast(
@@ -8008,7 +8023,18 @@ export function handle(state: GameState, message: Message): GameState {
       )
       for (const e of engagedEnemies(state, i.id).filter((e) => !e.keywords.includes('massive')))
         next = updateEnemy(next, e.id, (e) => ({ ...e, location: message.location }))
-      return push(next, ...message.then, { type: 'EndAsIfAt', investigator: i.id })
+      const end: Message = { type: 'EndAsIfAt', investigator: i.id }
+      if (message.untilTestEnds && next.skillTest) {
+        next = {
+          ...next,
+          skillTest: {
+            ...next.skillTest,
+            asIfCleanup: [i.id, ...(next.skillTest.asIfCleanup ?? [])],
+          },
+        }
+        return push(next, ...message.then)
+      }
+      return push(next, ...message.then, end)
     }
     case 'ResumeAsIfAt':
     case 'EndAsIfAt': {
@@ -8354,6 +8380,8 @@ export function handle(state: GameState, message: Message): GameState {
           i.eliminated ? i : { ...i, discard: [...i.discard, c.code] },
         )
       }
+      for (const investigator of test?.asIfCleanup ?? [])
+        next = handle(next, { type: 'EndAsIfAt', investigator })
       if (!test || test.succeeded === null)
         return push(next, ...reshuffle, ...(test?.afterEnd ?? []))
       return push(
@@ -12276,12 +12304,21 @@ export function handle(state: GameState, message: Message): GameState {
       const instead = assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
       if (instead) return push(state, ...instead)
       const { [asset.id]: _gone, ...assets } = state.assets
-      return updateInvestigator({ ...state, assets }, asset.originalOwner ?? asset.owner, (i) => ({
-        ...i,
-        ...(message.type === 'ReturnAssetToDeck'
-          ? { deck: [...i.deck, asset.code] }
-          : { hand: i.eliminated ? i.hand : [...i.hand, asset.code] }),
-      }))
+      const returned = updateInvestigator(
+        { ...state, assets },
+        asset.originalOwner ?? asset.owner,
+        (i) => ({
+          ...i,
+          ...(message.type === 'ReturnAssetToDeck'
+            ? { deck: [...i.deck, asset.code] }
+            : { hand: i.eliminated ? i.hand : [...i.hand, asset.code] }),
+        }),
+      )
+      return message.type === 'ReturnAssetToHand' &&
+        message.onReturn &&
+        !getInvestigator(returned, asset.originalOwner ?? asset.owner).eliminated
+        ? push(returned, ...message.onReturn)
+        : returned
     }
 
     case 'DiscardToHand': {
@@ -16053,8 +16090,13 @@ export function skillTestValue(state: GameState): {
     ) * (doubling.icons ? 2 : 1)
   const investigatorBonus =
     investigatorBehavior(investigator.id)?.skillModifier?.(state, investigator, test) ?? 0
+  const handSources = investigator.hand.map((code) => ({
+    name: playerCardDef(code)?.name ?? code,
+    amount: playerCardBehavior(code)?.handSkillModifier?.(state, investigator.id, test) ?? 0,
+  }))
   const passive =
     investigatorBonus +
+    handSources.reduce((n, s) => n + s.amount, 0) +
     Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)
       .reduce((sum, a) => sum + (assetBehavior(state, a)?.skillModifier?.(state, a, test) ?? 0), 0)
@@ -16154,6 +16196,7 @@ export function skillTestValue(state: GameState): {
       ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
       : 0)
   const sources = [
+    ...handSources,
     { name: investigator.name, amount: investigatorBonus },
     ...Object.entries(state.agendaEvents ?? {}).map(([code, e]) => ({
       name: playerCardDef(code)?.name ?? code,

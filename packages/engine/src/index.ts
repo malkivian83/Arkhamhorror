@@ -99,6 +99,7 @@ export {
   resolvingSkillBonus,
 } from './asset-upgrades'
 export { attackDamage } from './combat'
+export { releaseOrphanedSeals } from './seals'
 export {
   customizationCost,
   customizedCard,

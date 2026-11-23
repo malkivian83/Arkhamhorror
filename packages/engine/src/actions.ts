@@ -114,6 +114,7 @@ export function playableCards(
     if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)) return false
     if (!cardAllowed(state, id, code)) return false
     const behavior = playerCardBehavior(code)
+    if (behavior?.cannotPlayAction && !fast) return false
     if (behavior?.cannotPlayFromHand && investigator.hand.includes(code)) return false
     if (behavior?.onlyFromDiscard && !investigator.discard.includes(code)) return false
     if (def.type === 'event' && !behavior?.play) return false

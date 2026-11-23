@@ -375,6 +375,8 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  /** An engaged investigator can only discover clues through investigation results. */
+  cluesOnlyByInvestigating?: boolean
   /** RR Cannot: cards cannot leave the discard of an investigator engaged with this enemy. */
   locksEngagedDiscard?: boolean
   /** Permiso de combate remoto; no lo coloca allí ni permite enfrentarlo/evadirlo. */
@@ -831,6 +833,10 @@ export interface PlayerCardBehavior {
     | ((state: GameState, self: Asset) => { health?: number; sanity?: number })
   /** En la mano: cambia el coste de cada otra carta de la mano (Broche de ónice negro). */
   handCostModifier?: number
+  /** Constant skill modifier from each physical copy in this investigator's hand. */
+  handSkillModifier?: (state: GameState, investigator: InvestigatorId, test: SkillTest) => number
+  /** A play action is forbidden, but playing through a card effect remains legal. */
+  cannotPlayAction?: boolean
   /** Bonus to each skill while resolving a triggered ability of the host asset. */
   attachedResolvingSkills?: number
   /** Skill bonus while attacking with the host asset. */

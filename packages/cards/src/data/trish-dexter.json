@@ -1,0 +1,85 @@
+[
+  {
+    "code": "07003",
+    "name": "Trish Scarborough",
+    "subname": "The Spy",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Agency", "Detective"],
+    "unique": true,
+    "health": 8,
+    "sanity": 6,
+    "skills": { "willpower": 2, "intellect": 4, "combat": 2, "agility": 4 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["rogue", "neutral"], "maxLevel": 5 },
+      { "classes": ["seeker"], "maxLevel": 2 }
+    ],
+    "signatures": ["07010", "07011"]
+  },
+  {
+    "code": "07010",
+    "name": "In the Shadows",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "agility": 2, "wild": 2 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "07011",
+    "name": "Shadow Agents",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Cultist"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 3,
+    "weakness": "weakness"
+  },
+  {
+    "code": "07004",
+    "name": "Dexter Drake",
+    "subname": "The Magician",
+    "type": "investigator",
+    "class": "mystic",
+    "traits": ["Sorcerer", "Veteran"],
+    "unique": true,
+    "health": 6,
+    "sanity": 8,
+    "skills": { "willpower": 5, "intellect": 2, "combat": 3, "agility": 2 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["mystic", "neutral"], "maxLevel": 5 },
+      { "classes": ["rogue"], "maxLevel": 2 }
+    ],
+    "signatures": ["07012", "07013"]
+  },
+  {
+    "code": "07012",
+    "name": "Showmanship",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "07013",
+    "name": "Occult Scraps",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  }
+]

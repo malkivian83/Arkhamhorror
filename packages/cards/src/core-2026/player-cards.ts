@@ -1,3 +1,6 @@
+import trishDexterCards from '../data/trish-dexter.json'
+import trishOriginal from '../trish-dexter/decklist-51875.json'
+import dexterOriginal from '../trish-dexter/decklist-51876.json'
 import finnCalvinCards from '../data/finn-calvin.json'
 import finnOfficial from '../finn-calvin/decklist-38677.json'
 import calvinOfficial from '../finn-calvin/decklist-38679.json'
@@ -94,6 +97,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(trishDexterCards as PlayerCardDef[]),
   ...(finnCalvinCards as PlayerCardDef[]),
   ...(yorickCards as PlayerCardDef[]),
   ...(ritaCards as PlayerCardDef[]),
@@ -143,6 +147,30 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  'trish-original': {
+    investigator: 1,
+    investigatorCode: trishOriginal.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(trishOriginal.slots)
+        .filter(([c]) => c !== '01000')
+        .flatMap(([c, n]) => Array.from({ length: n }, () => c)),
+      '12104',
+    ],
+  },
+  'dexter-original': {
+    investigator: 1,
+    investigatorCode: dexterOriginal.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(dexterOriginal.slots)
+        .filter(([c]) => c !== '01000')
+        .flatMap(([c, n]) => Array.from({ length: n }, () => c)),
+      '12104',
+    ],
+  },
   finn: {
     investigator: 1,
     investigatorCode: finnOfficial.investigator_code,
