@@ -354,3 +354,6 @@
 
 - 2026-11-21: lote 166 Yorick/Rita publicado en 636c6144; corrección de procedencia a5c2276a y cierre 8239fe38. 33 investigadores habilitados, 35 pendientes, 134 cartas estándar pendientes. Exclusivas contabilizadas.
 - CI 44950862375 correcta (a5c2276a): controles, paquete Plesk e instalación MySQL. Dos ejecuciones anteriores canceladas por subidas concurrentes; tres fallos de adjuntos reactivos corregidos. Deploy no consultado.
+
+- 2026-11-22: lote 167 Finn/Calvin publicado en 20e912cc, cierre ae67ec87. 35 perfiles habilitados, 33 pendientes y 134 cartas estándar pendientes; siete códigos contabilizados.
+- CI: fd525611 amplió check a 30 minutos; CI 45013450511 y Deploy 45014927341 correctos. Selección por módulos publicada en ed64f8f3 y CI 45064636845 correcta, consultada por petición expresa; no se consultó su Deploy.
