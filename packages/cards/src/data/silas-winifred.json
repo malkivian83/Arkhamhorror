@@ -1,0 +1,102 @@
+[
+  {
+    "code": "07005",
+    "name": "Silas Marsh",
+    "subname": "The Sailor",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Drifter"],
+    "unique": true,
+    "health": 9,
+    "sanity": 5,
+    "skills": { "willpower": 2, "intellect": 2, "combat": 4, "agility": 4 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["survivor", "neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Innate"], "type": "skill", "maxLevel": 2 }
+    ],
+    "signatures": ["07014", "07015", "07016"]
+  },
+  {
+    "code": "07014",
+    "name": "Sea Change Harpoon",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Weapon", "Melee"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": { "combat": 1, "wild": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "07015",
+    "name": "Silas's Net",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Tool"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 1, "wild": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "07016",
+    "name": "Siren Call",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Curse"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "60301",
+    "name": "Winifred Habbamock",
+    "subname": "The Aviatrix",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Criminal"],
+    "unique": true,
+    "health": 8,
+    "sanity": 7,
+    "skills": { "willpower": 1, "intellect": 3, "combat": 3, "agility": 5 },
+    "deckSize": 30,
+    "deckOptions": [{ "classes": ["rogue", "neutral"], "maxLevel": 5 }],
+    "signatures": ["60302", "60303"]
+  },
+  {
+    "code": "60302",
+    "name": "Anything You Can Do, Better",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate", "Developed"],
+    "xp": 0,
+    "icons": { "wild": 6 },
+    "slots": []
+  },
+  {
+    "code": "60303",
+    "name": "Arrogance",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "60304",
+    "name": "Reckless",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "basicweakness"
+  }
+]

@@ -270,6 +270,8 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  /** In a threat area: its investigator pays this many resources per matching committed icon. */
+  commitCostPerIcon?: number
   /** Printed [reaction] abilities of a treachery in play (Unbroken Web). */
   reactions?: (state: GameState, trigger: Trigger, self: Treachery) => ReactionOption[]
   /** What the generic `tokens` on this treachery represent, for display (Unbroken Web: horror). */
@@ -866,6 +868,10 @@ export interface PlayerCardBehavior {
   committedDifficulty?: number
   /** Printed permission to commit without matching icons (e.g. Take Heart). */
   commitWithoutIcons?: boolean
+  /** This card must be committed from hand to each eligible test performed by its owner. */
+  mandatoryCommit?: boolean
+  /** Its matching icons subtract from the skill value, retaining ordinary eligibility. */
+  subtractsIcons?: boolean
   /** This card must be the only card committed, including other investigators. */
   exclusiveCommit?: boolean
   /** Damage added by a committed card to the attack itself, before defeat checks. */
@@ -902,6 +908,8 @@ export interface PlayerCardBehavior {
     data: Record<string, string | number | boolean>,
   ) => Message[]
   beforeResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
+  /** ST.8, before committed cards leave the test; runs once for the source asset. */
+  beforeTestEnds?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** ST.7: effects from other controlled assets that modify the pending results. */
   beforeSkillTestResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
@@ -1163,6 +1171,10 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  /** Player-window abilities after ST.2 has finished, before any chaos token is revealed. */
+  afterCommitOptions?: (state: GameState, self: Investigator) => ReactionOption[]
+  /** ST.8, before physical committed copies leave the test. */
+  beforeTestEnds?: (state: GameState, test: SkillTest, self: Investigator) => Message[]
   /** Constant modifier, independent of the printed or replaced base skill. */
   skillModifier?: (state: GameState, self: Investigator, test: SkillTest) => number
   /** Optional replacement of exhaustion/disengagement; successful evasion windows still follow. */
@@ -1353,6 +1365,7 @@ export function usesLenders(state: GameState, asset: Asset): Asset[] {
 /** RR Deckbuilding: the class, trait and level option allows this card. */
 export function deckOptionAllows(option: DeckOption, card: PlayerCardDef): boolean {
   return (
+    (!option.type || card.type === option.type) &&
     (card.xp ?? 0) <= option.maxLevel &&
     (option.classes.length === 0 ||
       (card.classes ?? [card.class]).some((f) => option.classes.includes(f))) &&

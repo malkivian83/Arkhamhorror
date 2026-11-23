@@ -5149,6 +5149,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'CommitWindow': {
+      if (state.skillTest?.commitWindowClosed) return state
       if (state.skillTest?.earlyReveal && !state.skillTest.earlyRevealDone) {
         const { earlyReveal: _early, ...test } = state.skillTest
         return push(
@@ -5516,6 +5517,64 @@ export function handle(state: GameState, message: Message): GameState {
         question: { kind: 'chooseOne', alwaysAsk: true, prompt: 'prompt.commitCards', choices },
       })
     }
+    case 'FinishCommitWindow': {
+      const test = state.skillTest
+      if (!test) return state
+      const investigator = getInvestigator(state, test.investigator)
+      const mandatory =
+        !test.commitWindowClosed && !test.commitRule
+          ? investigator.hand.find(
+              (code) =>
+                playerCardBehavior(code)?.mandatoryCommit &&
+                canCommitFrom(state, investigator.id, code),
+            )
+          : undefined
+      if (mandatory)
+        return push(
+          state,
+          { type: 'CommitCard', investigator: investigator.id, code: mandatory },
+          { type: 'CommitWindow' },
+          { type: 'FinishCommitWindow' },
+        )
+      const next = { ...state, skillTest: { ...test, commitWindowClosed: true } }
+      const options = activeInvestigators(next)
+        .flatMap((i) => investigatorBehavior(i.id)?.afterCommitOptions?.(next, i) ?? [])
+        .filter(
+          (o) =>
+            !fastAbilitiesBlocked(next, o.investigator) &&
+            withinLimit(next, o.key, o.investigator, o.limit),
+        )
+      return options.length
+        ? push(next, {
+            type: 'Ask',
+            investigator: investigator.id,
+            question: {
+              kind: 'chooseOne',
+              alwaysAsk: true,
+              prompt: 'prompt.commitFinished',
+              choices: [
+                ...options.map((o): Choice => ({
+                  label: o.label,
+                  ...(o.params ? { params: o.params } : {}),
+                  then: [
+                    {
+                      type: 'UseAbility',
+                      investigator: o.investigator,
+                      key: o.key,
+                      actions: 0,
+                      provokes: false,
+                      ...(o.limit ? { limit: o.limit } : {}),
+                      then: o.then,
+                    },
+                    { type: 'FinishCommitWindow' },
+                  ],
+                })),
+                { label: 'choice.continue', then: [] },
+              ],
+            },
+          })
+        : next
+    }
     case 'CommitCardGroup':
       return commitGroupState(state, message.investigator, message.cards) ?? state
     case 'ReturnCommittedAfterTest': {
@@ -5592,6 +5651,12 @@ export function handle(state: GameState, message: Message): GameState {
           (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
         )
       const commitId = trackCopy ? (test.nextCommitId ?? 0) : undefined
+      state = updateInvestigator(state, investigator.id, (i) => ({
+        ...i,
+        resources:
+          i.resources -
+          commitmentCost(state, test, message.code, investigator.id, iconZone, message.wildIcons),
+      }))
       return push(
         {
           ...(message.fromAsset
@@ -5614,6 +5679,7 @@ export function handle(state: GameState, message: Message): GameState {
                 code: message.code,
                 by: investigator.id,
                 ...(message.returnAfterSuccess ? { returnAfterSuccess: true } : {}),
+                ...(message.returnAfterTest ? { returnAfterTest: true } : {}),
                 ...(message.research ? { research: true } : {}),
                 ...(owner.id !== investigator.id ? { owner: owner.id } : {}),
                 ...(message.wildIcons ? { wildIcons: true } : {}),
@@ -6615,6 +6681,13 @@ export function handle(state: GameState, message: Message): GameState {
           trigger: { type: 'afterSkillTestInitiated', investigator: message.investigator },
         },
         { type: 'CommitWindow' },
+        ...(state.investigators.some(
+          (i) =>
+            investigatorBehavior(i.id)?.afterCommitOptions ||
+            i.hand.some((code) => playerCardBehavior(code)?.mandatoryCommit),
+        )
+          ? [{ type: 'FinishCommitWindow' } as Message]
+          : []),
         { type: 'RevealChaosToken' },
         { type: 'AfterRevealWindow' },
         { type: 'ResolveSkillTest' },
@@ -8284,6 +8357,21 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EndSkillTest': {
+      if (!message.prepared && state.skillTest) {
+        const test = state.skillTest
+        const source = test.source ? state.assets[test.source] : undefined
+        const before = [
+          ...(investigatorBehavior(test.investigator)?.beforeTestEnds?.(
+            state,
+            test,
+            getInvestigator(state, test.investigator),
+          ) ?? []),
+          ...(source
+            ? (assetBehavior(state, source)?.beforeTestEnds?.(state, test, source) ?? [])
+            : []),
+        ]
+        if (before.length) return push(state, ...before, { type: 'EndSkillTest', prepared: true })
+      }
       // RR paso 8: las fichas reveladas vuelven a la bolsa.
       // Las cartas comprometidas van a la pila de descartes de su dueño.
       // Resolved bless/curse tokens return to the token pool instead.
@@ -13908,6 +13996,20 @@ function canCommit(
 }
 
 /** Full eligibility for an effect committing from a zone other than the hand. */
+function commitmentCost(
+  state: GameState,
+  test: SkillTest,
+  code: string,
+  by: string,
+  zone: 'hand' | 'discard',
+  wildIcons = false,
+): number {
+  const perIcon = Object.values(state.treacheries)
+    .filter((t) => t.placement.type === 'threatArea' && t.placement.investigator === by)
+    .reduce((n, t) => n + (activeTreacheryBehavior(state, t)?.commitCostPerIcon ?? 0), 0)
+  return perIcon * commitIcons(state, test, code, by, zone, undefined, wildIcons)
+}
+
 export function canCommitFrom(
   state: GameState,
   id: string,
@@ -13936,6 +14038,8 @@ export function canCommitFrom(
   )
     return false
   const minimum = minimumCommittedCards(state, id)
+  if (investigator.resources < commitmentCost(state, test, code, id, zone, permission.wildIcons))
+    return false
   if (test.committed.filter((c) => c.by === id).length + (permission.groupSize ?? 1) < minimum)
     return false
   if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id, code)) return false
@@ -16085,7 +16189,9 @@ export function skillTestValue(state: GameState): {
   const icons =
     activeCommitted(test).reduce(
       (sum, c) =>
-        sum + commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus, c.wildIcons),
+        sum +
+        (playerCardBehavior(c.code)?.subtractsIcons ? -1 : 1) *
+          commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus, c.wildIcons),
       0,
     ) * (doubling.icons ? 2 : 1)
   const investigatorBonus =

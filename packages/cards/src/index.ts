@@ -1,3 +1,4 @@
+import { SILAS_WINIFRED_RENDERED_CODES } from './silas-winifred'
 import { TRISH_DEXTER_RENDERED_CODES } from './trish-dexter'
 import { FINN_CALVIN_RENDERED_CODES } from './finn-calvin'
 import { YORICK_RENDERED_CODES } from './william-yorick'
@@ -399,6 +400,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...YORICK_RENDERED_CODES,
   ...RITA_RENDERED_CODES,
   ...FINN_CALVIN_RENDERED_CODES,
+  ...SILAS_WINIFRED_RENDERED_CODES,
   ...TRISH_DEXTER_RENDERED_CODES,
   ...SEFINA_RENDERED_CODES,
   ...MINH_RENDERED_CODES,

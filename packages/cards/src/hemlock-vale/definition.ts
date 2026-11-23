@@ -1,6 +1,7 @@
 import { registerCampaign, type CampaignScenario } from '../campaign-definition'
 import { hemlockValeChaosBags } from './chaos-bag'
 import { FIRST_EVENING, firstEvening, TWISTED_HOLLOW } from './first-evening'
+import { twistedHollow } from './twisted-hollow'
 import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
 import { LOST_SISTER, lostSister } from './lost-sister'
 import { SILENT_HEATH, silentHeath } from './silent-heath'
@@ -54,7 +55,12 @@ const steps: CampaignScenario[] = [
       : { id, allowSideStoryBefore: false }
   }),
   // Escenarios de la noche (entregas 6–7).
-  { id: TWISTED_HOLLOW, allowSideStoryBefore: false },
+  {
+    id: TWISTED_HOLLOW,
+    build: twistedHollow,
+    allowSideStoryBefore: false,
+    keywords: ['codex', 'dayNight', 'grid'],
+  },
 ]
 
 const byId = new Map(steps.map((step) => [step.id, step]))

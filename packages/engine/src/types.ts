@@ -534,6 +534,8 @@ export type SkillIcon = SkillType | 'wild'
 /** Datos de una carta de jugador (sin texto). */
 /** Opción de construcción de mazo del reverso de un investigador. */
 export interface DeckOption {
+  /** Optional printed card type restriction, e.g. Innate skills. */
+  type?: PlayerCardDef['type']
   /** Cards with this printed use type (Akachi: charges). */
   uses?: string
   /** Empty: any class, when the option is defined by traits. */
@@ -832,6 +834,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** ST.2 has closed; cards drawn in the following player window cannot be committed normally. */
+  commitWindowClosed?: boolean
   /** Per-test limits belong to this test, even if the granting asset becomes blank. */
   usedAbilities?: string[]
   symbolsAsZero?: boolean
@@ -1401,6 +1405,7 @@ type MessageBody =
       round: number
     }
   | { type: 'CommitWindow' }
+  | { type: 'FinishCommitWindow' }
   | { type: 'ChooseCommitGroup'; investigator: InvestigatorId; cards?: CardCode[] }
   | { type: 'CommitCardGroup'; investigator: InvestigatorId; cards: CardCode[] }
   | { type: 'ReturnCommittedAfterTest'; commitId: number }
@@ -1418,6 +1423,7 @@ type MessageBody =
       byEffect?: boolean
       toDeckBottom?: boolean
       returnAfterSuccess?: boolean
+      returnAfterTest?: boolean
       fromAsset?: AssetId
       fromStored?: { asset: AssetId; index: number }
       research?: boolean
@@ -2013,7 +2019,7 @@ type MessageBody =
   | { type: 'EnemyGainsKeyword'; enemy: EnemyId; keyword: EnemyKeyword }
   /** Adds to (or, negative, takes from) the resources paid to commit a card ("Watch this!"). */
   | { type: 'CommitPayment'; code: CardCode; amount: number }
-  | { type: 'EndSkillTest' }
+  | { type: 'EndSkillTest'; prepared?: boolean }
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId; windowResolved?: boolean }
   | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
   | {
