@@ -77,6 +77,7 @@ const ask = (investigator: InvestigatorId, prompt: string, choices: Choice[]): M
   investigator,
   question: { kind: 'chooseOne', prompt, choices },
 })
+const lead = (state: GameState): InvestigatorId => activeInvestigators(state)[0]?.id ?? ''
 const raise = (resident: ValleyResident): Message[] => [
   { type: 'ChangeRelationship', resident },
   { type: 'EarnExperience', amount: 1 },
@@ -222,7 +223,26 @@ function resolution(state: GameState): Message[] {
       choices: [
         {
           label: 'choice.hemlockVale.searchForBertie',
-          then: [{ type: 'ChooseValleyRoute', scenario: TWISTED_HOLLOW }],
+          then: [
+            { type: 'ChooseValleyRoute', scenario: TWISTED_HOLLOW },
+            // Introducción de La hondonada retorcida: decir la verdad o mentir a la madre Rachel.
+            ask(lead(state), 'prompt.hemlockVale.tellRachel', [
+              {
+                label: 'choice.hemlockVale.tellTheTruth',
+                then: [
+                  { type: 'RecordNote', note: 'hemlockValeMotherRachelShowedTheWay' },
+                  { type: 'AddChaosTokens', tokens: ['cultist'] },
+                ],
+              },
+              {
+                label: 'choice.hemlockVale.lie',
+                then: [
+                  { type: 'RecordNote', note: 'hemlockValeInvestigatorsLostThePath' },
+                  { type: 'AddChaosTokens', tokens: ['elderThing'] },
+                ],
+              },
+            ]),
+          ],
         },
         ...unexplored(state).map((scenario): Choice => ({
           label: `choice.hemlockVale.route.${scenario}`,

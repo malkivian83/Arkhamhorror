@@ -42,10 +42,12 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - Lote 5c hecho (22/11/2026): La cosa de las profundidades es jugable (ver
   [La cosa de las profundidades](#la-cosa-de-las-profundidades)); entrega 5 completa.
 - Entrega 6 en lotes: **6a** La primera tarde (hecho, ver
-  [La primera tarde](#la-primera-tarde)); **6b** La hondonada retorcida. Verificado 6a: sus 6
+  [La primera tarde](#la-primera-tarde)); **6b** La hondonada retorcida (hecho). Verificado 6a: sus 6
   pruebas, `hemlock-vale/`, cobertura de partidas, campañas, `story-order`, i18n y narración de
   la web (940 pruebas); tipos de cards; Prettier y ESLint.
-- Siguiente: lote 6b (La hondonada retorcida).
+- Lote 6b verificado: sus 9 pruebas y 965 en total (Valle, cobertura, campañas, i18n y narración);
+  tipos de cards y web; Prettier y ESLint.
+- Siguiente: entrega 7 (Alba del segundo día, La segunda tarde y La noche más larga).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -56,7 +58,7 @@ preludios jugables. Se incorpora con el mismo procedimiento que
 - [x] 3 · Adyacencia por cuadrícula y Escrito en la roca.
 - [x] 4 · La Casa Cicuta.
 - [x] 5 · El páramo silencioso, La hermana perdida y La cosa de las profundidades.
-- [ ] 6 · La primera tarde y La hondonada retorcida.
+- [x] 6 · La primera tarde y La hondonada retorcida.
 - [ ] 7 · Alba del segundo día, La segunda tarde y La noche más larga.
 - [ ] 8 · Alba del último día, La última tarde, El destino del Valle y epílogo.
 - [ ] 9 · Selector, guardados y recorridos completos de campaña.
@@ -534,6 +536,39 @@ durante la preparación.
   gasta hasta el final del escenario siguiente (`allowDeckChangesAfter: false`).
 
 Pendiente: la reacción de la Roca de la preocupación y la revisión visual del preludio.
+
+### La hondonada retorcida
+
+Lote 6b, en `twisted-hollow.ts` (pruebas en `twisted-hollow.test.ts`). Noche 1.
+
+- **Introducción:** decir la verdad o mentir a la madre Rachel cambia la preparación, así que se
+  pregunta al final de La primera tarde, al elegir buscar a Bertie (nota y ficha de sectario o
+  de Primigenio). La introducción del escenario lee la 1 y la 2 o la 3.
+- **Bosque:** el Lugar inicial en [5, 5] y cuatro cartas del mazo de Bosque alrededor. Al revelar
+  un Lugar (plan 1) se colocan cartas del mazo en los espacios vacíos de alrededor. El mazo está
+  en `scenarioMeta.woods`; los Lugares que vuelven a él se devuelven a los apartados.
+- **Oscuridad:** `scenarioMeta.darkness` (empieza en 1). Todos los Lugares son Oscuros salvo los
+  iluminados por el Farol encendido (el Rayo de esperanza también ilumina los conectados).
+- **Farol del Valle:** encendido, controlado; apagado, colocado en un Lugar (se toma con [acción]
+  o [rápida] según la versión). Lo apagan Sombras profundas, Luz robada y el Híbrido acechador.
+- **Persecución:** `scenarioMeta.pursuit` guarda carta, daño y perdición de cada Enemigo. En el
+  acto 1, los Enemigos robados sin instrucciones de aparición van a ella. Las cartas de Lugar,
+  traiciones, fichas y planes hacen aparecer al de más combate, evasión o salud.
+- **Planes:** Oscuridad creciente se repite (`repeats`): sube la oscuridad (con 6, derrota y
+  trauma), los Enemigos de lo Oscuro sin enfrentar van a la persecución, los Lugares Oscuros vacíos
+  vuelven al mazo o a su lado sin revelar y quien lleva el Farol hace [willpower] (oscuridad).
+  ¡De vuelta al Valle! sustituye al plan con la misma perdición tras el acto 2.
+- **Actos:** Búsqueda desesperada (todos en una Guarida, 3 pistas por investigador) lleva al
+  códice Σ (Judith o Theo apartados por su relación, o la madre Rachel) y al Híbrido úrsido.
+  ¿Dónde está Bertie? termina en la Hondonada (2 pistas por investigador): Bertie bajo control,
+  diagrama de la p. 36 y el oso en la Hondonada. El tercer acto (el código de ¡De vuelta al Valle!)
+  solo mantiene la mesa: desistir todos lleva a la R1.
+- **Habitantes:** la Dra. Marquez bajo control (códice Θ: revelar un Lugar ignorando sus Obligado)
+  y Bertie (Negociar rápido, códice Ω).
+
+Pendiente: la reacción del Rayo de esperanza al entrar en un Lugar, ver la zona de persecución en
+la web (ahora no se muestra), el modo independiente y la revisión visual (Bosque, Farol,
+persecución y el tercer acto, que muestra la carta del plan especial).
 
 ## Entregas y criterios de aceptación
 

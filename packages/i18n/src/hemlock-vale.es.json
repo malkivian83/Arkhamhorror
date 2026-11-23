@@ -596,6 +596,68 @@
         "title": "Resolución 1",
         "body": "La charla nocturna se va acabando a medida que los lugareños salen del salón comunitario. La Dra. Marquez camina con un ánimo poco habitual cuando os reunís fuera del salón comunitario. El crepúsculo llena el cielo de sombras ocre, lila y violeta. La profesora rompe varias nueces mientras compartís vuestras impresiones sobre la Isla de la Cicuta.\n\n–Esta isla tiene la densidad y la varianza especial de una jungla, pero es mucho más peligrosa que cualquier jungla. No tengo ni la menor idea de por qué alguien querría fundar una comuna en un entorno tan peligroso, pero entiendo que no siempre ha sido así de letal. Se introdujo algo que cambió de forma fundamental el ecosistema local –reflexiona la Dra. Marquez.\n\nMencionáis el extraño buen humor que comparte todo el mundo en el pueblo y la profesora asiente.\n\n–La gran mayoría parece experimentar una felicidad demencial. Es como entrar en un fumadero de opio. Pero por lo que veo, no le echan nada a la comida. Aunque no he probado el budín de pan. Nunca me ha gustado el pan, y la última vez que comí budín fue en Oxford.\n\nLa mención que hace la profesora de la prestigiosa universidad os hace pensar en Bertie Musgrave y le preguntáis que dónde está.\n\n–¿No lo han visto? Supuse que había vuelto a la pensión a descansar –dice con una mueca–. Theo se ofreció a prestarnos la camioneta por la noche. He pensado que podríamos observar la fauna local durante la noche, pero supongo que primero deberíamos encontrarlo.\n\nUna fuerte brisa agita los árboles y la hierba que os rodea, trayendo un olor a cedro y a pino. La Dra. Marquez agarra su bastón con fuerza.\n\n–Si prefieren coger la camioneta y continuar el estudio, yo puedo buscar a Bertie por mi cuenta."
       }
+    },
+    "twistedHollow": {
+      "intro1": {
+        "title": "Introducción 1",
+        "body": "–Tendría que haber sabido que no podía dejar que ese pequeño imbécil se fuera por su cuenta. Les juro por su tumba que si encuentro a ese chico recogiendo violetas y recitando poesía, haré que le expulsen –La Dra. Marquez prácticamente escupe sus palabras mientras os lleva a uno de los cobertizos de suministros del Valle. Registrar el pueblo no ha dado resultado: tan sólo un montón de libros y el bolso de cuero de Bertie en su cuarto de la pensión. Nadie parece haberlo visto desde la mañana.\n\nLa profesora abre el desvencijado cobertizo y coge un viejo farol de granero de un gancho de hierro.\n\n–Busquen aceite –dice malhumorada.\n\nMencionáis la advertencia de los lugareños acerca de salir de noche y la profesora golpetea una lata de aceite vacía con el bastón.\n\n–Razón de más para encontrar a Bertie.\n\nUna larga sombra cae sobre vosotros y, al giraros, veis la silueta de la madre Rachel recortada contra la puesta de sol.\n\n–Qué rápido se fueron después de la cena. ¿Puedo ayudarles a encontrar algo?"
+      },
+      "intro2": {
+        "title": "Introducción 2",
+        "body": "Le contáis la grave situación y la anciana asiente con seriedad.\n\n–Como dije cuando llegaron al Valle, no salimos de noche. Sin embargo, es improbable que su amigo sobreviva hasta llegar el día si se queda solo –Mira el viejo farol de la Dra. Marquez y añade–. Por favor, llévense mi farol. Quédense en la luz y el camino les resultará mucho más sencillo.\n\nOs lleva hasta la linde del bosque mientras el sol se pone. El aire en el bosque es extrañamente denso y descubrís que os cuesta respirar, pero seguís a la matrona de todas formas. La madre Rachel acaba por llevaros a un amplio campo abierto y hace un gesto hacia las tenebrosas sombras.\n\n–Desde aquí, sus vidas están en sus propias manos. La gente del Valle rezará por que regresen sanos y salvos.\n\nUnas luces difusas bailan sobre las aquileas y las margaritas del prado. La madre Rachel señala el turbio abismo.\n\n–Si todo lo demás falla, regresen a las luciérnagas.\n\nAnota en el registro de campaña que la madre Rachel mostró el camino. Añade 1 ficha  a la bolsa de caos durante el resto de la campaña."
+      },
+      "intro3": {
+        "title": "Introducción 3",
+        "body": "La madre Rachel asiente mientras contáis una historia poco elaborada.\n\n–Ya veo. Entiendan que el Valle está aquí para ayudar. Les deseo lo mejor con su estudio.\n\nTras una educada conversación, la matrona os deja registrando el cobertizo con la Dra. Marquez. Por fin encontráis un descascarillado jarro que tiene apenas una quinta parte de aceite.\n\n–Podemos lograrlo si lo vamos racionando –dice la profesora. Seguís la débil luz del farol para adentraros entre los retorcidos árboles en dirección a un tranquilo arroyo, hacia una oscuridad cada vez más profunda.\n\nAcabáis por llegar a un puente que se ha venido abajo y a unos adoquines cubiertos de vegetación en las ruinas de una antigua aldea. Las hojas de los árboles susurran sobre vuestras cabezas.\n\n–Hay algo ahí –dice la Dra. Marquez mientras levanta el farol. Un par de ojos vidriosos reflejan la luz, pero desaparecen rápidamente en la oscuridad.\n\n–Tengan cuidado y manténganse cerca. No sabemos qué hay ahí fuera.\n\nAnota en el registro de campaña que los investigadores se extraviaron. Añade 1 ficha  a la bolsa de caos durante el resto de la campaña."
+      },
+      "setup": {
+        "title": "Preparación del escenario",
+        "body": "Noche uno. Si dijisteis la verdad a la madre Rachel, cada investigador comienza en el Prado destelleante con el Farol del Valle (Rayo de esperanza); si os extraviasteis, en un Lugar Bosque oriental al azar con el Farol del Valle (Débil esperanza). Cuatro Lugares del mazo de Bosque rodean el Lugar inicial. La Dra. Rosa Marquez entra bajo el control de un investigador (no ocupa espacio de aliado). El nivel de oscuridad empieza en 1. Cada vez que se revela un Lugar, se ponen en juego Lugares del mazo de Bosque por encima, por debajo, a la izquierda y a la derecha. Los Enemigos de la zona de persecución están fuera del juego y conservan sus fichas."
+      },
+      "codex7": {
+        "title": "Códice 7: Judith Park",
+        "body": "–¡Trágate ésa, hijo de puta! –grita una voz familiar que sale de la oscuridad. Varios disparos impactan en el blando cuerpo en plena muda del oso. El animal mira a su derecha justo cuando otro disparo le agrieta el cráneo. Chillando de dolor, carga hacia la maleza en la dirección del sonido. Se escuchan más disparos. Tras lo que parece una eternidad, Judith Park sale del bosque agarrándose un brazo ensangrentado. Te acercas corriendo para atenderle la herida, pero te aparta con un gesto. –Estoy bien, y me alegra que esté bien –dice mientras sonríe con suficiencia–. La madre Rachel dijo que podrían precisar ayuda. También me pagó uno de veinte para que viniera.\n\nInflige 2 puntos de daño a Judith Park.\n\nAnota en las Notas de Judith Park que Judith ha salvado el pellejo a los investigadores."
+      },
+      "codex8": {
+        "title": "Códice 8: Theo Peters",
+        "body": "Una descarga de petardos sale volando desde la oscuridad.\n\n–¡Cuidado! –grita una voz familiar. El oso retrocede sobre sus patas traseras mientras llegan más petardos. Theo sale de la oscuridad, te agarra de la mano y te saca de allí. El oso ruge en alguna parte de la penumbra.\n\n–La madre Rachel me dijo que buscaban a Billy en el bosque oriental – dice Theo sin aliento–. Y bueno, no podía dejar que fueran solos, así que le cogí prestados unos petardos a Simeon.\n\nEstás demasiado aliviado como para decirle que es “Bertie” y no “Billy”.\n\nInflige 2 puntos de horror a Theo Peters.\n\nAnota en las Notas de Theo Peters que Theo distrajo al oso."
+      },
+      "codexOmega": {
+        "title": "Códice Ω: Bertie Musgrave",
+        "body": "–Menudo apuro –murmura entre dientes Bertie. El joven manosea su libreta y empieza a dibujar. Cuando le dices que no es ni el momento ni el lugar para ponerse a estudiar la naturaleza, asiente.\n\n–Ah, no, perdón. Es un mapa. Aunque no es muy bueno, vaya... –Le tiembla la mano mientras dibuja una última línea–. Ya he estado aquí antes. Es por aquí –añade mientras señala entre los árboles.\n\nElige una sola opción: Cada investigador obtiene 1 pista (de la reserva de fichas) o prepara el Apoyo Farol del Valle."
+      },
+      "codexTheta": {
+        "title": "Códice Θ: Dra. Rosa Marquez",
+        "body": "La Dra. Marquez se apoya en su bastón mientras estudia un abeto balsámico con ramas en espiral. Unas luces que centellean en los árboles ofrecen una tenue iluminación; al levantar la vista, veis unos brillantes nodos azules.\n\n–Nunca he visto nada tan bello –dice la profesora, incapaz de contener su asombro. Un instante después, te mira con firmeza y añade–. Ni se le ocurra contarle a Bertie que he dicho eso o le contaré a Armitage que murió durante el estudio.\n\nElige cualquier Lugar en juego. Puedes revelar ese Lugar, ignorando su efecto Obligado."
+      },
+      "theBear1": {
+        "title": "Códice Σ: El oso",
+        "body": "Encuentras un jirón de tela de tipo tweed en una rama. ¡Seguro que pertenece a Bertie! Una tos ronca y siniestra suena a tu espalda, acompañada del olor de la putrefacción. Te das la vuelta. Un enorme oso brilla como un fuego fantasmal en la oscuridad. Una colonia de hongos resplandecientes situada en el lomo de la criatura ilumina la lobreguez con una incandescencia sobrenatural. La criatura ruge y luego emprende una carga."
+      },
+      "theBear2": {
+        "title": "Códice Σ: El oso",
+        "body": "Antes de que puedas reaccionar, el oso te da un zarpazo con sus afiladas garras. Su aliento rancio y sibilante inunda tus sentidos cuando te aprieta el pecho con una enorme pata. Se te empieza a oscurecer la visión mientras el peso de la cosa amenaza con romperte la caja torácica.\n\nDe repente se oye un disparo que agrieta el cráneo expuesto del oso. Éste gime de dolor cuando dos disparos más impactan en su blando cuerpo en plena muda. La cosa emite un gruñido lastimero y luego desaparece entre las sombras. Oyes la voz de la madre Rachel que proviene de algún lugar cercano.\n\n–¡Corra!\n\nAnota en las notas de la madre Rachel que la madre Rachel intervino."
+      },
+      "theBear3": {
+        "title": "Códice Σ: El oso",
+        "body": "Huyes del lugar hasta un bosquecillo de árboles moribundos y levantas el farol, esperando ver los macabros ojos azules del oso reflejados en la oscuridad. El bosque está sumido en un silencio letal mientras tratas de orientarte."
+      },
+      "noResolution": {
+        "title": "Sin resolución",
+        "body": "De las densas copas de los árboles emergen largas ramas delgadas como manos aferradoras. Os sentís mareados mientras unos extraños susurros resuenan en la oscuridad que os rodea. Sacando fuerzas de flaqueza, os tambaleáis hasta llegar a la orilla de un lago negro. La luna creciente se refleja perfectamente en la superficie del agua, distorsionada por hilillos aceitosos e iridiscentes de un extraño color. Al otro lado del lago, una figura se recorta en la niebla. La llamáis y se mueve lentamente hacia vosotros, sobre el agua. Cuando se acerca, lo único que podéis ver de su rostro es un amplio rictus sonriente.\n\n–¡Por favor, despierten!\n\nLa Dra. Marquez os sacude para que despertéis de la pesadilla. Su preocupación no tarda en convertirse en fastidio después de que abráis los ojos.\n\n–Menos mal que han despertado. No estaba preparada para lidiar con todo el papeleo si también les perdíamos a ustedes.\n\nOs encontráis en un campo de flores en la linde del bosque. Cuando preguntáis por Bertie, se coloca un mechón de pelo detrás de la oreja y levanta la vista hacia el alba.\n\n–Ya no está. Lo he perdido."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "Largas ramas delgadas se extienden como manos aferradoras mientras salís del bosque hacia un prado en el que brillan resplandecientes flores silvestres azules. La visión de la radiante alfombra de azul y blanco casi os deja sin respiración después de la opresiva oscuridad. Tal vez sea el cansancio mental, pero el brezo y las flores parecen palpitar.\n\n–Miren –Bertie señala algo con mano temblorosa.\n\nUna docena de tallos luminosos se levantan como lámparas flotantes sobre el prado,centellean a la luz de la luna.\n\n–Me siento casi como si estuviésemos paseando por el cosmos. Como si cada uno de nosotros fuese un pequeño dios –Arranca una flor brillante de su tallo–. Y como si cada una de éstas fuera una pequeña estrella.\n\nLa Dra. Marquez le quita la flor de un manotazo.\n\n–Por culpa de esas bobadas poéticas acabaste perdido en el bosque. ¡Nos jugamos la vida por ti! Ya puedes dar gracias si omito este incidente en el informe del estudio.\n\nBertie se queda cabizbajo y avergonzado mientras la profesora enumera una letanía de faltas y calamidades. Aun así, no podéis evitar notar la preocupación en la voz de la Dra. Marquez mientras vitupera a su ayudante. Mientras regresáis al Valle, el cielo se activa con la llegada del alba."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "Las copas de los árboles parecen venirse encima de vosotros, repletas de una multitud de ojos y del ruidoso batir de las alas de los insectos. Salís a un pequeño claro iluminado por la luna y oís una tos ronca familiar: el oso sale gruñendo de la oscuridad detrás de vosotros. Bertie os mira con los ojos como platos.\n\n–Es culpa mía. Lamento muchísimo haber provocado tantos problemas. Hablen bien de mí cuando vuelvan al Valle, ¿quieren?\n\nAntes de que podáis intervenir, Bertie os arrebata el farol y grita hacia la oscuridad: –¡Venga, engendro!\n\nEl oso ruge como respuesta. Unas brillantes esporas azules se dispersan en la oscuridad a su alrededor, bañando a la criatura de una pálida luz azul. Bertie también responde con un grito valeroso y corre hacia él. Al daros cuenta del sacrificio del joven, aprovecháis la distracción para marcharos y poneros a salvo."
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Excursión no planeada al bosque oriental durante la noche. La flora y fauna locales han evolucionado con patrones de comportamiento altamente especializados después del anochecer, probablemente dictados por ritmos circadianos extremos y depredación agresiva. Es un entorno altamente tóxico. Se ha identificado una simbiosis hasta ahora desconocida con una nueva cepa de hongo parásito. Es necesaria más observación”."
+      }
     }
   },
   "choice": {
@@ -665,7 +727,23 @@
     "jazzIsHell": "–El jazz es infernal, Judith.",
     "askGideon": "–Me han contado que fue marinero, Gideon.",
     "askLeah": "–Leah, hábleme de su trabajo.",
-    "searchForBertie": "Buscar a Bertie Musgrave con la Dra. Marquez (La hondonada retorcida)"
+    "searchForBertie": "Buscar a Bertie Musgrave con la Dra. Marquez (La hondonada retorcida)",
+    "directDamage": "Recibe 1 daño directo",
+    "alliesTakeDamage": "Inflige 1 daño a cada Apoyo Aliado que controles",
+    "doomOnAgenda": "Coloca 1 de perdición en el plan actual",
+    "stealLight": "El Farol del Valle se apaga en el Lugar vacío más lejano de los investigadores",
+    "exhaustLantern": "Agota el Farol del Valle",
+    "spendGroupClues": "Gastad {n} pistas en grupo",
+    "revealedSide": "{location}",
+    "moveIgnoringForced": "Muévete a {location}, ignorando sus efectos Obligado",
+    "drawPursuer": "Roba el Enemigo en persecución",
+    "lanternGoesOut": "El Farol del Valle se apaga en un Lugar conectado",
+    "judithPark": "Judith Park",
+    "theoPeters": "Theo Peters",
+    "eachGainsClue": "Cada investigador obtiene 1 pista",
+    "readyLantern": "Prepara el Farol del Valle",
+    "tellTheTruth": "Decir la verdad",
+    "lie": "Mentir"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -700,7 +778,12 @@
     "removeSinkhole": "Puedes retirar 1 socavón del Lugar Ciénaga más cercano",
     "meal": "Sirven los pasteles con miel",
     "chooseSeat": "Elige dónde sentarte durante la comida comunitaria",
-    "helenDeck": "Elige quién añade a Helen Peters a su mazo"
+    "helenDeck": "Elige quién añade a Helen Peters a su mazo",
+    "advanceAct": "¿Gastáis pistas en grupo para avanzar el acto?",
+    "lookAtLocation": "Elige el Lugar conectado que miras",
+    "moveThere": "¿Te mueves a ese Lugar?",
+    "whoHelps": "¿Quién acude en tu ayuda?",
+    "tellRachel": "La madre Rachel os pregunta adónde vais"
   },
   "ability": {
     "codex": "Códice {n}",
@@ -745,7 +828,15 @@
     "shackSinkhole": "Gasta 1 pista: mueve 1 socavón a un Enemigo de aquí, como daño",
     "lureChelydran": "Gastad 1 pista [per_investigator] en grupo: esta ronda, el Errante del Híbrido chelydra lleva aquí",
     "fleeTheBog": "Desistir. Huyes de la ciénaga",
-    "codexTheta": "Dra. Rosa Marquez: lee el códice Θ"
+    "codexTheta": "Dra. Rosa Marquez: lee el códice Θ",
+    "lightLantern": "Toma el control del Farol del Valle y enciéndelo",
+    "lanternPeek": "Agota el Farol del Valle: mira un Lugar conectado; puedes moverte a él",
+    "bertiesFine": "Desistir. «¡Seguro que Bertie está bien!»",
+    "healHorror": "Cura 1 horror",
+    "findTheWay": "Mira un Lugar conectado; puedes moverte a él",
+    "lookAtLocation": "Gasta 1 pista: mira el lado revelado de un Lugar conectado",
+    "crookedPath": "Mira un Lugar conectado; puedes moverte a él",
+    "bertieParley": "Recibe 1 daño u horror y agota a Bertie: Negociar, roba 1 carta"
   },
   "keywords": {
     "dayNight": {

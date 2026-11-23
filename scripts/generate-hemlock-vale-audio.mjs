@@ -30,10 +30,11 @@ const RULES = new Set([
   'lostSister.darkLocations',
   'thingInTheDepths.setup',
   'thingInTheDepths.sinkingLocations',
+  'twistedHollow.setup',
 ])
 // Párrafos de instrucciones dentro de un relato: se muestran, pero no se graban.
 const INSTRUCTION =
-  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en |Mueve 1 punto|Recuerda que|Elige un investigador|Elige un Enemigo|Elige cualquier Lugar|Busca en el conjunto)/
+  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en |Mueve 1 punto|Recuerda que|Elige un investigador|Elige un Enemigo|Elige cualquier Lugar|Busca en el conjunto|Inflige 2 puntos|Elige una sola opción|Comprueba las cartas)/
 const narrative = (body) =>
   body
     .split(/\n\s*\n/)

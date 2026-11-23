@@ -596,6 +596,68 @@
         "title": "Resolution 1",
         "body": "The evening chatter fades as residents trickle out of the Commons. There is an uncharacteristic spring in Dr. Marquez’s step as you reconvene outside the Commons. The sunset casts the sky in shades from ochre, to lilac, to violet. The professor cracks a handful of walnuts as you share your impressions of Hemlock Isle.\n\n“This island has the density and special variance of a jungle, but it’s far more dangerous than any jungle. I have no clue why someone would start a commune in such a hazardous environment, but I understand it wasn’t always so deadly. Something was introduced and fundamentally changed the local ecosystem,” Dr. Marquez muses.\n\nYou mention the unusually good mood shared by everyone in the village, and the professor nods. “Most everyone looks blissed out of their minds. It’s like walking into an opium den. But as far as I can tell, the food isn’t laced with anything. Though I didn’t try the bread pudding. I’ve never liked bread, and the last time I had pudding was in Oxford.”\n\nThe professor’s reference to the prestigious university brings Bertie Musgrave to mind, and you ask where he is.\n\n“You haven’t seen him? I assumed he went back to the boarding house to rest,” she scowls. “Theo offered to lend us his truck for the evening. I thought we could observe some of the local wildlife at night, but I suppose we should find him first.”\n\nA heavy breeze stirs the trees and grass around you, smelling of cedar and pine. Dr. Marquez grips her cane. “If you’d rather take the truck and continue the survey, I can look for Bertie on my own.”"
       }
+    },
+    "twistedHollow": {
+      "intro1": {
+        "title": "Intro 1",
+        "body": "“I should have known better than to let that little twit go off on his own. I swear on his precious little grave, if I find that boy plucking violets and reciting poetry, I will have him expelled,” Dr. Marquez almost spits the words as she leads you to one of the Vale’s supply sheds. Searching the village yielded no results: Just a pile of books and Bertie’s leather satchel in his room at the boarding house. Nobody seems to have seen him since the morning.\n\nThe professor opens the rickety shed and grabs an old barn lantern from an iron hook. “Look for oil,” she says gruffly. You mention the locals’ warning against going out at night, and the professor raps her cane on an empty oilcan. “All the more reason to find Bertie.”\n\nA long shadow falls across you both, and you turn to see Mother Rachel silhouetted against the sunset. “You all left so quickly after dinner. Is there something I can help you find?”"
+      },
+      "intro2": {
+        "title": "Intro 2",
+        "body": "As you share the dire situation, the elderly woman nods gravely. “As I said when you arrived in the Vale, we do not venture out at night. However, your friend will likely not survive the night if left alone.” She eyes Dr. Marquez’s old lantern. “Please, take my lantern. Stay in the light, and you will find the way much safer.” She leads you to the edge of the forest as the sun sets. The forest air is unnaturally thick, and you find it hard to breathe, but you follow the matron nonetheless. Eventually, Mother Rachel leads you to a broad, open field and gestures to the tenebrous shadows. “From here, you take your lives into your own hands. The people of the Vale will pray for your safe return.”\n\nHazy lights dance above the meadow’s yarrow and asters. Mother Rachel points into the murky abyss. “If all else fails, return to the fireflies.”"
+      },
+      "intro3": {
+        "title": "Intro 3",
+        "body": "Mother Rachel nods along to your paper-thin story. “I see. Understand that the Vale is here to help. I wish you the best on your survey.” After more polite conversation, the matron leaves you and Dr. Marquez to scour the shed. Finally, you find a chipped mason jar with just a fifth of oil. “We can make it if we portion every bit,” the professor says. You follow the dim lantern light into the maw of gnarled trees toward a quiet stream, then further up and further into the dark.\n\nEventually, you reach a collapsed bridge and overgrown cobblestones in the ruins of an old village. The trees overhead rustle. “Something’s there,” Dr. Marquez raises her lantern. A pair of beady eyes reflect the light, but quickly vanish in the murk.\n\n“Watch yourself and keep close. There’s no telling what’s out here.”"
+      },
+      "setup": {
+        "title": "Scenario setup",
+        "body": "Night 1. Each investigator who told Mother Rachel the truth begins at Glimmering Woods with the Vale Lantern (Beacon of Hope); if the investigators lost the path, they begin at a random Western Woods location with the Vale Lantern (A Faint Hope). Four locations from the Woods deck surround the starting location. Dr. Rosa Marquez is put into play under an investigator’s control (she does not take up an ally slot). The darkness level starts at 1. Whenever a location is revealed, locations from the Woods deck are put into play above, below, to the left and to the right of it. Enemies in the pursuit area are out of play and keep their tokens."
+      },
+      "codex7": {
+        "title": "Codex 7: Judith Park",
+        "body": "“Eat this, you son of a bitch!” A familiar voice comes from out of the darkness. Several shots impact the bear’s soft, molting body. The bear looks to its right just as another shot cracks its skull. Screeching in pain, it charges into the undergrowth toward the sound. More shots ring out. After what seems like an eternity, Judith Park emerges from the forest clutching a bleeding arm. You rush to dress the wound, but she waves you off. “I’m fine. Just glad you’re alright.” Judith smiles cockily. “Mother Rachel said you might need some help. She also paid me a twenty to come out.”\n\nDeal 2 damage to Judith Park.\n\nIn Judith Park’s Notes, record Judith saved your ass."
+      },
+      "codex8": {
+        "title": "Codex 8: Theo Peters",
+        "body": "A barrage of firecrackers fly out of the darkness. “Watch out!” shouts a familiar voice. The bear reels back on its hind legs as more firecrackers follow. Theo emerges from the darkness, grabs your hand, and tears away from the scene. The bear roars somewhere in the dark. “Mother Rachel said you were looking for Billy in the Western Woods,” Theo says breathlessly. “And well, I couldn’t let you go it alone. So I borrowed some of Simeon’s fireworks.” You are too relieved to tell him it’s “Bertie” and not “Billy.”\n\nDeal 2 horror to Theo Peters.\n\nIn Theo Peters’ Notes, record Theo distracted the Bear."
+      },
+      "codexOmega": {
+        "title": "Codex Ω: Bertie Musgrave",
+        "body": "“What a predicament,” Bertie mutters under his breath. The young man fumbles with his pocketbook and starts sketching. When you tell him this isn’t the time or place for a nature study, he nods. “Oh no, I apologise. It’s a map. Not a good one, mind you—” his hand shakes as he draws one last line. “I was here before. This is the way,” he points through the trees.\n\nEither (choose one): Each investigator gains 1 clue (from the token pool), or ready the Vale Lantern asset."
+      },
+      "codexTheta": {
+        "title": "Codex Θ: Dr. Rosa Marquez",
+        "body": "Dr. Marquez leans on her cane as she studies a balsam fir with spiraling branches. Glinting lights in the trees offer faint illumination; looking up, you see shining blue nodes. “I’ve never seen something so beautiful,” the professor says, unable to contain her wonder. A moment later, she looks at you sharply. “Don’t you dare tell Bertie I said that, or I’ll tell Armitage you died on the survey.”\n\nChoose any location in play. You may reveal that location, ignoring its Forced effect."
+      },
+      "theBear1": {
+        "title": "Codex Σ: The Bear",
+        "body": "You find a scrap of torn tweed caught on a branch that is unmistakably Bertie’s. A wretched, wheezing cough sounds behind you, accompanied by the scent of rot. You turn around. A hulking bear glows like ghost fire in the darkness. A colony of shimmering fungus on the creature’s back lights up the murk with an eerie incandescence. The creature roars, then charges.\n\nCheck the set-aside cards."
+      },
+      "theBear2": {
+        "title": "Codex Σ: The Bear",
+        "body": "Before you can react, the bear swipes at you with razor sharp claws. Its rancid, wheezing breath floods your senses as it presses a gargantuan paw to your chest. Your vision begins to dim as the thing’s weight threatens to snap your ribcage.\n\nSuddenly, a shot rings out, cracking the bear’s exposed skull. It whines in pain as two more shots impact its soft, molting body. The thing lets out a pitiful grunt, then melts into the shadows. You hear Mother Rachel’s voice from somewhere close: “Run!”\n\nIn Mother Rachel’s Notes, record Mother Rachel intervened."
+      },
+      "theBear3": {
+        "title": "Codex Σ: The Bear",
+        "body": "You flee the scene into a copse of dying trees and hold the lantern up, expecting to see the bear’s ghoulish blue eyes reflected back in the dark. The forest is deathly quiet as you struggle to get your bearings.Put locations from the top of the Woods deck into play above, below, and to the left and right of the investigators’ location."
+      },
+      "noResolution": {
+        "title": "No Resolution",
+        "body": "Long, spindly branches stretch like grasping hands from the thick canopy overhead. You feel light-headed as strange whispers resound from deep in the surrounding dark. Summoning all your strength, you stagger to the edge of a black lake. The waxing moon is perfectly reflected on the surface of the water, distorted by oily, iridescent whisps of a strange color. Across the lake, a figure stands outlined in the mist. You call out to it, and it moves slowly toward you, over the water. As it approaches, all you can see of its face is a wide, rictus grin.\n\n“So help me, please wake up!” Dr. Marquez shakes you awake from the nightmare. Her worry quickly turns to annoyance when you open your eyes. “I’m glad you woke up. I wasn’t prepared for the paperwork if we lost you, too.” You are in a flowering field at the edge of the woods. When you ask about Bertie, she brushes a stray hair behind her ear and looks up at the waking dawn. “He’s gone. I lost him.”"
+      },
+      "resolution1": {
+        "title": "Resolution 1",
+        "body": "Long, spindly branches stretch like grasping hands as you emerge from the forest into a meadow glowing with shimmering blue wildflowers. The sight of the brilliant carpet of blue and white nearly takes your breath away after the oppressive darkness. Perhaps it is just your tired mind, but the heather and flowers seem to pulse. “Look,” Bertie points with a trembling hand. A dozen luminous stalks rise like floating lamps over the meadow, glimmering in the moonlight. “I feel almost as though we are walking amidst the cosmos. That each of us is a little god.” He plucks a glowing bud from its stalk. “And each of these, an even smaller star.”\n\nDr. Marquez slaps the flower out of his hand. “That poetic drivel is what got you lost in the woods. We risked life and limb for you! You’ll be lucky if I leave this incident out of the survey report.” Bertie hangs his head in shame as the professor lists a litany of woes and misdemeanors. But still, you can’t help but note the concern in Dr. Marquez’s voice as she excoriates her assistant. As you return to the Vale, the sky stirs with the coming dawn."
+      },
+      "resolution2": {
+        "title": "Resolution 2",
+        "body": "The canopy of trees presses in, filled with myriad eyes and the noisome beating of insect wings. You emerge into a small moonlit clearing to hear a familiar hacking cough: the bear emerges, snarling, from the darkness behind you. Bertie looks at you with wide, clear eyes. “This is my fault. I’m so sorry I caused you so much trouble. Say a word for me back in the Vale, will you?” Before you can intervene, Bertie snatches the lantern out of your hands and shouts into the darkness: “Come on, you ugly git!”\n\nThe bear roars in response. Glowing blue spores scatter in the darkness around it, wreathing the creature in pale blue light. Bertie lets out a brave yell in response and barrels toward it. Realizing the young man’s sacrifice, you take advantage of the distraction to slip away and get to safety."
+      },
+      "resolution3": {
+        "title": "Resolution 3",
+        "body": "“Miskatonic Survey, June 1926. Members Marquez, Musgrave, et alii. An unplanned foray into the Western Woods, at night. Local flora and fauna have evolved highly specialized behavior patterns after dark, likely dictated by extreme circadian rhythms and aggressive predation. A highly toxic environment. Identified a hitherto unknown symbiosis with a new strain of parasitic fungus. Further observation necessary.”"
+      }
     }
   },
   "choice": {
@@ -665,7 +727,23 @@
     "jazzIsHell": "“Jazz is hell, Judith.”",
     "askGideon": "“I heard you were a sailor, Gideon.”",
     "askLeah": "“Leah, tell me about your work.”",
-    "searchForBertie": "Search for Bertie Musgrave with Dr. Marquez (The Twisted Hollow)"
+    "searchForBertie": "Search for Bertie Musgrave with Dr. Marquez (The Twisted Hollow)",
+    "directDamage": "Take 1 direct damage",
+    "alliesTakeDamage": "Deal 1 damage to each Ally asset you control",
+    "doomOnAgenda": "Place 1 doom on the current agenda",
+    "stealLight": "The Vale Lantern goes out at the empty location farthest from all investigators",
+    "exhaustLantern": "Exhaust the Vale Lantern",
+    "spendGroupClues": "Spend {n} clues as a group",
+    "revealedSide": "{location}",
+    "moveIgnoringForced": "Move to {location}, ignoring its forced effects",
+    "drawPursuer": "Draw the enemy in pursuit",
+    "lanternGoesOut": "The Vale Lantern goes out at a connecting location",
+    "judithPark": "Judith Park",
+    "theoPeters": "Theo Peters",
+    "eachGainsClue": "Each investigator gains 1 clue",
+    "readyLantern": "Ready the Vale Lantern",
+    "tellTheTruth": "Tell the truth",
+    "lie": "Lie"
   },
   "prompt": {
     "drawOrGain": "Draw 1 card or gain 1 resource",
@@ -700,7 +778,12 @@
     "removeSinkhole": "You may remove 1 sinkhole from the nearest Bog location",
     "meal": "The honeyed cakes are served",
     "chooseSeat": "Choose where to sit for the community meal",
-    "helenDeck": "Choose who adds Helen Peters to their deck"
+    "helenDeck": "Choose who adds Helen Peters to their deck",
+    "advanceAct": "Spend clues as a group to advance the act?",
+    "lookAtLocation": "Choose a connecting location to look at",
+    "moveThere": "Move to that location?",
+    "whoHelps": "Who comes to your aid?",
+    "tellRachel": "Mother Rachel asks where you are going"
   },
   "ability": {
     "codex": "Codex {n}",
@@ -745,7 +828,15 @@
     "shackSinkhole": "Spend 1 clue: move 1 sinkhole to an enemy here, as damage",
     "lureChelydran": "Spend 1 [per_investigator] clues as a group: Chelydran Hybrid's patrol leads here this round",
     "fleeTheBog": "Resign. You flee the bog",
-    "codexTheta": "Dr. Rosa Marquez: read Codex Θ"
+    "codexTheta": "Dr. Rosa Marquez: read Codex Θ",
+    "lightLantern": "Take control of the Vale Lantern and light it",
+    "lanternPeek": "Exhaust the Vale Lantern: look at a connecting location; you may move there",
+    "bertiesFine": "Resign. “I’m sure Bertie’s fine!”",
+    "healHorror": "Heal 1 horror",
+    "findTheWay": "Look at a connecting location; you may move there",
+    "lookAtLocation": "Spend 1 clue: look at the revealed side of a connecting location",
+    "crookedPath": "Look at a connecting location; you may move there",
+    "bertieParley": "Take 1 damage or horror and exhaust Bertie: Parley, draw 1 card"
   },
   "keywords": {
     "dayNight": {
