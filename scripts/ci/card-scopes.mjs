@@ -3,6 +3,10 @@ import { dirname, relative, resolve } from 'node:path'
 
 // Opt in only boundaries with explicit dynamic consumers. A new module stays broad.
 const modules = {
+  'daniela-monterey': [
+    'apps/web/src/game/daniela-monterey',
+    'scripts/cards-import/daniela-monterey.test.mjs',
+  ],
   'silas-winifred': [
     'apps/web/src/game/silas-winifred',
     'scripts/cards-import/silas-winifred.test.mjs',

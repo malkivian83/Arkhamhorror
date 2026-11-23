@@ -1,0 +1,102 @@
+[
+  {
+    "code": "08001",
+    "name": "Daniela Reyes",
+    "subname": "The Mechanic",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Entrepreneur"],
+    "unique": true,
+    "health": 8,
+    "sanity": 6,
+    "skills": { "willpower": 4, "intellect": 1, "combat": 5, "agility": 2 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["guardian"], "maxLevel": 0 },
+      { "classes": ["neutral"], "maxLevel": 5 },
+      { "classes": ["survivor"], "maxLevel": 5, "minLevel": 1 }
+    ],
+    "offClassLevelZeroLimit": 5,
+    "offClassLevelZeroClasses": ["survivor"],
+    "signatures": ["08002", "08003"]
+  },
+  {
+    "code": "08002",
+    "name": "Mechanic's Wrench",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Tool", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "combat": 2, "wild": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "08003",
+    "name": "Mob Goons",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Criminal"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 3,
+    "weakness": "weakness"
+  },
+  {
+    "code": "08007",
+    "name": "Monterey Jack",
+    "subname": "The Archaeologist",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Wayfarer"],
+    "unique": true,
+    "health": 8,
+    "sanity": 6,
+    "skills": { "willpower": 1, "intellect": 4, "combat": 2, "agility": 5 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["rogue"], "maxLevel": 0 },
+      { "classes": ["neutral"], "maxLevel": 5 },
+      { "classes": ["seeker"], "maxLevel": 5, "minLevel": 1 }
+    ],
+    "offClassLevelZeroLimit": 5,
+    "offClassLevelZeroClasses": ["seeker"],
+    "signatures": ["08008", "08009"]
+  },
+  {
+    "code": "08008",
+    "name": "Trusty Bullwhip",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 2, "wild": 1 },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "08009",
+    "name": "Buried Secrets",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Mystery"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "08021",
+    "name": "\"Get behind me!\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1, "combat": 1 },
+    "slots": [],
+    "fast": true
+  }
+]

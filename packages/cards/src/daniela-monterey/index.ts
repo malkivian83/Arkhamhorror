@@ -1,0 +1,10 @@
+import '../core-2026/player-cards'
+import './card-08001'
+import './card-08002'
+import './card-08003'
+import './card-08007'
+import './card-08008'
+import './card-08009'
+import './card-08021'
+import approvals from './approvals.json'
+export const DANIELA_MONTEREY_RENDERED_CODES = approvals.cards.map((c) => c.code)

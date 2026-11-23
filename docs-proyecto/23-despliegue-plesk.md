@@ -25,7 +25,7 @@ necesiten SQL; las pruebas SQL incluyen cuentas y salas. Los cambios exclusivame
 documentales siguen sin lanzar CI, excepto las evidencias utilizadas por las pruebas.
 
 Los límites revisados están en `scripts/ci/card-scopes.mjs`: Cicuta, Confines,
-Finn/Calvin, Trish/Dexter, Silas/Winifred, Yorick y Rita. Se conservan explícitamente los consumidores dinámicos;
+Finn/Calvin, Trish/Dexter, Silas/Winifred, Daniela/Monterey, Yorick y Rita. Se conservan explícitamente los consumidores dinámicos;
 no se usa únicamente el análisis de importaciones. Si otro módulo de producción
 importa un helper de uno de ellos, se vuelve al alcance amplio. Las pruebas externas
 con importaciones explícitas se añaden a la selección. Los módulos nuevos no se

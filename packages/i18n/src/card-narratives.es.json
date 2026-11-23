@@ -1321,5 +1321,21 @@
     "typeCode": "investigator",
     "flavor": "Dejad vuestros miedos en el puerto, amigos.",
     "backFlavor": "Silas Marsh se enamoró del mar desde que tuvo edad suficiente para andar chapoteando por las aguas salobres poco profundas. Hacerse marinero fue la decisión más fácil de su vida, y su recia constitución y excelente percepción del tiempo le han dado una buena reputación a bordo de cualquier embarcación. Solo hay una cosa que preocupa a Silas: no deja de soñar una y otra vez con inquietantes ciudades ocultas bajo las olas y habitadas por extrañas criaturas. Estos sueños lo llaman y agitan algo en lo más profundo de su interior que pensaba que habñia dejado atrás en su ciudad natal: Innsmouth."
+  },
+  "08001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "Tranquilo, tipo duro. Yo me encargo de esto. Tú quédate ahí luciendo palmito.",
+    "backFlavor": "Daniela siempre pensó que tenía una buena vida. Contaba con una familia cariñosa y bulliciosa. Tenía un trabajo estable que le permitía emplear tanto el cerebro como las manos. Tenía suficiente dinero como para poder gastarlo en coches rápidos, chicas guapas y en su motocicleta, Gabriel. Pero su hermano Ramón se metió en problemas. Su madre le advirtió que tuviera cuidado, que llegaba una oscuridad. Daniela colocó un vaso de agua detrás de la puerta por complacer a su madre, para atrapar espíritus malignos como le había enseñado de niña. Cuando despertó y vio que estaba hecho añicos, se decidió a averiguar qué había ocurrido y solucionarlo. Como hacía siempre."
+  },
+  "08003": {
+    "group": "investigators",
+    "typeCode": "enemy",
+    "flavor": "Las deudas son un asunto familiar."
+  },
+  "08007": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "backFlavor": "El joven Jack recorrió el mundo con las expediciones arqueológicas de su padre. Ahora es un cazatesoros que viaja por todo el planeta y un consumado arqueólogo de pleno derecho. \"Monterrey\" sigue los pasos de su padre, recuperando los tesoros de civilizaciones antiguas y culturas perdidas. Pero, tras descubrir un colgante de plata que tiene un símbolo familiar, Monterrey debe explorar su propio pasado. Hace años, encontraron a su padre asesinado con ese mismo símbolo grabado en la frente. La imagen ha perseguido a Monterrey en sus sueños desde entonces. Pero se está acercando y no parará hasta resolver el misterio del asesinato de su padre... Cueste lo que cueste."
   }
 }

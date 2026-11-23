@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "danielaMonterey": {
+        "title": "Daniela Reyes y Monterrey Jack",
+        "cards": "Investigadores originales de Confines, sus exclusivas y mazos publicados con presentación en español e inglés.",
+        "rules": "Reacciones a ataques cancelados o redirigidos, desplazamientos y Secretos enterrados. «¡Ponte detrás de mí!» ya es jugable."
+      },
       "silasWinifred": {
         "title": "Silas Marsh y Winifred Habbamock",
         "cards": "Dos investigadores con sus mazos publicados, exclusivas, debilidades e imágenes oficiales en español e inglés.",
@@ -380,6 +385,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "attackProtector": "Elige quién recibe el ataque",
     "commitFinished": "Ventana tras comprometer cartas",
     "orderTestResults": "Elige el orden de los resultados de la prueba de habilidad",
     "flexibleSlot": "Elige el tipo de ranura flexible. Puedes cambiarlo cuando un apoyo entre en juego.",
@@ -647,6 +653,14 @@
     "playCopy": "Jugar {physical} como {card}"
   },
   "choice": {
+    "attackProtector": "{name} recibe el ataque",
+    "buriedHorror": "Sufre 2 puntos de horror para barajar la debilidad en el mazo de su dueño",
+    "whipEvade": "Agota el látigo para evitar al enemigo",
+    "whipDamage": "Agota el látigo para infligir +1 de daño",
+    "montereyDraw": "Roba 1 carta",
+    "montereyResource": "Obtén 1 recurso",
+    "danielaEvade": "Evita automáticamente a {enemy}",
+    "danielaDamage": "Inflige 1 punto de daño a {enemy}",
     "winifredReturn": "Recuperar {card} tras la prueba",
     "silasRetrieve": "Devolver {card} y recuperar las habilidades comprometidas",
     "silasEvade": "Evitar automáticamente a {enemy}",
@@ -1443,6 +1457,10 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "buriedInvestigate": "Investigar para descartar Secretos enterrados",
+    "montereyTravel": "Monterrey: obtener el beneficio por desplazarse",
+    "wrenchProvoke": "Provocar un ataque de {enemy}",
+    "danielaRespond": "Reaccionar tras el ataque",
     "winifredDraw": "Winifred: robar 1 carta",
     "silasDiscardCall": "Descartar Canto de sirena",
     "silasReturn": "Recuperar {card} con Silas",
@@ -3867,6 +3885,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "08007": "El arqueólogo",
+      "08001": "La mecánica",
       "07005": "El marinero",
       "60301": "La aviadora",
       "07004": "El mago",
@@ -4085,6 +4105,13 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "08021": "Espíritu. Táctica.",
+      "08009": "Misterio.",
+      "08008": "Objeto. Arma. Cuerpo a cuerpo.",
+      "08007": "Viajero.",
+      "08003": "Humanoide. Criminal.",
+      "08002": "Objeto. Herramienta. Cuerpo a cuerpo.",
+      "08001": "Emprendedor.",
       "07005": "Vagabundo.",
       "07014": "Objeto. Arma. Cuerpo a cuerpo.",
       "07015": "Objeto. Herramienta.",
@@ -5163,6 +5190,13 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "08021": "Rápido. Juega esta carta durante cualquier oportunidad [fast].\nHasta el final de la fase, siempre que un Enemigo fuese a atacar a otro investigador en tu Lugar, te ataca a ti en su lugar y luego se enfrenta a ti. Cancela 1 punto de horror infligido por cada ataque realizado de este modo.",
+      "08009": "<b>Revelación</b> - Pon Secretos enterrados en juego en tu zona de amenaza.\nSi tu Lugar puede ser investigado, no puedes moverte excepto mediante efectos de cartas de escenario.\n[action]: Investigar. Si tienes éxito, en lugar de descubrir pistas, descarta Secretos enterrados. Si fracasas, puedes recibir 2 puntos de horror para devolverlos a tu mazo y barajar éste.",
+      "08008": "Rápido. Sólo para el mazo de Monterey Jack.\n[action]: <b>Combatir.</b> Este ataque usa [agility] en lugar de [combat]. Si este ataque tiene éxito, puedes agotar el Látigo fiable para evitar automáticamente al Enemigo atacado o bien infligir +1 de daño para este ataque.",
+      "08007": "[reaction] Al final de tu turno, si empezaste esta ronda a 1 Lugar de distancia de tu Lugar actual: Obtén 1 recurso o roba 1 carta (si empezaste esta ronda a 2 o más Lugares de distancia, haz ambas cosas en su lugar).\nEfecto [elder_sign]: +1. Si empezaste esta ronda a 1 o más Lugares de distancia de tu Lugar actual, obtén 1 recurso o roba 1 carta.",
+      "08003": "Cazador.\n<b>Presa</b> - Sólo Daniela Reyes.\nLos ataques de este Enemigo no pueden ser cancelados.\nEl daño/horror infligido por los ataques de este Enemigo se considera directo.",
+      "08002": "Sólo para el mazo de Daniela Reyes.\n[fast] Agota la Llave inglesa de mecánico: Elige un Enemigo que esté en tu Lugar. Ese Enemigo te ataca.\n[action]: <b>Combatir.</b> Usa esta capacidad únicamente contra un Enemigo que te haya atacado desde el final de tu último turno. Recibes +2 [combat] para este ataque e infliges +1 de daño para este ataque.",
+      "08001": "[reaction] Después de que un Enemigo te ataque (excepto por un ataque de oportunidad que hayas provocado tú), incluso si ese ataque fue cancelado: Inflige 1 punto de daño a ese Enemigo o evítalo automáticamente.\nEfecto [elder_sign]: +1. Si has sido atacado por un Enemigo en esta ronda, en lugar de eso tienes éxito automáticamente.",
       "07005": "[reaction] Después de que reveles una ficha de Caos durante una prueba de habilidad que estés realizando: Devuelve a tu mano una Habilidad que hayas asignado a esta prueba. Límite de 1 vez por ronda.\nEfecto [elder_sign]: +0. Puedes asignar a esta prueba una Habilidad de tu pila de descartes. Después de que termine esta prueba, devuelve esa Habilidad a tu mano en lugar de descartarla.",
       "07014": "Solo para el mazo de Silas Marsh.\n[action]: <b>Combatir.</b> Recibes +1 [combat] para este ataque. Si asignaste 1 o más Habilidades a esta prueba de habilidad, este ataque inflige +1 de daño. Cuando termine esta prueba de habilidad, puedes devolver a tu mano el Arpón marino para devolver a tu mano todas tus Habilidades asignadas en lugar de descartarlas.",
       "07015": "Solo para el mazo de Silas Marsh.\n[action]: <b>Evitar.</b> Recibes +1 [agility] para este intento de evitar. Si tienes éxito y asignaste 1 o más Habilidades a esta prueba de habilidad, puedes evitar automáticamente a otro Enemigo enfrentado a ti. Cuando termine esta prueba de habilidad, puedes devolver a tu mano la Red de Silas para devolver a tu mano todas las Habilidades asignadas en lugar de descartarlas.",
@@ -6648,6 +6682,8 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "08007": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Rebelde ([rogue]) de nivel 0, cartas Buscador ([seeker]) de nivel 1-5, cartas neutrales de nivel 0-5, hasta otras 5 cartas Buscador ([seeker]) de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Látigo fiable, Secretos enterrados, 1 Debilidad básica aleatoria.",
+      "08001": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0, cartas Superviviente ([survivor]) de nivel 1-5, cartas neutrales de nivel 0-5, hasta otras 5 cartas Superviviente ([survivor]) de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Llave inglesa de mecánico, Matones mafiosos, 1 Debilidad básica aleatoria.",
       "07005": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Superviviente ([survivor]) de nivel 0-5, cartas neutrales de nivel 0-5, Habilidades [[Innato]] de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Arpón marino, Red de Silas, Canto de sirena, 1 Debilidad básica aleatoria.",
       "60301": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Rebelde ([rogue]) de nivel 0-5, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Lo que tú haces, pero mejor; Arrogancia; 1 Debilidad básica aleatoria.",
       "07004": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Místico ([mystic]) de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Maestría escénica, Retazos de ocultismo, 1 Debilidad básica aleatoria.",
@@ -6693,6 +6729,13 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "08021": "\"¡Ponte detrás de mí!\"",
+      "08009": "Secretos enterrados",
+      "08008": "Látigo fiable",
+      "08007": "Monterrey Jack",
+      "08003": "Matones mafiosos",
+      "08002": "Llave inglesa de mecánico",
+      "08001": "Daniela Reyes",
       "07005": "Silas Marsh",
       "07014": "Arpón marino",
       "07015": "Red de Silas",

@@ -1191,5 +1191,21 @@
     "typeCode": "investigator",
     "flavor": "\"Leave your fears on the docks, lads.\"",
     "backFlavor": "Silas Marsh has loved the sea ever since he was old enough to toddle through its briny shallows. Becoming a sailor was the easiest decision he ever made, and his sturdy frame and excellent sense for the weather have given him a good reputation aboard any vessel. There is only one thing troubling Silas: over and over again, he dreams of unsettling cities hidden beneath the waves and inhabited by bizarre creatures. These dreams call to him, stirring something deep within him that he thought he had left behind in his hometown of Innsmouth."
+  },
+  "08001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Relax, tough guy. I'll handle this. You stand over there and look pretty.\"",
+    "backFlavor": "Daniela always figured she had a good life. She had a loving, boisterous family. She had a steady job that used her brains and her hands. She had enough money to spend on fast cars, pretty girls, and her motorcycle, Gabriel. Then her brother, Ramon, got caught up in some trouble. Her mother warned her to be careful, that darkness lay ahead. Daniela set a glass of water behind the door for her mother's sake, to catch evil spirits - just as she'd been taught as a child. When Daniela awoke to find it shattered, she was determined to figure out what happened and fix it. Just like she always did."
+  },
+  "08003": {
+    "group": "investigators",
+    "typeCode": "enemy",
+    "flavor": "Debt is a family affair."
+  },
+  "08007": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "backFlavor": "Young Jack traveled the world with his father's archaeological expeditions. Now a globe-trotting treasure hunter and an accomplished archaeologist in his own right, \"Monterey\" follows in his father's footsteps, securing the treasures of ancient civilizations and lost cultures. But after discovering a silver pendant with a familiar symbol on it, Monterey must explore his own past. Years ago, his father was found murdered with the very same sigil carved in his forehead. The image has haunted Monterey's dreams ever since. But he's getting close. He won't stop until he solves the mystery of his father's murder... no matter what it takes."
   }
 }

@@ -1,0 +1,364 @@
+[
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "investigator",
+    "type_name": "Investigator",
+    "faction_code": "guardian",
+    "faction_name": "Guardian",
+    "position": 1,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08001",
+    "name": "Daniela Reyes",
+    "real_name": "Daniela Reyes",
+    "subname": "The Mechanic",
+    "text": "[reaction] After an enemy attacks you (except an attack of opportunity you provoked), even if that attack was canceled: Either deal 1 damage to that enemy, or automatically evade it.\n[elder_sign] effect: +1. If you were attacked by an enemy this round, you automatically succeed, instead.",
+    "real_text": "[reaction] After an enemy attacks you (except an attack of opportunity you provoked), even if that attack was canceled: Either deal 1 damage to that enemy, or automatically evade it.\n[elder_sign] effect: +1. If you were attacked by an enemy this round, you automatically succeed, instead.",
+    "quantity": 1,
+    "skill_willpower": 4,
+    "skill_intellect": 1,
+    "skill_combat": 5,
+    "skill_agility": 2,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "traits": "Entrepreneur.",
+    "real_traits": "Entrepreneur.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "08002": {
+          "08002": "08002"
+        },
+        "08003": {
+          "08003": "08003"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["guardian"],
+        "level": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "faction": ["neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["survivor"],
+        "level": {
+          "min": 1,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["survivor"],
+        "level": {
+          "min": 0,
+          "max": 0
+        },
+        "limit": 5,
+        "error": "You cannot have more than 5 level 0 Survivor cards"
+      }
+    ],
+    "flavor": "\"Relax, tough guy. I'll handle this. You stand over there and look pretty.\"",
+    "illustrator": "Cristi Balanescu",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0, Survivor cards ([survivor]) level 1-5, Neutral cards level 0-5, up to 5 other Survivor cards ([survivor]) level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Mechanic's Wrench, Mob Goons, 1 random basic weakness.",
+    "back_flavor": "Daniela always figured she had a good life. She had a loving, boisterous family. She had a steady job that used her brains and her hands. She had enough money to spend on fast cars, pretty girls, and her motorcycle, Gabriel. Then her brother, Ramon, got caught up in some trouble. Her mother warned her to be careful, that darkness lay ahead. Daniela set a glass of water behind the door for her mother's sake, to catch evil spirits - just as she'd been taught as a child. When Daniela awoke to find it shattered, she was determined to figure out what happened and fix it. Just like she always did.",
+    "octgn_id": "e4be1fdc-e5e5-4cc5-863d-8ca5cb295d93:0ba17e64-1420-4830-87cc-e693afb108d8",
+    "url": "https://arkhamdb.com/card/08001",
+    "imagesrc": "/bundles/cards/08001.png",
+    "backimagesrc": "/bundles/cards/08001b.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "asset",
+    "type_name": "Asset",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 2,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08002",
+    "name": "Mechanic's Wrench",
+    "real_name": "Mechanic's Wrench",
+    "cost": 2,
+    "text": "Daniela Reyes deck only.\n[fast] Exhaust Mechanic's Wrench: Choose an enemy at your location. That enemy attacks you.\n[action]: <b>Fight.</b> Use this ability only against an enemy that has attacked you since the end of your last turn. You get +2 [combat] for this attack and deal +1 damage for this attack.",
+    "real_text": "Daniela Reyes deck only.\n[fast] Exhaust Mechanic's Wrench: Choose an enemy at your location. That enemy attacks you.\n[action]: <b>Fight.</b> Use this ability only against an enemy that has attacked you since the end of your last turn. You get +2 [combat] for this attack and deal +1 damage for this attack.",
+    "quantity": 1,
+    "skill_combat": 2,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "slot": "Hand",
+    "real_slot": "Hand",
+    "traits": "Item. Tool. Melee.",
+    "real_traits": "Item. Tool. Melee.",
+    "restrictions": {
+      "investigator": {
+        "08001": "08001"
+      }
+    },
+    "illustrator": "Duallbrush",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "47155565-b32a-4e4c-adb0-9b4650b08353",
+    "url": "https://arkhamdb.com/card/08002",
+    "imagesrc": "/bundles/cards/08002.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "enemy",
+    "type_name": "Enemy",
+    "subtype_code": "weakness",
+    "subtype_name": "Weakness",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 3,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08003",
+    "name": "Mob Goons",
+    "real_name": "Mob Goons",
+    "text": "Hunter.\n<b>Prey</b> - Daniela Reyes only.\nThis enemy's attacks cannot be canceled.\nDamage/horror dealt by this enemy's attacks is treated as direct.",
+    "real_text": "Hunter.\n<b>Prey</b> - Daniela Reyes only.\nThis enemy's attacks cannot be canceled.\nDamage/horror dealt by this enemy's attacks is treated as direct.",
+    "quantity": 1,
+    "health": 3,
+    "health_per_investigator": false,
+    "enemy_damage": 1,
+    "enemy_horror": 1,
+    "enemy_fight": 3,
+    "enemy_evade": 3,
+    "deck_limit": 1,
+    "traits": "Humanoid. Criminal.",
+    "real_traits": "Humanoid. Criminal.",
+    "restrictions": {
+      "investigator": {
+        "08001": "08001"
+      }
+    },
+    "flavor": "Debt is a family affair.",
+    "illustrator": "Tiziano Baracchi",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "08d21898-26dc-4261-89e4-949a9ee0b33f",
+    "url": "https://arkhamdb.com/card/08003",
+    "imagesrc": "/bundles/cards/08003.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "investigator",
+    "type_name": "Investigator",
+    "faction_code": "rogue",
+    "faction_name": "Rogue",
+    "position": 7,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08007",
+    "name": "Monterey Jack",
+    "real_name": "Monterey Jack",
+    "subname": "The Archaeologist",
+    "text": "[reaction] At the end of your turn, if you started this round 1 location away from your current location: Either gain 1 resource or draw 1 card (if you started this round 2 or more locations away, do both instead).\n[elder_sign] effect: +1. If you started this round 1 or more locations away from your current location, gain 1 resource or draw 1 card.",
+    "real_text": "[reaction] At the end of your turn, if you started this round 1 location away from your current location: Either gain 1 resource or draw 1 card (if you started this round 2 or more locations away, do both instead).\n[elder_sign] effect: +1. If you started this round 1 or more locations away from your current location, gain 1 resource or draw 1 card.",
+    "quantity": 1,
+    "skill_willpower": 1,
+    "skill_intellect": 4,
+    "skill_combat": 2,
+    "skill_agility": 5,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "traits": "Wayfarer.",
+    "real_traits": "Wayfarer.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "08008": {
+          "90063": "90063",
+          "08008": "08008"
+        },
+        "08009": {
+          "90064": "90064",
+          "08009": "08009"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["rogue"],
+        "level": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "faction": ["neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["seeker"],
+        "level": {
+          "min": 1,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["seeker"],
+        "level": {
+          "min": 0,
+          "max": 0
+        },
+        "limit": 5,
+        "error": "You cannot have more than 5 level 0 Seeker cards"
+      }
+    ],
+    "illustrator": "Tony Foti",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0, Seeker cards ([seeker]) level 1-5, Neutral cards level 0-5, up to 5 other Seeker cards ([seeker]) level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Trusty Bullwhip, Buried Secrets, 1 random basic weakness.",
+    "back_flavor": "Young Jack traveled the world with his father's archaeological expeditions. Now a globe-trotting treasure hunter and an accomplished archaeologist in his own right, \"Monterey\" follows in his father's footsteps, securing the treasures of ancient civilizations and lost cultures. But after discovering a silver pendant with a familiar symbol on it, Monterey must explore his own past. Years ago, his father was found murdered with the very same sigil carved in his forehead. The image has haunted Monterey's dreams ever since. But he's getting close. He won't stop until he solves the mystery of his father's murder... no matter what it takes.",
+    "octgn_id": "fc3f4dde-5bfa-4712-98dd-eb3e5517550e:09b2d0ba-89ae-4920-bf05-749e837e0736",
+    "url": "https://arkhamdb.com/card/08007",
+    "imagesrc": "/bundles/cards/08007.png",
+    "backimagesrc": "/bundles/cards/08007b.png",
+    "alternated_by": ["90062"]
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "asset",
+    "type_name": "Asset",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 8,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08008",
+    "name": "Trusty Bullwhip",
+    "real_name": "Trusty Bullwhip",
+    "cost": 2,
+    "text": "Fast. Monterey Jack deck only.\n[action]: <b>Fight.</b> This attack uses [agility] instead of [combat]. If this attack succeeds, you may exhaust Trusty Bullwhip to either automatically evade the attacked enemy or deal +1 damage for this attack.",
+    "real_text": "Fast. Monterey Jack deck only.\n[action]: <b>Fight.</b> This attack uses [agility] instead of [combat]. If this attack succeeds, you may exhaust Trusty Bullwhip to either automatically evade the attacked enemy or deal +1 damage for this attack.",
+    "quantity": 1,
+    "skill_agility": 2,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "slot": "Hand",
+    "real_slot": "Hand",
+    "traits": "Item. Weapon. Melee.",
+    "real_traits": "Item. Weapon. Melee.",
+    "restrictions": {
+      "investigator": {
+        "08007": "08007"
+      }
+    },
+    "illustrator": "Duallbrush",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "e059d5bf-068c-4cef-aa26-ddac8f1a4cfe",
+    "url": "https://arkhamdb.com/card/08008",
+    "imagesrc": "/bundles/cards/08008.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "treachery",
+    "type_name": "Treachery",
+    "subtype_code": "weakness",
+    "subtype_name": "Weakness",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 9,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08009",
+    "name": "Buried Secrets",
+    "real_name": "Buried Secrets",
+    "text": "<b>Revelation</b> - Put Buried Secrets into play in your threat area.\nIf your location can be investigated, you cannot move except by scenario card effects.\n[action]: <b>Investigate.</b> If you succeed, instead of discovering clues, discard Buried Secrets. If you fail, you may take 2 horror to shuffle it into your deck.",
+    "real_text": "<b>Revelation</b> - Put Buried Secrets into play in your threat area.\nIf your location can be investigated, you cannot move except by scenario card effects.\n[action]: <b>Investigate.</b> If you succeed, instead of discovering clues, discard Buried Secrets. If you fail, you may take 2 horror to shuffle it into your deck.",
+    "quantity": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "traits": "Mystery.",
+    "real_traits": "Mystery.",
+    "restrictions": {
+      "investigator": {
+        "08007": "08007"
+      }
+    },
+    "illustrator": "Raymond Bonilla",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "ad866f13-ebc3-40b5-b414-f22a0ba3b2ba",
+    "url": "https://arkhamdb.com/card/08009",
+    "imagesrc": "/bundles/cards/08009.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Edge of the Earth Investigator Expansion",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "guardian",
+    "faction_name": "Guardian",
+    "position": 21,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08021",
+    "name": "\"Get behind me!\"",
+    "real_name": "\"Get behind me!\"",
+    "cost": 0,
+    "text": "Fast. Play during any [fast] window.\nUntil the end of the phase, whenever an enemy would attack another investigator at your location, it attacks you instead, then engages you. Cancel 1 horror dealt by each attack made in this way.",
+    "real_text": "Fast. Play during any [fast] window.\nUntil the end of the phase, whenever an enemy would attack another investigator at your location, it attacks you instead, then engages you. Cancel 1 horror dealt by each attack made in this way.",
+    "quantity": 2,
+    "skill_willpower": 1,
+    "skill_combat": 1,
+    "xp": 0,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "traits": "Spirit. Tactic.",
+    "real_traits": "Spirit. Tactic.",
+    "illustrator": "Isuardi Therianto",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "7b4163ff-2905-405d-a976-fbd580611f7e",
+    "url": "https://arkhamdb.com/card/08021",
+    "imagesrc": "/bundles/cards/08021.png"
+  }
+]

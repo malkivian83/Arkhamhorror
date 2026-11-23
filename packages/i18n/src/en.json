@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "danielaMonterey": {
+        "title": "Daniela Reyes and Monterey Jack",
+        "cards": "Original Edge of the Earth investigators, their signature cards and published starter decks in English and Spanish.",
+        "rules": "React to canceled and redirected attacks, travel between locations, and investigate Buried Secrets. “Get behind me!” is now playable."
+      },
       "silasWinifred": {
         "title": "Silas Marsh and Winifred Habbamock",
         "cards": "Two investigators with their published decks, signatures, weaknesses and official English/Spanish scans.",
@@ -380,6 +385,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "attackProtector": "Choose who receives the attack",
     "commitFinished": "Player window after committing cards",
     "orderTestResults": "Choose the order of skill test results",
     "flexibleSlot": "Choose the flexible slot type. You may reassess it when an asset enters play.",
@@ -647,6 +653,14 @@
     "playCopy": "Play {physical} as {card}"
   },
   "choice": {
+    "attackProtector": "{name} receives the attack",
+    "buriedHorror": "Take 2 horror to shuffle the weakness into its owner’s deck",
+    "whipEvade": "Exhaust the whip to evade the enemy",
+    "whipDamage": "Exhaust the whip for +1 damage",
+    "montereyDraw": "Draw 1 card",
+    "montereyResource": "Gain 1 resource",
+    "danielaEvade": "Automatically evade {enemy}",
+    "danielaDamage": "Deal 1 damage to {enemy}",
     "winifredReturn": "Return {card} after this test",
     "silasRetrieve": "Return {card} and recover committed skills",
     "silasEvade": "Automatically evade {enemy}",
@@ -1443,6 +1457,10 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "buriedInvestigate": "Investigate to discard Buried Secrets",
+    "montereyTravel": "Monterey: claim the travel reward",
+    "wrenchProvoke": "Provoke an attack from {enemy}",
+    "danielaRespond": "React after the attack",
     "winifredDraw": "Winifred: draw 1 card",
     "silasDiscardCall": "Discard Siren Call",
     "silasReturn": "Return {card} with Silas",
@@ -3867,6 +3885,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "08007": "The Archaeologist",
+      "08001": "The Mechanic",
       "07005": "The Sailor",
       "60301": "The Aviatrix",
       "07004": "The Magician",
@@ -4085,6 +4105,13 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "08021": "Spirit. Tactic.",
+      "08009": "Mystery.",
+      "08008": "Item. Weapon. Melee.",
+      "08007": "Wayfarer.",
+      "08003": "Humanoid. Criminal.",
+      "08002": "Item. Tool. Melee.",
+      "08001": "Entrepreneur.",
       "07005": "Drifter.",
       "07014": "Item. Weapon. Melee.",
       "07015": "Item. Tool.",
@@ -5163,6 +5190,13 @@
       "01013": "Spell."
     },
     "summary": {
+      "08021": "Fast. Play during any [fast] window.\nUntil the end of the phase, whenever an enemy would attack another investigator at your location, it attacks you instead, then engages you. Cancel 1 horror dealt by each attack made in this way.",
+      "08009": "<b>Revelation</b> - Put Buried Secrets into play in your threat area.\nIf your location can be investigated, you cannot move except by scenario card effects.\n[action]: <b>Investigate.</b> If you succeed, instead of discovering clues, discard Buried Secrets. If you fail, you may take 2 horror to shuffle it into your deck.",
+      "08008": "Fast. Monterey Jack deck only.\n[action]: <b>Fight.</b> This attack uses [agility] instead of [combat]. If this attack succeeds, you may exhaust Trusty Bullwhip to either automatically evade the attacked enemy or deal +1 damage for this attack.",
+      "08007": "[reaction] At the end of your turn, if you started this round 1 location away from your current location: Either gain 1 resource or draw 1 card (if you started this round 2 or more locations away, do both instead).\n[elder_sign] effect: +1. If you started this round 1 or more locations away from your current location, gain 1 resource or draw 1 card.",
+      "08003": "Hunter.\n<b>Prey</b> - Daniela Reyes only.\nThis enemy's attacks cannot be canceled.\nDamage/horror dealt by this enemy's attacks is treated as direct.",
+      "08002": "Daniela Reyes deck only.\n[fast] Exhaust Mechanic's Wrench: Choose an enemy at your location. That enemy attacks you.\n[action]: <b>Fight.</b> Use this ability only against an enemy that has attacked you since the end of your last turn. You get +2 [combat] for this attack and deal +1 damage for this attack.",
+      "08001": "[reaction] After an enemy attacks you (except an attack of opportunity you provoked), even if that attack was canceled: Either deal 1 damage to that enemy, or automatically evade it.\n[elder_sign] effect: +1. If you were attacked by an enemy this round, you automatically succeed, instead.",
       "07005": "[reaction] After you reveal a chaos token during a skill test you are performing: Return a skill you committed to this test to your hand. (Limit once per round.)\n[elder_sign] effect: +0. You may commit a skill from your discard pile to this test. After this test ends, return that skill to your hand instead of discarding it.",
       "07014": "Silas Marsh deck only.\n[action]: <b>Fight.</b> You get +1 [combat] for this attack. If you committed 1 or more skills to this skill test, this attack deals +1 damage. When this skill test ends, you may return Sea Change Harpoon to your hand to return all of your committed skill cards to your hand instead of discarding them.",
       "07015": "Silas Marsh deck only.\n[action]: <b>Evade.</b> You get +1 [agility] for this evasion attempt. If you succeed and you committed 1 or more skills to this skill test, you may automatically evade another enemy engaged with you. When this skill test ends, you may return Silas's Net to your hand to return all of your committed skill cards to your hand instead of discarding them.",
@@ -6648,6 +6682,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "08007": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0, Seeker cards ([seeker]) level 1-5, Neutral cards level 0-5, up to 5 other Seeker cards ([seeker]) level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Trusty Bullwhip, Buried Secrets, 1 random basic weakness.",
+      "08001": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Guardian cards ([guardian]) level 0, Survivor cards ([survivor]) level 1-5, Neutral cards level 0-5, up to 5 other Survivor cards ([survivor]) level 0.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Mechanic's Wrench, Mob Goons, 1 random basic weakness.",
       "07005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, [[Innate]] skills level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Sea Change Harpoon, Silas's Net, Siren Call, 1 random basic weakness.",
       "60301": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Anything You Can Do, Better; Arrogance; 1 random basic weakness.",
       "07004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Rogue cards ([rogue]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Showmanship, Occult Scraps, 1 random basic weakness.",
@@ -6693,6 +6729,13 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "08021": "\"Get behind me!\"",
+      "08009": "Buried Secrets",
+      "08008": "Trusty Bullwhip",
+      "08007": "Monterey Jack",
+      "08003": "Mob Goons",
+      "08002": "Mechanic's Wrench",
+      "08001": "Daniela Reyes",
       "07005": "Silas Marsh",
       "07014": "Sea Change Harpoon",
       "07015": "Silas's Net",

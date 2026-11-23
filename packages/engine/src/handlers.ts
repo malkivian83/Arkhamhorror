@@ -1705,6 +1705,9 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'Step', step: 'turnEnds', investigator: message.investigator },
         ...pending.flatMap((e) => e.then),
         { type: 'Forced', trigger: { type: 'turnEnds', investigator: message.investigator } },
+        ...(getInvestigator(state, message.investigator).enemiesAttackedSinceTurnEnd
+          ? [{ type: 'ClearAttackHistory', investigator: message.investigator } as Message]
+          : []),
       )
     }
 
@@ -3166,7 +3169,11 @@ export function handle(state: GameState, message: Message): GameState {
       )
         return state
       // Whispers in Your Head (Dread): no puede moverse más de una vez por turno.
-      if (!message.unpreventable && mover.location !== null && moveBlocked(state, mover.id))
+      if (
+        !message.unpreventable &&
+        mover.location !== null &&
+        moveBlocked(state, mover.id, message.encounterEffect)
+      )
         return state
       // The destination left play while the move was queued: the move fizzles instead of
       // stopping the game with an error (doc 100, E12).
@@ -3642,6 +3649,7 @@ export function handle(state: GameState, message: Message): GameState {
                 type: 'Forced',
                 trigger: {
                   type: 'afterDamageAssigned',
+                  ...(message.source ? { source: message.source } : {}),
                   investigator: message.investigator,
                   dealt: [
                     ...(message.dealt ?? []),
@@ -3816,6 +3824,7 @@ export function handle(state: GameState, message: Message): GameState {
                 type: 'Forced',
                 trigger: {
                   type: 'afterDamageAssigned',
+                  ...(message.source ? { source: message.source } : {}),
                   investigator,
                   dealt,
                   ...(message.assignmentAssets
@@ -8135,11 +8144,14 @@ export function handle(state: GameState, message: Message): GameState {
       if (at < 0) return state
       const attack = state.queue[at] as Extract<Message, { type: 'ResolveEnemyAttack' }>
       const enemy = findEnemy(state, message.enemy)
-      const modifier = enemyBehavior(enemy?.code ?? '')?.attackModifier?.(
+      const baseModifier = enemyBehavior(enemy?.code ?? '')?.attackModifier?.(
         state,
         enemy!,
         message.investigator,
       )
+      const modifier = attack.interceptedBy
+        ? { damage: baseModifier?.damage ?? 0, horror: (baseModifier?.horror ?? 0) - 1 }
+        : baseModifier
       const { modifier: _oldModifier, ...redirected } = attack
       const recorded = state.enemyAttacks?.findLastIndex(
         (a) => a.enemy === message.enemy && a.round === state.round,
@@ -8667,6 +8679,40 @@ export function handle(state: GameState, message: Message): GameState {
       ) {
         return state
       }
+      if (!message.interceptedBy && !immuneToPlayerCards(enemy)) {
+        const protectors = activeInvestigators(state).filter(
+          (i) =>
+            i.id !== investigator.id &&
+            i.location !== null &&
+            i.location === investigator.location &&
+            i.attackInterception?.phase === state.phase &&
+            i.attackInterception.round === state.round,
+        )
+        const intercept = (id: string): Message => ({
+          ...message,
+          investigator: id,
+          interceptedBy: id,
+          ...(message.opportunity
+            ? { opportunityProvoker: message.opportunityProvoker ?? message.investigator }
+            : {}),
+        })
+        if (protectors.length === 1) return push(state, intercept(protectors[0]!.id))
+        if (protectors.length > 1)
+          return push(state, {
+            type: 'Ask',
+            investigator: investigator.id,
+            question: {
+              kind: 'chooseOne',
+              alwaysAsk: true,
+              prompt: 'prompt.attackProtector',
+              choices: protectors.map((i) => ({
+                label: 'choice.attackProtector',
+                params: { name: i.name },
+                then: [intercept(i.id)],
+              })),
+            },
+          })
+      }
       const attacked: GameState = {
         ...state,
         enemyAttacks: [
@@ -8684,7 +8730,14 @@ export function handle(state: GameState, message: Message): GameState {
         ? updateEnemy(attacked, enemy.id, (e) => ({ ...e, exhausted: true }))
         : attacked
       // Solo los ataques de la fase de enemigos agotan al atacante.
-      const modifier = enemyBehavior(enemy.code)?.attackModifier?.(state, enemy, investigator.id)
+      const baseModifier = enemyBehavior(enemy.code)?.attackModifier?.(
+        state,
+        enemy,
+        investigator.id,
+      )
+      const modifier = message.interceptedBy
+        ? { damage: baseModifier?.damage ?? 0, horror: (baseModifier?.horror ?? 0) - 1 }
+        : baseModifier
       return push(
         next,
         // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
@@ -8707,6 +8760,10 @@ export function handle(state: GameState, message: Message): GameState {
         },
         {
           type: 'ResolveEnemyAttack',
+          ...(message.opportunity
+            ? { opportunityProvoker: message.opportunityProvoker ?? message.investigator }
+            : {}),
+          ...(message.interceptedBy ? { interceptedBy: message.interceptedBy } : {}),
           ...(modifier ? { modifier } : {}),
           enemy: enemy.id,
           investigator: investigator.id,
@@ -10068,6 +10125,16 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.untilRoundEnd ? { untilRoundEnd: true } : {}),
         },
       }))
+    case 'InterceptAttacksThisPhase':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        attackInterception: { phase: state.phase, round: state.round, code: message.code },
+      }))
+    case 'ClearAttackHistory':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        enemiesAttackedSinceTurnEnd: [],
+      }))
     case 'CancelEnemyAttack': {
       const enemy =
         findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
@@ -10118,8 +10185,42 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ResolveEnemyAttack': {
+      if (state.investigators.some((i) => investigatorBehavior(i.id)?.observesAttackHistory))
+        state = updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          enemiesAttackedSinceTurnEnd: [
+            ...new Set([...(i.enemiesAttackedSinceTurnEnd ?? []), message.enemy]),
+          ],
+        }))
       if (attachedEnemyRestriction(state, message.enemy, 'attachedEnemyCannotAttack')) return state
-      if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
+      if (state.canceledAttack === message.enemy)
+        return push(
+          { ...state, canceledAttack: null },
+          ...(investigatorBehavior(message.investigator)?.observesCanceledAttacks
+            ? [
+                {
+                  type: 'Forced',
+                  trigger: {
+                    type: 'afterCanceledEnemyAttack',
+                    enemy: message.enemy,
+                    investigator: message.investigator,
+                    ...(message.opportunityProvoker
+                      ? { opportunityProvoker: message.opportunityProvoker }
+                      : {}),
+                  },
+                } as Message,
+              ]
+            : []),
+          ...(message.interceptedBy
+            ? [
+                {
+                  type: 'EngageEnemy',
+                  enemy: message.enemy,
+                  investigator: message.interceptedBy,
+                } as Message,
+              ]
+            : []),
+        )
       const enemy =
         findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
       // Retribution: another investigator takes all damage and horror from this attack.
@@ -10164,6 +10265,7 @@ export function handle(state: GameState, message: Message): GameState {
           ...(enemyBehavior(enemy.code)?.attackKills ? { killInstead: true } : {}),
           // The attacking enemy travels with the damage (Guard Dog, Dimensional Shambler).
           enemy: enemy.id,
+          ...(enemyBehavior(enemy.code)?.attacksDealDirect ? { direct: true } : {}),
           ...(enemyBehavior(enemy.code)?.assignFirst
             ? { assignFirst: enemyBehavior(enemy.code)!.assignFirst }
             : {}),
@@ -10173,11 +10275,23 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'Forced',
           trigger: {
             type: 'afterEnemyAttack',
+            ...(message.opportunityProvoker
+              ? { opportunityProvoker: message.opportunityProvoker }
+              : {}),
             enemy: enemy.id,
             investigator: message.investigator,
             location: enemy.location,
           },
         },
+        ...(message.interceptedBy
+          ? [
+              {
+                type: 'EngageEnemy',
+                enemy: message.enemy,
+                investigator: message.interceptedBy,
+              } as Message,
+            ]
+          : []),
         ...(message.exhaustAfter
           ? [
               {
@@ -13127,7 +13241,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         investigator.location === null ||
         leavingBlocked(state, investigator.location) ||
-        moveBlocked(state, investigator.id) ||
+        moveBlocked(state, investigator.id, message.encounterEffect) ||
         !!scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, investigator.id)
       )
         return state
@@ -13151,7 +13265,12 @@ export function handle(state: GameState, message: Message): GameState {
               params: { location: getLocation(state, to).name },
               target: { type: 'location', id: to },
               then: [
-                { type: 'MoveTo', investigator: investigator.id, location: to },
+                {
+                  type: 'MoveTo',
+                  investigator: investigator.id,
+                  location: to,
+                  ...(message.encounterEffect ? { encounterEffect: true } : {}),
+                },
                 ...(message.then ?? []),
               ],
             })),
@@ -14535,7 +14654,7 @@ function afterHandDiscard(state: GameState, investigator: string, cards: string[
 }
 
 /** Continuous attack and movement prohibitions on an attached enemy. */
-function attachedEnemyRestriction(
+export function attachedEnemyRestriction(
   state: GameState,
   enemy: string,
   key: 'attachedEnemyCannotAttack' | 'attachedEnemyCannotMove',
@@ -15166,6 +15285,9 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
       ),
     )
   return [
+    ...activeInvestigators(state).flatMap(
+      (i) => investigatorBehavior(i.id)?.forced?.(state, trigger, i) ?? [],
+    ),
     ...fromScenario,
     ...fromHands,
     ...fromStories,

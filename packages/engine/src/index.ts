@@ -207,4 +207,5 @@ export {
   enemyBarredFrom,
   enemyModifierActive,
 } from './state'
+export { attachedEnemyRestriction } from './handlers'
 export type * from './types'

@@ -270,6 +270,12 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  /** Only player movement is forbidden; scenario card effects can still move the investigator. */
+  blocksPlayerMovement?: (
+    state: GameState,
+    self: Treachery,
+    investigator: InvestigatorId,
+  ) => boolean
   /** In a threat area: its investigator pays this many resources per matching committed icon. */
   commitCostPerIcon?: number
   /** Printed [reaction] abilities of a treachery in play (Unbroken Web). */
@@ -377,6 +383,7 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  attacksDealDirect?: boolean
   /** An engaged investigator can only discover clues through investigation results. */
   cluesOnlyByInvestigating?: boolean
   /** RR Cannot: cards cannot leave the discard of an investigator engaged with this enemy. */
@@ -525,6 +532,12 @@ export function onScenarioCard<T>(value: T, tag = 'scenario'): T {
     : Object.fromEntries(Object.entries(value).map(([k, v]) => [k, walk(v)]))
   const result = (changed ? out : value) as Record<string, unknown>
   const tags = result.tags as string[] | undefined
+  if (
+    tag === 'scenario' &&
+    !Array.isArray(value) &&
+    ['MoveTo', 'ChooseMove'].includes(String(result.type))
+  )
+    return { ...result, encounterEffect: true } as T
   return (
     !Array.isArray(value) && result.type === 'BeginSkillTest' && !tags?.includes(tag)
       ? { ...result, tags: [...(tags ?? []), tag] }
@@ -1171,6 +1184,9 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  forced?: (state: GameState, trigger: Trigger, self: Investigator) => Message[]
+  observesCanceledAttacks?: boolean
+  observesAttackHistory?: boolean
   /** Player-window abilities after ST.2 has finished, before any chaos token is revealed. */
   afterCommitOptions?: (state: GameState, self: Investigator) => ReactionOption[]
   /** ST.8, before physical committed copies leave the test. */
@@ -1365,6 +1381,7 @@ export function usesLenders(state: GameState, asset: Asset): Asset[] {
 /** RR Deckbuilding: the class, trait and level option allows this card. */
 export function deckOptionAllows(option: DeckOption, card: PlayerCardDef): boolean {
   return (
+    (card.xp ?? 0) >= (option.minLevel ?? 0) &&
     (!option.type || card.type === option.type) &&
     (card.xp ?? 0) <= option.maxLevel &&
     (option.classes.length === 0 ||

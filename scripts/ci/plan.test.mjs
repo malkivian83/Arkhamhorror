@@ -32,6 +32,7 @@ test('reviewed modules keep dynamic contracts and saves/online consumers without
     'edge-of-the-earth',
     'finn-calvin',
     'trish-dexter',
+    'daniela-monterey',
     'silas-winifred',
     'william-yorick',
     'rita-young',

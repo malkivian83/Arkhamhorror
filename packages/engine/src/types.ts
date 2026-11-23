@@ -55,6 +55,9 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Opt-in history, including canceled attacks, cleared after this investigator's turn. */
+  enemiesAttackedSinceTurnEnd?: EnemyId[]
+  attackInterception?: { phase: Phase; round: number; code: CardCode }
   abilityState?: Record<string, string | number | boolean>
   /** Cards beneath this investigator, out of play and not part of the hand. */
   beneath?: CardCode[]
@@ -534,6 +537,7 @@ export type SkillIcon = SkillType | 'wild'
 /** Datos de una carta de jugador (sin texto). */
 /** Opción de construcción de mazo del reverso de un investigador. */
 export interface DeckOption {
+  minLevel?: number
   /** Optional printed card type restriction, e.g. Innate skills. */
   type?: PlayerCardDef['type']
   /** Cards with this printed use type (Akachi: charges). */
@@ -1967,6 +1971,8 @@ type MessageBody =
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
+  | { type: 'InterceptAttacksThisPhase'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'ClearAttackHistory'; investigator: InvestigatorId }
   | {
       type: 'ProtectFromAttacks'
       investigator: InvestigatorId
@@ -1978,6 +1984,8 @@ type MessageBody =
   | { type: 'EndAttackWithoutLocation'; enemy: EnemyId }
   | {
       type: 'ResolveEnemyAttack'
+      opportunityProvoker?: InvestigatorId
+      interceptedBy?: InvestigatorId
       modifier?: { damage: number; horror: number }
       enemy: EnemyId
       investigator: InvestigatorId
@@ -2024,6 +2032,8 @@ type MessageBody =
   | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
   | {
       type: 'EnemyAttack'
+      opportunityProvoker?: InvestigatorId
+      interceptedBy?: InvestigatorId
       opportunity?: boolean
       enemy: EnemyId
       investigator: InvestigatorId
@@ -2618,6 +2628,7 @@ type MessageBody =
   /** `then`: resolved after moving, not when skipping (The Red Clock: move up to 3 times). */
   | {
       type: 'ChooseMove'
+      encounterEffect?: boolean
       investigator: InvestigatorId
       /** Omit the skip option when the card requires movement. */
       mandatory?: boolean
@@ -2860,7 +2871,8 @@ export type Trigger =
   /** The current agenda would advance by reaching its doom threshold. */
   | { type: 'agendaWouldAdvance' }
   | {
-      type: 'afterEnemyAttack'
+      type: 'afterEnemyAttack' | 'afterCanceledEnemyAttack'
+      opportunityProvoker?: InvestigatorId
       enemy: EnemyId
       investigator: InvestigatorId
       location?: LocationId
@@ -2957,6 +2969,7 @@ export type Trigger =
   /** Al terminar de asignar daño y horror: lo que ha recibido cada apoyo (con o sin dueño). */
   | {
       type: 'afterDamageAssigned'
+      source?: string
       investigator: InvestigatorId
       dealt: DamageDealt[]
       assignmentAssets?: Asset[]

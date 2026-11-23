@@ -1065,12 +1065,20 @@ export const fastAbilitiesBlocked = (state: GameState, id: InvestigatorId): bool
   restricted(state, id, (r) => r.fastAbilities)
 
 /** Ya se ha movido en este turno y no puede moverse más de una vez por turno (Dread). */
-export function moveBlocked(state: GameState, id: InvestigatorId): boolean {
+export function moveBlocked(state: GameState, id: InvestigatorId, scenarioEffect = false): boolean {
   const investigator = getInvestigator(state, id)
+  const physical = physicalMovementState(state, id)
   return (
-    !!state.activeTurn &&
-    investigator.lastMoveTurn === turnStartedAt(state) &&
-    restricted(state, id, (r) => r.moveOncePerTurn)
+    (!scenarioEffect &&
+      Object.values(state.treacheries).some(
+        (t) =>
+          t.placement.type === 'threatArea' &&
+          t.placement.investigator === id &&
+          activeTreacheryBehavior(physical, t)?.blocksPlayerMovement?.(physical, t, id),
+      )) ||
+    (!!state.activeTurn &&
+      investigator.lastMoveTurn === turnStartedAt(state) &&
+      restricted(state, id, (r) => r.moveOncePerTurn))
   )
 }
 
