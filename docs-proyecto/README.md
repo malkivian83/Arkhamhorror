@@ -170,3 +170,5 @@ Documentos posteriores, por número:
   las [convenciones vigentes](06-convenciones.md).
   La aplicación sirve sus propias imágenes y usa su propia API, cuentas y base de datos.
 - Idiomas soportados: **solo inglés y español**.
+
+- [169 · Silas Marsh y Winifred Habbamock](169-investigadores-silas-winifred.md): recuperación de habilidades, compromiso obligatorio, costes por iconos y mazos completos.

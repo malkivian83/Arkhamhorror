@@ -1,0 +1,11 @@
+import '../core-2026/player-cards'
+import './card-07005'
+import './card-07014'
+import './card-07015'
+import './card-07016'
+import './card-60301'
+import './card-60302'
+import './card-60303'
+import './card-60304'
+import approvals from './approvals.json'
+export const SILAS_WINIFRED_RENDERED_CODES = approvals.cards.map((c) => c.code)

@@ -1,3 +1,6 @@
+import silasWinifredCards from '../data/silas-winifred.json'
+import silasOfficial from '../silas-winifred/decklist-51877.json'
+import winifredOfficial from '../silas-winifred/decklist-31399.json'
 import trishDexterCards from '../data/trish-dexter.json'
 import trishOriginal from '../trish-dexter/decklist-51875.json'
 import dexterOriginal from '../trish-dexter/decklist-51876.json'
@@ -97,6 +100,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(silasWinifredCards as PlayerCardDef[]),
   ...(trishDexterCards as PlayerCardDef[]),
   ...(finnCalvinCards as PlayerCardDef[]),
   ...(yorickCards as PlayerCardDef[]),
@@ -147,6 +151,27 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  silas: {
+    investigator: 1,
+    investigatorCode: silasOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(silasOfficial.slots)
+        .filter(([c]) => c !== '01000')
+        .flatMap(([c, n]) => Array.from({ length: n }, () => c)),
+      '12104',
+    ],
+  },
+  winifred: {
+    investigator: 1,
+    investigatorCode: winifredOfficial.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: Object.entries(winifredOfficial.slots).flatMap(([c, n]) =>
+      Array.from({ length: n }, () => c),
+    ),
+  },
   'trish-original': {
     investigator: 1,
     investigatorCode: trishOriginal.investigator_code,

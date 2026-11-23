@@ -87,6 +87,17 @@
     "flavor": "Debes detener el rito a toda costa. Podrías registrar la cisterna en busca de alguna forma de detener a la secta, ¡o bien podrías hacer leña de su ídolo profano!",
     "backFlavor": "Mientras haces leña del árbol ardiente, un aullido sobrenatural llena la cámara. Lo ignoras y prosigues tu ataque, asestando un certero golpe tras otro para destruir el mal primordial. Al final, la antigua efigie de la diosa de los Hermanos yace hecha pedazos."
   },
+  "60301": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Puedo mejorar eso.\"",
+    "backFlavor": "Winifred —Weethao para sus padres, Wini para sus amigos— se contaba entre los alumnos más listos del colegio de su reserva. Sin embargo, su actitud imprudente y su falta de respeto por la autoridad solían meterla en problemas. El rumbo de su vida cambió para siempre cuando encontró un viejo biplano en el garaje de un granjero y decidió «llevárselo para dar una vuelta». El dueño, que había sido piloto en la Gran Guerra, quedó impresionado por su talento natural y se ofreció a enseñarle lo que sabía. Ahora, Wini es conocida como «la mujer sin miedo» y demuestra sus habilidades en espectáculos de acrobacias por todo el país. Pusieron a prueba ese apodo cuando, durante una de las actuaciones, vio a una criatura que apenas pudo describir: una cosa con alas coriáceas y un único ojo mutado y lleno de pus."
+  },
+  "60302": {
+    "group": "investigators",
+    "typeCode": "skill",
+    "flavor": "Te lo dije."
+  },
   "71002": {
     "group": "gala",
     "typeCode": "agenda",
@@ -1304,5 +1315,11 @@
     "typeCode": "investigator",
     "flavor": "¿Queieres ver magia de verdad?",
     "backFlavor": "Dexter Drake volvió de la Gran Guerra y se convirtió en un mago de éxito que cautivaba al público con sus elaboradas ilusiones y sus ingeniosos trucos. Pese a su éxito meteórico, Dexter ansiaba descubrir magia de verdad. Le intrigaban los trozos quemados y rotos de escritos ocultistas que había encontrado durante la guerra: fragmentos del infame Necronomicón. Dexter empleó su riqueza para buscar la verdad sobre este antiguo saber, y lo que encontró lo horrorizó. Sabe que podría ser la única persona del mundo con la capacidad de evitar que el mal consuma el mundo entero."
+  },
+  "07005": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "Dejad vuestros miedos en el puerto, amigos.",
+    "backFlavor": "Silas Marsh se enamoró del mar desde que tuvo edad suficiente para andar chapoteando por las aguas salobres poco profundas. Hacerse marinero fue la decisión más fácil de su vida, y su recia constitución y excelente percepción del tiempo le han dado una buena reputación a bordo de cualquier embarcación. Solo hay una cosa que preocupa a Silas: no deja de soñar una y otra vez con inquietantes ciudades ocultas bajo las olas y habitadas por extrañas criaturas. Estos sueños lo llaman y agitan algo en lo más profundo de su interior que pensaba que habñia dejado atrás en su ciudad natal: Innsmouth."
   }
 }

@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "silasWinifred": {
+        "title": "Silas Marsh and Winifred Habbamock",
+        "cards": "Two investigators with their published decks, signatures, weaknesses and official English/Spanish scans.",
+        "rules": "Skill recovery, Arrogance, Reckless and Siren Call commitment costs implemented."
+      },
       "trishDexter": {
         "title": "Trish Scarborough and Dexter Drake",
         "cards": "The original Innsmouth investigators, their signature cards, weaknesses and archived FFG starter lists.",
@@ -375,6 +380,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "commitFinished": "Player window after committing cards",
     "orderTestResults": "Choose the order of skill test results",
     "flexibleSlot": "Choose the flexible slot type. You may reassess it when an asset enters play.",
     "storedSource": "Choose which copy to play.",
@@ -641,6 +647,10 @@
     "playCopy": "Play {physical} as {card}"
   },
   "choice": {
+    "winifredReturn": "Return {card} after this test",
+    "silasRetrieve": "Return {card} and recover committed skills",
+    "silasEvade": "Automatically evade {enemy}",
+    "silasCommit": "Commit {card} from discard",
     "trishClue": "Discover 1 additional clue",
     "trishEvade": "Automatically evade {enemy}",
     "trishInvestigate": "Investigate as if at {location}",
@@ -1433,6 +1443,9 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "winifredDraw": "Winifred: draw 1 card",
+    "silasDiscardCall": "Discard Siren Call",
+    "silasReturn": "Return {card} with Silas",
     "trishClues": "React to discovering clues",
     "dexterSwap": "Discard {discard} to play {card} at −1 cost",
     "showmanship": "Showmanship: enhance {card} this round",
@@ -2004,6 +2017,7 @@
     "ritaEvade": "React after evading"
   },
   "log": {
+    "recklessRevealed": "Reckless is revealed at the end of the turn.",
     "archiveReveal": "Market deck reveals: {card}",
     "ofudaReplenish": "{card}: first [bless] token revealed at its location this round",
     "attachFailed": "{card} cannot be attached there and stays in the discard pile",
@@ -3853,6 +3867,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "07005": "The Sailor",
+      "60301": "The Aviatrix",
       "07004": "The Magician",
       "07003": "The Spy",
       "04005": "The Haunted",
@@ -4069,6 +4085,14 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "07005": "Drifter.",
+      "07014": "Item. Weapon. Melee.",
+      "07015": "Item. Tool.",
+      "07016": "Curse.",
+      "60304": "Flaw.",
+      "60303": "Flaw.",
+      "60302": "Innate. Developed.",
+      "60301": "Criminal.",
       "07013": "Item.",
       "07012": "Talent.",
       "07004": "Sorcerer. Veteran.",
@@ -5139,6 +5163,14 @@
       "01013": "Spell."
     },
     "summary": {
+      "07005": "[reaction] After you reveal a chaos token during a skill test you are performing: Return a skill you committed to this test to your hand. (Limit once per round.)\n[elder_sign] effect: +0. You may commit a skill from your discard pile to this test. After this test ends, return that skill to your hand instead of discarding it.",
+      "07014": "Silas Marsh deck only.\n[action]: <b>Fight.</b> You get +1 [combat] for this attack. If you committed 1 or more skills to this skill test, this attack deals +1 damage. When this skill test ends, you may return Sea Change Harpoon to your hand to return all of your committed skill cards to your hand instead of discarding them.",
+      "07015": "Silas Marsh deck only.\n[action]: <b>Evade.</b> You get +1 [agility] for this evasion attempt. If you succeed and you committed 1 or more skills to this skill test, you may automatically evade another enemy engaged with you. When this skill test ends, you may return Silas's Net to your hand to return all of your committed skill cards to your hand instead of discarding them.",
+      "07016": "<b>Revelation</b> - Put Siren Call into play in your threat area.\nAs an additional cost to commit 1 or more cards to a skill test, you must pay 1 resource for each matching skill icon those cards have.\n[action][action]: Discard Siren Call.",
+      "60304": "Commit only to a skill test you are performing (of any type) that has no other cards committed to it. Other cards cannot be committed to this skill test.\nIf this test fails, return this skill to your hand.\n<b>Forced</b> - If Reckless is in your hand at the end of your turn: Reveal it and lose 2 resources.",
+      "60303": "You must commit Arrogance to each eligible skill test you perform.\nThis skill's icons subtract from your skill value instead of adding to it.\nIf this test succeeds, return this skill to your hand.",
+      "60302": "Winifred Habbamock deck only.\nCommit only to a skill test you are performing.",
+      "60301": "[fast] If 2 different non-weakness cards you control are committed to this skill test: Draw 1 card. (Limit once per test.)\n[elder_sign] effect: +1. After this test ends, for every 2 points you succeeded by, return a card you committed to this test to your hand.",
       "07013": "Occult Scraps cannot be played using a play action.\nWhile Occult Scraps is in your hand, you get -2 [willpower].\nWhile Occult Scraps is in play, you get -1 [willpower].",
       "07012": "Dexter Drake deck only.\n[reaction] After an asset enters play under your control: Until the end of the round, you get +2 to each of your skills while resolving a triggered ability on that asset.",
       "07004": "[fast] During your turn, discard an asset you control: Play an asset with a different title from your hand, reducing its cost by 1. (Limit once per round.)\n[elder_sign] effect: +2. You may return an asset from your play area to your hand. Then, draw 1 card.",
@@ -6616,6 +6648,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "07005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, [[Innate]] skills level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Sea Change Harpoon, Silas's Net, Siren Call, 1 random basic weakness.",
+      "60301": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Anything You Can Do, Better; Arrogance; 1 random basic weakness.",
       "07004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Rogue cards ([rogue]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Showmanship, Occult Scraps, 1 random basic weakness.",
       "07003": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5, Seeker cards ([seeker]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): In the Shadows, Shadow Agents, 1 random basic weakness.",
       "04005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, [[Spirit]] cards level 0-3, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Until the End of Time, Voice of the Messenger, 1 random basic weakness.",
@@ -6659,6 +6693,14 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "07005": "Silas Marsh",
+      "07014": "Sea Change Harpoon",
+      "07015": "Silas's Net",
+      "07016": "Siren Call",
+      "60304": "Reckless",
+      "60303": "Arrogance",
+      "60302": "Anything You Can Do, Better",
+      "60301": "Winifred Habbamock",
       "07013": "Occult Scraps",
       "07012": "Showmanship",
       "07004": "Dexter Drake",

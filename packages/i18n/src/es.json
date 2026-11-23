@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "silasWinifred": {
+        "title": "Silas Marsh y Winifred Habbamock",
+        "cards": "Dos investigadores con sus mazos publicados, exclusivas, debilidades e imágenes oficiales en español e inglés.",
+        "rules": "Recuperación de habilidades, Arrogancia, Imprudente y costes de Canto de sirena implementados."
+      },
       "trishDexter": {
         "title": "Trish Scarborough y Dexter Drake",
         "cards": "Los investigadores originales de Innsmouth, sus exclusivas, debilidades y listas iniciales FFG archivadas.",
@@ -375,6 +380,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "commitFinished": "Ventana tras comprometer cartas",
     "orderTestResults": "Elige el orden de los resultados de la prueba de habilidad",
     "flexibleSlot": "Elige el tipo de ranura flexible. Puedes cambiarlo cuando un apoyo entre en juego.",
     "storedSource": "Elige la copia que vas a jugar.",
@@ -641,6 +647,10 @@
     "playCopy": "Jugar {physical} como {card}"
   },
   "choice": {
+    "winifredReturn": "Recuperar {card} tras la prueba",
+    "silasRetrieve": "Devolver {card} y recuperar las habilidades comprometidas",
+    "silasEvade": "Evitar automáticamente a {enemy}",
+    "silasCommit": "Comprometer {card} del descarte",
     "trishClue": "Descubre 1 pista adicional",
     "trishEvade": "Evita automáticamente a {enemy}",
     "trishInvestigate": "Investiga como si estuvieras en {location}",
@@ -1433,6 +1443,9 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "winifredDraw": "Winifred: robar 1 carta",
+    "silasDiscardCall": "Descartar Canto de sirena",
+    "silasReturn": "Recuperar {card} con Silas",
     "trishClues": "Reacciona tras descubrir pistas",
     "dexterSwap": "Descarta {discard} para jugar {card} a −1 de coste",
     "showmanship": "Potencia {card} esta ronda",
@@ -2004,6 +2017,7 @@
     "ritaEvade": "Reacciona tras evitar"
   },
   "log": {
+    "recklessRevealed": "Se revela Imprudente al final del turno.",
     "archiveReveal": "El mazo de mercado revela: {card}",
     "ofudaReplenish": "{card}: primera ficha [bless] revelada en su Lugar esta ronda",
     "attachFailed": "No se puede vincular {card} allí y permanece en la pila de descartes",
@@ -3853,6 +3867,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "07005": "El marinero",
+      "60301": "La aviadora",
       "07004": "El mago",
       "07003": "La espía",
       "04005": "El torturado",
@@ -4069,6 +4085,14 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "07005": "Vagabundo.",
+      "07014": "Objeto. Arma. Cuerpo a cuerpo.",
+      "07015": "Objeto. Herramienta.",
+      "07016": "Maldición.",
+      "60304": "Defecto.",
+      "60303": "Defecto.",
+      "60302": "Innato. Desarrollado.",
+      "60301": "Criminal",
       "07013": "Objeto.",
       "07012": "Talento.",
       "07004": "Hechicero. Veterano.",
@@ -5139,6 +5163,14 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "07005": "[reaction] Después de que reveles una ficha de Caos durante una prueba de habilidad que estés realizando: Devuelve a tu mano una Habilidad que hayas asignado a esta prueba. Límite de 1 vez por ronda.\nEfecto [elder_sign]: +0. Puedes asignar a esta prueba una Habilidad de tu pila de descartes. Después de que termine esta prueba, devuelve esa Habilidad a tu mano en lugar de descartarla.",
+      "07014": "Solo para el mazo de Silas Marsh.\n[action]: <b>Combatir.</b> Recibes +1 [combat] para este ataque. Si asignaste 1 o más Habilidades a esta prueba de habilidad, este ataque inflige +1 de daño. Cuando termine esta prueba de habilidad, puedes devolver a tu mano el Arpón marino para devolver a tu mano todas tus Habilidades asignadas en lugar de descartarlas.",
+      "07015": "Solo para el mazo de Silas Marsh.\n[action]: <b>Evitar.</b> Recibes +1 [agility] para este intento de evitar. Si tienes éxito y asignaste 1 o más Habilidades a esta prueba de habilidad, puedes evitar automáticamente a otro Enemigo enfrentado a ti. Cuando termine esta prueba de habilidad, puedes devolver a tu mano la Red de Silas para devolver a tu mano todas las Habilidades asignadas en lugar de descartarlas.",
+      "07016": "<b>Revelación</b> - Pon el Canto de Sirena en juego en tu zona de amenaza.\nComo coste adicional para asignar 1 o más cartas a una prueba de habilidad, debes pagar 1 recurso por cada icono de habilidad que coincida con el tipo de habilidad de la prueba que tengas esas cartas.\n[action][action]: Descarta el Canto de sirena.",
+      "60304": "Solo puedes asignar esta carta a cualquier prueba de habilidad que estés realizando y que no tenga otras cartas asignadas a ella. No se pueden asignar otras cartas a esta prueba de habilidad.\nSi esta prueba fracasa, devuelve esta Habilidad a tu mano.\n<b>Obligado</b> - Si Imprudente está en tu mano al final de tu turno: Revélalo y pierde 2 recursos.",
+      "60303": "Debes asignar Arrogancia a todas las pruebas de habilidad válidas que realices.\nLos iconos de esta Habilidad se restan de tu valor de habilidad en lugar de sumarse.\nSi esta prueba tiene éxito, devuelve esta Habilidad a tu mano.",
+      "60302": "Solo para el mazo de Winifred Habbamock.\nAsigna esta carta solo a una prueba de habilidad que estés realizando.",
+      "60301": "[free] Si hay asignadas a esta prueba de habilidad 2 cartas distintas que no sean Debilidad y que controles: Roba 1 carta. Límite de una vez por prueba.\nEfecto [elder_sign]: +1. Después de que termine esta prueba, por cada 2 puntos por encima del valor mínimo de éxito, devuelve a tu  mano una carta que asignaras a esta prueba.",
       "07013": "Los Retazos de ocultismo no se pueden jugar usando una acción de jugar.\nMientras los Retazos de ocultismo estén en tu mano, recibes -2 [willpower].\nMientras los Retazos de ocultismo estén en juego, recibes -1 [willpower].",
       "07012": "Solo para el mazo de Dexter Drake.\n[reaction] Después de que un Apoyo entre en juego bajo tu control: Hasta el final de la ronda, recibes +2 a cada una de tus habilidades al resolver una capacidad activada de ese Apoyo.",
       "07004": "[free] Durante tu turno, descarta un Apoyo que controles: Juega un Apoyo que tenga un nombre distinto desde tu mano, reduciendo su coste en 1. Límite de una vez por ronda.\nEfecto [elder_sign]: +2. Puedes devolver un Apoyo de tu zona de juego a tu mano. A continuación, roba 1 carta.",
@@ -6616,6 +6648,8 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "07005": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Superviviente ([survivor]) de nivel 0-5, cartas neutrales de nivel 0-5, Habilidades [[Innato]] de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Arpón marino, Red de Silas, Canto de sirena, 1 Debilidad básica aleatoria.",
+      "60301": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Rebelde ([rogue]) de nivel 0-5, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Lo que tú haces, pero mejor; Arrogancia; 1 Debilidad básica aleatoria.",
       "07004": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Místico ([mystic]) de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Maestría escénica, Retazos de ocultismo, 1 Debilidad básica aleatoria.",
       "07003": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Rebelde ([rogue]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Buscador ([seeker]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): En las sombras, Agentes encubiertos, 1 Debilidad básica aleatoria.",
       "04005": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Superviviente ([survivor]) de nivel 0-5, cartas [[Espíritu]] de nivel 0-3, cartas neutrales de nivel 0-5.",
@@ -6659,6 +6693,14 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "07005": "Silas Marsh",
+      "07014": "Arpón marino",
+      "07015": "Red de Silas",
+      "07016": "Canto de sirena",
+      "60304": "Imprudente",
+      "60303": "Arrogancia",
+      "60302": "Lo que tú haces, pero mejor",
+      "60301": "Winifred Habbamock",
       "07013": "Retazos de ocultismo",
       "07012": "Maestría escénica",
       "07004": "Dexter Drake",

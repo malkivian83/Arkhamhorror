@@ -1,0 +1,71 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": {
+    "60301": "https://arkhamdb.com/decklist/view/31399",
+    "07005": "https://arkhamdb.com/decklist/view/51877"
+  },
+  "presentation": "rendered",
+  "sources": {
+    "en": "51828299b57821b32d2578b24196e5c748ad1f182445bf25101fd1738adb52f0",
+    "es": "6ce1f40dce4ea6bf7b746055e04bb09d5dc780c4611f783d8764d521e6a93d7f"
+  },
+  "cards": [
+    {
+      "code": "07005",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-07005",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07014",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-07014",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07015",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-07015",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07016",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-07016",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60301",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-60301",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60302",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-60302",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60303",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-60303",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60304",
+      "status": "verified",
+      "adapter": "silas-winifred-v1",
+      "module": "card-60304",
+      "test": "rules.test.ts"
+    }
+  ]
+}

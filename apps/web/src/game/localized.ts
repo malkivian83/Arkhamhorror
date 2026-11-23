@@ -90,7 +90,7 @@ const SOURCES: Record<string, string[]> = {
 }
 // v11: Nathaniel Cho and Harvey Walters in EN/ES.
 // v13: Tommy Muldoon, Carolyn Fern, Marie Lambeau (starter) and Miguel de la Cruz.
-const CACHE_PREFIX = 'lcg:cards:v20:'
+const CACHE_PREFIX = 'lcg:cards:v21:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

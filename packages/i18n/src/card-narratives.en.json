@@ -87,6 +87,17 @@
     "flavor": "You must stop the rite at any cost. You could scour the cistern for a means to stop the cult, or you could try to chop their profane idol to tinder!",
     "backFlavor": "As you chop the burning tree to tinder, an unearthly howl fills the room. Ignoring it, you continue your attack, placing well-timed strike after well-timed strike to destroy the ancient evil. Eventually, the former effigy of the Brethren's goddess lies in pieces."
   },
+  "60301": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"I can top that.\"",
+    "backFlavor": "Winifred - Weethao as her parents know her, Wini to her friends - was one of the smartest kids in her reservation school. However, her reckless attitude and lack of respect for authority meant she often got herself into trouble. The course of her life changed forever when she found an old biplane in a farmer's garage and decided to \"take it out for a spin.\" The owner, a former pilot in the Great War, was awestruck by her natural talent and offered to teach her what he knew. Now Wini is known as the \"woman without fear,\" showing off her skills in barnstormers all across the country. That nickname would be tested when, during one of her shows, she spotted a creature she could scarcely describe: a thing with leathery wings and a single, mutated, pus-filled eye."
+  },
+  "60302": {
+    "group": "investigators",
+    "typeCode": "skill",
+    "flavor": "\"Told you.\""
+  },
   "71002": {
     "group": "gala",
     "typeCode": "agenda",
@@ -1174,5 +1185,11 @@
     "typeCode": "investigator",
     "flavor": "\"Do you want to see true magic?\"",
     "backFlavor": "Dexter Drake returned from the Great War to become a successful magician, enthralling audiences with his elaborate illusions and cunning stage tricks. Despite his meteoric success, Dexter longed to discover true magic. He was intrigued by the burnt and torn scraps of occult writing he had found during the war - fragments of the infamous <i>Necronomicon</i>. Dexter used his wealth to search for the truth about this ancient lore, and what he found horrified him. He knows that he may well be the only person with the ability to stop evil from swallowing the entire world."
+  },
+  "07005": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Leave your fears on the docks, lads.\"",
+    "backFlavor": "Silas Marsh has loved the sea ever since he was old enough to toddle through its briny shallows. Becoming a sailor was the easiest decision he ever made, and his sturdy frame and excellent sense for the weather have given him a good reputation aboard any vessel. There is only one thing troubling Silas: over and over again, he dreams of unsettling cities hidden beneath the waves and inhabited by bizarre creatures. These dreams call to him, stirring something deep within him that he thought he had left behind in his hometown of Innsmouth."
   }
 }
