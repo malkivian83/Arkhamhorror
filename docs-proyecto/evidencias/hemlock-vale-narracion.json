@@ -1237,6 +1237,204 @@
       "credits": 140,
       "bytes": 436392,
       "audioSha256": "cb00c7c86e621bd6484cb875f22bc4abcd62c9ebc01a1aa7f9c78b3317284d04"
+    },
+    {
+      "file": "hemlock-vale-first-evening-intro-a5c8fbe4.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.intro.body"
+      ],
+      "textSha256": "a5c8fbe437f9d007a7671314bb97b8d2b83926a3e14de9a626f276dff83f1b11",
+      "characters": 1449,
+      "credits": 580,
+      "bytes": 1710750,
+      "audioSha256": "1d9c1f894e2bb1d26a58f6414ec7378235b9ffafbb94d3b5e953aae8b0759ccc"
+    },
+    {
+      "file": "hemlock-vale-first-evening-theta-1-4f232c11.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.theta1.body"
+      ],
+      "textSha256": "4f232c11af6e230b7311ff4805e5702ba2aea3e02a02950a8a2fac3d424d21b4",
+      "characters": 484,
+      "credits": 194,
+      "bytes": 528761,
+      "audioSha256": "f9e28e93172831df86cef84460e396017fa0a5f6e3c0bf52ada9b97bad6452c1"
+    },
+    {
+      "file": "hemlock-vale-first-evening-theta-2-6cb7999f.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.theta2.body"
+      ],
+      "textSha256": "6cb7999fbab360ccbbb171a3c31885c27f565b44891ee94187f46023bb03c37c",
+      "characters": 553,
+      "credits": 221,
+      "bytes": 599814,
+      "audioSha256": "fabf8bd3cb8ca8f5057af6a76dcd7ed1d0901988ec58416146eebbd9b0f2f049"
+    },
+    {
+      "file": "hemlock-vale-first-evening-theta-3-7d7e67bc.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.theta3.body"
+      ],
+      "textSha256": "7d7e67bc7948df11f5d8be1f461fb30ce43e3d72bb80a9ddfa6ea5e55e741c59",
+      "characters": 490,
+      "credits": 196,
+      "bytes": 570139,
+      "audioSha256": "96d4fe687c4c2011b29552c100a526a335cd19f74751bac76df66b74f5b664a0"
+    },
+    {
+      "file": "hemlock-vale-first-evening-theta-4-636f3608.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.theta4.body"
+      ],
+      "textSha256": "636f360882e515e87e4cdc3200f34ac6cacbe89ca250be9ffde23182a13ab4c3",
+      "characters": 643,
+      "credits": 257,
+      "bytes": 764908,
+      "audioSha256": "207d03f7d92f45fbd3847a2614644a3e496323f523fb65f2e4f8762132dda53c"
+    },
+    {
+      "file": "hemlock-vale-first-evening-delta-1-d791dfaa.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.delta1.body"
+      ],
+      "textSha256": "d791dfaad67edf311ac0a512eb14ea51b56a0f478d00c78c27aa2a877dfbed48",
+      "characters": 413,
+      "credits": 165,
+      "bytes": 466067,
+      "audioSha256": "4990ad46ac0107a7802ea057980d2bbdb74ef9b02fec417d3bf0cddf1d355b05"
+    },
+    {
+      "file": "hemlock-vale-first-evening-delta-2-feb0ad13.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.delta2.body"
+      ],
+      "textSha256": "feb0ad13d9a2723967609a822036da07e167013467f9c92da38f001348540f0b",
+      "characters": 381,
+      "credits": 152,
+      "bytes": 435556,
+      "audioSha256": "870d0d15578508894d03c22116c88f260e1288d00b4c1e2d3005b5685b49f7ad"
+    },
+    {
+      "file": "hemlock-vale-first-evening-delta-3-03ffb4f2.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.delta3.body"
+      ],
+      "textSha256": "03ffb4f291be8fdaea686f6d246bcd36468ab5a6a2858b3369e37d173ca4474e",
+      "characters": 321,
+      "credits": 128,
+      "bytes": 387491,
+      "audioSha256": "4a3a484b339e92dff930e53750965e1f496661013fad7a3d7ffa76d69c459980"
+    },
+    {
+      "file": "hemlock-vale-first-evening-sigma-1-04026948.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.sigma1.body"
+      ],
+      "textSha256": "0402694851d5a31cc3b03fc03ba533bd6a8e740d9248ee0d2e80f9b960389e62",
+      "characters": 223,
+      "credits": 89,
+      "bytes": 267118,
+      "audioSha256": "44598837d13e2c9daf5a63a19f343a5097bad05000c686e0cbec9d253696074f"
+    },
+    {
+      "file": "hemlock-vale-first-evening-sigma-2-3127dbfb.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.sigma2.body"
+      ],
+      "textSha256": "3127dbfb219dac84ac7ddb86db6a7cd23cbf82157d45b5b5cf333e3e9fe3686c",
+      "characters": 264,
+      "credits": 106,
+      "bytes": 283419,
+      "audioSha256": "173e9cc03aaad687842b179bd9a2f2c4dc2691ddc2d629499a09d481adb0d74a"
+    },
+    {
+      "file": "hemlock-vale-first-evening-sigma-3-1e8daf59.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.sigma3.body"
+      ],
+      "textSha256": "1e8daf593cff081a60130f722921a8059b9d3ed913e0fa00b250eea2e591b48d",
+      "characters": 358,
+      "credits": 143,
+      "bytes": 449767,
+      "audioSha256": "1e7e994608a01e126fff9d0e12a3ced3d9009e791fe54050469d1c380bf290e3"
+    },
+    {
+      "file": "hemlock-vale-first-evening-sigma-4-e732c700.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.sigma4.body"
+      ],
+      "textSha256": "e732c7001e82c7db034bc5a6651e1fc7b218303ae00a6d118cc7f0771219f34b",
+      "characters": 196,
+      "credits": 78,
+      "bytes": 255834,
+      "audioSha256": "877803db3f442999e70d771d4a34a9a7f1bdca7f6bb68cca02de2052577e5430"
+    },
+    {
+      "file": "hemlock-vale-first-evening-omega-reunited-debf0ab3.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.omegaReunited.body"
+      ],
+      "textSha256": "debf0ab3d5262aa3200efad63c415c96fafe29b7446518113fb749106d5df283",
+      "characters": 1125,
+      "credits": 450,
+      "bytes": 1328735,
+      "audioSha256": "40200ad6268ad96920b52a05ece772f63bf0ce2f3972bcf5766bd297265ff36a"
+    },
+    {
+      "file": "hemlock-vale-first-evening-omega-58f7359d.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.omega.body"
+      ],
+      "textSha256": "58f7359db8a337fd8510f4352c1d473402d3d4c6bf76c9e63a8898caad871d3b",
+      "characters": 925,
+      "credits": 370,
+      "bytes": 1113486,
+      "audioSha256": "c591a488867abd217decf914f6eece08e2d3cbba216e5833c29e86b5859d415b"
+    },
+    {
+      "file": "hemlock-vale-first-evening-gamma-crossed-out-01fac3ac.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.gammaCrossedOut.body"
+      ],
+      "textSha256": "01fac3acf90a549cba7aa7748b97b9cac9db70c36a77ab4523fdcef76d6fc4ea",
+      "characters": 689,
+      "credits": 276,
+      "bytes": 774521,
+      "audioSha256": "e5c11a947adad7f62c949f6c91d0cd843925ee78ea0ce48094eb922ed9abd9fe"
+    },
+    {
+      "file": "hemlock-vale-first-evening-gamma-8b39567b.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.gamma.body"
+      ],
+      "textSha256": "8b39567b0ac2f141710a5519d99a98eace79664fa39c49bb1cd590f1d4f50615",
+      "characters": 904,
+      "credits": 362,
+      "bytes": 1018191,
+      "audioSha256": "0e61b877473f6b6044c4296bc704a8c66d0c70c415ebbc994742aa718b34f49f"
+    },
+    {
+      "file": "hemlock-vale-first-evening-pi-8df12d55.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.pi.body"
+      ],
+      "textSha256": "8df12d5542fe1818714fe4b9f8fabde50e5f78e999b8f248bfdc1748d1702092",
+      "characters": 824,
+      "credits": 330,
+      "bytes": 936689,
+      "audioSha256": "a64cc5a9f3590fc6f92c444a050c40ba35a8df616da526ba67a0d0a4d04fc801"
+    },
+    {
+      "file": "hemlock-vale-first-evening-resolution-1-ef22d0cb.mp3",
+      "keys": [
+        "story.hemlockVale.firstEvening.resolution1.body"
+      ],
+      "textSha256": "ef22d0cba95f0c272c6dcef2f8da6301bb651d014901a3eadd3cde2b5922bec1",
+      "characters": 1712,
+      "credits": 685,
+      "bytes": 1914296,
+      "audioSha256": "aeecfb778dd8fe86bb737b7c796c74a0db20deab9ce8fe83ad0d65bfc77b6d98"
     }
   ],
   "pending": []
