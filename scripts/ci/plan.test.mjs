@@ -31,6 +31,7 @@ test('reviewed modules keep dynamic contracts and saves/online consumers without
     'hemlock-vale',
     'edge-of-the-earth',
     'finn-calvin',
+    'trish-dexter',
     'william-yorick',
     'rita-young',
   ]) {

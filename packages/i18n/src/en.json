@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "trishDexter": {
+        "title": "Trish Scarborough and Dexter Drake",
+        "cards": "The original Innsmouth investigators, their signature cards, weaknesses and archived FFG starter lists.",
+        "rules": "Clue discoveries, remote investigations, asset exchanges, Showmanship and Occult Scraps."
+      },
       "finnCalvin": {
         "title": "Finn Edwards and Calvin Wright",
         "cards": "Two investigators with their signature cards, weaknesses and exact official FFG starter decks.",
@@ -636,6 +641,10 @@
     "playCopy": "Play {physical} as {card}"
   },
   "choice": {
+    "trishClue": "Discover 1 additional clue",
+    "trishEvade": "Automatically evade {enemy}",
+    "trishInvestigate": "Investigate as if at {location}",
+    "dexterReturn": "Return {card} to your hand, then draw 1 card",
     "finnClue": "Discover 1 clue at your location",
     "finnSearchDeck": "Search the top 9 cards of your deck",
     "finnSearchDiscard": "Search your discard pile",
@@ -1424,6 +1433,9 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "trishClues": "React to discovering clues",
+    "dexterSwap": "Discard {discard} to play {card} at −1 cost",
+    "showmanship": "Showmanship: enhance {card} this round",
     "carcosaSpirits": "Exhaust {card} and move 1 charge to Angered Spirits",
     "markDraw": "Mark Harrigan: draw 1 card",
     "chaosShardRelease": "Attack {enemy} with {card}: release a sealed token",
@@ -3841,6 +3853,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "07004": "The Magician",
+      "07003": "The Spy",
       "04005": "The Haunted",
       "04011": "Never Leave Home Without It",
       "04003": "The Bootlegger",
@@ -4055,6 +4069,12 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "07013": "Item.",
+      "07012": "Talent.",
+      "07004": "Sorcerer. Veteran.",
+      "07011": "Humanoid. Cultist.",
+      "07010": "Tactic.",
+      "07003": "Agency. Detective.",
       "04016": "Curse. Pact.",
       "04015": "Talent.",
       "04005": "Cursed. Drifter.",
@@ -5119,6 +5139,12 @@
       "01013": "Spell."
     },
     "summary": {
+      "07013": "Occult Scraps cannot be played using a play action.\nWhile Occult Scraps is in your hand, you get -2 [willpower].\nWhile Occult Scraps is in play, you get -1 [willpower].",
+      "07012": "Dexter Drake deck only.\n[reaction] After an asset enters play under your control: Until the end of the round, you get +2 to each of your skills while resolving a triggered ability on that asset.",
+      "07004": "[fast] During your turn, discard an asset you control: Play an asset with a different title from your hand, reducing its cost by 1. (Limit once per round.)\n[elder_sign] effect: +2. You may return an asset from your play area to your hand. Then, draw 1 card.",
+      "07011": "<b>Prey</b> - Trish Scarborough only.\nHunter.\nWhile Shadow Agents is engaged with you, you cannot discover clues except by investigating.\n<b>Forced</b> - After Shadow Agents is evaded: Discard it.",
+      "07010": "Trish Scarborough deck only.\nFast. Play after your turn begins.\nDisengage from each enemy engaged with you. Until the end of the round, enemies cannot engage you and you cannot deal damage to enemies.",
+      "07003": "[reaction] After you discover 1 or more clues at a location with an enemy: Either discover 1 additional clue at that location, or automatically evade that enemy. (Limit once per round.)\n[elder_sign] effect: +2. If this is an investigation, you may choose any revealed location; you are now investigating as if you were at that location instead.",
       "04016": "<b>Revelation</b> - You must either (choose one):\n - Take 1 direct damage and suffer 1 physical trauma.\n - Take 1 direct horror and suffer 1 mental trauma.",
       "04015": "Calvin Wright deck only.\nDirect damage and direct horror may be assigned to Until the End of Time.",
       "04005": "You get +1 [willpower] and +1 [intellect] for each horror on you.\nYou get +1 [combat] and +1 [agility] for each damage on you.\n[elder_sign] effect: +0. You may either heal 1 damage or horror, or take 1 direct damage or direct horror.",
@@ -6590,6 +6616,8 @@
       "01013": "Place 1 doom on the current agenda. This effect can cause the current agenda to advance.\n<b>Forced</b> - If Dark Memory is in your hand at the end of your turn, reveal it and take 2 horror."
     },
     "backSummary": {
+      "07004": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Mystic cards ([mystic]) level 0-5, Rogue cards ([rogue]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Showmanship, Occult Scraps, 1 random basic weakness.",
+      "07003": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Rogue cards ([rogue]) level 0-5, Neutral cards level 0-5, Seeker cards ([seeker]) level 0-2.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): In the Shadows, Shadow Agents, 1 random basic weakness.",
       "04005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, [[Spirit]] cards level 0-3, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Until the End of Time, Voice of the Messenger, 1 random basic weakness.",
       "04003": "<b>Deck Size:</b> 30.\n<b>Deckbuilding Options:</b> [[Illicit]] cards level 0-5, Rogue cards ([rogue]) level 0-3, Neutral cards level 0-5, up to five other level 0 Seeker and/or Survivor cards ([seeker] and/or [survivor]).\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Smuggled Goods, Finn's Trusty .38, Caught Red-handed, 1 random basic weakness.",
       "05005": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Survivor cards ([survivor]) level 0-5, Neutral cards level 0-5, [[Trick]] cards level 0-3.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): \"I'm done runnin'!,\" Hoods, 1 random basic weakness.",
@@ -6631,6 +6659,12 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "07013": "Occult Scraps",
+      "07012": "Showmanship",
+      "07004": "Dexter Drake",
+      "07011": "Shadow Agents",
+      "07010": "In the Shadows",
+      "07003": "Trish Scarborough",
       "04016": "Voice of the Messenger",
       "04015": "Until the End of Time",
       "04005": "Calvin Wright",

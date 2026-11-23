@@ -1163,5 +1163,16 @@
     "group": "investigators",
     "typeCode": "asset",
     "flavor": "Unyielding, uncompromising,\nhe stood resolute in defiance of his fate."
+  },
+  "07003": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "backFlavor": "Trish had always excelled in both body and mind, her unwavering focus on excellence and her fearless disposition a winning combination. Given her stellar academic and athletic records, everyone expected to see her become something great. Instead, Trish took a job at a commercial code company. The initial shock of her humble work eventually wore off, and the exceptional Trish Scarborough faded into obscurity. This suited Trish just fine, as it made it harder for anyone to realize the truth: her job was a cover for her true work as a spy with the Black Chamber, the Bureau's code-breaking agency."
+  },
+  "07004": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Do you want to see true magic?\"",
+    "backFlavor": "Dexter Drake returned from the Great War to become a successful magician, enthralling audiences with his elaborate illusions and cunning stage tricks. Despite his meteoric success, Dexter longed to discover true magic. He was intrigued by the burnt and torn scraps of occult writing he had found during the war - fragments of the infamous <i>Necronomicon</i>. Dexter used his wealth to search for the truth about this ancient lore, and what he found horrified him. He knows that he may well be the only person with the ability to stop evil from swallowing the entire world."
   }
 }

@@ -861,6 +861,8 @@ export interface SkillTest {
   stopRevealing?: boolean
   /** Complete deferred windows/effects, in order, after this test ends. */
   afterEnd?: Message[]
+  /** Restore temporary investigation locations before skillTestEnded reactions. */
+  asIfCleanup?: InvestigatorId[]
   /** Replacement base value before modifiers and committed icons. */
   baseSkill?: number
   baseFromShroud?: boolean
@@ -1093,7 +1095,13 @@ type MessageBody =
     }
   | { type: 'SuppressEngagement'; investigator: InvestigatorId; active: boolean }
   | { type: 'BecomeEthereal'; investigator: InvestigatorId }
-  | { type: 'AsIfAt'; investigator: InvestigatorId; location: LocationId; then: Message[] }
+  | {
+      type: 'AsIfAt'
+      investigator: InvestigatorId
+      location: LocationId
+      then: Message[]
+      untilTestEnds?: boolean
+    }
   | { type: 'EndAsIfAt'; investigator: InvestigatorId }
   | { type: 'ResumeAsIfAt'; investigator: InvestigatorId }
   | { type: 'RedirectPendingAttack'; enemy: EnemyId; investigator: InvestigatorId; then: Message[] }
@@ -2464,7 +2472,7 @@ type MessageBody =
   | { type: 'PrimeNextFight'; asset: AssetId; amount: number }
   | { type: 'ClearNextFight'; asset: AssetId }
   | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number; healer?: InvestigatorId }
-  | { type: 'ReturnAssetToHand'; asset: AssetId }
+  | { type: 'ReturnAssetToHand'; asset: AssetId; onReturn?: Message[] }
   | { type: 'ReturnAssetToDeck'; asset: AssetId }
   /** De la pila de descartes a la mano. */
   | {

@@ -6,6 +6,7 @@ const modules = {
   'hemlock-vale': ['apps/web/src/game/hemlock-vale-'],
   'edge-of-the-earth': ['apps/web/src/game/edge-of-the-earth-'],
   'finn-calvin': ['apps/web/src/game/finn-calvin', 'scripts/cards-import/finn-calvin.test.mjs'],
+  'trish-dexter': ['apps/web/src/game/trish-dexter', 'scripts/cards-import/trish-dexter.test.mjs'],
   'william-yorick': [
     'apps/web/src/game/william-yorick.test.ts',
     'apps/web/src/game/yorick-rita-session.test.ts',

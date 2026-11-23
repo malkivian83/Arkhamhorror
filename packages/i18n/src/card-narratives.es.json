@@ -1293,5 +1293,16 @@
     "group": "investigators",
     "typeCode": "asset",
     "flavor": "Firme e inflexible, se mantenía resuelto a desafiar su destino."
+  },
+  "07003": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "backFlavor": "Trish siempre destacó tanto física como mentalmente, pues su férrea voluntad por alcanzar la excelencia y su intrépida disposición constituyen una combinación imbatible. Gracias a su impresionante historial académico y deportivo, todo el mundo esperaba que aspirase a un puesto de éxito. Sin embargo, Trish aceptó un puesto en una empresa de código de comercio. Cuando el asombro inicial ante un trabajo tan humilde acabó por pasar, la excepcional Trish Scarborough quedó en el olvido. Esto era lo más conveniente para Trish, pues hacía que fuera más difícil que alguien descubriera la verdad: su trabajo era una tapadera para su verdadero puesto como espía para la Cámara Negra, la agencia encargada del descifrado de códigos."
+  },
+  "07004": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "¿Queieres ver magia de verdad?",
+    "backFlavor": "Dexter Drake volvió de la Gran Guerra y se convirtió en un mago de éxito que cautivaba al público con sus elaboradas ilusiones y sus ingeniosos trucos. Pese a su éxito meteórico, Dexter ansiaba descubrir magia de verdad. Le intrigaban los trozos quemados y rotos de escritos ocultistas que había encontrado durante la guerra: fragmentos del infame Necronomicón. Dexter empleó su riqueza para buscar la verdad sobre este antiguo saber, y lo que encontró lo horrorizó. Sabe que podría ser la única persona del mundo con la capacidad de evitar que el mal consuma el mundo entero."
   }
 }

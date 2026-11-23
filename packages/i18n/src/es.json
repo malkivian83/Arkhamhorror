@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "trishDexter": {
+        "title": "Trish Scarborough y Dexter Drake",
+        "cards": "Los investigadores originales de Innsmouth, sus exclusivas, debilidades y listas iniciales FFG archivadas.",
+        "rules": "Descubrimiento de pistas, investigaciones remotas, intercambio de apoyos, Maestría escénica y Retazos de ocultismo."
+      },
       "finnCalvin": {
         "title": "Finn Edwards y Calvin Wright",
         "cards": "Dos investigadores con sus exclusivas, debilidades y mazos iniciales oficiales FFG exactos.",
@@ -636,6 +641,10 @@
     "playCopy": "Jugar {physical} como {card}"
   },
   "choice": {
+    "trishClue": "Descubre 1 pista adicional",
+    "trishEvade": "Evita automáticamente a {enemy}",
+    "trishInvestigate": "Investiga como si estuvieras en {location}",
+    "dexterReturn": "Devuelve {card} a tu mano y luego roba 1 carta",
     "finnClue": "Descubre 1 pista en tu Lugar",
     "finnSearchDeck": "Busca entre las 9 primeras cartas de tu mazo",
     "finnSearchDiscard": "Busca en tu pila de descartes",
@@ -1424,6 +1433,9 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "trishClues": "Reacciona tras descubrir pistas",
+    "dexterSwap": "Descarta {discard} para jugar {card} a −1 de coste",
+    "showmanship": "Potencia {card} esta ronda",
     "carcosaSpirits": "Agota {card} y mueve 1 carga a los Espíritus airados",
     "markDraw": "Mark Harrigan: roba 1 carta",
     "chaosShardRelease": "Atacar a {enemy} con {card}: liberar una ficha sellada",
@@ -3841,6 +3853,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "07004": "El mago",
+      "07003": "La espía",
       "04005": "El torturado",
       "04011": "Nunca salgas de casa sin él",
       "04003": "El traficante de alcohol",
@@ -4055,6 +4069,12 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "07013": "Objeto.",
+      "07012": "Talento.",
+      "07004": "Hechicero. Veterano.",
+      "07011": "Humanoide. Sectario.",
+      "07010": "Táctica.",
+      "07003": "Agencia. Detective.",
       "04016": "Maldición. Pacto.",
       "04015": "Talento.",
       "04005": "Maldito. Vagabundo.",
@@ -5119,6 +5139,12 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "07013": "Los Retazos de ocultismo no se pueden jugar usando una acción de jugar.\nMientras los Retazos de ocultismo estén en tu mano, recibes -2 [willpower].\nMientras los Retazos de ocultismo estén en juego, recibes -1 [willpower].",
+      "07012": "Solo para el mazo de Dexter Drake.\n[reaction] Después de que un Apoyo entre en juego bajo tu control: Hasta el final de la ronda, recibes +2 a cada una de tus habilidades al resolver una capacidad activada de ese Apoyo.",
+      "07004": "[free] Durante tu turno, descarta un Apoyo que controles: Juega un Apoyo que tenga un nombre distinto desde tu mano, reduciendo su coste en 1. Límite de una vez por ronda.\nEfecto [elder_sign]: +2. Puedes devolver un Apoyo de tu zona de juego a tu mano. A continuación, roba 1 carta.",
+      "07011": "<b>Presa</b> - Solo Trish Scarborough.\nCazador.\nMientras los agentes encubiertos estén enfrentados a ti, no puedes descubrir pistas excepto investigando.\n<b>Obligado</b> - Después de que los Agentes encubiertos sean evitados: Descártalos.",
+      "07010": "Solo para el mazo de Trish Scarborough.\nRápido. Juega esta carta después de que comience tu turno.\nDeja de estar enfrentado a todos los Enemigos enfrentados a ti. Hasta el final de la ronda, los Enemigos no pueden enfrentarse a ti y tú no puedes infligir daño a los Enemigos.",
+      "07003": "[reaction] Después de que descubras 1 o más pistas en un Lugar con un Enemigo: Descubre 1 pista adicional en ese Lugar o bien evita automáticamente a ese Enemigo. Límite de una vez por ronda.\nEfecto [elder_sign]: +2. Si es durante una investigación, puedes elegir cualquier Lugar revelado; ahora estás investigando como si estuvieras en ese Lugar en lugar del original.",
       "04016": "<b>Revelación</b> - Debes (elige una opción):\n-Recibir 1 punto de daño directo y sufrir un trauma físico.\n-Recibir 1 punto de horror directo y sufrir un trauma mental.",
       "04015": "Sólo para el mazo de Calvin Wright.\nPueden asignarse daño directo y horror directo a Hasta el final del tiempo.",
       "04005": "Recibes +1 [willpower] y +1 [intellect] por cada punto de horror que tengas.\nRecibes +1 [combat] y +1 [agility] por cada punto de daño que tengas.\nEfecto [elder_sign]: +0. Puedes curarte 1 punto de daño o de horror, o bien recibir 1 punto de daño o de horror directos.",
@@ -6590,6 +6616,8 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "07004": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Místico ([mystic]) de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-2, cartas neutrales de nivel 0-5.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Maestría escénica, Retazos de ocultismo, 1 Debilidad básica aleatoria.",
+      "07003": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Rebelde ([rogue]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Buscador ([seeker]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): En las sombras, Agentes encubiertos, 1 Debilidad básica aleatoria.",
       "04005": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Superviviente ([survivor]) de nivel 0-5, cartas [[Espíritu]] de nivel 0-3, cartas neutrales de nivel 0-5.",
       "04003": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas [[Ilegal]] de nivel 0-5, cartas Rebelde ([rogue]) de nivel 0-3, cartas neutrales de nivel 0-5, hasta otras cinco cartas Buscador y/o Superviviente ([seeker] y/o [survivor]) de nivel 0.\n<b>Requisitos de creación de mazos </b>(no cuentan para el tamaño del mazo): Artículos de contrabando, Fiel .38 de Finn, Pillado in fraganti, 1 Debilidad básica aleatoria.",
       "05005": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Superviviente ([survivor]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas [[Truco]] de nivel 0-3.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): \"¡Se acabó el huir!\", Encapuchados, 1 Debilidad básica aleatoria.",
@@ -6631,6 +6659,12 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "07013": "Retazos de ocultismo",
+      "07012": "Maestría escénica",
+      "07004": "Dexter Drake",
+      "07011": "Agentes encubiertos",
+      "07010": "En las sombras",
+      "07003": "Trish Scarborough",
       "04016": "Voz del mensajero",
       "04015": "Hasta el final del tiempo",
       "04005": "Calvin Wright",

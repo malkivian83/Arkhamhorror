@@ -161,6 +161,7 @@ Documentos posteriores, por número:
 
 - [166 · William Yorick y Rita Young](166-investigadores-yorick-rita.md): dos investigadores, exclusivas, mazos FFG exactos, descarte protegido y sustitución de evasiones.
 - [167 · Finn Edwards y Calvin Wright](167-investigadores-finn-calvin.md): dos investigadores, mazos FFG exactos, búsqueda de Ilícitas, habilidades constantes y asignación de daño directo.
+- [168 · Trish Scarborough y Dexter Drake](168-investigadores-trish-dexter.md): versiones originales de Innsmouth, pistas, investigaciones remotas, intercambio de apoyos y debilidades.
 
 ## Decisiones ya tomadas
 
