@@ -7,7 +7,13 @@ import {
 } from '@lcg/engine'
 import { choose, during, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
-import { canPlayNext, finishScenario, newCampaign, startScenario } from '../campaign'
+import {
+  canPlayNext,
+  finishScenario,
+  investigatorTitle,
+  newCampaign,
+  startScenario,
+} from '../campaign'
 import { STARTER_DECKS } from '../core-2026/player-cards'
 import { COLLECTOR } from './queen-of-ash'
 import { CODES as SM } from './smoke-and-mirrors'
@@ -16,13 +22,21 @@ import { DR_ARMITAGE } from './spreading-flames'
 const difficulties: Difficulty[] = ['easy', 'standard', 'hard', 'expert']
 const keys = Object.keys(STARTER_DECKS)
 const core = keys.filter((k) => !STARTER_DECKS[k]!.investigatorCode)
+/** Título del investigador de un mazo de inicio (los de la caja básica no traen código). */
+const title = (k: string) =>
+  investigatorTitle(
+    Object.keys(newCampaign('brethren-of-ash', [k], 'easy', 1).log.investigators)[0]!,
+  )
 // Las 30 combinaciones de la caja básica y cada otro investigador solo y con tres de ella:
 // combinar todos los mazos crecería de forma combinatoria con cada investigador nuevo.
 const teams = [
   ...Array.from({ length: 2 ** core.length - 1 }, (_, n) =>
     core.filter((_, i) => ((n + 1) & (1 << i)) !== 0),
   ).filter((team) => team.length <= 4),
-  ...keys.filter((k) => !core.includes(k)).flatMap((k) => [[k], [k, ...core.slice(0, 3)]]),
+  // Los compañeros no pueden compartir título con el nuevo (Trish o Dexter originales).
+  ...keys
+    .filter((k) => !core.includes(k))
+    .flatMap((k) => [[k], [k, ...core.filter((c) => title(c) !== title(k)).slice(0, 3)]]),
 ]
 
 function firstTurn(state: GameState): GameState {
