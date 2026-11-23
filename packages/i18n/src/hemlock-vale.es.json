@@ -522,6 +522,80 @@
         "title": "Resolución 5",
         "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Zona estudiada: Ciénaga de Eastwick. Numerosa flora de tamaño anormal, variedad parasitaria capaz de controlar a su huésped. Ecosistema opresivamente abundante. Vida acuática agresiva. Más jungla que bosque. No es una ciénaga corriente. Habrá que volver con más financiación”."
       }
+    },
+    "firstEvening": {
+      "intro": {
+        "title": "Preludio: La primera tarde",
+        "body": "Cuando regresáis al Valle de la Cicuta, una joven pelirroja con máscara de conejo se presenta como Rebecca, la hija de la madre Rachel, y os lleva de la mano a cenar al salón comunitario. Las grandes puertas de granero del largo edificio están abiertas, y de ellas sale un apetitoso aroma a verduras asadas y carne sabrosa. La gente del Valle está sentada y come entre animadas conversaciones. Todos llevan sus capas blancas y doradas. En un extremo del salón, la madre Rachel se pone en pie y pide atención. Rebecca os lleva hacia lo que queda del banquete mientras se hace el silencio.\n\n–Meine lieben Freunde. Es una bendición que hayamos acudido todos aquí, al umbral del infinito. ¡Y es una bendición aún mayor que hayan acudido peregrinos llenos de luz y curiosidad! –dice la madre Rachel mientras hace un gesto en dirección de la Dra. Marquez y de vosotros, a su derecha–. Hemos esperado el momento adecuado para abrir nuestra comunidad. Nuestra comunidad que es verdaderamente el “Santuario de la Transfiguración” con el que tanto tiempo hemos soñado. Pues cada uno de nosotros ansía ser recreado mientras esperamos para unir nuestra luz con la luz del cosmos.\n\nEl salón prorrumpe en aplausos y Leah Atwood y otros lugareños más colocan en el centro de cada mesa bandejas de pasteles con miel rematados por grandes frutos rojos. Os gruñe el estómago mientras dais un bocado a unas verduras secas. Tienen un leve sabor amargo y un fuerte olor."
+      },
+      "theta1": {
+        "title": "Códice Θ: El legado de los Cicuta",
+        "body": "Cuando te sientas enfrente de William y de la madre Rachel, una delgada anciana de piel broncínea se te queda mirando taciturna.\n\n–Madre, por favor –dice William. Intenta en vano darle de comer una sopa de pescado mientras la mujer te sigue con los ojos y aprieta los labios. La madre Rachel y la Dra. Marquez sorben un té terroso mientras te sientas.\n\n–Tengo algunas preguntas sobre la historia de este lugar –le dice la profesora a la madre Rachel. Te hace un gesto para que hables."
+      },
+      "theta2": {
+        "title": "Códice Θ: El legado de los Cicuta",
+        "body": "La madre Rachel resplandece de felicidad.\n\n–Los Atwood llevamos aquí casi tanto tiempo como los Cicuta. Nuestra familia ayudó a construir el Puerto de la Cicuta. Plantamos la mitad del Vergel Perla y arriesgamos nuestras vidas por Wilbur Cicuta y su condenada empresa ballenera. Y cuando la caza de ballenas prácticamente acabó, estuvimos ahí para recoger los pedazos –dice la madre Rachel con tono engreído. Te das cuenta de la mueca que hace William cuando la matrona prosigue.\n\n–Supongo que ahora somos los cuidadores del legado de la familia Cicuta.\n\nAumenta el nivel de relación de la madre Rachel. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "theta3": {
+        "title": "Códice Θ: El legado de los Cicuta",
+        "body": "La madre Rachel sonríe con magnanimidad.\n\n–Sencillamente somos gente tranquila de buena fe. Nací en la Isla de la Cicuta y estudié en el extranjero durante muchos años. Asistí a sesiones espiritistas con Sarah Winchester, estudié mesmerismo en Francia y me convertí en miembro del Ghost Club de Londres. En todas partes donde estudié aprendí más y más sobre nuestras conexiones. Sobre nuestra cualidad única polifacética. Y luego traje mi aprendizaje a casa, a mi familia, donde pertenecía.\n\nAumenta el nivel de relación de la madre Rachel. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "theta4": {
+        "title": "Códice Θ: El legado de los Cicuta",
+        "body": "–La familia Cicuta es el alma de la Isla de la Cicuta –se jacta William–. En nuestro apogeo, el Puerto de la Cicuta era un bullicioso centro para marineros de todas partes. Mi abuelo Wilbur comandaba docenas de barcos balleneros. Pero su orgullo era el Annabelle Lee –Mira con tristeza a su anciana madre–. Naturalmente, se hundió. Igual que los beneficios de la industria ballenera. Mi abuelo echaba toda la culpa a una especie de maldición. Creía en ella con tanta intensidad que encerraba durante semanas a mi pobre madre en el ático de nuestra casa familiar.\n\nWilliam aprieta la mano de su madre y dice –Creo que nunca llegó a recuperarse.\n\nAumenta el nivel de relación de William Cicuta. Cada investigador obtiene 1 punto de experiencia adicional.\n\nAnota en las Notas de William Cicuta que William compartió su legado."
+      },
+      "delta1": {
+        "title": "Códice Δ: Mejores “amigas”",
+        "body": "El ambiente de la mesa es decididamente gélido cuando te sientas enfrente de Judith y River. –Eso no es lo que quería decir –le dice Judith a River mientras echa chispas por los ojos–. Sólo he dicho que el jazz hace que me dé vueltas la cabeza. River da una calada a su cigarrillo de clavo y le guiña el ojo. –Querida, una noche en el Cotton Club de Harlem hará que también te dé vueltas todo el resto del cuerpo."
+      },
+      "delta2": {
+        "title": "Códice Δ: Mejores “amigas”",
+        "body": "Inicias una jovial charla con River mientras te habla de sus locales de jazz favoritos en Harlem. Tras darse cuenta de que la conversación va a tardar en acabar, Judith se marcha airada. River sonríe con suficiencia. –Cuando limpie esta basura de isla, se acabaron los banquetes rústicos. La convertiré en un retiro para artistas. Para visionaros. Y puede apostar a que habrá jazz.\n\nAumenta el nivel de relación de River Hawthorne. Cada investigador obtiene 1 punto de experiencia adicional.\n\nAnota en las Notas de River Hawthorne que River compartió sus ambiciones."
+      },
+      "delta3": {
+        "title": "Códice Δ: Mejores “amigas”",
+        "body": "–No le he pedido su opinión –resopla River antes de excusarse. Judith coge un muslo de pollo anormalmente grande. –La última vez que estuve en un club, estaba trabajando. Dos tipos empezaron a pelearse. Un hombre recibió un disparo. La jodida banda no dejó de tocar ni un momento. Y sí, era jazz –dice enarcando una ceja.\n\nAumenta el nivel de relación de Judith Park. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "sigma1": {
+        "title": "Códice Σ: Sangre vieja",
+        "body": "Sangre vieja 1: Una lenta mosca zumba en torno a la mesa central. Leah está sentada al borde de su asiento, examinando el salón, mientras Gideon rebaña distraídamente la salsa de su plato. Cuando llegas, levantan la mirada."
+      },
+      "sigma2": {
+        "title": "Códice Σ: Sangre vieja",
+        "body": "–Sí, tengo muchas historias de cuando navegaba con el capitán Cicuta. El abuelo de William. Comienza una larga historia sobre un naufragio en el Atlántico sur, pero no tarda en perder el hilo de la narración cuando se pone a explicar la comunicación con semáforos.\n\nAumenta el nivel de relación de Gideon Mizrah. Cada investigador obtiene 1 punto de experiencia adicional.\n\nAnota en las Notas de Gideon Mizrah que Gideon contó la historia del capitán Cicuta."
+      },
+      "sigma3": {
+        "title": "Códice Σ: Sangre vieja",
+        "body": "Sangre vieja 3: –¿Y cuándo no estoy trabajando? –suspira Leah–. En el Valle de la Cicuta hay cincuenta bocas que alimentar, y Rachel me dice que habrá cientos más para la fiesta. Suponiendo que no nos quedemos sin comida durante la fiesta, no quedará nada para comer después. Y cuando le pregunto a Rachel, lo único que me dice es: “confía en el plan, Leah”.\n\nAumenta el nivel de relación de Leah Atwood. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "sigma4": {
+        "title": "Códice Σ: Sangre vieja",
+        "body": "Sangre vieja 4: –Así que mañana estaré en el cruce de caminos, llueva o haga sol. Mi hermana me tiene todo el día yendo y viniendo donde Tad, como si fuera un caballo de labor –suspira la anciana.\n\nAnota en las Notas de Leah Atwood que Leah compartió sus frustraciones."
+      },
+      "omegaReunited": {
+        "title": "Códice Ω: La familia importa",
+        "body": "–Esos enormes crustáceos que vimos en la playa me recordaron a algo que sale en 20 000 leguas de viaje submarino. Me pregunto si el Sr. Verne visitó alguna vez la Isla de la Cicuta –dice Theo–. La verdad es que, si lo hizo, lo sabría. Porque desde luego que le habría pedido un autógrafo. Decides no decirle al joven cuándo murió el Sr. Verne ni las posibilidades de que hubiera visitado la Isla de la Cicuta. Cuando ve acercarse a Helen, Theo la saluda con un abrazo de oso. –¡Pensaba que te ibas! Helen responde que Lizzie y ella se van por la mañana y Theo parece preocupado. –No volveréis a Vermont, ¿verdad? Helen sonríe con paciencia. –Theo, el tío George tiene un barco. Así que no. No vamos a Vermont. Ya conoces la dirección del tío George en Portland. Puedes venir a vernos cuando quieras. Le da un beso en la mejilla a su hermano y un último abrazo. Theo se frota los ojos con el dorso de la manga y luego vuelve a entrar en el salón comunitario. Cuando se marcha, Helen te mira y dice: –Déjenme ayudar con el estudio. Lizzie estará a salvo en Portland. A lo mejor entre todos podemos convencerlo para que se vaya.\n\nAumenta el nivel de relación de Theo Peters. Cada investigador obtiene 1 punto de experiencia adicional.\n\nAnota en el registro de campaña que Helen Peters se unió al estudio. Un investigador cualquiera puede elegir añadir el Apoyo de historia Helen Peters a su mazo. Esta carta no cuenta para el tamaño de mazo de ese investigador."
+      },
+      "omega": {
+        "title": "Códice Ω: La familia importa",
+        "body": "Te unes a Theo en la entrada del salón comunitario mientras el sol se pone en el idílico pueblo, con un brillo deslumbrante.\n\n–¿Sabe qué? A veces me gusta pensar que el sol es un ojo. El ojo del cielo que nos observa siempre. Pero luego pienso en dónde está el otro ojo – Theo señala el horizonte que se oscurece y la tenue luna–. ¿Verdad que es complicado? Con el cielo nunca se sabe –Entrecierra los ojos y señala la luna–. Pero te tengo calada, luna.\n\nUna mujer vestida de franela y con un desgastado equipo de caza se acerca y lo saca de su ensueño.\n\n–Oye, hermanita, te dije que...\n\nElla le interrumpe con el labio fruncido.\n\n–Sí, me lo dijiste. Sé que has tomado tu decisión, pero Lizzie necesita oírlo de tu boca... Vuelve a Akwan. ¿Tan difícil es?\n\nMientras discuten, te excusas de la conversación. Varios minutos después, Theo te viene a buscar al interior.\n\n–Lamento que tenga que haber visto eso. Cosas de familia.\n\nAumenta el nivel de relación de Theo Peters. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "gammaCrossedOut": {
+        "title": "Códice Γ: El conejo",
+        "body": "Rebecca se ha quitado la máscara, revelando su rostro pecoso, mientras sorbe lentamente de un cuenco de una espesa sopa de carne. Tiene varias protuberancias similares a cicatrices por el cuello y las mejillas.\n\n–Usted le cae bien a mi mamá. Dice que es muy importante. Casi tan importante como mamá.\n\nMiras al otro lado de la sala, donde la madre Rachel sonríe con calidez a los reunidos.\n\n–A veces, cuando no quiero que me vea nadie, me pongo mi máscara – dice Rebecca mientras se baja la máscara para ocultar las largas cicatrices rojas. Su abundante cabello rojo se derrama en torno a la máscara cuando inclina la cabeza hacia un lado.\n\n–Mamá ha dicho que le observamos todo el tiempo.\n\nCada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "gamma": {
+        "title": "Códice Γ: El conejo",
+        "body": "Rebecca se ha quitado la máscara, revelando su rostro pecoso, mientras sorbe lentamente de un cuenco de una espesa sopa de carne. Tiene varias protuberancias similares a cicatrices por el cuello y las mejillas. Abre la boca para hablar, pero, en ese momento, Simeon Atwood sale de debajo de la mesa.\n\n–Bienvenido a la orden secreta minera de la diablura –dice mientras saca un cuaderno de rayas y empieza a escribir el acta–. Nuestro objetivo es provocar el caos en los planes de la tita Rachel. Porque dijo que en la fiesta no habría fuegos artificiales. Y cree que no los habrá –añade con tono conspiratorio–. Pero vamos a preparar el mejor espectáculo que jamás ha conocido esta isla. Y usted me va a ayudar. Si es que quiere convertirse en miembro oficial, claro.\n\nAsiente como para mostrar su acuerdo con su propio plan chiflado y dice: –Reúnase conmigo detrás del viejo molino mañana por la mañana.\n\nAumenta el nivel de relación de Simeon Atwood. Cada investigador obtiene 1 punto de experiencia adicional.\n\nAnota en las Notas de Simeon Atwood que Simeon ha elaborado un plan."
+      },
+      "pi": {
+        "title": "Códice Π: Desconocidos amistosos",
+        "body": "Sales para tomar un poco de aire fresco. Cerca del salón comunitario hay varios lugareños sentados en torno a una pequeña hoguera, riendo y bebiendo café. Llevan una mezcla de prendas de trabajo cotidianas, y curiosamente ninguna capa, y te miran con una prudente curiosidad hasta que les explicas que has venido a realizar un estudio. Un hombre de sonrisa amable que tiene una larga cicatriz que le recorre la mejilla pregunta: –¿Ha venido a estudiar... la fauna?\n\nRespondes que sí y sus amigos y él se echan a reír.\n\n–Trabajamos en los muelles de Akwan. Sólo hemos venido a ‘estudiar’ la comida gratis.\n\nTe ríes con sus historias de crustáceos gigantescos y grandes capturas de pesca. Cuando se dispersan, el hombre de la larga cicatriz te pone en la mano una roca de río lisa y perfecta.\n\n–Cójala –te dice–. Le protegerá.\n\nBusca en el conjunto de encuentros Reliquias familiares el Apoyo de historia Roca de la preocupación y añádelo a tu mazo. No cuenta para tu tamaño de mazo."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "La charla nocturna se va acabando a medida que los lugareños salen del salón comunitario. La Dra. Marquez camina con un ánimo poco habitual cuando os reunís fuera del salón comunitario. El crepúsculo llena el cielo de sombras ocre, lila y violeta. La profesora rompe varias nueces mientras compartís vuestras impresiones sobre la Isla de la Cicuta.\n\n–Esta isla tiene la densidad y la varianza especial de una jungla, pero es mucho más peligrosa que cualquier jungla. No tengo ni la menor idea de por qué alguien querría fundar una comuna en un entorno tan peligroso, pero entiendo que no siempre ha sido así de letal. Se introdujo algo que cambió de forma fundamental el ecosistema local –reflexiona la Dra. Marquez.\n\nMencionáis el extraño buen humor que comparte todo el mundo en el pueblo y la profesora asiente.\n\n–La gran mayoría parece experimentar una felicidad demencial. Es como entrar en un fumadero de opio. Pero por lo que veo, no le echan nada a la comida. Aunque no he probado el budín de pan. Nunca me ha gustado el pan, y la última vez que comí budín fue en Oxford.\n\nLa mención que hace la profesora de la prestigiosa universidad os hace pensar en Bertie Musgrave y le preguntáis que dónde está.\n\n–¿No lo han visto? Supuse que había vuelto a la pensión a descansar –dice con una mueca–. Theo se ofreció a prestarnos la camioneta por la noche. He pensado que podríamos observar la fauna local durante la noche, pero supongo que primero deberíamos encontrarlo.\n\nUna fuerte brisa agita los árboles y la hierba que os rodea, trayendo un olor a cedro y a pino. La Dra. Marquez agarra su bastón con fuerza.\n\n–Si prefieren coger la camioneta y continuar el estudio, yo puedo buscar a Bertie por mi cuenta."
+      }
     }
   },
   "choice": {
@@ -573,7 +647,25 @@
     "discardItem": "Descarta {card}",
     "pushTheTruck": "–¡Podemos empujar!",
     "revTheEngine": "–Forzaremos el motor.",
-    "placeSinkhole": "Coloca 1 socavón en el Lugar Ciénaga más cercano"
+    "placeSinkhole": "Coloca 1 socavón en el Lugar Ciénaga más cercano",
+    "keepEating": "Seguir comiendo",
+    "dontEat": "No comer más",
+    "seat": {
+      "theta": "Sentarte con la Dra. Marquez, la madre Rachel y William (códice Θ)",
+      "delta": "Unirte a Judith y River (códice Δ)",
+      "sigma": "Unirte a Leah y Gideon (códice Σ)",
+      "omega": "Unirte a Theo en la entrada (códice Ω)",
+      "gamma": "Sentarte con los jóvenes del Valle (códice Γ)",
+      "pi": "Sentarte a solas (códice Π)"
+    },
+    "whoAreTheAtwoods": "–¿Quiénes son los Atwood?",
+    "whoAreTheChildren": "–¿Quiénes son los Hijos de las Estrellas?",
+    "whoAreTheHemlocks": "–¿Quiénes son los Cicuta?",
+    "jazzIsDelightful": "–River, el jazz es encantador.",
+    "jazzIsHell": "–El jazz es infernal, Judith.",
+    "askGideon": "–Me han contado que fue marinero, Gideon.",
+    "askLeah": "–Leah, hábleme de su trabajo.",
+    "searchForBertie": "Buscar a Bertie Musgrave con la Dra. Marquez (La hondonada retorcida)"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -605,7 +697,10 @@
     "chooseInvestigator": "Elige un investigador",
     "weedChoked": "Playa ahogada en algas: cancela el movimiento o descarta un Apoyo Objeto",
     "stuckTruck": "La camioneta se ha quedado atascada en el barro",
-    "removeSinkhole": "Puedes retirar 1 socavón del Lugar Ciénaga más cercano"
+    "removeSinkhole": "Puedes retirar 1 socavón del Lugar Ciénaga más cercano",
+    "meal": "Sirven los pasteles con miel",
+    "chooseSeat": "Elige dónde sentarte durante la comida comunitaria",
+    "helenDeck": "Elige quién añade a Helen Peters a su mazo"
   },
   "ability": {
     "codex": "Códice {n}",

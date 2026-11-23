@@ -1,5 +1,6 @@
 import { registerCampaign, type CampaignScenario } from '../campaign-definition'
 import { hemlockValeChaosBags } from './chaos-bag'
+import { FIRST_EVENING, firstEvening, TWISTED_HOLLOW } from './first-evening'
 import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
 import { LOST_SISTER, lostSister } from './lost-sister'
 import { SILENT_HEATH, silentHeath } from './silent-heath'
@@ -19,6 +20,10 @@ const BUILDS: Record<string, CampaignScenario['build']> = {
   [THING_IN_THE_DEPTHS]: (context) => thingInTheDepthsScenario(context),
 }
 
+const PRELUDES: Record<string, CampaignScenario['build']> = {
+  [FIRST_EVENING]: firstEvening,
+}
+
 const steps: CampaignScenario[] = [
   {
     id: HEMLOCK_WELCOME,
@@ -34,11 +39,22 @@ const steps: CampaignScenario[] = [
       ? { id, build, allowSideStoryBefore: false, keywords: ['codex', 'dayNight', 'grid'] }
       : { id, allowSideStoryBefore: false }
   }),
-  // Preludios de las tardes y albas (entregas 6–8).
-  ...[...new Set(Object.values(NEXT_PRELUDE))].map((id): CampaignScenario => ({
-    id,
-    allowSideStoryBefore: false,
-  })),
+  // Preludios de las tardes y albas (entregas 6–8). La experiencia de La primera tarde no se
+  // gasta hasta el final del escenario siguiente (p. 33).
+  ...[...new Set(Object.values(NEXT_PRELUDE))].map((id): CampaignScenario => {
+    const build = PRELUDES[id]
+    return build
+      ? {
+          id,
+          build,
+          allowDeckChangesAfter: false,
+          allowSideStoryBefore: false,
+          keywords: ['codex', 'prelude'],
+        }
+      : { id, allowSideStoryBefore: false }
+  }),
+  // Escenarios de la noche (entregas 6–7).
+  { id: TWISTED_HOLLOW, allowSideStoryBefore: false },
 ]
 
 const byId = new Map(steps.map((step) => [step.id, step]))

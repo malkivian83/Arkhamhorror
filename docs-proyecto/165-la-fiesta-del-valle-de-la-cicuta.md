@@ -41,7 +41,11 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   invalidan cambios en `lost-sister.ts`, `vale-time.ts` o las Cuevas y encuentros compartidos.
 - Lote 5c hecho (22/11/2026): La cosa de las profundidades es jugable (ver
   [La cosa de las profundidades](#la-cosa-de-las-profundidades)); entrega 5 completa.
-- Siguiente: entrega 6 (La primera tarde y La hondonada retorcida).
+- Entrega 6 en lotes: **6a** La primera tarde (hecho, ver
+  [La primera tarde](#la-primera-tarde)); **6b** La hondonada retorcida. Verificado 6a: sus 6
+  pruebas, `hemlock-vale/`, cobertura de partidas, campañas, `story-order`, i18n y narración de
+  la web (940 pruebas); tipos de cards; Prettier y ESLint.
+- Siguiente: lote 6b (La hondonada retorcida).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -511,6 +515,25 @@ jugables los cinco escenarios de exploración del Día 1.
 
 Pendiente: descartar las cartas de jugador vinculadas al Lugar que se hunde, el modo
 independiente y la revisión visual (cuadrícula, socavones y Lugares Hundidos).
+
+### La primera tarde
+
+Lote 6a, en `first-evening.ts` (pruebas en `first-evening.test.ts`). El preludio narrativo
+se juega como una partida que solo contiene la historia (sin mazo de Encuentros) y termina
+durante la preparación.
+
+- **Comida:** cada investigador decide si sigue comiendo; se anota
+  `hemlockValeFinishedTheirMeal:<investigador>`.
+- **Asientos:** cada investigador elige una entrada distinta (Θ, Δ, Σ, Ω, Γ, Π); en solitario,
+  dos, y Π no puede ser la primera. Se registran con `ChooseCodexEntry` (`firstEvening.<entrada>`).
+  Cada entrada tiene sus decisiones, relaciones, notas y experiencia; Ω ofrece a Helen Peters si
+  la familia Peters se reunió y Π da la Roca de la preocupación (10713, registrada sin su
+  reacción).
+- **Resolución 1:** pasa a la Noche 1 y elige La hondonada retorcida u otro escenario de
+  exploración sin tachar (con una tablilla y un Primigenio permanentes). La experiencia no se
+  gasta hasta el final del escenario siguiente (`allowDeckChangesAfter: false`).
+
+Pendiente: la reacción de la Roca de la preocupación y la revisión visual del preludio.
 
 ## Entregas y criterios de aceptación
 

@@ -522,6 +522,80 @@
         "title": "Resolution 5",
         "body": "\"Miskatonic Survey, June 1926. Members Marquez, Musgrave, et alii. Area surveyed: Eastwick Bog. Numerous abnormally sized flora, parasitic variety capable of controlling its host. Oppressively abundant ecosystem. Aggressive water life. More jungle than forest. Not your average bog. Will need to return with more funding.\""
       }
+    },
+    "firstEvening": {
+      "intro": {
+        "title": "Prelude: The First Evening",
+        "body": "As you return to Hemlock Vale, a young red-headed girl in a rabbit mask introduces herself as Rebecca, Mother Rachel’s daughter, and leads you by the hand to dinner in the Commons. The long building’s large barn doors are open to let out the rich scent of roasted vegetables and savory meat. The people of the Vale sit and eat in lively conversation, each of them in their white-gold cloaks. At the head of the room, Mother Rachel stands up and calls for attention. Rebecca leads you to the now-picked-over dinner spread as the room falls silent.\n\n“Meine lieben Freunde. What a blessing that all of us have come here, on the threshold of infinity. And what a greater blessing still that pilgrims have come here, so full of light and curiosity!” Mother Rachel gestures to Dr. Marquez to her right, and to you. “We have waited for the right moment to open our community. Our community which is truly the ‘Sanctuary of Transfiguration’ we long dreamed of. For each of us yearns to be remade as we wait to join our light with the light of the cosmos.”\n\nThe room bursts into applause as Leah Atwood and several locals place trays of honeyed cakes topped with robust red fruit in the center of each table. Your stomach grumbles as you take a bite of shriveled greens. It has a faint bitter taste, and a sharp smell."
+      },
+      "theta1": {
+        "title": "Codex Θ: The Hemlock Legacy",
+        "body": "As you seat yourself across from William and Mother Rachel, a thin older woman with bronze skin stares morosely at you. “Mother, please,” William vainly attempts to spoonfeed her chowder as her eyes follow you, lips pursed. Mother Rachel and Dr. Marquez sip earthy tea as you seat yourself. “I have been wondering about the history of this place,” the professor says to Mother Rachel. She nods to you to speak up."
+      },
+      "theta2": {
+        "title": "Codex Θ: The Hemlock Legacy",
+        "body": "Mother Rachel beams. “We Atwoods have been here almost as long as the Hemlocks. Our family helped build Hemlock Harbor. We planted half of Pearl Orchard, and we put our lives on the line for Wilbur Hemlock and his doomed whaling enterprise. And when whaling all but died out, we were here to pick up the pieces,” Mother Rachel says smugly. You note William’s grimace as the matron goes on.\n\n“I suppose we are now the caretakers of the Hemlock family’s legacy.”\n\nIncrease Mother Rachel’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "theta3": {
+        "title": "Codex Θ: The Hemlock Legacy",
+        "body": "Mother Rachel smiles magnanimously. “We are simply quiet people of good faith. I was born on Hemlock Isle and studied abroad for many years. I attended seances with Sarah Winchester, studied mesmerism in France, and became a member of the Ghost Club in London. Everywhere I studied, I learned more and more of our connectedness. Our many-faceted oneness. And so I brought my learning home, to my family, where it always belonged.”\n\nIncrease Mother Rachel’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "theta4": {
+        "title": "Codex Θ: The Hemlock Legacy",
+        "body": "“The Hemlock family is the very lifeblood of Hemlock Isle,” William boasts. “In our heyday, Hemlock Harbor was a bustling hub for mariners far and wide. My grandfather Wilbur commanded dozens of whaling vessels. But his pride and joy was the Annabelle Lee.” He looks forlornly at his elderly mother. “Naturally, it sank. As did the profits from the whaling industry. My grandfather blamed it all on some kind of curse. He believed in it so strongly that he locked my poor mother in the attic of our family home for weeks at a time.”\n\nWilliam squeezes his mother’s hand. “I don’t think she ever quite recovered.”\n\nIncrease William Hemlock’s Relationship Level. Each investigator earns 1 bonus experience.\n\nIn William Hemlock’s Notes, record William shared his legacy."
+      },
+      "delta1": {
+        "title": "Codex Δ: Best “Friends”",
+        "body": "The table’s mood is decidedly icy as you sit down across from Judith and River. “That’s not what I meant,” Judith glowers at River. “I just said ‘ jazz makes my head spin.’” River takes a puff of their clove cigarette and winks at her. “Darling, an evening at The Cotton Club in Harlem will get the rest of you spinning too.”"
+      },
+      "delta2": {
+        "title": "Codex Δ: Best “Friends”",
+        "body": "You engage in some playful banter with River as they gush about their favorite jazz heavies in Harlem. After realizing the back-and-forth won’t end anytime soon, Judith walks away in a huff. River smirks. “Once I clean up this trash boat of an island, there’ll be no more rustic feasts. I’ll make it a retreat for artists. Visionaries. And you can bet there’ll be jazz.”\n\nIncrease River Hawthorne’s Relationship Level. Each investigator earns 1 bonus experience.\n\nIn River Hawthorne’s Notes, record River shared their ambitions."
+      },
+      "delta3": {
+        "title": "Codex Δ: Best “Friends”",
+        "body": "“I didn’t ask you for your opinion,” River huffs, then excuses themself. Judith picks at an abnormally large chicken thigh. “Last time I was in a club, I was working. Two folks got in a brawl. A guy got shot. The damn band kept playing the whole time. And yes, it was jazz,” she cocks an eyebrow.\n\nIncrease Judith Park’s Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "sigma1": {
+        "title": "Codex Σ: Old Blood",
+        "body": "A lazy fly buzzes around the central table. Leah sits at the edge of her seat, scanning the room, as Gideon idly scrapes the gravy on his plate. They look up as you arrive."
+      },
+      "sigma2": {
+        "title": "Codex Σ: Old Blood",
+        "body": "“Aye, I’ve many a tale from my time sailing with Captain Hemlock. William’s gran’ father.” He begins a long story about a shipwreck in the south Atlantic but quickly loses the narrative in an explanation of semaphore communication.\n\nIncrease Gideon Mizrah’s Relationship Level. Each investigator earns 1 bonus experience.\n\nIn Gideon Mizrah’s Notes, record Gideon told the story of Captain Hemlock."
+      },
+      "sigma3": {
+        "title": "Codex Σ: Old Blood",
+        "body": "“When am I not working?” Leah sighs. “There are fifty mouths to feed in Hemlock Vale, and Rachel tells me there’ll be hundreds more for the Feast. Assuming we don’t run out of food during the Feast, there’ll be nothing left to eat after. And when I ask Rachel, all she says is ‘Just trust in the plan, Leah.’”\n\nIncrease Leah Atwood’s Relationship Level. Each investigator earns 1 bonus experience.\n\nIf Leah searched the Pearl Ruins is in Leah Atwood’s Notes, proceed to Old Blood 4. Otherwise, stop reading."
+      },
+      "sigma4": {
+        "title": "Codex Σ: Old Blood",
+        "body": "“So I’ll be out there at the Crossroads tomorrow, rain or shine. My sister has me running back and forth to Tad’s all day, like I’m some kinda workhorse,” the older woman sighs.\n\nIn Leah Atwood’s Notes, record Leah shared her frustrations."
+      },
+      "omegaReunited": {
+        "title": "Codex Ω: Family Matters",
+        "body": "“Those huge shellfish we saw on the beach reminded me of something in 20,000 Leagues Under the Sea. I wonder if Mr. Verne ever visited Hemlock Isle,” Theo says. “Actually, if he did, I’d know about it. Because I would have definitely asked for his autograph.” You decide not to tell the young man when Mr. Verne died, or the likelihood of him visiting Hemlock Isle. When he sees Helen approach, Theo greets her with a full-on bear hug. “I thought you were leaving!”\n\nHelen replies that she and Lizzie are leaving in the morning, and Theo looks worried. “Not back to Vermont, right?”\n\nHelen smiles patiently. “Uncle George has a boat, Theo. So, no. Not to Vermont. You know Uncle George’s address in Portland. You can always come see us.” She kisses her brother on the cheek and gives him one last hug. Theo rubs his eyes with the back of his sleeve, then walks back into the Commons.\n\nOnce he is gone, Helen locks eyes with you. “Let me help the survey. Lizzie’ll be safe in Portland. Maybe together, you and I can convince him to leave.”\n\nIncrease Theo Peters’ Relationship Level. Each investigator earns 1 bonus experience.\n\nIn your Campaign Log, record Helen Peters joined the survey. Any one investigator may choose to add the Helen Peters story asset to their deck. It does not count toward their deck size."
+      },
+      "omega": {
+        "title": "Codex Ω: Family Matters",
+        "body": "You join Theo at the entrance to the Commons as the sun sets on the idyllic village, dazzlingly bright. “Y’know. Sometimes I like to think the sun is an eye. The eye of the sky. Always watching us. But then I think of where the other eye is,” Theo points to the darkening horizon and the faint moon. “Tricky isn’t it? You never know about that sky.” He narrows his eyes and points up at the moon. “But I’m on to you, moon.” A woman wearing flannel and well-worn hunting gear approaches to break his reverie. “Hey sis, I told you—”\n\nShe interrupts, lip curled in a snarl. “You told me, yes. I know you made up your mind. But Lizzie needs to hear it from you—Just come back to Akwan. Is it really so hard?” As the pair argue, you excuse yourself from the conversation. Several minutes later, Theo finds you back inside. “Sorry you had to see that. Family drama.”\n\nIncrease Theo Peters’ Relationship Level. Each investigator earns 1 bonus experience."
+      },
+      "gammaCrossedOut": {
+        "title": "Codex Γ: The Rabbit",
+        "body": "Rebecca’s mask is pulled back to reveal her freckled face as she sips slowly from a bowl of thick meaty soup. Several raised, scar-like growths score her neck and cheeks. “Mama likes you a lot. She says you’re very important. Almost as important as Mama.” You look across the room to Mother Rachel, warmly smiling at the assembly. “Sometimes, when I don’t want anyone to see me, I put my mask on,” Rebecca says as she slides the rabbit mask down to hide her long, red scars. Her thick red hair spills out around the mask as she cocks her head to the side.\n\n“Mama said we’re watching you all the time.”\n\nEach investigator earns 1 bonus experience."
+      },
+      "gamma": {
+        "title": "Codex Γ: The Rabbit",
+        "body": "Rebecca’s mask is pulled back to reveal her freckled face as she sips slowly from a bowl of thick meaty soup. Several raised, scar-like growths score her neck and cheeks. As she opens her mouth to speak, Simeon Atwood bursts from beneath the table.\n\n“Welcome to the Miner’s Secret Order of Mischief,” Simeon pulls out a ruled notebook and begins taking minutes. “Our goal is to rain mayhem on Auntie Rachel’s plans. Because she said there would be no fireworks at the Feast. And she thinks there won’t be,” he says in a conspiratorial voice. “But we’re gonna put on the best show this island has ever seen. And you’re gonna help me. That is, if you want to become an official member,” he nods, as if in agreement to his own crazy plan. “Meet me behind the Old Mill tomorrow morning.”\n\nIncrease Simeon Atwood’s Relationship Level. Each investigator earns 1 bonus experience.\n\nIn Simeon Atwood’s Notes, record Simeon hatched a plan."
+      },
+      "pi": {
+        "title": "Codex Π: Friendly Strangers",
+        "body": "You step outside for some fresh air. Near the Commons, several locals sit around a small fire, laughing and drinking coffee. They wear a mix of everyday working clothes—notably, no cloaks—and regard you with careful curiosity until you explain that you’re here on a survey. A man with a kind smile and a long scar down his cheek asks, “You’re here to study…the wildlife?” You say yes, and he and his friends burst out laughing. “We work on the docks up in Akwan. We’re just here to ‘study’ the free food.” You laugh along to their stories of gargantuan shellfish and biggest catches. As they disperse, the man with the long scar presses a smooth, perfect river rock into your palm. “Take it,” he says. “It’ll protect you.”Search the Heirlooms encounter set for the Worry Rock story asset and add it to your deck. It does not count toward your deck size."
+      },
+      "resolution1": {
+        "title": "Resolution 1",
+        "body": "The evening chatter fades as residents trickle out of the Commons. There is an uncharacteristic spring in Dr. Marquez’s step as you reconvene outside the Commons. The sunset casts the sky in shades from ochre, to lilac, to violet. The professor cracks a handful of walnuts as you share your impressions of Hemlock Isle.\n\n“This island has the density and special variance of a jungle, but it’s far more dangerous than any jungle. I have no clue why someone would start a commune in such a hazardous environment, but I understand it wasn’t always so deadly. Something was introduced and fundamentally changed the local ecosystem,” Dr. Marquez muses.\n\nYou mention the unusually good mood shared by everyone in the village, and the professor nods. “Most everyone looks blissed out of their minds. It’s like walking into an opium den. But as far as I can tell, the food isn’t laced with anything. Though I didn’t try the bread pudding. I’ve never liked bread, and the last time I had pudding was in Oxford.”\n\nThe professor’s reference to the prestigious university brings Bertie Musgrave to mind, and you ask where he is.\n\n“You haven’t seen him? I assumed he went back to the boarding house to rest,” she scowls. “Theo offered to lend us his truck for the evening. I thought we could observe some of the local wildlife at night, but I suppose we should find him first.”\n\nA heavy breeze stirs the trees and grass around you, smelling of cedar and pine. Dr. Marquez grips her cane. “If you’d rather take the truck and continue the survey, I can look for Bertie on my own.”"
+      }
     }
   },
   "choice": {
@@ -573,7 +647,25 @@
     "discardItem": "Discard {card}",
     "pushTheTruck": "“We can push!”",
     "revTheEngine": "“We’ll rev the engine.”",
-    "placeSinkhole": "Place 1 sinkhole on the nearest Bog location"
+    "placeSinkhole": "Place 1 sinkhole on the nearest Bog location",
+    "keepEating": "Keep eating",
+    "dontEat": "Don’t eat any more",
+    "seat": {
+      "theta": "Sit with Dr. Marquez, Mother Rachel and William (Codex Θ)",
+      "delta": "Join Judith and River (Codex Δ)",
+      "sigma": "Join Leah and Gideon (Codex Σ)",
+      "omega": "Join Theo at the entrance (Codex Ω)",
+      "gamma": "Sit with the youth of the Vale (Codex Γ)",
+      "pi": "Sit alone (Codex Π)"
+    },
+    "whoAreTheAtwoods": "“Who are the Atwoods?”",
+    "whoAreTheChildren": "“Who are the Children of the Stars?”",
+    "whoAreTheHemlocks": "“Who are the Hemlocks?”",
+    "jazzIsDelightful": "“River, jazz is delightful.”",
+    "jazzIsHell": "“Jazz is hell, Judith.”",
+    "askGideon": "“I heard you were a sailor, Gideon.”",
+    "askLeah": "“Leah, tell me about your work.”",
+    "searchForBertie": "Search for Bertie Musgrave with Dr. Marquez (The Twisted Hollow)"
   },
   "prompt": {
     "drawOrGain": "Draw 1 card or gain 1 resource",
@@ -605,7 +697,10 @@
     "chooseInvestigator": "Choose an investigator",
     "weedChoked": "Weed-Choked Beach: cancel the move or discard an Item asset",
     "stuckTruck": "The truck is stuck in the mud",
-    "removeSinkhole": "You may remove 1 sinkhole from the nearest Bog location"
+    "removeSinkhole": "You may remove 1 sinkhole from the nearest Bog location",
+    "meal": "The honeyed cakes are served",
+    "chooseSeat": "Choose where to sit for the community meal",
+    "helenDeck": "Choose who adds Helen Peters to their deck"
   },
   "ability": {
     "codex": "Codex {n}",
