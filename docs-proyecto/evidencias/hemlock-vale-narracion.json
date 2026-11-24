@@ -1783,6 +1783,186 @@
       "file": "hemlock-vale-dawn-second-day-resolution-3-e085276f.mp3",
       "textSha256": "e085276fbb56f6936604897f40e0951022b26e2fec88f3d24c3861ec75e5530f",
       "characters": 423
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.intro1.body",
+      "file": "hemlock-vale-second-evening-intro-1-4a2b57bf.mp3",
+      "textSha256": "4a2b57bf0613fb354a73ee13a768c523a2ea370c5a44408b3e46b3f661c404eb",
+      "characters": 653
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.intro2.body",
+      "file": "hemlock-vale-second-evening-intro-2-b963d848.mp3",
+      "textSha256": "b963d8486a619b492a227c7cdcf0f151ecb465ddacf4d1d9f3821e3e184911ee",
+      "characters": 334
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.intro3.body",
+      "file": "hemlock-vale-second-evening-intro-3-a8763404.mp3",
+      "textSha256": "a876340474bf44e40ed904b635a2fc1ae6ff9bab35520ea8e2836b22e349ede8",
+      "characters": 498
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.intro4.body",
+      "file": "hemlock-vale-second-evening-intro-4-275fe932.mp3",
+      "textSha256": "275fe932749caf75f21f0011c1ee8b33b6b4418f12b37fa97351769fbdfc3bd2",
+      "characters": 326
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex1.body",
+      "file": "hemlock-vale-second-evening-codex-1-029d3fdb.mp3",
+      "textSha256": "029d3fdb3d95417be37d55dc8d172da4bb2e21c578822d36754b715abdeb403f",
+      "characters": 388
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex2Searching.body",
+      "file": "hemlock-vale-second-evening-codex-2searching-e71b312f.mp3",
+      "textSha256": "e71b312fca32426d86429b21fb73883fb79c055c39152686a88d7ec567422c80",
+      "characters": 197
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex2.body",
+      "file": "hemlock-vale-second-evening-codex-2-da416824.mp3",
+      "textSha256": "da41682467ccc0d5aeaa3c6c76149fc7e4c9330f90c205ddfb4fce7c765df5c0",
+      "characters": 196
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex3Dance.body",
+      "file": "hemlock-vale-second-evening-codex-3dance-5cfc077b.mp3",
+      "textSha256": "5cfc077bcc8d77848a8064baf12c2f0880d959d8739006217d8c4a7b79f06ffa",
+      "characters": 310
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex3.body",
+      "file": "hemlock-vale-second-evening-codex-3-4eef3c75.mp3",
+      "textSha256": "4eef3c75b87d99276f56c130fb1bd2a1d0b299572b9fb1ca61bd00a845b5f66f",
+      "characters": 131
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex4Dance.body",
+      "file": "hemlock-vale-second-evening-codex-4dance-97248880.mp3",
+      "textSha256": "972488809312f2108e5182c320031c0084e4ef237bb583ec5de37fc3d4ee8281",
+      "characters": 315
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex4.body",
+      "file": "hemlock-vale-second-evening-codex-4-6e50d205.mp3",
+      "textSha256": "6e50d205ebe769c46157742e2589d2c44a99c728853051b1b032d7f25eb2e976",
+      "characters": 117
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex5Dance.body",
+      "file": "hemlock-vale-second-evening-codex-5dance-b0e1b8fd.mp3",
+      "textSha256": "b0e1b8fd664c901535967d1d90ecd421b467fd2919f5753c282b90b89b402eae",
+      "characters": 307
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex5.body",
+      "file": "hemlock-vale-second-evening-codex-5-418e2a19.mp3",
+      "textSha256": "418e2a1986b5cc7d4ab71124041f39ab17265f2445b24473f192a95386189dad",
+      "characters": 143
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex6Dance.body",
+      "file": "hemlock-vale-second-evening-codex-6dance-2b2712df.mp3",
+      "textSha256": "2b2712df1f7ca06e1d8b624dfab8aca21566c0dfdd430e58c46483ffa215cf5a",
+      "characters": 281
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex6.body",
+      "file": "hemlock-vale-second-evening-codex-6-7c250da2.mp3",
+      "textSha256": "7c250da2c6e14ea42d20008cc14deb4265c371dc3a053ea3b2aa69b7962d032d",
+      "characters": 96
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex7Dance.body",
+      "file": "hemlock-vale-second-evening-codex-7dance-7129f290.mp3",
+      "textSha256": "7129f2902e83e613030ccf7e3a5b4edca5285f3aa05b389ad75f5c8951de55b5",
+      "characters": 292
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex7.body",
+      "file": "hemlock-vale-second-evening-codex-7-55ca9885.mp3",
+      "textSha256": "55ca988592a5cc384f97443b2e48ff9f2743a37c093756f5b80e36cd515aa38b",
+      "characters": 192
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex8Dance.body",
+      "file": "hemlock-vale-second-evening-codex-8dance-96657383.mp3",
+      "textSha256": "9665738314cf5d0775cfc14d2e9c3a3087fff53961005e216ebd5de7427cbcd1",
+      "characters": 261
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex8.body",
+      "file": "hemlock-vale-second-evening-codex-8-df17bed0.mp3",
+      "textSha256": "df17bed0f5789da624fba9a43ae8d962413b7e945e3269609735fe06d6ea2bad",
+      "characters": 269
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codex9.body",
+      "file": "hemlock-vale-second-evening-codex-9-ec46a3f9.mp3",
+      "textSha256": "ec46a3f9b2949823955216a94e8a5de0cffb38d3ce713ce190af05a5044e2764",
+      "characters": 399
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codexOmegaJoined.body",
+      "file": "hemlock-vale-second-evening-codex-omega-joined-75d8a2dc.mp3",
+      "textSha256": "75d8a2dca4124b04d113581f00d7f1ed3045d83ee700240184731a3d55cd015d",
+      "characters": 370
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codexOmegaReunited.body",
+      "file": "hemlock-vale-second-evening-codex-omega-reunited-fbb92df1.mp3",
+      "textSha256": "fbb92df1050aa6114de763e8dc72b8a7e7b3ef5508a2c42bcd685cacbafc308e",
+      "characters": 675
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codexOmega.body",
+      "file": "hemlock-vale-second-evening-codex-omega-90f707fb.mp3",
+      "textSha256": "90f707fb2e7826c0a4a470bd58d93a6ed2849214f15ff2115317fd3747aa2340",
+      "characters": 282
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.codexTheta.body",
+      "file": "hemlock-vale-second-evening-codex-theta-55bec2c4.mp3",
+      "textSha256": "55bec2c45cce896f16603c410eff4fd78c4ed1180b2c5659fe2a68be3f60ba8d",
+      "characters": 260
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.resolution1.body",
+      "file": "hemlock-vale-second-evening-resolution-1-8f4dc516.mp3",
+      "textSha256": "8f4dc516e29618903a9dcdccd2402f3214848abcb48992a71f1a0396683c4d62",
+      "characters": 721
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.resolution2.body",
+      "file": "hemlock-vale-second-evening-resolution-2-cd5c71a9.mp3",
+      "textSha256": "cd5c71a9f2eec65fcbe212344ceed669db3b00545bb80ed743972f6f359dc932",
+      "characters": 636
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.resolution3.body",
+      "file": "hemlock-vale-second-evening-resolution-3-722dc745.mp3",
+      "textSha256": "722dc745c74cd258c7ac801dc1600d91b2f05c95bdc42bcd9cca7109bc4c6d79",
+      "characters": 1651
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.resolution4.body",
+      "file": "hemlock-vale-second-evening-resolution-4-209d77a9.mp3",
+      "textSha256": "209d77a9b84c6e96ede7c45725ca51a0c9a50c51c788bc2b046ef27d13bafeda",
+      "characters": 419
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.resolution5.body",
+      "file": "hemlock-vale-second-evening-resolution-5-eeca81c2.mp3",
+      "textSha256": "eeca81c2252a72d2ef710f84c1a07be751217b713e225fb7f9684b089655537e",
+      "characters": 515
+    },
+    {
+      "key": "story.hemlockVale.secondEvening.resolution6.body",
+      "file": "hemlock-vale-second-evening-resolution-6-ada5c0eb.mp3",
+      "textSha256": "ada5c0eb00fdcf48ea8db638e6f236010c74404273830436799b7a100e52e0d2",
+      "characters": 603
     }
   ]
 }

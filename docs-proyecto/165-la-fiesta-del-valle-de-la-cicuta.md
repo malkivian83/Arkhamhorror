@@ -52,7 +52,10 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   larga. Verificado 7a: sus 7 pruebas y 1.205 en total (Valle, cobertura, campañas, i18n,
   narración y referencia de la web); tipos de cards y web; Prettier y ESLint. Sus 32
   narraciones están pendientes: no quedan créditos de ElevenLabs suficientes.
-- Siguiente: lote 7b (La segunda tarde).
+- Lote 7b hecho (24/11/2026): La segunda tarde (ver [La segunda tarde](#la-segunda-tarde)).
+  Verificado: sus 5 pruebas y 1.230 en total; tipos de cards y web; Prettier y ESLint. Sus 30
+  narraciones también quedan pendientes (62 en total con las del Alba).
+- Siguiente: lote 7c (La noche más larga), ya elegible en la ruta pero sin `build`.
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -595,6 +598,24 @@ referencia del Valle (10704), plan Nubes oscuras (10683) y acto Alba del segundo
 Pendiente: los efectos de La maldición Cicuta al fallar y al final del turno, la habilidad de
 la Muñeca de hojas de maíz, las opciones adicionales del códice 9 pagando acciones, el códice
 17 (oculto en la carta de acto), sus 32 narraciones y la revisión visual.
+
+### La segunda tarde
+
+Lote 7b, en `second-evening.ts` (pruebas en `second-evening.test.ts`). Preludio narrativo que
+se juega como La primera tarde: una partida que solo contiene la historia.
+
+- **Introducción:** si Simeon sobrevivió, la 2; si no, la 3 (Leah busca a Simeon y se tacha su
+  nombre). Luego la 4.
+- **Baile:** cada investigador elige una entrada distinta (1–9, Ω y Θ; en solitario, dos), sin
+  habitantes tachados. Con relación 3 o más, el habitante comparte un baile
+  (`<habitante>SharedADance`). Ω depende de Helen (ya en el estudio, familia reunida o Theo
+  rechaza a su familia); Θ anota `hemlockValeMarquezSupplies` (2 recursos más al empezar La noche
+  más larga, lote 7c); 9 da 1 XP.
+- **Resoluciones:** El diario Perla (10715) si se recuperó el diario, Bertie descansa o tiene una
+  revelación (`hemlockValeBertieHadAnEpiphany`), se pasa a la Noche 2 y se elige La noche más
+  larga u otro escenario sin tachar (tablilla, calavera y Primigenio permanentes).
+
+Pendiente: las habilidades de El diario Perla, sus narraciones y la revisión visual.
 
 ## Entregas y criterios de aceptación
 

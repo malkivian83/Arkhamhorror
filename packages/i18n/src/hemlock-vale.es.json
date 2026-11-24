@@ -796,6 +796,128 @@
         "title": "El segundo estudio",
         "body": "Comprueba la sección “Zonas exploradas” del registro de campaña y elige un escenario que no haya sido tachado aún."
       }
+    },
+    "secondEvening": {
+      "intro1": {
+        "title": "Preludio: La segunda tarde",
+        "body": "La lluvia continúa durante todo el día. Cuando llegáis al salón comunitario para cenar, han movido las mesas a los laterales de la sala y hay cálidas lámparas colgadas de coloridos lazos. Docenas de caras nuevas miran desde la multitud de lugareños con capa: visitantes del continente. Una gran escultura se alza en el centro de la estancia, engalanada con flores blancas y violeta que parecen palpitar bajo la tenue luz. La sala enmudece cuando la madre Rachel se dirige a los congregados.\n\n–Amigos. Hermanos. Cada uno de vosotros sois un milagro de tiempo y luz. Sois la promesa de vuestro verdadero yo... La matrona se interrumpe a mitad de la frase."
+      },
+      "intro2": {
+        "title": "La segunda tarde",
+        "body": "Una sombra pasa por el rostro de la matrona mientras se bambolea, y por un instante parece que podría desmayarse. El aire de la estancia es pesado. En la luz bailan unos patrones aceitosos y sentís un cierto mareo que ya os resulta familiar. Alguien se adelanta para ayudar a la madre Rachel, pero ésta levanta una mano y se endereza."
+      },
+      "intro3": {
+        "title": "La segunda tarde",
+        "body": "Una figura recia atraviesa la multitud.\n\n–¿Ha visto alguien a Simeon? –pregunta Leah Atwood con voz temblorosa. Mira a los congregados con los ojos muy abiertos y alerta–. Por favor. Se trata de Simeon. Ahora no es momento de andarse con bromas.\n\nSe dirige a su hijo, pero no hay respuesta. El aire de la estancia es pesado.\n\n–Basta –La madre Rachel hace callar a su hermana y gesticula para que se vaya. En la luz bailan unos patrones aceitosos y sentís un cierto mareo que ya os resulta familiar."
+      },
+      "intro4": {
+        "title": "La segunda tarde",
+        "body": "La madre Rachel recupera la compostura.\n\n–Hoy es la noche más corta del año. Y mañana es el comienzo de la eternidad. Así que bailemos esta noche.\n\nLa multitud irrumpe en un entregado aplauso. Un grupo muy variopinto empieza a tocar en un rincón y comienza el baile. Varios rostros amistosos os hacen gestos para que os unáis."
+      },
+      "codex1": {
+        "title": "Códice 1: Madre Rachel",
+        "body": "La matriarca del Valle está apartada de la multitud, con los brazos cruzados. En sus mejillas brillan las lágrimas mientras observa la sala. Te acercas y le pides bailar.\n\n–Lo siento, no puedo –contesta. La tensión de su voz es evidente, y le preguntas qué ocurre–. En esta vida estamos llamados a renunciar a muchas cosas. Sólo rezo por que el coste de lo que obtengamos merezca la pena.\n\nAnota en las notas de la madre Rachel que la madre Rachel compartió sus dudas."
+      },
+      "codex2Searching": {
+        "title": "Códice 2: Leah Atwood",
+        "body": "Encuentras a Leah junto a la cena, con las manos temblorosas. –Últimamente, Simeon no dejaba de hablar de un “club de mineros”. Me pregunto si... –Palidece–. Lo siento, ahora mismo no puedo bailar."
+      },
+      "codex2": {
+        "title": "Códice 2: Leah Atwood",
+        "body": "Leah va contigo al suelo de madera y bailáis juntos. Aunque no logra ir al ritmo de la música, te maneja con sorprendente facilidad y te hace girar. Los demás os jalean cuando termináis de bailar.\n\nAnota en las Notas de Leah Atwood que Leah compartió un baile."
+      },
+      "codex3Dance": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "–¡Preparados para el Texas Tommy! –exclama Simeon mientras mueve las manos sobre su cabeza cuando la banda acelera el ritmo–. No está mal, no está mal.\n\nNotas que algo frío y viscoso sube por tu pierna. El chico muestra una sonrisa pícara mientras te quitas la culebra rayada que se ha enroscado en tu tobillo.\n\nAnota en las Notas de Simeon Atwood que Simeon compartió un baile."
+      },
+      "codex3": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "–Lo siento, pero es un poco muermo –dice Simeon encogiéndose de hombros–. ¡Preparados para el Texas Tommy! –les grita a sus amigos."
+      },
+      "codex4Dance": {
+        "title": "Códice 4: William Cicuta",
+        "body": "–Hace muchos años y estoy falto de práctica, pero ¿por qué no? William se une a ti en la pista de baile y bailáis un vals en el que él lleva la voz cantante. Tras varios choques y traspiés, el baile toca a su fin piadosamente pronto. El Cicuta mayor parece bastante complacido cuando vuelve a su sitio en el rincón.\n\nAnota en las Notas de William Cicuta que William compartió un baile."
+      },
+      "codex4": {
+        "title": "Códice 4: William Cicuta",
+        "body": "–Hace muchos años y estoy falto de práctica –dice William mientras se alisa la chaqueta–, pero gracias por preguntar."
+      },
+      "codex5Dance": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–¡Saltito hacia delante y luego vamos hacia atrás! River da instrucciones a quienes la rodean para bailar el Black Bottom. Mientras los demás tratan de mantener el ritmo, tú no pierdes de vista a River y sigues todos sus movimientos. Cuando termina, te da una palmadita en el hombro. –No está mal, nada mal.\n\nAnota en las Notas de River Hawthorne que River compartió un baile."
+      },
+      "codex5": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–Lo siento, pero no es capaz de estar a la altura.\n\nRiver enseña el Black Bottom a los demás bailarines. Por desgracia, no has pasado el corte."
+      },
+      "codex6Dance": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "–Sí, pero sólo si bailamos el Yankee Doodle –dice Gideon con una sonrisa juvenil. Te acercas a la banda y les haces la petición. Cuando regresas, el viejo marinero está meciéndose al compás de la música. –A mi sobrina Gavriella le encantaba esta canción. Hace años que no la veo...\n\nAnota en las Notas de Gideon Mizrah que Gideon compartió un baile."
+      },
+      "codex6": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "–No, no me atrevo –Gideon niega con la cabeza–. Estas viejas caderas ya no funcionan como antes."
+      },
+      "codex7Dance": {
+        "title": "Códice 7: Judith Park",
+        "body": "–Se supone que estoy trabajando, pero ¿qué más da? Judith sonríe alegre cuando se une a ti en la pista de baile. La guardaespaldas baila sorprendentemente bien te lleva en el charlestón y el foxtrot. –Ha sido más divertido de lo que esperaba –dice con las mejillas arreboladas cuando acabáis.\n\nAnota en las Notas de Judith Park que Judith compartió un baile."
+      },
+      "codex7": {
+        "title": "Códice 7: Judith Park",
+        "body": "–Lo siento, pero estoy trabajando –dice Judith–. Una vez llegó un lobo durante la cena comunitaria. No puedo permitir que suceda de nuevo – añade mientras coloca la mano en la culata del arma."
+      },
+      "codex8Dance": {
+        "title": "Códice 8: Theo Peters",
+        "body": "–Pero ¿cómo va a pedirme bailar con usted si ya estamos bailando? Theo suelta una risita mientras se mueve desacompasadamente con la música. Está a punto de resbalarse en un charco de barro, pero lo agarras a tiempo.\n\n–Creo que acaba de salvarme la vida –jadea.\n\nAnota en las Notas de Theo Peters que Theo compartió un baile."
+      },
+      "codex8": {
+        "title": "Códice 8: Theo Peters",
+        "body": "–Gracias, pero yo...\n\nTheo se resbala en un charco de barro y se estrella contra una pareja que baila, que a su vez golpean a otra media docena de bailarines. El salón comunitario se queda en silencio durante un instante.\n\n–¡Estoy bien! –grita Theo mientras se levanta."
+      },
+      "codex9": {
+        "title": "Códice 9: Bailar por tu cuenta",
+        "body": "Te mueves al compás de la música. La tenue luz baña los rostros con leves sombras oscuras mientras el cielo del exterior también se oscurece. Una presencia palpable llena la sala, moviéndose entre los que bailan y ralentizando los sentidos. Cierras los ojos durante lo que parece un instante. Cuando los abres, estás en el suelo. Hay varios bailarines a tu alrededor y alguien te ayuda a levantarte.\n\nCada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "codexOmegaJoined": {
+        "title": "Códice Ω: Helen Peters",
+        "body": "–Pensé que nunca me lo preguntaría –dice Helen con una sonrisa. Le sigues el ritmo lo mejor que puedes; es sorprendentemente ágil mientras lleva la voz cantante en el baile, y luego te deja guiar cuando la canción pasa de un ritmo animado a uno más contemplativo. Cuando el baile termina, observas la multitud y ves que todos tienen la misma sonrisa amplia y bobalicona.\n\nAnota en el registro de campaña que Helen compartió un baile."
+      },
+      "codexOmegaReunited": {
+        "title": "Códice Ω: Helen Peters",
+        "body": "Helen Peters está de pie a la entrada del salón comunitario y parece bastante desubicada con su atuendo basto. Lizzie está cerca de ella, mirando fijamente la pista de baile. Cuando pides bailar a Helen, ésta sonríe ligeramente burlona y niega con la cabeza.\n\n–Sólo he venido a darles las gracias. Y a pedirles algo.\n\nLe preguntas de qué se trata y esta vez sonríe con calidez.\n\n–Déjenme ayudar con el estudio. Lizzie estará a salvo en Portland. A lo mejor entre todos podemos convencer a mi hermano para que se vaya.\n\nAnota en el registro de campaña que Helen Peters se unió al estudio.\n\nUn investigador cualquiera puede elegir añadir el Apoyo de historia Helen Peters a su mazo. Esta carta no cuenta para el tamaño de mazo de ese investigador."
+      },
+      "codexOmega": {
+        "title": "Códice Ω: Helen Peters",
+        "body": "Te acercas a la mujer vestida con ropa de caza que discute con Theo.\n\n–Por última vez, hermanita, no puedo. Aquí me necesitan –dice Theo con nerviosismo.\n\nElla le dedica una mirada de pena y responde: –¿Qué pensaría mamá?\n\nTheo la fulmina con la mirada.\n\n–Vete –dice con tono serio.\n\nAnota en las Notas de Theo Peters que Theo rechazó a su familia."
+      },
+      "codexTheta": {
+        "title": "Códice Θ: Dra. Rosa Marquez",
+        "body": "–Reúnanse conmigo fuera después de que esto acabe –dice la Dra. Marquez sin rodeos. Preguntas por qué y sacude la cabeza.\n\n–Éste es el último sitio donde querría hablar de nada. Voy a reunir suministros antes de que hablemos. Les recomiendo que hagan lo mismo.\n\nCada investigador comienza el siguiente escenario con 2 recursos adicionales."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "A mitad de la velada, el baile se adormece. Mientras la lluvia golpetea en el exterior, los bailarines se mueven como el humo en la penumbra del salón comunitario. La Dra. Marquez os hace una señal para que vayáis con ella a un lateral de la sala.\n\n–Aquí pasa algo muy extraño –dice en voz baja–. Hay como una docena de miembros del Valle que han desaparecido... Algunos incluso en los últimos días. A la madre Rachel parece darle totalmente igual y estar feliz con ello. Y luego están esos “milagros” de los que habla todo el mundo. Empiezo a sospechar que la “maravillosa” sensación de este sitio no es sólo hipoxia.\n\nLe mencionáis vuestros propios mareos y la extraña euforia experimentada durante los días anteriores."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "La profesora os entrega el diario de Susan Perla.\n\n–Gracias por recuperar esto. Es una lectura fascinante. Durante el último año de su vida, madame Perla sufrió alucinaciones y una enfermedad debilitante crónica. Sea lo que sea, provoca una rápida mutación antes de provocar el fallo de los músculos, de los órganos y de la función cognitiva. Leyendo entre líneas, tengo la impresión de que toda la familia Perla sufrió algo similar antes del incidente que devastó la cresta.\n\nUn investigador cualquiera puede elegir añadir el Apoyo de historia El diario Perla a su mazo. Esta carta no cuenta para el tamaño de mazo de ese investigador."
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "Compartís vuestras observaciones sobre la Isla de la Cicuta. Más que “maravillas” o “milagros”, las criaturas de la zona o están enfermas y desnutridas o son agresivamente vivaces. La Dra. Marquez asiente.\n\n–Todo está afectado. Enfermo. Voraz. Mutando. Y todo está muy localizado. No hay informes de estos fenómenos extraños en ninguna otra parte. Es sólo aquí.\n\nSaca un arrugado mapa de la isla y señala las colinas del norte.\n\n–La Cresta Perla no se ha recuperado desde que fue destruida hace veinte años.\n\nMarquez muestra dos círculos de madera vítrea de la Ciénaga de Eastwick y del Vergel Perla y luego traza un círculo en torno a la Cresta Perla en su mapa.\n\n–Los huevos amargos de esta mañana me recordaron un informe escrito tras el evento de Tunguska. Un meteorito devastó kilómetros de campiña rusa, pero los efectos sobre los lugareños fueron más destructivos aún. Las reservas de comida quedaron envenenadas. El ganado murió. Los pueblos cercanos se fueron quedando desiertos poco a poco a medida que las familias que los habían habitado durante generaciones morían de hambre o de cosas peores.\n\nTraza un círculo concéntrico más grande en torno al primero.\n\n–Nadie ha dicho nada de un meteorito, pero a juzgar por el enorme agujero que hay delante de la Finca Perla, algo salió de la roca. Mi teoría actual es que la operación minera abrió una veta y liberó algún gas o mineral venenoso que afecta a la isla.\n\nLa expresión de la Dra. Marquez se vuelve grave cuando dice: –Hay algo más. Algo de lo que no deberíamos hablar aquí. Síganme.\n\nMientras seguís a la profesora fuera del salón comunitario, una figura robusta se choca con vosotros."
+      },
+      "resolution4": {
+        "title": "Resolución 4",
+        "body": "–Lo siento muchísimo –dice Bertie–. ¡Profesora! ¡Y ustedes! Suponía que se habían retirado temprano –Abre los ojos como platos–. ¿Estamos conspirando? ¿Estudiando? Me encantaría...\n\nLa Dra. Marquez le hace callar con una dura mirada.\n\n–Bertie, después de lo de anoche, creo que es mejor que esta noche te quedes en tu cuarto y descanses.\n\nEl joven ayudante parece herido, pero no pone ninguna pega.\n\n–Está bien –musita."
+      },
+      "resolution5": {
+        "title": "Resolución 5",
+        "body": "–Lo siento... mucho –farfulla Bertie. Una sonrisa bobalicona le surca el rostro–. Me dijeron que no me preocupase de ustedes. Me lo dijo la gente. La gente. La gente de... –Señala la multitud con un gesto–. El sitio. Tuve una revelación, pero se me ha olvidado. La madre Rachel me ha estado cuidando. Me dijeron que luego bailaríamos más, en el cruce de caminos, con una gran hoguera.\n\n–Tienes que descansar. Vuelve a la pensión –insiste Marquez. Ni siquiera estáis seguros de que Bertie la haya oído antes de irse.\n\nAnota en el registro de campaña que Bertie ha tenido una revelación."
+      },
+      "resolution6": {
+        "title": "Resolución 6",
+        "body": "–No teníamos que involucrarlo. Al fin y al cabo, es mucho mejor en el laboratorio que en el trabajo de campo –dice la Dra. Marquez mientras os lleva fuera–. Hoy me siguió algo desde la cresta. Algo grande y hambriento. Intenté refugiarme en la vieja Granja Atwood, pero tenía puertas y ventanas tapadas con tablones. Había un olor terrible. Ni siquiera estoy segura de lo que oí que sonaba dentro –dice de forma muy seria. Cuando le pedís que se explique, sacude la cabeza.\n\n–Está claro que este sitio no es lo que parece. No sé qué oculta la gente del Valle en esa vieja granja, pero voy a averiguarlo."
+      }
     }
   },
   "choice": {
@@ -889,7 +1011,21 @@
     "findGideon": "–Gideon probablemente esté en el salón comunitario, como siempre.",
     "riverIsRight": "–River tiene razón.",
     "letThemArgue": "Deja que discutan",
-    "tadsItemThree": "Gasta 3 recursos: busca un Apoyo Objeto en tu mazo y juégalo"
+    "tadsItemThree": "Gasta 3 recursos: busca un Apoyo Objeto en tu mazo y juégalo",
+    "dance": {
+      "1": "La madre Rachel observa la sala (códice 1)",
+      "2": "Leah está junto a la cena y parece agotada (códice 2)",
+      "3": "Simeon hace ruidos de aves con unos niños (códice 3)",
+      "4": "William escribe un poema en un rincón (códice 4)",
+      "5": "River lo está dando todo en la pista de baile (códice 5)",
+      "6": "Gideon está sentado en un taburete cerca de los que bailan (códice 6)",
+      "7": "Judith vigila la puerta cerca de la entrada (códice 7)",
+      "8": "Theo mueve la cabeza al ritmo de la multitud (códice 8)",
+      "9": "Bailas por tu cuenta (códice 9)",
+      "omega": "Hay una mujer con ropa de caza en un extremo de la sala (códice Ω)",
+      "theta": "La Dra. Marquez te mira desde el otro lado de la sala (códice Θ)"
+    },
+    "followMarquez": "Seguir la pista de la Dra. Marquez en la Granja Atwood (La noche más larga)"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -933,7 +1069,9 @@
     "judithAnswer": "¿Qué le respondes a Judith?",
     "boardingHouse": "Elige una opción",
     "sendGift": "Puedes enviar un Apoyo de historia Objeto como regalo",
-    "chooseResident": "Elige un habitante con nivel de relación 2 o menos"
+    "chooseResident": "Elige un habitante con nivel de relación 2 o menos",
+    "chooseDance": "Elige con quién quieres bailar",
+    "diaryDeck": "Elige quién añade El diario Perla a su mazo"
   },
   "ability": {
     "codex": "Códice {n}",

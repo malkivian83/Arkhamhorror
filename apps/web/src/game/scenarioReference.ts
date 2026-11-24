@@ -26,6 +26,7 @@ const references: Record<string, { code: string; name: string }> = {
   // La primera tarde es un preludio sin tarjeta propia: usa la del Valle.
   'hemlock-vale-first-evening': { code: '10704', name: 'The Vale' },
   'hemlock-vale-dawn-second-day': { code: '10704', name: 'The Vale' },
+  'hemlock-vale-second-evening': { code: '10704', name: 'The Vale' },
   'hemlock-vale-hemlock-house': { code: '10523', name: 'Hemlock House' },
   'hemlock-vale-silent-heath': { code: '10549', name: 'The Silent Heath' },
   'hemlock-vale-lost-sister': { code: '10569', name: 'The Lost Sister' },

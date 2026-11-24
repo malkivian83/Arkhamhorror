@@ -4,6 +4,7 @@ import { DAWN_SECOND_DAY, dawnSecondDay } from './dawn-second-day'
 import { FIRST_EVENING, firstEvening, TWISTED_HOLLOW } from './first-evening'
 import { twistedHollow } from './twisted-hollow'
 import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
+import { LONGEST_NIGHT, SECOND_EVENING, secondEvening } from './second-evening'
 import { LOST_SISTER, lostSister } from './lost-sister'
 import { SILENT_HEATH, silentHeath } from './silent-heath'
 import { THING_IN_THE_DEPTHS, thingInTheDepthsScenario } from './thing-in-the-depths'
@@ -25,6 +26,7 @@ const BUILDS: Record<string, CampaignScenario['build']> = {
 const PRELUDES: Record<string, CampaignScenario['build']> = {
   [FIRST_EVENING]: firstEvening,
   [DAWN_SECOND_DAY]: dawnSecondDay,
+  [SECOND_EVENING]: secondEvening,
 }
 
 const steps: CampaignScenario[] = [
@@ -63,6 +65,7 @@ const steps: CampaignScenario[] = [
     allowSideStoryBefore: false,
     keywords: ['codex', 'dayNight', 'grid'],
   },
+  { id: LONGEST_NIGHT, allowSideStoryBefore: false },
 ]
 
 const byId = new Map(steps.map((step) => [step.id, step]))
