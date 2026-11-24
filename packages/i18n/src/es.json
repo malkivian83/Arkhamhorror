@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "tommyOriginal": {
+        "title": "Tommy Muldoon original",
+        "cards": "El poli novato llega con Becky, Error de novato, Voto solemne y su mazo oficial.",
+        "rules": "Recupera apoyos derrotados, recarga a Becky y mueve daño y horror con sus reglas originales revisadas."
+      },
       "amandaSharpe": {
         "title": "Amanda Sharpe",
         "cards": "Amanda llega con su mazo inicial oficial, Estudios de lo recóndito y Susurros desde las profundidades.",
@@ -659,6 +664,11 @@
     "playCopy": "Jugar {physical} como {card}"
   },
   "choice": {
+    "solemnController": "Jugar bajo el control de {name}",
+    "tommyMove": "Mover 1 {kind} entre Tommy y {card}",
+    "tommyFromAsset": "Mover daño/horror desde {card}",
+    "tommyToAsset": "Mover daño/horror a {card}",
+    "tommyAmmo": "Colocar {n} municiones sobre Becky y ganar {resources} recursos",
     "doubleBeneathIcons": "Duplicar los iconos de la carta bajo Amanda",
     "placeInvestigatorBeneath": "Colocar {card} debajo",
     "attackProtector": "{name} recibe el ataque",
@@ -1465,6 +1475,8 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "solemnMove": "Mover 1 {kind} de {from} a {to}",
+    "tommyRecover": "Recuperar {card}: ganar {n} recursos",
     "buriedInvestigate": "Investigar para descartar Secretos enterrados",
     "montereyTravel": "Monterrey: obtener el beneficio por desplazarse",
     "wrenchProvoke": "Provocar un ataque de {enemy}",
@@ -3893,6 +3905,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "06006": "Marlin model 1894 personalizado",
+      "06001": "El poli novato",
       "07002": "La estudiante",
       "08007": "El arqueólogo",
       "08001": "La mecánica",
@@ -4114,6 +4128,10 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "06020": "Espíritu.",
+      "06007": "Equivocación. Defecto.",
+      "06006": "Objeto. Arma. Arma de fuego.",
+      "06001": "Policía. Protector.",
       "07009": "Locura.",
       "07008": "Innato.",
       "07002": "Miskatonic. Erudito.",
@@ -5202,6 +5220,10 @@
       "01013": "Hechizo."
     },
     "summary": {
+      "06020": "Miríada. Rápido.\nJuega el Voto solemne bajo el control de otro investigador que esté en tu Lugar.\n[free] Si el propietario del Voto solemne está en tu Lugar, agota el Voto solemne: Mueve 1 punto de daño o de horror de una carta que controles a una carta que controle ese investigador.",
+      "06007": "<b>Revelación</b> - Descarta todos los Apoyos que controles que tengan daño u horror. Si no se descartaron Apoyos por este efecto, devuelve el Error de novato a tu mazo y barájalo.",
+      "06006": "Sólo para el mazo de Tommy Muldoon. Usos (2 municiones).\nCada recurso obtenido por la capacidad [reaction] de Tommy Muldoon se puede colocar sobre Becky como munición.\n[action] Gasta 1 de munición: <b>Combatir.</b> Recibes +2 [combat] e infliges +1 punto de daño para este ataque.",
+      "06001": "[reaction] Cuando un Apoyo que controles sea derrotado: Obtén X recursos, donde X es la cantidad total de daño y horror que hay sobre ese Apoyo. Añade ese Apoyo a tu mazo y barájalo.\nEfecto [elder_sign]: +2. Puedes mover hasta 2 puntos de daño y/u horror de Tommy Muldoon a un Apoyo que controles o viceversa.",
       "07009": "Los iconos de esta Habilidad se restan de tu valor de habilidad en lugar de sumarse.\n<b>Obligado</b> - Al elegir una carta para colocar bajo Amanda Sharpe, si los Susurros desde las profundidades están en tu mano: Debes elegirlos.",
       "07008": "Solo para el mazo de Amanda Sharpe.\nRápido. Juega esta carta cuando inicies una prueba de habilidad.\nDevuelve a tu mano la carta que haya bajo Amanda Sharpe y coloca Estudios de lo recóndito bajo ella.",
       "07002": "<b>Obligado</b> - Al comienzo de la fase de Investigación: Roba 1 carta. Descarta la carta que hay bajo Amanda Sharpe. Elige una carta de tu mano y colócala bajo Amanda Sharpe.\n<b>Obligado</b> - Al comienzo de una prueba de habilidad que estés realizando: Asigna la carta que hay bajo Amanda Sharpe si es posible. No la descartes cuando acabe la prueba.\nEfecto [elder_sign]: +0. Para esta prueba, puedes duplicar la cantidad de iconos de habilidad que tenga la carta que hay bajo Amanda Sharpe.",
@@ -6697,6 +6719,7 @@
       "01013": "Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance.\n<b>Obligado</b> - Si el Recuerdo oscuro está en tu mano al final del turno: Revélalo y recibe 2 puntos de horror."
     },
     "backSummary": {
+      "06001": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Guardián ([guardian]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Superviviente ([survivor]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Becky, Error de novato, 1 Debilidad básica aleatoria.",
       "07002": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, Habilidades [[Experimentado]] de nivel 0-3.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Estudios de los recóndito, Susurros desde las profundidades, 1 Debilidad básica aleatoria.",
       "08007": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Rebelde ([rogue]) de nivel 0, cartas Buscador ([seeker]) de nivel 1-5, cartas neutrales de nivel 0-5, hasta otras 5 cartas Buscador ([seeker]) de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Látigo fiable, Secretos enterrados, 1 Debilidad básica aleatoria.",
       "08001": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0, cartas Superviviente ([survivor]) de nivel 1-5, cartas neutrales de nivel 0-5, hasta otras 5 cartas Superviviente ([survivor]) de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Llave inglesa de mecánico, Matones mafiosos, 1 Debilidad básica aleatoria.",
@@ -6745,6 +6768,10 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "06020": "Voto solemne",
+      "06007": "Error de novato",
+      "06006": "Becky",
+      "06001": "Tommy Muldoon",
       "07009": "Susurros desde las profundidades",
       "07008": "Estudios de lo recóndito",
       "07002": "Amanda Sharpe",

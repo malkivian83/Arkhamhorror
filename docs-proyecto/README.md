@@ -176,3 +176,5 @@ Documentos posteriores, por número:
 - [170 · Daniela Reyes y Monterey Jack originales de Confines](170-investigadores-daniela-monterey.md): ataques cancelados/redirigidos, desplazamientos y mazos publicados completos.
 
 - [171 · Amanda Sharpe](171-investigadora-amanda-sharpe.md): mazo oficial, cartas bajo la investigadora y compromisos obligatorios revisados.
+
+- [172 · Tommy Muldoon original](172-investigador-tommy-original.md): derrota de apoyos, Becky, Voto solemne y mazo oficial completo.

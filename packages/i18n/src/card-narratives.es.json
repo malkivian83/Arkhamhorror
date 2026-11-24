@@ -1342,5 +1342,11 @@
     "group": "investigators",
     "typeCode": "investigator",
     "backFlavor": "Amanda Sharpe iba de camino de convertirse en una de las más ilustres graduadas de la Universidad Miskatonic. Sin embargo, desde que vio un extraño cuadro que mostraba el surgimiento de una enorme criatura desde las profundidades del océano, sus estudios se han resentido. En sus sueños la ahogan imágenes de una gigantesca ciudad sumergida y susurros en un idioma que no entiende. Sigue dedicada a sus clases, pero su objetivo ya no es graduarse como la primera de su promoción; en lugar de eso, quiere descubrir el significado que hay tras los secretos ocultistas que se esconden entre las líneas de la realidad."
+  },
+  "06001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Siempre alerta, Tommy.\"",
+    "backFlavor": "La mayoría de los miembros de la familia Muldoon pertenecen a la policía de Boston de un modo u otro. Tommy, el hermano Muldoon más joven, consiguió su placa no hace mucho. Armado con una gran atención al detalle, un feroz coraje y Becky, su fiel fusil, Tommy está dedicado al cumplimiento de la ley… Pero cuando fue en comisión de servicio al departamento del sheriff de Arkham, descubrió que no estaba preparado para los extraños crímenes que tienen lugar en esta extraña ciudad. Aun así, tanto si la escena del crimen es un tugurio de mala muerte como si es un altar ensangrentado, Tommy no descansará hasta que lleve al culpable a la justicia."
   }
 }

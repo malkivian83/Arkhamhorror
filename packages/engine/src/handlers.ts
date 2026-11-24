@@ -4675,7 +4675,7 @@ export function handle(state: GameState, message: Message): GameState {
             })
       }
       if (def.type === 'asset') {
-        return push(state, {
+        const entry: Extract<Message, { type: 'PutAssetIntoPlay' }> = {
           type: 'PutAssetIntoPlay',
           investigator: investigator.id,
           code: message.code,
@@ -4683,7 +4683,13 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
           ...(message.x !== undefined ? { tokens: { uses: message.x } } : {}),
           ...(message.entryUses ? { entryUses: message.entryUses } : {}),
-        })
+        }
+        return push(
+          state,
+          ...(playerCardBehavior(message.code)?.playAsset?.(state, investigator.id, entry) ?? [
+            entry,
+          ]),
+        )
       }
       state = { ...state, eventResolutions: [...(state.eventResolutions ?? []), message.code] }
       const after: Message[] =
@@ -4876,7 +4882,7 @@ export function handle(state: GameState, message: Message): GameState {
                 type: 'Forced' as const,
                 trigger: {
                   type: 'afterPlayAsset' as const,
-                  investigator: message.investigator,
+                  investigator: message.playedBy ?? message.investigator,
                   code: message.code,
                   asset: id,
                 },
@@ -4914,18 +4920,34 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'DiscardAsset': {
       const asset = state.assets[message.asset]
-      if (asset?.expeditionPartner) {
-        if (!message.defeated) return state
-        const { [asset.id]: _gone, ...assets } = state.assets
-        return saveExpeditionPartner({ ...state, assets }, asset, true)
-      }
       // Reglamento, "Permanent": no puede abandonar el juego (ni Baron Samedi sin 3 perdición).
-      if (!asset || (stuckInPlay(state, asset) && !message.byOwnAbility)) return state
+      if (
+        !asset ||
+        (!asset.expeditionPartner && stuckInPlay(state, asset) && !message.byOwnAbility)
+      )
+        return state
       // Cherished Keepsake: "when … is defeated" replaces its discard (it is exiled).
       const defeated = message.defeated
         ? assetBehavior(state, asset)?.whenDefeated?.(state, asset)
         : undefined
       if (defeated) return push(state, ...defeated)
+      if (
+        message.defeated &&
+        !message.windowResolved &&
+        state.investigators.some(
+          (i) => !i.eliminated && investigatorBehavior(i.id)?.observesAssetDefeat,
+        )
+      )
+        return push(
+          state,
+          { type: 'Forced', trigger: { type: 'whenAssetDefeated', asset } },
+          { ...message, windowResolved: true },
+        )
+      if (asset.expeditionPartner) {
+        if (!message.defeated) return state
+        const { [asset.id]: _gone, ...assets } = state.assets
+        return saveExpeditionPartner({ ...state, assets }, asset, true)
+      }
       const instead =
         assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'discard') ??
         scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(state, asset, 'discard')
@@ -9630,7 +9652,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ShuffleAssetIntoDeck': {
       const asset = state.assets[message.asset]
-      if (!asset || stuckInPlay(state, asset)) return state
+      if (!asset || asset.expeditionPartner || stuckInPlay(state, asset)) return state
       const instead = assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
       if (instead) return push(state, ...instead)
       const owner = getInvestigator(state, asset.originalOwner ?? asset.owner)

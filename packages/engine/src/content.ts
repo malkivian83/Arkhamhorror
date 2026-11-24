@@ -667,6 +667,12 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Replace normal played-asset entry, e.g. entry under another investigator's control. */
+  playAsset?: (
+    state: GameState,
+    by: InvestigatorId,
+    entry: Extract<Message, { type: 'PutAssetIntoPlay' }>,
+  ) => Message[]
   /** Play this physical event as one of these events; it is removed instead of discarded. */
   copyEvents?: (state: GameState, investigator: InvestigatorId) => CardCode[]
   /** Subscribe to doom placed on a previously doom-free card. */
@@ -1187,6 +1193,8 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  /** Opens a when-defeated reaction window before the physical asset leaves play. */
+  observesAssetDefeat?: boolean
   /** Mandatory ST.2 effects, after initiation reactions and before optional commitments. */
   startCommitWindow?: (state: GameState, self: Investigator) => Message[]
   forced?: (state: GameState, trigger: Trigger, self: Investigator) => Message[]

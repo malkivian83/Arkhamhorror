@@ -1212,5 +1212,11 @@
     "group": "investigators",
     "typeCode": "investigator",
     "backFlavor": "Amanda Sharpe was on track to become one of Miskatonic University's most accomplished graduates. However, ever since she saw a strange painting of an enormous creature's emergence from the depths of the ocean, her classwork has suffered. Her dreams are overwhelmed by images of a vast submerged city and whispers in a language she does not understand. She remains dedicated to her studies, but her goal is no longer to graduate at the top of her class; rather, she seeks to discover the meaning behind the occult secrets concealed between the lines of reality."
+  },
+  "06001": {
+    "group": "investigators",
+    "typeCode": "investigator",
+    "flavor": "\"Eyes up, Tommy.\"",
+    "backFlavor": "Most members of the Muldoon family are part of the Boston police force in some way or another. Not long ago, the youngest Muldoon brother, Tommy, got his badge. Armed with an eye for detail, fierce courage, and his trusty rifle, Becky, Tommy is dedicated to law enforcement... but when he was loaned out to the Sheriff's Department in Arkham, he found that he was not prepared for the bizarre crimes cropping up in this strange town. Even so, whether the crime scene is a smoky speakeasy or a bloodstained altar, Tommy will not rest until he can bring the culprit to justice."
   }
 }
