@@ -1521,6 +1521,8 @@ type MessageBody =
     }
   | {
       type: 'PutAssetIntoPlay'
+      /** Playing and controlling an asset may belong to different investigators. */
+      playedBy?: InvestigatorId
       attachedTo?: AssetId
       investigator: InvestigatorId
       code: CardCode
@@ -1608,6 +1610,7 @@ type MessageBody =
   /** `defeated`: it leaves play because it was defeated (Cherished Keepsake is exiled). */
   | {
       type: 'DiscardAsset'
+      windowResolved?: boolean
       asset: AssetId
       defeated?: boolean
       onDiscard?: Message[]
@@ -2997,6 +3000,7 @@ export type Trigger =
   | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
+  | { type: 'whenAssetDefeated'; asset: Asset }
   | { type: 'afterTekeliliResolved'; investigator: InvestigatorId }
   | {
       type: 'treacheryAttached'

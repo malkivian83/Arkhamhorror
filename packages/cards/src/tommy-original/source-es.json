@@ -1,0 +1,183 @@
+[
+  {
+    "pack_code": "tde",
+    "pack_name": "Los devoradores de sueños",
+    "type_code": "investigator",
+    "type_name": "Investigador",
+    "faction_code": "guardian",
+    "faction_name": "Guardián",
+    "position": 1,
+    "exceptional": false,
+    "myriad": false,
+    "code": "06001",
+    "name": "Tommy Muldoon",
+    "real_name": "Tommy Muldoon",
+    "subname": "El poli novato",
+    "text": "[reaction] Cuando un Apoyo que controles sea derrotado: Obtén X recursos, donde X es la cantidad total de daño y horror que hay sobre ese Apoyo. Añade ese Apoyo a tu mazo y barájalo.\nEfecto [elder_sign]: +2. Puedes mover hasta 2 puntos de daño y/u horror de Tommy Muldoon a un Apoyo que controles o viceversa.",
+    "real_text": "[reaction] When an asset you control is defeated: Gain X resources, where X is the total amount of damage and horror on that asset. Shuffle that asset into your deck.\n[elder_sign] effect: +2. You may move up to 2 damage and/or horror from Tommy Muldoon to an asset you control, or vice versa.",
+    "quantity": 1,
+    "skill_willpower": 3,
+    "skill_intellect": 3,
+    "skill_combat": 4,
+    "skill_agility": 2,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Policía. Protector.",
+    "real_traits": "Police. Warden.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "06006": {
+          "06006": "06006"
+        },
+        "06007": {
+          "06007": "06007"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["guardian", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["survivor"],
+        "level": {
+          "min": 0,
+          "max": 2
+        }
+      }
+    ],
+    "flavor": "\"Siempre alerta, Tommy.\"",
+    "illustrator": "Magali Villeneuve",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Guardián ([guardian]) de nivel 0-5, cartas neutrales de nivel 0-5, cartas Superviviente ([survivor]) de nivel 0-2.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño del mazo): Becky, Error de novato, 1 Debilidad básica aleatoria.",
+    "back_flavor": "La mayoría de los miembros de la familia Muldoon pertenecen a la policía de Boston de un modo u otro. Tommy, el hermano Muldoon más joven, consiguió su placa no hace mucho. Armado con una gran atención al detalle, un feroz coraje y Becky, su fiel fusil, Tommy está dedicado al cumplimiento de la ley… Pero cuando fue en comisión de servicio al departamento del sheriff de Arkham, descubrió que no estaba preparado para los extraños crímenes que tienen lugar en esta extraña ciudad. Aun así, tanto si la escena del crimen es un tugurio de mala muerte como si es un altar ensangrentado, Tommy no descansará hasta que lleve al culpable a la justicia.",
+    "octgn_id": "273b932b-9834-4c45-a011-b5aa667a311f:bc7358e4-789c-4b68-b1ca-809b2f2ccb9d",
+    "url": "https://es.arkhamdb.com/card/06001",
+    "imagesrc": "/bundles/cards/06001.png",
+    "backimagesrc": "/bundles/cards/06001b.png"
+  },
+  {
+    "pack_code": "tde",
+    "pack_name": "Los devoradores de sueños",
+    "type_code": "asset",
+    "type_name": "Apoyo",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 6,
+    "exceptional": false,
+    "myriad": false,
+    "code": "06006",
+    "name": "Becky",
+    "real_name": "Becky",
+    "subname": "Marlin model 1894 personalizado",
+    "cost": 2,
+    "text": "Sólo para el mazo de Tommy Muldoon. Usos (2 municiones).\nCada recurso obtenido por la capacidad [reaction] de Tommy Muldoon se puede colocar sobre Becky como munición.\n[action] Gasta 1 de munición: <b>Combatir.</b> Recibes +2 [combat] e infliges +1 punto de daño para este ataque.",
+    "real_text": "Tommy Muldoon deck only. Uses (2 ammo).\nEach resource gained from Tommy Muldoon's [reaction] ability may instead be placed on Becky, as ammo.\n[action] Spend 1 ammo: <b>Fight.</b> You get +2 [combat] and deal +1 damage for this attack.",
+    "quantity": 1,
+    "skill_combat": 1,
+    "skill_agility": 1,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "slot": "Dos manos",
+    "real_slot": "Hand x2",
+    "traits": "Objeto. Arma. Arma de fuego.",
+    "real_traits": "Item. Weapon. Firearm.",
+    "restrictions": {
+      "investigator": {
+        "06001": "06001"
+      }
+    },
+    "illustrator": "Matthew Cowdery",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "2960ea49-9545-45d7-bc82-6052e24d25c3",
+    "url": "https://es.arkhamdb.com/card/06006",
+    "imagesrc": "/bundles/cards/06006.png"
+  },
+  {
+    "pack_code": "tde",
+    "pack_name": "Los devoradores de sueños",
+    "type_code": "treachery",
+    "type_name": "Traición",
+    "subtype_code": "weakness",
+    "subtype_name": "Debilidad",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 7,
+    "exceptional": false,
+    "myriad": false,
+    "code": "06007",
+    "name": "Error de novato",
+    "real_name": "Rookie Mistake",
+    "text": "<b>Revelación</b> - Descarta todos los Apoyos que controles que tengan daño u horror. Si no se descartaron Apoyos por este efecto, devuelve el Error de novato a tu mazo y barájalo.",
+    "real_text": "<b>Revelation</b> - Discard each asset you control with damage or horror on it. If no assets are discarded by this effect, shuffle Rookie Mistake back into your deck.",
+    "quantity": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Equivocación. Defecto.",
+    "real_traits": "Blunder. Flaw.",
+    "restrictions": {
+      "investigator": {
+        "06001": "06001"
+      }
+    },
+    "illustrator": "Owen William Weber",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "29485f85-1aa8-40dd-8f9d-5e7f38c72e3e",
+    "url": "https://es.arkhamdb.com/card/06007",
+    "imagesrc": "/bundles/cards/06007.png"
+  },
+  {
+    "pack_code": "tde",
+    "pack_name": "Los devoradores de sueños",
+    "type_code": "asset",
+    "type_name": "Apoyo",
+    "faction_code": "guardian",
+    "faction_name": "Guardián",
+    "position": 20,
+    "exceptional": false,
+    "myriad": true,
+    "code": "06020",
+    "name": "Voto solemne",
+    "real_name": "Solemn Vow",
+    "cost": 0,
+    "text": "Miríada. Rápido.\nJuega el Voto solemne bajo el control de otro investigador que esté en tu Lugar.\n[free] Si el propietario del Voto solemne está en tu Lugar, agota el Voto solemne: Mueve 1 punto de daño o de horror de una carta que controles a una carta que controle ese investigador.",
+    "real_text": "Myriad. Fast.\nPlay Solemn Vow under the control of another investigator at your location.\n[fast] If the owner of Solemn Vow is at your location, exhaust Solemn Vow: Move 1 damage or horror from a card you control to a card that investigator controls.",
+    "quantity": 3,
+    "skill_willpower": 2,
+    "xp": 0,
+    "health_per_investigator": false,
+    "deck_limit": 3,
+    "real_slot": "",
+    "traits": "Espíritu.",
+    "real_traits": "Spirit.",
+    "illustrator": "Andreia Ugrai",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "16f46f4c-ddc9-49e2-b738-add3380bc0c1",
+    "url": "https://es.arkhamdb.com/card/06020",
+    "imagesrc": "/bundles/cards/06020.png"
+  }
+]

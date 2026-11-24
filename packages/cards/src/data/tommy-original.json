@@ -1,0 +1,59 @@
+[
+  {
+    "code": "06001",
+    "name": "Tommy Muldoon",
+    "subname": "The Rookie Cop",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Police", "Warden"],
+    "unique": true,
+    "health": 8,
+    "sanity": 6,
+    "skills": { "willpower": 3, "intellect": 3, "combat": 4, "agility": 2 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["guardian", "neutral"], "maxLevel": 5 },
+      { "classes": ["survivor"], "maxLevel": 2 }
+    ],
+    "signatures": ["06006", "06007"]
+  },
+  {
+    "code": "06006",
+    "name": "Becky",
+    "subname": "Custom Marlin Model 1894",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1, "wild": 1 },
+    "slots": ["hand", "hand"],
+    "uses": { "count": 2, "type": "ammo" }
+  },
+  {
+    "code": "06007",
+    "name": "Rookie Mistake",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Blunder", "Flaw"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "weakness": "weakness"
+  },
+  {
+    "code": "06020",
+    "name": "Solemn Vow",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 2 },
+    "slots": [],
+    "fast": true,
+    "deckLimit": 3,
+    "myriad": true
+  }
+]
