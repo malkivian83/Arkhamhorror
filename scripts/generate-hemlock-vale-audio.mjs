@@ -31,10 +31,12 @@ const RULES = new Set([
   'thingInTheDepths.setup',
   'thingInTheDepths.sinkingLocations',
   'twistedHollow.setup',
+  'dawnSecondDay.setup',
+  'dawnSecondDay.survey',
 ])
 // Párrafos de instrucciones dentro de un relato: se muestran, pero no se graban.
 const INSTRUCTION =
-  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en |Mueve 1 punto|Recuerda que|Elige un investigador|Elige un Enemigo|Elige cualquier Lugar|Busca en el conjunto|Inflige 2 puntos|Elige una sola opción|Comprueba las cartas)/
+  /^(Toma el control|Cada investigador|Durante el resto|Aumenta el nivel|Retira a|Puedes (cancelar|volver)|Pasa a |Coge 1 de las cartas|Haz aparecer|Anota en |Mueve 1 punto|Recuerda que|Elige un investigador|Elige un Enemigo|Elige cualquier Lugar|Busca en el conjunto|Inflige 2 puntos|Elige una sola opción|Comprueba las cartas|Roba \d+ cartas?|Busca entre las|Obtén \d+ recursos|Reduce (el|los) nivel|Elige una de las|Puedes moverte|Busca a |Un investigador puede)/
 const narrative = (body) =>
   body
     .split(/\n\s*\n/)

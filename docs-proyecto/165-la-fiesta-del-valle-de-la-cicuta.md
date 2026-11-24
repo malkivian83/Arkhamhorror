@@ -47,7 +47,12 @@ preludios jugables. Se incorpora con el mismo procedimiento que
   la web (940 pruebas); tipos de cards; Prettier y ESLint.
 - Lote 6b verificado: sus 9 pruebas y 965 en total (Valle, cobertura, campañas, i18n y narración);
   tipos de cards y web; Prettier y ESLint.
-- Siguiente: entrega 7 (Alba del segundo día, La segunda tarde y La noche más larga).
+- Entrega 7 en lotes: **7a** Alba del segundo día (hecho, ver
+  [Alba del segundo día](#alba-del-segundo-día)); **7b** La segunda tarde; **7c** La noche más
+  larga. Verificado 7a: sus 7 pruebas y 1.205 en total (Valle, cobertura, campañas, i18n,
+  narración y referencia de la web); tipos de cards y web; Prettier y ESLint. Sus 32
+  narraciones están pendientes: no quedan créditos de ElevenLabs suficientes.
+- Siguiente: lote 7b (La segunda tarde).
 - Bloqueos: ninguno. Hay que aplicar las [erratas oficiales](#erratas-oficiales).
 
 ## Hoja de ruta
@@ -569,6 +574,27 @@ Lote 6b, en `twisted-hollow.ts` (pruebas en `twisted-hollow.test.ts`). Noche 1.
 Pendiente: la reacción del Rayo de esperanza al entrar en un Lugar, ver la zona de persecución en
 la web (ahora no se muestra), el modo independiente y la revisión visual (Bosque, Farol,
 persecución y el tercer acto, que muestra la carta del plan especial).
+
+### Alba del segundo día
+
+Lote 7a, en `dawn-second-day.ts` (pruebas en `dawn-second-day.test.ts`). Preludio jugable con
+el mismo armazón que el de bienvenida: el Valle de día, sin mazo de Encuentros, tarjeta de
+referencia del Valle (10704), plan Nubes oscuras (10683) y acto Alba del segundo día (10684).
+
+- **Antes de preparar:** fatiga (`ValleyFatigue`) y, según la comida de La primera tarde, La
+  maldición Cicuta (10685, debilidad con iconos que restan) o Hambre de lobo (1 trauma físico).
+- **Preparación:** Día 2; se empieza en la Pensión, Judith en El cruce de caminos y perdición
+  igual al número de investigadores. Los demás habitantes entran por el códice (9, 11, 13 y 15).
+- **Códice:** 1 (Muñeca de hojas de maíz si la madre Rachel intervino), 3–8 con las notas de
+  la Noche 1, 9 (repetible), 10 (recado), 12, 13 (William o River con relación 2 o más), 14
+  (completa el recado o paga 3 recursos por un Objeto) y 16 (un Apoyo de historia Objeto como
+  regalo). `welcome.ts` exporta las ayudas que comparten los preludios.
+- **Resolución:** R1 o R2 según Bertie, R3 con los preparativos del preludio (mano, recursos,
+  un Apoyo) y la elección del escenario del Día 2.
+
+Pendiente: los efectos de La maldición Cicuta al fallar y al final del turno, la habilidad de
+la Muñeca de hojas de maíz, las opciones adicionales del códice 9 pagando acciones, el códice
+17 (oculto en la carta de acto), sus 32 narraciones y la revisión visual.
 
 ## Entregas y criterios de aceptación
 

@@ -1,5 +1,6 @@
 import { registerCampaign, type CampaignScenario } from '../campaign-definition'
 import { hemlockValeChaosBags } from './chaos-bag'
+import { DAWN_SECOND_DAY, dawnSecondDay } from './dawn-second-day'
 import { FIRST_EVENING, firstEvening, TWISTED_HOLLOW } from './first-evening'
 import { twistedHollow } from './twisted-hollow'
 import { HEMLOCK_HOUSE, hemlockHouse } from './hemlock-house'
@@ -23,6 +24,7 @@ const BUILDS: Record<string, CampaignScenario['build']> = {
 
 const PRELUDES: Record<string, CampaignScenario['build']> = {
   [FIRST_EVENING]: firstEvening,
+  [DAWN_SECOND_DAY]: dawnSecondDay,
 }
 
 const steps: CampaignScenario[] = [

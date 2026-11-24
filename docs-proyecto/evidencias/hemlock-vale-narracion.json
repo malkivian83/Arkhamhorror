@@ -1591,5 +1591,198 @@
       "audioSha256": "44a3bfd4b875013ed095c339915062c4f7a42a84d109ac9cc73dcec0299a92af"
     }
   ],
-  "pending": []
+  "pending": [
+    {
+      "key": "story.hemlockVale.dawnSecondDay.intro.body",
+      "file": "hemlock-vale-dawn-second-day-intro-c828d8b0.mp3",
+      "textSha256": "c828d8b0033e0aaba6daf6b3ecd1347e7be37d46d9edd289db3d0ace3a3c4e71",
+      "characters": 251
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.hemlockCurse.body",
+      "file": "hemlock-vale-dawn-second-day-hemlock-curse-15ef0644.mp3",
+      "textSha256": "15ef0644105f2a53763e8f13c74833c2e10e2ee00b4b9dc6897b99ed4ea93d33",
+      "characters": 284
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.wolfishHunger.body",
+      "file": "hemlock-vale-dawn-second-day-wolfish-hunger-27beb2da.mp3",
+      "textSha256": "27beb2da1a7fc4d6f4948b5e6d589b398429c5c36dc92b5d1c5ae9d9150a9dac",
+      "characters": 149
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.rachel1.body",
+      "file": "hemlock-vale-dawn-second-day-rachel-1-d8fc1f1c.mp3",
+      "textSha256": "d8fc1f1ca8f2179af0d9932d33deff06e504eb6020ae63c567e1889d7779f508",
+      "characters": 360
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.rachel2.body",
+      "file": "hemlock-vale-dawn-second-day-rachel-2-9cddb252.mp3",
+      "textSha256": "9cddb25212c6c83d5932b3e592c2ef6052385a468373563e0d901a743b1fef63",
+      "characters": 534
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.rachel3.body",
+      "file": "hemlock-vale-dawn-second-day-rachel-3-63d0af8c.mp3",
+      "textSha256": "63d0af8cd65ee366b103f1685b6d2dd38f791b077c6ae06bd8381c5bb0e035e8",
+      "characters": 353
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.simeonPlan.body",
+      "file": "hemlock-vale-dawn-second-day-simeon-plan-0569a485.mp3",
+      "textSha256": "0569a485e6a47f764638ffd354f8995451e48cd44780e583ff869535535b2ed6",
+      "characters": 653
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.simeon.body",
+      "file": "hemlock-vale-dawn-second-day-simeon-a9faacc6.mp3",
+      "textSha256": "a9faacc632a17add0860191f96c225062182e1bdf7ab80c759d5d35aaa35b80e",
+      "characters": 210
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.william.body",
+      "file": "hemlock-vale-dawn-second-day-william-96dcb279.mp3",
+      "textSha256": "96dcb279d3ef741ac9a27f8f3cc13004b276573f873a7dabca1a4e5c7bc80092",
+      "characters": 132
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.river.body",
+      "file": "hemlock-vale-dawn-second-day-river-66f64341.mp3",
+      "textSha256": "66f64341ee5271be0512b28b2df8404101d10e5329ab0ec10d36f5f38c4ee632",
+      "characters": 226
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.gideon1.body",
+      "file": "hemlock-vale-dawn-second-day-gideon-1-acecd255.mp3",
+      "textSha256": "acecd2559c69b8f1f5e98e9a4f555f2602f6c5e253f65df2f7cafbd1a9e644e2",
+      "characters": 286
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.gideon2.body",
+      "file": "hemlock-vale-dawn-second-day-gideon-2-819db667.mp3",
+      "textSha256": "819db667b2f30c922d35522c79cd546befe9f1037861b78ada827ca09c0a9936",
+      "characters": 509
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.gideon3.body",
+      "file": "hemlock-vale-dawn-second-day-gideon-3-69ed202b.mp3",
+      "textSha256": "69ed202b34b4d9a49f088f97f16783947fd2a334294cd9b742dc24560a97cfac",
+      "characters": 217
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.judith1.body",
+      "file": "hemlock-vale-dawn-second-day-judith-1-22722fba.mp3",
+      "textSha256": "22722fba92361da0739b7d8600208e82d86c1e2f810f4ada39b43d1b3a713400",
+      "characters": 383
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.judith2.body",
+      "file": "hemlock-vale-dawn-second-day-judith-2-a960ed0c.mp3",
+      "textSha256": "a960ed0c7efece95b38efc57f565f94572ff1a0efaab22252516fddd0c4bb57e",
+      "characters": 268
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.judith3.body",
+      "file": "hemlock-vale-dawn-second-day-judith-3-6d9d00ef.mp3",
+      "textSha256": "6d9d00ef0b175686d1b4c59dd8107c7a644e1f2c3f04c24944a93cbee1db0e95",
+      "characters": 203
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.judith4.body",
+      "file": "hemlock-vale-dawn-second-day-judith-4-d67df937.mp3",
+      "textSha256": "d67df93787bb8e7d6d248e8ddff5b6eaf71d37473685345302366100fafda72d",
+      "characters": 107
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.theoBear.body",
+      "file": "hemlock-vale-dawn-second-day-theo-bear-1d932bac.mp3",
+      "textSha256": "1d932bac977190670c9cd07cd4d139da86290c1ff3a84bb41f66b1d76c1dfa48",
+      "characters": 643
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.theo.body",
+      "file": "hemlock-vale-dawn-second-day-theo-36b8b797.mp3",
+      "textSha256": "36b8b797a3187ac9f062697a721baca36301db0bd457e6cd1b564ed15770c067",
+      "characters": 301
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.boardingHouse.body",
+      "file": "hemlock-vale-dawn-second-day-boarding-house-1bfef51c.mp3",
+      "textSha256": "1bfef51cbfcb70e1d004dbb2073925c732b6593f507201be0eec6b0123532ecd",
+      "characters": 310
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.crossroads.body",
+      "file": "hemlock-vale-dawn-second-day-crossroads-9abcd3ba.mp3",
+      "textSha256": "9abcd3ba823b544ad997f2d6ab1f792e8d99f42d210d6e7a657ab8580d9b1370",
+      "characters": 437
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.chapel.body",
+      "file": "hemlock-vale-dawn-second-day-chapel-a1a8f3d2.mp3",
+      "textSha256": "a1a8f3d290671f68c0ba794a369f239981438898c25f076cbf5464a7ef98ad27",
+      "characters": 562
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.oldMill.body",
+      "file": "hemlock-vale-dawn-second-day-old-mill-5f72fbf3.mp3",
+      "textSha256": "5f72fbf3e02ade3ae5668ac274745b75fc9f0db366c0e6f037e58ff25c02cb81",
+      "characters": 239
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.atwoodHouse.body",
+      "file": "hemlock-vale-dawn-second-day-atwood-house-96c5a611.mp3",
+      "textSha256": "96c5a6118c84e20d7c90bc6df663f04c9c78da2486c368e9cf6e341c082f7f3d",
+      "characters": 314
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.atwoodArgue.body",
+      "file": "hemlock-vale-dawn-second-day-atwood-argue-58a5627c.mp3",
+      "textSha256": "58a5627c396ea99239028b16d6e9382e951ed986fc85c13304c979b81f71f7b8",
+      "characters": 278
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.tadsErrand.body",
+      "file": "hemlock-vale-dawn-second-day-tads-errand-9b9e0f77.mp3",
+      "textSha256": "9b9e0f77cbb285061a77d0cd2def85bad669f84fc5fc58d41ae3f57ad0c3b246",
+      "characters": 262
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.tads.body",
+      "file": "hemlock-vale-dawn-second-day-tads-fb1a943f.mp3",
+      "textSha256": "fb1a943f36343a4468667e38b80cb4ff39e996ba56b0c666d6921c259becb479",
+      "characters": 321
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.schoolhouse.body",
+      "file": "hemlock-vale-dawn-second-day-schoolhouse-e267189a.mp3",
+      "textSha256": "e267189a32659d95f062305f093a47973ac2b801b231c12033df43e4f3f75c9f",
+      "characters": 312
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.commons.body",
+      "file": "hemlock-vale-dawn-second-day-commons-6d5f79a9.mp3",
+      "textSha256": "6d5f79a91c30810ff7858ee073625870ce19f2da174d0704e13e7572d90eb841",
+      "characters": 297
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.resolution1.body",
+      "file": "hemlock-vale-dawn-second-day-resolution-1-d492cc36.mp3",
+      "textSha256": "d492cc368f0685df79bab7ab0346cd6b62614f1c14d5e18b86f6c66cede99381",
+      "characters": 618
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.resolution2.body",
+      "file": "hemlock-vale-dawn-second-day-resolution-2-b18cbdf1.mp3",
+      "textSha256": "b18cbdf18437745c14c9764173f0d6a4dbc55f3bb9f2c35d0882bdb227c76812",
+      "characters": 270
+    },
+    {
+      "key": "story.hemlockVale.dawnSecondDay.resolution3.body",
+      "file": "hemlock-vale-dawn-second-day-resolution-3-e085276f.mp3",
+      "textSha256": "e085276fbb56f6936604897f40e0951022b26e2fec88f3d24c3861ec75e5530f",
+      "characters": 423
+    }
+  ]
 }

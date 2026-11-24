@@ -45,6 +45,7 @@ export function chaosHelp(
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
     'hemlock-vale-welcome': localeData(locale).hemlockValeCards['10704'],
     'hemlock-vale-first-evening': localeData(locale).hemlockValeCards['10704'],
+    'hemlock-vale-dawn-second-day': localeData(locale).hemlockValeCards['10704'],
     'hemlock-vale-written-in-rock': localeData(locale).hemlockValeCards['10501'],
     'hemlock-vale-hemlock-house': localeData(locale).hemlockValeCards['10523'],
     'hemlock-vale-silent-heath': localeData(locale).hemlockValeCards['10549'],

@@ -658,6 +658,144 @@
         "title": "Resolución 3",
         "body": "“Estudio de Miskatonic, junio de 1926. Miembros Marquez, Musgrave et alii. Excursión no planeada al bosque oriental durante la noche. La flora y fauna locales han evolucionado con patrones de comportamiento altamente especializados después del anochecer, probablemente dictados por ritmos circadianos extremos y depredación agresiva. Es un entorno altamente tóxico. Se ha identificado una simbiosis hasta ahora desconocida con una nueva cepa de hongo parásito. Es necesaria más observación”."
       }
+    },
+    "dawnSecondDay": {
+      "intro": {
+        "title": "Preludio: Alba del segundo día",
+        "body": "Os despertáis sintiéndoos totalmente agotados. Cae una ligera lluvia cuando salís, pero ni siquiera la lluvia parece enfriar los ánimos del Valle: un círculo de niños que llevan máscaras de animales canta una melodía rítmica mientras siguen decorando."
+      },
+      "hemlockCurse": {
+        "title": "La maldición Cicuta",
+        "body": "Todo tu cuerpo parece vibrar al son de los latidos de tu corazón, luego da paso a una incomodidad, luego a una deliciosa euforia, como si estuvieras hecho de aire. La sensación pasa. Te tocas el dorso de la mano. No sabes cómo describirlo, pero no te sientes bien. Te notas diferente.\n\nBusca en el conjunto de encuentros Día de lluvia la Debilidad La maldición Cicuta y añádela a tu mazo. No cuenta para tu tamaño de mazo. Este conjunto viene indicado por el siguiente icono:"
+      },
+      "wolfishHunger": {
+        "title": "Hambre de lobo",
+        "body": "Te ruge el estómago cuando te llega el olor de huevos recién hechos y galletas que viene de la pensión. El hambre te reclama.\n\nSufre 1 trauma físico."
+      },
+      "setup": {
+        "title": "Preparación del Preludio",
+        "body": "Día dos. Cada Lugar de El Valle está en juego por su lado de Día; cada investigador comienza en la Pensión. Judith Park está en El cruce de caminos; los demás habitantes quedan apartados y entran en juego mediante el códice. Coloca sobre el plan tanta Perdición como investigadores. Mientras el acto esté en juego, los investigadores no pueden recibir daño ni horror ni ser derrotados."
+      },
+      "rachel1": {
+        "title": "Códice 1: Madre Rachel",
+        "body": "La madre Rachel encabeza una procesión. El cortejo agita lazos de brillantes colores mientras cantan una rítmica canción: “La noche es larga, el bosque está oscuro / El niño estelar vestido de corteza es puro / Esperamos la lluvia estival / El agua del dolor nos librará”. La procesión se detiene cuando la madre Rachel se aparta del grupo para acercarse a ti."
+      },
+      "rachel2": {
+        "title": "Códice 1: Madre Rachel",
+        "body": "Los ojos de la madre Rachel se inundan de lágrimas.\n\n–Pude sentir que la mano de la muerte se acercaba a ustedes y por eso les seguí al bosque. Cuando la bestia apareció, sabía que debía ayudarles. Igual que ustedes deben asistir a los milagros de la Isla de la Cicuta en toda su terrible y aterradora gloria.\n\nTe entrega una pequeña muñeca hecha a mano.\n\n–Un regalo de mi hija –dice mientras señala a una chiquilla con máscara de conejo que forma parte de la procesión. Tiene guirnaldas de flores en torno a las manos y los tobillos.\n\nAumenta el nivel de relación de la madre Rachel. Cada investigador obtiene 1 punto de experiencia adicional.\n\nBusca en el conjunto de encuentros Reliquias familiares el Apoyo de historia Muñeca de hojas de maíz y añádelo a tu mazo. No cuenta para tu tamaño de mazo."
+      },
+      "rachel3": {
+        "title": "Códice 1: Madre Rachel",
+        "body": "La madre Rachel te agarra las manos con fuerza mientras te mira con una sonrisa magnánima.\n\n–Hay tanto que todavía no entienden. Aun así, creo que lo entenderán cuando comience la fiesta.\n\nCuando la matrona regresa a la procesión, una niña con máscara de conejo se asoma entre la multitud. Tiene guirnaldas de flores en torno a las manos y los tobillos.\n\nAumenta el nivel de relación de la madre Rachel. Cada investigador obtiene 1 punto de experiencia adicional.\n\nRoba 1 carta. Puedes jugar un Apoyo Amuleto o Hechizo de tu mano, ignorando su coste."
+      },
+      "simeonPlan": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "–¡Por los mineros secretos! –grita Simeon mientras tira un petardo a tus pies, pero la lluvia apaga la mecha.\n\n–Considérelo un aviso –se ríe. A continuación, el joven abre una bolsa llena de fuegos artificiales mientras explica un complicado plan–. Mañana por la mañana esconda estos fuegos artificiales por el cruce de caminos, la capilla, la tienda y la escuela. Donde la gente no los encuentre. Luego, la noche de la fiesta, nos reuniremos detrás de la escuela.\n\nCuando le preguntas que por qué no coloca él los fuegos artificiales, sonríe burlón: –Tengo que ir a por más pólvora a mi guarida subterránea secreta. Pero no se preocupe, volveré mañana.\n\nAnota en las Notas de Simeon Atwood que El plan está en marcha (Consejo: Mañana tendrás que esconder 1 fuego artificial [per_investigator] en el Valle de la Cicuta)."
+      },
+      "simeon": {
+        "title": "Códice 3: Simeon Atwood",
+        "body": "–¡Largo! –grita Simeon desde una pequeña madriguera en la base del molino. Está claro que el joven oculta algo, pero no tienes ni idea de qué se trata. Un petardo sale volando desde el follaje, pero no explota.\n\nRoba 1 carta. Busca entre las 9 primeras cartas de tu mazo una carta Táctica o Truco y añádela a tu mano (baraja tu mazo)."
+      },
+      "william": {
+        "title": "Códice 4: William Cicuta",
+        "body": "River se marcha indignada después de que acudas en defensa de su primo. William sonríe.\n\n–Gracias. Tengo mucho sobre lo que meditar.\n\nAnota en las Notas de William Cicuta que William se ha animado.\n\nAumenta el nivel de relación de William Cicuta. Reduce el nivel de relación de River Hawthorne. Cada investigador obtiene 1 punto de experiencia adicional.\n\nBusca entre las 9 primeras cartas de tu mazo una carta Tomo o Talento y añádela a tu mano (baraja tu mazo)."
+      },
+      "river": {
+        "title": "Códice 5: River Hawthorne",
+        "body": "–Agradezco su apoyo –dice River con una sonrisa de suficiencia mientras William se marcha–. El idiota de mi primo entregó todos los bonos y acciones de la familia a los Atwood. Sólo tengo que averiguar dónde los han escondido.\n\nAnota en las Notas de River Hawthorne que El plan está en marcha.\n\nAumenta el nivel de relación de River Hawthorne en 2. Reduce el nivel de relación de William Cicuta. Cada investigador obtiene 2 puntos de experiencia adicionales.\n\nObtén 4 recursos."
+      },
+      "gideon1": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "Gideon está sentado en una mesa larga.\n\n–He oído algo rarísimo en la costa norte. Un montón de algas y moluscos rodando por la playa del norte. Dicen que se movían solos.\n\nLa historia del anciano no tarda en amenazar con convertirse en una explicación sobre la anatomía de las ballenas."
+      },
+      "gideon2": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "Al presentir que llega otro de los relatos dispersos del viejo marinero, le preguntas a Gideon por el naufragio que encontraron en el Atlántico el capitán Cicuta y él. El rostro del anciano se ilumina al oír la pregunta y relata de forma lúgubre cómo la tripulación de su barco, el Annabelle Lee, cayó gravemente enferma tras visitar el naufragio. Mientras cuenta la historia, se os une la Dra. Marquez, que escucha con atención. Notas un viejo miedo en el tono del curtido marinero, pero no quieres insistir.\n\nAnota en las Notas de Gideon Mizrah que Gideon contó el relato del Annabelle Lee.\n\nRoba 3 cartas. Aumenta el nivel de relación de Gideon Mizrah. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "gideon3": {
+        "title": "Códice 6: Gideon Mizrah",
+        "body": "La conversación se degrada hasta convertirse en un soliloquio sobre la eliminación de percebes. Mientras Gideon habla con entusiasmo de un delicioso guiso de abulón que probó una vez, te excusas educadamente y te vas.\n\nRoba 3 cartas. Aumenta el nivel de relación de Gideon Mizrah. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "judith1": {
+        "title": "Códice 7: Judith Park",
+        "body": "Judith se apoya en un lateral de la Casa Atwood mientras limpia su fusil y observa a los transeúntes.\n\n–Estos dulces corderitos ni siquiera saben por lo que tengo que pasar para mantenerlos a salvo. Y espero que nunca lo sepan, Jomo.\n\nTe das cuenta de que se está dirigiendo a su fusil y no a ti. De pronto, se detiene, como si fuera consciente de tu presencia, y te mira a los ojos."
+      },
+      "judith2": {
+        "title": "Códice 7: Judith Park",
+        "body": "–Tenga por seguro que ese oso está vivo y conoce su olor –dice Judith de forma siniestra–. Algunos de los animales que hay por aquí son increíblemente listos. Demasiado listos. Le garantizo que esa cosa tendrá sed de sangre esta noche. No vuelva a acercarse al bosque."
+      },
+      "judith3": {
+        "title": "Códice 7: Judith Park",
+        "body": "Judith te mira de arriba abajo.\n\n–Supongo que el estudio tenía que traer a alguien como usted. Alguien capaz de mantener la calma bajo presión –Pone los brazos en jarras–. A lo mejor logra impresionarme.\n\nAumenta el nivel de relación de Judith Park. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "judith4": {
+        "title": "Códice 7: Judith Park",
+        "body": "–¿Gracias? ¿Por salvarles? –Judith enarca una ceja–. De nada, supongo. Sólo hago lo que me pagan por hacer.\n\nReduce el nivel de relación de Judith Park. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "theoBear": {
+        "title": "Códice 8: Theo Peters",
+        "body": "Theo está de pie en el patio del colegio, aferrando un ejemplar muy querido de 20 000 leguas de viaje submarino.\n\n–La hermana Miriam se enfadó muchísimo cuando le pedí comprarle su libro. Pero no quiero devolverlo –dice–. Siempre he querido ver el fondo del mar. Siempre y cuando eso no me mate, claro.\n\nMientras te lleva por el Valle en su camioneta, Theo parece pensativo.\n\n–No puedo dejar de pensar en el oso. Ahora entiendo por qué nos dice la madre Rachel que no salgamos de noche. Hay gente que ha desaparecido en los últimos meses. Benny. La hermana Edie. Ese crío de cuyo nombre no me acuerdo nunca. No hablamos de los que desaparecen.\n\nPuedes moverte a cualquier Lugar inmediatamente.\n\nAumenta el nivel de relación de Theo Peters. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "theo": {
+        "title": "Códice 8: Theo Peters",
+        "body": "Theo está de pie en el patio del colegio, aferrando un ejemplar muy querido de 20 000 leguas de viaje submarino.\n\n–La hermana Miriam se enfadó muchísimo cuando le pedí comprarle su libro. Pero no quiero devolverlo –dice–. Siempre he querido ir al fondo del mar. Siempre y cuando eso no me mate, claro.\n\nPuedes moverte a cualquier Lugar inmediatamente."
+      },
+      "boardingHouse": {
+        "title": "Códice 9: Pensión",
+        "body": "La Sra. Olmstead está encantada de responder tus preguntas mientras coloca platos repletos de fruta suculenta y carnes chisporroteantes.\n\n–No olvide venir esta noche al baile. Estará todo el mundo –dice con una sonrisa. Se te hace la boca agua con el olor de la comida, pero también percibes un trasfondo acre.\n\nElige una de las siguientes opciones para resolverla. Los investigadores que estén en la Pensión pueden, como grupo, gastar cualquier cantidad de acciones para elegir esa misma cantidad de opciones adicionales. Un investigador puede volver a activar este códice."
+      },
+      "crossroads": {
+        "title": "Códice 10: El cruce de caminos",
+        "body": "Leah grita a un grupo de trabajadores que tapen la efigie con lonas mientras cae la lluvia. Las docenas de espejitos resuenan como carillones mientras protegen los adornos del festival frente a la lluvia. En una gran tienda blanca, Leah levanta la vista cuando te acercas.\n\n–Ah, llega en el momento justo. Llévele esto a Tad lo antes posible. Muy amable –dice mientras señala con la cabeza una caja llena de útiles de granja desgastados.\n\nRoba 1 carta. Recuerda que estás “realizando un recado”."
+      },
+      "chapel": {
+        "title": "Códice 11: Capilla Cicuta",
+        "body": "La entrada a la capilla Cicuta está a rebosar de parroquianos ataviados con capas blancas y doradas, así que te vas por detrás. Al abrir la puerta trasera, oyes una conversación entre susurros. Dejas la puerta entornada y te pones a escuchar. Una voz dice en voz baja: –Se hará como has dicho, madre. Pero me preguntaba por qué necesitas que...\n\n–No tienes que cuestionar ni hablar, sino obedecer –afirma la severa voz de la madre Rachel con tono cortante–. Ahora únete a tus hermanos, pues yo debo acudir a la procesión. Limítate a hacer lo que se te ha pedido.\n\nBusca a Madre Rachel en el conjunto de encuentros Habitantes puesto aparte y ponla en juego en la Capilla Cicuta, con el lado de Apoyo boca arriba."
+      },
+      "oldMill": {
+        "title": "Códice 12: El viejo molino",
+        "body": "El viejo molino está sumido en un silencio espectral mientras rebuscas entre la maleza. Con el retumbar de un trueno en el cielo, un saltamontes de largas patas sale volando. Te das cuenta de que el insecto tiene unas deformes alas negras.\n\nRoba 3 cartas."
+      },
+      "atwoodHouse": {
+        "title": "Códice 13: La Casa Atwood",
+        "body": "Oyes a William y River discutiendo.\n\n–Es todo lo que nos queda. No podemos dar la espalda a nuestro pasado. A nuestro legado –insiste William.\n\nRiver lo interrumpe con una mirada feroz.\n\n–El legado de los Cicuta está muerto. Y conozco a varios compradores de Harlem que convertirían esta isla húmeda en un paraíso."
+      },
+      "atwoodArgue": {
+        "title": "Códice 13: La Casa Atwood",
+        "body": "Mientras intercambian insultos increíblemente personales, un trueno los hace enmudecer. William frunce el ceño al verte; River se gira y también hace una mueca. Se produce un silencio incómodo y te das cuenta de que acabas de escuchar a escondidas una conversación muy delicada.\n\nReduce los niveles de relación de William Cicuta y de River Hawthorne."
+      },
+      "tadsErrand": {
+        "title": "Códice 14: Almacén general de Tad",
+        "body": "Sueltas la caja de herramientas y útiles de granja sobre el mostrador con un ruido sordo. El propietario sonríe mientras los guarda. –Leah le estará muy agradecida. ¿Todo listo para la fiesta de mañana? Muerde un trozo de correosa cecina y escupe en una botella.\n\nAumenta el nivel de relación de Leah Atwood. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "tads": {
+        "title": "Códice 14: Almacén general de Tad",
+        "body": "–¿Qué quiere comprar? –pregunta el propietario entre risas–. Al menos eso es lo que solía decir Tad. Cuando le preguntas dónde está Tad, calla. Puedes gastar 3 recursos para buscar un Apoyo Objeto en tu mazo y jugarlo, ignorando su coste. Un investigador puede volver a activar este códice si está “realizando un recado”."
+      },
+      "schoolhouse": {
+        "title": "Códice 15: Escuela del Valle",
+        "body": "–¡Es una biblioteca, no una librería! –ladra una airada maestra pelirroja. Theo sale de la escuela con una sonrisa bobalicona cuando los niños se le echan encima. Busca a Theo Peters en el conjunto de encuentros Habitantes puesto aparte y ponlo en juego en la Escuela del Valle, con el lado de Apoyo boca arriba."
+      },
+      "commons": {
+        "title": "Códice 16: El salón comunitario",
+        "body": "–¿Quiere enviarle un regalo a alguien especial? –pregunta Martha Jean mientras señala una ordenada pila de cajas de regalo trenzadas con coloridos lazos–. Me temo que cualquier cosa que quiera enviar al continente tendrá que esperar a mañana por la mañana. El cartero se ha vuelto a quedar tirado.\n\nUn investigador puede buscar un Apoyo de historia Objeto en su mazo, pila de descartes o mano y retirarlo permanentemente de su mazo. Si lo hace, comprueba el registro de campaña y elige un habitante que tenga un nivel de relación de 2 o menos. Aumenta el nivel de relación del habitante elegido. Cada investigador obtiene 1 punto de experiencia adicional."
+      },
+      "resolution1": {
+        "title": "Resolución 1",
+        "body": "La Dra. Marquez sale del piso de arriba con cara impasible, seguida de Bertie que lleva un brazo vendado. Tiene el rostro ceniciento mientras cuenta su experiencia: –Iba caminando por la linde del bosque, creo que a mediodía, cuando sentí una deliciosa... esto... –Le cuesta expresarlo con palabras–. Una dicha absoluta. Y luego supongo que me quedé absorto. Cuando volví en mí, era de noche y estaba totalmente perdido. Y ahora que he vuelto, no puedo evitar pensar en esa sensación arrebatadora. “Una emoción recolectada en tranquilidad”, ¿saben? La profesora pone los ojos en blanco, pero no hace ningún comentario."
+      },
+      "resolution2": {
+        "title": "Resolución 2",
+        "body": "La Dra. Marquez cierra de un portazo la puerta mosquitera al entrar.\n\n–La madre Rachel me dijo que encontró a Bertie deambulando por ahí esta mañana. Lo he visto recuperándose en la Casa Atwood y parecía estar perfectamente. Balbuciendo tonterías y leyendo poesía local."
+      },
+      "resolution3": {
+        "title": "Resolución 3",
+        "body": "La Dra. Marquez se sirve una taza de café bien cargado.\n\n–Voy a aprovechar que la lluvia está refrescando el ambiente para subir a la Cresta Perla. Pueden venir si quieren –Prueba los huevos de su plato y arruga la nariz–. ¿Tienen como un sabor metálico?\n\nEscupe los huevos discretamente en un pañuelo justo cuando la Srta. Olmstead sale de la cocina con un montón de tortitas y se las sirve a varios huéspedes hambrientos."
+      },
+      "survey": {
+        "title": "El segundo estudio",
+        "body": "Comprueba la sección “Zonas exploradas” del registro de campaña y elige un escenario que no haya sido tachado aún."
+      }
     }
   },
   "choice": {
@@ -743,7 +881,15 @@
     "eachGainsClue": "Cada investigador obtiene 1 pista",
     "readyLantern": "Prepara el Farol del Valle",
     "tellTheTruth": "Decir la verdad",
-    "lie": "Mentir"
+    "lie": "Mentir",
+    "iCanHandleIt": "–Puedo apañármelas.",
+    "thanksForSaving": "–Gracias por salvarnos.",
+    "helpLeah": "–Leah agradecerá su ayuda en el cruce de caminos.",
+    "findSimeon": "–Simeon estará seguramente escondido en el campo.",
+    "findGideon": "–Gideon probablemente esté en el salón comunitario, como siempre.",
+    "riverIsRight": "–River tiene razón.",
+    "letThemArgue": "Deja que discutan",
+    "tadsItemThree": "Gasta 3 recursos: busca un Apoyo Objeto en tu mazo y juégalo"
   },
   "prompt": {
     "drawOrGain": "Roba 1 carta u obtén 1 recurso",
@@ -783,7 +929,11 @@
     "lookAtLocation": "Elige el Lugar conectado que miras",
     "moveThere": "¿Te mueves a ese Lugar?",
     "whoHelps": "¿Quién acude en tu ayuda?",
-    "tellRachel": "La madre Rachel os pregunta adónde vais"
+    "tellRachel": "La madre Rachel os pregunta adónde vais",
+    "judithAnswer": "¿Qué le respondes a Judith?",
+    "boardingHouse": "Elige una opción",
+    "sendGift": "Puedes enviar un Apoyo de historia Objeto como regalo",
+    "chooseResident": "Elige un habitante con nivel de relación 2 o menos"
   },
   "ability": {
     "codex": "Códice {n}",
