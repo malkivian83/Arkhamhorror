@@ -1,0 +1,64 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": {
+    "08001": "https://arkhamdb.com/decklist/view/34729",
+    "08007": "https://arkhamdb.com/decklist/view/35838"
+  },
+  "presentation": "rendered",
+  "sources": {
+    "en": "5417c8213d36d1ad59834b68a292e72da365c5aef6253062629b330b3e1b2724",
+    "es": "02b17a464cb95a6bbca5435941ae2af48096fec5d3077b39077c2e5f8d120dbd"
+  },
+  "cards": [
+    {
+      "code": "08001",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08001",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08002",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08002",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08003",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08003",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08007",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08007",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08008",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08008",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08009",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08009",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08021",
+      "status": "verified",
+      "adapter": "daniela-monterey-v1",
+      "module": "card-08021",
+      "test": "rules.test.ts"
+    }
+  ]
+}

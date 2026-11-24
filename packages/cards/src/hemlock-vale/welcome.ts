@@ -98,7 +98,7 @@ export function registerCodexGate(
   codexGates[scenario] = gate
 }
 
-const codexKey = (n: number, investigator?: InvestigatorId) =>
+export const codexKey = (n: number, investigator?: InvestigatorId) =>
   investigator ? `codex:${n}:${investigator}` : `codex:${n}`
 export const codexResolved = (state: GameState, n: number, investigator?: InvestigatorId) =>
   !!state.scenarioMeta?.[codexKey(n, investigator)]
@@ -134,7 +134,7 @@ const drawOrGain = (investigator: InvestigatorId): Message =>
   ])
 
 /** «Puedes jugar … de tu mano, ignorando su coste.» */
-function playFromHand(
+export function playFromHand(
   state: GameState,
   investigator: InvestigatorId,
   traits: string[],
@@ -163,7 +163,7 @@ function playFromHand(
   ]
 }
 
-const searchTop = (investigator: InvestigatorId, traits: string[]): Message => ({
+export const searchTop = (investigator: InvestigatorId, traits: string[]): Message => ({
   type: 'SearchDeck',
   investigator,
   top: 9,
@@ -173,7 +173,7 @@ const searchTop = (investigator: InvestigatorId, traits: string[]): Message => (
   optional: true,
 })
 
-function moveAnywhere(state: GameState, investigator: InvestigatorId): Message {
+export function moveAnywhere(state: GameState, investigator: InvestigatorId): Message {
   const here = getInvestigator(state, investigator).location
   return ask(investigator, 'prompt.hemlockVale.moveAnywhere', [
     ...Object.values(state.locations)
@@ -555,7 +555,7 @@ for (const resident of Object.keys(RESIDENTS) as ValleyResident[]) {
 // ---------------------------------------------------------------------------
 
 /** Tamaño de mano y recursos iniciales, con las bonificaciones de las cartas permanentes. */
-function startingValues(state: GameState, investigator: InvestigatorId) {
+export function startingValues(state: GameState, investigator: InvestigatorId) {
   const permanents = Object.values(state.assets)
     .filter((asset) => asset.owner === investigator)
     .map((asset) => playerCardBehavior(asset.code)?.permanent)
@@ -567,7 +567,11 @@ function startingValues(state: GameState, investigator: InvestigatorId) {
 }
 
 /** «Elige 1 Apoyo que normalmente no empiece en juego» (R1, p. 9). */
-function keepAsset(state: GameState, investigator: InvestigatorId, resources: number): Message {
+export function keepAsset(
+  state: GameState,
+  investigator: InvestigatorId,
+  resources: number,
+): Message {
   const record = (asset?: string): Message => ({
     type: 'RecordPreludeCarry',
     investigator,

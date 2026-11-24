@@ -1,0 +1,364 @@
+[
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "investigator",
+    "type_name": "Investigador",
+    "faction_code": "guardian",
+    "faction_name": "Guardián",
+    "position": 1,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08001",
+    "name": "Daniela Reyes",
+    "real_name": "Daniela Reyes",
+    "subname": "La mecánica",
+    "text": "[reaction] Después de que un Enemigo te ataque (excepto por un ataque de oportunidad que hayas provocado tú), incluso si ese ataque fue cancelado: Inflige 1 punto de daño a ese Enemigo o evítalo automáticamente.\nEfecto [elder_sign]: +1. Si has sido atacado por un Enemigo en esta ronda, en lugar de eso tienes éxito automáticamente.",
+    "real_text": "[reaction] After an enemy attacks you (except an attack of opportunity you provoked), even if that attack was canceled: Either deal 1 damage to that enemy, or automatically evade it.\n[elder_sign] effect: +1. If you were attacked by an enemy this round, you automatically succeed, instead.",
+    "quantity": 1,
+    "skill_willpower": 4,
+    "skill_intellect": 1,
+    "skill_combat": 5,
+    "skill_agility": 2,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "traits": "Emprendedor.",
+    "real_traits": "Entrepreneur.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "08002": {
+          "08002": "08002"
+        },
+        "08003": {
+          "08003": "08003"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["guardian"],
+        "level": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "faction": ["neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["survivor"],
+        "level": {
+          "min": 1,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["survivor"],
+        "level": {
+          "min": 0,
+          "max": 0
+        },
+        "limit": 5,
+        "error": "You cannot have more than 5 level 0 Survivor cards"
+      }
+    ],
+    "flavor": "Tranquilo, tipo duro. Yo me encargo de esto. Tú quédate ahí luciendo palmito.",
+    "illustrator": "Cristi Balanescu",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Guardián ([guardian]) de nivel 0, cartas Superviviente ([survivor]) de nivel 1-5, cartas neutrales de nivel 0-5, hasta otras 5 cartas Superviviente ([survivor]) de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Llave inglesa de mecánico, Matones mafiosos, 1 Debilidad básica aleatoria.",
+    "back_flavor": "Daniela siempre pensó que tenía una buena vida. Contaba con una familia cariñosa y bulliciosa. Tenía un trabajo estable que le permitía emplear tanto el cerebro como las manos. Tenía suficiente dinero como para poder gastarlo en coches rápidos, chicas guapas y en su motocicleta, Gabriel. Pero su hermano Ramón se metió en problemas. Su madre le advirtió que tuviera cuidado, que llegaba una oscuridad. Daniela colocó un vaso de agua detrás de la puerta por complacer a su madre, para atrapar espíritus malignos como le había enseñado de niña. Cuando despertó y vio que estaba hecho añicos, se decidió a averiguar qué había ocurrido y solucionarlo. Como hacía siempre.",
+    "octgn_id": "e4be1fdc-e5e5-4cc5-863d-8ca5cb295d93:0ba17e64-1420-4830-87cc-e693afb108d8",
+    "url": "https://es.arkhamdb.com/card/08001",
+    "imagesrc": "/bundles/cards/08001.png",
+    "backimagesrc": "/bundles/cards/08001b.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "asset",
+    "type_name": "Apoyo",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 2,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08002",
+    "name": "Llave inglesa de mecánico",
+    "real_name": "Mechanic's Wrench",
+    "cost": 2,
+    "text": "Sólo para el mazo de Daniela Reyes.\n[fast] Agota la Llave inglesa de mecánico: Elige un Enemigo que esté en tu Lugar. Ese Enemigo te ataca.\n[action]: <b>Combatir.</b> Usa esta capacidad únicamente contra un Enemigo que te haya atacado desde el final de tu último turno. Recibes +2 [combat] para este ataque e infliges +1 de daño para este ataque.",
+    "real_text": "Daniela Reyes deck only.\n[fast] Exhaust Mechanic's Wrench: Choose an enemy at your location. That enemy attacks you.\n[action]: <b>Fight.</b> Use this ability only against an enemy that has attacked you since the end of your last turn. You get +2 [combat] for this attack and deal +1 damage for this attack.",
+    "quantity": 1,
+    "skill_combat": 2,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "slot": "Mano",
+    "real_slot": "Hand",
+    "traits": "Objeto. Herramienta. Cuerpo a cuerpo.",
+    "real_traits": "Item. Tool. Melee.",
+    "restrictions": {
+      "investigator": {
+        "08001": "08001"
+      }
+    },
+    "illustrator": "Duallbrush",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "47155565-b32a-4e4c-adb0-9b4650b08353",
+    "url": "https://es.arkhamdb.com/card/08002",
+    "imagesrc": "/bundles/cards/08002.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "enemy",
+    "type_name": "Enemigo",
+    "subtype_code": "weakness",
+    "subtype_name": "Debilidad",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 3,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08003",
+    "name": "Matones mafiosos",
+    "real_name": "Mob Goons",
+    "text": "Cazador.\n<b>Presa</b> - Sólo Daniela Reyes.\nLos ataques de este Enemigo no pueden ser cancelados.\nEl daño/horror infligido por los ataques de este Enemigo se considera directo.",
+    "real_text": "Hunter.\n<b>Prey</b> - Daniela Reyes only.\nThis enemy's attacks cannot be canceled.\nDamage/horror dealt by this enemy's attacks is treated as direct.",
+    "quantity": 1,
+    "health": 3,
+    "health_per_investigator": false,
+    "enemy_damage": 1,
+    "enemy_horror": 1,
+    "enemy_fight": 3,
+    "enemy_evade": 3,
+    "deck_limit": 1,
+    "traits": "Humanoide. Criminal.",
+    "real_traits": "Humanoid. Criminal.",
+    "restrictions": {
+      "investigator": {
+        "08001": "08001"
+      }
+    },
+    "flavor": "Las deudas son un asunto familiar.",
+    "illustrator": "Tiziano Baracchi",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "08d21898-26dc-4261-89e4-949a9ee0b33f",
+    "url": "https://es.arkhamdb.com/card/08003",
+    "imagesrc": "/bundles/cards/08003.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "investigator",
+    "type_name": "Investigador",
+    "faction_code": "rogue",
+    "faction_name": "Rebelde",
+    "position": 7,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08007",
+    "name": "Monterrey Jack",
+    "real_name": "Monterey Jack",
+    "subname": "El arqueólogo",
+    "text": "[reaction] Al final de tu turno, si empezaste esta ronda a 1 Lugar de distancia de tu Lugar actual: Obtén 1 recurso o roba 1 carta (si empezaste esta ronda a 2 o más Lugares de distancia, haz ambas cosas en su lugar).\nEfecto [elder_sign]: +1. Si empezaste esta ronda a 1 o más Lugares de distancia de tu Lugar actual, obtén 1 recurso o roba 1 carta.",
+    "real_text": "[reaction] At the end of your turn, if you started this round 1 location away from your current location: Either gain 1 resource or draw 1 card (if you started this round 2 or more locations away, do both instead).\n[elder_sign] effect: +1. If you started this round 1 or more locations away from your current location, gain 1 resource or draw 1 card.",
+    "quantity": 1,
+    "skill_willpower": 1,
+    "skill_intellect": 4,
+    "skill_combat": 2,
+    "skill_agility": 5,
+    "health": 8,
+    "health_per_investigator": false,
+    "sanity": 6,
+    "deck_limit": 1,
+    "traits": "Viajero.",
+    "real_traits": "Wayfarer.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "08008": {
+          "90063": "90063",
+          "08008": "08008"
+        },
+        "08009": {
+          "90064": "90064",
+          "08009": "08009"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["rogue"],
+        "level": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "faction": ["neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["seeker"],
+        "level": {
+          "min": 1,
+          "max": 5
+        }
+      },
+      {
+        "faction": ["seeker"],
+        "level": {
+          "min": 0,
+          "max": 0
+        },
+        "limit": 5,
+        "error": "You cannot have more than 5 level 0 Seeker cards"
+      }
+    ],
+    "illustrator": "Tony Foti",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Tamaño de mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Rebelde ([rogue]) de nivel 0, cartas Buscador ([seeker]) de nivel 1-5, cartas neutrales de nivel 0-5, hasta otras 5 cartas Buscador ([seeker]) de nivel 0.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Látigo fiable, Secretos enterrados, 1 Debilidad básica aleatoria.",
+    "back_flavor": "El joven Jack recorrió el mundo con las expediciones arqueológicas de su padre. Ahora es un cazatesoros que viaja por todo el planeta y un consumado arqueólogo de pleno derecho. \"Monterrey\" sigue los pasos de su padre, recuperando los tesoros de civilizaciones antiguas y culturas perdidas. Pero, tras descubrir un colgante de plata que tiene un símbolo familiar, Monterrey debe explorar su propio pasado. Hace años, encontraron a su padre asesinado con ese mismo símbolo grabado en la frente. La imagen ha perseguido a Monterrey en sus sueños desde entonces. Pero se está acercando y no parará hasta resolver el misterio del asesinato de su padre... Cueste lo que cueste.",
+    "octgn_id": "fc3f4dde-5bfa-4712-98dd-eb3e5517550e:09b2d0ba-89ae-4920-bf05-749e837e0736",
+    "url": "https://es.arkhamdb.com/card/08007",
+    "imagesrc": "/bundles/cards/08007.png",
+    "backimagesrc": "/bundles/cards/08007b.png",
+    "alternated_by": ["90062"]
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "asset",
+    "type_name": "Apoyo",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 8,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08008",
+    "name": "Látigo fiable",
+    "real_name": "Trusty Bullwhip",
+    "cost": 2,
+    "text": "Rápido. Sólo para el mazo de Monterey Jack.\n[action]: <b>Combatir.</b> Este ataque usa [agility] en lugar de [combat]. Si este ataque tiene éxito, puedes agotar el Látigo fiable para evitar automáticamente al Enemigo atacado o bien infligir +1 de daño para este ataque.",
+    "real_text": "Fast. Monterey Jack deck only.\n[action]: <b>Fight.</b> This attack uses [agility] instead of [combat]. If this attack succeeds, you may exhaust Trusty Bullwhip to either automatically evade the attacked enemy or deal +1 damage for this attack.",
+    "quantity": 1,
+    "skill_agility": 2,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "slot": "Mano",
+    "real_slot": "Hand",
+    "traits": "Objeto. Arma. Cuerpo a cuerpo.",
+    "real_traits": "Item. Weapon. Melee.",
+    "restrictions": {
+      "investigator": {
+        "08007": "08007"
+      }
+    },
+    "illustrator": "Duallbrush",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "e059d5bf-068c-4cef-aa26-ddac8f1a4cfe",
+    "url": "https://es.arkhamdb.com/card/08008",
+    "imagesrc": "/bundles/cards/08008.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "treachery",
+    "type_name": "Traición",
+    "subtype_code": "weakness",
+    "subtype_name": "Debilidad",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 9,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08009",
+    "name": "Secretos enterrados",
+    "real_name": "Buried Secrets",
+    "text": "<b>Revelación</b> - Pon Secretos enterrados en juego en tu zona de amenaza.\nSi tu Lugar puede ser investigado, no puedes moverte excepto mediante efectos de cartas de escenario.\n[action]: Investigar. Si tienes éxito, en lugar de descubrir pistas, descarta Secretos enterrados. Si fracasas, puedes recibir 2 puntos de horror para devolverlos a tu mazo y barajar éste.",
+    "real_text": "<b>Revelation</b> - Put Buried Secrets into play in your threat area.\nIf your location can be investigated, you cannot move except by scenario card effects.\n[action]: <b>Investigate.</b> If you succeed, instead of discovering clues, discard Buried Secrets. If you fail, you may take 2 horror to shuffle it into your deck.",
+    "quantity": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "traits": "Misterio.",
+    "real_traits": "Mystery.",
+    "restrictions": {
+      "investigator": {
+        "08007": "08007"
+      }
+    },
+    "illustrator": "Raymond Bonilla",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "ad866f13-ebc3-40b5-b414-f22a0ba3b2ba",
+    "url": "https://es.arkhamdb.com/card/08009",
+    "imagesrc": "/bundles/cards/08009.png"
+  },
+  {
+    "pack_code": "eoep",
+    "pack_name": "Los confines de la Tierra Expansión de investigadores",
+    "type_code": "event",
+    "type_name": "Evento",
+    "faction_code": "guardian",
+    "faction_name": "Guardián",
+    "position": 21,
+    "exceptional": false,
+    "myriad": false,
+    "code": "08021",
+    "name": "\"¡Ponte detrás de mí!\"",
+    "real_name": "\"Get behind me!\"",
+    "cost": 0,
+    "text": "Rápido. Juega esta carta durante cualquier oportunidad [fast].\nHasta el final de la fase, siempre que un Enemigo fuese a atacar a otro investigador en tu Lugar, te ataca a ti en su lugar y luego se enfrenta a ti. Cancela 1 punto de horror infligido por cada ataque realizado de este modo.",
+    "real_text": "Fast. Play during any [fast] window.\nUntil the end of the phase, whenever an enemy would attack another investigator at your location, it attacks you instead, then engages you. Cancel 1 horror dealt by each attack made in this way.",
+    "quantity": 2,
+    "skill_willpower": 1,
+    "skill_combat": 1,
+    "xp": 0,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "traits": "Espíritu. Táctica.",
+    "real_traits": "Spirit. Tactic.",
+    "illustrator": "Isuardi Therianto",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "7b4163ff-2905-405d-a976-fbd580611f7e",
+    "url": "https://es.arkhamdb.com/card/08021",
+    "imagesrc": "/bundles/cards/08021.png"
+  }
+]
