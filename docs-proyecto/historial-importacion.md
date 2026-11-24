@@ -361,3 +361,5 @@
 - 2026-11-23: lote 168 Trish/Dexter originales publicado en 9655408b, cierre a67ac64d. Seis códigos/diseños contabilizados, 37 perfiles habilitados, 31 pendientes y 134 cartas estándar pendientes. Listas 51875/51876; 368 casos de juego y 20 del selector, tipos y paquete web correctos; 7986 originales/miniaturas verificados.
 
 - 2026-11-23: lote 169 Silas/Winifred publicado en 280e0f47, cierre 1b846ea4. Ocho códigos/diseños contabilizados (una debilidad básica), 39 perfiles habilitados, 29 pendientes y 134 cartas estándar pendientes. Listas 51877/31399; 548 casos de juego, veinte del selector, tipos y paquete web correctos; 8006 originales/miniaturas verificados.
+
+- 2026-11-24: lote 170 Daniela original/Monterey publicado en 88fdb6d6, cierre 8d73d1be. Siete códigos/diseños contabilizados; 41 perfiles habilitados, 27 pendientes y 133 estándar pendientes. Listas 34729/35838; 408 casos y veinte del selector; tipos y bundle web correctos, 8024 originales/miniaturas verificados.
