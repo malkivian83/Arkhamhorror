@@ -1,4 +1,5 @@
 import {
+  isPermanent,
   createGame,
   getInvestigator,
   playerCardDef,
@@ -59,9 +60,18 @@ describe('caja básica 2026: datos', () => {
   it('cada mazo inicial tiene su tamaño, sus cartas exclusivas y su debilidad básica', () => {
     for (const key of Object.keys(STARTER_DECKS)) {
       const investigator = playerCardDef(starterInvestigator(key).id)!
-      // 30 + 2 exclusivas + 1 debilidad básica; Lola Hayes: 35 + 4 + 1.
-      expect(starterInvestigator(key).deck, key).toHaveLength(
-        (investigator.deckSize ?? 30) + (investigator.signatures?.length ?? 0) + 1,
+      // 30 + 2 exclusivas + 1 debilidad básica; Lola Hayes: 35 + 4 + 1; las cartas que
+      // cambian el tamaño del mazo (Underworld Support de Monterey: −5) también cuentan.
+      const deck = starterInvestigator(key).deck
+      const bonus = deck.reduce((n, code) => n + (playerCardDef(code)?.deckSizeBonus ?? 0), 0)
+      // Las Permanentes no cuentan para el tamaño (como en la validación de mazos).
+      const permanents = deck.filter(isPermanent).length
+      expect(deck, key).toHaveLength(
+        (investigator.deckSize ?? 30) +
+          bonus +
+          permanents +
+          (investigator.signatures?.length ?? 0) +
+          1,
       )
     }
   })

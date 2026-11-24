@@ -33,8 +33,8 @@ describe('mazos: validación', () => {
       const check = validateDeck(deck)
       expect(check.problems).toEqual([])
       expect(check.needsBasicWeakness).toBe(false)
-      // 30 cartas; Lola Hayes, 35.
-      expect(check.size).toBe(requiredDeckSize(deck.investigator))
+      // 30 cartas; Lola Hayes, 35; Underworld Support (Monterey) resta 5.
+      expect(check.size).toBe(requiredDeckSize(deck.investigator, deck.cards))
     }
   })
 
