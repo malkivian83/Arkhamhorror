@@ -76,12 +76,12 @@ const put = (s: GameState, code: string) =>
   run(s, { type: 'PutAssetIntoPlay', investigator: me(s).id, code })
 
 it('Silas returns exactly one own skill after seeing the token, removes its icons/effect and respects the round limit', () => {
-  let s = begin(patch(game(), { hand: ['01091', '01091'] }), 7)
-  s = commit(commit(s, '01091'), '01091')
+  let s = begin(patch(game(), { hand: ['01091', '07222'] }), 7)
+  s = commit(commit(s, '01091'), '07222')
   s = choose(s, 'choice.revealToken')
   s = results(choose(s, 'ability.silasReturn'))
   expect(me(s).hand.filter((c) => c === '01091')).toHaveLength(1)
-  expect(me(s).discard.filter((c) => c === '01091')).toHaveLength(1)
+  expect(me(s).discard.filter((c) => c === '07222')).toHaveLength(1)
   expect(me(s).hand).not.toContain('01088') // Removing one Overpower changes a success into failure.
   s = begin(patch(s, { hand: ['01091'] }), 7)
   s = choose(commit(s, '01091'), 'choice.revealToken')
@@ -126,16 +126,17 @@ it.each(['07014', '07015'])(
   (code) => {
     let s = put(game(), code)
     const a = Object.values(s.assets).find((a) => a.code === code)!
-    s = begin(patch(s, { hand: ['01091', '01091', '01051'] }))
+    s = begin(patch(s, { hand: ['07222', '07222', '01051'] }))
     s = run(
       s,
-      { type: 'CommitCard', investigator: '07005', code: '01091' },
-      { type: 'CommitCard', investigator: '07005', code: '01091' },
+      { type: 'CommitCard', investigator: '07005', code: '07222' },
+      { type: 'CommitCard', investigator: '07005', code: '07222' },
       { type: 'CommitCard', investigator: '07005', code: '01051' },
     )
+    expect(s.skillTest!.committed.filter((c) => c.code === '07222')).toHaveLength(2)
     s = { ...s, skillTest: { ...s.skillTest!, source: a.id } }
     s = choose(finish(s, true), 'choice.silasRetrieve')
-    expect(me(s).hand.filter((c) => c === '01091')).toHaveLength(2)
+    expect(me(s).hand.filter((c) => c === '07222')).toHaveLength(2)
     expect(me(s).hand).toContain(code)
     expect(me(s).discard).toContain('01051')
     expect(me(s).hand).not.toContain('01051')
@@ -196,13 +197,13 @@ it('Siren Call charges matching icons to its owner, rejects unaffordable commitm
 })
 
 it('Winifred draws only for two different nonweakness cards, once per test, after commitments close', () => {
-  let s = begin(patch(game('60301'), { hand: ['01091', '01091'] }))
-  s = commit(commit(s, '01091'), '01091')
+  let s = begin(patch(game('60301'), { hand: ['07222', '07222'] }))
+  s = commit(commit(s, '07222'), '07222')
   expect(has(s, 'ability.winifredDraw')).toBe(false)
   s = choose(s, 'choice.revealToken')
   expect(me(s).hand).not.toContain('01088')
-  s = begin(patch(game('60301'), { hand: ['01091', '60302'], deck: ['01088'] }))
-  s = commit(commit(s, '01091'), '60302')
+  s = begin(patch(game('60301'), { hand: ['07222', '60302'], deck: ['01088'] }))
+  s = commit(commit(s, '07222'), '60302')
   expect(has(s, 'ability.winifredDraw')).toBe(false)
   s = choose(s, 'choice.revealToken')
   s = results(choose(s, 'ability.winifredDraw'))
@@ -240,19 +241,19 @@ it('Arrogance drawn by Winifred after ST.2 waits until the next test', () => {
 })
 
 it('Winifred elder sign returns exactly floor(success margin / 2) chosen own physical copies at ST.8', () => {
-  let s = begin(patch(game('60301'), { hand: ['01091', '01091', '01051'] }))
+  let s = begin(patch(game('60301'), { hand: ['07222', '07222', '01051'] }))
   s = run(
     s,
-    { type: 'CommitCard', investigator: '60301', code: '01091' },
-    { type: 'CommitCard', investigator: '60301', code: '01091' },
+    { type: 'CommitCard', investigator: '60301', code: '07222' },
+    { type: 'CommitCard', investigator: '60301', code: '07222' },
     { type: 'CommitCard', investigator: '60301', code: '01051' },
     { type: 'MarkTestAbility', key: 'wini:elder' },
   )
   s = finish(s, true, 4)
-  s = choose(choose(s, 'choice.winifredReturn', { card: 'Overpower' }), 'choice.winifredReturn', {
-    card: 'Overpower',
+  s = choose(choose(s, 'choice.winifredReturn', { card: 'Fey' }), 'choice.winifredReturn', {
+    card: 'Fey',
   })
-  expect(me(s).hand.filter((c) => c === '01091')).toHaveLength(2)
+  expect(me(s).hand.filter((c) => c === '07222')).toHaveLength(2)
   expect(me(s).discard).toContain('01051')
   expect(s.skillTest).toBeNull()
 })
@@ -293,15 +294,15 @@ it('A replaced asset return does not recover skills as if its cost were paid', (
 })
 
 it('Siren Call pays a group atomically and cannot spend resources for an incomplete group', () => {
-  let s = begin(patch(call(game()), { hand: ['01091', '01091'], resources: 3 }))
-  s = run(s, { type: 'CommitCardGroup', investigator: '07005', cards: ['01091', '01091'] })
+  let s = begin(patch(call(game()), { hand: ['07222', '07222'], resources: 3 }))
+  s = run(s, { type: 'CommitCardGroup', investigator: '07005', cards: ['07222', '07222'] })
   expect(me(s).resources).toBe(3)
-  expect(me(s).hand).toEqual(['01091', '01091'])
+  expect(me(s).hand).toEqual(['07222', '07222'])
   expect(s.skillTest!.committed).toEqual([])
   s = run(patch(s, { resources: 4 }), {
     type: 'CommitCardGroup',
     investigator: '07005',
-    cards: ['01091', '01091'],
+    cards: ['07222', '07222'],
   })
   expect(me(s).resources).toBe(0)
   expect(s.skillTest!.committed).toHaveLength(2)

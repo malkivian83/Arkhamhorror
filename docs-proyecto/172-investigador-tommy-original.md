@@ -61,6 +61,14 @@ amplía al motor y a consumidores de derrota, movimiento, apoyos y expedición.
 Formato/lint propios, tipos de engine/cards/server, selector local de CI y
 bundle Vite (sin copiar `public`, cuyos recursos se verifican por separado).
 
+La primera CI completa detectó 19 fallos en cuatro archivos de pruebas
+anteriores: duplicados de habilidades con máximo de una por prueba y la
+preparación de Amanda sin terminar su elección obligatoria. Se corrigieron los
+casos de prueba con Fey (dos comodines sin ese máximo) y se resolvió la elección
+antes del primer turno, incluyendo los robos de debilidades. Los 111 casos de
+esos cuatro archivos quedan comprobados, manteniendo efectos, iconos, límites,
+grupos mínimos y copias físicas; las reglas de producción no se modifican.
+
 ## Trabajo viable y pendientes
 
 Darrell no se habilita con una lista incompleta. La lista popular 39472 requiere

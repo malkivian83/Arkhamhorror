@@ -1,4 +1,5 @@
 // RR: Committing Cards, Peril, Cannot, Skill Tests ST.2/ST.6/ST.8, Limits, Slots.
+// Fey has two wild icons without a per-test maximum; duplicate-copy fixtures must remain legal.
 import { expect, it } from 'vitest'
 import {
   dispatch,
@@ -63,7 +64,7 @@ const begin = (s: GameState, by = '03002', difficulty = 0, tags?: string[]) =>
   })
 const has = (s: GameState, label: string) =>
   !!s.pending?.question.choices.some((c) => c.label === label)
-const commit = (s: GameState, code = '01093', id = '03002') =>
+const commit = (s: GameState, code = '07222', id = '03002') =>
   dispatch(
     { ...s, pending: null },
     { type: 'CommitCard', investigator: id, code },
@@ -84,9 +85,9 @@ const skipReaction = (s: GameState) => {
   return s
 }
 it('Minh adds one wild icon to the exact committed copy, including duplicate printed codes', () => {
-  let s = begin(patch(base(), '03002', { hand: ['01093', '01093'] }))
+  let s = begin(patch(base(), '03002', { hand: ['07222', '07222'] }))
   s = commit(s)
-  s = choose(s, 'ability.minhIcon', { card: name('01093') })
+  s = choose(s, 'ability.minhIcon', { card: name('07222') })
   s = commit(s)
   expect(s.skillTest!.committed.map((c) => c.iconBonus?.wild ?? 0)).toEqual([1, 0])
   expect(skillTestValue(s).icons).toBe(5)
@@ -94,54 +95,54 @@ it('Minh adds one wild icon to the exact committed copy, including duplicate pri
 })
 it('Minh can boost a local helper card and the limit belongs to each contributor per round', () => {
   let s = begin(
-    patch(patch(base(), '03002', { hand: ['01093'] }), 'b', { hand: ['01093', '01093'] }),
+    patch(patch(base(), '03002', { hand: ['07222'] }), 'b', { hand: ['07222', '07222'] }),
   )
-  s = commit(s, '01093', 'b')
+  s = commit(s, '07222', 'b')
   s = choose(s, 'ability.minhIcon')
   s = commit(s)
   s = choose(s, 'ability.minhIcon')
   expect(skillTestValue(s).icons).toBe(6)
   s = finish(s)
   s = begin(s)
-  s = commit(s, '01093', 'b')
+  s = commit(s, '07222', 'b')
   expect(has(s, 'ability.minhIcon')).toBe(false)
 })
 it('Minh cannot boost another contributor at a different location, or make an iconless card committable', () => {
   let s = begin(
-    patch(patch(base(), '03002', { location: 'B', hand: ['01089'] }), 'b', { hand: ['01093'] }),
+    patch(patch(base(), '03002', { location: 'B', hand: ['01089'] }), 'b', { hand: ['07222'] }),
     'b',
   )
   expect(canCommitFrom(s, '03002', '01089')).toBe(false)
-  s = commit(s, '01093', 'b')
+  s = commit(s, '07222', 'b')
   expect(has(s, 'ability.minhIcon')).toBe(false)
 })
 it('Analytical Mind allows one remote contribution even while exhausted, and Minh can boost her own remote card', () => {
-  let s = mind(patch(patch(base(), '03002', { hand: ['01093', '01093'] }), 'b', { location: 'B' }))
+  let s = mind(patch(patch(base(), '03002', { hand: ['07222', '07222'] }), 'b', { location: 'B' }))
   s.assets['03010']!.exhausted = true
   s = begin(s, 'b')
-  expect(canCommitFrom(s, '03002', '01093')).toBe(true)
+  expect(canCommitFrom(s, '03002', '07222')).toBe(true)
   s = commit(s)
   s = choose(s, 'ability.minhIcon')
   expect(skillTestValue(s).icons).toBe(3)
-  expect(canCommitFrom(s, '03002', '01093')).toBe(false)
+  expect(canCommitFrom(s, '03002', '07222')).toBe(false)
 })
 it('remote commitments still obey Peril, location and ordinary helper limits', () => {
-  const s = patch(patch(base(), '03002', { hand: ['01093'] }), 'b', { location: 'B' })
-  expect(canCommitFrom(begin(s, 'b'), '03002', '01093')).toBe(false)
-  expect(canCommitFrom(begin(mind(s), 'b', 0, ['peril']), '03002', '01093')).toBe(false)
-  expect(canCommitFrom(begin(mind(patch(s, 'b', { location: null })), 'b'), '03002', '01093')).toBe(
+  const s = patch(patch(base(), '03002', { hand: ['07222'] }), 'b', { location: 'B' })
+  expect(canCommitFrom(begin(s, 'b'), '03002', '07222')).toBe(false)
+  expect(canCommitFrom(begin(mind(s), 'b', 0, ['peril']), '03002', '07222')).toBe(false)
+  expect(canCommitFrom(begin(mind(patch(s, 'b', { location: null })), 'b'), '03002', '07222')).toBe(
     false,
   )
 })
 it('Analytical Mind exhausts and draws after exactly one card, without waiting for the token', () => {
-  let s = commit(begin(mind(patch(base(), '03002', { hand: ['01093'] }))))
+  let s = commit(begin(mind(patch(base(), '03002', { hand: ['07222'] }))))
   s = choose(s, 'ability.advancedTest', { card: 'Analytical Mind' })
   expect(s.assets['03010']!.exhausted).toBe(true)
   expect(me(s).hand).toEqual(['01088'])
   expect(s.skillTest!.tokens).toEqual([])
 })
 it('Analytical Mind is not offered after a second card or another investigator contribution', () => {
-  let s = skipReaction(commit(begin(mind(patch(base(), '03002', { hand: ['01093', '01093'] })))))
+  let s = skipReaction(commit(begin(mind(patch(base(), '03002', { hand: ['07222', '07222'] })))))
   s = commit(s)
   expect(has(s, 'ability.advancedTest')).toBe(false)
   const t = { type: 'afterCommit' as const, by: 'b', tester: '03002' }
@@ -169,7 +170,7 @@ it('The King in Yellow enters with a hand slot and cannot be discarded, returned
 it.each([1, 2])(
   'The King in Yellow rejects a direct group of %i cards without losing any physical cards',
   (n) => {
-    const s = begin(king(patch(base(), '03002', { hand: ['01093', '01093', '01090'] })))
+    const s = begin(king(patch(base(), '03002', { hand: ['07222', '07222', '01090'] })))
     const next = run(s, {
       type: 'CommitCardGroup',
       investigator: '03002',
@@ -177,15 +178,15 @@ it.each([1, 2])(
     })
     expect(next.skillTest!.committed).toHaveLength(0)
     expect(me(next).hand).toEqual(me(s).hand)
-    expect(canCommitFrom(s, '03002', '01093')).toBe(false)
+    expect(canCommitFrom(s, '03002', '07222')).toBe(false)
   },
 )
 it('the minimum group picker cannot finish early and commits the whole selection before reaction windows', () => {
-  let s = begin(mind(king(patch(base(), '03002', { hand: ['01093', '01093', '01090'] }))))
+  let s = begin(mind(king(patch(base(), '03002', { hand: ['07222', '07222', '01090'] }))))
   s = choose(s, 'choice.commitGroup')
-  s = choose(s, 'choice.commitGroupAdd', { card: name('01093') })
+  s = choose(s, 'choice.commitGroupAdd', { card: name('07222') })
   expect(has(s, 'choice.commitGroupFinish')).toBe(false)
-  s = choose(s, 'choice.commitGroupAdd', { card: name('01093') })
+  s = choose(s, 'choice.commitGroupAdd', { card: name('07222') })
   expect(has(s, 'choice.commitGroupFinish')).toBe(false)
   s = choose(s, 'choice.commitGroupAdd', { card: name('01090') })
   expect(me(s).hand).toHaveLength(3)
@@ -196,18 +197,18 @@ it('the minimum group picker cannot finish early and commits the whole selection
   expect(has(s, 'ability.minhIcon')).toBe(true)
 })
 it('cancelling group selection leaves hand and commitments unchanged, also after JSON reload', () => {
-  let s = begin(king(patch(base(), '03002', { hand: ['01093', '01093', '01090'] })))
+  let s = begin(king(patch(base(), '03002', { hand: ['07222', '07222', '01090'] })))
   s = choose(s, 'choice.commitGroup')
-  s = choose(s, 'choice.commitGroupAdd', { card: name('01093') })
+  s = choose(s, 'choice.commitGroupAdd', { card: name('07222') })
   s = JSON.parse(JSON.stringify(s)) as GameState
   s = choose(s, 'choice.skip')
   expect(me(s).hand).toHaveLength(3)
   expect(s.skillTest!.committed).toHaveLength(0)
 })
 it('an impossible group is not offered and duplicate copies cannot exceed the physical hand', () => {
-  let s = begin(king(patch(base(), '03002', { hand: ['01093', '01039', '01089'] })))
+  let s = begin(king(patch(base(), '03002', { hand: ['07222', '01039', '01089'] })))
   expect(has(s, 'choice.commitGroup')).toBe(false)
-  s = run(s, { type: 'CommitCardGroup', investigator: '03002', cards: ['01093', '01093', '01090'] })
+  s = run(s, { type: 'CommitCardGroup', investigator: '03002', cards: ['07222', '07222', '01090'] })
   expect(s.skillTest!.committed).toHaveLength(0)
   expect(me(s).hand).toHaveLength(3)
 })
@@ -215,7 +216,7 @@ it('Analytical Mind cannot override the King to commit three cards as a helper',
   const s = begin(
     mind(
       king(
-        patch(patch(base(), '03002', { hand: ['01093', '01093', '01090'] }), 'b', {
+        patch(patch(base(), '03002', { hand: ['07222', '07222', '01090'] }), 'b', {
           location: 'B',
         }),
       ),
@@ -225,12 +226,12 @@ it('Analytical Mind cannot override the King to commit three cards as a helper',
   const next = run(s, {
     type: 'CommitCardGroup',
     investigator: '03002',
-    cards: ['01093', '01093', '01090'],
+    cards: ['07222', '07222', '01090'],
   })
   expect(next.skillTest!.committed).toHaveLength(0)
 })
 it('six matching icons on successful testing allow the King own reaction to discard it', () => {
-  let s = begin(king(patch(base(), '03002', { hand: ['01093', '01093', '01090'] })))
+  let s = begin(king(patch(base(), '03002', { hand: ['07222', '07222', '01090'] })))
   s = group(s)
   s = skipReaction(s)
   s = choose(s, 'choice.revealToken')
@@ -240,7 +241,7 @@ it('six matching icons on successful testing allow the King own reaction to disc
   expect(s.pending?.question.choices.some((c) => c.label === 'choice.applyResults')).toBe(true)
 })
 it('Minh wild icon contributes to the six required by the King', () => {
-  let s = begin(king(patch(base(), '03002', { hand: ['01093', '01090', '01039'] })))
+  let s = begin(king(patch(base(), '03002', { hand: ['07222', '01090', '01039'] })))
   s = group(s)
   s = choose(s, 'ability.minhIcon')
   expect(skillTestValue(s).icons).toBe(6)
@@ -248,8 +249,8 @@ it('Minh wild icon contributes to the six required by the King', () => {
   expect(has(s, 'ability.advancedTest')).toBe(true)
 })
 it.each([
-  { difficulty: 30, cards: ['01093', '01093', '01090'] },
-  { difficulty: 0, cards: ['01093', '01039', '01039'] },
+  { difficulty: 30, cards: ['07222', '07222', '01090'] },
+  { difficulty: 0, cards: ['07222', '01039', '01039'] },
 ])(
   'the King remains after failure or fewer than six matching icons: $difficulty',
   ({ difficulty, cards }) => {
@@ -261,21 +262,21 @@ it.each([
   },
 )
 it('Minh elder sign returns a selected skill after the test, retaining its effects and physical owner', () => {
-  let s = begin(patch(patch(base(), '03002', { hand: ['01093'] }), 'b', { hand: ['01093'] }))
-  s = skipReaction(commit(s, '01093', 'b'))
+  let s = begin(patch(patch(base(), '03002', { hand: ['07222'] }), 'b', { hand: ['07222'] }))
+  s = skipReaction(commit(s, '07222', 'b'))
   s = skipReaction(commit(s))
   const e = investigatorBehavior('03002')!.elderSign!(s, me(s))
   expect(e.modifier).toBe(1)
   s = dispatch({ ...s, pending: null }, ...(e.immediate ?? []), { type: 'CommitWindow' })
-  s = choose(s, 'choice.minhReturn', { card: name('01093') })
+  s = choose(s, 'choice.minhReturn', { card: name('07222') })
   expect(me(s, 'b').hand).toHaveLength(0)
   expect(s.skillTest!.committed).toHaveLength(2)
   s = finish(s)
-  expect(me(s, 'b').hand.filter((c) => c === '01093')).toHaveLength(1)
-  expect(me(s).discard).toContain('01093')
+  expect(me(s, 'b').hand.filter((c) => c === '07222')).toHaveLength(1)
+  expect(me(s).discard).toContain('07222')
 })
 it('a selected elder-sign skill returns on failure too, but assets/events are never candidates', () => {
-  let s = begin(patch(base(), '03002', { hand: ['01093', '01033'] }), '03002', 30)
+  let s = begin(patch(base(), '03002', { hand: ['07222', '01033'] }), '03002', 30)
   s = skipReaction(commit(s))
   s = skipReaction(commit(s, '01033'))
   const e = investigatorBehavior('03002')!.elderSign!(s, me(s))
@@ -283,20 +284,20 @@ it('a selected elder-sign skill returns on failure too, but assets/events are ne
   expect(s.pending!.question.choices.filter((c) => c.label === 'choice.minhReturn')).toHaveLength(1)
   s = choose(s, 'choice.minhReturn')
   s = finish(s)
-  expect(me(s).hand).toContain('01093')
+  expect(me(s).hand).toContain('07222')
   expect(me(s).discard).toContain('01033')
 })
 
 it('the King permits additional individual contributions after a legal group of three', () => {
-  let s = begin(king(patch(base(), '03002', { hand: ['01093', '01093', '01039', '01033'] })))
-  s = skipReaction(group(s, ['01093', '01093', '01039']))
+  let s = begin(king(patch(base(), '03002', { hand: ['07222', '07222', '01039', '01033'] })))
+  s = skipReaction(group(s, ['07222', '07222', '01039']))
   expect(canCommitFrom(s, '03002', '01033')).toBe(true)
   s = commit(s, '01033')
   expect(s.skillTest!.committed).toHaveLength(4)
 })
 it('Minh limit resets in a new round and is retained when saving the current round', () => {
   let s = choose(
-    commit(begin(patch(base(), '03002', { hand: ['01093', '01093'] }))),
+    commit(begin(patch(base(), '03002', { hand: ['07222', '07222'] }))),
     'ability.minhIcon',
   )
   s = finish(s)
@@ -338,9 +339,9 @@ registerPlayerCards([
 registerPlayerCard({ code: 'minh-limit' })
 registerPlayerCard({ code: 'minh-exclusive', exclusiveCommit: true })
 it.each([
-  ['minh-limit', 'minh-limit', '01093'],
-  ['minh-exclusive', '01093', '01093'],
-  ['01093', '01093', 'minh-exclusive'],
+  ['minh-limit', 'minh-limit', '07222'],
+  ['minh-exclusive', '07222', '07222'],
+  ['07222', '07222', 'minh-exclusive'],
 ])('atomic groups retain title limits and exclusive-card restrictions: %s/%s/%s', (...cards) => {
   const s = begin(king(patch(base(), '03002', { hand: cards })))
   const next = run(s, { type: 'CommitCardGroup', investigator: '03002', cards })

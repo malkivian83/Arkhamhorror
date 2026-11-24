@@ -39,19 +39,33 @@ const teams = [
     .flatMap((k) => [[k], [k, ...core.filter((c) => title(c) !== title(k)).slice(0, 3)]]),
 ]
 
-function firstTurn(state: GameState): GameState {
+function firstTurn(state: GameState, expectedHands = new Map<string, number>()): GameState {
   let started = throughSetup(state)
-  // RR: Sefina sustituye la mano inicial: puede no guardar eventos y conserva ocho.
+  // RR: Sefina sustituye la mano inicial; Amanda coloca obligatoriamente una carta
+  // debajo al comenzar Investigación. Resolver ambas decisiones antes del primer turno.
   while (
     started.pending &&
-    ['prompt.openingBeneath', 'prompt.openingDiscard'].includes(started.pending.question.prompt)
+    ['prompt.openingBeneath', 'prompt.openingDiscard', 'prompt.placeInvestigatorBeneath'].includes(
+      started.pending.question.prompt,
+    )
   ) {
+    if (started.pending.question.prompt === 'prompt.placeInvestigatorBeneath') {
+      const investigator = started.investigators.find(
+        (i) => i.id === started.pending!.investigator,
+      )!
+      // El robo adicional puede resolver una debilidad sin añadirla a la mano.
+      // La elección obligatoria debe trasladar exactamente una carta de la mano debajo.
+      expect(investigator.hand.length).toBeGreaterThan(0)
+      expectedHands.set(investigator.id, investigator.hand.length - 1)
+    }
     started = throughSetup(
       choose(
         started,
         started.pending.question.prompt === 'prompt.openingBeneath'
           ? 'choice.openingBeneathDone'
-          : 'choice.openingDiscard',
+          : started.pending.question.prompt === 'prompt.openingDiscard'
+            ? 'choice.openingDiscard'
+            : 'choice.placeInvestigatorBeneath',
       ),
     )
   }
@@ -74,15 +88,22 @@ describe('auditoría de cierre: preparación y reanudación del motor', () => {
       for (const team of teams) {
         const campaign = newCampaign('brethren-of-ash', team, difficulty, 17)
         for (const scenarioIndex of [0, 1, 2]) {
-          const game = firstTurn(startScenario({ ...campaign, scenarioIndex }, 23))
+          const expectedHands = new Map<string, number>()
+          const game = firstTurn(startScenario({ ...campaign, scenarioIndex }, 23), expectedHands)
           expect(game.phase, JSON.stringify({ team, prompt: game.pending?.question })).toBe(
             'investigation',
           )
           expect(game.investigators).toHaveLength(team.length)
           for (const investigator of game.investigators) {
             expect(investigator.hand).toHaveLength(
-              investigatorBehavior(investigator.id)?.openingReplacement?.keep ?? 5,
+              expectedHands.get(investigator.id) ??
+                investigatorBehavior(investigator.id)?.openingReplacement?.keep ??
+                5,
             )
+            if (investigator.id === '07002') {
+              expect(expectedHands.has(investigator.id)).toBe(true)
+              expect(investigator.beneath).toHaveLength(1)
+            }
           }
           expect(game.agendas.every((card) => card.code)).toBe(true)
           expect(game.acts.every((card) => card.code)).toBe(true)

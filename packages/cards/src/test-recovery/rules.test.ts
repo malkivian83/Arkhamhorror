@@ -152,12 +152,12 @@ it.each(['05119', '05194', '05195'])(
   (code) => {
     let s = withAsset(start(), code)
     s = begin(s)
-    s = patch({ hand: ['01093', '01093'] })(s)
-    s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '01093' })
+    s = patch({ hand: ['07222', '07222'] })(s)
+    s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '07222' })
     s = choose(s, 'choice.recoveryUse')
     s = choose(s, 'choice.recoveryIcon', { skill: 'wild' })
     const boosted = skillTestValue(s).icons
-    s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '01093' })
+    s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '07222' })
     expect(skillTestValue(s).icons).toBe(boosted + 2)
     expect(s.skillTest!.committed[0]!.iconBonus).toEqual({ wild: 1 })
     expect(s.skillTest!.committed[1]!.iconBonus).toBeUndefined()
@@ -192,10 +192,10 @@ it('Survivor Totem returns its copy after Take Heart resolves, retaining last-kn
 it('Totem copy identifiers do not shift when another committed card leaves the array', () => {
   let s = withAsset(start(), '05195')
   s = begin(s)
-  s = patch({ hand: ['01093', '01093'] })(s)
-  s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '01093' })
+  s = patch({ hand: ['07222', '07222'] })(s)
+  s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '07222' })
   s = choose(s, 'choice.skip')
-  s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '01093' })
+  s = dispatch(clear(s), { type: 'CommitCard', investigator: 'a', code: '07222' })
   s = choose(s, 'choice.recoveryUse')
   s = choose(s, 'choice.recoveryIcon')
   const after = s.skillTest!.tokenOnFail
@@ -204,7 +204,7 @@ it('Totem copy identifiers do not shift when another committed card leaves the a
     skillTest: { ...s.skillTest!, committed: s.skillTest!.committed.slice(1), succeeded: false },
   }
   s = run(s, after)
-  expect(me(s).hand).toEqual(['01093'])
+  expect(me(s).hand).toEqual(['07222'])
 })
 it('a delayed Totem return cannot create a hand for an eliminated investigator', () => {
   let s = withAsset(start(), '05195')
