@@ -363,3 +363,5 @@
 - 2026-11-23: lote 169 Silas/Winifred publicado en 280e0f47, cierre 1b846ea4. Ocho códigos/diseños contabilizados (una debilidad básica), 39 perfiles habilitados, 29 pendientes y 134 cartas estándar pendientes. Listas 51877/31399; 548 casos de juego, veinte del selector, tipos y paquete web correctos; 8006 originales/miniaturas verificados.
 
 - 2026-11-24: lote 170 Daniela original/Monterey publicado en 88fdb6d6, cierre 8d73d1be. Siete códigos/diseños contabilizados; 41 perfiles habilitados, 27 pendientes y 133 estándar pendientes. Listas 34729/35838; 408 casos y veinte del selector; tipos y bundle web correctos, 8024 originales/miniaturas verificados.
+
+- 2026-11-24: lote 171 Amanda publicado en 6816f80a, cierre c83d78c2; tres códigos contabilizados, 42 perfiles habilitados, 26 pendientes y 133 estándar pendientes. Lista 51874; 549 casos y veinte del selector, tipos/bundle correctos, 8032 originales/miniaturas verificados. CI 45446362836 y Deploy 45447934546 correctos sobre 0bb07985 (incluye Amanda y Cicuta); dominio con índice/recursos coincidentes y health/ready 200.
