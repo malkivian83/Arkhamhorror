@@ -838,6 +838,7 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  investigatorCommitResolved?: boolean
   /** ST.2 has closed; cards drawn in the following player window cannot be committed normally. */
   commitWindowClosed?: boolean
   /** Per-test limits belong to this test, even if the granting asset becomes blank. */
@@ -911,6 +912,9 @@ export interface SkillTest {
     /** Copycat: owner of a card committed by another investigator. */
     owner?: InvestigatorId
     wildIcons?: boolean
+    /** Exact copy beneath its owner; only ordinary ST.8 disposal is replaced. */
+    fromBeneath?: number
+    iconMultiplier?: number
   }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
@@ -1127,6 +1131,11 @@ type MessageBody =
   | { type: 'ChooseOpeningBeneath'; investigator: InvestigatorId; keep: number; maximum: number }
   | { type: 'DiscardOpeningExcess'; investigator: InvestigatorId; keep: number }
   | { type: 'StoreOpeningBeneath'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'ChooseInvestigatorBeneath'; investigator: InvestigatorId; required?: CardCode }
+  | { type: 'PlaceInvestigatorBeneath'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'DiscardInvestigatorBeneath'; investigator: InvestigatorId }
+  | { type: 'SwapEventBeneath'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'DoubleBeneathIcons'; investigator: InvestigatorId }
   | { type: 'DrawInvestigatorBeneath'; investigator: InvestigatorId; index: number }
   | { type: 'RemoveRandomBeneath'; investigator: InvestigatorId; otherwise: Message[] }
   | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
@@ -1423,6 +1432,8 @@ type MessageBody =
       investigator: InvestigatorId
       code: CardCode
       from?: 'discard' | 'deck'
+      fromBeneath?: number
+      mandatory?: boolean
       /** Explicit card-effect permission may exceed the ordinary helper allowance. */
       byEffect?: boolean
       toDeckBottom?: boolean

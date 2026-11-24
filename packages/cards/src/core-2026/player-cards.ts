@@ -1,3 +1,5 @@
+import amandaCards from '../data/amanda-sharpe.json'
+import amandaPublished from '../amanda-sharpe/decklist-51874.json'
 import danielaMontereyCards from '../data/daniela-monterey.json'
 import danielaPublished from '../daniela-monterey/decklist-34729.json'
 import montereyPublished from '../daniela-monterey/decklist-35838.json'
@@ -103,6 +105,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     : card
 })
 registerPlayerCards([
+  ...(amandaCards as PlayerCardDef[]),
   ...(danielaMontereyCards as PlayerCardDef[]),
   ...(silasWinifredCards as PlayerCardDef[]),
   ...(trishDexterCards as PlayerCardDef[]),
@@ -155,6 +158,18 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  amanda: {
+    investigator: 1,
+    investigatorCode: amandaPublished.investigator_code,
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(amandaPublished.slots)
+        .filter(([c]) => c !== '01000')
+        .flatMap(([c, n]) => Array.from({ length: n }, () => c)),
+      '12104',
+    ],
+  },
   'daniela-original': {
     investigator: 1,
     investigatorCode: danielaPublished.investigator_code,

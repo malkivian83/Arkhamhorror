@@ -1,4 +1,4 @@
-import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import { playerCardDef, registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
 import definitions from '../data/reprints-wave-1.json'
 import approvals from './approvals.json'
 import './card-60212'
@@ -31,5 +31,14 @@ import './card-01090'
 import './card-01590'
 import './card-01093'
 import './card-01593'
-registerPlayerCards(definitions as PlayerCardDef[])
+// RR Max: reviewed equivalent printings inherit the title's commitment maximum.
+registerPlayerCards(
+  (definitions as PlayerCardDef[]).map((def) => {
+    const approval = approvals.cards.find((c) => c.code === def.code)
+    const canonical = approval ? playerCardDef(approval.behaviorSource) : undefined
+    return canonical?.commitLimit === undefined
+      ? def
+      : { ...def, commitLimit: canonical.commitLimit }
+  }),
+)
 export const REPRINT_RENDERED_CODES = approvals.cards.map((c) => c.code)

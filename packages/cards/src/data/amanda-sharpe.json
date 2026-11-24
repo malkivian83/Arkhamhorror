@@ -1,0 +1,43 @@
+[
+  {
+    "code": "07002",
+    "name": "Amanda Sharpe",
+    "subname": "The Student",
+    "type": "investigator",
+    "class": "seeker",
+    "traits": ["Miskatonic", "Scholar"],
+    "unique": true,
+    "health": 7,
+    "sanity": 7,
+    "skills": { "willpower": 2, "intellect": 2, "combat": 2, "agility": 2 },
+    "deckSize": 30,
+    "deckOptions": [
+      { "classes": ["seeker", "neutral"], "maxLevel": 5 },
+      { "classes": [], "traits": ["Practiced"], "type": "skill", "maxLevel": 3 }
+    ],
+    "signatures": ["07008", "07009"]
+  },
+  {
+    "code": "07008",
+    "name": "Obscure Studies",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "wild": 3 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "07009",
+    "name": "Whispers from the Deep",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Curse"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": [],
+    "weakness": "weakness"
+  }
+]

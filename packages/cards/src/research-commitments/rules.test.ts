@@ -189,22 +189,22 @@ it.each([true, false])(
 it.each([true, false])(
   'Practice commits a Practiced skill from the searched nine and returns only that copy on success (%s)',
   (success) => {
-    let s = begin(patch({ deck: ['01090', '01090', '01088'], hand: ['01090'] })(base()))
-    s = run(s, { type: 'CommitCard', investigator: 'a', code: '01090' })
+    let s = begin(patch({ deck: ['01039', '01039', '01088'], hand: ['01039'] })(base()))
+    s = run(s, { type: 'CommitCard', investigator: 'a', code: '01039' })
     s = run(s, ...b('06197').play!(s, 'a'))
-    s = take(s, '01090')
-    expect(s.skillTest!.committed.filter((c) => c.code === '01090')).toHaveLength(2)
+    s = take(s, '01039')
+    expect(s.skillTest!.committed.filter((c) => c.code === '01039')).toHaveLength(2)
     expect(s.skillTest!.committed.filter((c) => c.returnAfterSuccess)).toHaveLength(1)
     s = finish(s, success)
-    expect(me(s).hand.filter((c) => c === '01090')).toHaveLength(success ? 1 : 0)
-    expect(me(s).discard.filter((c) => c === '01090')).toHaveLength(success ? 1 : 2)
-    expect(me(s).deck).toContain('01090')
+    expect(me(s).hand.filter((c) => c === '01039')).toHaveLength(success ? 1 : 0)
+    expect(me(s).discard.filter((c) => c === '01039')).toHaveLength(success ? 1 : 2)
+    expect(me(s).deck).toContain('01039')
   },
 )
 it('Practice can commit an additional skill to another investigator, and respects Peril and commit restrictions', () => {
-  let s = begin(patch({ deck: ['01090'], hand: ['01090'] })(base()), 'b')
-  s = run(s, { type: 'CommitCard', investigator: 'a', code: '01090' })
-  s = take(run(s, ...b('06197').play!(s, 'a')), '01090')
+  let s = begin(patch({ deck: ['01039'], hand: ['01039'] })(base()), 'b')
+  s = run(s, { type: 'CommitCard', investigator: 'a', code: '01039' })
+  s = take(run(s, ...b('06197').play!(s, 'a')), '01039')
   expect(s.skillTest!.committed.filter((c) => c.by === 'a')).toHaveLength(2)
   expect(b('06197').canPlay!({ ...s, skillTest: { ...s.skillTest!, tags: ['peril'] } }, 'a')).toBe(
     false,

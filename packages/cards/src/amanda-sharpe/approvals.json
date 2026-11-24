@@ -1,0 +1,35 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "decklists": {
+    "07002": "https://arkhamdb.com/decklist/view/51874"
+  },
+  "presentation": "rendered",
+  "sources": {
+    "en": "2ad17d2a98847629cf09bb40dfa4562b488248f6cc19c7f2f7034b83beabefbe",
+    "es": "e8726622af331cba4bc8470c410c248e0f1a0f3d961dea60b37a3635cd0a4625"
+  },
+  "cards": [
+    {
+      "code": "07002",
+      "status": "verified",
+      "adapter": "amanda-sharpe-v1",
+      "module": "card-07002",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07008",
+      "status": "verified",
+      "adapter": "amanda-sharpe-v1",
+      "module": "card-07008",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07009",
+      "status": "verified",
+      "adapter": "amanda-sharpe-v1",
+      "module": "card-07009",
+      "test": "rules.test.ts"
+    }
+  ]
+}

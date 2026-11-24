@@ -1,0 +1,153 @@
+[
+  {
+    "pack_code": "tic",
+    "pack_name": "La conspiración de Innsmouth",
+    "type_code": "investigator",
+    "type_name": "Investigador",
+    "faction_code": "seeker",
+    "faction_name": "Buscador",
+    "position": 2,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07002",
+    "name": "Amanda Sharpe",
+    "real_name": "Amanda Sharpe",
+    "subname": "La estudiante",
+    "text": "<b>Obligado</b> - Al comienzo de la fase de Investigación: Roba 1 carta. Descarta la carta que hay bajo Amanda Sharpe. Elige una carta de tu mano y colócala bajo Amanda Sharpe.\n[reaction] Al comienzo de una prueba de habilidad que estés realizando: Asigna la carta que hay bajo Amanda Sharpe si es posible. No la descartes cuando acabe la prueba.\nEfecto [elder_sign]: +0. Para esta prueba, puedes duplicar la cantidad de iconos de habilidad que tenga la carta que hay bajo Amanda Sharpe.",
+    "real_text": "<b>Forced</b> - At the start of the investigation phase: Draw 1 card. Discard the card beneath Amanda Sharpe. Choose a card from your hand and place it beneath her.\n<b>Forced</b> - At the start of a skill test you are performing: Commit the card beneath Amanda Sharpe, if able. Do not discard it when the test ends.\n[elder_sign] effect: +0. For this test, you may double the number of skill icons on the card beneath Amanda Sharpe.",
+    "errata_date": {
+      "date": "2020-10-15 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "UTC"
+    },
+    "quantity": 1,
+    "skill_willpower": 2,
+    "skill_intellect": 2,
+    "skill_combat": 2,
+    "skill_agility": 2,
+    "health": 7,
+    "health_per_investigator": false,
+    "sanity": 7,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Miskatonic. Erudito.",
+    "real_traits": "Miskatonic. Scholar.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "07008": {
+          "07008": "07008"
+        },
+        "07009": {
+          "07009": "07009"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["seeker", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "trait": ["practiced"],
+        "type": ["skill"],
+        "level": {
+          "min": 0,
+          "max": 3
+        }
+      }
+    ],
+    "illustrator": "Cristi Balanescu",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Tamaño de mazo:</b> 30.\n<b>Opciones de creación de mazos:</b> Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, Habilidades [[Experimentado]] de nivel 0-3.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Estudios de los recóndito, Susurros desde las profundidades, 1 Debilidad básica aleatoria.",
+    "back_flavor": "Amanda Sharpe iba de camino de convertirse en una de las más ilustres graduadas de la Universidad Miskatonic. Sin embargo, desde que vio un extraño cuadro que mostraba el surgimiento de una enorme criatura desde las profundidades del océano, sus estudios se han resentido. En sus sueños la ahogan imágenes de una gigantesca ciudad sumergida y susurros en un idioma que no entiende. Sigue dedicada a sus clases, pero su objetivo ya no es graduarse como la primera de su promoción; en lugar de eso, quiere descubrir el significado que hay tras los secretos ocultistas que se esconden entre las líneas de la realidad.",
+    "octgn_id": "2683e442-0f2f-415b-aa47-72837f65eda5:ba02bbf8-115b-44c7-badf-10f94f84349a",
+    "url": "https://es.arkhamdb.com/card/07002",
+    "imagesrc": "/bundles/cards/07002.png",
+    "backimagesrc": "/bundles/cards/07002b.png"
+  },
+  {
+    "pack_code": "tic",
+    "pack_name": "La conspiración de Innsmouth",
+    "type_code": "event",
+    "type_name": "Evento",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 8,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07008",
+    "name": "Estudios de lo recóndito",
+    "real_name": "Obscure Studies",
+    "cost": 0,
+    "text": "Solo para el mazo de Amanda Sharpe.\nRápido. Juega esta carta cuando inicies una prueba de habilidad.\nDevuelve a tu mano la carta que haya bajo Amanda Sharpe y coloca Estudios de lo recóndito bajo ella.",
+    "real_text": "Amanda Sharpe deck only.\nFast. Play when you initiate a skill test.\nReturn the card beneath Amanda Sharpe to your hand and place Obscure Studies beneath her.",
+    "quantity": 1,
+    "skill_wild": 3,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Innato.",
+    "real_traits": "Insight.",
+    "restrictions": {
+      "investigator": {
+        "07002": "07002"
+      }
+    },
+    "illustrator": "Guillaume Ducos",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "ada62105-c085-4d16-a9f4-33806b15a29d",
+    "url": "https://es.arkhamdb.com/card/07008",
+    "imagesrc": "/bundles/cards/07008.png"
+  },
+  {
+    "pack_code": "tic",
+    "pack_name": "La conspiración de Innsmouth",
+    "type_code": "skill",
+    "type_name": "Habilidad",
+    "subtype_code": "weakness",
+    "subtype_name": "Debilidad",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 9,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07009",
+    "name": "Susurros desde las profundidades",
+    "real_name": "Whispers from the Deep",
+    "text": "Los iconos de esta Habilidad se restan de tu valor de habilidad en lugar de sumarse.\n<b>Obligado</b> - Al elegir una carta para colocar bajo Amanda Sharpe, si los Susurros desde las profundidades están en tu mano: Debes elegirlos.",
+    "real_text": "This skill's icons subtract from your skill value instead of adding to it.\n<b>Forced</b> - When choosing a card to place beneath Amanda Sharpe, if Whispers from the Deep is in your hand: You must choose it.",
+    "quantity": 1,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Locura.",
+    "real_traits": "Curse.",
+    "restrictions": {
+      "investigator": {
+        "07002": "07002"
+      }
+    },
+    "illustrator": "Borja Pindado",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "1ada5bc4-2ba3-4b09-9000-d171b3eb439d",
+    "url": "https://es.arkhamdb.com/card/07009",
+    "imagesrc": "/bundles/cards/07009.png"
+  }
+]

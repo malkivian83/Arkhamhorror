@@ -896,14 +896,14 @@ export interface PlayerCardBehavior {
     state: GameState,
     test: SkillTest,
     by: InvestigatorId,
-    zone?: 'hand' | 'discard' | 'committed',
+    zone?: 'hand' | 'discard' | 'committed' | 'beneath',
   ) => PlayerCardDef['icons']
   /** Additional printed restriction, evaluated for the investigator committing this card. */
   canCommit?: (
     state: GameState,
     test: SkillTest,
     by: InvestigatorId,
-    zone?: 'hand' | 'discard',
+    zone?: 'hand' | 'discard' | 'beneath',
   ) => boolean
   /** While committed, double the icons of each other committed card. */
   doublesOtherCommittedIcons?: boolean
@@ -1121,8 +1121,11 @@ export interface PlayerCardBehavior {
     resources?: number
     slots?: Partial<Record<SlotType, number>>
   }
-  /** Coste adicional al comprometerla. */
+  /** Effects after committing; additional costs belong in commitCost. */
   onCommit?: (state: GameState, by: InvestigatorId) => Message[]
+  /** Additional costs are waived for a mandatory commitment (FAQ 2.23). */
+  canPayCommitCost?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
+  commitCost?: (state: GameState, by: InvestigatorId) => Message[]
   removeAtTestEnd?: boolean
   /** Aumenta el tamaño máximo de mano de su controlador. */
   handSize?: number
@@ -1184,6 +1187,8 @@ export interface PlayerCardBehavior {
  * reacciones, habilidades durante sus pruebas y acciones adicionales.
  */
 export interface InvestigatorBehavior {
+  /** Mandatory ST.2 effects, after initiation reactions and before optional commitments. */
+  startCommitWindow?: (state: GameState, self: Investigator) => Message[]
   forced?: (state: GameState, trigger: Trigger, self: Investigator) => Message[]
   observesCanceledAttacks?: boolean
   observesAttackHistory?: boolean

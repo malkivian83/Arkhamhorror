@@ -1,0 +1,153 @@
+[
+  {
+    "pack_code": "tic",
+    "pack_name": "The Innsmouth Conspiracy",
+    "type_code": "investigator",
+    "type_name": "Investigator",
+    "faction_code": "seeker",
+    "faction_name": "Seeker",
+    "position": 2,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07002",
+    "name": "Amanda Sharpe",
+    "real_name": "Amanda Sharpe",
+    "subname": "The Student",
+    "text": "<b>Forced</b> - At the start of the investigation phase: Draw 1 card. Discard the card beneath Amanda Sharpe. Choose a card from your hand and place it beneath her.\n<b>Forced</b> - At the start of a skill test you are performing: Commit the card beneath Amanda Sharpe, if able. Do not discard it when the test ends.\n[elder_sign] effect: +0. For this test, you may double the number of skill icons on the card beneath Amanda Sharpe.",
+    "real_text": "<b>Forced</b> - At the start of the investigation phase: Draw 1 card. Discard the card beneath Amanda Sharpe. Choose a card from your hand and place it beneath her.\n<b>Forced</b> - At the start of a skill test you are performing: Commit the card beneath Amanda Sharpe, if able. Do not discard it when the test ends.\n[elder_sign] effect: +0. For this test, you may double the number of skill icons on the card beneath Amanda Sharpe.",
+    "errata_date": {
+      "date": "2020-10-15 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "UTC"
+    },
+    "quantity": 1,
+    "skill_willpower": 2,
+    "skill_intellect": 2,
+    "skill_combat": 2,
+    "skill_agility": 2,
+    "health": 7,
+    "health_per_investigator": false,
+    "sanity": 7,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Miskatonic. Scholar.",
+    "real_traits": "Miskatonic. Scholar.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "07008": {
+          "07008": "07008"
+        },
+        "07009": {
+          "07009": "07009"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "faction": ["seeker", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "trait": ["practiced"],
+        "type": ["skill"],
+        "level": {
+          "min": 0,
+          "max": 3
+        }
+      }
+    ],
+    "illustrator": "Cristi Balanescu",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Neutral cards level 0-5, [[Practiced]] skills level 0-3.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Obscure Studies, Whispers from the Deep, 1 random basic weakness.",
+    "back_flavor": "Amanda Sharpe was on track to become one of Miskatonic University's most accomplished graduates. However, ever since she saw a strange painting of an enormous creature's emergence from the depths of the ocean, her classwork has suffered. Her dreams are overwhelmed by images of a vast submerged city and whispers in a language she does not understand. She remains dedicated to her studies, but her goal is no longer to graduate at the top of her class; rather, she seeks to discover the meaning behind the occult secrets concealed between the lines of reality.",
+    "octgn_id": "2683e442-0f2f-415b-aa47-72837f65eda5:ba02bbf8-115b-44c7-badf-10f94f84349a",
+    "url": "https://arkhamdb.com/card/07002",
+    "imagesrc": "/bundles/cards/07002.png",
+    "backimagesrc": "/bundles/cards/07002b.png"
+  },
+  {
+    "pack_code": "tic",
+    "pack_name": "The Innsmouth Conspiracy",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 8,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07008",
+    "name": "Obscure Studies",
+    "real_name": "Obscure Studies",
+    "cost": 0,
+    "text": "Amanda Sharpe deck only.\nFast. Play when you initiate a skill test.\nReturn the card beneath Amanda Sharpe to your hand and place Obscure Studies beneath her.",
+    "real_text": "Amanda Sharpe deck only.\nFast. Play when you initiate a skill test.\nReturn the card beneath Amanda Sharpe to your hand and place Obscure Studies beneath her.",
+    "quantity": 1,
+    "skill_wild": 3,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Insight.",
+    "real_traits": "Insight.",
+    "restrictions": {
+      "investigator": {
+        "07002": "07002"
+      }
+    },
+    "illustrator": "Guillaume Ducos",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "ada62105-c085-4d16-a9f4-33806b15a29d",
+    "url": "https://arkhamdb.com/card/07008",
+    "imagesrc": "/bundles/cards/07008.png"
+  },
+  {
+    "pack_code": "tic",
+    "pack_name": "The Innsmouth Conspiracy",
+    "type_code": "skill",
+    "type_name": "Skill",
+    "subtype_code": "weakness",
+    "subtype_name": "Weakness",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 9,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07009",
+    "name": "Whispers from the Deep",
+    "real_name": "Whispers from the Deep",
+    "text": "This skill's icons subtract from your skill value instead of adding to it.\n<b>Forced</b> - When choosing a card to place beneath Amanda Sharpe, if Whispers from the Deep is in your hand: You must choose it.",
+    "real_text": "This skill's icons subtract from your skill value instead of adding to it.\n<b>Forced</b> - When choosing a card to place beneath Amanda Sharpe, if Whispers from the Deep is in your hand: You must choose it.",
+    "quantity": 1,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Curse.",
+    "real_traits": "Curse.",
+    "restrictions": {
+      "investigator": {
+        "07002": "07002"
+      }
+    },
+    "illustrator": "Borja Pindado",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "1ada5bc4-2ba3-4b09-9000-d171b3eb439d",
+    "url": "https://arkhamdb.com/card/07009",
+    "imagesrc": "/bundles/cards/07009.png"
+  }
+]

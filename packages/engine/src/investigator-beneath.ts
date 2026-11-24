@@ -2,8 +2,81 @@
 import { investigatorBehavior, playerCardDef, scenarioBehavior } from './content'
 import { getInvestigator, push, updateInvestigator } from './state'
 import { nextInt } from './rng'
-import type { GameState, Message, Choice } from './types'
+import type { GameState, Message, Choice, SkillTest } from './types'
+/** Remove only the copy this commitment took from beneath, preserving hand duplicates. */
+export function releaseCommittedBeneath(
+  s: GameState,
+  c: SkillTest['committed'][number],
+): GameState {
+  if (c.fromBeneath === undefined) return s
+  return updateInvestigator(s, c.owner ?? c.by, (i) => ({
+    ...i,
+    beneath: (i.beneath ?? []).filter((code, n) => n !== c.fromBeneath || code !== c.code),
+  }))
+}
 export function handleBeneath(s: GameState, m: Message): GameState | undefined {
+  if (m.type === 'DiscardInvestigatorBeneath') {
+    return updateInvestigator(s, m.investigator, (i) => ({
+      ...i,
+      discard: [...i.discard, ...(i.beneath ?? [])],
+      beneath: [],
+    }))
+  }
+  if (m.type === 'ChooseInvestigatorBeneath') {
+    const i = getInvestigator(s, m.investigator)
+    const cards = m.required && i.hand.includes(m.required) ? [m.required] : [...new Set(i.hand)]
+    const choices: Choice[] = cards.map((code) => ({
+      label: 'choice.placeInvestigatorBeneath',
+      params: { card: playerCardDef(code)?.name ?? code },
+      target: { type: 'hand', code },
+      then: [{ type: 'PlaceInvestigatorBeneath', investigator: i.id, code }],
+    }))
+    if (!choices.length) return s
+    if (!s.interactive) return push(s, ...choices[0]!.then)
+    return push(s, {
+      type: 'Ask',
+      investigator: i.id,
+      question: {
+        kind: 'chooseOne',
+        alwaysAsk: true,
+        prompt: 'prompt.placeInvestigatorBeneath',
+        choices,
+      },
+    })
+  }
+  if (m.type === 'PlaceInvestigatorBeneath') {
+    const i = getInvestigator(s, m.investigator),
+      at = i.hand.indexOf(m.code)
+    if (at < 0 || i.beneath?.length) return s
+    return updateInvestigator(s, i.id, (x) => ({
+      ...x,
+      hand: x.hand.filter((_, n) => n !== at),
+      beneath: [m.code],
+    }))
+  }
+  if (m.type === 'SwapEventBeneath') {
+    const i = getInvestigator(s, m.investigator)
+    return updateInvestigator(s, i.id, (x) => ({
+      ...x,
+      hand: [...x.hand, ...(x.beneath ?? [])],
+      beneath: [m.code],
+    }))
+  }
+  if (m.type === 'DoubleBeneathIcons') {
+    const t = s.skillTest
+    if (!t || t.investigator !== m.investigator) return s
+    return {
+      ...s,
+      skillTest: {
+        ...t,
+        committed: t.committed.map((c) =>
+          c.by === m.investigator && c.fromBeneath !== undefined
+            ? { ...c, iconMultiplier: (c.iconMultiplier ?? 1) * 2 }
+            : c,
+        ),
+      },
+    }
+  }
   if (m.type === 'StoreOpeningBeneath') {
     const i = getInvestigator(s, m.investigator),
       rule = investigatorBehavior(i.id)?.openingReplacement,

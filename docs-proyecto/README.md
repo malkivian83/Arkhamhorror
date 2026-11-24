@@ -174,3 +174,5 @@ Documentos posteriores, por número:
 - [169 · Silas Marsh y Winifred Habbamock](169-investigadores-silas-winifred.md): recuperación de habilidades, compromiso obligatorio, costes por iconos y mazos completos.
 
 - [170 · Daniela Reyes y Monterey Jack originales de Confines](170-investigadores-daniela-monterey.md): ataques cancelados/redirigidos, desplazamientos y mazos publicados completos.
+
+- [171 · Amanda Sharpe](171-investigadora-amanda-sharpe.md): mazo oficial, cartas bajo la investigadora y compromisos obligatorios revisados.

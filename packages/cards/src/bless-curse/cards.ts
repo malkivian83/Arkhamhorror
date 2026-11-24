@@ -511,11 +511,9 @@ function registerSkill(code: string): boolean {
     registerPlayerCard({
       code,
       commitWithoutIcons: true,
-      canCommit: (s, test) => canAdd(s, 'curse', Math.max(0, test.difficulty)),
-      onCommit: (s) => [
-        ...add('curse', Math.max(0, s.skillTest?.difficulty ?? 0)),
-        { type: 'AutoSucceedSkillTest' },
-      ],
+      canPayCommitCost: (s, test) => canAdd(s, 'curse', Math.max(0, test.difficulty)),
+      commitCost: (s) => add('curse', Math.max(0, s.skillTest?.difficulty ?? 0)),
+      onCommit: () => [{ type: 'AutoSucceedSkillTest' }],
     })
     return true
   }
